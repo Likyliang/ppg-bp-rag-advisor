@@ -1,0 +1,241 @@
+catalog_version: 1
+updated: 2026-05-10
+scope: "Full-text candidate governance for PPG blood pressure RAG knowledge expansion."
+policy:
+  credential_handling: "Never store usernames, passwords, cookies, tokens, or institution session data."
+  copyright_handling: "Downloaded full text stays in ignored downloads/; only citation metadata and Chinese summary notes are committed."
+  clinical_boundary: "Full text can strengthen evidence explanation, but cannot expand the system into diagnosis, treatment, prescribing, deprescribing, or replacement of validated BP measurement."
+candidates:
+  - candidate_id: aha_cuffless_bp_statement_fulltext
+    source_id: aha_cuffless_bp_scientific_statement
+    title: AHA cuffless blood pressure scientific statement full text
+    organization: American Heart Association
+    priority: 1
+    topic: cuffless_ppg_limitations
+    access_mode: institution_or_browser
+    status: queued_institution
+    summary_status: pending_fulltext
+    institution_required: true
+    auto_download: false
+    include_in_summary: false
+    landing_url: https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure
+    pdf_url: https://www.ahajournals.org/doi/pdf/10.1161/HYP.0000000000000254
+    doi: 10.1161/HYP.0000000000000254
+    pmid: 41376592
+    year: 2025
+    language: en
+    region: AHA
+    allowed_uses: [cuffless_ppg_limitations, device_advice, signal_quality, research_background]
+    selection_reason: "PPG/无袖带血压局限的最高优先级全文候选。公开摘要已入库，全文用于补强局限、验证、校准和真实世界使用边界。"
+    access_instruction: "如浏览器已通过大连理工大学机构身份访问 AHA Journals，可下载 PDF 并保存为 knowledge_base/sources/downloads/aha_cuffless_bp_scientific_statement.pdf。"
+    last_accessed: 2026-05-10
+    summary_notes: []
+
+  - candidate_id: chinese_hypertension_2024_fulltext
+    source_id: chinese_hypertension_guideline_2024_catalog
+    title: Chinese Guidelines for the Prevention and Treatment of Hypertension 2024 revision full text
+    organization: Chinese guideline authors
+    priority: 1
+    topic: bp_categories
+    access_mode: institution_or_browser
+    status: queued_institution
+    summary_status: pending_fulltext
+    institution_required: true
+    auto_download: false
+    include_in_summary: false
+    landing_url: https://www.sciopen.com/article/10.26599/1671-5411.2025.01.008
+    pdf_url: https://www.sciopen.com/article/pdf/10.26599/1671-5411.2025.01.008
+    doi: 10.26599/1671-5411.2025.01.008
+    pmid: 40151633
+    year: 2025
+    language: zh
+    region: CN
+    allowed_uses: [bp_category_reference, home_bp_monitoring, remeasurement, lifestyle, special_population]
+    selection_reason: "中文报告和中国场景下最关键的指南全文候选，用于核对分类、复测和特殊人群保守提醒。"
+    access_instruction: "若 SciOpen PDF 在浏览器中可通过机构或验证码访问，下载后保存为 knowledge_base/sources/downloads/chinese_hypertension_guideline_2024_catalog.pdf。"
+    last_accessed: 2026-05-10
+    summary_notes: []
+
+  - candidate_id: acc_aha_2025_guideline_fulltext
+    source_id: acc_aha_2025_full_guideline_record
+    title: 2025 AHA ACC adult high blood pressure guideline full text
+    organization: American Heart Association / American College of Cardiology
+    priority: 2
+    topic: bp_categories
+    access_mode: browser_required
+    status: queued_browser
+    summary_status: pending_fulltext
+    institution_required: false
+    auto_download: false
+    include_in_summary: false
+    landing_url: https://professional.heart.org/en/guidelines-statements/2025-ahaaccaanpaapaabcaccpacpmagsamaaspcnmapcnasgim-guideline-for-thehyp0000000000000249
+    pdf_url:
+    doi:
+    pmid:
+    year: 2025
+    language: en
+    region: AHA
+    allowed_uses: [bp_category_reference, home_bp_monitoring, remeasurement, lifestyle, special_population]
+    selection_reason: "新版 AHA/ACC 指南全文用于论文版本追溯和指南差异讨论；当前系统只使用公开专业摘要。"
+    access_instruction: "浏览器打开指南主页，若页面提供 PDF 下载，保存为 knowledge_base/sources/downloads/acc_aha_2025_full_guideline_record.pdf。"
+    last_accessed: 2026-05-10
+    summary_notes: []
+
+  - candidate_id: esc_2024_essential_messages_pdf
+    source_id: esc_2024_bp_guideline_key_points
+    title: ESC 2024 elevated blood pressure and hypertension essential messages PDF
+    organization: European Society of Cardiology
+    priority: 3
+    topic: bp_categories
+    access_mode: browser_required
+    status: queued_browser
+    summary_status: pending_fulltext
+    institution_required: false
+    auto_download: false
+    include_in_summary: false
+    landing_url: https://www.acc.org/Latest-in-Cardiology/ten-points-to-remember/2024/09/05/14/11/2024-esc-guidelines-for-bp-esc-2024
+    pdf_url: https://www.escardio.org/static-file/Escardio/Guidelines/Products/Essential%20Messages/2024%20EM/Essential%20Messages_2024%20HTN.pdf
+    doi:
+    pmid:
+    year: 2024
+    language: en
+    region: EU
+    allowed_uses: [bp_category_reference, home_bp_monitoring, remeasurement, special_population]
+    selection_reason: "ESC essential messages 可用于欧洲指南对照，但自动下载可能被站点防护拦截。"
+    access_instruction: "若浏览器可打开 ESC PDF，保存为 knowledge_base/sources/downloads/esc_2024_bp_guideline_key_points.pdf。"
+    last_accessed: 2026-05-10
+    summary_notes: []
+
+  - candidate_id: nice_ng136_public_html_fulltext
+    source_id: nice_ng136_hypertension
+    title: NICE NG136 public recommendations full-text page
+    organization: National Institute for Health and Care Excellence
+    priority: 3
+    topic: home_bp_monitoring
+    access_mode: public_html
+    status: summarized
+    summary_status: ready
+    institution_required: false
+    auto_download: false
+    include_in_summary: true
+    landing_url: https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations
+    pdf_url:
+    doi:
+    pmid:
+    year: 2023
+    language: en
+    region: UK
+    allowed_uses: [home_bp_monitoring, remeasurement, bp_category_reference]
+    selection_reason: "NICE recommendations 页面公开可读，可补强家庭/动态血压确认、复测和规范测量边界。"
+    access_instruction: "公开 HTML 已足够用于摘要；不需要机构下载。"
+    last_accessed: 2026-05-10
+    summary_notes:
+      - "NICE NG136 可作为家庭血压和动态血压确认流程的国际对照，强调不能依赖单次或非规范读数完成临床判断。"
+      - "对本系统而言，NICE 来源只支持复测、记录和规范测量建议，不改变 PPG 估算结果的非诊断边界。"
+      - "报告引用时应将其放在 home_bp_monitoring、remeasurement 或 bp_category_reference 语境中。"
+
+  - candidate_id: ish_2020_public_pdf
+    source_id: ish_2020_global_guideline
+    title: ISH 2020 global hypertension practice guideline public PDF
+    organization: International Society of Hypertension
+    priority: 4
+    topic: home_bp_monitoring
+    access_mode: public_pdf
+    status: downloadable
+    summary_status: ready
+    institution_required: false
+    auto_download: true
+    include_in_summary: true
+    landing_url: https://ish-world.com/global-hypertension-practice-guidelines/
+    pdf_url: https://www.pascar.org/uploads/files/International_Society_of_Hypertension_Global_Guidelines_2020.pdf
+    doi: 10.1161/HYPERTENSIONAHA.120.15026
+    pmid:
+    year: 2020
+    language: en
+    region: global
+    allowed_uses: [home_bp_monitoring, remeasurement, lifestyle, special_population]
+    selection_reason: "ISH 全球实践指南可补充资源差异场景、规范测量、重复读数和生活方式健康教育。"
+    access_instruction: "该 PDF 可公开下载；脚本只保存本地 PDF，不提交全文。"
+    last_accessed: 2026-05-10
+    summary_notes:
+      - "ISH 指南适合用于全球实践背景，强调规范测量、重复读数和长期风险沟通。"
+      - "生活方式内容只能作为健康教育和医生沟通准备，不能承诺降压幅度或替代治疗。"
+      - "对特殊人群或合并基础病用户，报告应保持保守，建议用规范设备复核并咨询医生。"
+
+  - candidate_id: esh_2023_guideline_fulltext
+    source_id: esh_2023_hypertension_guideline
+    title: ESH 2023 arterial hypertension guideline full text
+    organization: European Society of Hypertension
+    priority: 4
+    topic: home_bp_monitoring
+    access_mode: institution_or_browser
+    status: queued_institution
+    summary_status: pending_fulltext
+    institution_required: true
+    auto_download: false
+    include_in_summary: false
+    landing_url: https://www.eshonline.org/guidelines/
+    pdf_url:
+    doi:
+    pmid:
+    year: 2023
+    language: en
+    region: EU
+    allowed_uses: [home_bp_monitoring, remeasurement, special_population]
+    selection_reason: "ESH 2023 全文适合做欧洲指南对照和特殊人群保守提醒，但不需要作为急症或用药唯一来源。"
+    access_instruction: "通过浏览器或机构页面下载合法 PDF 后保存为 knowledge_base/sources/downloads/esh_2023_hypertension_guideline.pdf。"
+    last_accessed: 2026-05-10
+    summary_notes: []
+
+  - candidate_id: stride_bp_validated_devices_public_registry
+    source_id: stride_bp_validated_devices
+    title: STRIDE BP validated devices registry review
+    organization: STRIDE BP
+    priority: 5
+    topic: validated_devices
+    access_mode: public_html
+    status: summarized
+    summary_status: ready
+    institution_required: false
+    auto_download: false
+    include_in_summary: true
+    landing_url: https://www.stridebp.org/bp-monitors/
+    pdf_url:
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: global
+    allowed_uses: [device_advice, home_bp_monitoring]
+    selection_reason: "验证设备注册表用于支持选择经过验证的上臂式血压计，不展示商业型号排名。"
+    access_instruction: "公开注册表只做链接和原则摘要，不复制设备清单。"
+    last_accessed: 2026-05-10
+    summary_notes:
+      - "STRIDE BP 注册表可支持“选择经过验证的上臂式血压计复核”的建议。"
+      - "系统不应推荐具体商业型号，也不应把注册表解释为 PPG 或无袖带设备已可替代袖带血压计。"
+      - "检索用途限定为 device_advice 和 home_bp_monitoring。"
+
+  - candidate_id: iso_81060_2_record_only
+    source_id: iso_81060_2_validation_standard
+    title: ISO 81060-2 validation standard metadata record
+    organization: International Organization for Standardization
+    priority: 6
+    topic: validated_devices
+    access_mode: metadata_only_paid_standard
+    status: metadata_only
+    summary_status: metadata_only
+    institution_required: false
+    auto_download: false
+    include_in_summary: false
+    landing_url: https://www.iso.org/standard/73339.html
+    pdf_url:
+    doi:
+    pmid:
+    year: 2018
+    language: en
+    region: global
+    allowed_uses: [device_advice, research_background]
+    selection_reason: "ISO 标准用于验证原则和 citation，不复制或下载受版权保护标准正文。"
+    access_instruction: "只保留元数据和原则说明；除非明确合法授权，不下载标准全文。"
+    last_accessed: 2026-05-10
+    summary_notes: []

@@ -8837,12 +8837,12 @@
           "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
         },
         {
-          "source_id": "hypertension_canada_device_recommendations_001",
-          "title": "Recommended blood pressure monitors",
-          "url": "https://hypertension.ca/bpdevices",
+          "source_id": "stride_bp_validated_devices_004",
+          "title": "STRIDE BP validated blood pressure monitors",
+          "url": "https://www.stridebp.org/bp-monitors",
           "used_for": "腕式 手指式 血压计 局限 上臂式",
-          "organization": "Hypertension Canada",
-          "region": "CA",
+          "organization": "STRIDE BP",
+          "region": "global",
           "topic": "validated_devices",
           "language": "en",
           "evidence_class": "official_health_education",
@@ -8852,8 +8852,8 @@
             "home_bp_monitoring"
           ],
           "review_status": "included",
-          "score": 0.5019,
-          "snippet": "## 来源摘要 Hypertension Canada 设备推荐页面可支持选择验证血压计的原则。"
+          "score": 0.563,
+          "snippet": "## 全文候选与下载材料摘要 ### STRIDE BP validated devices registry review - candidate_id: `stride_bp_validated_devices_public_registry` - access_mode: `public_html` - fulltext_status: summarized - source_url: https://www.stridebp.org/bp-monitors/ - do..."
         }
       ],
       "precision_at_k": 1.0,

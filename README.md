@@ -19,6 +19,8 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -e ".[test]"
 python scripts/screen_sources.py
+python scripts/prepare_fulltext_candidates.py
+python scripts/create_fulltext_summaries.py
 python scripts/extract_source_notes.py --clean
 python scripts/ingest_kb.py
 python scripts/audit_kb.py
@@ -86,3 +88,7 @@ python scripts/run_quality_gate.py --strict-stop
 当前纳入来源覆盖 AHA/ACC 2025 高血压指南要点、AHA 家庭血压监测和血压读数解释、AHA 无袖带血压科学声明、中国高血压防治指南 2024 修订版、NICE/ESC/ISH/ESH 国际指南、CDC/WHO/NHLBI/MedlinePlus 公众健康教育、STRIDE BP 验证设备注册表，以及项目本地安全规则。
 
 排除规则包括设备厂商营销页、新闻软文、声称无需复测的博客，以及单篇模型性能论文作为患者建议依据。此类来源只可作为 excluded source 或研究背景，不进入用户报告核心证据。
+
+## 全文候选
+
+全文候选由 `knowledge_base/sources/fulltext_candidates.yaml` 单独治理。公开 PDF 可用 `scripts/download_fulltext_candidates.py` 下载到被 Git 忽略的 `knowledge_base/sources/downloads/`；机构访问候选进入 `knowledge_base/processed/fulltext_download_queue.md`，只通过用户当前浏览器会话下载，不保存账号凭证。可提交内容只包括 `knowledge_base/sources/fulltext_summaries/` 中的中文摘要和 citation。详细流程见 `docs/fulltext_workflow.md`。

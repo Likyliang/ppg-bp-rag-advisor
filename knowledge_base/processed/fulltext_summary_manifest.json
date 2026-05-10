@@ -1,0 +1,34 @@
+{
+  "written_count": 3,
+  "written": [
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/nice_ng136_hypertension.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/ish_2020_global_guideline.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/stride_bp_validated_devices.summary.md"
+  ],
+  "skipped": [
+    {
+      "candidate_id": "aha_cuffless_bp_statement_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "chinese_hypertension_2024_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "acc_aha_2025_guideline_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "esc_2024_essential_messages_pdf",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "esh_2023_guideline_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "iso_81060_2_record_only",
+      "reason": "include_in_summary=false"
+    }
+  ]
+}

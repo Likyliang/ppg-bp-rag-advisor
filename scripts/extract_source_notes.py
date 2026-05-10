@@ -14,6 +14,7 @@ from app.services.source_catalog import included_sources
 
 GENERATED_ROOT = "knowledge_base/raw/expanded"
 DOWNLOADS_ROOT = "knowledge_base/sources/downloads"
+FULLTEXT_SUMMARY_ROOT = "knowledge_base/sources/fulltext_summaries"
 
 
 def _slug(value: str) -> str:
@@ -77,19 +78,27 @@ def source_to_markdown(source: Dict[str, Any]) -> str:
 
 def _download_note_section(source_id: str) -> str:
     downloads = resolve_project_path(DOWNLOADS_ROOT)
+    summaries = resolve_project_path(FULLTEXT_SUMMARY_ROOT)
     sections: List[str] = []
+    for suffix in (".summary.md", ".summary.txt", ".notes.md", ".notes.txt"):
+        path = summaries / f"{source_id}{suffix}"
+        if path.exists():
+            sections.append(path.read_text(encoding="utf-8").strip())
     for suffix in (".summary.md", ".summary.txt", ".notes.md", ".notes.txt"):
         path = downloads / f"{source_id}{suffix}"
         if path.exists():
             sections.append(path.read_text(encoding="utf-8").strip())
     pdf_path = downloads / f"{source_id}.pdf"
     if pdf_path.exists():
-        sections.append(
-            f"已检测到本地 PDF：{pdf_path.name}。请只把人工摘要写入同名 .summary.md 后再进入知识库，避免复制受版权保护全文。"
-        )
+        if sections:
+            sections.append(f"已检测到本地 PDF：{pdf_path.name}。知识库只使用上述摘要和 citation，不复制全文。")
+        else:
+            sections.append(
+                f"已检测到本地 PDF：{pdf_path.name}。请先把人工摘要写入 tracked fulltext_summaries 或同名 .summary.md 后再进入知识库，避免复制受版权保护全文。"
+            )
     if not sections:
         return ""
-    return "## 人工下载材料摘要\n\n" + "\n\n".join(sections) + "\n\n"
+    return "## 全文候选与下载材料摘要\n\n" + "\n\n".join(sections) + "\n\n"
 
 
 def extract_source_notes(clean: bool = False) -> Dict[str, Any]:

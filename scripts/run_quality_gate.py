@@ -12,6 +12,8 @@ from app.services.config_loader import resolve_project_path
 
 
 COMMANDS = [
+    ("prepare_fulltext_candidates", [sys.executable, "scripts/prepare_fulltext_candidates.py"]),
+    ("create_fulltext_summaries", [sys.executable, "scripts/create_fulltext_summaries.py"]),
     ("screen_sources", [sys.executable, "scripts/screen_sources.py"]),
     ("extract_source_notes", [sys.executable, "scripts/extract_source_notes.py", "--clean"]),
     ("ingest_kb", [sys.executable, "scripts/ingest_kb.py"]),

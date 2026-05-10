@@ -11,9 +11,10 @@
 - Added a full quality-gate runner that regenerates knowledge artifacts, runs evaluations and tests, and writes a stop-criteria report.
 - Expanded the governed knowledge base to 63 included sources and 252 chunks through a supplemental source catalog.
 - Upgraded retrieval with rule-derived allowed uses, lightweight reranking, chunk caching, citation quality checks, and UI summary fields.
-- Expanded retrieval and report evaluation datasets to 100 golden queries and 50 fixtures; expanded tests to 101.
+- Expanded retrieval and report evaluation datasets to 100 golden queries and 50 fixtures; expanded tests to 105.
 - Added evaluation CSV exports, report benchmark, OpenAPI examples, and Streamlit fixture/report download support.
 - Prepared `v1.0.0-rc1` release candidate after strict quality gate and API smoke checks passed.
+- Added full-text candidate governance with a safe public-download path, institution/browser queue, tracked Chinese summary notes, and quality-gate validation; current KB is 63 included sources and 255 chunks.
 
 ## v1.0.0-rc1 - 2026-05-10
 

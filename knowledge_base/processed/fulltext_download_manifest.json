@@ -1,0 +1,17 @@
+{
+  "timestamp": 1778420614,
+  "download_count": 1,
+  "failed_count": 0,
+  "results": [
+    {
+      "candidate_id": "ish_2020_public_pdf",
+      "source_id": "ish_2020_global_guideline",
+      "url": "https://www.pascar.org/uploads/files/International_Society_of_Hypertension_Global_Guidelines_2020.pdf",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/ish_2020_global_guideline.pdf",
+      "status": "downloaded",
+      "bytes": 4361605,
+      "content_type": "application/pdf",
+      "sha256": "c4cc2460633c0e509cd934f99def9d291426ed27114f353acc81e8d800cc8a12"
+    }
+  ]
+}

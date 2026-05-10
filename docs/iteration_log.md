@@ -53,3 +53,12 @@
 - Final strict quality gate passes all stop criteria.
 - Release candidate tag target: `v1.0.0-rc1`.
 
+## Special Iteration: Full-text Candidate Intake
+
+- Goal: create a repeatable workflow for full-text candidate selection, institution/browser download, and summary-only knowledge-base intake.
+- Added `knowledge_base/sources/fulltext_candidates.yaml` with 9 prioritized candidates, including AHA cuffless BP statement, Chinese 2024 hypertension guideline, AHA/ACC 2025, ESC 2024, NICE NG136, ISH 2020, ESH 2023, STRIDE BP, and ISO 81060-2.
+- Added scripts for candidate validation, public PDF download, tracked summary generation, and queue reporting.
+- Downloaded the public ISH 2020 guideline PDF into ignored local storage; generated tracked Chinese summaries for NICE NG136, ISH 2020, and STRIDE BP.
+- Institution-required candidates remain queued; no credentials, cookies, tokens, or browser sessions are saved.
+- Strict quality gate passes after summary ingest: 105 tests, 63 included sources, 255 chunks, 100 golden queries, retrieval match rate 1.0, precision@5 1.0, unsafe-source leakage 0.
+- Next risk: AHA Journals, SciOpen, ESC, and ESH may require browser or institution access; after legal download, manually read and promote summaries by changing `include_in_summary` and `summary_status`.
