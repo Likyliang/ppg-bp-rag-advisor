@@ -23,6 +23,7 @@ python scripts/extract_source_notes.py --clean
 python scripts/ingest_kb.py
 python scripts/audit_kb.py
 python scripts/evaluate_retrieval.py
+python scripts/benchmark_report.py
 pytest
 uvicorn app.main:app --reload
 streamlit run streamlit_app.py
@@ -46,6 +47,16 @@ python scripts/ingest_kb.py --vector
 - `GET /api/v1/kb/sources`
 - `GET /api/v1/kb/audit`
 - `POST /api/v1/kb/search`
+
+## 质量门禁
+
+长期迭代验收统一使用：
+
+```bash
+python scripts/run_quality_gate.py --strict-stop
+```
+
+该命令会重新生成知识库、运行审计、检索评估、报告评估、性能基准和测试，并写入 `knowledge_base/processed/quality_gate_report.json`。当前 release-candidate 门槛包括：60+ 纳入来源、250+ chunks、100 条 golden queries、50 个报告 fixtures、60+ 测试、敏感来源泄漏为 0、报告 P95 小于 3 秒。
 
 示例：
 

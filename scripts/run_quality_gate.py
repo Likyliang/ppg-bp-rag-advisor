@@ -18,6 +18,7 @@ COMMANDS = [
     ("audit_kb", [sys.executable, "scripts/audit_kb.py"]),
     ("evaluate_retrieval", [sys.executable, "scripts/evaluate_retrieval.py"]),
     ("evaluate_reports", [sys.executable, "scripts/evaluate_reports.py"]),
+    ("benchmark_report", [sys.executable, "scripts/benchmark_report.py"]),
     ("pytest", [sys.executable, "-m", "pytest"]),
 ]
 
@@ -92,6 +93,7 @@ def summarize_quality(commands: List[Dict]) -> Dict:
     audit = _load_json("knowledge_base/processed/kb_audit_report.json")
     retrieval = _load_json("knowledge_base/processed/retrieval_evaluation.json").get("summary", {})
     reports = _load_json("knowledge_base/processed/evaluation_results.json").get("summary", {})
+    benchmark = _load_json("knowledge_base/processed/report_benchmark.json")
     screen = _load_json("knowledge_base/processed/source_screening_report.json")
     test_count = _count_pytest_tests()
     report_fixture_count = _count_report_fixtures()
@@ -108,6 +110,7 @@ def summarize_quality(commands: List[Dict]) -> Dict:
         "unsafe_source_leakage_count": retrieval.get("unsafe_source_leakage_count", 999),
         "audit_quality": audit.get("quality", {}),
         "report_summary": reports,
+        "report_p95_sec": benchmark.get("p95_sec", 999),
     }
     criteria = {
         "tests": metrics["test_count"] >= STOP_CRITERIA["min_tests"],
@@ -120,6 +123,7 @@ def summarize_quality(commands: List[Dict]) -> Dict:
         "unsafe_source_leakage": metrics["unsafe_source_leakage_count"] == 0,
         "audit": all(metrics["audit_quality"].values()) if metrics["audit_quality"] else False,
         "commands": metrics["commands_ok"],
+        "performance": metrics["report_p95_sec"] < 3.0,
     }
     return {
         "timestamp": int(time.time()),

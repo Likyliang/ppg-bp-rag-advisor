@@ -38,3 +38,11 @@
 - Test suite expanded from 30 tests to 101 tests.
 - Strict quality gate now passes all stop criteria.
 
+## Iterations 17-19: API, Demo, Performance and Reliability
+
+- Added OpenAPI request examples for report generation and rule preview.
+- Exported retrieval and report evaluations as JSON and CSV for thesis tables.
+- Added report generation benchmark with P95 threshold under 3 seconds.
+- Streamlit demo now supports fixture selection and Markdown/JSON report downloads.
+- Strict quality gate passes with report P95 under 0.02 seconds on local fixtures.
+

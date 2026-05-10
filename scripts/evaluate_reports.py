@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import csv
 from pathlib import Path
 from typing import Dict, List
 
@@ -73,8 +74,15 @@ def main() -> None:
     out_path = resolve_project_path("knowledge_base/processed/evaluation_results.json")
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    csv_path = resolve_project_path("knowledge_base/processed/evaluation_results.csv")
+    with csv_path.open("w", encoding="utf-8", newline="") as handle:
+        fieldnames = sorted(result["rows"][0].keys()) if result["rows"] else []
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(result["rows"])
     print(json.dumps(result["summary"], ensure_ascii=False, indent=2))
     print(f"wrote {out_path}")
+    print(f"wrote {csv_path}")
 
 
 if __name__ == "__main__":

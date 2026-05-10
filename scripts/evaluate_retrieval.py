@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import csv
 from typing import Dict, List
 
 from app.services.config_loader import resolve_project_path
@@ -242,8 +243,23 @@ def main() -> None:
     result = evaluate_retrieval()
     out_path = resolve_project_path("knowledge_base/processed/retrieval_evaluation.json")
     out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    csv_path = resolve_project_path("knowledge_base/processed/retrieval_evaluation.csv")
+    with csv_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=["query", "expected_uses", "precision_at_k", "has_match", "unsafe_source_leakage"])
+        writer.writeheader()
+        for row in result["rows"]:
+            writer.writerow(
+                {
+                    "query": row["query"],
+                    "expected_uses": "|".join(row["expected_uses"]),
+                    "precision_at_k": row["precision_at_k"],
+                    "has_match": row["has_match"],
+                    "unsafe_source_leakage": "|".join(row["unsafe_source_leakage"]),
+                }
+            )
     print(json.dumps(result["summary"], ensure_ascii=False, indent=2))
     print(f"wrote {out_path}")
+    print(f"wrote {csv_path}")
 
 
 if __name__ == "__main__":

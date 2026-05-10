@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Body, HTTPException
 from pydantic import BaseModel, ValidationError
 
 from app.agents.workflow import generate_report, preview_rules
@@ -37,7 +37,16 @@ def health() -> Dict[str, str]:
 
 
 @router.post("/reports/preview-rules", response_model=RuleResult)
-def preview_rules_endpoint(payload: Dict[str, Any]) -> RuleResult:
+def preview_rules_endpoint(payload: Dict[str, Any] = Body(openapi_examples={
+    "high_bp": {
+        "summary": "偏高估算值",
+        "value": {"estimated_sbp": 145, "estimated_dbp": 92, "signal_quality_score": 0.86, "confidence": 0.68},
+    },
+    "emergency": {
+        "summary": "严重偏高且胸痛",
+        "value": {"estimated_sbp": 185, "estimated_dbp": 122, "signal_quality_score": 0.9, "symptoms": {"chest_pain": True}},
+    },
+})) -> RuleResult:
     try:
         return preview_rules(payload)
     except ValidationError as exc:
@@ -47,7 +56,20 @@ def preview_rules_endpoint(payload: Dict[str, Any]) -> RuleResult:
 
 
 @router.post("/reports/generate")
-def generate_report_endpoint(payload: Dict[str, Any]) -> Dict[str, Any]:
+def generate_report_endpoint(payload: Dict[str, Any] = Body(openapi_examples={
+    "flat_payload": {
+        "summary": "小程序扁平字段输入",
+        "value": {"SBP": 142, "DBP": 91, "HR": 78, "quality": "good", "conf": 0.7, "age": 45},
+    },
+    "nested_payload": {
+        "summary": "标准嵌套输入",
+        "value": {
+            "measurement": {"estimated_sbp": 145, "estimated_dbp": 92, "heart_rate": 82, "signal_quality_score": 0.86},
+            "user_profile": {"age": 45, "antihypertensive_medication": False},
+            "symptoms": {"chest_pain": False, "shortness_of_breath": False},
+        },
+    },
+})) -> Dict[str, Any]:
     try:
         report: HealthReport = generate_report(payload)
         return report_to_json(report)
