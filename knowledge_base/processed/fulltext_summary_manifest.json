@@ -42,6 +42,46 @@
       "reason": "include_in_summary=false"
     },
     {
+      "candidate_id": "allen_2007_ppg_clinical_measurement_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "bent_2020_wearable_optical_hr_inaccuracy_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "chandrasekhar_2020_contact_pressure_cuffless_bp_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "charlton_2022_ppg_best_practices_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "charlton_2022_wearable_ppg_cardiovascular_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "charlton_2023_wearable_ppg_roadmap_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "charlton_2025_wrist_ppg_signal_quality_pdf",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "desquins_2022_ppg_quality_assessment_survey_pdf",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "shirbani_2020_ambient_light_skin_tone_vpg_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "teng_2004_contact_force_ppg_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
       "candidate_id": "iso_81060_2_record_only",
       "reason": "include_in_summary=false"
     }

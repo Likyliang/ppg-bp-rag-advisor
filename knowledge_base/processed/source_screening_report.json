@@ -1,6 +1,6 @@
 {
-  "total_sources": 74,
-  "included_count": 70,
+  "total_sources": 84,
+  "included_count": 80,
   "excluded_count": 4,
   "threshold": 18,
   "issues": [],
@@ -13,7 +13,7 @@
     "validated_devices": 6,
     "lifestyle": 13,
     "special_population": 13,
-    "measurement_quality": 4,
+    "measurement_quality": 14,
     "medication_safety": 4,
     "disclaimer": 3
   },
@@ -21,10 +21,11 @@
     "guideline": 10,
     "official_health_education": 44,
     "scientific_statement": 2,
-    "review": 1,
+    "review": 6,
     "validation_standard": 3,
     "patient_education": 1,
-    "safety_rule": 9
+    "safety_rule": 9,
+    "research_context": 5
   },
   "included_sources": [
     {
@@ -3056,6 +3057,444 @@
       },
       "source_quality_score": 25,
       "source_hash": "e92e4c3ce3f5eea5",
+      "review_status": "included"
+    },
+    {
+      "source_id": "allen_2007_ppg_clinical_measurement_review",
+      "title": "Photoplethysmography and its application in clinical physiological measurement",
+      "organization": "Physiological Measurement",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17322588/",
+      "doi": "10.1088/0967-3334/28/3/R01",
+      "pmid": 17322588,
+      "year": 2007,
+      "language": "en",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "review",
+      "source_type": "peer_reviewed_review",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "cuffless_ppg_limitations",
+        "remeasurement",
+        "research_background"
+      ],
+      "copyright_note": "Peer-reviewed review; summarize PPG measurement principles only.",
+      "access_note": "PubMed metadata public; full text may require publisher or institutional access",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 1,
+        "relevance": 5,
+        "accessibility": 4,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "Allen 2007 是 PPG 生理测量的基础综述，可用于解释 PPG 是光学、位点相关、易受采集条件影响的间接生理信号。",
+        "key_points": [
+          "PPG 信号依赖光照、组织灌注和测量位置，不是直接血压测量。",
+          "运动、环境光、探头接触和传感器位置都可能改变波形质量。",
+          "低质量或不稳定波形应优先重新采集并用规范血压计复核。"
+        ],
+        "implementation_notes": [
+          "用于 PPG signal_quality 的背景说明；不用于患者级诊断或治疗建议。"
+        ]
+      },
+      "source_quality_score": 19,
+      "source_hash": "78af718e41fba721",
+      "review_status": "included"
+    },
+    {
+      "source_id": "charlton_2022_ppg_best_practices",
+      "title": "Establishing best practices in photoplethysmography signal acquisition and processing",
+      "organization": "Physiological Measurement",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9136485/",
+      "doi": "10.1088/1361-6579/ac6cc4",
+      "pmid": 35508148,
+      "year": 2022,
+      "language": "en",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "review",
+      "source_type": "editorial_review",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "remeasurement",
+        "research_background"
+      ],
+      "copyright_note": "Open PMC article; summarize best-practice principles only.",
+      "access_note": "public full text via PMC",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 4,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "该文讨论 PPG 信号采集和处理最佳实践的必要性，可支持采集时长、采样、预处理和质量评估应被标准化。",
+        "key_points": [
+          "PPG 采集质量依赖设备设计、采样设置、采集场景和处理流程。",
+          "采集时长不足或波形不稳定时，不应生成强风险结论。",
+          "报告可建议延长采集、保持稳定姿势并重新采集。"
+        ],
+        "implementation_notes": [
+          "用于 capture_duration、signal_quality 和质量评估说明；不替代具体算法验证。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "8f0d46f641ec3b23",
+      "review_status": "included"
+    },
+    {
+      "source_id": "charlton_2022_wearable_ppg_cardiovascular_review",
+      "title": "Wearable Photoplethysmography for Cardiovascular Monitoring",
+      "organization": "Proceedings of the IEEE",
+      "url": "https://ieeexplore.ieee.org/document/9731763",
+      "doi": "10.1109/JPROC.2022.3149785",
+      "pmid": 35356509,
+      "year": 2022,
+      "language": "en",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "review",
+      "source_type": "peer_reviewed_review",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "cuffless_ppg_limitations",
+        "research_background"
+      ],
+      "copyright_note": "Peer-reviewed review; summarize wearable PPG monitoring limitations only.",
+      "access_note": "abstract and metadata public; publisher full text may require access",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 4,
+        "relevance": 5,
+        "accessibility": 4,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "该综述覆盖可穿戴 PPG 心血管监测的应用与限制，可用于解释真实世界佩戴、运动和传感器位置对信号的影响。",
+        "key_points": [
+          "可穿戴 PPG 在日常环境中容易受运动、佩戴位置和接触状态影响。",
+          "PPG 可用于趋势和研究背景，但血压解释必须保留不确定性。",
+          "传感器位置和姿势变化会影响波形及后续估算。"
+        ],
+        "implementation_notes": [
+          "用于 wearable PPG 局限和 sensor_position 说明；不用于证明无袖带血压可诊断。"
+        ]
+      },
+      "source_quality_score": 22,
+      "source_hash": "8c5eeb422d79e951",
+      "review_status": "included"
+    },
+    {
+      "source_id": "charlton_2023_wearable_ppg_roadmap",
+      "title": "The 2023 wearable photoplethysmography roadmap",
+      "organization": "Physiological Measurement",
+      "url": "https://iopscience.iop.org/article/10.1088/1361-6579/acead2",
+      "doi": "10.1088/1361-6579/acead2",
+      "pmid": 37494945,
+      "year": 2023,
+      "language": "en",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "review",
+      "source_type": "roadmap_review",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "cuffless_ppg_limitations",
+        "device_advice",
+        "research_background"
+      ],
+      "copyright_note": "Open IOP roadmap article; summarize high-level limitations and research gaps only.",
+      "access_note": "public landing page with open access article",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "2023 可穿戴 PPG 路线图提供了运动、肤色、接触、佩戴位置和真实世界可用性等研究挑战的高层框架。",
+        "key_points": [
+          "运动伪影、个体差异、肤色/组织光学特性和佩戴条件是可穿戴 PPG 的关键质量挑战。",
+          "传感器位置、姿势和接触稳定性会影响光学波形。",
+          "报告应把这些因素写成采集质量限制，而不是临床判断依据。"
+        ],
+        "implementation_notes": [
+          "用于 PPG signal_quality 和 research_background；敏感场景需与 guideline 或 safety_rule 搭配。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "a06b8a9f5c3062f2",
+      "review_status": "included"
+    },
+    {
+      "source_id": "desquins_2022_ppg_quality_assessment_survey",
+      "title": "A Survey of Photoplethysmography and Imaging Photoplethysmography Quality Assessment Methods",
+      "organization": "Applied Sciences",
+      "url": "https://www.mdpi.com/2076-3417/12/19/9582",
+      "doi": "10.3390/app12199582",
+      "pmid": "",
+      "year": 2022,
+      "language": "en",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "review",
+      "source_type": "quality_assessment_survey",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "remeasurement",
+        "research_background"
+      ],
+      "copyright_note": "Open-access MDPI review; summarize signal quality assessment concepts only.",
+      "access_note": "public full text and PDF",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 3,
+        "recency": 4,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "该综述聚焦 PPG 与成像 PPG 的信号质量评估，可用于说明为什么需要 quality score、波形筛选和低质量拦截。",
+        "key_points": [
+          "PPG 信号可能受外部和生理因素干扰，质量评估有助于避免误解。",
+          "成像/摄像头 PPG 更需要关注环境光、运动和画面稳定性。",
+          "低质量信号应触发重新采集、延长采集或改用规范设备复核。"
+        ],
+        "implementation_notes": [
+          "用于 signal_quality 和 RAG 检索解释；不用于临床阈值。"
+        ]
+      },
+      "source_quality_score": 22,
+      "source_hash": "ea0c3467ca51b0cc",
+      "review_status": "included"
+    },
+    {
+      "source_id": "charlton_2025_wrist_ppg_signal_quality",
+      "title": "Determinants of photoplethysmography signal quality at the wrist",
+      "organization": "PLOS Digital Health",
+      "url": "https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000585",
+      "doi": "10.1371/journal.pdig.0000585",
+      "pmid": 40577339,
+      "year": 2025,
+      "language": "en",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "research_context",
+      "source_type": "observational_signal_quality_study",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "research_background"
+      ],
+      "copyright_note": "Open-access PLOS article; summarize determinants and do not convert into clinical advice.",
+      "access_note": "public full text and PDF",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "该研究分析腕部 PPG 信号质量影响因素，适合支持传感器位置、姿势和个体差异会影响波形质量。",
+        "key_points": [
+          "腕部 PPG 容易受到传感器高度、姿势、位置和个体特征影响。",
+          "sensor position 不稳定时，算法估算的不确定性应提高。",
+          "该来源只支持信号质量解释，不支持患者级临床结论。"
+        ],
+        "implementation_notes": [
+          "用于 sensor_position、wearable PPG 和 signal_quality 检索。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "1d47052e5cb13b7f",
+      "review_status": "included"
+    },
+    {
+      "source_id": "teng_2004_contact_force_ppg",
+      "title": "The effect of contacting force on photoplethysmographic signals",
+      "organization": "Physiological Measurement",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15535195/",
+      "doi": "10.1088/0967-3334/25/5/020",
+      "pmid": 15535195,
+      "year": 2004,
+      "language": "en",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "research_context",
+      "source_type": "contact_force_study",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "research_background"
+      ],
+      "copyright_note": "Peer-reviewed article; summarize contact-force principle only.",
+      "access_note": "PubMed metadata public; full text may require publisher or institutional access",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 1,
+        "relevance": 5,
+        "accessibility": 3,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "该经典研究直接说明探头接触力会影响 PPG 信号，可用于支持“按压太松或太紧都可能影响波形”的采集提示。",
+        "key_points": [
+          "接触压力会改变 PPG 波形幅度和形态。",
+          "手指摄像头或传感器佩戴过松、过紧都可能降低估算可靠性。",
+          "发现接触不稳时应重新放置传感器并复测。"
+        ],
+        "implementation_notes": [
+          "用于 contact_pressure 解释；不用于血压分类或诊断。"
+        ]
+      },
+      "source_quality_score": 18,
+      "source_hash": "73d8e0daa756a69c",
+      "review_status": "included"
+    },
+    {
+      "source_id": "chandrasekhar_2020_contact_pressure_cuffless_bp",
+      "title": "PPG Sensor Contact Pressure Should Be Taken Into Account for Cuff-Less Blood Pressure Measurement",
+      "organization": "IEEE Transactions on Biomedical Engineering",
+      "url": "https://ieeexplore.ieee.org/document/9016235",
+      "doi": "10.1109/TBME.2020.2976989",
+      "pmid": 32142414,
+      "year": 2020,
+      "language": "en",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "research_context",
+      "source_type": "cuffless_bp_contact_pressure_study",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "cuffless_ppg_limitations",
+        "research_background"
+      ],
+      "copyright_note": "Peer-reviewed IEEE article; summarize contact-pressure limitation only.",
+      "access_note": "IEEE landing page public; full text may require publisher or institutional access",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 3,
+        "relevance": 5,
+        "accessibility": 3,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "该研究把 PPG 传感器接触压力与无袖带血压测量联系起来，是支持接触压力影响 PPG 血压估算的直接研究背景。",
+        "key_points": [
+          "无袖带血压估算中的 PPG 接触压力应被纳入考虑。",
+          "接触压力变化会改变 PPG 特征，进而影响基于 PPG 的估算。",
+          "报告可建议保持自然、稳定、不过度按压的接触状态。"
+        ],
+        "implementation_notes": [
+          "用于 contact_pressure 和 cuffless_ppg_limitations；只作研究背景。"
+        ]
+      },
+      "source_quality_score": 20,
+      "source_hash": "804aa2ebb875e6c9",
+      "review_status": "included"
+    },
+    {
+      "source_id": "shirbani_2020_ambient_light_skin_tone_vpg",
+      "title": "Effect of Ambient Lighting and Skin Tone on Estimation of Heart Rate and Pulse Transit Time from Video Plethysmography",
+      "organization": "IEEE EMBC",
+      "url": "https://ieeexplore.ieee.org/document/9176731",
+      "doi": "10.1109/EMBC44109.2020.9176731",
+      "pmid": 33018549,
+      "year": 2020,
+      "language": "en",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "research_context",
+      "source_type": "video_ppg_lighting_skin_tone_study",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "research_background"
+      ],
+      "copyright_note": "Conference article; summarize ambient-light and skin-tone measurement-quality point only.",
+      "access_note": "IEEE landing page public; full text may require publisher or institutional access",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 3,
+        "recency": 3,
+        "relevance": 5,
+        "accessibility": 3,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "该研究聚焦视频 PPG 中环境光和肤色对心率与脉搏传导时间估计的影响，可补充摄像头 PPG 场景的光照/肤色质量提示。",
+        "key_points": [
+          "环境光条件会影响视频/摄像头 PPG 的稳定性。",
+          "肤色和皮肤光学特性可能改变可获得的 PPG 信号质量。",
+          "报告可建议保持稳定、均匀、不过曝的光照，并避免把单次低质量结果作强解释。"
+        ],
+        "implementation_notes": [
+          "用于 ambient_light 和 skin_tone signal_quality；不用于个体化风险判断。"
+        ]
+      },
+      "source_quality_score": 19,
+      "source_hash": "7849ef1e5523f0ef",
+      "review_status": "included"
+    },
+    {
+      "source_id": "bent_2020_wearable_optical_hr_inaccuracy",
+      "title": "Investigating sources of inaccuracy in wearable optical heart rate sensors",
+      "organization": "npj Digital Medicine",
+      "url": "https://www.nature.com/articles/s41746-020-0226-6",
+      "doi": "10.1038/s41746-020-0226-6",
+      "pmid": 32047863,
+      "year": 2020,
+      "language": "en",
+      "region": "US",
+      "topic": "measurement_quality",
+      "evidence_class": "research_context",
+      "source_type": "wearable_optical_sensor_accuracy_study",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "research_background"
+      ],
+      "copyright_note": "Open-access Nature article; summarize optical sensor inaccuracy factors only.",
+      "access_note": "public full text",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 3,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "该研究评估可穿戴光学心率传感器误差来源，可作为运动、肤色和设备差异影响光学 PPG 信号的补充证据。",
+        "key_points": [
+          "可穿戴光学传感器误差与设备、活动类型和个体因素有关。",
+          "运动状态下误差可能高于静息状态。",
+          "该来源支持光学传感质量提示，不把心率研究外推成血压诊断能力。"
+        ],
+        "implementation_notes": [
+          "用于 motion_artifact、skin_tone 和 optical_sensor limitation 背景；不用于血压临床建议。"
+        ]
+      },
+      "source_quality_score": 20,
+      "source_hash": "a9e2634d36c48e5e",
       "review_status": "included"
     }
   ],

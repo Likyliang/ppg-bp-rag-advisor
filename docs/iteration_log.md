@@ -92,3 +92,15 @@
 - Expanded retrieval golden queries for FDA cuffless, WHO validated devices, USPSTF confirmation, Chinese lifestyle guidance, CKD, and diabetes scenarios.
 - Metrics after strict quality gate: 105 tests, 70 included sources, 289 chunks, 100 golden queries, match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.0174s.
 - Next risk: `measurement_quality` still has only 4 source-level notes because FDA/WHO sources primarily improve cuffless limitations and validated devices; a later round can add more optical-signal or wearable-sensor quality sources if the thesis needs deeper PPG methodology discussion.
+
+## Special Iteration: PPG Optical Signal Quality Expansion
+
+- Goal: fill the `measurement_quality` gap for finer PPG/optical sensor factors requested by the user: motion, skin tone/ambient light, contact pressure, acquisition duration, and sensor position.
+- Added 10 selected peer-reviewed sources:
+  - PPG clinical measurement foundation review, PPG acquisition/processing best-practices article, wearable PPG cardiovascular monitoring review, 2023 wearable PPG roadmap, and PPG/iPPG quality-assessment survey.
+  - Wrist PPG signal-quality determinants, classic contact-force PPG study, contact pressure in cuffless BP measurement, video PPG ambient-light/skin-tone study, and wearable optical heart-rate sensor inaccuracy study.
+- Restricted all research/background sources to `signal_quality`, `cuffless_ppg_limitations`, `remeasurement`, `device_advice`, or `research_background`; none can support diagnosis, treatment, prescribing, deprescribing, or replacement of validated BP measurement.
+- Added manual full-text/download candidates for all 10 sources; no PDFs were downloaded and no credentials or session data were used.
+- Expanded golden retrieval queries for motion artifacts, contact pressure, ambient light, skin tone, acquisition duration, sensor position, and wearable optical sensor error.
+- Metrics after strict quality gate: 105 tests, 80 included sources, 329 chunks, 100 golden queries, match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.0170s.
+- Next risk: if the thesis needs stronger primary evidence for skin tone in camera PPG specifically, prioritize full-text summary for the IEEE EMBC video PPG source and compare it with FDA optical sensor safety language.

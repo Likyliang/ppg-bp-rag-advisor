@@ -1,7 +1,7 @@
 {
-  "chunk_count": 289,
-  "source_count": 70,
-  "catalog_included_count": 70,
+  "chunk_count": 329,
+  "source_count": 80,
+  "catalog_included_count": 80,
   "topic_counts": {
     "bp_categories": 32,
     "cuffless_ppg_limitations": 18,
@@ -9,7 +9,7 @@
     "emergency": 24,
     "home_bp_monitoring": 42,
     "lifestyle": 52,
-    "measurement_quality": 16,
+    "measurement_quality": 56,
     "medication_safety": 16,
     "special_population": 52,
     "validated_devices": 25
@@ -21,7 +21,7 @@
     "emergency": 6,
     "home_bp_monitoring": 10,
     "lifestyle": 13,
-    "measurement_quality": 4,
+    "measurement_quality": 14,
     "medication_safety": 4,
     "special_population": 13,
     "validated_devices": 6
@@ -31,8 +31,9 @@
     "official_health_education": 177,
     "scientific_statement": 10,
     "validation_standard": 12,
-    "review": 4,
+    "review": 24,
     "safety_rule": 36,
+    "research_context": 20,
     "patient_education": 4
   },
   "missing_topics": [],

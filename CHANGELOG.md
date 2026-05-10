@@ -17,6 +17,7 @@
 - Added full-text candidate governance with a safe public-download path, institution/browser queue, tracked Chinese summary notes, and quality-gate validation; current KB is 63 included sources and 255 chunks.
 - Promoted institution/browser-assisted full-text summaries for the AHA cuffless BP statement, Chinese 2024 hypertension guideline, and AHA/ACC 2025 full guideline; current KB is 63 included sources and 261 chunks.
 - Added a targeted official-source expansion with FDA cuffless NIBP draft guidance, WHO cuffed BP device specifications, USPSTF screening, Chinese NHC lifestyle guidance, KDIGO 2024 CKD, and ADA 2026 diabetes standards; current KB is 70 included sources and 289 chunks.
+- Added detailed PPG/optical signal-quality evidence for motion, skin tone/ambient light, contact pressure, acquisition duration, and sensor position; current KB is 80 included sources and 329 chunks.
 
 ## v1.0.0-rc1 - 2026-05-10
 
@@ -37,3 +38,10 @@
 - Added manual download/full-text candidate URLs for FDA, WHO, USPSTF, NHC 2024 guidance, KDIGO 2024, and ADA 2026; no PDFs were downloaded in this iteration.
 - Expanded golden retrieval coverage for FDA cuffless, WHO validated devices, USPSTF out-of-office confirmation, Chinese lifestyle guidance, CKD, and diabetes scenarios.
 - Strict quality gate passes: 105 tests, 70 included sources, 289 chunks, 100 golden queries, 50 report fixtures, retrieval match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.0174s.
+
+## v1.0.0-rc5-ppg-signal-quality - 2026-05-10
+
+- Added 10 selected PPG/optical signal-quality sources covering PPG acquisition best practices, wearable PPG cardiovascular monitoring, quality assessment, wrist sensor position, contact force/contact pressure, ambient light, skin tone, and motion/activity effects.
+- Added manual full-text/download URLs for those sources; no new PDFs were downloaded in this iteration.
+- Expanded golden retrieval coverage for motion artifacts, contact pressure, ambient light, skin tone, acquisition duration, sensor position, and wearable optical sensor error scenarios.
+- Strict quality gate passes: 105 tests, 80 included sources, 329 chunks, 100 golden queries, 50 report fixtures, retrieval match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.0170s.

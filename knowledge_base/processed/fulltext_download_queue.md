@@ -1,9 +1,9 @@
 # Full-text Candidate Download Queue
 
 - Updated: 2026-05-10
-- Candidates: 15
+- Candidates: 25
 - Public auto-download: 1
-- Institution/browser queue: 11
+- Institution/browser queue: 21
 
 ## Safe Access Rules
 
@@ -125,6 +125,116 @@
 - pdf_url: https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf
 - save_as: `knowledge_base/sources/downloads/kdigo_2024_ckd_guideline.pdf`
 - purpose: special_population; medication_safety; home_bp_monitoring
+
+### P5 Photoplethysmography and its application in clinical physiological measurement
+
+- candidate_id: `allen_2007_ppg_clinical_measurement_fulltext`
+- source_id: `allen_2007_ppg_clinical_measurement_review`
+- access_mode: `institution_or_browser`
+- status: `queued_manual`
+- landing_url: https://pubmed.ncbi.nlm.nih.gov/17322588/
+- pdf_url: https://iopscience.iop.org/article/10.1088/0967-3334/28/3/R01/pdf
+- save_as: `knowledge_base/sources/downloads/allen_2007_ppg_clinical_measurement_review.pdf`
+- purpose: signal_quality; cuffless_ppg_limitations; remeasurement; research_background
+
+### P5 Investigating sources of inaccuracy in wearable optical heart rate sensors
+
+- candidate_id: `bent_2020_wearable_optical_hr_inaccuracy_fulltext`
+- source_id: `bent_2020_wearable_optical_hr_inaccuracy`
+- access_mode: `public_html`
+- status: `queued_manual`
+- landing_url: https://www.nature.com/articles/s41746-020-0226-6
+- pdf_url: https://www.nature.com/articles/s41746-020-0226-6.pdf
+- save_as: `knowledge_base/sources/downloads/bent_2020_wearable_optical_hr_inaccuracy.pdf`
+- purpose: signal_quality; research_background
+
+### P5 PPG Sensor Contact Pressure Should Be Taken Into Account for Cuff-Less Blood Pressure Measurement
+
+- candidate_id: `chandrasekhar_2020_contact_pressure_cuffless_bp_fulltext`
+- source_id: `chandrasekhar_2020_contact_pressure_cuffless_bp`
+- access_mode: `institution_or_browser`
+- status: `queued_manual`
+- landing_url: https://ieeexplore.ieee.org/document/9016235
+- pdf_url: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9016235
+- save_as: `knowledge_base/sources/downloads/chandrasekhar_2020_contact_pressure_cuffless_bp.pdf`
+- purpose: signal_quality; cuffless_ppg_limitations; research_background
+
+### P5 Establishing best practices in photoplethysmography signal acquisition and processing
+
+- candidate_id: `charlton_2022_ppg_best_practices_fulltext`
+- source_id: `charlton_2022_ppg_best_practices`
+- access_mode: `public_html`
+- status: `queued_manual`
+- landing_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC9136485/
+- pdf_url: n/a
+- save_as: `knowledge_base/sources/downloads/charlton_2022_ppg_best_practices.pdf`
+- purpose: signal_quality; remeasurement; research_background
+
+### P5 Wearable Photoplethysmography for Cardiovascular Monitoring
+
+- candidate_id: `charlton_2022_wearable_ppg_cardiovascular_fulltext`
+- source_id: `charlton_2022_wearable_ppg_cardiovascular_review`
+- access_mode: `institution_or_browser`
+- status: `queued_manual`
+- landing_url: https://ieeexplore.ieee.org/document/9731763
+- pdf_url: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9731763
+- save_as: `knowledge_base/sources/downloads/charlton_2022_wearable_ppg_cardiovascular_review.pdf`
+- purpose: signal_quality; cuffless_ppg_limitations; research_background
+
+### P5 The 2023 wearable photoplethysmography roadmap
+
+- candidate_id: `charlton_2023_wearable_ppg_roadmap_fulltext`
+- source_id: `charlton_2023_wearable_ppg_roadmap`
+- access_mode: `public_html`
+- status: `queued_manual`
+- landing_url: https://iopscience.iop.org/article/10.1088/1361-6579/acead2
+- pdf_url: https://iopscience.iop.org/article/10.1088/1361-6579/acead2/pdf
+- save_as: `knowledge_base/sources/downloads/charlton_2023_wearable_ppg_roadmap.pdf`
+- purpose: signal_quality; cuffless_ppg_limitations; device_advice; research_background
+
+### P5 Determinants of photoplethysmography signal quality at the wrist
+
+- candidate_id: `charlton_2025_wrist_ppg_signal_quality_pdf`
+- source_id: `charlton_2025_wrist_ppg_signal_quality`
+- access_mode: `public_pdf`
+- status: `queued_manual`
+- landing_url: https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000585
+- pdf_url: https://journals.plos.org/digitalhealth/article/file?id=10.1371/journal.pdig.0000585&type=printable
+- save_as: `knowledge_base/sources/downloads/charlton_2025_wrist_ppg_signal_quality.pdf`
+- purpose: signal_quality; research_background
+
+### P5 A Survey of Photoplethysmography and Imaging Photoplethysmography Quality Assessment Methods
+
+- candidate_id: `desquins_2022_ppg_quality_assessment_survey_pdf`
+- source_id: `desquins_2022_ppg_quality_assessment_survey`
+- access_mode: `public_pdf`
+- status: `queued_manual`
+- landing_url: https://www.mdpi.com/2076-3417/12/19/9582
+- pdf_url: https://www.mdpi.com/2076-3417/12/19/9582/pdf
+- save_as: `knowledge_base/sources/downloads/desquins_2022_ppg_quality_assessment_survey.pdf`
+- purpose: signal_quality; remeasurement; research_background
+
+### P5 Effect of Ambient Lighting and Skin Tone on Estimation of Heart Rate and Pulse Transit Time from Video Plethysmography
+
+- candidate_id: `shirbani_2020_ambient_light_skin_tone_vpg_fulltext`
+- source_id: `shirbani_2020_ambient_light_skin_tone_vpg`
+- access_mode: `institution_or_browser`
+- status: `queued_manual`
+- landing_url: https://ieeexplore.ieee.org/document/9176731
+- pdf_url: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9176731
+- save_as: `knowledge_base/sources/downloads/shirbani_2020_ambient_light_skin_tone_vpg.pdf`
+- purpose: signal_quality; research_background
+
+### P5 The effect of contacting force on photoplethysmographic signals
+
+- candidate_id: `teng_2004_contact_force_ppg_fulltext`
+- source_id: `teng_2004_contact_force_ppg`
+- access_mode: `institution_or_browser`
+- status: `queued_manual`
+- landing_url: https://pubmed.ncbi.nlm.nih.gov/15535195/
+- pdf_url: https://iopscience.iop.org/article/10.1088/0967-3334/25/5/020/pdf
+- save_as: `knowledge_base/sources/downloads/teng_2004_contact_force_ppg.pdf`
+- purpose: signal_quality; research_background
 
 ## Metadata Only
 
