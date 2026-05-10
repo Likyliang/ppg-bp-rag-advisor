@@ -187,34 +187,15 @@
           "snippet": "## 来源摘要 2025 综述只用于解释无袖带血压研究背景和仍需验证的局限。"
         },
         {
-          "source_id": "pubmed_cuffless_bp_statement_41376592_001",
-          "title": "Cuffless Devices for the Measurement of Blood Pressure - PubMed record",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/41376592/",
+          "source_id": "fda_cuffless_nibp_draft_guidance_002",
+          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
           "used_for": "无袖带 血压 设备 局限 PPG",
-          "organization": "PubMed / American Heart Association",
-          "region": "global",
+          "organization": "U.S. Food and Drug Administration",
+          "region": "US",
           "topic": "cuffless_ppg_limitations",
           "language": "en",
-          "evidence_class": "scientific_statement",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "cuffless_ppg_limitations",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.5289,
-          "snippet": "## 来源摘要 PubMed 记录提供 AHA 无袖带血压声明的索引、年份和可追溯 citation。"
-        },
-        {
-          "source_id": "aha_cuffless_bp_scientific_statement_005",
-          "title": "Cuffless Devices for the Measurement of Blood Pressure",
-          "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-          "used_for": "无袖带 血压 设备 局限 PPG",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "cuffless_ppg_limitations",
-          "language": "en",
-          "evidence_class": "scientific_statement",
+          "evidence_class": "validation_standard",
           "source_quality_score": 25.0,
           "allowed_uses": [
             "cuffless_ppg_limitations",
@@ -223,8 +204,29 @@
             "research_background"
           ],
           "review_status": "included",
-          "score": 0.5246,
-          "snippet": "- 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。 - candidate_hash: `afdfd83a3ea92780` 已检测到本地 PDF：aha_cuffless_bp_scientific_statement.pdf。知识库只使用上述摘要和 citation，不复制全文。"
+          "score": 0.5694,
+          "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
+        },
+        {
+          "source_id": "fda_cuffless_nibp_draft_guidance_001",
+          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+          "used_for": "无袖带 血压 设备 局限 PPG",
+          "organization": "U.S. Food and Drug Administration",
+          "region": "US",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.5689,
+          "snippet": "## 来源摘要 FDA 无袖带无创血压设备草案指南可补充监管视角，说明无袖带设备需要临床性能测试、验证和清晰适用边界。"
         }
       ],
       "precision_at_k": 1.0,
@@ -546,26 +548,25 @@
           "snippet": "## 可用于报告的要点 - 强调血压管理需要结合规范测量与长期风险。 - 家庭血压监测和连续记录适合用于临床沟通。 - 本系统只能用于估算值解释，不改变指南阈值或治疗建议。"
         },
         {
-          "source_id": "chinese_hypertension_guideline_2024_catalog_001",
-          "title": "Chinese Guidelines for the Prevention and Treatment of Hypertension (2024 revision)",
-          "url": "https://www.sciopen.com/article/10.26599/1671-5411.2025.01.008",
+          "source_id": "uspstf_hypertension_screening_adults_002",
+          "title": "Hypertension in Adults - Screening",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
           "used_for": "145/92 血压估算 偏高 需要注意什么",
-          "organization": "Chinese guideline authors",
-          "region": "CN",
-          "topic": "bp_categories",
-          "language": "zh",
+          "organization": "U.S. Preventive Services Task Force",
+          "region": "US",
+          "topic": "home_bp_monitoring",
+          "language": "en",
           "evidence_class": "guideline",
-          "source_quality_score": 24.0,
+          "source_quality_score": 23.0,
           "allowed_uses": [
-            "bp_category_reference",
             "home_bp_monitoring",
             "remeasurement",
-            "lifestyle",
-            "special_population"
+            "bp_category_reference",
+            "disclaimer"
           ],
           "review_status": "included",
-          "score": 0.5272,
-          "snippet": "## 来源摘要 中国高血压防治指南 2024 修订版是中文场景的核心参考。"
+          "score": 0.5304,
+          "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
         }
       ],
       "precision_at_k": 1.0,
@@ -842,6 +843,27 @@
           "snippet": "## 来源摘要 AHA 血压读数解释页面支持 Normal/Elevated/Stage 范围和严重偏高症状提醒。"
         },
         {
+          "source_id": "uspstf_hypertension_screening_adults_002",
+          "title": "Hypertension in Adults - Screening",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
+          "used_for": "180 120 没有症状 复测 规范血压计",
+          "organization": "U.S. Preventive Services Task Force",
+          "region": "US",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "bp_category_reference",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.5717,
+          "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
+        },
+        {
           "source_id": "aha_understanding_bp_readings_public_004",
           "title": "Understanding Blood Pressure Readings",
           "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings",
@@ -882,26 +904,6 @@
           "review_status": "included",
           "score": 0.5609,
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "nice_ng136_hypertension_002",
-          "title": "Hypertension in adults - diagnosis and management",
-          "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
-          "used_for": "180 120 没有症状 复测 规范血压计",
-          "organization": "National Institute for Health and Care Excellence",
-          "region": "UK",
-          "topic": "home_bp_monitoring",
-          "language": "en",
-          "evidence_class": "guideline",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "home_bp_monitoring",
-            "remeasurement",
-            "bp_category_reference"
-          ],
-          "review_status": "included",
-          "score": 0.5608,
-          "snippet": "## 可用于报告的要点 - 诊断需要规范测量，不依赖单次设备估算。 - 家庭血压监测可用于确认和随访。 - 本系统只引用其测量原则和复测理念。"
         }
       ],
       "precision_at_k": 1.0,
@@ -1038,6 +1040,26 @@
           "snippet": "## 可用于报告的要点 - 报告不得建议服药、停药或调药。 - 正在用药用户应咨询医生。 - PPG 估算不能改变治疗方案。"
         },
         {
+          "source_id": "kdigo_2024_ckd_guideline_002",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "正在使用降压药 PPG 血压偏高 要停药吗",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5584,
+          "snippet": "## 可用于报告的要点 - CKD 用户出现血压估算偏高时应更保守地使用规范设备复核并咨询医生。 - 报告不得提供肾病相关用药或治疗目标。 - 用药用户不应基于 PPG 估算自行调整方案。"
+        },
+        {
           "source_id": "local_special_population_rule_001",
           "title": "Special population conservative advice rule",
           "url": "",
@@ -1093,25 +1115,6 @@
           "review_status": "included",
           "score": 0.4892,
           "snippet": "## 可用于报告的要点 - 用药需要专业医疗指导。 - 不要根据 PPG 估算自行停药或调药。 - 报告只建议保留记录并咨询医生。"
-        },
-        {
-          "source_id": "medlineplus_high_bp_medicines_004",
-          "title": "High blood pressure medicines",
-          "url": "https://medlineplus.gov/highbloodpressuremedicines.html",
-          "used_for": "正在使用降压药 PPG 血压偏高 要停药吗",
-          "organization": "MedlinePlus",
-          "region": "US",
-          "topic": "medication_safety",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "medication_safety",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.4889,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
       "precision_at_k": 1.0,
@@ -1357,6 +1360,26 @@
           "snippet": "## 来源摘要 本项目规则：老年、妊娠、糖尿病、肾病、心血管病史或正在用药用户应给出保守咨询医生建议。"
         },
         {
+          "source_id": "kdigo_2024_ckd_guideline_002",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "糖尿病 用户 血压估算偏高 咨询医生",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.6661,
+          "snippet": "## 可用于报告的要点 - CKD 用户出现血压估算偏高时应更保守地使用规范设备复核并咨询医生。 - 报告不得提供肾病相关用药或治疗目标。 - 用药用户不应基于 PPG 估算自行调整方案。"
+        },
+        {
           "source_id": "ada_diabetes_bp_001",
           "title": "Diabetes and High Blood Pressure",
           "url": "https://diabetes.org/health-wellness/high-blood-pressure",
@@ -1413,24 +1436,6 @@
           "review_status": "included",
           "score": 0.6363,
           "snippet": "## 可用于报告的要点 - 肾病用户应咨询医生。 - 不提供个体化血压目标。 - 保留规范复测记录。"
-        },
-        {
-          "source_id": "nhlbi_preeclampsia_pregnancy_002",
-          "title": "Preeclampsia and High Blood Pressure During Pregnancy",
-          "url": "https://www.nhlbi.nih.gov/health/high-blood-pressure/pregnancy",
-          "used_for": "糖尿病 用户 血压估算偏高 咨询医生",
-          "organization": "National Heart, Lung, and Blood Institute",
-          "region": "US",
-          "topic": "special_population",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.6062,
-          "snippet": "## 可用于报告的要点 - 孕期症状和血压异常需要专业评估。 - 不能通过 PPG 估算排除风险。 - 建议保守复核和咨询医生。"
         }
       ],
       "precision_at_k": 1.0,
@@ -1480,6 +1485,46 @@
           "snippet": "## 来源摘要 AHA 肾病与高血压页面支持 CKD 用户的保守提醒。"
         },
         {
+          "source_id": "kdigo_2024_ckd_guideline_002",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "慢性肾病 CKD 血压偏高 PPG",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5724,
+          "snippet": "## 可用于报告的要点 - CKD 用户出现血压估算偏高时应更保守地使用规范设备复核并咨询医生。 - 报告不得提供肾病相关用药或治疗目标。 - 用药用户不应基于 PPG 估算自行调整方案。"
+        },
+        {
+          "source_id": "kdigo_2024_ckd_guideline_001",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "慢性肾病 CKD 血压偏高 PPG",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5142,
+          "snippet": "## 来源摘要 KDIGO 2024 CKD 指南可强化慢性肾病用户的保守复核和医生沟通提醒。"
+        },
+        {
           "source_id": "aha_women_high_bp_001",
           "title": "Women and high blood pressure",
           "url": "https://www.heart.org/en/health-topics/high-blood-pressure/know-your-risk-factors-for-high-blood-pressure/women-and-high-blood-pressure",
@@ -1496,44 +1541,6 @@
           "review_status": "included",
           "score": 0.5022,
           "snippet": "## 来源摘要 AHA 女性与高血压页面补充女性和妊娠相关风险沟通。"
-        },
-        {
-          "source_id": "aha_kidney_disease_high_bp_002",
-          "title": "High Blood Pressure and Kidney Disease",
-          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/health-threats-from-high-blood-pressure/high-blood-pressure-and-kidney-disease",
-          "used_for": "慢性肾病 CKD 血压偏高 PPG",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "special_population",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.4767,
-          "snippet": "## 可用于报告的要点 - 肾病用户应咨询医生。 - 不提供个体化血压目标。 - 保留规范复测记录。"
-        },
-        {
-          "source_id": "medlineplus_high_blood_pressure_001",
-          "title": "High Blood Pressure",
-          "url": "https://medlineplus.gov/highbloodpressure.html",
-          "used_for": "慢性肾病 CKD 血压偏高 PPG",
-          "organization": "MedlinePlus",
-          "region": "US",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "lifestyle",
-            "home_bp_monitoring",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.4524,
-          "snippet": "## 来源摘要 MedlinePlus 高血压页面可作为面向患者的通用健康教育补充来源。"
         }
       ],
       "precision_at_k": 1.0,
@@ -1567,6 +1574,66 @@
           "snippet": "## 来源摘要 NIA 老年高血压页面支持 65 岁以上用户的保守复核和医生沟通。"
         },
         {
+          "source_id": "ada_2026_standards_cvd_bp_002",
+          "title": "Cardiovascular Disease and Risk Management - Standards of Care in Diabetes 2026",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/",
+          "used_for": "老年人 65 岁 血压估算 复核",
+          "organization": "American Diabetes Association",
+          "region": "US",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.6075,
+          "snippet": "## 可用于报告的要点 - 糖尿病合并血压估算异常时应更重视规范复核和医生沟通。 - 该来源只支持特殊人群提醒，不生成个体化治疗目标。 - 用药调整必须留给临床医生。"
+        },
+        {
+          "source_id": "kdigo_2024_ckd_guideline_002",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "老年人 65 岁 血压估算 复核",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5708,
+          "snippet": "## 可用于报告的要点 - CKD 用户出现血压估算偏高时应更保守地使用规范设备复核并咨询医生。 - 报告不得提供肾病相关用药或治疗目标。 - 用药用户不应基于 PPG 估算自行调整方案。"
+        },
+        {
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_004",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+          "used_for": "老年人 65 岁 血压估算 复核",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
+          "topic": "lifestyle",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "lifestyle",
+            "special_population",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5686,
+          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
+        },
+        {
           "source_id": "ada_diabetes_bp_001",
           "title": "Diabetes and High Blood Pressure",
           "url": "https://diabetes.org/health-wellness/high-blood-pressure",
@@ -1585,65 +1652,6 @@
           "review_status": "included",
           "score": 0.5603,
           "snippet": "## 来源摘要 ADA 页面支持糖尿病用户需要更重视血压复核和医生沟通。"
-        },
-        {
-          "source_id": "medlineplus_high_blood_pressure_004",
-          "title": "High Blood Pressure",
-          "url": "https://medlineplus.gov/highbloodpressure.html",
-          "used_for": "老年人 65 岁 血压估算 复核",
-          "organization": "MedlinePlus",
-          "region": "US",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "lifestyle",
-            "home_bp_monitoring",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.549,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "nia_high_blood_pressure_older_adults_004",
-          "title": "High Blood Pressure and Older Adults",
-          "url": "https://www.nia.nih.gov/health/high-blood-pressure/high-blood-pressure-and-older-adults",
-          "used_for": "老年人 65 岁 血压估算 复核",
-          "organization": "National Institute on Aging",
-          "region": "US",
-          "topic": "special_population",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "special_population",
-            "home_bp_monitoring"
-          ],
-          "review_status": "included",
-          "score": 0.5462,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "ada_diabetes_bp_004",
-          "title": "Diabetes and High Blood Pressure",
-          "url": "https://diabetes.org/health-wellness/high-blood-pressure",
-          "used_for": "老年人 65 岁 血压估算 复核",
-          "organization": "American Diabetes Association",
-          "region": "US",
-          "topic": "special_population",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "special_population",
-            "lifestyle",
-            "home_bp_monitoring"
-          ],
-          "review_status": "included",
-          "score": 0.5448,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
       "precision_at_k": 1.0,
@@ -1934,6 +1942,27 @@
           "snippet": "## 可用于报告的要点 - 建议选择经过验证的血压计。 - 不推荐具体商业型号。 - 上臂式设备通常更适合作为家庭复核工具。"
         },
         {
+          "source_id": "who_automated_cuff_bp_device_specs_001",
+          "title": "Technical specifications for automated non-invasive blood pressure measuring devices with cuff",
+          "url": "https://www.who.int/publications/i/item/9789240002654",
+          "used_for": "经过验证的血压计 STRIDE BP",
+          "organization": "World Health Organization",
+          "region": "global",
+          "topic": "validated_devices",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "device_advice",
+            "home_bp_monitoring",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.5831,
+          "snippet": "## 来源摘要 WHO 袖带式自动无创血压计技术规范支持“复核应使用经过验证的袖带设备”的设备边界。"
+        },
+        {
           "source_id": "aha_home_bp_monitoring_public_002",
           "title": "Home Blood Pressure Monitoring",
           "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
@@ -1952,25 +1981,6 @@
           "review_status": "included",
           "score": 0.5662,
           "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
-        },
-        {
-          "source_id": "hypertension_canada_device_recommendations_001",
-          "title": "Recommended blood pressure monitors",
-          "url": "https://hypertension.ca/bpdevices",
-          "used_for": "经过验证的血压计 STRIDE BP",
-          "organization": "Hypertension Canada",
-          "region": "CA",
-          "topic": "validated_devices",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "device_advice",
-            "home_bp_monitoring"
-          ],
-          "review_status": "included",
-          "score": 0.5574,
-          "snippet": "## 来源摘要 Hypertension Canada 设备推荐页面可支持选择验证血压计的原则。"
         }
       ],
       "precision_at_k": 1.0,
@@ -2002,6 +2012,27 @@
           "review_status": "included",
           "score": 0.6521,
           "snippet": "## 来源摘要 MedlinePlus 血压测量说明可支持复测流程和测量条件解释。"
+        },
+        {
+          "source_id": "uspstf_hypertension_screening_adults_001",
+          "title": "Hypertension in Adults - Screening",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
+          "used_for": "复测前休息五分钟 血压测量",
+          "organization": "U.S. Preventive Services Task Force",
+          "region": "US",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "bp_category_reference",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.6037,
+          "snippet": "## 来源摘要 USPSTF 成人高血压筛查建议强调在诊断前应通过诊室外血压测量进行确认，可强化本系统的复测和非诊断边界。"
         },
         {
           "source_id": "ama_target_bp_measure_accurately_002",
@@ -2062,28 +2093,6 @@
           "review_status": "included",
           "score": 0.5697,
           "snippet": "## 可用于报告的要点 - 测量前应安静休息并保持正确姿势。 - 家庭记录可用于帮助医生了解趋势。 - 测量方式和设备会影响读数。"
-        },
-        {
-          "source_id": "acc_aha_2025_full_guideline_record_002",
-          "title": "2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults",
-          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
-          "used_for": "复测前休息五分钟 血压测量",
-          "organization": "American Heart Association / American College of Cardiology",
-          "region": "AHA",
-          "topic": "bp_categories",
-          "language": "en",
-          "evidence_class": "guideline",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "bp_category_reference",
-            "home_bp_monitoring",
-            "remeasurement",
-            "lifestyle",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.5674,
-          "snippet": "## 可用于报告的要点 - 规范测量、重复读数、合适袖带和经验证设备是血压解释前提。 - 家庭血压记录可支持医生沟通。 - PPG 或无袖带估算值不能替代指南要求的测量。"
         }
       ],
       "precision_at_k": 1.0,
@@ -2262,41 +2271,44 @@
           "snippet": "## 来源摘要 CDC 戒烟页面支持把戒烟作为血压健康相关生活方式建议。"
         },
         {
-          "source_id": "aha_lifestyle_manage_bp_001",
-          "title": "Changes You Can Make to Manage High Blood Pressure",
-          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure",
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_001",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
           "used_for": "减少钠盐摄入 血压 生活方式",
-          "organization": "American Heart Association",
-          "region": "AHA",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
           "topic": "lifestyle",
-          "language": "en",
+          "language": "zh",
           "evidence_class": "official_health_education",
-          "source_quality_score": 24.0,
+          "source_quality_score": 25.0,
           "allowed_uses": [
             "lifestyle",
+            "special_population",
             "home_bp_monitoring"
           ],
           "review_status": "included",
-          "score": 0.5386,
-          "snippet": "## 来源摘要 AHA 生活方式页面支持减盐、运动、体重、戒烟限酒和睡眠等健康教育建议。"
+          "score": 0.5454,
+          "snippet": "## 来源摘要 国家卫健委 2024 高血压营养和运动指导原则是中文生活方式建议的高优先级本土来源。"
         },
         {
-          "source_id": "cdc_prevent_high_blood_pressure_002",
-          "title": "Prevent High Blood Pressure",
-          "url": "https://www.cdc.gov/high-blood-pressure/prevention/index.html",
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_002",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
           "used_for": "减少钠盐摄入 血压 生活方式",
-          "organization": "Centers for Disease Control and Prevention",
-          "region": "US",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
           "topic": "lifestyle",
-          "language": "en",
+          "language": "zh",
           "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
+          "source_quality_score": 25.0,
           "allowed_uses": [
-            "lifestyle"
+            "lifestyle",
+            "special_population",
+            "home_bp_monitoring"
           ],
           "review_status": "included",
-          "score": 0.5346,
-          "snippet": "## 可用于报告的要点 - 生活方式建议属于健康教育。 - 不能承诺一定降低血压。 - 不替代医生制定的治疗方案。"
+          "score": 0.542,
+          "snippet": "## 可用于报告的要点 - 中文报告的减盐、合理膳食、运动和体重管理建议可优先引用该来源。 - 生活方式内容属于健康教育，不承诺个体降压效果。 - 特殊人群仍需医生或营养/运动专业人员个体化评估。"
         }
       ],
       "precision_at_k": 1.0,
@@ -2309,6 +2321,26 @@
         "lifestyle"
       ],
       "retrieved": [
+        {
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_001",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+          "used_for": "规律运动 控制血压 生活方式",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
+          "topic": "lifestyle",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "lifestyle",
+            "special_population",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.6305,
+          "snippet": "## 来源摘要 国家卫健委 2024 高血压营养和运动指导原则是中文生活方式建议的高优先级本土来源。"
+        },
         {
           "source_id": "aha_getting_active_bp_001",
           "title": "Getting Active to Control High Blood Pressure",
@@ -2380,24 +2412,6 @@
           "review_status": "included",
           "score": 0.5768,
           "snippet": "## 可用于报告的要点 - 生活方式建议属于健康教育。 - 不能承诺一定降低血压。 - 不替代医生制定的治疗方案。"
-        },
-        {
-          "source_id": "cdc_quit_smoking_001",
-          "title": "How to Quit Smoking",
-          "url": "https://www.cdc.gov/tobacco/campaign/tips/quit-smoking/",
-          "used_for": "规律运动 控制血压 生活方式",
-          "organization": "Centers for Disease Control and Prevention",
-          "region": "US",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "lifestyle"
-          ],
-          "review_status": "included",
-          "score": 0.5667,
-          "snippet": "## 来源摘要 CDC 戒烟页面支持把戒烟作为血压健康相关生活方式建议。"
         }
       ],
       "precision_at_k": 1.0,
@@ -2427,6 +2441,26 @@
           "review_status": "included",
           "score": 0.7587,
           "snippet": "## 来源摘要 CDC 高血压预防页面支持健康饮食、运动、体重管理、戒烟限酒等通用建议。"
+        },
+        {
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_002",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+          "used_for": "体重管理 血压 健康建议",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
+          "topic": "lifestyle",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "lifestyle",
+            "special_population",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.635,
+          "snippet": "## 可用于报告的要点 - 中文报告的减盐、合理膳食、运动和体重管理建议可优先引用该来源。 - 生活方式内容属于健康教育，不承诺个体降压效果。 - 特殊人群仍需医生或营养/运动专业人员个体化评估。"
         },
         {
           "source_id": "aha_stress_management_002",
@@ -2481,25 +2515,6 @@
           "review_status": "included",
           "score": 0.5939,
           "snippet": "## 来源摘要 CDC 戒烟页面支持把戒烟作为血压健康相关生活方式建议。"
-        },
-        {
-          "source_id": "aha_lifestyle_manage_bp_001",
-          "title": "Changes You Can Make to Manage High Blood Pressure",
-          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure",
-          "used_for": "体重管理 血压 健康建议",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "lifestyle",
-            "home_bp_monitoring"
-          ],
-          "review_status": "included",
-          "score": 0.5628,
-          "snippet": "## 来源摘要 AHA 生活方式页面支持减盐、运动、体重、戒烟限酒和睡眠等健康教育建议。"
         }
       ],
       "precision_at_k": 1.0,
@@ -2586,24 +2601,25 @@
           "snippet": "## 可用于报告的要点 - 睡眠建议应温和表达。 - 不承诺直接降压效果。 - 睡眠问题严重时建议就医。"
         },
         {
-          "source_id": "medlineplus_high_blood_pressure_001",
-          "title": "High Blood Pressure",
-          "url": "https://medlineplus.gov/highbloodpressure.html",
+          "source_id": "nhc_2024_hypertension_day_key_messages_003",
+          "title": "2024年全国高血压日宣传要点",
+          "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
           "used_for": "戒烟 限酒 睡眠 压力 血压",
-          "organization": "MedlinePlus",
-          "region": "US",
-          "topic": "lifestyle",
-          "language": "en",
+          "organization": "国家卫生健康委",
+          "region": "CN",
+          "topic": "home_bp_monitoring",
+          "language": "zh",
           "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
+          "source_quality_score": 25.0,
           "allowed_uses": [
-            "lifestyle",
             "home_bp_monitoring",
-            "special_population"
+            "lifestyle",
+            "remeasurement",
+            "disclaimer"
           ],
           "review_status": "included",
-          "score": 0.4017,
-          "snippet": "## 来源摘要 MedlinePlus 高血压页面可作为面向患者的通用健康教育补充来源。"
+          "score": 0.4061,
+          "snippet": "## 实现使用说明 - 用于 CN 场景 home_bp_monitoring、lifestyle 和 disclaimer。"
         }
       ],
       "precision_at_k": 1.0,
@@ -3119,6 +3135,27 @@
           "snippet": "## 可用于报告的要点 - 规范血压设备需要经过验证。 - PPG 估算结果不应替代经验证设备。 - 仅使用标准元数据和验证原则。"
         },
         {
+          "source_id": "who_automated_cuff_bp_device_specs_001",
+          "title": "Technical specifications for automated non-invasive blood pressure measuring devices with cuff",
+          "url": "https://www.who.int/publications/i/item/9789240002654",
+          "used_for": "ISO 81060 血压计 验证 标准",
+          "organization": "World Health Organization",
+          "region": "global",
+          "topic": "validated_devices",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "device_advice",
+            "home_bp_monitoring",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.5867,
+          "snippet": "## 来源摘要 WHO 袖带式自动无创血压计技术规范支持“复核应使用经过验证的袖带设备”的设备边界。"
+        },
+        {
           "source_id": "aha_cuffless_bp_scientific_statement_002",
           "title": "Cuffless Devices for the Measurement of Blood Pressure",
           "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
@@ -3140,42 +3177,25 @@
           "snippet": "## 可用于报告的要点 - 无袖带设备依赖间接估算，真实场景可靠性需验证。 - PPG 估算不能替代规范血压测量。 - 报告应避免准确性过度承诺。"
         },
         {
-          "source_id": "stride_bp_validated_devices_001",
-          "title": "STRIDE BP validated blood pressure monitors",
-          "url": "https://www.stridebp.org/bp-monitors",
+          "source_id": "fda_cuffless_nibp_draft_guidance_002",
+          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
           "used_for": "ISO 81060 血压计 验证 标准",
-          "organization": "STRIDE BP",
-          "region": "global",
-          "topic": "validated_devices",
+          "organization": "U.S. Food and Drug Administration",
+          "region": "US",
+          "topic": "cuffless_ppg_limitations",
           "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
+          "evidence_class": "validation_standard",
+          "source_quality_score": 25.0,
           "allowed_uses": [
+            "cuffless_ppg_limitations",
             "device_advice",
-            "home_bp_monitoring"
+            "signal_quality",
+            "research_background"
           ],
           "review_status": "included",
-          "score": 0.5321,
-          "snippet": "## 来源摘要 STRIDE BP 可支持建议用户选择经过验证的上臂式血压计。"
-        },
-        {
-          "source_id": "hypertension_canada_device_recommendations_001",
-          "title": "Recommended blood pressure monitors",
-          "url": "https://hypertension.ca/bpdevices",
-          "used_for": "ISO 81060 血压计 验证 标准",
-          "organization": "Hypertension Canada",
-          "region": "CA",
-          "topic": "validated_devices",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "device_advice",
-            "home_bp_monitoring"
-          ],
-          "review_status": "included",
-          "score": 0.5166,
-          "snippet": "## 来源摘要 Hypertension Canada 设备推荐页面可支持选择验证血压计的原则。"
+          "score": 0.5541,
+          "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
         }
       ],
       "precision_at_k": 1.0,
@@ -3294,6 +3314,798 @@
       "unsafe_source_leakage": []
     },
     {
+      "query": "FDA 无袖带 血压设备 临床性能 测试 PPG",
+      "expected_uses": [
+        "cuffless_ppg_limitations",
+        "device_advice"
+      ],
+      "retrieved": [
+        {
+          "source_id": "fda_cuffless_nibp_draft_guidance_001",
+          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+          "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
+          "organization": "U.S. Food and Drug Administration",
+          "region": "US",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.8254,
+          "snippet": "## 来源摘要 FDA 无袖带无创血压设备草案指南可补充监管视角，说明无袖带设备需要临床性能测试、验证和清晰适用边界。"
+        },
+        {
+          "source_id": "aha_cuffless_bp_scientific_statement_002",
+          "title": "Cuffless Devices for the Measurement of Blood Pressure",
+          "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
+          "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
+          "organization": "American Heart Association",
+          "region": "AHA",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.7278,
+          "snippet": "## 可用于报告的要点 - 无袖带设备依赖间接估算，真实场景可靠性需验证。 - PPG 估算不能替代规范血压测量。 - 报告应避免准确性过度承诺。"
+        },
+        {
+          "source_id": "fda_cuffless_nibp_draft_guidance_002",
+          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+          "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
+          "organization": "U.S. Food and Drug Administration",
+          "region": "US",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.7122,
+          "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
+        },
+        {
+          "source_id": "aha_cuffless_bp_scientific_statement_001",
+          "title": "Cuffless Devices for the Measurement of Blood Pressure",
+          "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
+          "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
+          "organization": "American Heart Association",
+          "region": "AHA",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.609,
+          "snippet": "## 来源摘要 AHA 无袖带血压科学声明是 PPG/无袖带估算局限的核心安全依据。"
+        },
+        {
+          "source_id": "aha_cuffless_bp_scientific_statement_004",
+          "title": "Cuffless Devices for the Measurement of Blood Pressure",
+          "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
+          "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
+          "organization": "American Heart Association",
+          "region": "AHA",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.6005,
+          "snippet": "## 全文候选与下载材料摘要 ### AHA cuffless blood pressure scientific statement full text - candidate_id: `aha_cuffless_bp_statement_fulltext` - access_mode: `institution_or_browser` - fulltext_status: local_pdf_available - source_url: https://professi..."
+        }
+      ],
+      "precision_at_k": 1.0,
+      "has_match": true,
+      "unsafe_source_leakage": []
+    },
+    {
+      "query": "WHO 袖带式 自动血压计 技术规范 验证设备",
+      "expected_uses": [
+        "device_advice",
+        "home_bp_monitoring"
+      ],
+      "retrieved": [
+        {
+          "source_id": "who_automated_cuff_bp_device_specs_001",
+          "title": "Technical specifications for automated non-invasive blood pressure measuring devices with cuff",
+          "url": "https://www.who.int/publications/i/item/9789240002654",
+          "used_for": "WHO 袖带式 自动血压计 技术规范 验证设备",
+          "organization": "World Health Organization",
+          "region": "global",
+          "topic": "validated_devices",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "device_advice",
+            "home_bp_monitoring",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.918,
+          "snippet": "## 来源摘要 WHO 袖带式自动无创血压计技术规范支持“复核应使用经过验证的袖带设备”的设备边界。"
+        },
+        {
+          "source_id": "who_automated_cuff_bp_device_specs_002",
+          "title": "Technical specifications for automated non-invasive blood pressure measuring devices with cuff",
+          "url": "https://www.who.int/publications/i/item/9789240002654",
+          "used_for": "WHO 袖带式 自动血压计 技术规范 验证设备",
+          "organization": "World Health Organization",
+          "region": "global",
+          "topic": "validated_devices",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "device_advice",
+            "home_bp_monitoring",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.668,
+          "snippet": "## 可用于报告的要点 - 规范血压复核应优先使用经过验证的袖带式设备。 - 设备选择和测量质量会影响读数解释。 - 该来源用于说明验证原则，不推荐具体商业型号。"
+        },
+        {
+          "source_id": "hypertension_canada_device_recommendations_001",
+          "title": "Recommended blood pressure monitors",
+          "url": "https://hypertension.ca/bpdevices",
+          "used_for": "WHO 袖带式 自动血压计 技术规范 验证设备",
+          "organization": "Hypertension Canada",
+          "region": "CA",
+          "topic": "validated_devices",
+          "language": "en",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "device_advice",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.6421,
+          "snippet": "## 来源摘要 Hypertension Canada 设备推荐页面可支持选择验证血压计的原则。"
+        },
+        {
+          "source_id": "aha_home_bp_monitoring_public_001",
+          "title": "Home Blood Pressure Monitoring",
+          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
+          "used_for": "WHO 袖带式 自动血压计 技术规范 验证设备",
+          "organization": "American Heart Association",
+          "region": "AHA",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "device_advice"
+          ],
+          "review_status": "included",
+          "score": 0.632,
+          "snippet": "## 来源摘要 AHA 家庭血压监测页面支持使用上臂式设备复核、规范姿势和记录趋势。"
+        },
+        {
+          "source_id": "validatebp_validated_devices_002",
+          "title": "Validated Device Listing",
+          "url": "https://www.validatebp.org/",
+          "used_for": "WHO 袖带式 自动血压计 技术规范 验证设备",
+          "organization": "ValidateBP",
+          "region": "US",
+          "topic": "validated_devices",
+          "language": "en",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "device_advice",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.6311,
+          "snippet": "## 可用于报告的要点 - 建议选择经过验证的血压计。 - 不推荐具体商业型号。 - 上臂式设备通常更适合作为家庭复核工具。"
+        }
+      ],
+      "precision_at_k": 1.0,
+      "has_match": true,
+      "unsafe_source_leakage": []
+    },
+    {
+      "query": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
+      "expected_uses": [
+        "home_bp_monitoring",
+        "remeasurement"
+      ],
+      "retrieved": [
+        {
+          "source_id": "uspstf_hypertension_screening_adults_001",
+          "title": "Hypertension in Adults - Screening",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
+          "used_for": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
+          "organization": "U.S. Preventive Services Task Force",
+          "region": "US",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "bp_category_reference",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.776,
+          "snippet": "## 来源摘要 USPSTF 成人高血压筛查建议强调在诊断前应通过诊室外血压测量进行确认，可强化本系统的复测和非诊断边界。"
+        },
+        {
+          "source_id": "uspstf_hypertension_screening_adults_002",
+          "title": "Hypertension in Adults - Screening",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
+          "used_for": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
+          "organization": "U.S. Preventive Services Task Force",
+          "region": "US",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "bp_category_reference",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.7198,
+          "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
+        },
+        {
+          "source_id": "nice_ng136_hypertension_002",
+          "title": "Hypertension in adults - diagnosis and management",
+          "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
+          "used_for": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
+          "organization": "National Institute for Health and Care Excellence",
+          "region": "UK",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "bp_category_reference"
+          ],
+          "review_status": "included",
+          "score": 0.646,
+          "snippet": "## 可用于报告的要点 - 诊断需要规范测量，不依赖单次设备估算。 - 家庭血压监测可用于确认和随访。 - 本系统只引用其测量原则和复测理念。"
+        },
+        {
+          "source_id": "nice_ng136_hypertension_001",
+          "title": "Hypertension in adults - diagnosis and management",
+          "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
+          "used_for": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
+          "organization": "National Institute for Health and Care Excellence",
+          "region": "UK",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "bp_category_reference"
+          ],
+          "review_status": "included",
+          "score": 0.6283,
+          "snippet": "## 来源摘要 NICE NG136 为家庭/动态血压确认和复测提供国际对照依据。"
+        },
+        {
+          "source_id": "aha_home_bp_monitoring_public_001",
+          "title": "Home Blood Pressure Monitoring",
+          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
+          "used_for": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
+          "organization": "American Heart Association",
+          "region": "AHA",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "device_advice"
+          ],
+          "review_status": "included",
+          "score": 0.609,
+          "snippet": "## 来源摘要 AHA 家庭血压监测页面支持使用上臂式设备复核、规范姿势和记录趋势。"
+        }
+      ],
+      "precision_at_k": 1.0,
+      "has_match": true,
+      "unsafe_source_leakage": []
+    },
+    {
+      "query": "国家卫健委 高血压 营养 运动 指导原则 减盐",
+      "expected_uses": [
+        "lifestyle"
+      ],
+      "retrieved": [
+        {
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_001",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+          "used_for": "国家卫健委 高血压 营养 运动 指导原则 减盐",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
+          "topic": "lifestyle",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "lifestyle",
+            "special_population",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.846,
+          "snippet": "## 来源摘要 国家卫健委 2024 高血压营养和运动指导原则是中文生活方式建议的高优先级本土来源。"
+        },
+        {
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_003",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+          "used_for": "国家卫健委 高血压 营养 运动 指导原则 减盐",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
+          "topic": "lifestyle",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "lifestyle",
+            "special_population",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.8233,
+          "snippet": "## 实现使用说明 - 用于 CN 场景 lifestyle；不得生成治疗方案或替代医嘱。"
+        },
+        {
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_002",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+          "used_for": "国家卫健委 高血压 营养 运动 指导原则 减盐",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
+          "topic": "lifestyle",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "lifestyle",
+            "special_population",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.7529,
+          "snippet": "## 可用于报告的要点 - 中文报告的减盐、合理膳食、运动和体重管理建议可优先引用该来源。 - 生活方式内容属于健康教育，不承诺个体降压效果。 - 特殊人群仍需医生或营养/运动专业人员个体化评估。"
+        },
+        {
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_004",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+          "used_for": "国家卫健委 高血压 营养 运动 指导原则 减盐",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
+          "topic": "lifestyle",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "lifestyle",
+            "special_population",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.7039,
+          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
+        },
+        {
+          "source_id": "nhc_2024_hypertension_day_key_messages_003",
+          "title": "2024年全国高血压日宣传要点",
+          "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
+          "used_for": "国家卫健委 高血压 营养 运动 指导原则 减盐",
+          "organization": "国家卫生健康委",
+          "region": "CN",
+          "topic": "home_bp_monitoring",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "lifestyle",
+            "remeasurement",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.6182,
+          "snippet": "## 实现使用说明 - 用于 CN 场景 home_bp_monitoring、lifestyle 和 disclaimer。"
+        }
+      ],
+      "precision_at_k": 1.0,
+      "has_match": true,
+      "unsafe_source_leakage": []
+    },
+    {
+      "query": "全国高血压日 规范测量 记录 生活方式",
+      "expected_uses": [
+        "home_bp_monitoring",
+        "lifestyle"
+      ],
+      "retrieved": [
+        {
+          "source_id": "nhc_2024_hypertension_day_key_messages_002",
+          "title": "2024年全国高血压日宣传要点",
+          "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
+          "used_for": "全国高血压日 规范测量 记录 生活方式",
+          "organization": "国家卫生健康委",
+          "region": "CN",
+          "topic": "home_bp_monitoring",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "lifestyle",
+            "remeasurement",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.835,
+          "snippet": "## 可用于报告的要点 - 中文报告可用该来源支持规范测量、记录和生活方式提醒。 - 系统不得把宣传要点改写成诊断或治疗结论。 - PPG 估算仍只能作为趋势参考。"
+        },
+        {
+          "source_id": "nhc_2024_hypertension_day_key_messages_004",
+          "title": "2024年全国高血压日宣传要点",
+          "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
+          "used_for": "全国高血压日 规范测量 记录 生活方式",
+          "organization": "国家卫生健康委",
+          "region": "CN",
+          "topic": "home_bp_monitoring",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "lifestyle",
+            "remeasurement",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.7715,
+          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
+        },
+        {
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_004",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+          "used_for": "全国高血压日 规范测量 记录 生活方式",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
+          "topic": "lifestyle",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "lifestyle",
+            "special_population",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.7267,
+          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
+        },
+        {
+          "source_id": "medlineplus_high_blood_pressure_004",
+          "title": "High Blood Pressure",
+          "url": "https://medlineplus.gov/highbloodpressure.html",
+          "used_for": "全国高血压日 规范测量 记录 生活方式",
+          "organization": "MedlinePlus",
+          "region": "US",
+          "topic": "lifestyle",
+          "language": "en",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "lifestyle",
+            "home_bp_monitoring",
+            "special_population"
+          ],
+          "review_status": "included",
+          "score": 0.7031,
+          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
+        },
+        {
+          "source_id": "nhc_2024_hypertension_day_key_messages_001",
+          "title": "2024年全国高血压日宣传要点",
+          "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
+          "used_for": "全国高血压日 规范测量 记录 生活方式",
+          "organization": "国家卫生健康委",
+          "region": "CN",
+          "topic": "home_bp_monitoring",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "lifestyle",
+            "remeasurement",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.6982,
+          "snippet": "## 来源摘要 全国高血压日宣传要点可补充中文健康教育口径，强调知晓、测量、控制和长期管理。"
+        }
+      ],
+      "precision_at_k": 1.0,
+      "has_match": true,
+      "unsafe_source_leakage": []
+    },
+    {
+      "query": "KDIGO 2024 慢性肾病 CKD 血压偏高 复核",
+      "expected_uses": [
+        "special_population",
+        "medication_safety"
+      ],
+      "retrieved": [
+        {
+          "source_id": "kdigo_2024_ckd_guideline_001",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "KDIGO 2024 慢性肾病 CKD 血压偏高 复核",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.7263,
+          "snippet": "## 来源摘要 KDIGO 2024 CKD 指南可强化慢性肾病用户的保守复核和医生沟通提醒。"
+        },
+        {
+          "source_id": "kdigo_2024_ckd_guideline_002",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "KDIGO 2024 慢性肾病 CKD 血压偏高 复核",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.7114,
+          "snippet": "## 可用于报告的要点 - CKD 用户出现血压估算偏高时应更保守地使用规范设备复核并咨询医生。 - 报告不得提供肾病相关用药或治疗目标。 - 用药用户不应基于 PPG 估算自行调整方案。"
+        },
+        {
+          "source_id": "ada_2026_standards_cvd_bp_002",
+          "title": "Cardiovascular Disease and Risk Management - Standards of Care in Diabetes 2026",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/",
+          "used_for": "KDIGO 2024 慢性肾病 CKD 血压偏高 复核",
+          "organization": "American Diabetes Association",
+          "region": "US",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.526,
+          "snippet": "## 可用于报告的要点 - 糖尿病合并血压估算异常时应更重视规范复核和医生沟通。 - 该来源只支持特殊人群提醒，不生成个体化治疗目标。 - 用药调整必须留给临床医生。"
+        },
+        {
+          "source_id": "kdigo_2024_ckd_guideline_004",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "KDIGO 2024 慢性肾病 CKD 血压偏高 复核",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.523,
+          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
+        },
+        {
+          "source_id": "kdigo_2024_ckd_guideline_003",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "KDIGO 2024 慢性肾病 CKD 血压偏高 复核",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5205,
+          "snippet": "## 实现使用说明 - 用于 CKD special_population 和 medication_safety。"
+        }
+      ],
+      "precision_at_k": 1.0,
+      "has_match": true,
+      "unsafe_source_leakage": []
+    },
+    {
+      "query": "ADA 2026 糖尿病 血压 心血管风险 用药安全",
+      "expected_uses": [
+        "special_population",
+        "medication_safety"
+      ],
+      "retrieved": [
+        {
+          "source_id": "ada_2026_standards_cvd_bp_001",
+          "title": "Cardiovascular Disease and Risk Management - Standards of Care in Diabetes 2026",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/",
+          "used_for": "ADA 2026 糖尿病 血压 心血管风险 用药安全",
+          "organization": "American Diabetes Association",
+          "region": "US",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.8268,
+          "snippet": "## 来源摘要 ADA 2026 糖尿病心血管风险管理章节可强化糖尿病用户的血压风险沟通和保守提醒。"
+        },
+        {
+          "source_id": "local_special_population_rule_001",
+          "title": "Special population conservative advice rule",
+          "url": "",
+          "used_for": "ADA 2026 糖尿病 血压 心血管风险 用药安全",
+          "organization": "project",
+          "region": "global",
+          "topic": "special_population",
+          "language": "zh",
+          "evidence_class": "safety_rule",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety"
+          ],
+          "review_status": "included",
+          "score": 0.6706,
+          "snippet": "## 来源摘要 本项目规则：老年、妊娠、糖尿病、肾病、心血管病史或正在用药用户应给出保守咨询医生建议。"
+        },
+        {
+          "source_id": "ada_2026_standards_cvd_bp_002",
+          "title": "Cardiovascular Disease and Risk Management - Standards of Care in Diabetes 2026",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/",
+          "used_for": "ADA 2026 糖尿病 血压 心血管风险 用药安全",
+          "organization": "American Diabetes Association",
+          "region": "US",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.6024,
+          "snippet": "## 可用于报告的要点 - 糖尿病合并血压估算异常时应更重视规范复核和医生沟通。 - 该来源只支持特殊人群提醒，不生成个体化治疗目标。 - 用药调整必须留给临床医生。"
+        },
+        {
+          "source_id": "ada_2026_standards_cvd_bp_004",
+          "title": "Cardiovascular Disease and Risk Management - Standards of Care in Diabetes 2026",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/",
+          "used_for": "ADA 2026 糖尿病 血压 心血管风险 用药安全",
+          "organization": "American Diabetes Association",
+          "region": "US",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5801,
+          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
+        },
+        {
+          "source_id": "medlineplus_high_bp_medicines_004",
+          "title": "High blood pressure medicines",
+          "url": "https://medlineplus.gov/highbloodpressuremedicines.html",
+          "used_for": "ADA 2026 糖尿病 血压 心血管风险 用药安全",
+          "organization": "MedlinePlus",
+          "region": "US",
+          "topic": "medication_safety",
+          "language": "en",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "medication_safety",
+            "special_population"
+          ],
+          "review_status": "included",
+          "score": 0.5622,
+          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
+        }
+      ],
+      "precision_at_k": 1.0,
+      "has_match": true,
+      "unsafe_source_leakage": []
+    },
+    {
       "query": "PPG 手指摄像头 血压估算 是否可靠",
       "expected_uses": [
         "cuffless_ppg_limitations"
@@ -3319,6 +4131,27 @@
           "review_status": "included",
           "score": 0.5374,
           "snippet": "## 来源摘要 AHA 无袖带血压科学声明是 PPG/无袖带估算局限的核心安全依据。"
+        },
+        {
+          "source_id": "fda_cuffless_nibp_draft_guidance_002",
+          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+          "used_for": "PPG 手指摄像头 血压估算 是否可靠",
+          "organization": "U.S. Food and Drug Administration",
+          "region": "US",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.5261,
+          "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
         },
         {
           "source_id": "aha_cuffless_bp_scientific_statement_002",
@@ -3378,26 +4211,6 @@
           ],
           "review_status": "included",
           "score": 0.4819,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "local_ppg_signal_quality_rule_004",
-          "title": "PPG signal quality and confidence safety rule",
-          "url": "",
-          "used_for": "PPG 手指摄像头 血压估算 是否可靠",
-          "organization": "project",
-          "region": "global",
-          "topic": "measurement_quality",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "signal_quality",
-            "remeasurement",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.479,
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
@@ -3473,6 +4286,27 @@
           "snippet": "## 来源摘要 2025 综述只用于解释无袖带血压研究背景和仍需验证的局限。"
         },
         {
+          "source_id": "fda_cuffless_nibp_draft_guidance_001",
+          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+          "used_for": "无袖带 血压设备 真实场景 局限",
+          "organization": "U.S. Food and Drug Administration",
+          "region": "US",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.5346,
+          "snippet": "## 来源摘要 FDA 无袖带无创血压设备草案指南可补充监管视角，说明无袖带设备需要临床性能测试、验证和清晰适用边界。"
+        },
+        {
           "source_id": "fda_pulse_oximeter_limitations_001",
           "title": "Pulse Oximeter Accuracy and Limitations",
           "url": "https://www.fda.gov/medical-devices/safety-communications/pulse-oximeter-accuracy-and-limitations-fda-safety-communication",
@@ -3490,27 +4324,6 @@
           "review_status": "included",
           "score": 0.5222,
           "snippet": "## 来源摘要 FDA 脉搏血氧仪限制说明可作为光学传感信号受真实场景影响的类比安全来源。"
-        },
-        {
-          "source_id": "aha_cuffless_bp_scientific_statement_004",
-          "title": "Cuffless Devices for the Measurement of Blood Pressure",
-          "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-          "used_for": "无袖带 血压设备 真实场景 局限",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "cuffless_ppg_limitations",
-          "language": "en",
-          "evidence_class": "scientific_statement",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "cuffless_ppg_limitations",
-            "device_advice",
-            "signal_quality",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.4995,
-          "snippet": "## 全文候选与下载材料摘要 ### AHA cuffless blood pressure scientific statement full text - candidate_id: `aha_cuffless_bp_statement_fulltext` - access_mode: `institution_or_browser` - fulltext_status: local_pdf_available - source_url: https://professi..."
         }
       ],
       "precision_at_k": 1.0,
@@ -3655,6 +4468,27 @@
           "snippet": "## 来源摘要 本项目规则：报告必须声明仅供个人健康趋势参考，不能替代医生诊断和规范血压测量。"
         },
         {
+          "source_id": "fda_cuffless_nibp_draft_guidance_002",
+          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+          "used_for": "手机摄像头测血压 为什么只能看趋势",
+          "organization": "U.S. Food and Drug Administration",
+          "region": "US",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.4556,
+          "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
+        },
+        {
           "source_id": "aha_cuffless_bp_scientific_statement_002",
           "title": "Cuffless Devices for the Measurement of Blood Pressure",
           "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
@@ -3676,6 +4510,27 @@
           "snippet": "## 可用于报告的要点 - 无袖带设备依赖间接估算，真实场景可靠性需验证。 - PPG 估算不能替代规范血压测量。 - 报告应避免准确性过度承诺。"
         },
         {
+          "source_id": "fda_cuffless_nibp_draft_guidance_001",
+          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+          "used_for": "手机摄像头测血压 为什么只能看趋势",
+          "organization": "U.S. Food and Drug Administration",
+          "region": "US",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.416,
+          "snippet": "## 来源摘要 FDA 无袖带无创血压设备草案指南可补充监管视角，说明无袖带设备需要临床性能测试、验证和清晰适用边界。"
+        },
+        {
           "source_id": "local_capture_environment_rule_001",
           "title": "Camera PPG capture environment rule",
           "url": "",
@@ -3694,45 +4549,6 @@
           "review_status": "included",
           "score": 0.4128,
           "snippet": "## 来源摘要 本地规则补充摄像头 PPG 采集环境对信号质量的影响。"
-        },
-        {
-          "source_id": "local_disclaimer_rule_004",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "手机摄像头测血压 为什么只能看趋势",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.412,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "local_capture_environment_rule_004",
-          "title": "Camera PPG capture environment rule",
-          "url": "",
-          "used_for": "手机摄像头测血压 为什么只能看趋势",
-          "organization": "project",
-          "region": "global",
-          "topic": "measurement_quality",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "signal_quality",
-            "remeasurement",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.4082,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
       "precision_at_k": 1.0,
@@ -3829,23 +4645,25 @@
           "snippet": "## 可用于报告的要点 - 强光、移动、按压力度和采集时间会影响信号。 - 低质量时优先重新采集。 - 不要输出强风险结论。"
         },
         {
-          "source_id": "pubmed_cuffless_bp_review_41460057_004",
-          "title": "Cuffless blood pressure measurement narrative review - PubMed record",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/41460057/",
+          "source_id": "fda_cuffless_nibp_draft_guidance_002",
+          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
           "used_for": "血压估算 算法置信度 和 PPG 局限",
-          "organization": "PubMed",
-          "region": "global",
+          "organization": "U.S. Food and Drug Administration",
+          "region": "US",
           "topic": "cuffless_ppg_limitations",
           "language": "en",
-          "evidence_class": "review",
-          "source_quality_score": 21.0,
+          "evidence_class": "validation_standard",
+          "source_quality_score": 25.0,
           "allowed_uses": [
-            "research_background",
-            "cuffless_ppg_limitations"
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "signal_quality",
+            "research_background"
           ],
           "review_status": "included",
-          "score": 0.476,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。 - 研究或综述来源只用于背景和局限说明，不用于患者级临床建议。"
+          "score": 0.4813,
+          "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
         }
       ],
       "precision_at_k": 1.0,
@@ -3941,15 +4759,15 @@
           "snippet": "## 实现使用说明 - 用于 citation，不作为患者建议的唯一来源。"
         },
         {
-          "source_id": "aha_cuffless_bp_scientific_statement_006",
-          "title": "Cuffless Devices for the Measurement of Blood Pressure",
-          "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
+          "source_id": "fda_cuffless_nibp_draft_guidance_003",
+          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
           "used_for": "cuffless PPG blood pressure limitation validation",
-          "organization": "American Heart Association",
-          "region": "AHA",
+          "organization": "U.S. Food and Drug Administration",
+          "region": "US",
           "topic": "cuffless_ppg_limitations",
           "language": "en",
-          "evidence_class": "scientific_statement",
+          "evidence_class": "validation_standard",
           "source_quality_score": 25.0,
           "allowed_uses": [
             "cuffless_ppg_limitations",
@@ -3958,8 +4776,8 @@
             "research_background"
           ],
           "review_status": "included",
-          "score": 0.4811,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
+          "score": 0.4887,
+          "snippet": "## 实现使用说明 - 用于 cuffless_ppg_limitations、device_advice 和 signal_quality；不得用于诊断或治疗建议。"
         }
       ],
       "precision_at_k": 1.0,
@@ -4034,6 +4852,27 @@
           "snippet": "## 来源摘要 PubMed 记录提供 AHA 无袖带血压声明的索引、年份和可追溯 citation。"
         },
         {
+          "source_id": "fda_cuffless_nibp_draft_guidance_002",
+          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+          "used_for": "无袖带血压 科学声明 PPG 间接估算",
+          "organization": "U.S. Food and Drug Administration",
+          "region": "US",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.5261,
+          "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
+        },
+        {
           "source_id": "aha_cuffless_bp_scientific_statement_004",
           "title": "Cuffless Devices for the Measurement of Blood Pressure",
           "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
@@ -4053,25 +4892,6 @@
           "review_status": "included",
           "score": 0.5103,
           "snippet": "## 全文候选与下载材料摘要 ### AHA cuffless blood pressure scientific statement full text - candidate_id: `aha_cuffless_bp_statement_fulltext` - access_mode: `institution_or_browser` - fulltext_status: local_pdf_available - source_url: https://professi..."
-        },
-        {
-          "source_id": "local_disclaimer_rule_004",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "无袖带血压 科学声明 PPG 间接估算",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.4544,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
       "precision_at_k": 1.0,
@@ -4102,6 +4922,27 @@
           "review_status": "included",
           "score": 0.7405,
           "snippet": "## 来源摘要 本项目规则：报告必须声明仅供个人健康趋势参考，不能替代医生诊断和规范血压测量。"
+        },
+        {
+          "source_id": "fda_cuffless_nibp_draft_guidance_002",
+          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+          "used_for": "PPG 血压趋势参考 不能诊断",
+          "organization": "U.S. Food and Drug Administration",
+          "region": "US",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.5897,
+          "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
         },
         {
           "source_id": "local_disclaimer_rule_002",
@@ -4159,26 +5000,6 @@
           ],
           "review_status": "included",
           "score": 0.507,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "local_ppg_signal_quality_rule_004",
-          "title": "PPG signal quality and confidence safety rule",
-          "url": "",
-          "used_for": "PPG 血压趋势参考 不能诊断",
-          "organization": "project",
-          "region": "global",
-          "topic": "measurement_quality",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "signal_quality",
-            "remeasurement",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.5038,
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
@@ -5099,6 +5920,27 @@
           "snippet": "## 可用于报告的要点 - 血压分类只作为 PPG 估算值参考范围。 - 严重偏高并伴急症症状时应提示紧急医疗帮助。 - 需要复测和连续记录来理解趋势。"
         },
         {
+          "source_id": "uspstf_hypertension_screening_adults_002",
+          "title": "Hypertension in Adults - Screening",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
+          "used_for": "145 92 PPG 血压估算 偏高 复测",
+          "organization": "U.S. Preventive Services Task Force",
+          "region": "US",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "bp_category_reference",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.6279,
+          "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
+        },
+        {
           "source_id": "aha_understanding_bp_readings_public_004",
           "title": "Understanding Blood Pressure Readings",
           "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings",
@@ -5141,48 +5983,25 @@
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         },
         {
-          "source_id": "chinese_hypertension_guideline_2024_catalog_006",
-          "title": "Chinese Guidelines for the Prevention and Treatment of Hypertension (2024 revision)",
-          "url": "https://www.sciopen.com/article/10.26599/1671-5411.2025.01.008",
+          "source_id": "uspstf_hypertension_screening_adults_004",
+          "title": "Hypertension in Adults - Screening",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
           "used_for": "145 92 PPG 血压估算 偏高 复测",
-          "organization": "Chinese guideline authors",
-          "region": "CN",
-          "topic": "bp_categories",
-          "language": "zh",
-          "evidence_class": "guideline",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "bp_category_reference",
-            "home_bp_monitoring",
-            "remeasurement",
-            "lifestyle",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.6065,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "acc_aha_2025_full_guideline_record_002",
-          "title": "2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults",
-          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
-          "used_for": "145 92 PPG 血压估算 偏高 复测",
-          "organization": "American Heart Association / American College of Cardiology",
-          "region": "AHA",
-          "topic": "bp_categories",
+          "organization": "U.S. Preventive Services Task Force",
+          "region": "US",
+          "topic": "home_bp_monitoring",
           "language": "en",
           "evidence_class": "guideline",
-          "source_quality_score": 25.0,
+          "source_quality_score": 23.0,
           "allowed_uses": [
-            "bp_category_reference",
             "home_bp_monitoring",
             "remeasurement",
-            "lifestyle",
-            "special_population"
+            "bp_category_reference",
+            "disclaimer"
           ],
           "review_status": "included",
-          "score": 0.6003,
-          "snippet": "## 可用于报告的要点 - 规范测量、重复读数、合适袖带和经验证设备是血压解释前提。 - 家庭血压记录可支持医生沟通。 - PPG 或无袖带估算值不能替代指南要求的测量。"
+          "score": 0.6107,
+          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
       "precision_at_k": 1.0,
@@ -5281,24 +6100,25 @@
           "snippet": "## 实现使用说明 - 用于解释参考范围、复测和生活方式，不用于直接诊断。"
         },
         {
-          "source_id": "aha_understanding_bp_readings_public_004",
-          "title": "Understanding Blood Pressure Readings",
-          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings",
+          "source_id": "uspstf_hypertension_screening_adults_002",
+          "title": "Hypertension in Adults - Screening",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
           "used_for": "138 86 估算血压 参考范围",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "bp_categories",
+          "organization": "U.S. Preventive Services Task Force",
+          "region": "US",
+          "topic": "home_bp_monitoring",
           "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
+          "evidence_class": "guideline",
+          "source_quality_score": 23.0,
           "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
             "bp_category_reference",
-            "emergency_alert",
-            "remeasurement"
+            "disclaimer"
           ],
           "review_status": "included",
-          "score": 0.5603,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
+          "score": 0.5612,
+          "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
         }
       ],
       "precision_at_k": 1.0,
@@ -5353,6 +6173,27 @@
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         },
         {
+          "source_id": "uspstf_hypertension_screening_adults_002",
+          "title": "Hypertension in Adults - Screening",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
+          "used_for": "125 78 血压估算 elevated 注意什么",
+          "organization": "U.S. Preventive Services Task Force",
+          "region": "US",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "bp_category_reference",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.5139,
+          "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
+        },
+        {
           "source_id": "aha_understanding_bp_readings_public_001",
           "title": "Understanding Blood Pressure Readings",
           "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings",
@@ -5391,28 +6232,6 @@
           ],
           "review_status": "included",
           "score": 0.5095,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "aha_2025_bp_guideline_top_things_004",
-          "title": "2025 High Blood Pressure Guideline - Top Things to Know",
-          "url": "https://professional.heart.org/en/science-news/2025-high-blood-pressure-guideline/top-things-to-know",
-          "used_for": "125 78 血压估算 elevated 注意什么",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "bp_categories",
-          "language": "en",
-          "evidence_class": "guideline",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "bp_category_reference",
-            "home_bp_monitoring",
-            "remeasurement",
-            "lifestyle",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.5083,
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
@@ -5492,6 +6311,27 @@
           "snippet": "## 来源摘要 AHA/ACC 2025 成人高血压指南正式全文用于新版指南追溯、规范测量边界和 PPG 免责声明。"
         },
         {
+          "source_id": "nhc_2024_hypertension_day_key_messages_002",
+          "title": "2024年全国高血压日宣传要点",
+          "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
+          "used_for": "116 74 PPG 血压 正常参考 趋势",
+          "organization": "国家卫生健康委",
+          "region": "CN",
+          "topic": "home_bp_monitoring",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "lifestyle",
+            "remeasurement",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.4953,
+          "snippet": "## 可用于报告的要点 - 中文报告可用该来源支持规范测量、记录和生活方式提醒。 - 系统不得把宣传要点改写成诊断或治疗结论。 - PPG 估算仍只能作为趋势参考。"
+        },
+        {
           "source_id": "chinese_hypertension_guideline_2024_catalog_002",
           "title": "Chinese Guidelines for the Prevention and Treatment of Hypertension (2024 revision)",
           "url": "https://www.sciopen.com/article/10.26599/1671-5411.2025.01.008",
@@ -5512,26 +6352,6 @@
           "review_status": "included",
           "score": 0.48,
           "snippet": "## 可用于报告的要点 - 用于中文报告的参考范围和复测建议。 - 不能把 PPG 估算值写为诊断。 - 合并基础病或特殊人群需要更保守建议。"
-        },
-        {
-          "source_id": "aha_understanding_bp_readings_public_004",
-          "title": "Understanding Blood Pressure Readings",
-          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings",
-          "used_for": "116 74 PPG 血压 正常参考 趋势",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "bp_categories",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "bp_category_reference",
-            "emergency_alert",
-            "remeasurement"
-          ],
-          "review_status": "included",
-          "score": 0.4789,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
       "precision_at_k": 1.0,
@@ -5545,6 +6365,27 @@
         "remeasurement"
       ],
       "retrieved": [
+        {
+          "source_id": "uspstf_hypertension_screening_adults_002",
+          "title": "Hypertension in Adults - Screening",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
+          "used_for": "150 95 血压估算 stage 2 复核",
+          "organization": "U.S. Preventive Services Task Force",
+          "region": "US",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "bp_category_reference",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.601,
+          "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
+        },
         {
           "source_id": "aha_understanding_bp_readings_public_002",
           "title": "Understanding Blood Pressure Readings",
@@ -5626,28 +6467,6 @@
           "review_status": "included",
           "score": 0.5501,
           "snippet": "## 可用于报告的要点 - 诊断需要规范测量，不依赖单次设备估算。 - 家庭血压监测可用于确认和随访。 - 本系统只引用其测量原则和复测理念。"
-        },
-        {
-          "source_id": "chinese_hypertension_guideline_2024_catalog_006",
-          "title": "Chinese Guidelines for the Prevention and Treatment of Hypertension (2024 revision)",
-          "url": "https://www.sciopen.com/article/10.26599/1671-5411.2025.01.008",
-          "used_for": "150 95 血压估算 stage 2 复核",
-          "organization": "Chinese guideline authors",
-          "region": "CN",
-          "topic": "bp_categories",
-          "language": "zh",
-          "evidence_class": "guideline",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "bp_category_reference",
-            "home_bp_monitoring",
-            "remeasurement",
-            "lifestyle",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.5462,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
       "precision_at_k": 1.0,
@@ -5920,6 +6739,27 @@
           "snippet": "## 可用于报告的要点 - 血压分类只作为 PPG 估算值参考范围。 - 严重偏高并伴急症症状时应提示紧急医疗帮助。 - 需要复测和连续记录来理解趋势。"
         },
         {
+          "source_id": "uspstf_hypertension_screening_adults_002",
+          "title": "Hypertension in Adults - Screening",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
+          "used_for": "单次血压估算 为什么要连续记录",
+          "organization": "U.S. Preventive Services Task Force",
+          "region": "US",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "bp_category_reference",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.6987,
+          "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
+        },
+        {
           "source_id": "aha_2025_bp_guideline_top_things_002",
           "title": "2025 High Blood Pressure Guideline - Top Things to Know",
           "url": "https://professional.heart.org/en/science-news/2025-high-blood-pressure-guideline/top-things-to-know",
@@ -5980,28 +6820,6 @@
           "review_status": "included",
           "score": 0.5841,
           "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
-        },
-        {
-          "source_id": "acc_aha_2025_full_guideline_record_002",
-          "title": "2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults",
-          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
-          "used_for": "单次血压估算 为什么要连续记录",
-          "organization": "American Heart Association / American College of Cardiology",
-          "region": "AHA",
-          "topic": "bp_categories",
-          "language": "en",
-          "evidence_class": "guideline",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "bp_category_reference",
-            "home_bp_monitoring",
-            "remeasurement",
-            "lifestyle",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.5741,
-          "snippet": "## 可用于报告的要点 - 规范测量、重复读数、合适袖带和经验证设备是血压解释前提。 - 家庭血压记录可支持医生沟通。 - PPG 或无袖带估算值不能替代指南要求的测量。"
         }
       ],
       "precision_at_k": 1.0,
@@ -6961,6 +7779,26 @@
       ],
       "retrieved": [
         {
+          "source_id": "kdigo_2024_ckd_guideline_002",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "血压估算高 要不要自己加药",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5933,
+          "snippet": "## 可用于报告的要点 - CKD 用户出现血压估算偏高时应更保守地使用规范设备复核并咨询医生。 - 报告不得提供肾病相关用药或治疗目标。 - 用药用户不应基于 PPG 估算自行调整方案。"
+        },
+        {
           "source_id": "medlineplus_high_bp_medicines_002",
           "title": "High blood pressure medicines",
           "url": "https://medlineplus.gov/highbloodpressuremedicines.html",
@@ -6999,6 +7837,26 @@
           "snippet": "## 来源摘要 MedlinePlus 降压药页面可支持“不要自行调药，咨询医生”的安全边界。"
         },
         {
+          "source_id": "ada_2026_standards_cvd_bp_002",
+          "title": "Cardiovascular Disease and Risk Management - Standards of Care in Diabetes 2026",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/",
+          "used_for": "血压估算高 要不要自己加药",
+          "organization": "American Diabetes Association",
+          "region": "US",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5275,
+          "snippet": "## 可用于报告的要点 - 糖尿病合并血压估算异常时应更重视规范复核和医生沟通。 - 该来源只支持特殊人群提醒，不生成个体化治疗目标。 - 用药调整必须留给临床医生。"
+        },
+        {
           "source_id": "aha_bp_medicines_patient_002",
           "title": "Types of Blood Pressure Medications",
           "url": "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/types-of-blood-pressure-medications",
@@ -7016,44 +7874,6 @@
           "review_status": "included",
           "score": 0.5147,
           "snippet": "## 可用于报告的要点 - 报告不得建议服药、停药或调药。 - 正在用药用户应咨询医生。 - PPG 估算不能改变治疗方案。"
-        },
-        {
-          "source_id": "medlineplus_high_bp_medicines_004",
-          "title": "High blood pressure medicines",
-          "url": "https://medlineplus.gov/highbloodpressuremedicines.html",
-          "used_for": "血压估算高 要不要自己加药",
-          "organization": "MedlinePlus",
-          "region": "US",
-          "topic": "medication_safety",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "medication_safety",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.5144,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "local_medication_safety_rule_004",
-          "title": "Medication safety boundary rule",
-          "url": "",
-          "used_for": "血压估算高 要不要自己加药",
-          "organization": "project",
-          "region": "global",
-          "topic": "medication_safety",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "medication_safety",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.5104,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
       "precision_at_k": 1.0,
@@ -7084,6 +7904,26 @@
           "review_status": "included",
           "score": 0.5612,
           "snippet": "## 来源摘要 本项目规则：报告不得建议自行服药、停药、换药或调整剂量。"
+        },
+        {
+          "source_id": "kdigo_2024_ckd_guideline_002",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "降压药 剂量 调整 PPG 估算",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5366,
+          "snippet": "## 可用于报告的要点 - CKD 用户出现血压估算偏高时应更保守地使用规范设备复核并咨询医生。 - 报告不得提供肾病相关用药或治疗目标。 - 用药用户不应基于 PPG 估算自行调整方案。"
         },
         {
           "source_id": "aha_bp_medicines_patient_002",
@@ -7141,25 +7981,6 @@
           "review_status": "included",
           "score": 0.5253,
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "local_medication_safety_rule_004",
-          "title": "Medication safety boundary rule",
-          "url": "",
-          "used_for": "降压药 剂量 调整 PPG 估算",
-          "organization": "project",
-          "region": "global",
-          "topic": "medication_safety",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "medication_safety",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.5213,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
       "precision_at_k": 1.0,
@@ -7172,6 +7993,26 @@
         "medication_safety"
       ],
       "retrieved": [
+        {
+          "source_id": "kdigo_2024_ckd_guideline_002",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "服药用户 血压偏高 咨询医生",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.6455,
+          "snippet": "## 可用于报告的要点 - CKD 用户出现血压估算偏高时应更保守地使用规范设备复核并咨询医生。 - 报告不得提供肾病相关用药或治疗目标。 - 用药用户不应基于 PPG 估算自行调整方案。"
+        },
         {
           "source_id": "aha_bp_medicines_patient_002",
           "title": "Types of Blood Pressure Medications",
@@ -7247,25 +8088,6 @@
           "review_status": "included",
           "score": 0.5808,
           "snippet": "## 可用于报告的要点 - 正在用药用户应保留记录并咨询医生。 - 不能根据 PPG 估算值改变用药。 - Safety Agent 必须拦截调药表达。"
-        },
-        {
-          "source_id": "medlineplus_high_bp_medicines_002",
-          "title": "High blood pressure medicines",
-          "url": "https://medlineplus.gov/highbloodpressuremedicines.html",
-          "used_for": "服药用户 血压偏高 咨询医生",
-          "organization": "MedlinePlus",
-          "region": "US",
-          "topic": "medication_safety",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "medication_safety",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.5482,
-          "snippet": "## 可用于报告的要点 - 用药需要专业医疗指导。 - 不要根据 PPG 估算自行停药或调药。 - 报告只建议保留记录并咨询医生。"
         }
       ],
       "precision_at_k": 1.0,
@@ -7741,6 +8563,26 @@
           "snippet": "## 来源摘要 NHLBI 高血压页面支持通用血压健康教育、风险因素和咨询医生提醒。"
         },
         {
+          "source_id": "kdigo_2024_ckd_guideline_002",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "孕妇 PPG 血压偏高 咨询医生",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5933,
+          "snippet": "## 可用于报告的要点 - CKD 用户出现血压估算偏高时应更保守地使用规范设备复核并咨询医生。 - 报告不得提供肾病相关用药或治疗目标。 - 用药用户不应基于 PPG 估算自行调整方案。"
+        },
+        {
           "source_id": "cdc_bp_pregnancy_001",
           "title": "High Blood Pressure During Pregnancy",
           "url": "https://www.cdc.gov/high-blood-pressure/about/high-blood-pressure-during-pregnancy.html",
@@ -7775,25 +8617,6 @@
           "review_status": "included",
           "score": 0.5587,
           "snippet": "## 可用于报告的要点 - 肾病用户应咨询医生。 - 不提供个体化血压目标。 - 保留规范复测记录。"
-        },
-        {
-          "source_id": "medlineplus_high_bp_medicines_001",
-          "title": "High blood pressure medicines",
-          "url": "https://medlineplus.gov/highbloodpressuremedicines.html",
-          "used_for": "孕妇 PPG 血压偏高 咨询医生",
-          "organization": "MedlinePlus",
-          "region": "US",
-          "topic": "medication_safety",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "medication_safety",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.5565,
-          "snippet": "## 来源摘要 MedlinePlus 降压药页面可支持“不要自行调药，咨询医生”的安全边界。"
         }
       ],
       "precision_at_k": 1.0,
@@ -7928,6 +8751,26 @@
           "snippet": "## 来源摘要 ADA 页面支持糖尿病用户需要更重视血压复核和医生沟通。"
         },
         {
+          "source_id": "ada_2026_standards_cvd_bp_001",
+          "title": "Cardiovascular Disease and Risk Management - Standards of Care in Diabetes 2026",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/",
+          "used_for": "糖尿病 用户 血压估算 偏高",
+          "organization": "American Diabetes Association",
+          "region": "US",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.6012,
+          "snippet": "## 来源摘要 ADA 2026 糖尿病心血管风险管理章节可强化糖尿病用户的血压风险沟通和保守提醒。"
+        },
+        {
           "source_id": "aha_kidney_disease_high_bp_001",
           "title": "High Blood Pressure and Kidney Disease",
           "url": "https://www.heart.org/en/health-topics/high-blood-pressure/health-threats-from-high-blood-pressure/high-blood-pressure-and-kidney-disease",
@@ -7944,6 +8787,26 @@
           "review_status": "included",
           "score": 0.6009,
           "snippet": "## 来源摘要 AHA 肾病与高血压页面支持 CKD 用户的保守提醒。"
+        },
+        {
+          "source_id": "kdigo_2024_ckd_guideline_002",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "糖尿病 用户 血压估算 偏高",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5933,
+          "snippet": "## 可用于报告的要点 - CKD 用户出现血压估算偏高时应更保守地使用规范设备复核并咨询医生。 - 报告不得提供肾病相关用药或治疗目标。 - 用药用户不应基于 PPG 估算自行调整方案。"
         },
         {
           "source_id": "aha_diabetes_high_bp_001",
@@ -7963,45 +8826,6 @@
           "review_status": "included",
           "score": 0.5835,
           "snippet": "## 来源摘要 AHA 糖尿病与心血管风险页面可补充糖尿病用户保守建议。"
-        },
-        {
-          "source_id": "local_special_population_rule_001",
-          "title": "Special population conservative advice rule",
-          "url": "",
-          "used_for": "糖尿病 用户 血压估算 偏高",
-          "organization": "project",
-          "region": "global",
-          "topic": "special_population",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "special_population",
-            "medication_safety"
-          ],
-          "review_status": "included",
-          "score": 0.5527,
-          "snippet": "## 来源摘要 本项目规则：老年、妊娠、糖尿病、肾病、心血管病史或正在用药用户应给出保守咨询医生建议。"
-        },
-        {
-          "source_id": "ada_diabetes_bp_002",
-          "title": "Diabetes and High Blood Pressure",
-          "url": "https://diabetes.org/health-wellness/high-blood-pressure",
-          "used_for": "糖尿病 用户 血压估算 偏高",
-          "organization": "American Diabetes Association",
-          "region": "US",
-          "topic": "special_population",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "special_population",
-            "lifestyle",
-            "home_bp_monitoring"
-          ],
-          "review_status": "included",
-          "score": 0.5305,
-          "snippet": "## 可用于报告的要点 - 糖尿病合并血压异常应更保守处理。 - 报告只建议复核和咨询医生。 - 不设定个体化治疗目标。"
         }
       ],
       "precision_at_k": 1.0,
@@ -8051,6 +8875,46 @@
           "snippet": "## 来源摘要 AHA 肾病与高血压页面支持 CKD 用户的保守提醒。"
         },
         {
+          "source_id": "kdigo_2024_ckd_guideline_002",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "慢性肾病 CKD 血压估算",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5502,
+          "snippet": "## 可用于报告的要点 - CKD 用户出现血压估算偏高时应更保守地使用规范设备复核并咨询医生。 - 报告不得提供肾病相关用药或治疗目标。 - 用药用户不应基于 PPG 估算自行调整方案。"
+        },
+        {
+          "source_id": "kdigo_2024_ckd_guideline_001",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "慢性肾病 CKD 血压估算",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5266,
+          "snippet": "## 来源摘要 KDIGO 2024 CKD 指南可强化慢性肾病用户的保守复核和医生沟通提醒。"
+        },
+        {
           "source_id": "aha_kidney_disease_high_bp_002",
           "title": "High Blood Pressure and Kidney Disease",
           "url": "https://www.heart.org/en/health-topics/high-blood-pressure/health-threats-from-high-blood-pressure/high-blood-pressure-and-kidney-disease",
@@ -8067,42 +8931,6 @@
           "review_status": "included",
           "score": 0.487,
           "snippet": "## 可用于报告的要点 - 肾病用户应咨询医生。 - 不提供个体化血压目标。 - 保留规范复测记录。"
-        },
-        {
-          "source_id": "nhlbi_preeclampsia_pregnancy_002",
-          "title": "Preeclampsia and High Blood Pressure During Pregnancy",
-          "url": "https://www.nhlbi.nih.gov/health/high-blood-pressure/pregnancy",
-          "used_for": "慢性肾病 CKD 血压估算",
-          "organization": "National Heart, Lung, and Blood Institute",
-          "region": "US",
-          "topic": "special_population",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.4714,
-          "snippet": "## 可用于报告的要点 - 孕期症状和血压异常需要专业评估。 - 不能通过 PPG 估算排除风险。 - 建议保守复核和咨询医生。"
-        },
-        {
-          "source_id": "acog_preeclampsia_faq_002",
-          "title": "Preeclampsia and High Blood Pressure During Pregnancy FAQ",
-          "url": "https://www.acog.org/womens-health/faqs/preeclampsia-and-high-blood-pressure-during-pregnancy",
-          "used_for": "慢性肾病 CKD 血压估算",
-          "organization": "American College of Obstetricians and Gynecologists",
-          "region": "US",
-          "topic": "special_population",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.4567,
-          "snippet": "## 可用于报告的要点 - 孕期高血压不能靠消费级估算自行判断。 - 出现症状或多次复核异常应及时医疗处理。 - 不提供用药调整建议。"
         }
       ],
       "precision_at_k": 1.0,
@@ -8133,6 +8961,26 @@
           "review_status": "included",
           "score": 0.6117,
           "snippet": "## 来源摘要 NIA 老年高血压页面支持 65 岁以上用户的保守复核和医生沟通。"
+        },
+        {
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_004",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+          "used_for": "65岁 老年人 血压估算 复测",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
+          "topic": "lifestyle",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "lifestyle",
+            "special_population",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5217,
+          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         },
         {
           "source_id": "medlineplus_high_bp_medicines_004",
@@ -8190,25 +9038,6 @@
           "review_status": "included",
           "score": 0.5094,
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "local_special_population_rule_004",
-          "title": "Special population conservative advice rule",
-          "url": "",
-          "used_for": "65岁 老年人 血压估算 复测",
-          "organization": "project",
-          "region": "global",
-          "topic": "special_population",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "special_population",
-            "medication_safety"
-          ],
-          "review_status": "included",
-          "score": 0.5087,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
       "precision_at_k": 1.0,
@@ -8221,6 +9050,26 @@
         "special_population"
       ],
       "retrieved": [
+        {
+          "source_id": "ada_2026_standards_cvd_bp_001",
+          "title": "Cardiovascular Disease and Risk Management - Standards of Care in Diabetes 2026",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/",
+          "used_for": "既往心血管病 血压偏高 PPG",
+          "organization": "American Diabetes Association",
+          "region": "US",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5231,
+          "snippet": "## 来源摘要 ADA 2026 糖尿病心血管风险管理章节可强化糖尿病用户的血压风险沟通和保守提醒。"
+        },
         {
           "source_id": "aha_kidney_disease_high_bp_001",
           "title": "High Blood Pressure and Kidney Disease",
@@ -8238,6 +9087,26 @@
           "review_status": "included",
           "score": 0.5062,
           "snippet": "## 来源摘要 AHA 肾病与高血压页面支持 CKD 用户的保守提醒。"
+        },
+        {
+          "source_id": "kdigo_2024_ckd_guideline_002",
+          "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+          "used_for": "既往心血管病 血压偏高 PPG",
+          "organization": "Kidney Disease - Improving Global Outcomes",
+          "region": "global",
+          "topic": "special_population",
+          "language": "en",
+          "evidence_class": "guideline",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "special_population",
+            "medication_safety",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5008,
+          "snippet": "## 可用于报告的要点 - CKD 用户出现血压估算偏高时应更保守地使用规范设备复核并咨询医生。 - 报告不得提供肾病相关用药或治疗目标。 - 用药用户不应基于 PPG 估算自行调整方案。"
         },
         {
           "source_id": "aha_diabetes_high_bp_001",
@@ -8275,50 +9144,6 @@
           "review_status": "included",
           "score": 0.49,
           "snippet": "## 来源摘要 CDC CKD 风险因素页面补充慢性肾病和高血压相关风险背景。"
-        },
-        {
-          "source_id": "chinese_hypertension_guideline_2024_catalog_004",
-          "title": "Chinese Guidelines for the Prevention and Treatment of Hypertension (2024 revision)",
-          "url": "https://www.sciopen.com/article/10.26599/1671-5411.2025.01.008",
-          "used_for": "既往心血管病 血压偏高 PPG",
-          "organization": "Chinese guideline authors",
-          "region": "CN",
-          "topic": "bp_categories",
-          "language": "zh",
-          "evidence_class": "guideline",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "bp_category_reference",
-            "home_bp_monitoring",
-            "remeasurement",
-            "lifestyle",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.4893,
-          "snippet": "## 全文候选与下载材料摘要 ### Chinese Guidelines for the Prevention and Treatment of Hypertension 2024 revision full text - candidate_id: `chinese_hypertension_2024_fulltext` - access_mode: `institution_or_browser` - fulltext_status: local_pdf_availab..."
-        },
-        {
-          "source_id": "chinese_hypertension_guideline_2024_catalog_001",
-          "title": "Chinese Guidelines for the Prevention and Treatment of Hypertension (2024 revision)",
-          "url": "https://www.sciopen.com/article/10.26599/1671-5411.2025.01.008",
-          "used_for": "既往心血管病 血压偏高 PPG",
-          "organization": "Chinese guideline authors",
-          "region": "CN",
-          "topic": "bp_categories",
-          "language": "zh",
-          "evidence_class": "guideline",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "bp_category_reference",
-            "home_bp_monitoring",
-            "remeasurement",
-            "lifestyle",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.4767,
-          "snippet": "## 来源摘要 中国高血压防治指南 2024 修订版是中文场景的核心参考。"
         }
       ],
       "precision_at_k": 1.0,
@@ -9063,24 +9888,25 @@
           "snippet": "## 来源摘要 Hypertension Canada 设备推荐页面可支持选择验证血压计的原则。"
         },
         {
-          "source_id": "aha_home_bp_monitoring_public_002",
-          "title": "Home Blood Pressure Monitoring",
-          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
+          "source_id": "who_automated_cuff_bp_device_specs_001",
+          "title": "Technical specifications for automated non-invasive blood pressure measuring devices with cuff",
+          "url": "https://www.who.int/publications/i/item/9789240002654",
           "used_for": "STRIDE BP ValidateBP 验证血压计",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "home_bp_monitoring",
+          "organization": "World Health Organization",
+          "region": "global",
+          "topic": "validated_devices",
           "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
+          "evidence_class": "validation_standard",
+          "source_quality_score": 23.0,
           "allowed_uses": [
+            "device_advice",
             "home_bp_monitoring",
-            "remeasurement",
-            "device_advice"
+            "signal_quality",
+            "research_background"
           ],
           "review_status": "included",
-          "score": 0.591,
-          "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
+          "score": 0.6004,
+          "snippet": "## 来源摘要 WHO 袖带式自动无创血压计技术规范支持“复核应使用经过验证的袖带设备”的设备边界。"
         }
       ],
       "precision_at_k": 1.0,
@@ -9175,24 +10001,25 @@
           "snippet": "## 来源摘要 AHA 家庭血压监测页面支持使用上臂式设备复核、规范姿势和记录趋势。"
         },
         {
-          "source_id": "aha_home_bp_monitoring_public_002",
-          "title": "Home Blood Pressure Monitoring",
-          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
+          "source_id": "who_automated_cuff_bp_device_specs_002",
+          "title": "Technical specifications for automated non-invasive blood pressure measuring devices with cuff",
+          "url": "https://www.who.int/publications/i/item/9789240002654",
           "used_for": "复测前休息 姿势 袖带",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "home_bp_monitoring",
+          "organization": "World Health Organization",
+          "region": "global",
+          "topic": "validated_devices",
           "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
+          "evidence_class": "validation_standard",
+          "source_quality_score": 23.0,
           "allowed_uses": [
+            "device_advice",
             "home_bp_monitoring",
-            "remeasurement",
-            "device_advice"
+            "signal_quality",
+            "research_background"
           ],
           "review_status": "included",
-          "score": 0.495,
-          "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
+          "score": 0.5149,
+          "snippet": "## 可用于报告的要点 - 规范血压复核应优先使用经过验证的袖带式设备。 - 设备选择和测量质量会影响读数解释。 - 该来源用于说明验证原则，不推荐具体商业型号。"
         }
       ],
       "precision_at_k": 1.0,
@@ -9466,6 +10293,27 @@
           "snippet": "## 可用于报告的要点 - 减盐建议应表达为通用健康建议。 - 避免承诺短期降压效果。 - 特殊疾病饮食需咨询医生。"
         },
         {
+          "source_id": "nhc_2024_hypertension_day_key_messages_003",
+          "title": "2024年全国高血压日宣传要点",
+          "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
+          "used_for": "减少钠盐 摄入 血压健康",
+          "organization": "国家卫生健康委",
+          "region": "CN",
+          "topic": "home_bp_monitoring",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "lifestyle",
+            "remeasurement",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.5102,
+          "snippet": "## 实现使用说明 - 用于 CN 场景 home_bp_monitoring、lifestyle 和 disclaimer。"
+        },
+        {
           "source_id": "nih_dash_eating_plan_001",
           "title": "DASH Eating Plan",
           "url": "https://www.nhlbi.nih.gov/education/dash-eating-plan",
@@ -9502,26 +10350,6 @@
           "review_status": "included",
           "score": 0.5092,
           "snippet": "## 来源摘要 MedlinePlus 高血压页面可作为面向患者的通用健康教育补充来源。"
-        },
-        {
-          "source_id": "who_hypertension_fact_sheet_001",
-          "title": "Hypertension fact sheet",
-          "url": "https://www.who.int/news-room/fact-sheets/detail/hypertension",
-          "used_for": "减少钠盐 摄入 血压健康",
-          "organization": "World Health Organization",
-          "region": "global",
-          "topic": "bp_categories",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "bp_category_reference",
-            "lifestyle",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.4958,
-          "snippet": "## 来源摘要 WHO 高血压 fact sheet 提供全球负担、风险因素和健康教育背景。"
         }
       ],
       "precision_at_k": 1.0,
@@ -9551,6 +10379,26 @@
           "review_status": "included",
           "score": 0.6108,
           "snippet": "## 来源摘要 CDC 戒烟页面支持把戒烟作为血压健康相关生活方式建议。"
+        },
+        {
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_001",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+          "used_for": "DASH 饮食 血压 生活方式",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
+          "topic": "lifestyle",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "lifestyle",
+            "special_population",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.5849,
+          "snippet": "## 来源摘要 国家卫健委 2024 高血压营养和运动指导原则是中文生活方式建议的高优先级本土来源。"
         },
         {
           "source_id": "cdc_prevent_high_blood_pressure_002",
@@ -9605,24 +10453,6 @@
           "review_status": "included",
           "score": 0.569,
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "aha_sodium_salt_003",
-          "title": "Sodium and Salt",
-          "url": "https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/sodium/sodium-and-salt",
-          "used_for": "DASH 饮食 血压 生活方式",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "lifestyle"
-          ],
-          "review_status": "included",
-          "score": 0.5542,
-          "snippet": "## 实现使用说明 - 用于生活方式中的减盐条目。"
         }
       ],
       "precision_at_k": 1.0,
@@ -9690,43 +10520,44 @@
           "snippet": "## 来源摘要 CDC 高血压预防页面支持健康饮食、运动、体重管理、戒烟限酒等通用建议。"
         },
         {
-          "source_id": "aha_lifestyle_manage_bp_001",
-          "title": "Changes You Can Make to Manage High Blood Pressure",
-          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure",
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_002",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
           "used_for": "规律运动 控制体重 血压",
-          "organization": "American Heart Association",
-          "region": "AHA",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
           "topic": "lifestyle",
-          "language": "en",
+          "language": "zh",
           "evidence_class": "official_health_education",
-          "source_quality_score": 24.0,
+          "source_quality_score": 25.0,
           "allowed_uses": [
             "lifestyle",
+            "special_population",
             "home_bp_monitoring"
           ],
           "review_status": "included",
-          "score": 0.4705,
-          "snippet": "## 来源摘要 AHA 生活方式页面支持减盐、运动、体重、戒烟限酒和睡眠等健康教育建议。"
+          "score": 0.497,
+          "snippet": "## 可用于报告的要点 - 中文报告的减盐、合理膳食、运动和体重管理建议可优先引用该来源。 - 生活方式内容属于健康教育，不承诺个体降压效果。 - 特殊人群仍需医生或营养/运动专业人员个体化评估。"
         },
         {
-          "source_id": "ada_diabetes_bp_001",
-          "title": "Diabetes and High Blood Pressure",
-          "url": "https://diabetes.org/health-wellness/high-blood-pressure",
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_001",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
           "used_for": "规律运动 控制体重 血压",
-          "organization": "American Diabetes Association",
-          "region": "US",
-          "topic": "special_population",
-          "language": "en",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
+          "topic": "lifestyle",
+          "language": "zh",
           "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
+          "source_quality_score": 25.0,
           "allowed_uses": [
-            "special_population",
             "lifestyle",
+            "special_population",
             "home_bp_monitoring"
           ],
           "review_status": "included",
-          "score": 0.438,
-          "snippet": "## 来源摘要 ADA 页面支持糖尿病用户需要更重视血压复核和医生沟通。"
+          "score": 0.4765,
+          "snippet": "## 来源摘要 国家卫健委 2024 高血压营养和运动指导原则是中文生活方式建议的高优先级本土来源。"
         }
       ],
       "precision_at_k": 1.0,
@@ -9795,6 +10626,26 @@
           "snippet": "## 来源摘要 AHA 生活方式页面支持减盐、运动、体重、戒烟限酒和睡眠等健康教育建议。"
         },
         {
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_001",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+          "used_for": "戒烟 限酒 血压 建议",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
+          "topic": "lifestyle",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "lifestyle",
+            "special_population",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.4985,
+          "snippet": "## 来源摘要 国家卫健委 2024 高血压营养和运动指导原则是中文生活方式建议的高优先级本土来源。"
+        },
+        {
           "source_id": "cdc_quit_smoking_002",
           "title": "How to Quit Smoking",
           "url": "https://www.cdc.gov/tobacco/campaign/tips/quit-smoking/",
@@ -9811,24 +10662,6 @@
           "review_status": "included",
           "score": 0.4952,
           "snippet": "## 可用于报告的要点 - 戒烟建议属于通用健康教育。 - 可建议寻求专业戒烟支持。 - 不替代医生治疗计划。"
-        },
-        {
-          "source_id": "cdc_prevent_high_blood_pressure_002",
-          "title": "Prevent High Blood Pressure",
-          "url": "https://www.cdc.gov/high-blood-pressure/prevention/index.html",
-          "used_for": "戒烟 限酒 血压 建议",
-          "organization": "Centers for Disease Control and Prevention",
-          "region": "US",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "lifestyle"
-          ],
-          "review_status": "included",
-          "score": 0.4883,
-          "snippet": "## 可用于报告的要点 - 生活方式建议属于健康教育。 - 不能承诺一定降低血压。 - 不替代医生制定的治疗方案。"
         }
       ],
       "precision_at_k": 1.0,
@@ -9860,6 +10693,27 @@
           "snippet": "## 来源摘要 CDC 高血压预防页面支持健康饮食、运动、体重管理、戒烟限酒等通用建议。"
         },
         {
+          "source_id": "nhc_2024_hypertension_day_key_messages_001",
+          "title": "2024年全国高血压日宣传要点",
+          "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
+          "used_for": "睡眠 压力管理 血压健康",
+          "organization": "国家卫生健康委",
+          "region": "CN",
+          "topic": "home_bp_monitoring",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "lifestyle",
+            "remeasurement",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.5817,
+          "snippet": "## 来源摘要 全国高血压日宣传要点可补充中文健康教育口径，强调知晓、测量、控制和长期管理。"
+        },
+        {
           "source_id": "aha_stress_management_002",
           "title": "Managing Stress to Control High Blood Pressure",
           "url": "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/managing-stress-to-control-high-blood-pressure",
@@ -9876,6 +10730,27 @@
           "review_status": "included",
           "score": 0.5737,
           "snippet": "## 可用于报告的要点 - 压力管理属于健康教育。 - 避免保证性语言。 - 症状明显时仍建议医疗评估。"
+        },
+        {
+          "source_id": "nhc_2024_hypertension_day_key_messages_003",
+          "title": "2024年全国高血压日宣传要点",
+          "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
+          "used_for": "睡眠 压力管理 血压健康",
+          "organization": "国家卫生健康委",
+          "region": "CN",
+          "topic": "home_bp_monitoring",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "lifestyle",
+            "remeasurement",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.5221,
+          "snippet": "## 实现使用说明 - 用于 CN 场景 home_bp_monitoring、lifestyle 和 disclaimer。"
         },
         {
           "source_id": "medlineplus_high_blood_pressure_001",
@@ -9896,42 +10771,6 @@
           "review_status": "included",
           "score": 0.5215,
           "snippet": "## 来源摘要 MedlinePlus 高血压页面可作为面向患者的通用健康教育补充来源。"
-        },
-        {
-          "source_id": "aha_stress_management_001",
-          "title": "Managing Stress to Control High Blood Pressure",
-          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/managing-stress-to-control-high-blood-pressure",
-          "used_for": "睡眠 压力管理 血压健康",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "lifestyle"
-          ],
-          "review_status": "included",
-          "score": 0.5141,
-          "snippet": "## 来源摘要 AHA 压力管理页面支持把压力管理作为生活方式建议。"
-        },
-        {
-          "source_id": "nia_sleep_health_001",
-          "title": "A Good Night's Sleep",
-          "url": "https://www.nia.nih.gov/health/sleep/good-nights-sleep",
-          "used_for": "睡眠 压力管理 血压健康",
-          "organization": "National Institute on Aging",
-          "region": "US",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 22.0,
-          "allowed_uses": [
-            "lifestyle"
-          ],
-          "review_status": "included",
-          "score": 0.5101,
-          "snippet": "## 来源摘要 NIA 睡眠健康页面支持睡眠作为通用生活方式建议。"
         }
       ],
       "precision_at_k": 1.0,
@@ -9963,6 +10802,27 @@
           "snippet": "## 来源摘要 CDC 高血压预防页面支持健康饮食、运动、体重管理、戒烟限酒等通用建议。"
         },
         {
+          "source_id": "nhc_2024_hypertension_day_key_messages_001",
+          "title": "2024年全国高血压日宣传要点",
+          "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
+          "used_for": "体重管理 高血压 健康教育",
+          "organization": "国家卫生健康委",
+          "region": "CN",
+          "topic": "home_bp_monitoring",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "lifestyle",
+            "remeasurement",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.6858,
+          "snippet": "## 来源摘要 全国高血压日宣传要点可补充中文健康教育口径，强调知晓、测量、控制和长期管理。"
+        },
+        {
           "source_id": "medlineplus_high_blood_pressure_001",
           "title": "High Blood Pressure",
           "url": "https://medlineplus.gov/highbloodpressure.html",
@@ -9983,6 +10843,26 @@
           "snippet": "## 来源摘要 MedlinePlus 高血压页面可作为面向患者的通用健康教育补充来源。"
         },
         {
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_002",
+          "title": "高血压营养和运动指导原则（2024年版）",
+          "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+          "used_for": "体重管理 高血压 健康教育",
+          "organization": "国家卫生健康委办公厅",
+          "region": "CN",
+          "topic": "lifestyle",
+          "language": "zh",
+          "evidence_class": "official_health_education",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "lifestyle",
+            "special_population",
+            "home_bp_monitoring"
+          ],
+          "review_status": "included",
+          "score": 0.6519,
+          "snippet": "## 可用于报告的要点 - 中文报告的减盐、合理膳食、运动和体重管理建议可优先引用该来源。 - 生活方式内容属于健康教育，不承诺个体降压效果。 - 特殊人群仍需医生或营养/运动专业人员个体化评估。"
+        },
+        {
           "source_id": "who_hypertension_fact_sheet_001",
           "title": "Hypertension fact sheet",
           "url": "https://www.who.int/news-room/fact-sheets/detail/hypertension",
@@ -10001,42 +10881,6 @@
           "review_status": "included",
           "score": 0.6388,
           "snippet": "## 来源摘要 WHO 高血压 fact sheet 提供全球负担、风险因素和健康教育背景。"
-        },
-        {
-          "source_id": "aha_getting_active_bp_001",
-          "title": "Getting Active to Control High Blood Pressure",
-          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/getting-active-to-control-high-blood-pressure",
-          "used_for": "体重管理 高血压 健康教育",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "lifestyle"
-          ],
-          "review_status": "included",
-          "score": 0.629,
-          "snippet": "## 来源摘要 AHA 运动页面支持规律身体活动作为血压健康教育内容。"
-        },
-        {
-          "source_id": "cdc_physical_activity_basics_001",
-          "title": "Physical Activity Basics",
-          "url": "https://www.cdc.gov/physical-activity-basics/",
-          "used_for": "体重管理 高血压 健康教育",
-          "organization": "Centers for Disease Control and Prevention",
-          "region": "US",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "lifestyle"
-          ],
-          "review_status": "included",
-          "score": 0.6244,
-          "snippet": "## 来源摘要 CDC 身体活动基础页面支持规律运动作为血压健康教育内容。"
         }
       ],
       "precision_at_k": 1.0,
@@ -10140,759 +10984,6 @@
           "review_status": "included",
           "score": 0.5676,
           "snippet": "## 来源摘要 AHA 体重管理页面支持把体重管理作为通用生活方式建议。"
-        }
-      ],
-      "precision_at_k": 1.0,
-      "has_match": true,
-      "unsafe_source_leakage": []
-    },
-    {
-      "query": "生活方式建议 不承诺疗效",
-      "expected_uses": [
-        "lifestyle"
-      ],
-      "retrieved": [
-        {
-          "source_id": "cdc_prevent_high_blood_pressure_002",
-          "title": "Prevent High Blood Pressure",
-          "url": "https://www.cdc.gov/high-blood-pressure/prevention/index.html",
-          "used_for": "生活方式建议 不承诺疗效",
-          "organization": "Centers for Disease Control and Prevention",
-          "region": "US",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "lifestyle"
-          ],
-          "review_status": "included",
-          "score": 0.7218,
-          "snippet": "## 可用于报告的要点 - 生活方式建议属于健康教育。 - 不能承诺一定降低血压。 - 不替代医生制定的治疗方案。"
-        },
-        {
-          "source_id": "nih_dash_eating_plan_002",
-          "title": "DASH Eating Plan",
-          "url": "https://www.nhlbi.nih.gov/education/dash-eating-plan",
-          "used_for": "生活方式建议 不承诺疗效",
-          "organization": "National Heart Lung and Blood Institute",
-          "region": "US",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "lifestyle"
-          ],
-          "review_status": "included",
-          "score": 0.6496,
-          "snippet": "## 可用于报告的要点 - 饮食建议属于通用健康教育。 - 不承诺治疗效果。 - 特殊疾病饮食需咨询医生。"
-        },
-        {
-          "source_id": "nhs_high_blood_pressure_002",
-          "title": "High blood pressure hypertension",
-          "url": "https://www.nhs.uk/conditions/high-blood-pressure-hypertension/",
-          "used_for": "生活方式建议 不承诺疗效",
-          "organization": "National Health Service",
-          "region": "UK",
-          "topic": "emergency",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "emergency_alert",
-            "home_bp_monitoring",
-            "lifestyle"
-          ],
-          "review_status": "included",
-          "score": 0.6071,
-          "snippet": "## 可用于报告的要点 - 症状明显时应寻求医疗帮助。 - 家庭测量应规范进行。 - 生活方式建议不能替代治疗。"
-        },
-        {
-          "source_id": "aha_stress_management_001",
-          "title": "Managing Stress to Control High Blood Pressure",
-          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/managing-stress-to-control-high-blood-pressure",
-          "used_for": "生活方式建议 不承诺疗效",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "lifestyle"
-          ],
-          "review_status": "included",
-          "score": 0.5969,
-          "snippet": "## 来源摘要 AHA 压力管理页面支持把压力管理作为生活方式建议。"
-        },
-        {
-          "source_id": "nia_sleep_health_001",
-          "title": "A Good Night's Sleep",
-          "url": "https://www.nia.nih.gov/health/sleep/good-nights-sleep",
-          "used_for": "生活方式建议 不承诺疗效",
-          "organization": "National Institute on Aging",
-          "region": "US",
-          "topic": "lifestyle",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 22.0,
-          "allowed_uses": [
-            "lifestyle"
-          ],
-          "review_status": "included",
-          "score": 0.5929,
-          "snippet": "## 来源摘要 NIA 睡眠健康页面支持睡眠作为通用生活方式建议。"
-        }
-      ],
-      "precision_at_k": 1.0,
-      "has_match": true,
-      "unsafe_source_leakage": []
-    },
-    {
-      "query": "报告免责声明 PPG 不能替代医生诊断",
-      "expected_uses": [
-        "disclaimer",
-        "cuffless_ppg_limitations"
-      ],
-      "retrieved": [
-        {
-          "source_id": "local_disclaimer_rule_001",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "报告免责声明 PPG 不能替代医生诊断",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.8331,
-          "snippet": "## 来源摘要 本项目规则：报告必须声明仅供个人健康趋势参考，不能替代医生诊断和规范血压测量。"
-        },
-        {
-          "source_id": "local_disclaimer_rule_002",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "报告免责声明 PPG 不能替代医生诊断",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.7991,
-          "snippet": "## 可用于报告的要点 - 免责声明必须出现在 Markdown 和 JSON。 - PPG 局限必须显式表达。 - 不能写成诊断或治疗建议。"
-        },
-        {
-          "source_id": "local_disclaimer_rule_004",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "报告免责声明 PPG 不能替代医生诊断",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.6262,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "aha_cuffless_bp_scientific_statement_002",
-          "title": "Cuffless Devices for the Measurement of Blood Pressure",
-          "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-          "used_for": "报告免责声明 PPG 不能替代医生诊断",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "cuffless_ppg_limitations",
-          "language": "en",
-          "evidence_class": "scientific_statement",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "cuffless_ppg_limitations",
-            "device_advice",
-            "signal_quality",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.5102,
-          "snippet": "## 可用于报告的要点 - 无袖带设备依赖间接估算，真实场景可靠性需验证。 - PPG 估算不能替代规范血压测量。 - 报告应避免准确性过度承诺。"
-        },
-        {
-          "source_id": "local_kb_governance_rule_004",
-          "title": "Knowledge base governance rule",
-          "url": "",
-          "used_for": "报告免责声明 PPG 不能替代医生诊断",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.5022,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        }
-      ],
-      "precision_at_k": 1.0,
-      "has_match": true,
-      "unsafe_source_leakage": []
-    },
-    {
-      "query": "PPG 估算 仅供个人健康趋势参考",
-      "expected_uses": [
-        "disclaimer",
-        "cuffless_ppg_limitations"
-      ],
-      "retrieved": [
-        {
-          "source_id": "local_disclaimer_rule_001",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "PPG 估算 仅供个人健康趋势参考",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.7841,
-          "snippet": "## 来源摘要 本项目规则：报告必须声明仅供个人健康趋势参考，不能替代医生诊断和规范血压测量。"
-        },
-        {
-          "source_id": "local_disclaimer_rule_004",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "PPG 估算 仅供个人健康趋势参考",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.4708,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "local_disclaimer_rule_002",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "PPG 估算 仅供个人健康趋势参考",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.4083,
-          "snippet": "## 可用于报告的要点 - 免责声明必须出现在 Markdown 和 JSON。 - PPG 局限必须显式表达。 - 不能写成诊断或治疗建议。"
-        },
-        {
-          "source_id": "aha_cuffless_bp_scientific_statement_001",
-          "title": "Cuffless Devices for the Measurement of Blood Pressure",
-          "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-          "used_for": "PPG 估算 仅供个人健康趋势参考",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "cuffless_ppg_limitations",
-          "language": "en",
-          "evidence_class": "scientific_statement",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "cuffless_ppg_limitations",
-            "device_advice",
-            "signal_quality",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.3784,
-          "snippet": "## 来源摘要 AHA 无袖带血压科学声明是 PPG/无袖带估算局限的核心安全依据。"
-        },
-        {
-          "source_id": "aha_cuffless_bp_scientific_statement_004",
-          "title": "Cuffless Devices for the Measurement of Blood Pressure",
-          "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-          "used_for": "PPG 估算 仅供个人健康趋势参考",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "cuffless_ppg_limitations",
-          "language": "en",
-          "evidence_class": "scientific_statement",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "cuffless_ppg_limitations",
-            "device_advice",
-            "signal_quality",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.3643,
-          "snippet": "## 全文候选与下载材料摘要 ### AHA cuffless blood pressure scientific statement full text - candidate_id: `aha_cuffless_bp_statement_fulltext` - access_mode: `institution_or_browser` - fulltext_status: local_pdf_available - source_url: https://professi..."
-        }
-      ],
-      "precision_at_k": 1.0,
-      "has_match": true,
-      "unsafe_source_leakage": []
-    },
-    {
-      "query": "不能替代规范血压测量 免责声明",
-      "expected_uses": [
-        "disclaimer",
-        "cuffless_ppg_limitations"
-      ],
-      "retrieved": [
-        {
-          "source_id": "local_disclaimer_rule_001",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "不能替代规范血压测量 免责声明",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.8495,
-          "snippet": "## 来源摘要 本项目规则：报告必须声明仅供个人健康趋势参考，不能替代医生诊断和规范血压测量。"
-        },
-        {
-          "source_id": "local_disclaimer_rule_004",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "不能替代规范血压测量 免责声明",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.669,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "aha_cuffless_bp_scientific_statement_002",
-          "title": "Cuffless Devices for the Measurement of Blood Pressure",
-          "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-          "used_for": "不能替代规范血压测量 免责声明",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "cuffless_ppg_limitations",
-          "language": "en",
-          "evidence_class": "scientific_statement",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "cuffless_ppg_limitations",
-            "device_advice",
-            "signal_quality",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.6204,
-          "snippet": "## 可用于报告的要点 - 无袖带设备依赖间接估算，真实场景可靠性需验证。 - PPG 估算不能替代规范血压测量。 - 报告应避免准确性过度承诺。"
-        },
-        {
-          "source_id": "local_disclaimer_rule_002",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "不能替代规范血压测量 免责声明",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.6105,
-          "snippet": "## 可用于报告的要点 - 免责声明必须出现在 Markdown 和 JSON。 - PPG 局限必须显式表达。 - 不能写成诊断或治疗建议。"
-        },
-        {
-          "source_id": "local_kb_governance_rule_004",
-          "title": "Knowledge base governance rule",
-          "url": "",
-          "used_for": "不能替代规范血压测量 免责声明",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.5443,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        }
-      ],
-      "precision_at_k": 1.0,
-      "has_match": true,
-      "unsafe_source_leakage": []
-    },
-    {
-      "query": "不要诊断 不开药 不停药 报告边界",
-      "expected_uses": [
-        "disclaimer",
-        "cuffless_ppg_limitations"
-      ],
-      "retrieved": [
-        {
-          "source_id": "local_disclaimer_rule_004",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "不要诊断 不开药 不停药 报告边界",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.6699,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "local_disclaimer_rule_002",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "不要诊断 不开药 不停药 报告边界",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.6419,
-          "snippet": "## 可用于报告的要点 - 免责声明必须出现在 Markdown 和 JSON。 - PPG 局限必须显式表达。 - 不能写成诊断或治疗建议。"
-        },
-        {
-          "source_id": "local_disclaimer_rule_001",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "不要诊断 不开药 不停药 报告边界",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.6387,
-          "snippet": "## 来源摘要 本项目规则：报告必须声明仅供个人健康趋势参考，不能替代医生诊断和规范血压测量。"
-        },
-        {
-          "source_id": "local_kb_governance_rule_004",
-          "title": "Knowledge base governance rule",
-          "url": "",
-          "used_for": "不要诊断 不开药 不停药 报告边界",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.5452,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "local_evidence_quality_rule_004",
-          "title": "Evidence quality and citation safety rule",
-          "url": "",
-          "used_for": "不要诊断 不开药 不停药 报告边界",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.5407,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        }
-      ],
-      "precision_at_k": 1.0,
-      "has_match": true,
-      "unsafe_source_leakage": []
-    },
-    {
-      "query": "医学安全边界 PPG RAG 报告",
-      "expected_uses": [
-        "disclaimer",
-        "cuffless_ppg_limitations"
-      ],
-      "retrieved": [
-        {
-          "source_id": "local_disclaimer_rule_004",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "医学安全边界 PPG RAG 报告",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.605,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "local_disclaimer_rule_002",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "医学安全边界 PPG RAG 报告",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.5107,
-          "snippet": "## 可用于报告的要点 - 免责声明必须出现在 Markdown 和 JSON。 - PPG 局限必须显式表达。 - 不能写成诊断或治疗建议。"
-        },
-        {
-          "source_id": "local_disclaimer_rule_001",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "医学安全边界 PPG RAG 报告",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.509,
-          "snippet": "## 来源摘要 本项目规则：报告必须声明仅供个人健康趋势参考，不能替代医生诊断和规范血压测量。"
-        },
-        {
-          "source_id": "local_kb_governance_rule_004",
-          "title": "Knowledge base governance rule",
-          "url": "",
-          "used_for": "医学安全边界 PPG RAG 报告",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.4813,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "local_evidence_quality_rule_004",
-          "title": "Evidence quality and citation safety rule",
-          "url": "",
-          "used_for": "医学安全边界 PPG RAG 报告",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.4778,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        }
-      ],
-      "precision_at_k": 1.0,
-      "has_match": true,
-      "unsafe_source_leakage": []
-    },
-    {
-      "query": "证据引用 来源不足 warning",
-      "expected_uses": [
-        "disclaimer",
-        "cuffless_ppg_limitations"
-      ],
-      "retrieved": [
-        {
-          "source_id": "local_disclaimer_rule_004",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "证据引用 来源不足 warning",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.576,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "local_evidence_quality_rule_002",
-          "title": "Evidence quality and citation safety rule",
-          "url": "",
-          "used_for": "证据引用 来源不足 warning",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.5347,
-          "snippet": "## 可用于报告的要点 - 急症、用药、特殊人群只使用 high-trust source。 - 研究背景不作为患者建议依据。 - 引用不足时给出 warning。"
-        },
-        {
-          "source_id": "local_kb_governance_rule_002",
-          "title": "Knowledge base governance rule",
-          "url": "",
-          "used_for": "证据引用 来源不足 warning",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.5288,
-          "snippet": "## 可用于报告的要点 - 营销页、新闻软文、单篇模型论文不得进入患者建议。 - 来源必须有筛选分和 allowed uses。 - 报告证据必须可审计。"
-        },
-        {
-          "source_id": "local_evidence_quality_rule_001",
-          "title": "Evidence quality and citation safety rule",
-          "url": "",
-          "used_for": "证据引用 来源不足 warning",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.52,
-          "snippet": "## 来源摘要 本地规则要求报告建议必须能追溯到允许用途匹配的证据。"
-        },
-        {
-          "source_id": "local_disclaimer_rule_001",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "证据引用 来源不足 warning",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.5168,
-          "snippet": "## 来源摘要 本项目规则：报告必须声明仅供个人健康趋势参考，不能替代医生诊断和规范血压测量。"
         }
       ],
       "precision_at_k": 1.0,

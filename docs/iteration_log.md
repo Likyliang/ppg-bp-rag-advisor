@@ -76,3 +76,19 @@
 - ESH 2023 LWW full-text access reached Cloudflare human verification and remains `awaiting_human_verification`.
 - Strict quality gate passed: 105 tests, 63 included sources, 261 chunks, 100 golden queries, 50 report fixtures, retrieval match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.0144s.
 - Next risk: if the user completes ESH/LWW human verification or institution login later, add a summary-only intake for that PDF and rerun the strict quality gate.
+
+## Special Iteration: Official Source Gap Fill
+
+- Goal: address remaining knowledge-base weak spots without downloading new full text, while preserving official download URLs for manual intake.
+- Added 7 selected official/high-trust sources:
+  - FDA cuffless NIBP draft guidance for PPG/no-cuff regulatory and validation boundaries.
+  - WHO automated cuff BP device technical specifications for validated cuff-device principles.
+  - USPSTF adult hypertension screening recommendation for out-of-office confirmation and non-diagnostic boundaries.
+  - National Health Commission 2024 hypertension nutrition/exercise guidance for Chinese lifestyle advice.
+  - National Health Commission 2024 hypertension day key messages for Chinese health education and measurement reminders.
+  - KDIGO 2024 CKD guideline for chronic kidney disease conservative reminders.
+  - ADA 2026 diabetes cardiovascular risk guidance for diabetes conservative reminders and medication-safety boundaries.
+- Added manual full-text/download candidates for FDA, WHO, USPSTF, NHC 2024 guidance, KDIGO, and ADA; no new PDFs were downloaded.
+- Expanded retrieval golden queries for FDA cuffless, WHO validated devices, USPSTF confirmation, Chinese lifestyle guidance, CKD, and diabetes scenarios.
+- Metrics after strict quality gate: 105 tests, 70 included sources, 289 chunks, 100 golden queries, match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.0174s.
+- Next risk: `measurement_quality` still has only 4 source-level notes because FDA/WHO sources primarily improve cuffless limitations and validated devices; a later round can add more optical-signal or wearable-sensor quality sources if the thesis needs deeper PPG methodology discussion.

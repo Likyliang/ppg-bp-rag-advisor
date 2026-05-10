@@ -1,39 +1,39 @@
 {
-  "chunk_count": 261,
-  "source_count": 63,
-  "catalog_included_count": 63,
+  "chunk_count": 289,
+  "source_count": 70,
+  "catalog_included_count": 70,
   "topic_counts": {
     "bp_categories": 32,
-    "cuffless_ppg_limitations": 14,
+    "cuffless_ppg_limitations": 18,
     "disclaimer": 12,
     "emergency": 24,
-    "home_bp_monitoring": 34,
-    "lifestyle": 48,
+    "home_bp_monitoring": 42,
+    "lifestyle": 52,
     "measurement_quality": 16,
     "medication_safety": 16,
-    "special_population": 44,
-    "validated_devices": 21
+    "special_population": 52,
+    "validated_devices": 25
   },
   "topic_source_counts": {
     "bp_categories": 7,
-    "cuffless_ppg_limitations": 3,
+    "cuffless_ppg_limitations": 4,
     "disclaimer": 3,
     "emergency": 6,
-    "home_bp_monitoring": 8,
-    "lifestyle": 12,
+    "home_bp_monitoring": 10,
+    "lifestyle": 13,
     "measurement_quality": 4,
     "medication_safety": 4,
-    "special_population": 11,
-    "validated_devices": 5
+    "special_population": 13,
+    "validated_devices": 6
   },
   "evidence_class_counts": {
-    "guideline": 34,
-    "official_health_education": 169,
+    "guideline": 46,
+    "official_health_education": 177,
     "scientific_statement": 10,
+    "validation_standard": 12,
     "review": 4,
     "safety_rule": 36,
-    "patient_education": 4,
-    "validation_standard": 4
+    "patient_education": 4
   },
   "missing_topics": [],
   "duplicate_source_hashes": [],

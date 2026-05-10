@@ -1,28 +1,28 @@
 {
-  "total_sources": 67,
-  "included_count": 63,
+  "total_sources": 74,
+  "included_count": 70,
   "excluded_count": 4,
   "threshold": 18,
   "issues": [],
   "duplicate_source_hashes": [],
   "topic_counts": {
     "bp_categories": 7,
-    "home_bp_monitoring": 8,
+    "home_bp_monitoring": 10,
     "emergency": 6,
-    "cuffless_ppg_limitations": 3,
-    "validated_devices": 5,
-    "lifestyle": 12,
-    "special_population": 11,
+    "cuffless_ppg_limitations": 4,
+    "validated_devices": 6,
+    "lifestyle": 13,
+    "special_population": 13,
     "measurement_quality": 4,
     "medication_safety": 4,
     "disclaimer": 3
   },
   "evidence_class_counts": {
-    "guideline": 7,
-    "official_health_education": 42,
+    "guideline": 10,
+    "official_health_education": 44,
     "scientific_statement": 2,
     "review": 1,
-    "validation_standard": 1,
+    "validation_standard": 3,
     "patient_education": 1,
     "safety_rule": 9
   },
@@ -2744,6 +2744,318 @@
       },
       "source_quality_score": 24,
       "source_hash": "a52022eda4f59648",
+      "review_status": "included"
+    },
+    {
+      "source_id": "fda_cuffless_nibp_draft_guidance",
+      "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+      "organization": "U.S. Food and Drug Administration",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "cuffless_ppg_limitations",
+      "evidence_class": "validation_standard",
+      "source_type": "regulatory_guidance_draft",
+      "include": true,
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "device_advice",
+        "signal_quality",
+        "research_background"
+      ],
+      "copyright_note": "FDA public draft guidance; use only summary-level regulatory and validation principles.",
+      "access_note": "public PDF available; manual download URL tracked in fulltext candidates",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "FDA 无袖带无创血压设备草案指南可补充监管视角，说明无袖带设备需要临床性能测试、验证和清晰适用边界。",
+        "key_points": [
+          "无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。",
+          "PPG/无袖带输出应解释为估算和趋势参考。",
+          "该来源是草案指南，不能单独支撑患者级临床行动。"
+        ],
+        "implementation_notes": [
+          "用于 cuffless_ppg_limitations、device_advice 和 signal_quality；不得用于诊断或治疗建议。"
+        ]
+      },
+      "source_quality_score": 25,
+      "source_hash": "a7283f83bd426f0d",
+      "review_status": "included"
+    },
+    {
+      "source_id": "who_automated_cuff_bp_device_specs",
+      "title": "Technical specifications for automated non-invasive blood pressure measuring devices with cuff",
+      "organization": "World Health Organization",
+      "url": "https://www.who.int/publications/i/item/9789240002654",
+      "doi": "",
+      "pmid": "",
+      "year": 2020,
+      "language": "en",
+      "region": "global",
+      "topic": "validated_devices",
+      "evidence_class": "validation_standard",
+      "source_type": "technical_specification",
+      "include": true,
+      "allowed_uses": [
+        "device_advice",
+        "home_bp_monitoring",
+        "signal_quality",
+        "research_background"
+      ],
+      "copyright_note": "WHO public technical specification page; summarize validation and cuff-device principles only.",
+      "access_note": "public landing page with downloadable publication",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 3,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "WHO 袖带式自动无创血压计技术规范支持“复核应使用经过验证的袖带设备”的设备边界。",
+        "key_points": [
+          "规范血压复核应优先使用经过验证的袖带式设备。",
+          "设备选择和测量质量会影响读数解释。",
+          "该来源用于说明验证原则，不推荐具体商业型号。"
+        ],
+        "implementation_notes": [
+          "用于 validated_devices、device_advice 和 home_bp_monitoring。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "63294999d84a24d7",
+      "review_status": "included"
+    },
+    {
+      "source_id": "uspstf_hypertension_screening_adults",
+      "title": "Hypertension in Adults - Screening",
+      "organization": "U.S. Preventive Services Task Force",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
+      "doi": "",
+      "pmid": "",
+      "year": 2021,
+      "language": "en",
+      "region": "US",
+      "topic": "home_bp_monitoring",
+      "evidence_class": "guideline",
+      "source_type": "recommendation_statement",
+      "include": true,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "bp_category_reference",
+        "disclaimer"
+      ],
+      "copyright_note": "USPSTF public recommendation statement; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 3,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "USPSTF 成人高血压筛查建议强调在诊断前应通过诊室外血压测量进行确认，可强化本系统的复测和非诊断边界。",
+        "key_points": [
+          "单次或非规范估算不应作为诊断依据。",
+          "诊室外测量和家庭血压监测可用于确认与长期记录。",
+          "PPG 估算报告应引导用户用规范设备复核。"
+        ],
+        "implementation_notes": [
+          "用于 home_bp_monitoring、remeasurement 和 disclaimer。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "bc106f7bc0a307ea",
+      "review_status": "included"
+    },
+    {
+      "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance",
+      "title": "高血压营养和运动指导原则（2024年版）",
+      "organization": "国家卫生健康委办公厅",
+      "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+      "doi": "",
+      "pmid": "",
+      "year": 2024,
+      "language": "zh",
+      "region": "CN",
+      "topic": "lifestyle",
+      "evidence_class": "official_health_education",
+      "source_type": "national_guidance",
+      "include": true,
+      "allowed_uses": [
+        "lifestyle",
+        "special_population",
+        "home_bp_monitoring"
+      ],
+      "copyright_note": "Public Chinese government guidance; summarize lifestyle principles only.",
+      "access_note": "public PDF available; manual download URL tracked in fulltext candidates",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "国家卫健委 2024 高血压营养和运动指导原则是中文生活方式建议的高优先级本土来源。",
+        "key_points": [
+          "中文报告的减盐、合理膳食、运动和体重管理建议可优先引用该来源。",
+          "生活方式内容属于健康教育，不承诺个体降压效果。",
+          "特殊人群仍需医生或营养/运动专业人员个体化评估。"
+        ],
+        "implementation_notes": [
+          "用于 CN 场景 lifestyle；不得生成治疗方案或替代医嘱。"
+        ]
+      },
+      "source_quality_score": 25,
+      "source_hash": "c41c422532773f34",
+      "review_status": "included"
+    },
+    {
+      "source_id": "nhc_2024_hypertension_day_key_messages",
+      "title": "2024年全国高血压日宣传要点",
+      "organization": "国家卫生健康委",
+      "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
+      "doi": "",
+      "pmid": "",
+      "year": 2024,
+      "language": "zh",
+      "region": "CN",
+      "topic": "home_bp_monitoring",
+      "evidence_class": "official_health_education",
+      "source_type": "public_health_message",
+      "include": true,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "lifestyle",
+        "remeasurement",
+        "disclaimer"
+      ],
+      "copyright_note": "Public Chinese government health education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "全国高血压日宣传要点可补充中文健康教育口径，强调知晓、测量、控制和长期管理。",
+        "key_points": [
+          "中文报告可用该来源支持规范测量、记录和生活方式提醒。",
+          "系统不得把宣传要点改写成诊断或治疗结论。",
+          "PPG 估算仍只能作为趋势参考。"
+        ],
+        "implementation_notes": [
+          "用于 CN 场景 home_bp_monitoring、lifestyle 和 disclaimer。"
+        ]
+      },
+      "source_quality_score": 25,
+      "source_hash": "7b5e3da0a2590f0d",
+      "review_status": "included"
+    },
+    {
+      "source_id": "kdigo_2024_ckd_guideline",
+      "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+      "organization": "Kidney Disease - Improving Global Outcomes",
+      "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+      "doi": "",
+      "pmid": "",
+      "year": 2024,
+      "language": "en",
+      "region": "global",
+      "topic": "special_population",
+      "evidence_class": "guideline",
+      "source_type": "guideline",
+      "include": true,
+      "allowed_uses": [
+        "special_population",
+        "medication_safety",
+        "home_bp_monitoring"
+      ],
+      "copyright_note": "Public guideline page; summarize only and do not reproduce guideline tables.",
+      "access_note": "public PDF available; manual download URL tracked in fulltext candidates",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "KDIGO 2024 CKD 指南可强化慢性肾病用户的保守复核和医生沟通提醒。",
+        "key_points": [
+          "CKD 用户出现血压估算偏高时应更保守地使用规范设备复核并咨询医生。",
+          "报告不得提供肾病相关用药或治疗目标。",
+          "用药用户不应基于 PPG 估算自行调整方案。"
+        ],
+        "implementation_notes": [
+          "用于 CKD special_population 和 medication_safety。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "aa55b91b2a39b2df",
+      "review_status": "included"
+    },
+    {
+      "source_id": "ada_2026_standards_cvd_bp",
+      "title": "Cardiovascular Disease and Risk Management - Standards of Care in Diabetes 2026",
+      "organization": "American Diabetes Association",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/",
+      "doi": "10.2337/dc26-S010",
+      "pmid": 41358899,
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "special_population",
+      "evidence_class": "guideline",
+      "source_type": "guideline",
+      "include": true,
+      "allowed_uses": [
+        "special_population",
+        "medication_safety",
+        "home_bp_monitoring"
+      ],
+      "copyright_note": "Open PMC article for ADA guideline section; use summary-level notes only.",
+      "access_note": "public full text via PMC; manual link tracked in fulltext candidates",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "ADA 2026 糖尿病心血管风险管理章节可强化糖尿病用户的血压风险沟通和保守提醒。",
+        "key_points": [
+          "糖尿病合并血压估算异常时应更重视规范复核和医生沟通。",
+          "该来源只支持特殊人群提醒，不生成个体化治疗目标。",
+          "用药调整必须留给临床医生。"
+        ],
+        "implementation_notes": [
+          "用于 diabetes special_population 和 medication_safety。"
+        ]
+      },
+      "source_quality_score": 25,
+      "source_hash": "e92e4c3ce3f5eea5",
       "review_status": "included"
     }
   ],

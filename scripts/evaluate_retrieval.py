@@ -40,6 +40,13 @@ BASE_GOLDEN_QUERIES: List[Dict] = [
     {"query": "ESC 2024 血压 指南 家庭测量", "expected_uses": ["home_bp_monitoring", "bp_category_reference"]},
     {"query": "ISO 81060 血压计 验证 标准", "expected_uses": ["device_advice", "research_background"]},
     {"query": "报告 免责声明 PPG 不能替代诊断", "expected_uses": ["disclaimer", "cuffless_ppg_limitations"]},
+    {"query": "FDA 无袖带 血压设备 临床性能 测试 PPG", "expected_uses": ["cuffless_ppg_limitations", "device_advice"]},
+    {"query": "WHO 袖带式 自动血压计 技术规范 验证设备", "expected_uses": ["device_advice", "home_bp_monitoring"]},
+    {"query": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测", "expected_uses": ["home_bp_monitoring", "remeasurement"]},
+    {"query": "国家卫健委 高血压 营养 运动 指导原则 减盐", "expected_uses": ["lifestyle"]},
+    {"query": "全国高血压日 规范测量 记录 生活方式", "expected_uses": ["home_bp_monitoring", "lifestyle"]},
+    {"query": "KDIGO 2024 慢性肾病 CKD 血压偏高 复核", "expected_uses": ["special_population", "medication_safety"]},
+    {"query": "ADA 2026 糖尿病 血压 心血管风险 用药安全", "expected_uses": ["special_population", "medication_safety"]},
 ]
 
 
@@ -245,7 +252,11 @@ def main() -> None:
     out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     csv_path = resolve_project_path("knowledge_base/processed/retrieval_evaluation.csv")
     with csv_path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=["query", "expected_uses", "precision_at_k", "has_match", "unsafe_source_leakage"])
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=["query", "expected_uses", "precision_at_k", "has_match", "unsafe_source_leakage"],
+            lineterminator="\n",
+        )
         writer.writeheader()
         for row in result["rows"]:
             writer.writerow(

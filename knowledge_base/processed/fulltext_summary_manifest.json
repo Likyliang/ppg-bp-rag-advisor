@@ -10,11 +10,35 @@
   ],
   "skipped": [
     {
+      "candidate_id": "fda_cuffless_nibp_draft_guidance_pdf",
+      "reason": "include_in_summary=false"
+    },
+    {
       "candidate_id": "esc_2024_essential_messages_pdf",
       "reason": "include_in_summary=false"
     },
     {
+      "candidate_id": "nhc_2024_hypertension_nutrition_exercise_pdf",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "uspstf_hypertension_screening_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "who_automated_cuff_bp_device_specs_publication",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "ada_2026_standards_cvd_bp_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
       "candidate_id": "esh_2023_guideline_fulltext",
+      "reason": "include_in_summary=false"
+    },
+    {
+      "candidate_id": "kdigo_2024_ckd_guideline_pdf",
       "reason": "include_in_summary=false"
     },
     {

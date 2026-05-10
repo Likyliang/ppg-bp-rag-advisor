@@ -16,6 +16,7 @@
 - Prepared `v1.0.0-rc1` release candidate after strict quality gate and API smoke checks passed.
 - Added full-text candidate governance with a safe public-download path, institution/browser queue, tracked Chinese summary notes, and quality-gate validation; current KB is 63 included sources and 255 chunks.
 - Promoted institution/browser-assisted full-text summaries for the AHA cuffless BP statement, Chinese 2024 hypertension guideline, and AHA/ACC 2025 full guideline; current KB is 63 included sources and 261 chunks.
+- Added a targeted official-source expansion with FDA cuffless NIBP draft guidance, WHO cuffed BP device specifications, USPSTF screening, Chinese NHC lifestyle guidance, KDIGO 2024 CKD, and ADA 2026 diabetes standards; current KB is 70 included sources and 289 chunks.
 
 ## v1.0.0-rc1 - 2026-05-10
 
@@ -29,3 +30,10 @@
 - Added tracked Chinese summary notes and citation/access records only; no PDF full text, credentials, cookies, or tokens are committed.
 - Recorded ESC 2024 official PDF as access blocked by Cloudflare and ESH 2023 LWW full text as awaiting user human verification.
 - Strict quality gate passes: 105 tests, 63 included sources, 261 chunks, 100 golden queries, 50 report fixtures, retrieval match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.0144s.
+
+## v1.0.0-rc4-official-source-expansion - 2026-05-10
+
+- Added 7 selected official/high-trust sources for weak spots: FDA cuffless NIBP draft guidance, WHO cuffed BP device specifications, USPSTF hypertension screening, Chinese NHC 2024 hypertension nutrition/exercise guidance, NHC hypertension day key messages, KDIGO 2024 CKD guideline, and ADA 2026 diabetes cardiovascular risk guidance.
+- Added manual download/full-text candidate URLs for FDA, WHO, USPSTF, NHC 2024 guidance, KDIGO 2024, and ADA 2026; no PDFs were downloaded in this iteration.
+- Expanded golden retrieval coverage for FDA cuffless, WHO validated devices, USPSTF out-of-office confirmation, Chinese lifestyle guidance, CKD, and diabetes scenarios.
+- Strict quality gate passes: 105 tests, 70 included sources, 289 chunks, 100 golden queries, 50 report fixtures, retrieval match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.0174s.
