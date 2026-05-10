@@ -1,5 +1,5 @@
 {
-  "timestamp": 1778419850,
+  "timestamp": 1778419927,
   "stop_criteria": {
     "min_tests": 60,
     "min_included_sources": 60,
@@ -71,7 +71,7 @@
       "name": "screen_sources",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/screen_sources.py",
       "returncode": 0,
-      "duration_sec": 0.179,
+      "duration_sec": 0.176,
       "output_tail": "{\n  \"total_sources\": 67,\n  \"included_count\": 63,\n  \"excluded_count\": 4,\n  \"threshold\": 18,\n  \"issues\": [],\n  \"duplicate_source_hashes\": [],\n  \"topic_counts\": {\n    \"bp_categories\": 7,\n    \"home_bp_monitoring\": 8,\n    \"emergency\": 6,\n    \"cuffless_ppg_limitations\": 3,\n    \"validated_devices\": 5,\n    \"lifestyle\": 12,\n    \"special_population\": 11,\n    \"measurement_quality\": 4,\n    \"medication_safety\": 4,\n    \"disclaimer\": 3\n  },\n  \"evidence_class_counts\": {\n    \"guideline\": 7,\n    \"official_health_education\": 42,\n    \"scientific_statement\": 2,\n    \"review\": 1,\n    \"validation_standard\": 1,\n    \"patient_education\": 1,\n    \"safety_rule\": 9\n  }\n}\n{\n  \"files\": {\n    \"screening_report\": \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/source_screening_report.json\",\n    \"included_sources\": \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/included_sources.json\",\n    \"excluded_sources\": \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/excluded_sources.json\"\n  }\n}\n"
     },
     {
@@ -85,42 +85,42 @@
       "name": "ingest_kb",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/ingest_kb.py",
       "returncode": 0,
-      "duration_sec": 0.104,
+      "duration_sec": 0.085,
       "output_tail": "{\n  \"chunk_count\": 252,\n  \"chunks_path\": \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/chunks.jsonl\",\n  \"vector_status\": \"vector index skipped: set build_vector=true to enable optional Chroma indexing\"\n}\n"
     },
     {
       "name": "audit_kb",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/audit_kb.py",
       "returncode": 0,
-      "duration_sec": 0.102,
+      "duration_sec": 0.101,
       "output_tail": "{\n  \"chunk_count\": 252,\n  \"source_count\": 63,\n  \"catalog_included_count\": 63,\n  \"topic_counts\": {\n    \"bp_categories\": 28,\n    \"cuffless_ppg_limitations\": 12,\n    \"disclaimer\": 12,\n    \"emergency\": 24,\n    \"home_bp_monitoring\": 32,\n    \"lifestyle\": 48,\n    \"measurement_quality\": 16,\n    \"medication_safety\": 16,\n    \"special_population\": 44,\n    \"validated_devices\": 20\n  },\n  \"topic_source_counts\": {\n    \"bp_categories\": 7,\n    \"cuffless_ppg_limitations\": 3,\n    \"disclaimer\": 3,\n    \"emergency\": 6,\n    \"home_bp_monitoring\": 8,\n    \"lifestyle\": 12,\n    \"measurement_quality\": 4,\n    \"medication_safety\": 4,\n    \"special_population\": 11,\n    \"validated_devices\": 5\n  },\n  \"evidence_class_counts\": {\n    \"guideline\": 28,\n    \"official_health_education\": 168,\n    \"scientific_statement\": 8,\n    \"review\": 4,\n    \"safety_rule\": 36,\n    \"patient_education\": 4,\n    \"validation_standard\": 4\n  },\n  \"missing_topics\": [],\n  \"duplicate_source_hashes\": [],\n  \"orphan_source_ids\": [],\n  \"unsafe_source_leakage\": [],\n  \"quality\": {\n    \"has_all_expected_topics\": true,\n    \"has_no_unsafe_source_leakage\": true,\n    \"has_catalog_alignment\": true\n  }\n}\n"
     },
     {
       "name": "evaluate_retrieval",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/evaluate_retrieval.py",
       "returncode": 0,
-      "duration_sec": 0.157,
+      "duration_sec": 0.159,
       "output_tail": "{\n  \"query_count\": 100,\n  \"match_rate\": 1.0,\n  \"mean_precision_at_5\": 1.0,\n  \"unsafe_source_leakage_count\": 0,\n  \"evaluation_mode\": \"golden_expected_use_filter\"\n}\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/retrieval_evaluation.json\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/retrieval_evaluation.csv\n"
     },
     {
       "name": "evaluate_reports",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/evaluate_reports.py",
       "returncode": 0,
-      "duration_sec": 0.523,
+      "duration_sec": 0.54,
       "output_tail": "{\n  \"llm_only_mock\": {\n    \"has_summary\": 0.0,\n    \"has_evidence\": 0.0,\n    \"has_high_quality_evidence\": 0.0,\n    \"has_ppg_limitation\": 0.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.0\n  },\n  \"rag_only_mock\": {\n    \"has_summary\": 1.0,\n    \"has_evidence\": 1.0,\n    \"has_high_quality_evidence\": 1.0,\n    \"has_ppg_limitation\": 1.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.18\n  },\n  \"rule_rag_safety\": {\n    \"has_summary\": 1.0,\n    \"has_evidence\": 1.0,\n    \"has_high_quality_evidence\": 1.0,\n    \"has_ppg_limitation\": 1.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.18\n  }\n}\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/evaluation_results.json\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/evaluation_results.csv\n"
     },
     {
       "name": "benchmark_report",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/benchmark_report.py",
       "returncode": 0,
-      "duration_sec": 0.518,
-      "output_tail": "{\n  \"case_count\": 50,\n  \"mean_sec\": 0.0085,\n  \"p95_sec\": 0.0127,\n  \"max_sec\": 0.0131,\n  \"target_p95_sec\": 3.0,\n  \"passed\": true\n}\n"
+      "duration_sec": 0.515,
+      "output_tail": "{\n  \"case_count\": 50,\n  \"mean_sec\": 0.0085,\n  \"p95_sec\": 0.0127,\n  \"max_sec\": 0.0129,\n  \"target_p95_sec\": 3.0,\n  \"passed\": true\n}\n"
     },
     {
       "name": "pytest",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python -m pytest",
       "returncode": 0,
-      "duration_sec": 0.95,
+      "duration_sec": 0.94,
       "output_tail": "........................................................................ [ 71%]\n.............................                                            [100%]\n101 passed in 0.80s\n"
     }
   ]
