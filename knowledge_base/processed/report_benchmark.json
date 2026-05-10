@@ -1,8 +1,8 @@
 {
   "case_count": 50,
-  "mean_sec": 0.0091,
-  "p95_sec": 0.0135,
-  "max_sec": 0.0213,
+  "mean_sec": 0.0098,
+  "p95_sec": 0.0144,
+  "max_sec": 0.0144,
   "target_p95_sec": 3.0,
   "passed": true
 }

@@ -358,7 +358,7 @@
     "source_id": "esh_2023_hypertension_guideline",
     "title": "2023 ESH Guidelines for the management of arterial hypertension",
     "organization": "European Society of Hypertension",
-    "url": "https://www.eshonline.org/guidelines/",
+    "url": "https://www.eshonline.org/guidelines/2023-guidelines/",
     "doi": "",
     "pmid": "",
     "year": 2023,
@@ -374,7 +374,7 @@
       "special_population"
     ],
     "copyright_note": "Guideline landing page; summarize only.",
-    "access_note": "public",
+    "access_note": "public landing; LWW full-text page required human verification on 2026-05-10",
     "last_accessed": "2026-05-10",
     "screening": {
       "authority": 5,
@@ -395,7 +395,7 @@
       ]
     },
     "source_quality_score": 21,
-    "source_hash": "9de4442c0a4d70a0",
+    "source_hash": "baaef95d115d6308",
     "review_status": "included"
   },
   {
@@ -420,7 +420,7 @@
       "special_population"
     ],
     "copyright_note": "Use citation and synthesized notes; do not reproduce full guideline text.",
-    "access_note": "public abstract / open landing page",
+    "access_note": "browser PDF downloaded on 2026-05-10; tracked summary only",
     "last_accessed": "2026-05-10",
     "screening": {
       "authority": 5,
@@ -449,7 +449,7 @@
     "title": "Cuffless Devices for the Measurement of Blood Pressure",
     "organization": "American Heart Association",
     "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-    "doi": "",
+    "doi": "10.1161/HYP.0000000000000254",
     "pmid": 41376592,
     "year": 2025,
     "language": "en",
@@ -464,8 +464,8 @@
       "signal_quality",
       "research_background"
     ],
-    "copyright_note": "Public top-things summary; cite PMID and summarize.",
-    "access_note": "public summary",
+    "copyright_note": "AHA Journals PDF downloaded via current browser session; commit summary and citation only.",
+    "access_note": "browser PDF downloaded on 2026-05-10; tracked summary only",
     "last_accessed": "2026-05-10",
     "screening": {
       "authority": 5,
@@ -486,7 +486,7 @@
       ]
     },
     "source_quality_score": 25,
-    "source_hash": "a24a5ebf44e1d0c7",
+    "source_hash": "136cc25c4e7da9ac",
     "review_status": "included"
   },
   {
@@ -1521,8 +1521,8 @@
     "source_id": "acc_aha_2025_full_guideline_record",
     "title": "2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults",
     "organization": "American Heart Association / American College of Cardiology",
-    "url": "https://professional.heart.org/en/guidelines-statements/2025-ahaaccaanpaapaabcaccpacpmagsamaaspcnmapcnasgim-guideline-for-thehyp0000000000000249",
-    "doi": "",
+    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
+    "doi": "10.1161/CIR.0000000000001356",
     "pmid": "",
     "year": 2025,
     "language": "en",
@@ -1538,8 +1538,8 @@
       "lifestyle",
       "special_population"
     ],
-    "copyright_note": "Public guideline landing page; summarize only.",
-    "access_note": "public",
+    "copyright_note": "AHA Journals PDF downloaded via browser; commit summary and citation only.",
+    "access_note": "browser PDF downloaded on 2026-05-10; tracked summary only",
     "last_accessed": "2026-05-10",
     "screening": {
       "authority": 5,
@@ -1549,18 +1549,18 @@
       "safety_applicability": 5
     },
     "notes": {
-      "summary": "AHA/ACC 2025 成人高血压指南主页用于新版指南追溯和论文引用。",
+      "summary": "AHA/ACC 2025 成人高血压指南正式全文用于新版指南追溯、规范测量边界和 PPG 免责声明。",
       "key_points": [
-        "规范测量是血压解释前提。",
+        "规范测量、重复读数、合适袖带和经验证设备是血压解释前提。",
         "家庭血压记录可支持医生沟通。",
-        "PPG 估算值不能替代指南要求的测量。"
+        "PPG 或无袖带估算值不能替代指南要求的测量。"
       ],
       "implementation_notes": [
-        "用于 guideline traceability 和 bp_category_reference。"
+        "用于 guideline traceability、bp_category_reference、home_bp_monitoring 和 PPG 安全边界。"
       ]
     },
     "source_quality_score": 25,
-    "source_hash": "7ebac5655bd1a2e9",
+    "source_hash": "1936f6be07e496d1",
     "review_status": "included"
   },
   {

@@ -13,11 +13,11 @@ candidates:
     priority: 1
     topic: cuffless_ppg_limitations
     access_mode: institution_or_browser
-    status: queued_institution
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: true
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure
     pdf_url: https://www.ahajournals.org/doi/pdf/10.1161/HYP.0000000000000254
     doi: 10.1161/HYP.0000000000000254
@@ -29,7 +29,11 @@ candidates:
     selection_reason: "PPG/无袖带血压局限的最高优先级全文候选。公开摘要已入库，全文用于补强局限、验证、校准和真实世界使用边界。"
     access_instruction: "如浏览器已通过大连理工大学机构身份访问 AHA Journals，可下载 PDF 并保存为 knowledge_base/sources/downloads/aha_cuffless_bp_scientific_statement.pdf。"
     last_accessed: 2026-05-10
-    summary_notes: []
+    summary_notes:
+      - "已通过用户当前浏览器会话获取 AHA Journals PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "全文强化了无袖带血压设备的安全边界：PPG、PAT/PTT 或其他无袖带方案属于间接估算，容易受运动、姿势、血管张力、校准方式、使用者输入和真实世界场景影响。"
+      - "报告生成只能把该来源用于说明 PPG/无袖带结果的不确定性、信号质量要求、复测和规范袖带设备复核；不得写成设备可诊断、可替代医生判断或可直接指导治疗。"
+      - "对高风险输出，引用该来源时应与 guideline、官方健康教育或本项目 safety rule 共同使用，避免用研究性设备声明单独支撑患者级临床行动。"
 
   - candidate_id: chinese_hypertension_2024_fulltext
     source_id: chinese_hypertension_guideline_2024_catalog
@@ -38,11 +42,11 @@ candidates:
     priority: 1
     topic: bp_categories
     access_mode: institution_or_browser
-    status: queued_institution
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: true
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://www.sciopen.com/article/10.26599/1671-5411.2025.01.008
     pdf_url: https://www.sciopen.com/article/pdf/10.26599/1671-5411.2025.01.008
     doi: 10.26599/1671-5411.2025.01.008
@@ -54,7 +58,11 @@ candidates:
     selection_reason: "中文报告和中国场景下最关键的指南全文候选，用于核对分类、复测和特殊人群保守提醒。"
     access_instruction: "若 SciOpen PDF 在浏览器中可通过机构或验证码访问，下载后保存为 knowledge_base/sources/downloads/chinese_hypertension_guideline_2024_catalog.pdf。"
     last_accessed: 2026-05-10
-    summary_notes: []
+    summary_notes:
+      - "已通过用户当前浏览器会话获取 SciOpen PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该指南是中文场景下血压分类、家庭/动态血压监测、生活方式教育和特殊人群保守提醒的核心来源；报告中仍只能输出 estimated_bp_category、risk_level、urgency_level 等非诊断字段。"
+      - "对妊娠、糖尿病、CKD、既往心血管病或正在用药用户，全文只用于支持更保守的复测、记录和就医沟通提醒，不生成用药、停药或治疗方案。"
+      - "急症或显著升高场景应优先触发安全规则和规范设备复核；PPG 估算值不能替代中国指南要求的规范血压测量。"
 
   - candidate_id: acc_aha_2025_guideline_fulltext
     source_id: acc_aha_2025_full_guideline_record
@@ -63,14 +71,14 @@ candidates:
     priority: 2
     topic: bp_categories
     access_mode: browser_required
-    status: queued_browser
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: false
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://professional.heart.org/en/guidelines-statements/2025-ahaaccaanpaapaabcaccpacpmagsamaaspcnmapcnasgim-guideline-for-thehyp0000000000000249
-    pdf_url:
-    doi:
+    pdf_url: https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000001356
+    doi: 10.1161/CIR.0000000000001356
     pmid:
     year: 2025
     language: en
@@ -79,7 +87,11 @@ candidates:
     selection_reason: "新版 AHA/ACC 指南全文用于论文版本追溯和指南差异讨论；当前系统只使用公开专业摘要。"
     access_instruction: "浏览器打开指南主页，若页面提供 PDF 下载，保存为 knowledge_base/sources/downloads/acc_aha_2025_full_guideline_record.pdf。"
     last_accessed: 2026-05-10
-    summary_notes: []
+    summary_notes:
+      - "已通过浏览器获取 AHA Journals 正式 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "全文提供 2025 AHA/ACC 成人高血压指南的可追溯版本依据，强调血压解释应基于规范测量、重复读数、合适袖带和经过验证的设备。"
+      - "指南明确提示应避免依赖智能手表等无袖带设备作为准确血压测量来源，直到其精密性和可靠性获得更充分证明；该点用于强化 PPG 结果免责声明。"
+      - "180/120 mmHg 级别、妊娠、CKD、糖尿病、用药和特殊人群内容只用于安全提醒、复测和医生沟通；系统不得输出诊断、开药、停药或治疗调整。"
 
   - candidate_id: esc_2024_essential_messages_pdf
     source_id: esc_2024_bp_guideline_key_points
@@ -88,7 +100,7 @@ candidates:
     priority: 3
     topic: bp_categories
     access_mode: browser_required
-    status: queued_browser
+    status: access_blocked
     summary_status: pending_fulltext
     institution_required: false
     auto_download: false
@@ -102,7 +114,7 @@ candidates:
     region: EU
     allowed_uses: [bp_category_reference, home_bp_monitoring, remeasurement, special_population]
     selection_reason: "ESC essential messages 可用于欧洲指南对照，但自动下载可能被站点防护拦截。"
-    access_instruction: "若浏览器可打开 ESC PDF，保存为 knowledge_base/sources/downloads/esc_2024_bp_guideline_key_points.pdf。"
+    access_instruction: "2026-05-10 浏览器访问 ESC 官方 PDF 时被 Cloudflare 阻止；保留官方 URL，不使用非官方镜像。若后续人工合法打开，保存为 knowledge_base/sources/downloads/esc_2024_bp_guideline_key_points.pdf。"
     last_accessed: 2026-05-10
     summary_notes: []
 
@@ -169,7 +181,7 @@ candidates:
     priority: 4
     topic: home_bp_monitoring
     access_mode: institution_or_browser
-    status: queued_institution
+    status: awaiting_human_verification
     summary_status: pending_fulltext
     institution_required: true
     auto_download: false
@@ -183,7 +195,7 @@ candidates:
     region: EU
     allowed_uses: [home_bp_monitoring, remeasurement, special_population]
     selection_reason: "ESH 2023 全文适合做欧洲指南对照和特殊人群保守提醒，但不需要作为急症或用药唯一来源。"
-    access_instruction: "通过浏览器或机构页面下载合法 PDF 后保存为 knowledge_base/sources/downloads/esh_2023_hypertension_guideline.pdf。"
+    access_instruction: "2026-05-10 通过 ESH 官方页面进入 LWW 全文页时触发 Cloudflare 人机验证；需用户本人完成验证或机构登录后再继续，保存为 knowledge_base/sources/downloads/esh_2023_hypertension_guideline.pdf。"
     last_accessed: 2026-05-10
     summary_notes: []
 

@@ -62,3 +62,17 @@
 - Institution-required candidates remain queued; no credentials, cookies, tokens, or browser sessions are saved.
 - Strict quality gate passes after summary ingest: 105 tests, 63 included sources, 255 chunks, 100 golden queries, retrieval match rate 1.0, precision@5 1.0, unsafe-source leakage 0.
 - Next risk: AHA Journals, SciOpen, ESC, and ESH may require browser or institution access; after legal download, manually read and promote summaries by changing `include_in_summary` and `summary_status`.
+
+## Special Iteration: Institution/Browser Full-text Access
+
+- Goal: use the user's current browser session for legal full-text access, then commit only citation records and Chinese summary notes.
+- Downloaded valid PDFs into ignored local storage:
+  - `aha_cuffless_bp_scientific_statement.pdf`
+  - `chinese_hypertension_guideline_2024_catalog.pdf`
+  - `acc_aha_2025_full_guideline_record.pdf`
+- Promoted those three candidates to `summary_status: ready` and generated tracked summaries under `knowledge_base/sources/fulltext_summaries/`.
+- Updated source metadata for AHA cuffless DOI `10.1161/HYP.0000000000000254` and AHA/ACC 2025 DOI `10.1161/CIR.0000000000001356`.
+- ESC 2024 official PDF access attempt was blocked by Cloudflare; no non-official mirror was used.
+- ESH 2023 LWW full-text access reached Cloudflare human verification and remains `awaiting_human_verification`.
+- Strict quality gate passed: 105 tests, 63 included sources, 261 chunks, 100 golden queries, 50 report fixtures, retrieval match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.0144s.
+- Next risk: if the user completes ESH/LWW human verification or institution login later, add a summary-only intake for that PDF and rerun the strict quality gate.

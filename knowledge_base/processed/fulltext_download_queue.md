@@ -32,7 +32,7 @@
 - candidate_id: `aha_cuffless_bp_statement_fulltext`
 - source_id: `aha_cuffless_bp_scientific_statement`
 - access_mode: `institution_or_browser`
-- status: `queued_institution`
+- status: `summarized`
 - landing_url: https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure
 - pdf_url: https://www.ahajournals.org/doi/pdf/10.1161/HYP.0000000000000254
 - save_as: `knowledge_base/sources/downloads/aha_cuffless_bp_scientific_statement.pdf`
@@ -43,40 +43,18 @@
 - candidate_id: `chinese_hypertension_2024_fulltext`
 - source_id: `chinese_hypertension_guideline_2024_catalog`
 - access_mode: `institution_or_browser`
-- status: `queued_institution`
+- status: `summarized`
 - landing_url: https://www.sciopen.com/article/10.26599/1671-5411.2025.01.008
 - pdf_url: https://www.sciopen.com/article/pdf/10.26599/1671-5411.2025.01.008
 - save_as: `knowledge_base/sources/downloads/chinese_hypertension_guideline_2024_catalog.pdf`
 - purpose: bp_category_reference; home_bp_monitoring; remeasurement; lifestyle; special_population
-
-### P2 2025 AHA ACC adult high blood pressure guideline full text
-
-- candidate_id: `acc_aha_2025_guideline_fulltext`
-- source_id: `acc_aha_2025_full_guideline_record`
-- access_mode: `browser_required`
-- status: `queued_browser`
-- landing_url: https://professional.heart.org/en/guidelines-statements/2025-ahaaccaanpaapaabcaccpacpmagsamaaspcnmapcnasgim-guideline-for-thehyp0000000000000249
-- pdf_url: n/a
-- save_as: `knowledge_base/sources/downloads/acc_aha_2025_full_guideline_record.pdf`
-- purpose: bp_category_reference; home_bp_monitoring; remeasurement; lifestyle; special_population
-
-### P3 ESC 2024 elevated blood pressure and hypertension essential messages PDF
-
-- candidate_id: `esc_2024_essential_messages_pdf`
-- source_id: `esc_2024_bp_guideline_key_points`
-- access_mode: `browser_required`
-- status: `queued_browser`
-- landing_url: https://www.acc.org/Latest-in-Cardiology/ten-points-to-remember/2024/09/05/14/11/2024-esc-guidelines-for-bp-esc-2024
-- pdf_url: https://www.escardio.org/static-file/Escardio/Guidelines/Products/Essential%20Messages/2024%20EM/Essential%20Messages_2024%20HTN.pdf
-- save_as: `knowledge_base/sources/downloads/esc_2024_bp_guideline_key_points.pdf`
-- purpose: bp_category_reference; home_bp_monitoring; remeasurement; special_population
 
 ### P4 ESH 2023 arterial hypertension guideline full text
 
 - candidate_id: `esh_2023_guideline_fulltext`
 - source_id: `esh_2023_hypertension_guideline`
 - access_mode: `institution_or_browser`
-- status: `queued_institution`
+- status: `awaiting_human_verification`
 - landing_url: https://www.eshonline.org/guidelines/
 - pdf_url: n/a
 - save_as: `knowledge_base/sources/downloads/esh_2023_hypertension_guideline.pdf`

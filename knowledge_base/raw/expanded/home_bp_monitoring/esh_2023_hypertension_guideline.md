@@ -6,7 +6,7 @@ organization: European Society of Hypertension
 region: EU
 topic: home_bp_monitoring
 language: en
-url: https://www.eshonline.org/guidelines/
+url: https://www.eshonline.org/guidelines/2023-guidelines/
 doi: ''
 pmid: ''
 year: '2023'
@@ -19,7 +19,7 @@ allowed_uses:
 - special_population
 review_status: included
 derived_from: knowledge_base/sources/source_catalog.yaml
-source_hash: 9de4442c0a4d70a0
+source_hash: baaef95d115d6308
 safety_level: standard
 ---
 

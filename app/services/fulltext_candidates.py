@@ -31,6 +31,8 @@ ALLOWED_ACCESS_MODES = {
 }
 
 ALLOWED_STATUSES = {
+    "access_blocked",
+    "awaiting_human_verification",
     "downloadable",
     "queued_browser",
     "queued_institution",

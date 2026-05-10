@@ -181,7 +181,7 @@ sources:
   - source_id: esh_2023_hypertension_guideline
     title: 2023 ESH Guidelines for the management of arterial hypertension
     organization: European Society of Hypertension
-    url: https://www.eshonline.org/guidelines/
+    url: https://www.eshonline.org/guidelines/2023-guidelines/
     doi:
     pmid:
     year: 2023
@@ -193,7 +193,7 @@ sources:
     include: true
     allowed_uses: [home_bp_monitoring, remeasurement, special_population]
     copyright_note: "Guideline landing page; summarize only."
-    access_note: public
+    access_note: public landing; LWW full-text page required human verification on 2026-05-10
     last_accessed: 2026-05-10
     screening: {authority: 5, recency: 4, relevance: 4, accessibility: 4, safety_applicability: 4}
     notes:
@@ -215,7 +215,7 @@ sources:
     include: true
     allowed_uses: [bp_category_reference, home_bp_monitoring, remeasurement, lifestyle, special_population]
     copyright_note: "Use citation and synthesized notes; do not reproduce full guideline text."
-    access_note: public abstract / open landing page
+    access_note: browser PDF downloaded on 2026-05-10; tracked summary only
     last_accessed: 2026-05-10
     screening: {authority: 5, recency: 5, relevance: 5, accessibility: 4, safety_applicability: 5}
     notes:
@@ -226,7 +226,7 @@ sources:
     title: Cuffless Devices for the Measurement of Blood Pressure
     organization: American Heart Association
     url: https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know
-    doi:
+    doi: 10.1161/HYP.0000000000000254
     pmid: 41376592
     year: 2025
     language: en
@@ -236,8 +236,8 @@ sources:
     source_type: scientific_statement
     include: true
     allowed_uses: [cuffless_ppg_limitations, device_advice, signal_quality, research_background]
-    copyright_note: "Public top-things summary; cite PMID and summarize."
-    access_note: public summary
+    copyright_note: "AHA Journals PDF downloaded via current browser session; commit summary and citation only."
+    access_note: browser PDF downloaded on 2026-05-10; tracked summary only
     last_accessed: 2026-05-10
     screening: {authority: 5, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
     notes:
