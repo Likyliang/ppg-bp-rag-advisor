@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -66,6 +66,23 @@ class SafetyReview(BaseModel):
     severity: str = "none"
 
 
+class CitationQuality(BaseModel):
+    passed: bool = True
+    coverage_rate: float = 1.0
+    checked_uses: List[str] = Field(default_factory=list)
+    missing_uses: List[str] = Field(default_factory=list)
+    high_trust_sensitive_uses: bool = True
+    issues: List[str] = Field(default_factory=list)
+
+
+class UiSummary(BaseModel):
+    title: str
+    status: str
+    priority: str
+    chips: List[str] = Field(default_factory=list)
+    next_actions: List[str] = Field(default_factory=list)
+
+
 class HealthReport(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
@@ -78,6 +95,8 @@ class HealthReport(BaseModel):
     recommendations: Recommendations
     safety_alert: SafetyAlert
     retrieved_evidence: List[Evidence] = Field(default_factory=list)
+    citation_quality: CitationQuality = Field(default_factory=CitationQuality)
+    ui_summary: Optional[UiSummary] = None
     disclaimer: str
     markdown_report: str
     safety_review: Optional[SafetyReview] = None

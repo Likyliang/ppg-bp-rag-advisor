@@ -29,5 +29,6 @@ class RuleResult(BaseModel):
     special_population_reasons: List[str] = Field(default_factory=list)
     recommendation_intents: List[str] = Field(default_factory=list)
     retrieval_intents: List[str] = Field(default_factory=list)
+    retrieval_allowed_uses: List[str] = Field(default_factory=list)
     warnings: List[str] = Field(default_factory=list)
     guideline_region_used: Optional[str] = None

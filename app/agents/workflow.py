@@ -7,6 +7,7 @@ from pydantic import ValidationError
 
 from app.schemas.report import HealthReport
 from app.schemas.rule_result import RuleResult
+from app.services.evidence_quality import evaluate_citation_quality
 from app.services.generator import generate_report_draft
 from app.services.retriever import retrieve_knowledge
 from app.services.rule_engine import run_rule_engine
@@ -26,13 +27,19 @@ def generate_report(raw_payload: Mapping, report_mode: Optional[str] = None) -> 
         raise
 
     rule_result = run_rule_engine(payload)
-    retrieval_result = retrieve_knowledge(rule_result.retrieval_intents)
+    retrieval_result = retrieve_knowledge(
+        rule_result.retrieval_intents,
+        allowed_uses=rule_result.retrieval_allowed_uses,
+        min_quality_score=18,
+    )
+    citation_quality = evaluate_citation_quality(rule_result, retrieval_result.evidence)
     draft = generate_report_draft(
         payload=payload,
         rule_result=rule_result,
         evidence=retrieval_result.evidence,
         mode=report_mode,
-        warnings=retrieval_result.warnings,
+        warnings=retrieval_result.warnings + citation_quality.issues,
+        citation_quality=citation_quality,
     )
     safety_review = review_safety(draft, rule_result)
     return apply_safety_edits(draft, safety_review)

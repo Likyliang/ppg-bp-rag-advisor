@@ -7,12 +7,14 @@ from uuid import uuid4
 from app.schemas.measurement import MeasurementPayload
 from app.schemas.report import (
     Evidence,
+    CitationQuality,
     HealthReport,
     InputSummary,
     MeasurementStatus,
     Recommendations,
     RiskAssessment,
     SafetyAlert,
+    UiSummary,
 )
 from app.schemas.rule_result import RuleResult
 
@@ -138,15 +140,52 @@ def _markdown(report: HealthReport, rule_result: RuleResult) -> str:
     if report.retrieved_evidence:
         lines.extend(["", "## 参考来源"])
         for evidence in report.retrieved_evidence:
-            source = f"{evidence.title}"
+            source = f"[{evidence.source_id}] {evidence.title}"
             if evidence.organization:
                 source += f"（{evidence.organization}）"
+            if evidence.evidence_class:
+                source += f" · {evidence.evidence_class}"
             if evidence.url:
                 source += f": {evidence.url}"
             lines.append(f"- {source}")
 
+    lines.extend(
+        [
+            "",
+            "## 引用质量",
+            f"证据覆盖率：{report.citation_quality.coverage_rate}",
+            f"敏感用途高可信来源：{'是' if report.citation_quality.high_trust_sensitive_uses else '否'}",
+        ]
+    )
+
     lines.extend(["", "## 免责声明", report.disclaimer])
     return "\n".join(lines)
+
+
+def _ui_summary(report: HealthReport, rule_result: RuleResult) -> UiSummary:
+    if rule_result.emergency:
+        return UiSummary(
+            title="可能存在紧急风险",
+            status="emergency",
+            priority="highest",
+            chips=["急症症状", "立即就医", "PPG需复核"],
+            next_actions=report.recommendations.medical_consultation[:2],
+        )
+    if not rule_result.quality.is_usable:
+        return UiSummary(
+            title="本次信号质量不足",
+            status="remeasurement_required",
+            priority="high",
+            chips=["重新采集", "规范血压计复核"],
+            next_actions=report.recommendations.remeasurement[:2] + report.recommendations.device_advice[:1],
+        )
+    return UiSummary(
+        title="血压估算趋势解释",
+        status=rule_result.risk_level,
+        priority="medium" if rule_result.risk_level != "routine_monitoring" else "routine",
+        chips=[rule_result.estimated_bp_category, rule_result.quality.quality_level, rule_result.urgency_level],
+        next_actions=(report.recommendations.remeasurement + report.recommendations.medical_consultation)[:3],
+    )
 
 
 def generate_template_report(
@@ -154,6 +193,7 @@ def generate_template_report(
     rule_result: RuleResult,
     evidence: List[Evidence],
     warnings: List[str] = None,
+    citation_quality: CitationQuality = None,
 ) -> HealthReport:
     measurement = payload.measurement
     report = HealthReport(
@@ -182,10 +222,12 @@ def generate_template_report(
         recommendations=_recommendations(rule_result),
         safety_alert=_safety_alert(rule_result),
         retrieved_evidence=evidence,
+        citation_quality=citation_quality or CitationQuality(),
         disclaimer=DISCLAIMER,
         markdown_report="",
         warnings=list(warnings or []) + rule_result.warnings,
     )
+    report.ui_summary = _ui_summary(report, rule_result)
     report.markdown_report = _markdown(report, rule_result)
     return report
 
@@ -196,11 +238,12 @@ def generate_report_draft(
     evidence: List[Evidence],
     mode: str = None,
     warnings: List[str] = None,
+    citation_quality: CitationQuality = None,
 ) -> HealthReport:
     requested_mode = mode or os.getenv("REPORT_MODE", "template_only")
     if requested_mode == "llm_rag" and os.getenv("LLM_PROVIDER", "mock") != "mock":
-        report = generate_template_report(payload, rule_result, evidence, warnings=warnings)
+        report = generate_template_report(payload, rule_result, evidence, warnings=warnings, citation_quality=citation_quality)
         report.generation_mode = "llm_rag_fallback_template"
         report.warnings.append("LLM adapter 尚未配置为可用实现，已回退到 template_only。")
         return report
-    return generate_template_report(payload, rule_result, evidence, warnings=warnings)
+    return generate_template_report(payload, rule_result, evidence, warnings=warnings, citation_quality=citation_quality)

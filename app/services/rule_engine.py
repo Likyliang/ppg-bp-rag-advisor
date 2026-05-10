@@ -198,6 +198,36 @@ def _retrieval_intents(recommendation_intents: List[str], category: str) -> List
     return list(dict.fromkeys(queries))
 
 
+def _retrieval_allowed_uses(
+    recommendation_intents: List[str],
+    category: str,
+    emergency: bool,
+    special_population: bool,
+) -> List[str]:
+    uses = {"cuffless_ppg_limitations", "device_advice"}
+    intent_map = {
+        "validated_upper_arm_cuff_recheck": {"home_bp_monitoring", "device_advice", "remeasurement"},
+        "remeasurement": {"home_bp_monitoring", "remeasurement"},
+        "signal_quality_improvement": {"signal_quality", "cuffless_ppg_limitations"},
+        "home_bp_monitoring": {"home_bp_monitoring", "remeasurement"},
+        "lifestyle": {"lifestyle"},
+        "healthy_lifestyle": {"lifestyle"},
+        "medical_consultation": {"special_population", "home_bp_monitoring"},
+        "emergency_care": {"emergency_alert"},
+        "routine_monitoring": {"home_bp_monitoring"},
+        "ppg_limitation_explanation": {"cuffless_ppg_limitations"},
+    }
+    for intent in recommendation_intents:
+        uses.update(intent_map.get(intent, set()))
+    if category in {"stage_1_reference_range", "stage_2_reference_range", "severe_range", "elevated_reference_range", "normal_reference_range"}:
+        uses.add("bp_category_reference")
+    if emergency:
+        return ["emergency_alert", "cuffless_ppg_limitations"]
+    if special_population:
+        uses.add("special_population")
+    return sorted(uses)
+
+
 def run_rule_engine(payload: MeasurementPayload) -> RuleResult:
     quality = _run_quality_rules(payload)
     category, reference = _bp_category(payload, quality)
@@ -206,6 +236,7 @@ def run_rule_engine(payload: MeasurementPayload) -> RuleResult:
     risk, urgency = _risk_and_urgency(category, quality, emergency)
     recommendation_intents = _recommendation_intents(category, quality, emergency, special)
     retrieval_intents = _retrieval_intents(recommendation_intents, category)
+    retrieval_allowed_uses = _retrieval_allowed_uses(recommendation_intents, category, emergency, special)
 
     warnings = list(quality.warnings)
     if category == "unavailable":
@@ -223,6 +254,7 @@ def run_rule_engine(payload: MeasurementPayload) -> RuleResult:
         special_population_reasons=special_reasons,
         recommendation_intents=recommendation_intents,
         retrieval_intents=retrieval_intents,
+        retrieval_allowed_uses=retrieval_allowed_uses,
         warnings=warnings,
         guideline_region_used="AHA" if payload.guideline_region == "AHA" else "CN",
     )

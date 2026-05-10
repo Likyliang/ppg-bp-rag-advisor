@@ -24,3 +24,10 @@
 - Topic coverage now has at least 3 source-level notes in every expected topic.
 - Audit remains clean: no orphan sources, no duplicate source hashes, no unsafe-source leakage.
 
+## Iterations 10-14: Retrieval, Rerank, Citation Quality, Report Safety
+
+- Rule engine now emits `retrieval_allowed_uses` so retrieval is driven by rule outcome, not only query text.
+- Retriever now caches chunks, filters by allowed use and evidence class, and reranks by source quality, use overlap, trust class, and region.
+- Reports now include citation quality and a small-program-friendly UI summary.
+- Report references now show source id and evidence class for traceability.
+

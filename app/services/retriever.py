@@ -4,7 +4,7 @@ import json
 import math
 import re
 from dataclasses import dataclass, field
-from pathlib import Path
+from functools import lru_cache
 from typing import Dict, Iterable, List, Optional, Sequence, Set
 
 from app.schemas.report import Evidence
@@ -33,20 +33,24 @@ def _as_list(value) -> List[str]:
     return [part.strip() for part in str(value).split(",") if part.strip()]
 
 
-def _load_chunks(chunks_path: str = None) -> List[Dict]:
-    settings = load_yaml_config("config/settings.yaml").get("retrieval", {})
-    path = resolve_project_path(chunks_path or settings.get("chunks_path", "knowledge_base/processed/chunks.jsonl"))
+@lru_cache(maxsize=8)
+def _load_chunks_cached(path_string: str) -> tuple:
+    path = resolve_project_path(path_string)
     if not path.exists():
-        return []
-
+        return tuple()
     chunks = []
     with path.open("r", encoding="utf-8") as handle:
         for line in handle:
             line = line.strip()
-            if not line:
-                continue
-            chunks.append(json.loads(line))
-    return chunks
+            if line:
+                chunks.append(json.loads(line))
+    return tuple(chunks)
+
+
+def _load_chunks(chunks_path: str = None) -> List[Dict]:
+    settings = load_yaml_config("config/settings.yaml").get("retrieval", {})
+    path_string = chunks_path or settings.get("chunks_path", "knowledge_base/processed/chunks.jsonl")
+    return list(_load_chunks_cached(path_string))
 
 
 def _score_chunk(query_tokens: Sequence[str], chunk: Dict) -> float:
@@ -69,6 +73,23 @@ def _score_chunk(query_tokens: Sequence[str], chunk: Dict) -> float:
     except (TypeError, ValueError):
         quality_boost = 0.0
     return score + quality_boost
+
+
+def _rerank_score(base_score: float, chunk: Dict, required_uses: Set[str], intent: str) -> float:
+    allowed_uses = set(_as_list(chunk.get("allowed_uses")))
+    score = base_score
+    if required_uses:
+        overlap = len(required_uses & allowed_uses)
+        score += 0.08 * overlap
+        if required_uses <= allowed_uses:
+            score += 0.04
+    if chunk.get("evidence_class") in HIGH_TRUST_EVIDENCE_CLASSES:
+        score += 0.05
+    if chunk.get("region") in {"CN", "AHA", "US", "global"}:
+        score += 0.02
+    if chunk.get("topic") and str(chunk.get("topic")).replace("_", " ") in intent.lower():
+        score += 0.03
+    return score
 
 
 def infer_allowed_uses(retrieval_intents: Iterable[str]) -> Set[str]:
@@ -106,7 +127,7 @@ def _chunk_allowed(chunk: Dict, required_uses: Set[str], evidence_classes: Optio
         return True
 
     allowed_uses = set(_as_list(chunk.get("allowed_uses")))
-    for priority_use in ("emergency_alert", "medication_safety", "special_population"):
+    for priority_use in ("emergency_alert", "medication_safety"):
         if priority_use in required_uses:
             if priority_use not in allowed_uses:
                 return False
@@ -175,9 +196,10 @@ def retrieve_knowledge(
     for intent in intents:
         query_tokens = _tokenize(intent)
         for chunk in candidate_chunks:
-            score = _score_chunk(query_tokens, chunk)
-            if score <= 0:
+            base_score = _score_chunk(query_tokens, chunk)
+            if base_score <= 0:
                 continue
+            score = _rerank_score(base_score, chunk, required_uses, intent)
             chunk_id = chunk.get("chunk_id") or f"{chunk.get('title', 'chunk')}-{len(scored)}"
             previous = scored.get(chunk_id)
             if previous is None or score > previous[1]:
