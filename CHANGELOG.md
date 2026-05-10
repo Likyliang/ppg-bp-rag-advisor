@@ -11,3 +11,4 @@
 - Added a full quality-gate runner that regenerates knowledge artifacts, runs evaluations and tests, and writes a stop-criteria report.
 - Expanded the governed knowledge base to 63 included sources and 252 chunks through a supplemental source catalog.
 - Upgraded retrieval with rule-derived allowed uses, lightweight reranking, chunk caching, citation quality checks, and UI summary fields.
+- Expanded retrieval and report evaluation datasets to 100 golden queries and 50 fixtures; expanded tests to 101.

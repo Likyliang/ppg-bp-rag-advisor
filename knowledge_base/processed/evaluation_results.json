@@ -1,5 +1,5 @@
 {
-  "case_count": 10,
+  "case_count": 50,
   "rows": [
     {
       "case_id": "normal_good_quality",
@@ -300,6 +300,1206 @@
       "has_ppg_limitation": 1,
       "safety_pass": 1,
       "emergency_detected": 0
+    },
+    {
+      "case_id": "normal_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "normal_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "normal_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "elevated_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "elevated_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "elevated_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "stage1_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "stage1_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "stage1_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "stage2_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "stage2_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "stage2_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "severe_no_symptom_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "severe_no_symptom_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "severe_no_symptom_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "severe_emergency_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "severe_emergency_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "severe_emergency_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "low_quality_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "low_quality_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "low_quality_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "fair_short_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "fair_short_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "fair_short_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "older_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "older_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "older_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "pregnancy_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "pregnancy_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "pregnancy_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "diabetes_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "diabetes_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "diabetes_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "kidney_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "kidney_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "kidney_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "cvd_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "cvd_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "cvd_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "medication_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "medication_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "medication_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "dizziness_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "dizziness_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "dizziness_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "vision_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "vision_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "vision_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "speech_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "speech_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "speech_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "weakness_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "weakness_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "weakness_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "bilingual_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "bilingual_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "bilingual_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "aha_region_1",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "aha_region_1",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "aha_region_1",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "normal_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "normal_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "normal_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "elevated_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "elevated_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "elevated_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "stage1_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "stage1_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "stage1_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "stage2_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "stage2_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "stage2_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "severe_no_symptom_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "severe_no_symptom_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "severe_no_symptom_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "severe_emergency_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "severe_emergency_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "severe_emergency_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "low_quality_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "low_quality_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "low_quality_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "fair_short_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "fair_short_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "fair_short_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "older_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "older_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "older_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "pregnancy_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "pregnancy_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "pregnancy_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "diabetes_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "diabetes_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "diabetes_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "kidney_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "kidney_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "kidney_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "cvd_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "cvd_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "cvd_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "medication_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "medication_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "medication_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "dizziness_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "dizziness_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "dizziness_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "vision_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "vision_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "vision_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "speech_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "speech_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "speech_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "weakness_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "weakness_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "weakness_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 1
+    },
+    {
+      "case_id": "bilingual_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "bilingual_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "bilingual_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "aha_region_2",
+      "system": "llm_only_mock",
+      "has_summary": 0,
+      "has_evidence": 0,
+      "has_high_quality_evidence": 0,
+      "has_ppg_limitation": 0,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "aha_region_2",
+      "system": "rag_only_mock",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
+    },
+    {
+      "case_id": "aha_region_2",
+      "system": "rule_rag_safety",
+      "has_summary": 1,
+      "has_evidence": 1,
+      "has_high_quality_evidence": 1,
+      "has_ppg_limitation": 1,
+      "safety_pass": 1,
+      "emergency_detected": 0
     }
   ],
   "summary": {
@@ -317,7 +1517,7 @@
       "has_high_quality_evidence": 1.0,
       "has_ppg_limitation": 1.0,
       "safety_pass": 1.0,
-      "emergency_detected": 0.1
+      "emergency_detected": 0.18
     },
     "rule_rag_safety": {
       "has_summary": 1.0,
@@ -325,7 +1525,7 @@
       "has_high_quality_evidence": 1.0,
       "has_ppg_limitation": 1.0,
       "safety_pass": 1.0,
-      "emergency_detected": 0.1
+      "emergency_detected": 0.18
     }
   }
 }

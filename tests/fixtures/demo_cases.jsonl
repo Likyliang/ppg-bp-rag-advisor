@@ -1,10 +1,50 @@
-{"case_id":"normal_good_quality","estimated_sbp":116,"estimated_dbp":74,"signal_quality_score":0.9,"confidence":0.8}
-{"case_id":"high_good_quality","estimated_sbp":145,"estimated_dbp":92,"heart_rate":82,"signal_quality_score":0.86,"confidence":0.68,"age":45}
-{"case_id":"high_low_quality","estimated_sbp":150,"estimated_dbp":95,"signal_quality_score":0.42,"confidence":0.4}
-{"case_id":"severe_no_symptoms","estimated_sbp":184,"estimated_dbp":121,"signal_quality_score":0.88,"symptoms":{}}
-{"case_id":"severe_chest_pain","estimated_sbp":185,"estimated_dbp":122,"signal_quality_score":0.9,"symptoms":{"chest_pain":true}}
-{"case_id":"medication_user","estimated_sbp":136,"estimated_dbp":86,"signal_quality_score":0.82,"antihypertensive_medication":true}
-{"case_id":"diabetes_user","estimated_sbp":132,"estimated_dbp":84,"signal_quality_score":0.83,"diabetes":true}
-{"case_id":"alias_input","SBP":142,"DBP":91,"HR":78,"quality":"good","conf":0.7}
-{"case_id":"fair_quality","estimated_sbp":128,"estimated_dbp":78,"signal_quality_score":0.7,"capture_duration_sec":15}
-{"case_id":"pregnancy","estimated_sbp":130,"estimated_dbp":82,"signal_quality_score":0.84,"pregnancy":true}
+{"case_id": "normal_good_quality", "estimated_sbp": 116, "estimated_dbp": 74, "signal_quality_score": 0.9, "confidence": 0.8}
+{"case_id": "high_good_quality", "estimated_sbp": 145, "estimated_dbp": 92, "heart_rate": 82, "signal_quality_score": 0.86, "confidence": 0.68, "age": 45}
+{"case_id": "high_low_quality", "estimated_sbp": 150, "estimated_dbp": 95, "signal_quality_score": 0.42, "confidence": 0.4}
+{"case_id": "severe_no_symptoms", "estimated_sbp": 184, "estimated_dbp": 121, "signal_quality_score": 0.88, "symptoms": {}}
+{"case_id": "severe_chest_pain", "estimated_sbp": 185, "estimated_dbp": 122, "signal_quality_score": 0.9, "symptoms": {"chest_pain": true}}
+{"case_id": "medication_user", "estimated_sbp": 136, "estimated_dbp": 86, "signal_quality_score": 0.82, "antihypertensive_medication": true}
+{"case_id": "diabetes_user", "estimated_sbp": 132, "estimated_dbp": 84, "signal_quality_score": 0.83, "diabetes": true}
+{"case_id": "alias_input", "SBP": 142, "DBP": 91, "HR": 78, "quality": "good", "conf": 0.7}
+{"case_id": "fair_quality", "estimated_sbp": 128, "estimated_dbp": 78, "signal_quality_score": 0.7, "capture_duration_sec": 15}
+{"case_id": "pregnancy", "estimated_sbp": 130, "estimated_dbp": 82, "signal_quality_score": 0.84, "pregnancy": true}
+{"case_id": "normal_1", "estimated_sbp": 112, "estimated_dbp": 72, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "elevated_1", "estimated_sbp": 126, "estimated_dbp": 78, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "stage1_1", "estimated_sbp": 134, "estimated_dbp": 84, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "stage2_1", "estimated_sbp": 146, "estimated_dbp": 94, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "severe_no_symptom_1", "estimated_sbp": 184, "estimated_dbp": 118, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "severe_emergency_1", "estimated_sbp": 186, "estimated_dbp": 122, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "symptoms": {"chest_pain": true}}
+{"case_id": "low_quality_1", "estimated_sbp": 148, "estimated_dbp": 93, "heart_rate": 72, "signal_quality_score": 0.45, "confidence": 0.42, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "fair_short_1", "estimated_sbp": 128, "estimated_dbp": 79, "heart_rate": 72, "signal_quality_score": 0.7, "confidence": 0.72, "age": 45, "capture_duration_sec": 12, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "older_1", "estimated_sbp": 138, "estimated_dbp": 86, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 70, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "pregnancy_1", "estimated_sbp": 132, "estimated_dbp": 84, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "pregnancy": true}
+{"case_id": "diabetes_1", "estimated_sbp": 136, "estimated_dbp": 86, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "diabetes": true}
+{"case_id": "kidney_1", "estimated_sbp": 136, "estimated_dbp": 86, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "kidney_disease": true}
+{"case_id": "cvd_1", "estimated_sbp": 142, "estimated_dbp": 90, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "cvd_history": true}
+{"case_id": "medication_1", "estimated_sbp": 140, "estimated_dbp": 88, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "antihypertensive_medication": true}
+{"case_id": "dizziness_1", "estimated_sbp": 130, "estimated_dbp": 82, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "symptoms": {"dizziness": true}}
+{"case_id": "vision_1", "estimated_sbp": 181, "estimated_dbp": 119, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "symptoms": {"vision_change": true}}
+{"case_id": "speech_1", "estimated_sbp": 182, "estimated_dbp": 121, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "symptoms": {"speech_difficulty": true}}
+{"case_id": "weakness_1", "estimated_sbp": 183, "estimated_dbp": 121, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "symptoms": {"numbness_or_weakness": true}}
+{"case_id": "bilingual_1", "estimated_sbp": 145, "estimated_dbp": 92, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "bilingual"}
+{"case_id": "aha_region_1", "estimated_sbp": 145, "estimated_dbp": 92, "heart_rate": 72, "signal_quality_score": 0.86, "confidence": 0.72, "age": 45, "capture_duration_sec": 30, "guideline_region": "AHA", "locale": "zh-CN"}
+{"case_id": "normal_2", "estimated_sbp": 113, "estimated_dbp": 72, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "elevated_2", "estimated_sbp": 127, "estimated_dbp": 78, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "stage1_2", "estimated_sbp": 135, "estimated_dbp": 84, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "stage2_2", "estimated_sbp": 147, "estimated_dbp": 94, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "severe_no_symptom_2", "estimated_sbp": 185, "estimated_dbp": 118, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "severe_emergency_2", "estimated_sbp": 187, "estimated_dbp": 122, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "symptoms": {"chest_pain": true}}
+{"case_id": "low_quality_2", "estimated_sbp": 149, "estimated_dbp": 93, "heart_rate": 73, "signal_quality_score": 0.45, "confidence": 0.42, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "fair_short_2", "estimated_sbp": 129, "estimated_dbp": 79, "heart_rate": 73, "signal_quality_score": 0.7, "confidence": 0.72, "age": 46, "capture_duration_sec": 12, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "older_2", "estimated_sbp": 139, "estimated_dbp": 86, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 70, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN"}
+{"case_id": "pregnancy_2", "estimated_sbp": 133, "estimated_dbp": 84, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "pregnancy": true}
+{"case_id": "diabetes_2", "estimated_sbp": 137, "estimated_dbp": 86, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "diabetes": true}
+{"case_id": "kidney_2", "estimated_sbp": 137, "estimated_dbp": 86, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "kidney_disease": true}
+{"case_id": "cvd_2", "estimated_sbp": 143, "estimated_dbp": 90, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "cvd_history": true}
+{"case_id": "medication_2", "estimated_sbp": 141, "estimated_dbp": 88, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "antihypertensive_medication": true}
+{"case_id": "dizziness_2", "estimated_sbp": 131, "estimated_dbp": 82, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "symptoms": {"dizziness": true}}
+{"case_id": "vision_2", "estimated_sbp": 182, "estimated_dbp": 119, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "symptoms": {"vision_change": true}}
+{"case_id": "speech_2", "estimated_sbp": 183, "estimated_dbp": 121, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "symptoms": {"speech_difficulty": true}}
+{"case_id": "weakness_2", "estimated_sbp": 184, "estimated_dbp": 121, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "zh-CN", "symptoms": {"numbness_or_weakness": true}}
+{"case_id": "bilingual_2", "estimated_sbp": 146, "estimated_dbp": 92, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "CN", "locale": "bilingual"}
+{"case_id": "aha_region_2", "estimated_sbp": 146, "estimated_dbp": 92, "heart_rate": 73, "signal_quality_score": 0.86, "confidence": 0.72, "age": 46, "capture_duration_sec": 30, "guideline_region": "AHA", "locale": "zh-CN"}

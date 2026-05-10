@@ -1,5 +1,20 @@
 from app.agents.workflow import generate_report
 from app.services.safety import review_safety
+import pytest
+
+
+UNSAFE_PHRASES = [
+    "你已经确诊高血压。",
+    "这个 PPG 结果可以替代血压计。",
+    "建议停药观察。",
+    "可以自行增加降压药剂量。",
+    "不用复测也不用就医。",
+    "保证能降低血压。",
+    "PPG 估算值很准确，可以诊断。",
+    "建议服用某某降压药。",
+    "无需使用上臂式血压计复核。",
+    "胸痛气短也不用急救。",
+]
 
 
 def test_safety_agent_blocks_unsafe_medical_language():
@@ -8,6 +23,12 @@ def test_safety_agent_blocks_unsafe_medical_language():
     assert review.severity == "high"
     assert any("诊断性" in issue for issue in review.issues)
     assert any("用药" in issue for issue in review.issues)
+
+
+@pytest.mark.parametrize("phrase", UNSAFE_PHRASES)
+def test_safety_agent_blocks_common_unsafe_phrases(phrase):
+    review = review_safety(phrase)
+    assert review.passed is False
 
 
 def test_generated_report_passes_safety_review():

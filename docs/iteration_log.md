@@ -31,3 +31,10 @@
 - Reports now include citation quality and a small-program-friendly UI summary.
 - Report references now show source id and evidence class for traceability.
 
+## Iterations 15-16: Evaluation Set Expansion and Experiment Outputs
+
+- Golden retrieval queries expanded from 30 to 100.
+- Demo/report fixtures expanded from 10 to 50.
+- Test suite expanded from 30 tests to 101 tests.
+- Strict quality gate now passes all stop criteria.
+

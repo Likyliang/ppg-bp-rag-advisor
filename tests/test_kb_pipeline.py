@@ -13,7 +13,9 @@ def test_ingested_chunks_have_governance_metadata():
 
 def test_kb_audit_quality_gates_pass():
     audit = audit_knowledge_base()
-    assert audit["chunk_count"] >= 100
+    assert audit["chunk_count"] >= 250
+    assert audit["catalog_included_count"] >= 60
     assert audit["quality"]["has_all_expected_topics"] is True
     assert audit["quality"]["has_no_unsafe_source_leakage"] is True
     assert audit["quality"]["has_catalog_alignment"] is True
+    assert all(count >= 3 for count in audit["topic_source_counts"].values())
