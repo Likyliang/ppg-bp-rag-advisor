@@ -212,7 +212,7 @@ def _retrieval_allowed_uses(
         "home_bp_monitoring": {"home_bp_monitoring", "remeasurement"},
         "lifestyle": {"lifestyle"},
         "healthy_lifestyle": {"lifestyle"},
-        "medical_consultation": {"special_population", "home_bp_monitoring"},
+        "medical_consultation": {"home_bp_monitoring"},
         "emergency_care": {"emergency_alert"},
         "routine_monitoring": {"home_bp_monitoring"},
         "ppg_limitation_explanation": {"cuffless_ppg_limitations"},

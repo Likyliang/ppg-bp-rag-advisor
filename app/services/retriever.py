@@ -163,6 +163,38 @@ def _chunk_to_evidence(chunk: Dict, used_for: str, score: float) -> Evidence:
     )
 
 
+def _select_with_use_coverage(ranked: List[tuple], required_uses: Set[str], limit: int) -> List[tuple]:
+    selected = list(ranked[:limit])
+    if not required_uses or not selected:
+        return selected
+
+    def covered(items: List[tuple]) -> Set[str]:
+        uses: Set[str] = set()
+        for chunk, _, _ in items:
+            uses.update(set(_as_list(chunk.get("allowed_uses"))) & required_uses)
+        return uses
+
+    selected_ids = {item[0].get("chunk_id") for item in selected}
+    missing = list(required_uses - covered(selected))
+    for use in missing:
+        candidate = next(
+            (
+                item for item in ranked
+                if item[0].get("chunk_id") not in selected_ids
+                and use in set(_as_list(item[0].get("allowed_uses")))
+            ),
+            None,
+        )
+        if candidate is None:
+            continue
+        if len(selected) < limit:
+            selected.append(candidate)
+        else:
+            selected[-1] = candidate
+        selected_ids = {item[0].get("chunk_id") for item in selected}
+    return sorted(selected, key=lambda item: item[1], reverse=True)
+
+
 def retrieve_knowledge(
     retrieval_intents: Iterable[str],
     top_k: int = None,
@@ -215,7 +247,8 @@ def retrieve_knowledge(
             warnings=["未找到高匹配证据，返回知识库前几个通用知识块。"],
         )
 
-    ranked = sorted(scored.values(), key=lambda item: item[1], reverse=True)[:limit]
+    ranked = sorted(scored.values(), key=lambda item: item[1], reverse=True)
+    selected = _select_with_use_coverage(ranked, required_uses, limit)
     return RetrievalResult(
-        evidence=[_chunk_to_evidence(chunk, used_for, score) for chunk, score, used_for in ranked]
+        evidence=[_chunk_to_evidence(chunk, used_for, score) for chunk, score, used_for in selected]
     )

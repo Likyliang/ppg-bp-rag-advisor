@@ -46,3 +46,10 @@
 - Streamlit demo now supports fixture selection and Markdown/JSON report downloads.
 - Strict quality gate passes with report P95 under 0.02 seconds on local fixtures.
 
+## Iteration 20: Release Candidate
+
+- Fixed citation coverage for ordinary elevated reports by supplementing retrieval results for missing allowed uses.
+- Verified FastAPI health and report generation endpoint manually.
+- Final strict quality gate passes all stop criteria.
+- Release candidate tag target: `v1.0.0-rc1`.
+

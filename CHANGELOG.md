@@ -13,3 +13,10 @@
 - Upgraded retrieval with rule-derived allowed uses, lightweight reranking, chunk caching, citation quality checks, and UI summary fields.
 - Expanded retrieval and report evaluation datasets to 100 golden queries and 50 fixtures; expanded tests to 101.
 - Added evaluation CSV exports, report benchmark, OpenAPI examples, and Streamlit fixture/report download support.
+- Prepared `v1.0.0-rc1` release candidate after strict quality gate and API smoke checks passed.
+
+## v1.0.0-rc1 - 2026-05-10
+
+- Meets current stop criteria for local usability.
+- Quality gate: 101 tests, 63 included sources, 252 chunks, 100 golden queries, 50 report fixtures, retrieval match rate 1.0, precision@5 1.0, unsafe-source leakage 0.
+- FastAPI health and report generation smoke checks pass.
