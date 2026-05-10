@@ -14,6 +14,7 @@ from app.services.config_loader import resolve_project_path
 
 
 CATALOG_PATH = "knowledge_base/sources/source_catalog.yaml"
+EXTRA_CATALOG_PATH = "knowledge_base/sources/source_catalog_extra.yaml"
 SCREEN_THRESHOLD = 18
 
 ALLOWED_EVIDENCE_CLASSES = {
@@ -97,9 +98,17 @@ def _jsonable(value: Any) -> Any:
 def load_source_catalog(path: str = CATALOG_PATH) -> Dict[str, Any]:
     catalog_path = resolve_project_path(path)
     if not catalog_path.exists():
-        return {"sources": []}
-    with catalog_path.open("r", encoding="utf-8") as handle:
-        return yaml.safe_load(handle) or {"sources": []}
+        catalog = {"sources": []}
+    else:
+        with catalog_path.open("r", encoding="utf-8") as handle:
+            catalog = yaml.safe_load(handle) or {"sources": []}
+    if path == CATALOG_PATH:
+        extra_path = resolve_project_path(EXTRA_CATALOG_PATH)
+        if extra_path.exists():
+            with extra_path.open("r", encoding="utf-8") as handle:
+                extra = yaml.safe_load(handle) or {"sources": []}
+            catalog.setdefault("sources", []).extend(extra.get("sources", []))
+    return catalog
 
 
 def source_identity_hash(source: Dict[str, Any]) -> str:

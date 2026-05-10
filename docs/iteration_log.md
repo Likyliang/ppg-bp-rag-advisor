@@ -16,3 +16,11 @@
 - Expected artifact: `knowledge_base/processed/quality_gate_report.json`.
 - Stop criteria are intentionally stricter than the current baseline so the report can show remaining gaps during the 20-round run.
 
+## Iterations 03-09: Knowledge Base Expansion and Audit
+
+- Added supplemental source catalog loading.
+- Expanded governed sources from 35 to 63 included sources.
+- Expanded governed chunks from 140 to 252.
+- Topic coverage now has at least 3 source-level notes in every expected topic.
+- Audit remains clean: no orphan sources, no duplicate source hashes, no unsafe-source leakage.
+

@@ -1,30 +1,30 @@
 {
-  "total_sources": 39,
-  "included_count": 35,
+  "total_sources": 67,
+  "included_count": 63,
   "excluded_count": 4,
   "threshold": 18,
   "issues": [],
   "duplicate_source_hashes": [],
   "topic_counts": {
-    "bp_categories": 6,
-    "home_bp_monitoring": 5,
-    "emergency": 2,
+    "bp_categories": 7,
+    "home_bp_monitoring": 8,
+    "emergency": 6,
     "cuffless_ppg_limitations": 3,
-    "validated_devices": 2,
-    "lifestyle": 7,
-    "special_population": 7,
-    "measurement_quality": 1,
-    "medication_safety": 1,
-    "disclaimer": 1
+    "validated_devices": 5,
+    "lifestyle": 12,
+    "special_population": 11,
+    "measurement_quality": 4,
+    "medication_safety": 4,
+    "disclaimer": 3
   },
   "evidence_class_counts": {
-    "guideline": 6,
-    "official_health_education": 19,
+    "guideline": 7,
+    "official_health_education": 42,
     "scientific_statement": 2,
     "review": 1,
     "validation_standard": 1,
     "patient_education": 1,
-    "safety_rule": 5
+    "safety_rule": 9
   },
   "included_sources": [
     {
@@ -1543,6 +1543,1207 @@
       },
       "source_quality_score": 24,
       "source_hash": "ff9b609769a56bb8",
+      "review_status": "included"
+    },
+    {
+      "source_id": "acc_aha_2025_full_guideline_record",
+      "title": "2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults",
+      "organization": "American Heart Association / American College of Cardiology",
+      "url": "https://professional.heart.org/en/guidelines-statements/2025-ahaaccaanpaapaabcaccpacpmagsamaaspcnmapcnasgim-guideline-for-thehyp0000000000000249",
+      "doi": "",
+      "pmid": "",
+      "year": 2025,
+      "language": "en",
+      "region": "AHA",
+      "topic": "bp_categories",
+      "evidence_class": "guideline",
+      "source_type": "guideline_record",
+      "include": true,
+      "allowed_uses": [
+        "bp_category_reference",
+        "home_bp_monitoring",
+        "remeasurement",
+        "lifestyle",
+        "special_population"
+      ],
+      "copyright_note": "Public guideline landing page; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "AHA/ACC 2025 成人高血压指南主页用于新版指南追溯和论文引用。",
+        "key_points": [
+          "规范测量是血压解释前提。",
+          "家庭血压记录可支持医生沟通。",
+          "PPG 估算值不能替代指南要求的测量。"
+        ],
+        "implementation_notes": [
+          "用于 guideline traceability 和 bp_category_reference。"
+        ]
+      },
+      "source_quality_score": 25,
+      "source_hash": "7ebac5655bd1a2e9",
+      "review_status": "included"
+    },
+    {
+      "source_id": "ama_target_bp_measure_accurately",
+      "title": "Target BP - Measure Accurately",
+      "organization": "American Medical Association / American Heart Association",
+      "url": "https://targetbp.org/tools-downloads/",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "home_bp_monitoring",
+      "evidence_class": "official_health_education",
+      "source_type": "clinical_toolkit",
+      "include": true,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice"
+      ],
+      "copyright_note": "Public toolkit page; summarize measurement principles only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "Target BP 工具强调准确测量流程，可补充家庭复测和姿势建议。",
+        "key_points": [
+          "测量前休息和正确姿势会影响读数。",
+          "记录趋势优于单次读数。",
+          "使用经过验证的设备。"
+        ],
+        "implementation_notes": [
+          "用于 remeasurement 和 device_advice。"
+        ]
+      },
+      "source_quality_score": 25,
+      "source_hash": "26bea076f4e7b450",
+      "review_status": "included"
+    },
+    {
+      "source_id": "cdc_self_measured_bp_monitoring",
+      "title": "Self-Measured Blood Pressure Monitoring",
+      "organization": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/high-blood-pressure/php/toolkits/self-measured-blood-pressure-monitoring.html",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "home_bp_monitoring",
+      "evidence_class": "official_health_education",
+      "source_type": "toolkit",
+      "include": true,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice"
+      ],
+      "copyright_note": "Public CDC toolkit; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "CDC SMBP 工具包支持家庭自测血压和医疗团队沟通。",
+        "key_points": [
+          "家庭血压监测需要规范流程。",
+          "记录结果可辅助医生理解趋势。",
+          "不应只用单次 PPG 估算做判断。"
+        ],
+        "implementation_notes": [
+          "用于 home_bp_monitoring。"
+        ]
+      },
+      "source_quality_score": 25,
+      "source_hash": "532b9f641216763c",
+      "review_status": "included"
+    },
+    {
+      "source_id": "medlineplus_measuring_blood_pressure",
+      "title": "Blood pressure measurement",
+      "organization": "MedlinePlus",
+      "url": "https://medlineplus.gov/ency/article/007490.htm",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "home_bp_monitoring",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement"
+      ],
+      "copyright_note": "Public MedlinePlus medical encyclopedia; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "MedlinePlus 血压测量说明可支持复测流程和测量条件解释。",
+        "key_points": [
+          "血压测量受姿势和准备状态影响。",
+          "家庭记录可以帮助理解趋势。",
+          "PPG 估算不能替代标准测量。"
+        ],
+        "implementation_notes": [
+          "用于 remeasurement。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "0faecb56f896d6cd",
+      "review_status": "included"
+    },
+    {
+      "source_id": "validatebp_validated_devices",
+      "title": "Validated Device Listing",
+      "organization": "ValidateBP",
+      "url": "https://www.validatebp.org/",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "validated_devices",
+      "evidence_class": "official_health_education",
+      "source_type": "device_validation_registry",
+      "include": true,
+      "allowed_uses": [
+        "device_advice",
+        "home_bp_monitoring"
+      ],
+      "copyright_note": "Registry link only; do not reproduce device list.",
+      "access_note": "public registry",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "ValidateBP 注册表用于支持选择经过验证的血压测量设备。",
+        "key_points": [
+          "建议选择经过验证的血压计。",
+          "不推荐具体商业型号。",
+          "上臂式设备通常更适合作为家庭复核工具。"
+        ],
+        "implementation_notes": [
+          "用于 device_advice。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "595e6a8002121963",
+      "review_status": "included"
+    },
+    {
+      "source_id": "bihs_validated_bp_monitors",
+      "title": "Validated blood pressure monitors",
+      "organization": "British and Irish Hypertension Society",
+      "url": "https://bihsoc.org/bp-monitors/",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "UK",
+      "topic": "validated_devices",
+      "evidence_class": "official_health_education",
+      "source_type": "device_validation_registry",
+      "include": true,
+      "allowed_uses": [
+        "device_advice",
+        "home_bp_monitoring"
+      ],
+      "copyright_note": "Registry link only; do not reproduce device list.",
+      "access_note": "public registry",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "BIHS 验证设备列表可作为英国/欧洲设备验证补充来源。",
+        "key_points": [
+          "设备验证状态是复核建议的重要背景。",
+          "不把消费级 PPG 等同于验证血压计。",
+          "不展示具体商业排名。"
+        ],
+        "implementation_notes": [
+          "用于 validated_devices。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "23262b6dcf302094",
+      "review_status": "included"
+    },
+    {
+      "source_id": "hypertension_canada_device_recommendations",
+      "title": "Recommended blood pressure monitors",
+      "organization": "Hypertension Canada",
+      "url": "https://hypertension.ca/bpdevices",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "CA",
+      "topic": "validated_devices",
+      "evidence_class": "official_health_education",
+      "source_type": "device_validation_registry",
+      "include": true,
+      "allowed_uses": [
+        "device_advice",
+        "home_bp_monitoring"
+      ],
+      "copyright_note": "Registry link only; summarize validation principle.",
+      "access_note": "public registry",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "Hypertension Canada 设备推荐页面可支持选择验证血压计的原则。",
+        "key_points": [
+          "复核应使用经过验证的设备。",
+          "不推荐特定商品。",
+          "地区注册表可作为设备选择参考。"
+        ],
+        "implementation_notes": [
+          "用于 device_advice。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "95f269432e5cf13b",
+      "review_status": "included"
+    },
+    {
+      "source_id": "fda_pulse_oximeter_limitations",
+      "title": "Pulse Oximeter Accuracy and Limitations",
+      "organization": "U.S. Food and Drug Administration",
+      "url": "https://www.fda.gov/medical-devices/safety-communications/pulse-oximeter-accuracy-and-limitations-fda-safety-communication",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "measurement_quality",
+      "evidence_class": "official_health_education",
+      "source_type": "safety_communication",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "cuffless_ppg_limitations"
+      ],
+      "copyright_note": "Public FDA safety communication; use only sensor limitation principle.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 3,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "FDA 脉搏血氧仪限制说明可作为光学传感信号受真实场景影响的类比安全来源。",
+        "key_points": [
+          "光学测量会受到接触、运动和个体差异影响。",
+          "传感器读数不能脱离临床背景解释。",
+          "本系统只引用测量质量原则。"
+        ],
+        "implementation_notes": [
+          "用于 signal_quality，不用于血压阈值。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "5f68f8a1eaece9fd",
+      "review_status": "included"
+    },
+    {
+      "source_id": "local_capture_environment_rule",
+      "title": "Camera PPG capture environment rule",
+      "organization": "project",
+      "url": "",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "zh",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "safety_rule",
+      "source_type": "local_safety_rule",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "remeasurement",
+        "cuffless_ppg_limitations"
+      ],
+      "copyright_note": "Project-authored capture quality rule.",
+      "access_note": "local",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "本地规则补充摄像头 PPG 采集环境对信号质量的影响。",
+        "key_points": [
+          "强光、移动、按压力度和采集时间会影响信号。",
+          "低质量时优先重新采集。",
+          "不要输出强风险结论。"
+        ],
+        "implementation_notes": [
+          "用于 signal_quality。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "c519ad1db7d455b6",
+      "review_status": "included"
+    },
+    {
+      "source_id": "local_confidence_interpretation_rule",
+      "title": "Model confidence interpretation rule",
+      "organization": "project",
+      "url": "",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "zh",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "safety_rule",
+      "source_type": "local_safety_rule",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "remeasurement"
+      ],
+      "copyright_note": "Project-authored confidence safety rule.",
+      "access_note": "local",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "本地规则规定上游置信度偏低时只提示复测和规范设备复核。",
+        "key_points": [
+          "低置信度不等同疾病风险。",
+          "报告应避免确定性结论。",
+          "优先说明估算不确定性。"
+        ],
+        "implementation_notes": [
+          "用于 signal_quality。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "77aeea4e6706d8d6",
+      "review_status": "included"
+    },
+    {
+      "source_id": "medlineplus_high_bp_medicines",
+      "title": "High blood pressure medicines",
+      "organization": "MedlinePlus",
+      "url": "https://medlineplus.gov/highbloodpressuremedicines.html",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "medication_safety",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "medication_safety",
+        "special_population"
+      ],
+      "copyright_note": "Public MedlinePlus patient education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "MedlinePlus 降压药页面可支持“不要自行调药，咨询医生”的安全边界。",
+        "key_points": [
+          "用药需要专业医疗指导。",
+          "不要根据 PPG 估算自行停药或调药。",
+          "报告只建议保留记录并咨询医生。"
+        ],
+        "implementation_notes": [
+          "用于 medication_safety。"
+        ]
+      },
+      "source_quality_score": 25,
+      "source_hash": "1495f9108d7871d1",
+      "review_status": "included"
+    },
+    {
+      "source_id": "aha_bp_medicines_patient",
+      "title": "Types of Blood Pressure Medications",
+      "organization": "American Heart Association",
+      "url": "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/types-of-blood-pressure-medications",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "AHA",
+      "topic": "medication_safety",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "medication_safety",
+        "special_population"
+      ],
+      "copyright_note": "Public AHA patient education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "AHA 药物类型页面可支持用药边界，但不用于给出个体化药物建议。",
+        "key_points": [
+          "报告不得建议服药、停药或调药。",
+          "正在用药用户应咨询医生。",
+          "PPG 估算不能改变治疗方案。"
+        ],
+        "implementation_notes": [
+          "用于 medication_safety。"
+        ]
+      },
+      "source_quality_score": 25,
+      "source_hash": "1581fff6f2c7abfb",
+      "review_status": "included"
+    },
+    {
+      "source_id": "fda_taking_medicines_safely",
+      "title": "Tips for taking medicines safely",
+      "organization": "U.S. Food and Drug Administration",
+      "url": "https://www.fda.gov/drugs/resources-you-drugs/tips-taking-medicines-safely",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "medication_safety",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "medication_safety"
+      ],
+      "copyright_note": "Public FDA medicine safety page; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "FDA 用药安全页面支持不要自行改变药物使用的通用安全原则。",
+        "key_points": [
+          "药物使用应遵循医嘱。",
+          "不要根据单次估算值调整药物。",
+          "出现问题应联系医疗专业人员。"
+        ],
+        "implementation_notes": [
+          "用于 medication_safety。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "7bf461483c2bc700",
+      "review_status": "included"
+    },
+    {
+      "source_id": "medlineplus_hypertensive_crisis",
+      "title": "Hypertensive crisis",
+      "organization": "MedlinePlus",
+      "url": "https://medlineplus.gov/ency/article/000491.htm",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "emergency",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "emergency_alert"
+      ],
+      "copyright_note": "Public MedlinePlus page; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "MedlinePlus 高血压危象页面补充急症症状和及时就医原则。",
+        "key_points": [
+          "严重血压范围伴症状需要紧急处理。",
+          "急症提示应优先展示。",
+          "PPG 复核不能延误急救。"
+        ],
+        "implementation_notes": [
+          "用于 emergency_alert。"
+        ]
+      },
+      "source_quality_score": 25,
+      "source_hash": "3e9107f5f9e00a75",
+      "review_status": "included"
+    },
+    {
+      "source_id": "nhs_high_blood_pressure",
+      "title": "High blood pressure hypertension",
+      "organization": "National Health Service",
+      "url": "https://www.nhs.uk/conditions/high-blood-pressure-hypertension/",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "UK",
+      "topic": "emergency",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "emergency_alert",
+        "home_bp_monitoring",
+        "lifestyle"
+      ],
+      "copyright_note": "Public NHS health information; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "NHS 高血压页面可补充症状、复测和寻求医疗帮助的患者教育。",
+        "key_points": [
+          "症状明显时应寻求医疗帮助。",
+          "家庭测量应规范进行。",
+          "生活方式建议不能替代治疗。"
+        ],
+        "implementation_notes": [
+          "用于 emergency_alert 和 home monitoring。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "f888cc2295f15d4d",
+      "review_status": "included"
+    },
+    {
+      "source_id": "nih_dash_eating_plan",
+      "title": "DASH Eating Plan",
+      "organization": "National Heart Lung and Blood Institute",
+      "url": "https://www.nhlbi.nih.gov/education/dash-eating-plan",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "lifestyle",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "lifestyle"
+      ],
+      "copyright_note": "Public NIH health education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "NHLBI DASH 饮食计划支持饮食结构和减盐相关健康教育。",
+        "key_points": [
+          "饮食建议属于通用健康教育。",
+          "不承诺治疗效果。",
+          "特殊疾病饮食需咨询医生。"
+        ],
+        "implementation_notes": [
+          "用于 lifestyle。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "43670d543c626727",
+      "review_status": "included"
+    },
+    {
+      "source_id": "cdc_physical_activity_basics",
+      "title": "Physical Activity Basics",
+      "organization": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/physical-activity-basics/",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "lifestyle",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "lifestyle"
+      ],
+      "copyright_note": "Public CDC health education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "CDC 身体活动基础页面支持规律运动作为血压健康教育内容。",
+        "key_points": [
+          "运动建议应循序渐进。",
+          "有症状或基础病先咨询医生。",
+          "不把运动写成治疗处方。"
+        ],
+        "implementation_notes": [
+          "用于 lifestyle。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "e0ab38168aead727",
+      "review_status": "included"
+    },
+    {
+      "source_id": "cdc_quit_smoking",
+      "title": "How to Quit Smoking",
+      "organization": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/tobacco/campaign/tips/quit-smoking/",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "lifestyle",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "lifestyle"
+      ],
+      "copyright_note": "Public CDC tobacco education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "CDC 戒烟页面支持把戒烟作为血压健康相关生活方式建议。",
+        "key_points": [
+          "戒烟建议属于通用健康教育。",
+          "可建议寻求专业戒烟支持。",
+          "不替代医生治疗计划。"
+        ],
+        "implementation_notes": [
+          "用于 lifestyle。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "3e830431a28a82ec",
+      "review_status": "included"
+    },
+    {
+      "source_id": "nia_sleep_health",
+      "title": "A Good Night's Sleep",
+      "organization": "National Institute on Aging",
+      "url": "https://www.nia.nih.gov/health/sleep/good-nights-sleep",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "lifestyle",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "lifestyle"
+      ],
+      "copyright_note": "Public NIH health education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 3,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "NIA 睡眠健康页面支持睡眠作为通用生活方式建议。",
+        "key_points": [
+          "睡眠建议应温和表达。",
+          "不承诺直接降压效果。",
+          "睡眠问题严重时建议就医。"
+        ],
+        "implementation_notes": [
+          "用于 lifestyle。"
+        ]
+      },
+      "source_quality_score": 22,
+      "source_hash": "1cecfeb1782fe35c",
+      "review_status": "included"
+    },
+    {
+      "source_id": "aha_stress_management",
+      "title": "Managing Stress to Control High Blood Pressure",
+      "organization": "American Heart Association",
+      "url": "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/managing-stress-to-control-high-blood-pressure",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "AHA",
+      "topic": "lifestyle",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "lifestyle"
+      ],
+      "copyright_note": "Public AHA patient education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "AHA 压力管理页面支持把压力管理作为生活方式建议。",
+        "key_points": [
+          "压力管理属于健康教育。",
+          "避免保证性语言。",
+          "症状明显时仍建议医疗评估。"
+        ],
+        "implementation_notes": [
+          "用于 lifestyle。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "52ef79e87c29a445",
+      "review_status": "included"
+    },
+    {
+      "source_id": "aha_women_high_bp",
+      "title": "Women and high blood pressure",
+      "organization": "American Heart Association",
+      "url": "https://www.heart.org/en/health-topics/high-blood-pressure/know-your-risk-factors-for-high-blood-pressure/women-and-high-blood-pressure",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "AHA",
+      "topic": "special_population",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "special_population"
+      ],
+      "copyright_note": "Public AHA patient education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "AHA 女性与高血压页面补充女性和妊娠相关风险沟通。",
+        "key_points": [
+          "特殊人群应更保守复核。",
+          "不提供个体化治疗建议。",
+          "症状或复核异常时咨询医生。"
+        ],
+        "implementation_notes": [
+          "用于 special_population。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "8d24e50d66b0cd40",
+      "review_status": "included"
+    },
+    {
+      "source_id": "nia_high_blood_pressure_older_adults",
+      "title": "High Blood Pressure and Older Adults",
+      "organization": "National Institute on Aging",
+      "url": "https://www.nia.nih.gov/health/high-blood-pressure/high-blood-pressure-and-older-adults",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "special_population",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "special_population",
+        "home_bp_monitoring"
+      ],
+      "copyright_note": "Public NIH older adult education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "NIA 老年高血压页面支持 65 岁以上用户的保守复核和医生沟通。",
+        "key_points": [
+          "老年用户应关注连续记录。",
+          "不根据 PPG 单次值判断安全。",
+          "基础病或症状时咨询医生。"
+        ],
+        "implementation_notes": [
+          "用于 age >= 65。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "2a1f67803d27fe0e",
+      "review_status": "included"
+    },
+    {
+      "source_id": "aha_kidney_disease_high_bp",
+      "title": "High Blood Pressure and Kidney Disease",
+      "organization": "American Heart Association",
+      "url": "https://www.heart.org/en/health-topics/high-blood-pressure/health-threats-from-high-blood-pressure/high-blood-pressure-and-kidney-disease",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "AHA",
+      "topic": "special_population",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "special_population"
+      ],
+      "copyright_note": "Public AHA patient education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "AHA 肾病与高血压页面支持 CKD 用户的保守提醒。",
+        "key_points": [
+          "肾病用户应咨询医生。",
+          "不提供个体化血压目标。",
+          "保留规范复测记录。"
+        ],
+        "implementation_notes": [
+          "用于 kidney_disease=true。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "74197e2683d20954",
+      "review_status": "included"
+    },
+    {
+      "source_id": "aha_diabetes_high_bp",
+      "title": "Diabetes and high blood pressure risk",
+      "organization": "American Heart Association",
+      "url": "https://www.heart.org/en/health-topics/diabetes/why-diabetes-matters/cardiovascular-disease--diabetes",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "AHA",
+      "topic": "special_population",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "special_population",
+        "lifestyle"
+      ],
+      "copyright_note": "Public AHA patient education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "AHA 糖尿病与心血管风险页面可补充糖尿病用户保守建议。",
+        "key_points": [
+          "糖尿病用户应更重视规范复核。",
+          "不设定个体化治疗目标。",
+          "建议与医生沟通。"
+        ],
+        "implementation_notes": [
+          "用于 diabetes=true。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "2a7427df5b9f12c2",
+      "review_status": "included"
+    },
+    {
+      "source_id": "cdc_heart_disease_symptoms",
+      "title": "Heart Attack Symptoms Risk and Recovery",
+      "organization": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/heart-disease/about/heart-attack.html",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "emergency",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "emergency_alert",
+        "special_population"
+      ],
+      "copyright_note": "Public CDC patient education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "CDC 心梗症状页面支持胸痛、气短等症状需要紧急处理的安全提醒。",
+        "key_points": [
+          "胸痛和气短需要优先重视。",
+          "PPG 复核不能延误急救。",
+          "报告应把急症提示置于前面。"
+        ],
+        "implementation_notes": [
+          "用于 emergency_alert。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "59ad6378afff5229",
+      "review_status": "included"
+    },
+    {
+      "source_id": "cdc_stroke_signs",
+      "title": "Stroke Signs and Symptoms",
+      "organization": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/stroke/signs-symptoms/index.html",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "US",
+      "topic": "emergency",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_education",
+      "include": true,
+      "allowed_uses": [
+        "emergency_alert"
+      ],
+      "copyright_note": "Public CDC patient education; summarize only.",
+      "access_note": "public",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "CDC 卒中症状页面支持说话困难、肢体无力、视物改变等急症提醒。",
+        "key_points": [
+          "神经系统症状应及时寻求急救。",
+          "不能因设备估算不确定而忽视症状。",
+          "报告应优先提示紧急医疗帮助。"
+        ],
+        "implementation_notes": [
+          "用于 emergency_alert。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "06e8d1d519e9f905",
+      "review_status": "included"
+    },
+    {
+      "source_id": "local_evidence_quality_rule",
+      "title": "Evidence quality and citation safety rule",
+      "organization": "project",
+      "url": "",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "zh",
+      "region": "global",
+      "topic": "disclaimer",
+      "evidence_class": "safety_rule",
+      "source_type": "local_safety_rule",
+      "include": true,
+      "allowed_uses": [
+        "disclaimer",
+        "research_background"
+      ],
+      "copyright_note": "Project-authored evidence quality rule.",
+      "access_note": "local",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "本地规则要求报告建议必须能追溯到允许用途匹配的证据。",
+        "key_points": [
+          "急症、用药、特殊人群只使用 high-trust source。",
+          "研究背景不作为患者建议依据。",
+          "引用不足时给出 warning。"
+        ],
+        "implementation_notes": [
+          "用于 citation quality checks。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "e2c4c2361748a666",
+      "review_status": "included"
+    },
+    {
+      "source_id": "local_kb_governance_rule",
+      "title": "Knowledge base governance rule",
+      "organization": "project",
+      "url": "",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "zh",
+      "region": "global",
+      "topic": "disclaimer",
+      "evidence_class": "safety_rule",
+      "source_type": "local_safety_rule",
+      "include": true,
+      "allowed_uses": [
+        "disclaimer",
+        "research_background"
+      ],
+      "copyright_note": "Project-authored governance rule.",
+      "access_note": "local",
+      "last_accessed": "2026-05-10",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "本地规则规定所有来源必须先筛选、记录用途、再进入报告检索。",
+        "key_points": [
+          "营销页、新闻软文、单篇模型论文不得进入患者建议。",
+          "来源必须有筛选分和 allowed uses。",
+          "报告证据必须可审计。"
+        ],
+        "implementation_notes": [
+          "用于 source governance。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "a52022eda4f59648",
       "review_status": "included"
     }
   ],
