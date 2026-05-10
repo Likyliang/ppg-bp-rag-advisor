@@ -1,0 +1,24 @@
+app:
+  name: ppg-bp-rag-agent
+  version: 0.1.0
+  default_locale: zh-CN
+  default_guideline_region: CN
+
+generation:
+  report_mode: template_only
+  llm_provider: mock
+  llm_timeout_sec: 30
+
+retrieval:
+  top_k: 5
+  vector_store: chroma
+  embedding_model: BAAI/bge-small-zh-v1.5
+  chunks_path: knowledge_base/processed/chunks.jsonl
+  persist_directory: knowledge_base/vector_store
+  enable_keyword_fallback: true
+
+safety:
+  require_ppg_limitation: true
+  require_disclaimer: true
+  block_diagnosis: true
+  block_medication_changes: true

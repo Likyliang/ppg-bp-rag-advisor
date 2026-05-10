@@ -1,0 +1,37 @@
+diagnostic_patterns:
+  - 确诊
+  - 诊断为
+  - 你患有
+  - 已经是高血压
+  - 没有问题，不用复测
+  - 无需就医
+
+device_overclaim_patterns:
+  - 可以替代血压计
+  - 可以替代规范血压测量
+  - PPG 估算值很准确
+  - 保证准确
+
+medication_change_patterns:
+  - 停药
+  - 停用降压药
+  - 调整用药
+  - 增加剂量
+  - 减少剂量
+  - 自行服用
+  - 建议服用.*药
+
+required_disclaimer_terms:
+  - 仅供个人健康趋势参考
+  - 不能替代医生诊断
+  - 不能替代规范血压测量
+
+symptom_labels:
+  chest_pain: 胸痛
+  shortness_of_breath: 气短或呼吸困难
+  back_pain: 背痛
+  numbness_or_weakness: 肢体麻木或无力
+  vision_change: 视物改变
+  speech_difficulty: 说话困难
+  severe_headache: 严重头痛
+  dizziness: 头晕

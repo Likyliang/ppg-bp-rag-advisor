@@ -1,0 +1,166 @@
+[
+  {
+    "source_id": "vendor_watch_bp_device_blog",
+    "title": "Example vendor blog about wearable blood pressure watches",
+    "organization": "example vendor",
+    "url": "https://example.com/wearable-bp-watch",
+    "doi": "",
+    "pmid": "",
+    "year": 2025,
+    "language": "en",
+    "region": "global",
+    "topic": "cuffless_ppg_limitations",
+    "evidence_class": "research_context",
+    "source_type": "marketing",
+    "include": false,
+    "allowed_uses": [
+      "research_background"
+    ],
+    "copyright_note": "Excluded marketing example.",
+    "access_note": "excluded",
+    "last_accessed": "2026-05-10",
+    "screening": {
+      "authority": 1,
+      "recency": 4,
+      "relevance": 2,
+      "accessibility": 5,
+      "safety_applicability": 1
+    },
+    "notes": {
+      "summary": "设备厂商营销页面排除，不能作为医学建议依据。",
+      "key_points": [
+        "存在商业利益。",
+        "不作为核心证据。"
+      ],
+      "implementation_notes": [
+        "用于 excluded_sources 演示。"
+      ]
+    },
+    "source_quality_score": 13,
+    "source_hash": "91c4731cc6c9967c",
+    "review_status": "excluded"
+  },
+  {
+    "source_id": "consumer_blog_no_recheck",
+    "title": "Example consumer blog claiming no recheck needed",
+    "organization": "example blog",
+    "url": "https://example.com/no-recheck-blood-pressure",
+    "doi": "",
+    "pmid": "",
+    "year": 2024,
+    "language": "zh",
+    "region": "global",
+    "topic": "home_bp_monitoring",
+    "evidence_class": "research_context",
+    "source_type": "blog",
+    "include": false,
+    "allowed_uses": [
+      "research_background"
+    ],
+    "copyright_note": "Excluded unsafe blog example.",
+    "access_note": "excluded",
+    "last_accessed": "2026-05-10",
+    "screening": {
+      "authority": 0,
+      "recency": 4,
+      "relevance": 2,
+      "accessibility": 5,
+      "safety_applicability": 0
+    },
+    "notes": {
+      "summary": "声称无需复测的博客不符合安全边界。",
+      "key_points": [
+        "与复测原则冲突。",
+        "排除。"
+      ],
+      "implementation_notes": [
+        "用于筛选测试。"
+      ]
+    },
+    "source_quality_score": 11,
+    "source_hash": "038cd94ac94c094f",
+    "review_status": "excluded"
+  },
+  {
+    "source_id": "single_model_ppg_performance_paper",
+    "title": "Example single-model PPG blood pressure performance paper",
+    "organization": "example journal",
+    "url": "https://example.com/single-model-ppg-bp",
+    "doi": "",
+    "pmid": "",
+    "year": 2022,
+    "language": "en",
+    "region": "global",
+    "topic": "research_context",
+    "evidence_class": "research_context",
+    "source_type": "single_study",
+    "include": false,
+    "allowed_uses": [
+      "research_background"
+    ],
+    "copyright_note": "Excluded as patient-advice evidence; may be cited only in methods discussion if needed.",
+    "access_note": "excluded",
+    "last_accessed": "2026-05-10",
+    "screening": {
+      "authority": 2,
+      "recency": 3,
+      "relevance": 4,
+      "accessibility": 3,
+      "safety_applicability": 1
+    },
+    "notes": {
+      "summary": "单篇模型性能论文不足以支撑用户建议。",
+      "key_points": [
+        "只适合研究背景。",
+        "不进入报告检索。"
+      ],
+      "implementation_notes": [
+        "排除。"
+      ]
+    },
+    "source_quality_score": 13,
+    "source_hash": "3d5015dda5c2c125",
+    "review_status": "excluded"
+  },
+  {
+    "source_id": "news_soft_article_bp",
+    "title": "Example news soft article about blood pressure apps",
+    "organization": "example media",
+    "url": "https://example.com/blood-pressure-app-news",
+    "doi": "",
+    "pmid": "",
+    "year": 2026,
+    "language": "zh",
+    "region": "global",
+    "topic": "cuffless_ppg_limitations",
+    "evidence_class": "research_context",
+    "source_type": "news",
+    "include": false,
+    "allowed_uses": [
+      "research_background"
+    ],
+    "copyright_note": "Excluded news-soft article example.",
+    "access_note": "excluded",
+    "last_accessed": "2026-05-10",
+    "screening": {
+      "authority": 1,
+      "recency": 5,
+      "relevance": 2,
+      "accessibility": 5,
+      "safety_applicability": 0
+    },
+    "notes": {
+      "summary": "新闻软文排除，不作为医学建议来源。",
+      "key_points": [
+        "权威性不足。",
+        "可能夸大设备效果。"
+      ],
+      "implementation_notes": [
+        "排除。"
+      ]
+    },
+    "source_quality_score": 13,
+    "source_hash": "f66f0bdda1dff03c",
+    "review_status": "excluded"
+  }
+]

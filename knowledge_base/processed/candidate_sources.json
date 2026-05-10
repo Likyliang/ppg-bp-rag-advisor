@@ -1,0 +1,353 @@
+[
+  {
+    "source_id": "aha_2025_bp_guideline_top_things",
+    "title": "2025 High Blood Pressure Guideline - Top Things to Know",
+    "url": "https://professional.heart.org/en/science-news/2025-high-blood-pressure-guideline/top-things-to-know",
+    "include": true,
+    "source_quality_score": 25,
+    "topic": "bp_categories",
+    "evidence_class": "guideline"
+  },
+  {
+    "source_id": "aha_home_bp_monitoring_public",
+    "title": "Home Blood Pressure Monitoring",
+    "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
+    "include": true,
+    "source_quality_score": 25,
+    "topic": "home_bp_monitoring",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "aha_understanding_bp_readings_public",
+    "title": "Understanding Blood Pressure Readings",
+    "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings",
+    "include": true,
+    "source_quality_score": 25,
+    "topic": "bp_categories",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "aha_hypertensive_crisis_public",
+    "title": "Hypertensive Crisis and Emergency Warning",
+    "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings",
+    "include": true,
+    "source_quality_score": 25,
+    "topic": "emergency",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "cdc_measure_blood_pressure_home",
+    "title": "Measure Your Blood Pressure",
+    "url": "https://www.cdc.gov/high-blood-pressure/measure/index.html",
+    "include": true,
+    "source_quality_score": 25,
+    "topic": "home_bp_monitoring",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "nice_ng136_hypertension",
+    "title": "Hypertension in adults - diagnosis and management",
+    "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
+    "include": true,
+    "source_quality_score": 24,
+    "topic": "home_bp_monitoring",
+    "evidence_class": "guideline"
+  },
+  {
+    "source_id": "esc_2024_bp_guideline_key_points",
+    "title": "2024 ESC Guidelines for Elevated Blood Pressure and Hypertension - Key Points",
+    "url": "https://www.acc.org/Latest-in-Cardiology/ten-points-to-remember/2024/09/05/14/11/2024-esc-guidelines-for-bp-esc-2024",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "bp_categories",
+    "evidence_class": "guideline"
+  },
+  {
+    "source_id": "ish_2020_global_guideline",
+    "title": "2020 International Society of Hypertension Global Hypertension Practice Guidelines",
+    "url": "https://ish-world.com/global-hypertension-practice-guidelines/",
+    "include": true,
+    "source_quality_score": 21,
+    "topic": "home_bp_monitoring",
+    "evidence_class": "guideline"
+  },
+  {
+    "source_id": "esh_2023_hypertension_guideline",
+    "title": "2023 ESH Guidelines for the management of arterial hypertension",
+    "url": "https://www.eshonline.org/guidelines/",
+    "include": true,
+    "source_quality_score": 21,
+    "topic": "home_bp_monitoring",
+    "evidence_class": "guideline"
+  },
+  {
+    "source_id": "chinese_hypertension_guideline_2024_catalog",
+    "title": "Chinese Guidelines for the Prevention and Treatment of Hypertension (2024 revision)",
+    "url": "https://www.sciopen.com/article/10.26599/1671-5411.2025.01.008",
+    "include": true,
+    "source_quality_score": 24,
+    "topic": "bp_categories",
+    "evidence_class": "guideline"
+  },
+  {
+    "source_id": "aha_cuffless_bp_scientific_statement",
+    "title": "Cuffless Devices for the Measurement of Blood Pressure",
+    "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
+    "include": true,
+    "source_quality_score": 25,
+    "topic": "cuffless_ppg_limitations",
+    "evidence_class": "scientific_statement"
+  },
+  {
+    "source_id": "pubmed_cuffless_bp_statement_41376592",
+    "title": "Cuffless Devices for the Measurement of Blood Pressure - PubMed record",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/41376592/",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "cuffless_ppg_limitations",
+    "evidence_class": "scientific_statement"
+  },
+  {
+    "source_id": "pubmed_cuffless_bp_review_41460057",
+    "title": "Cuffless blood pressure measurement narrative review - PubMed record",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/41460057/",
+    "include": true,
+    "source_quality_score": 21,
+    "topic": "cuffless_ppg_limitations",
+    "evidence_class": "review"
+  },
+  {
+    "source_id": "iso_81060_2_validation_standard",
+    "title": "ISO 81060-2:2018 Non-invasive sphygmomanometers clinical investigation",
+    "url": "https://www.iso.org/standard/73339.html",
+    "include": true,
+    "source_quality_score": 19,
+    "topic": "validated_devices",
+    "evidence_class": "validation_standard"
+  },
+  {
+    "source_id": "stride_bp_validated_devices",
+    "title": "STRIDE BP validated blood pressure monitors",
+    "url": "https://www.stridebp.org/bp-monitors",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "validated_devices",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "cdc_prevent_high_blood_pressure",
+    "title": "Prevent High Blood Pressure",
+    "url": "https://www.cdc.gov/high-blood-pressure/prevention/index.html",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "lifestyle",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "cdc_high_bp_risk_factors",
+    "title": "High Blood Pressure Risk Factors",
+    "url": "https://www.cdc.gov/high-blood-pressure/risk-factors/index.html",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "lifestyle",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "aha_lifestyle_manage_bp",
+    "title": "Changes You Can Make to Manage High Blood Pressure",
+    "url": "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure",
+    "include": true,
+    "source_quality_score": 24,
+    "topic": "lifestyle",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "aha_sodium_salt",
+    "title": "Sodium and Salt",
+    "url": "https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/sodium/sodium-and-salt",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "lifestyle",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "aha_getting_active_bp",
+    "title": "Getting Active to Control High Blood Pressure",
+    "url": "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/getting-active-to-control-high-blood-pressure",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "lifestyle",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "aha_weight_bp",
+    "title": "Managing Weight to Control High Blood Pressure",
+    "url": "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/managing-weight-to-control-high-blood-pressure",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "lifestyle",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "cdc_bp_pregnancy",
+    "title": "High Blood Pressure During Pregnancy",
+    "url": "https://www.cdc.gov/high-blood-pressure/about/high-blood-pressure-during-pregnancy.html",
+    "include": true,
+    "source_quality_score": 25,
+    "topic": "special_population",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "nhlbi_preeclampsia_pregnancy",
+    "title": "Preeclampsia and High Blood Pressure During Pregnancy",
+    "url": "https://www.nhlbi.nih.gov/health/high-blood-pressure/pregnancy",
+    "include": true,
+    "source_quality_score": 25,
+    "topic": "special_population",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "acog_preeclampsia_faq",
+    "title": "Preeclampsia and High Blood Pressure During Pregnancy FAQ",
+    "url": "https://www.acog.org/womens-health/faqs/preeclampsia-and-high-blood-pressure-during-pregnancy",
+    "include": true,
+    "source_quality_score": 25,
+    "topic": "special_population",
+    "evidence_class": "patient_education"
+  },
+  {
+    "source_id": "ada_diabetes_bp",
+    "title": "Diabetes and High Blood Pressure",
+    "url": "https://diabetes.org/health-wellness/high-blood-pressure",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "special_population",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "nkf_high_bp_ckd",
+    "title": "High Blood Pressure and Chronic Kidney Disease",
+    "url": "https://www.kidney.org/kidney-topics/high-blood-pressure-and-chronic-kidney-disease",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "special_population",
+    "evidence_class": "patient_education"
+  },
+  {
+    "source_id": "cdc_ckd_risk_factors",
+    "title": "Chronic Kidney Disease Risk Factors",
+    "url": "https://www.cdc.gov/kidney-disease/risk-factors/index.html",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "special_population",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "who_hypertension_fact_sheet",
+    "title": "Hypertension fact sheet",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/hypertension",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "bp_categories",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "nhlbi_high_blood_pressure",
+    "title": "High Blood Pressure",
+    "url": "https://www.nhlbi.nih.gov/health/high-blood-pressure",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "bp_categories",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "medlineplus_high_blood_pressure",
+    "title": "High Blood Pressure",
+    "url": "https://medlineplus.gov/highbloodpressure.html",
+    "include": true,
+    "source_quality_score": 23,
+    "topic": "lifestyle",
+    "evidence_class": "official_health_education"
+  },
+  {
+    "source_id": "local_ppg_signal_quality_rule",
+    "title": "PPG signal quality and confidence safety rule",
+    "url": "",
+    "include": true,
+    "source_quality_score": 24,
+    "topic": "measurement_quality",
+    "evidence_class": "safety_rule"
+  },
+  {
+    "source_id": "local_hypertensive_emergency_rule",
+    "title": "Hypertensive emergency safety rule",
+    "url": "",
+    "include": true,
+    "source_quality_score": 24,
+    "topic": "emergency",
+    "evidence_class": "safety_rule"
+  },
+  {
+    "source_id": "local_medication_safety_rule",
+    "title": "Medication safety boundary rule",
+    "url": "",
+    "include": true,
+    "source_quality_score": 24,
+    "topic": "medication_safety",
+    "evidence_class": "safety_rule"
+  },
+  {
+    "source_id": "local_disclaimer_rule",
+    "title": "Required disclaimer rule",
+    "url": "",
+    "include": true,
+    "source_quality_score": 24,
+    "topic": "disclaimer",
+    "evidence_class": "safety_rule"
+  },
+  {
+    "source_id": "local_special_population_rule",
+    "title": "Special population conservative advice rule",
+    "url": "",
+    "include": true,
+    "source_quality_score": 24,
+    "topic": "special_population",
+    "evidence_class": "safety_rule"
+  },
+  {
+    "source_id": "vendor_watch_bp_device_blog",
+    "title": "Example vendor blog about wearable blood pressure watches",
+    "url": "https://example.com/wearable-bp-watch",
+    "include": false,
+    "source_quality_score": 13,
+    "topic": "cuffless_ppg_limitations",
+    "evidence_class": "research_context"
+  },
+  {
+    "source_id": "consumer_blog_no_recheck",
+    "title": "Example consumer blog claiming no recheck needed",
+    "url": "https://example.com/no-recheck-blood-pressure",
+    "include": false,
+    "source_quality_score": 11,
+    "topic": "home_bp_monitoring",
+    "evidence_class": "research_context"
+  },
+  {
+    "source_id": "single_model_ppg_performance_paper",
+    "title": "Example single-model PPG blood pressure performance paper",
+    "url": "https://example.com/single-model-ppg-bp",
+    "include": false,
+    "source_quality_score": 13,
+    "topic": "research_context",
+    "evidence_class": "research_context"
+  },
+  {
+    "source_id": "news_soft_article_bp",
+    "title": "Example news soft article about blood pressure apps",
+    "url": "https://example.com/blood-pressure-app-news",
+    "include": false,
+    "source_quality_score": 13,
+    "topic": "cuffless_ppg_limitations",
+    "evidence_class": "research_context"
+  }
+]

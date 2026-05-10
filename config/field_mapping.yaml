@@ -1,0 +1,24 @@
+module:
+  aliases: [module, func, feature, metric_module]
+estimated_sbp:
+  aliases: [estimated_sbp, sbp, sys, systolic, systolic_bp, SBP]
+estimated_dbp:
+  aliases: [estimated_dbp, dbp, dia, diastolic, diastolic_bp, DBP]
+heart_rate:
+  aliases: [heart_rate, hr, pulse, bpm, HR]
+signal_quality_score:
+  aliases: [signal_quality_score, quality_score, sqi, signal_score]
+signal_quality_label:
+  aliases: [signal_quality_label, signal_quality, quality_label, quality]
+confidence:
+  aliases: [confidence, conf, model_confidence, bp_confidence]
+capture_duration_sec:
+  aliases: [capture_duration_sec, duration, duration_sec, record_seconds]
+ppg_source:
+  aliases: [ppg_source, source, sensor_source]
+algorithm_version:
+  aliases: [algorithm_version, algo_version, version, model_version]
+calculation_principle:
+  aliases: [calculation_principle, principle, method_note, algorithm_note]
+timestamp:
+  aliases: [timestamp, measured_at, time, created_at]

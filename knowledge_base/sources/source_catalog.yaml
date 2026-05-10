@@ -1,0 +1,862 @@
+catalog_version: 1
+updated: 2026-05-10
+screen_threshold: 18
+sources:
+  - source_id: aha_2025_bp_guideline_top_things
+    title: 2025 High Blood Pressure Guideline - Top Things to Know
+    organization: American Heart Association
+    url: https://professional.heart.org/en/science-news/2025-high-blood-pressure-guideline/top-things-to-know
+    doi:
+    pmid:
+    year: 2025
+    language: en
+    region: AHA
+    topic: bp_categories
+    evidence_class: guideline
+    source_type: guideline_summary
+    include: true
+    allowed_uses: [bp_category_reference, home_bp_monitoring, remeasurement, lifestyle, special_population]
+    copyright_note: "Public AHA professional summary; use only short synthesized Chinese notes."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "AHA/ACC 2025 高血压指南要点可作为新版血压管理、复测和风险沟通的高等级背景来源。"
+      key_points: ["强调血压管理需要结合规范测量与长期风险。", "家庭血压监测和连续记录适合用于临床沟通。", "本系统只能用于估算值解释，不改变指南阈值或治疗建议。"]
+      implementation_notes: ["用于解释参考范围、复测和生活方式，不用于直接诊断。"]
+  - source_id: aha_home_bp_monitoring_public
+    title: Home Blood Pressure Monitoring
+    organization: American Heart Association
+    url: https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: AHA
+    topic: home_bp_monitoring
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [home_bp_monitoring, remeasurement, device_advice]
+    copyright_note: "Public AHA patient education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "AHA 家庭血压监测页面支持使用上臂式设备复核、规范姿势和记录趋势。"
+      key_points: ["优先使用经过验证的上臂式电子血压计。", "家庭监测适合记录趋势并带给医生。", "单次估算结果不应被解释为临床诊断。"]
+      implementation_notes: ["报告中的 device_advice 和 remeasurement 优先引用该来源。"]
+  - source_id: aha_understanding_bp_readings_public
+    title: Understanding Blood Pressure Readings
+    organization: American Heart Association
+    url: https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: AHA
+    topic: bp_categories
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [bp_category_reference, emergency_alert, remeasurement]
+    copyright_note: "Public AHA patient education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "AHA 血压读数解释页面支持 Normal/Elevated/Stage 范围和严重偏高症状提醒。"
+      key_points: ["血压分类只作为 PPG 估算值参考范围。", "严重偏高并伴急症症状时应提示紧急医疗帮助。", "需要复测和连续记录来理解趋势。"]
+      implementation_notes: ["不得把类别名称输出为 diagnosis。"]
+  - source_id: aha_hypertensive_crisis_public
+    title: Hypertensive Crisis and Emergency Warning
+    organization: American Heart Association
+    url: https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: AHA
+    topic: emergency
+    evidence_class: official_health_education
+    source_type: safety_education
+    include: true
+    allowed_uses: [emergency_alert, bp_category_reference]
+    copyright_note: "Public AHA patient education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "用于支持 180/120 左右并伴胸痛、气短、神经症状等时的急症提示。"
+      key_points: ["急症提示应置于报告开头。", "症状本身需要优先处理。", "PPG 估算需要复核，但不能延误急救。"]
+      implementation_notes: ["只用于 emergency_alert，不用于普通生活方式建议。"]
+  - source_id: cdc_measure_blood_pressure_home
+    title: Measure Your Blood Pressure
+    organization: Centers for Disease Control and Prevention
+    url: https://www.cdc.gov/high-blood-pressure/measure/index.html
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: US
+    topic: home_bp_monitoring
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [home_bp_monitoring, remeasurement, device_advice]
+    copyright_note: "Public CDC health education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "CDC 测量血压页面支持家庭测量、准备步骤和与医生共享记录。"
+      key_points: ["测量前应安静休息并保持正确姿势。", "家庭记录可用于帮助医生了解趋势。", "测量方式和设备会影响读数。"]
+      implementation_notes: ["用于复测流程和家庭记录建议。"]
+  - source_id: nice_ng136_hypertension
+    title: Hypertension in adults - diagnosis and management
+    organization: National Institute for Health and Care Excellence
+    url: https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations
+    doi:
+    pmid:
+    year: 2023
+    language: en
+    region: UK
+    topic: home_bp_monitoring
+    evidence_class: guideline
+    source_type: guideline
+    include: true
+    allowed_uses: [home_bp_monitoring, remeasurement, bp_category_reference]
+    copyright_note: "Public NICE recommendations; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 4, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "NICE NG136 为家庭/动态血压确认和复测提供国际对照依据。"
+      key_points: ["诊断需要规范测量，不依赖单次设备估算。", "家庭血压监测可用于确认和随访。", "本系统只引用其测量原则和复测理念。"]
+      implementation_notes: ["用于论文中的国际指南对照。"]
+  - source_id: esc_2024_bp_guideline_key_points
+    title: 2024 ESC Guidelines for Elevated Blood Pressure and Hypertension - Key Points
+    organization: European Society of Cardiology / American College of Cardiology summary
+    url: https://www.acc.org/Latest-in-Cardiology/ten-points-to-remember/2024/09/05/14/11/2024-esc-guidelines-for-bp-esc-2024
+    doi:
+    pmid:
+    year: 2024
+    language: en
+    region: EU
+    topic: bp_categories
+    evidence_class: guideline
+    source_type: guideline_summary
+    include: true
+    allowed_uses: [bp_category_reference, home_bp_monitoring, remeasurement, special_population]
+    copyright_note: "Public key-points summary; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 4, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "ESC 2024 指南要点可补充欧洲场景下血压管理和规范测量原则。"
+      key_points: ["强调确认性测量和长期管理。", "可作为 AHA/CN 外的国际对照。", "不改变本项目默认 CN/AHA 阈值配置。"]
+      implementation_notes: ["用于 evidence diversity 和论文讨论。"]
+  - source_id: ish_2020_global_guideline
+    title: 2020 International Society of Hypertension Global Hypertension Practice Guidelines
+    organization: International Society of Hypertension
+    url: https://ish-world.com/global-hypertension-practice-guidelines/
+    doi:
+    pmid:
+    year: 2020
+    language: en
+    region: global
+    topic: home_bp_monitoring
+    evidence_class: guideline
+    source_type: guideline
+    include: true
+    allowed_uses: [home_bp_monitoring, remeasurement, lifestyle, special_population]
+    copyright_note: "Guideline landing page; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 3, relevance: 4, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "ISH 全球实践指南可作为资源受限和全球场景下的测量与生活方式背景。"
+      key_points: ["强调规范测量、重复读数和长期管理。", "生活方式建议属于健康教育而非治疗替代。", "特殊人群应更保守地咨询医生。"]
+      implementation_notes: ["用于全球背景，不优先于 CN/AHA。"]
+  - source_id: esh_2023_hypertension_guideline
+    title: 2023 ESH Guidelines for the management of arterial hypertension
+    organization: European Society of Hypertension
+    url: https://www.eshonline.org/guidelines/
+    doi:
+    pmid:
+    year: 2023
+    language: en
+    region: EU
+    topic: home_bp_monitoring
+    evidence_class: guideline
+    source_type: guideline
+    include: true
+    allowed_uses: [home_bp_monitoring, remeasurement, special_population]
+    copyright_note: "Guideline landing page; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 4, relevance: 4, accessibility: 4, safety_applicability: 4}
+    notes:
+      summary: "ESH 2023 指南补充欧洲高血压管理、家庭测量和风险分层背景。"
+      key_points: ["强调规范设备和重复测量。", "不支持用单次 PPG 估算做诊断。", "合并疾病人群需要医生参与。"]
+      implementation_notes: ["用于补充家庭监测和特殊人群提示。"]
+  - source_id: chinese_hypertension_guideline_2024_catalog
+    title: Chinese Guidelines for the Prevention and Treatment of Hypertension (2024 revision)
+    organization: Chinese guideline authors
+    url: https://www.sciopen.com/article/10.26599/1671-5411.2025.01.008
+    doi: 10.26599/1671-5411.2025.01.008
+    pmid: 40151633
+    year: 2025
+    language: zh
+    region: CN
+    topic: bp_categories
+    evidence_class: guideline
+    source_type: guideline
+    include: true
+    allowed_uses: [bp_category_reference, home_bp_monitoring, remeasurement, lifestyle, special_population]
+    copyright_note: "Use citation and synthesized notes; do not reproduce full guideline text."
+    access_note: public abstract / open landing page
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 5, accessibility: 4, safety_applicability: 5}
+    notes:
+      summary: "中国高血压防治指南 2024 修订版是中文场景的核心参考。"
+      key_points: ["用于中文报告的参考范围和复测建议。", "不能把 PPG 估算值写为诊断。", "合并基础病或特殊人群需要更保守建议。"]
+      implementation_notes: ["默认 guideline_region=CN 时优先引用。"]
+  - source_id: aha_cuffless_bp_scientific_statement
+    title: Cuffless Devices for the Measurement of Blood Pressure
+    organization: American Heart Association
+    url: https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know
+    doi:
+    pmid: 41376592
+    year: 2025
+    language: en
+    region: AHA
+    topic: cuffless_ppg_limitations
+    evidence_class: scientific_statement
+    source_type: scientific_statement
+    include: true
+    allowed_uses: [cuffless_ppg_limitations, device_advice, signal_quality, research_background]
+    copyright_note: "Public top-things summary; cite PMID and summarize."
+    access_note: public summary
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "AHA 无袖带血压科学声明是 PPG/无袖带估算局限的核心安全依据。"
+      key_points: ["无袖带设备依赖间接估算，真实场景可靠性需验证。", "PPG 估算不能替代规范血压测量。", "报告应避免准确性过度承诺。"]
+      implementation_notes: ["任何 PPG 局限说明优先引用该来源。"]
+  - source_id: pubmed_cuffless_bp_statement_41376592
+    title: Cuffless Devices for the Measurement of Blood Pressure - PubMed record
+    organization: PubMed / American Heart Association
+    url: https://pubmed.ncbi.nlm.nih.gov/41376592/
+    doi:
+    pmid: 41376592
+    year: 2025
+    language: en
+    region: global
+    topic: cuffless_ppg_limitations
+    evidence_class: scientific_statement
+    source_type: bibliographic_record
+    include: true
+    allowed_uses: [cuffless_ppg_limitations, research_background]
+    copyright_note: "Use bibliographic metadata and abstract-level synthesis only."
+    access_note: public abstract
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 5, accessibility: 4, safety_applicability: 4}
+    notes:
+      summary: "PubMed 记录提供 AHA 无袖带血压声明的索引、年份和可追溯 citation。"
+      key_points: ["支持论文引用和 source traceability。", "不复制全文。", "用途限定为背景与局限说明。"]
+      implementation_notes: ["用于 citation，不作为患者建议的唯一来源。"]
+  - source_id: pubmed_cuffless_bp_review_41460057
+    title: Cuffless blood pressure measurement narrative review - PubMed record
+    organization: PubMed
+    url: https://pubmed.ncbi.nlm.nih.gov/41460057/
+    doi:
+    pmid: 41460057
+    year: 2025
+    language: en
+    region: global
+    topic: cuffless_ppg_limitations
+    evidence_class: review
+    source_type: narrative_review
+    include: true
+    allowed_uses: [research_background, cuffless_ppg_limitations]
+    copyright_note: "Use abstract-level synthesis only."
+    access_note: public abstract
+    last_accessed: 2026-05-10
+    screening: {authority: 4, recency: 5, relevance: 5, accessibility: 4, safety_applicability: 3}
+    notes:
+      summary: "2025 综述只用于解释无袖带血压研究背景和仍需验证的局限。"
+      key_points: ["研究综述不等同临床指南。", "不能用于就医或治疗建议。", "可用于论文中解释技术挑战。"]
+      implementation_notes: ["allowed_uses 不包含 emergency_alert 或 medication_safety。"]
+  - source_id: iso_81060_2_validation_standard
+    title: ISO 81060-2:2018 Non-invasive sphygmomanometers clinical investigation
+    organization: International Organization for Standardization
+    url: https://www.iso.org/standard/73339.html
+    doi:
+    pmid:
+    year: 2018
+    language: en
+    region: global
+    topic: validated_devices
+    evidence_class: validation_standard
+    source_type: standard_record
+    include: true
+    allowed_uses: [device_advice, research_background]
+    copyright_note: "ISO standard record only; do not reproduce standard text."
+    access_note: public metadata / paid standard
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 3, relevance: 4, accessibility: 3, safety_applicability: 4}
+    notes:
+      summary: "ISO 81060-2 记录用于说明血压设备需要临床验证标准，不能复制标准正文。"
+      key_points: ["规范血压设备需要经过验证。", "PPG 估算结果不应替代经验证设备。", "仅使用标准元数据和验证原则。"]
+      implementation_notes: ["用于 device_advice 和论文方法背景。"]
+  - source_id: stride_bp_validated_devices
+    title: STRIDE BP validated blood pressure monitors
+    organization: STRIDE BP
+    url: https://www.stridebp.org/bp-monitors
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: global
+    topic: validated_devices
+    evidence_class: official_health_education
+    source_type: device_validation_registry
+    include: true
+    allowed_uses: [device_advice, home_bp_monitoring]
+    copyright_note: "Registry link only; do not reproduce device list."
+    access_note: public registry
+    last_accessed: 2026-05-10
+    screening: {authority: 4, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "STRIDE BP 可支持建议用户选择经过验证的上臂式血压计。"
+      key_points: ["设备选择应以验证状态为依据。", "本系统不推荐具体商业型号。", "引用注册表链接即可。"]
+      implementation_notes: ["用于 device_advice，不展示厂商排名。"]
+  - source_id: cdc_prevent_high_blood_pressure
+    title: Prevent High Blood Pressure
+    organization: Centers for Disease Control and Prevention
+    url: https://www.cdc.gov/high-blood-pressure/prevention/index.html
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: US
+    topic: lifestyle
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [lifestyle]
+    copyright_note: "Public CDC health education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 4, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "CDC 高血压预防页面支持健康饮食、运动、体重管理、戒烟限酒等通用建议。"
+      key_points: ["生活方式建议属于健康教育。", "不能承诺一定降低血压。", "不替代医生制定的治疗方案。"]
+      implementation_notes: ["用于普通 lifestyle，不用于用药或急症。"]
+  - source_id: cdc_high_bp_risk_factors
+    title: High Blood Pressure Risk Factors
+    organization: Centers for Disease Control and Prevention
+    url: https://www.cdc.gov/high-blood-pressure/risk-factors/index.html
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: US
+    topic: lifestyle
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [lifestyle, special_population]
+    copyright_note: "Public CDC health education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 4, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "CDC 风险因素页面支持年龄、基础疾病、生活方式等风险沟通。"
+      key_points: ["风险因素可用于提醒关注长期趋势。", "不能由 PPG 估算值判断疾病。", "合并基础病时建议咨询医生。"]
+      implementation_notes: ["用于 special_population 和 lifestyle。"]
+  - source_id: aha_lifestyle_manage_bp
+    title: Changes You Can Make to Manage High Blood Pressure
+    organization: American Heart Association
+    url: https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: AHA
+    topic: lifestyle
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [lifestyle, home_bp_monitoring]
+    copyright_note: "Public AHA patient education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "AHA 生活方式页面支持减盐、运动、体重、戒烟限酒和睡眠等健康教育建议。"
+      key_points: ["建议应保持温和和长期管理导向。", "不能替代治疗方案。", "不应给出保证性效果。"]
+      implementation_notes: ["用于 lifestyle recommendations。"]
+  - source_id: aha_sodium_salt
+    title: Sodium and Salt
+    organization: American Heart Association
+    url: https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/sodium/sodium-and-salt
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: AHA
+    topic: lifestyle
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [lifestyle]
+    copyright_note: "Public AHA patient education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 4, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "AHA 钠盐页面支持减少钠盐摄入的健康教育。"
+      key_points: ["减盐建议应表达为通用健康建议。", "避免承诺短期降压效果。", "特殊疾病饮食需咨询医生。"]
+      implementation_notes: ["用于生活方式中的减盐条目。"]
+  - source_id: aha_getting_active_bp
+    title: Getting Active to Control High Blood Pressure
+    organization: American Heart Association
+    url: https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/getting-active-to-control-high-blood-pressure
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: AHA
+    topic: lifestyle
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [lifestyle]
+    copyright_note: "Public AHA patient education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 4, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "AHA 运动页面支持规律身体活动作为血压健康教育内容。"
+      key_points: ["运动建议应适度、循序渐进。", "有症状或基础病者应先咨询医生。", "不要把运动建议写成治疗处方。"]
+      implementation_notes: ["用于生活方式中的运动条目。"]
+  - source_id: aha_weight_bp
+    title: Managing Weight to Control High Blood Pressure
+    organization: American Heart Association
+    url: https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/managing-weight-to-control-high-blood-pressure
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: AHA
+    topic: lifestyle
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [lifestyle]
+    copyright_note: "Public AHA patient education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 4, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "AHA 体重管理页面支持把体重管理作为通用生活方式建议。"
+      key_points: ["体重建议应避免羞辱或过度承诺。", "BMI 只作为背景信息。", "不做个体化减重治疗方案。"]
+      implementation_notes: ["用于生活方式中的体重管理。"]
+  - source_id: cdc_bp_pregnancy
+    title: High Blood Pressure During Pregnancy
+    organization: Centers for Disease Control and Prevention
+    url: https://www.cdc.gov/high-blood-pressure/about/high-blood-pressure-during-pregnancy.html
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: US
+    topic: special_population
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [special_population]
+    copyright_note: "Public CDC health education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "CDC 妊娠期高血压页面支持孕妇或可能妊娠用户的保守就医提醒。"
+      key_points: ["妊娠相关高血压需要专业医疗评估。", "出现严重症状应及时求医。", "本系统不提供妊娠用药建议。"]
+      implementation_notes: ["pregnancy=true 时优先使用。"]
+  - source_id: nhlbi_preeclampsia_pregnancy
+    title: Preeclampsia and High Blood Pressure During Pregnancy
+    organization: National Heart, Lung, and Blood Institute
+    url: https://www.nhlbi.nih.gov/health/high-blood-pressure/pregnancy
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: US
+    topic: special_population
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [special_population]
+    copyright_note: "Public NIH health education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "NHLBI 妊娠期高血压页面补充孕期风险和及时就医提醒。"
+      key_points: ["孕期症状和血压异常需要专业评估。", "不能通过 PPG 估算排除风险。", "建议保守复核和咨询医生。"]
+      implementation_notes: ["用于 special_population。"]
+  - source_id: acog_preeclampsia_faq
+    title: Preeclampsia and High Blood Pressure During Pregnancy FAQ
+    organization: American College of Obstetricians and Gynecologists
+    url: https://www.acog.org/womens-health/faqs/preeclampsia-and-high-blood-pressure-during-pregnancy
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: US
+    topic: special_population
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [special_population]
+    copyright_note: "Public patient FAQ; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "ACOG FAQ 是孕妇高血压和先兆子痫安全提醒的权威患者教育来源。"
+      key_points: ["孕期高血压不能靠消费级估算自行判断。", "出现症状或多次复核异常应及时医疗处理。", "不提供用药调整建议。"]
+      implementation_notes: ["孕妇场景引用该来源增强安全性。"]
+  - source_id: ada_diabetes_bp
+    title: Diabetes and High Blood Pressure
+    organization: American Diabetes Association
+    url: https://diabetes.org/health-wellness/high-blood-pressure
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: US
+    topic: special_population
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [special_population, lifestyle, home_bp_monitoring]
+    copyright_note: "Public patient education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 4, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "ADA 页面支持糖尿病用户需要更重视血压复核和医生沟通。"
+      key_points: ["糖尿病合并血压异常应更保守处理。", "报告只建议复核和咨询医生。", "不设定个体化治疗目标。"]
+      implementation_notes: ["diabetes=true 时用于 special_population。"]
+  - source_id: nkf_high_bp_ckd
+    title: High Blood Pressure and Chronic Kidney Disease
+    organization: National Kidney Foundation
+    url: https://www.kidney.org/kidney-topics/high-blood-pressure-and-chronic-kidney-disease
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: US
+    topic: special_population
+    evidence_class: patient_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [special_population, home_bp_monitoring]
+    copyright_note: "Public patient education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 4, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "NKF 页面支持慢性肾病用户需要更保守复核和医生沟通。"
+      key_points: ["CKD 与血压管理关系密切。", "PPG 估算不能用于 CKD 个体化判断。", "建议咨询医生并保留测量记录。"]
+      implementation_notes: ["kidney_disease=true 时用于 special_population。"]
+  - source_id: cdc_ckd_risk_factors
+    title: Chronic Kidney Disease Risk Factors
+    organization: Centers for Disease Control and Prevention
+    url: https://www.cdc.gov/kidney-disease/risk-factors/index.html
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: US
+    topic: special_population
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [special_population]
+    copyright_note: "Public CDC health education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 4, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "CDC CKD 风险因素页面补充慢性肾病和高血压相关风险背景。"
+      key_points: ["用于提示基础病背景。", "不用于诊断或治疗建议。", "建议规范复核和医生沟通。"]
+      implementation_notes: ["用于 kidney_disease 场景。"]
+  - source_id: who_hypertension_fact_sheet
+    title: Hypertension fact sheet
+    organization: World Health Organization
+    url: https://www.who.int/news-room/fact-sheets/detail/hypertension
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: global
+    topic: bp_categories
+    evidence_class: official_health_education
+    source_type: fact_sheet
+    include: true
+    allowed_uses: [bp_category_reference, lifestyle, special_population]
+    copyright_note: "Public WHO fact sheet; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 4, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "WHO 高血压 fact sheet 提供全球负担、风险因素和健康教育背景。"
+      key_points: ["用于全球背景和健康教育。", "不改变本系统阈值配置。", "不用于个体诊断。"]
+      implementation_notes: ["用于论文背景和生活方式解释。"]
+  - source_id: nhlbi_high_blood_pressure
+    title: High Blood Pressure
+    organization: National Heart, Lung, and Blood Institute
+    url: https://www.nhlbi.nih.gov/health/high-blood-pressure
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: US
+    topic: bp_categories
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [bp_category_reference, lifestyle, special_population]
+    copyright_note: "Public NIH patient education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 4, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "NHLBI 高血压页面支持通用血压健康教育、风险因素和咨询医生提醒。"
+      key_points: ["适合补充公共卫生背景。", "不用于 PPG 准确性证明。", "特殊人群仍建议专业评估。"]
+      implementation_notes: ["用于 bp_category_reference 和 lifestyle 背景。"]
+  - source_id: medlineplus_high_blood_pressure
+    title: High Blood Pressure
+    organization: MedlinePlus
+    url: https://medlineplus.gov/highbloodpressure.html
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: US
+    topic: lifestyle
+    evidence_class: official_health_education
+    source_type: patient_education
+    include: true
+    allowed_uses: [lifestyle, home_bp_monitoring, special_population]
+    copyright_note: "Public MedlinePlus patient education; summarize only."
+    access_note: public
+    last_accessed: 2026-05-10
+    screening: {authority: 5, recency: 5, relevance: 4, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "MedlinePlus 高血压页面可作为面向患者的通用健康教育补充来源。"
+      key_points: ["支持生活方式和就医沟通。", "不提供本系统调药依据。", "用于可读性较强的患者教育背景。"]
+      implementation_notes: ["用于 lifestyle 和 special_population 背景。"]
+  - source_id: local_ppg_signal_quality_rule
+    title: PPG signal quality and confidence safety rule
+    organization: project
+    url:
+    doi:
+    pmid:
+    year: 2026
+    language: zh
+    region: global
+    topic: measurement_quality
+    evidence_class: safety_rule
+    source_type: local_safety_rule
+    include: true
+    allowed_uses: [signal_quality, remeasurement, cuffless_ppg_limitations]
+    copyright_note: "Project-authored safety rule."
+    access_note: local
+    last_accessed: 2026-05-10
+    screening: {authority: 4, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "本项目规则：低信号质量或低置信度时不生成强风险结论。"
+      key_points: ["质量差时优先重新采集。", "采集时长短应提示复测。", "置信度低时建议规范设备复核。"]
+      implementation_notes: ["与 rule_engine 质量规则保持一致。"]
+  - source_id: local_hypertensive_emergency_rule
+    title: Hypertensive emergency safety rule
+    organization: project
+    url:
+    doi:
+    pmid:
+    year: 2026
+    language: zh
+    region: global
+    topic: emergency
+    evidence_class: safety_rule
+    source_type: local_safety_rule
+    include: true
+    allowed_uses: [emergency_alert]
+    copyright_note: "Project-authored safety rule based on public guideline thresholds."
+    access_note: local
+    last_accessed: 2026-05-10
+    screening: {authority: 4, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "本项目规则：严重偏高估算值并伴急症症状时，把急救提示放在报告最前。"
+      key_points: ["不要用普通生活方式建议冲淡急救提示。", "PPG 需要复核但不延误急救。", "症状包括胸痛、气短、神经症状等。"]
+      implementation_notes: ["与 rule_engine emergency 规则保持一致。"]
+  - source_id: local_medication_safety_rule
+    title: Medication safety boundary rule
+    organization: project
+    url:
+    doi:
+    pmid:
+    year: 2026
+    language: zh
+    region: global
+    topic: medication_safety
+    evidence_class: safety_rule
+    source_type: local_safety_rule
+    include: true
+    allowed_uses: [medication_safety, special_population]
+    copyright_note: "Project-authored safety rule."
+    access_note: local
+    last_accessed: 2026-05-10
+    screening: {authority: 4, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "本项目规则：报告不得建议自行服药、停药、换药或调整剂量。"
+      key_points: ["正在用药用户应保留记录并咨询医生。", "不能根据 PPG 估算值改变用药。", "Safety Agent 必须拦截调药表达。"]
+      implementation_notes: ["用于 medication_safety。"]
+  - source_id: local_disclaimer_rule
+    title: Required disclaimer rule
+    organization: project
+    url:
+    doi:
+    pmid:
+    year: 2026
+    language: zh
+    region: global
+    topic: disclaimer
+    evidence_class: safety_rule
+    source_type: local_safety_rule
+    include: true
+    allowed_uses: [disclaimer, cuffless_ppg_limitations]
+    copyright_note: "Project-authored safety rule."
+    access_note: local
+    last_accessed: 2026-05-10
+    screening: {authority: 4, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "本项目规则：报告必须声明仅供个人健康趋势参考，不能替代医生诊断和规范血压测量。"
+      key_points: ["免责声明必须出现在 Markdown 和 JSON。", "PPG 局限必须显式表达。", "不能写成诊断或治疗建议。"]
+      implementation_notes: ["用于 Safety Agent 必检项。"]
+  - source_id: local_special_population_rule
+    title: Special population conservative advice rule
+    organization: project
+    url:
+    doi:
+    pmid:
+    year: 2026
+    language: zh
+    region: global
+    topic: special_population
+    evidence_class: safety_rule
+    source_type: local_safety_rule
+    include: true
+    allowed_uses: [special_population, medication_safety]
+    copyright_note: "Project-authored safety rule."
+    access_note: local
+    last_accessed: 2026-05-10
+    screening: {authority: 4, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
+    notes:
+      summary: "本项目规则：老年、妊娠、糖尿病、肾病、心血管病史或正在用药用户应给出保守咨询医生建议。"
+      key_points: ["只提示更保守复核和就医沟通。", "不提供个体化治疗目标。", "不建议调药。"]
+      implementation_notes: ["与 rule_engine special_population 规则保持一致。"]
+  - source_id: vendor_watch_bp_device_blog
+    title: Example vendor blog about wearable blood pressure watches
+    organization: example vendor
+    url: https://example.com/wearable-bp-watch
+    doi:
+    pmid:
+    year: 2025
+    language: en
+    region: global
+    topic: cuffless_ppg_limitations
+    evidence_class: research_context
+    source_type: marketing
+    include: false
+    allowed_uses: [research_background]
+    copyright_note: "Excluded marketing example."
+    access_note: excluded
+    last_accessed: 2026-05-10
+    screening: {authority: 1, recency: 4, relevance: 2, accessibility: 5, safety_applicability: 1}
+    notes:
+      summary: "设备厂商营销页面排除，不能作为医学建议依据。"
+      key_points: ["存在商业利益。", "不作为核心证据。"]
+      implementation_notes: ["用于 excluded_sources 演示。"]
+  - source_id: consumer_blog_no_recheck
+    title: Example consumer blog claiming no recheck needed
+    organization: example blog
+    url: https://example.com/no-recheck-blood-pressure
+    doi:
+    pmid:
+    year: 2024
+    language: zh
+    region: global
+    topic: home_bp_monitoring
+    evidence_class: research_context
+    source_type: blog
+    include: false
+    allowed_uses: [research_background]
+    copyright_note: "Excluded unsafe blog example."
+    access_note: excluded
+    last_accessed: 2026-05-10
+    screening: {authority: 0, recency: 4, relevance: 2, accessibility: 5, safety_applicability: 0}
+    notes:
+      summary: "声称无需复测的博客不符合安全边界。"
+      key_points: ["与复测原则冲突。", "排除。"]
+      implementation_notes: ["用于筛选测试。"]
+  - source_id: single_model_ppg_performance_paper
+    title: Example single-model PPG blood pressure performance paper
+    organization: example journal
+    url: https://example.com/single-model-ppg-bp
+    doi:
+    pmid:
+    year: 2022
+    language: en
+    region: global
+    topic: research_context
+    evidence_class: research_context
+    source_type: single_study
+    include: false
+    allowed_uses: [research_background]
+    copyright_note: "Excluded as patient-advice evidence; may be cited only in methods discussion if needed."
+    access_note: excluded
+    last_accessed: 2026-05-10
+    screening: {authority: 2, recency: 3, relevance: 4, accessibility: 3, safety_applicability: 1}
+    notes:
+      summary: "单篇模型性能论文不足以支撑用户建议。"
+      key_points: ["只适合研究背景。", "不进入报告检索。"]
+      implementation_notes: ["排除。"]
+  - source_id: news_soft_article_bp
+    title: Example news soft article about blood pressure apps
+    organization: example media
+    url: https://example.com/blood-pressure-app-news
+    doi:
+    pmid:
+    year: 2026
+    language: zh
+    region: global
+    topic: cuffless_ppg_limitations
+    evidence_class: research_context
+    source_type: news
+    include: false
+    allowed_uses: [research_background]
+    copyright_note: "Excluded news-soft article example."
+    access_note: excluded
+    last_accessed: 2026-05-10
+    screening: {authority: 1, recency: 5, relevance: 2, accessibility: 5, safety_applicability: 0}
+    notes:
+      summary: "新闻软文排除，不作为医学建议来源。"
+      key_points: ["权威性不足。", "可能夸大设备效果。"]
+      implementation_notes: ["排除。"]

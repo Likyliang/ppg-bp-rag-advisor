@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ppg-bp-rag-agent"
+version = "0.1.0"
+description = "RAG-Agent for conservative health explanations of PPG-based blood pressure estimates."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "fastapi>=0.110,<1.0",
+  "uvicorn[standard]>=0.23",
+  "pydantic>=2.5,<3.0",
+  "PyYAML>=6.0",
+  "Jinja2>=3.1",
+  "python-dotenv>=1.0",
+  "streamlit>=1.30",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=7.4",
+  "httpx>=0.24",
+]
+rag = [
+  "chromadb>=0.4",
+  "sentence-transformers>=2.6",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+
+[tool.setuptools.packages.find]
+include = ["app*"]

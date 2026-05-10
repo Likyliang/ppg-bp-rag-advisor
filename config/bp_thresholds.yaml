@@ -1,0 +1,42 @@
+quality:
+  poor_signal_score_lt: 0.60
+  fair_signal_score_lt: 0.75
+  low_confidence_lt: 0.50
+  short_capture_duration_lt_sec: 20
+
+AHA:
+  normal:
+    sbp_lt: 120
+    dbp_lt: 80
+  elevated:
+    sbp_range: [120, 129]
+    dbp_lt: 80
+  stage_1_reference_range:
+    sbp_range: [130, 139]
+    dbp_range: [80, 89]
+  stage_2_reference_range:
+    sbp_gte: 140
+    dbp_gte: 90
+  severe_range:
+    sbp_gte: 180
+    dbp_gte: 120
+
+CN:
+  home_bp_high_reference:
+    sbp_gte: 135
+    dbp_gte: 85
+  office_bp_high_reference:
+    sbp_gte: 140
+    dbp_gte: 90
+
+emergency:
+  sbp_gte: 180
+  dbp_gte: 120
+  symptoms:
+    - chest_pain
+    - shortness_of_breath
+    - back_pain
+    - numbness_or_weakness
+    - vision_change
+    - speech_difficulty
+    - severe_headache

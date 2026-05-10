@@ -1,0 +1,47 @@
+{
+  "chunk_count": 140,
+  "source_count": 35,
+  "catalog_included_count": 35,
+  "topic_counts": {
+    "bp_categories": 24,
+    "cuffless_ppg_limitations": 12,
+    "disclaimer": 4,
+    "emergency": 8,
+    "home_bp_monitoring": 20,
+    "lifestyle": 28,
+    "measurement_quality": 4,
+    "medication_safety": 4,
+    "special_population": 28,
+    "validated_devices": 8
+  },
+  "topic_source_counts": {
+    "bp_categories": 6,
+    "cuffless_ppg_limitations": 3,
+    "disclaimer": 1,
+    "emergency": 2,
+    "home_bp_monitoring": 5,
+    "lifestyle": 7,
+    "measurement_quality": 1,
+    "medication_safety": 1,
+    "special_population": 7,
+    "validated_devices": 2
+  },
+  "evidence_class_counts": {
+    "guideline": 24,
+    "official_health_education": 76,
+    "scientific_statement": 8,
+    "review": 4,
+    "safety_rule": 20,
+    "patient_education": 4,
+    "validation_standard": 4
+  },
+  "missing_topics": [],
+  "duplicate_source_hashes": [],
+  "orphan_source_ids": [],
+  "unsafe_source_leakage": [],
+  "quality": {
+    "has_all_expected_topics": true,
+    "has_no_unsafe_source_leakage": true,
+    "has_catalog_alignment": true
+  }
+}
