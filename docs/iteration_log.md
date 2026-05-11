@@ -147,3 +147,24 @@
   - Rule+RAG+Safety report evaluation: required-use coverage 1.0, recommendation grounding 1.0, sensitive high-trust rate 1.0, emergency consistency 1.0.
   - Report benchmark: P95 0.0279s.
 - Remaining risk: calibrated query-only precision is now honest and only slightly above the 0.85 floor; the next quality-improvement round should target hybrid retrieval/rerank or query expansion rather than adding more sources blindly.
+
+## Special Iteration: Honest Retrieval Quality Uplift
+
+- Goal: push real `calibrated_query_only` retrieval quality above 0.95 without feeding expected labels into retrieval.
+- Finding: the largest losses came from intent ambiguity, not knowledge gaps:
+  - PPG replacement/accuracy questions were pulling home blood pressure monitoring chunks ahead of cuffless/PPG limitation chunks.
+  - Numeric BP questions and guideline/category questions were not consistently inferred as `bp_category_reference`.
+  - Medication wording such as `药物治疗`、`调药`、`加药`、`剂量` did not always trigger `medication_safety`.
+  - PPG optical sensor questions containing `运动` were being confused with lifestyle exercise advice.
+- Implementation:
+  - Added transparent query-intent heuristics in the retriever for BP values, BP categories, PPG/cuffless limitation questions, PPG motion/sensor-quality questions, medication safety, special populations, home monitoring, and remeasurement.
+  - Raised strict quality-gate `mean_precision_at_5` floor from 0.85 to 0.95.
+  - Kept `metadata_filter_safety` separate; the improved primary metric still uses `calibrated_query_only`.
+- Metrics after strict quality gate:
+  - Tests: 220 passed.
+  - Knowledge base: 93 included sources, 396 chunks.
+  - Calibrated query-only retrieval: match rate 1.0, precision@5 1.0, topic hit rate 1.0, expected class hit rate 0.92, unsafe-source leakage 0.
+  - Metadata-filter safety: match rate 1.0, precision@5 1.0, unsafe-source leakage 0.
+  - Rule+RAG+Safety report evaluation: required-use coverage 1.0, recommendation grounding 1.0, sensitive high-trust rate 1.0, emergency consistency 1.0.
+  - Report benchmark: P95 0.0311s.
+- Remaining risk: expected evidence-class hit rate is 0.92; a later round can improve source-class ranking without relaxing topic or safety filters.

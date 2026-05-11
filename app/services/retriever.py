@@ -13,6 +13,7 @@ from app.services.source_catalog import HIGH_TRUST_EVIDENCE_CLASSES
 
 
 TOKEN_RE = re.compile(r"[A-Za-z0-9_]+|[\u4e00-\u9fff]")
+BP_VALUE_RE = re.compile(r"\b\d{2,3}\s*[/／]\s*\d{2,3}\b")
 
 
 @dataclass
@@ -94,21 +95,91 @@ def _rerank_score(base_score: float, chunk: Dict, required_uses: Set[str], inten
 
 def infer_allowed_uses(retrieval_intents: Iterable[str]) -> Set[str]:
     text = " ".join(retrieval_intents).lower()
+    has_bp_value = bool(BP_VALUE_RE.search(text))
+    ppg_context = any(term in text for term in ["ppg", "cuffless", "无袖带", "摄像头", "手机", "手指", "光学", "估算"])
+    medication_context = any(term in text for term in ["medication", "drug", "medicine", "pharmacological", "服药", "服用", "停药", "用药", "降压药", "药物", "药物治疗", "调药", "加药", "剂量", "自行"])
+    special_context = any(term in text for term in ["pregnancy", "pregnant", "妊娠", "孕", "diabetes", "kidney", "ckd", "cvd", "cardiovascular", "糖尿", "肾", "老年", "65", "心血管", "既往心血管病", "特殊人群"])
+    cuffless_question = ppg_context and any(
+        term in text
+        for term in [
+            "准确",
+            "可靠",
+            "替代",
+            "代替",
+            "只能看趋势",
+            "趋势参考",
+            "不能诊断",
+            "不能替代",
+            "局限",
+            "validation",
+            "limitation",
+            "reliable",
+            "accurate",
+        ]
+    )
+    ppg_motion_or_sensor_question = ppg_context and any(
+        term in text
+        for term in [
+            "可穿戴",
+            "光学传感器",
+            "活动状态",
+            "运动",
+            "误差",
+            "motion",
+            "artifact",
+            "sensor",
+            "wearable",
+            "伪影",
+        ]
+    )
+    explicit_bp_category_terms = any(
+        term in text
+        for term in [
+            "血压分类",
+            "参考范围",
+            "正常参考",
+            "stage",
+            "elevated",
+            "normal",
+            "category",
+            "读数",
+            "reading",
+            "中国 高血压 指南",
+            "aha 血压分类",
+            "blood pressure category",
+        ]
+    )
+    bp_category_question = has_bp_value or explicit_bp_category_terms or ("偏高" in text and not special_context and not medication_context)
     uses: Set[str] = set()
     if any(term in text for term in ["emergency", "urgent", "180", "120", "胸痛", "气短", "急救", "严重", "肢体", "视物", "说话"]):
         uses.add("emergency_alert")
-    if any(term in text for term in ["medication", "drug", "服药", "停药", "用药", "降压药"]):
+    if medication_context:
         uses.add("medication_safety")
     if any(term in text for term in ["pregnancy", "pregnant", "妊娠", "孕"]):
         uses.add("special_population")
-    if any(term in text for term in ["diabetes", "kidney", "ckd", "糖尿", "肾", "老年", "65"]):
+    if special_context:
         uses.add("special_population")
-    if any(term in text for term in ["lifestyle", "sodium", "exercise", "weight", "sleep", "smoking", "减盐", "运动", "体重", "睡眠", "戒烟"]):
+    if any(term in text for term in ["lifestyle", "sodium", "exercise", "weight", "sleep", "smoking", "减盐", "运动", "体重", "睡眠", "戒烟"]) and not ppg_motion_or_sensor_question:
         uses.add("lifestyle")
-    if any(term in text for term in ["ppg", "cuffless", "无袖带", "准确", "信号", "置信度"]):
+    if bp_category_question:
+        uses.add("bp_category_reference")
+    if cuffless_question or any(term in text for term in ["无袖带", "cuffless", "信号", "置信度", "quality_score", "confidence", "motion", "artifact", "伪影", "环境光", "肤色", "接触压力", "采集时长", "传感器位置"]):
         uses.add("cuffless_ppg_limitations")
-    if any(term in text for term in ["home", "monitoring", "upper arm", "validated", "复测", "上臂", "血压计", "家庭"]):
-        uses.update({"home_bp_monitoring", "remeasurement", "device_advice"})
+    if any(term in text for term in ["信号", "置信度", "quality_score", "confidence", "motion", "artifact", "伪影", "环境光", "肤色", "接触压力", "采集时长", "传感器位置", "手指移动", "覆盖不完整"]):
+        uses.update({"signal_quality", "remeasurement"})
+    if ppg_motion_or_sensor_question:
+        uses.update({"signal_quality", "research_background"})
+    device_context = any(term in text for term in ["home", "monitoring", "upper arm", "validated", "上臂", "家庭", "stride", "validatebp", "验证设备"])
+    recheck_context = any(term in text for term in ["复测", "复核", "记录", "连续", "趋势", "rest", "reading"])
+    if device_context:
+        uses.update({"home_bp_monitoring", "device_advice"})
+    if recheck_context and not (uses == {"special_population"}):
+        uses.add("remeasurement")
+    if "血压计" in text and not cuffless_question:
+        uses.update({"home_bp_monitoring", "device_advice"})
+    if cuffless_question and not bp_category_question:
+        uses.discard("home_bp_monitoring")
+        uses.discard("remeasurement")
     return uses
 
 

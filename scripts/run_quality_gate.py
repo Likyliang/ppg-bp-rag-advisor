@@ -32,7 +32,7 @@ STOP_CRITERIA = {
     "min_golden_queries": 100,
     "min_report_fixtures": 50,
     "min_match_rate": 0.95,
-    "min_precision_at_5": 0.85,
+    "min_precision_at_5": 0.95,
     "min_topic_hit_rate": 0.90,
     "min_recommendation_grounding_rate": 1.0,
     "min_required_use_coverage_rate": 0.95,

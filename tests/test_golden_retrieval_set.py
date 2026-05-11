@@ -41,7 +41,7 @@ def test_calibrated_query_only_meets_quality_floor():
     assert summary["query_count"] == 100
     assert summary["evaluation_mode"] == "calibrated_query_only"
     assert summary["match_rate"] >= 0.95
-    assert summary["mean_precision_at_5"] >= 0.85
+    assert summary["mean_precision_at_5"] >= 0.95
     assert summary["unsafe_source_leakage_count"] == 0
 
 
