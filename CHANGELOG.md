@@ -18,6 +18,7 @@
 - Promoted institution/browser-assisted full-text summaries for the AHA cuffless BP statement, Chinese 2024 hypertension guideline, and AHA/ACC 2025 full guideline; current KB is 63 included sources and 261 chunks.
 - Added a targeted official-source expansion with FDA cuffless NIBP draft guidance, WHO cuffed BP device specifications, USPSTF screening, Chinese NHC lifestyle guidance, KDIGO 2024 CKD, and ADA 2026 diabetes standards; current KB is 70 included sources and 289 chunks.
 - Added detailed PPG/optical signal-quality evidence for motion, skin tone/ambient light, contact pressure, acquisition duration, and sensor position; current KB is 80 included sources and 329 chunks.
+- Processed the Pro workbook download list and downloaded/validated 15 additional public PDFs into ignored local storage, with 2 existing PDFs reused and 5 direct-download failures recorded for manual/browser handling.
 
 ## v1.0.0-rc1 - 2026-05-10
 

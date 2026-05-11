@@ -104,3 +104,13 @@
 - Expanded golden retrieval queries for motion artifacts, contact pressure, ambient light, skin tone, acquisition duration, sensor position, and wearable optical sensor error.
 - Metrics after strict quality gate: 105 tests, 80 included sources, 329 chunks, 100 golden queries, match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.0170s.
 - Next risk: if the thesis needs stronger primary evidence for skin tone in camera PPG specifically, prioritize full-text summary for the IEEE EMBC video PPG source and compare it with FDA optical sensor safety language.
+
+## Special Iteration: Pro Public PDF Download Intake
+
+- Goal: inspect `PPG血压估算_RAG知识库下载清单.xlsx` and directly download rows marked `PDF开放下载` without using credentials or institution access.
+- Parsed 44 workbook rows and selected 22 public-PDF candidates.
+- Downloaded 15 new PDFs into ignored local storage and reused 2 PDFs already present from prior iterations.
+- Verified 17 selected PDF files with `pypdf`; validation failures: 0.
+- Direct-download failures remain for 5 rows: Chinese Hypertension Guideline 2024 CHL-BHA mirror, 2019 Chinese home BP monitoring guideline, 2024 ESC guideline OUP PDF, AHA/AMA 2020 SMBP policy statement, and AHA PREVENT equations PDF.
+- Output artifacts: `knowledge_base/processed/pro_download_list_public_pdf_manifest.json` and `knowledge_base/processed/pro_download_list_public_pdf_report.md`.
+- Next risk: downloaded PDFs are not yet RAG evidence; the next iteration should add source-catalog records where missing, create Chinese summary notes, run ingest/audit/evaluation, and keep treatment/drug content restricted to safety reminders.
