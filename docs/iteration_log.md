@@ -128,3 +128,22 @@
 - Retrieval evaluation: 100 golden queries, match rate 1.0, precision@5 1.0, unsafe-source leakage 0.
 - Strict quality gate passed: 105 tests, 50 report fixtures, report P95 0.0244s.
 - Safety note: WHO pharmacological guidance is only allowed for `medication_safety`; patient-education sources were intentionally not allowed to answer medication-adjustment sensitive queries.
+
+## Special Iteration: RAG Trust Calibration
+
+- Goal: make the RAG quality evidence less self-referential by separating true query-only retrieval evaluation from metadata-filter safety checks, and make every report recommendation auditable back to evidence.
+- Finding: the previous retrieval evaluation passed `expected_uses` into the retriever and then judged success against the same labels, so the 1.0 score was useful as a safety-filter check but too optimistic as a retrieval-quality metric.
+- Implementation:
+  - Added `calibrated_query_only` as the primary retrieval mode; it does not pass gold allowed uses into retrieval.
+  - Retained the old expected-use filtered path as `metadata_filter_safety`.
+  - Added expected topics/evidence classes to golden queries and full 100-query test participation.
+  - Added `recommendation_evidence` to reports and extended citation quality with recommendation grounding.
+  - Added report expectations and evaluation metrics for required-use coverage, recommendation grounding, sensitive high-trust evidence, and emergency consistency.
+- Metrics after strict quality gate:
+  - Tests: 220 passed.
+  - Knowledge base: 93 included sources, 396 chunks.
+  - Calibrated query-only retrieval: match rate 0.97, precision@5 0.86, topic hit rate 0.97, expected class hit rate 0.96, unsafe-source leakage 0.
+  - Metadata-filter safety: match rate 1.0, precision@5 1.0, unsafe-source leakage 0.
+  - Rule+RAG+Safety report evaluation: required-use coverage 1.0, recommendation grounding 1.0, sensitive high-trust rate 1.0, emergency consistency 1.0.
+  - Report benchmark: P95 0.0279s.
+- Remaining risk: calibrated query-only precision is now honest and only slightly above the 0.85 floor; the next quality-improvement round should target hybrid retrieval/rerank or query expansion rather than adding more sources blindly.

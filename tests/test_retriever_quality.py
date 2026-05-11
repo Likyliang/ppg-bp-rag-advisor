@@ -19,5 +19,10 @@ def test_emergency_query_uses_high_trust_sources_only():
 def test_medication_query_does_not_return_lifestyle_only_sources():
     result = retrieve_knowledge(["正在使用降压药 PPG 血压偏高 要停药吗"], top_k=5)
     assert result.evidence
-    assert all("medication_safety" in item.allowed_uses for item in result.evidence)
+    assert any("medication_safety" in item.allowed_uses for item in result.evidence)
+    assert all(
+        item.evidence_class in HIGH_TRUST_EVIDENCE_CLASSES
+        for item in result.evidence
+        if "medication_safety" in item.allowed_uses
+    )
     assert all("lifestyle" not in item.allowed_uses or "medication_safety" in item.allowed_uses for item in result.evidence)

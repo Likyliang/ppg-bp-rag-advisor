@@ -1,5 +1,5 @@
 {
-  "timestamp": 1778477675,
+  "timestamp": 1778500664,
   "stop_criteria": {
     "min_tests": 60,
     "min_included_sources": 60,
@@ -7,17 +7,26 @@
     "min_golden_queries": 100,
     "min_report_fixtures": 50,
     "min_match_rate": 0.95,
-    "min_precision_at_5": 0.85
+    "min_precision_at_5": 0.85,
+    "min_topic_hit_rate": 0.9,
+    "min_recommendation_grounding_rate": 1.0,
+    "min_required_use_coverage_rate": 0.95
   },
   "metrics": {
     "commands_ok": true,
-    "test_count": 105,
+    "test_count": 220,
     "included_sources": 93,
     "chunk_count": 396,
     "golden_query_count": 100,
     "report_fixture_count": 50,
-    "retrieval_match_rate": 1.0,
-    "retrieval_precision_at_5": 1.0,
+    "retrieval_match_rate": 0.97,
+    "retrieval_precision_at_5": 0.86,
+    "retrieval_topic_hit_rate": 0.97,
+    "retrieval_expected_class_hit_rate": 0.96,
+    "retrieval_high_trust_sensitive_rate": 0.99,
+    "retrieval_evaluation_mode": "calibrated_query_only",
+    "metadata_filter_safety_match_rate": 1.0,
+    "metadata_filter_safety_precision_at_5": 1.0,
     "unsafe_source_leakage_count": 0,
     "audit_quality": {
       "has_all_expected_topics": true,
@@ -31,7 +40,11 @@
         "has_high_quality_evidence": 0.0,
         "has_ppg_limitation": 0.0,
         "safety_pass": 1.0,
-        "emergency_detected": 0.0
+        "emergency_detected": 0.0,
+        "required_use_coverage_rate": 0.0,
+        "recommendation_grounding_rate": 0.0,
+        "sensitive_high_trust_rate": 0.48,
+        "emergency_consistency": 0.82
       },
       "rag_only_mock": {
         "has_summary": 1.0,
@@ -39,7 +52,11 @@
         "has_high_quality_evidence": 1.0,
         "has_ppg_limitation": 1.0,
         "safety_pass": 1.0,
-        "emergency_detected": 0.18
+        "emergency_detected": 0.18,
+        "required_use_coverage_rate": 1.0,
+        "recommendation_grounding_rate": 1.0,
+        "sensitive_high_trust_rate": 1.0,
+        "emergency_consistency": 1.0
       },
       "rule_rag_safety": {
         "has_summary": 1.0,
@@ -47,10 +64,18 @@
         "has_high_quality_evidence": 1.0,
         "has_ppg_limitation": 1.0,
         "safety_pass": 1.0,
-        "emergency_detected": 0.18
+        "emergency_detected": 0.18,
+        "required_use_coverage_rate": 1.0,
+        "recommendation_grounding_rate": 1.0,
+        "sensitive_high_trust_rate": 1.0,
+        "emergency_consistency": 1.0
       }
     },
-    "report_p95_sec": 0.0244
+    "rule_report_required_use_coverage_rate": 1.0,
+    "rule_report_recommendation_grounding_rate": 1.0,
+    "rule_report_sensitive_high_trust_rate": 1.0,
+    "rule_report_emergency_consistency": 1.0,
+    "report_p95_sec": 0.0279
   },
   "criteria": {
     "tests": true,
@@ -60,7 +85,12 @@
     "report_fixtures": true,
     "retrieval_match_rate": true,
     "retrieval_precision_at_5": true,
+    "retrieval_topic_hit_rate": true,
     "unsafe_source_leakage": true,
+    "report_required_use_coverage": true,
+    "report_recommendation_grounding": true,
+    "report_sensitive_high_trust": true,
+    "report_emergency_consistency": true,
     "audit": true,
     "commands": true,
     "performance": true
@@ -71,14 +101,14 @@
       "name": "prepare_fulltext_candidates",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/prepare_fulltext_candidates.py",
       "returncode": 0,
-      "duration_sec": 0.319,
+      "duration_sec": 0.322,
       "output_tail": "{\n  \"catalog_version\": 1,\n  \"updated\": \"2026-05-11\",\n  \"candidate_count\": 38,\n  \"public_download_count\": 1,\n  \"institution_queue_count\": 8,\n  \"browser_queue_count\": 20,\n  \"action_queue_count\": 20,\n  \"summary_ready_count\": 20,\n  \"issues\": [],\n  \"files\": {\n    \"candidate_report\": \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/fulltext_candidate_report.json\",\n    \"download_queue\": \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/fulltext_download_queue.md\"\n  }\n}\n"
     },
     {
       "name": "create_fulltext_summaries",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/create_fulltext_summaries.py",
       "returncode": 0,
-      "duration_sec": 0.181,
+      "duration_sec": 0.187,
       "output_tail": "eart.summary.md\",\n    \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/aha_steps_to_improve_high_bp.summary.md\",\n    \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_2011_bp_measurement_guideline.summary.md\",\n    \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_2023_elderly_hypertension_management_guideline.summary.md\",\n    \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/nhlbi_dash_lowering_blood_pressure_guide.summary.md\",\n    \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/nice_ng136_hypertension.summary.md\",\n    \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/aha_life_essential_8_manage_blood_pressure.summary.md\",\n    \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/cdc_managing_my_blood_pressure_questions.summary.md\",\n    \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_2013_hypertension_patient_education_guideline.summary.md\",\n    \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/ish_2020_global_guideline.summary.md\",\n    \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/who_2021_hypertension_pharmacological_treatment_guideline.summary.md\",\n    \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/stride_bp_validated_devices.summary.md\",\n    \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_2025_secondary_hypertension_screening_consensus.summary.md\"\n  ],\n  \"skipped\": [\n    {\n      \"candidate_id\": \"esc_2024_essential_messages_pdf\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"nhc_2024_hypertension_nutrition_exercise_pdf\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"uspstf_hypertension_screening_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"who_automated_cuff_bp_device_specs_publication\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"ada_2026_standards_cvd_bp_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"esh_2023_guideline_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"kdigo_2024_ckd_guideline_pdf\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"allen_2007_ppg_clinical_measurement_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"bent_2020_wearable_optical_hr_inaccuracy_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"chandrasekhar_2020_contact_pressure_cuffless_bp_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"charlton_2022_ppg_best_practices_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"charlton_2022_wearable_ppg_cardiovascular_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"charlton_2023_wearable_ppg_roadmap_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"charlton_2025_wrist_ppg_signal_quality_pdf\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"desquins_2022_ppg_quality_assessment_survey_pdf\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"shirbani_2020_ambient_light_skin_tone_vpg_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"teng_2004_contact_force_ppg_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"iso_81060_2_record_only\",\n      \"reason\": \"include_in_summary=false\"\n    }\n  ]\n}\n"
     },
     {
@@ -106,36 +136,36 @@
       "name": "audit_kb",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/audit_kb.py",
       "returncode": 0,
-      "duration_sec": 0.139,
+      "duration_sec": 0.141,
       "output_tail": "{\n  \"chunk_count\": 396,\n  \"source_count\": 93,\n  \"catalog_included_count\": 93,\n  \"topic_counts\": {\n    \"bp_categories\": 32,\n    \"cuffless_ppg_limitations\": 20,\n    \"disclaimer\": 12,\n    \"emergency\": 24,\n    \"home_bp_monitoring\": 62,\n    \"lifestyle\": 77,\n    \"measurement_quality\": 56,\n    \"medication_safety\": 21,\n    \"special_population\": 67,\n    \"validated_devices\": 25\n  },\n  \"topic_source_counts\": {\n    \"bp_categories\": 7,\n    \"cuffless_ppg_limitations\": 4,\n    \"disclaimer\": 3,\n    \"emergency\": 6,\n    \"home_bp_monitoring\": 14,\n    \"lifestyle\": 18,\n    \"measurement_quality\": 14,\n    \"medication_safety\": 5,\n    \"special_population\": 16,\n    \"validated_devices\": 6\n  },\n  \"evidence_class_counts\": {\n    \"guideline\": 71,\n    \"official_health_education\": 212,\n    \"scientific_statement\": 10,\n    \"validation_standard\": 14,\n    \"review\": 24,\n    \"safety_rule\": 36,\n    \"patient_education\": 9,\n    \"research_context\": 20\n  },\n  \"missing_topics\": [],\n  \"duplicate_source_hashes\": [],\n  \"orphan_source_ids\": [],\n  \"unsafe_source_leakage\": [],\n  \"quality\": {\n    \"has_all_expected_topics\": true,\n    \"has_no_unsafe_source_leakage\": true,\n    \"has_catalog_alignment\": true\n  }\n}\n"
     },
     {
       "name": "evaluate_retrieval",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/evaluate_retrieval.py",
       "returncode": 0,
-      "duration_sec": 0.235,
-      "output_tail": "{\n  \"query_count\": 100,\n  \"match_rate\": 1.0,\n  \"mean_precision_at_5\": 1.0,\n  \"unsafe_source_leakage_count\": 0,\n  \"evaluation_mode\": \"golden_expected_use_filter\"\n}\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/retrieval_evaluation.json\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/retrieval_evaluation.csv\n"
+      "duration_sec": 0.458,
+      "output_tail": "{\n  \"query_count\": 100,\n  \"match_rate\": 0.97,\n  \"mean_precision_at_5\": 0.86,\n  \"topic_hit_rate\": 0.97,\n  \"mean_topic_precision_at_5\": 0.782,\n  \"expected_class_hit_rate\": 0.96,\n  \"high_trust_sensitive_rate\": 0.99,\n  \"unsafe_source_leakage_count\": 0,\n  \"evaluation_mode\": \"calibrated_query_only\"\n}\n{\n  \"metadata_filter_safety\": {\n    \"query_count\": 100,\n    \"match_rate\": 1.0,\n    \"mean_precision_at_5\": 1.0,\n    \"topic_hit_rate\": 1.0,\n    \"mean_topic_precision_at_5\": 0.904,\n    \"expected_class_hit_rate\": 0.94,\n    \"high_trust_sensitive_rate\": 1.0,\n    \"unsafe_source_leakage_count\": 0,\n    \"evaluation_mode\": \"metadata_filter_safety\"\n  }\n}\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/retrieval_evaluation.json\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/retrieval_evaluation.csv\n"
     },
     {
       "name": "evaluate_reports",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/evaluate_reports.py",
       "returncode": 0,
-      "duration_sec": 0.935,
-      "output_tail": "{\n  \"llm_only_mock\": {\n    \"has_summary\": 0.0,\n    \"has_evidence\": 0.0,\n    \"has_high_quality_evidence\": 0.0,\n    \"has_ppg_limitation\": 0.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.0\n  },\n  \"rag_only_mock\": {\n    \"has_summary\": 1.0,\n    \"has_evidence\": 1.0,\n    \"has_high_quality_evidence\": 1.0,\n    \"has_ppg_limitation\": 1.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.18\n  },\n  \"rule_rag_safety\": {\n    \"has_summary\": 1.0,\n    \"has_evidence\": 1.0,\n    \"has_high_quality_evidence\": 1.0,\n    \"has_ppg_limitation\": 1.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.18\n  }\n}\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/evaluation_results.json\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/evaluation_results.csv\n"
+      "duration_sec": 1.055,
+      "output_tail": "{\n  \"llm_only_mock\": {\n    \"has_summary\": 0.0,\n    \"has_evidence\": 0.0,\n    \"has_high_quality_evidence\": 0.0,\n    \"has_ppg_limitation\": 0.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.0,\n    \"required_use_coverage_rate\": 0.0,\n    \"recommendation_grounding_rate\": 0.0,\n    \"sensitive_high_trust_rate\": 0.48,\n    \"emergency_consistency\": 0.82\n  },\n  \"rag_only_mock\": {\n    \"has_summary\": 1.0,\n    \"has_evidence\": 1.0,\n    \"has_high_quality_evidence\": 1.0,\n    \"has_ppg_limitation\": 1.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.18,\n    \"required_use_coverage_rate\": 1.0,\n    \"recommendation_grounding_rate\": 1.0,\n    \"sensitive_high_trust_rate\": 1.0,\n    \"emergency_consistency\": 1.0\n  },\n  \"rule_rag_safety\": {\n    \"has_summary\": 1.0,\n    \"has_evidence\": 1.0,\n    \"has_high_quality_evidence\": 1.0,\n    \"has_ppg_limitation\": 1.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.18,\n    \"required_use_coverage_rate\": 1.0,\n    \"recommendation_grounding_rate\": 1.0,\n    \"sensitive_high_trust_rate\": 1.0,\n    \"emergency_consistency\": 1.0\n  }\n}\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/evaluation_results.json\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/evaluation_results.csv\n"
     },
     {
       "name": "benchmark_report",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/benchmark_report.py",
       "returncode": 0,
-      "duration_sec": 0.96,
-      "output_tail": "{\n  \"case_count\": 50,\n  \"mean_sec\": 0.0174,\n  \"p95_sec\": 0.0244,\n  \"max_sec\": 0.0246,\n  \"target_p95_sec\": 3.0,\n  \"passed\": true\n}\n"
+      "duration_sec": 1.031,
+      "output_tail": "{\n  \"case_count\": 50,\n  \"mean_sec\": 0.0188,\n  \"p95_sec\": 0.0279,\n  \"max_sec\": 0.0307,\n  \"target_p95_sec\": 3.0,\n  \"passed\": true\n}\n"
     },
     {
       "name": "pytest",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python -m pytest",
       "returncode": 0,
-      "duration_sec": 1.92,
-      "output_tail": "........................................................................ [ 68%]\n.................................                                        [100%]\n105 passed in 1.78s\n"
+      "duration_sec": 3.249,
+      "output_tail": "........................................................................ [ 32%]\n........................................................................ [ 65%]\n........................................................................ [ 98%]\n....                                                                     [100%]\n220 passed in 3.11s\n"
     }
   ]
 }

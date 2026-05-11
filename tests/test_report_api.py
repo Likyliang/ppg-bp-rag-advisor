@@ -36,6 +36,8 @@ def test_generate_report_endpoint():
     assert body["safety_review"]["pass"] is True
     assert "diagnosis" not in body["risk_assessment"]
     assert body["retrieved_evidence"][0]["evidence_class"]
+    assert body["recommendation_evidence"]
+    assert body["citation_quality"]["recommendation_grounding_rate"] == 1.0
 
 
 def test_kb_sources_endpoint():

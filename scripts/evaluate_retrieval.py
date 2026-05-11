@@ -1,12 +1,45 @@
 from __future__ import annotations
 
-import json
 import csv
-from typing import Dict, List
+import json
+from typing import Dict, Iterable, List, Set
 
 from app.services.config_loader import resolve_project_path
 from app.services.retriever import retrieve_knowledge
 from app.services.source_catalog import HIGH_TRUST_EVIDENCE_CLASSES
+
+
+USE_TOPIC_MAP = {
+    "bp_category_reference": ["bp_categories"],
+    "cuffless_ppg_limitations": ["cuffless_ppg_limitations", "measurement_quality"],
+    "device_advice": ["validated_devices", "home_bp_monitoring", "cuffless_ppg_limitations"],
+    "disclaimer": ["disclaimer", "cuffless_ppg_limitations"],
+    "emergency_alert": ["emergency"],
+    "home_bp_monitoring": ["home_bp_monitoring", "measurement_quality"],
+    "lifestyle": ["lifestyle"],
+    "medication_safety": ["medication_safety"],
+    "remeasurement": ["home_bp_monitoring", "measurement_quality"],
+    "research_background": ["cuffless_ppg_limitations", "measurement_quality"],
+    "signal_quality": ["measurement_quality", "cuffless_ppg_limitations"],
+    "special_population": ["special_population"],
+    "validated_devices": ["validated_devices"],
+}
+
+USE_EVIDENCE_CLASS_MAP = {
+    "bp_category_reference": ["guideline", "official_health_education", "safety_rule"],
+    "cuffless_ppg_limitations": ["scientific_statement", "guideline", "official_health_education", "research_review", "peer_reviewed_research"],
+    "device_advice": ["validation_standard", "official_registry", "guideline", "official_health_education"],
+    "disclaimer": ["safety_rule", "scientific_statement", "official_health_education"],
+    "emergency_alert": ["guideline", "official_health_education", "safety_rule"],
+    "home_bp_monitoring": ["guideline", "official_health_education", "official_registry"],
+    "lifestyle": ["guideline", "official_health_education"],
+    "medication_safety": ["guideline", "official_health_education", "safety_rule"],
+    "remeasurement": ["guideline", "official_health_education", "safety_rule"],
+    "research_background": ["research_review", "peer_reviewed_research", "scientific_statement"],
+    "signal_quality": ["research_review", "peer_reviewed_research", "scientific_statement", "official_health_education"],
+    "special_population": ["guideline", "official_health_education"],
+    "validated_devices": ["validation_standard", "official_registry", "guideline"],
+}
 
 
 BASE_GOLDEN_QUERIES: List[Dict] = [
@@ -187,6 +220,36 @@ QUERY_FAMILIES: List[Dict] = [
 ]
 
 
+def _dedupe(values: Iterable[str]) -> List[str]:
+    return list(dict.fromkeys(value for value in values if value))
+
+
+def _expected_topics(expected_uses: Iterable[str]) -> List[str]:
+    topics: List[str] = []
+    for use in expected_uses:
+        topics.extend(USE_TOPIC_MAP.get(use, []))
+    return _dedupe(topics)
+
+
+def _expected_evidence_classes(expected_uses: Iterable[str]) -> List[str]:
+    classes: List[str] = []
+    for use in expected_uses:
+        classes.extend(USE_EVIDENCE_CLASS_MAP.get(use, []))
+    return _dedupe(classes)
+
+
+def _normalize_case(item: Dict) -> Dict:
+    expected_uses = _dedupe(item.get("expected_uses", []))
+    normalized = {
+        **item,
+        "expected_uses": expected_uses,
+        "expected_topics": item.get("expected_topics") or _expected_topics(expected_uses),
+        "expected_evidence_classes": item.get("expected_evidence_classes") or _expected_evidence_classes(expected_uses),
+        "scenario_type": item.get("scenario_type") or ("sensitive" if item.get("sensitive") else "general"),
+    }
+    return normalized
+
+
 def _expand_golden_queries() -> List[Dict]:
     queries = list(BASE_GOLDEN_QUERIES)
     seen = {item["query"] for item in queries}
@@ -207,7 +270,7 @@ def _expand_golden_queries() -> List[Dict]:
                 "expected_uses": ["cuffless_ppg_limitations", "home_bp_monitoring", "disclaimer"],
             }
         )
-    return queries[:100]
+    return [_normalize_case(item) for item in queries[:100]]
 
 
 GOLDEN_QUERIES = _expand_golden_queries()
@@ -221,32 +284,72 @@ def _evidence_matches(evidence, expected_uses: List[str]) -> bool:
     return bool(allowed & expected)
 
 
-def evaluate_retrieval(top_k: int = 5) -> Dict:
+def _topic_matches(evidence, expected_topics: List[str]) -> bool:
+    return bool(evidence.topic and evidence.topic in set(expected_topics))
+
+
+def _class_matches(evidence, expected_classes: List[str]) -> bool:
+    return bool(evidence.evidence_class and evidence.evidence_class in set(expected_classes))
+
+
+def _unsafe_sources(evidence, sensitive: bool) -> List[str]:
+    if not sensitive:
+        return []
+    unsafe = []
+    for item in evidence:
+        allowed = set(item.allowed_uses or [])
+        if allowed & {"emergency_alert", "medication_safety", "special_population"}:
+            if item.evidence_class not in HIGH_TRUST_EVIDENCE_CLASSES:
+                unsafe.append(item.source_id)
+    return unsafe
+
+
+def _evaluate_mode(mode: str, top_k: int = 5) -> Dict:
     rows = []
     for case in GOLDEN_QUERIES:
+        allowed_uses = None
+        if mode == "metadata_filter_safety":
+            allowed_uses = case.get("allowed_uses") or case["expected_uses"]
         result = retrieve_knowledge(
             [case["query"]],
             top_k=top_k,
-            allowed_uses=case.get("allowed_uses") or case["expected_uses"],
+            allowed_uses=allowed_uses,
             min_quality_score=18,
         )
         evidence = result.evidence
         matches = [item for item in evidence if _evidence_matches(item, case["expected_uses"])]
+        topic_matches = [item for item in evidence if _topic_matches(item, case["expected_topics"])]
+        class_matches = [item for item in evidence if _class_matches(item, case["expected_evidence_classes"])]
         precision = len(matches) / len(evidence) if evidence else 0.0
+        topic_precision = len(topic_matches) / len(evidence) if evidence else 0.0
         sensitive = bool(case.get("sensitive"))
-        unsafe = [
-            item.source_id
-            for item in evidence
-            if sensitive and item.evidence_class not in HIGH_TRUST_EVIDENCE_CLASSES
-        ]
+        unsafe = _unsafe_sources(evidence, sensitive)
+        high_trust_sensitive = True
+        if sensitive:
+            sensitive_matches = [
+                item for item in evidence
+                if set(item.allowed_uses or []) & {"emergency_alert", "medication_safety", "special_population"}
+            ]
+            high_trust_sensitive = bool(sensitive_matches) and all(
+                item.evidence_class in HIGH_TRUST_EVIDENCE_CLASSES for item in sensitive_matches
+            )
         rows.append(
             {
+                "mode": mode,
                 "query": case["query"],
+                "scenario_type": case.get("scenario_type", "general"),
                 "expected_uses": case["expected_uses"],
+                "expected_topics": case["expected_topics"],
+                "expected_evidence_classes": case["expected_evidence_classes"],
                 "retrieved": [item.model_dump() for item in evidence],
                 "precision_at_k": round(precision, 3),
+                "topic_precision_at_k": round(topic_precision, 3),
                 "has_match": bool(matches),
+                "has_topic_match": bool(topic_matches),
+                "has_expected_class": bool(class_matches),
+                "high_trust_sensitive": high_trust_sensitive,
                 "unsafe_source_leakage": unsafe,
+                "warnings": result.warnings,
             }
         )
 
@@ -254,10 +357,30 @@ def evaluate_retrieval(top_k: int = 5) -> Dict:
         "query_count": len(rows),
         "match_rate": round(sum(1 for row in rows if row["has_match"]) / len(rows), 3),
         "mean_precision_at_5": round(sum(row["precision_at_k"] for row in rows) / len(rows), 3),
+        "topic_hit_rate": round(sum(1 for row in rows if row["has_topic_match"]) / len(rows), 3),
+        "mean_topic_precision_at_5": round(sum(row["topic_precision_at_k"] for row in rows) / len(rows), 3),
+        "expected_class_hit_rate": round(sum(1 for row in rows if row["has_expected_class"]) / len(rows), 3),
+        "high_trust_sensitive_rate": round(
+            sum(1 for row in rows if row["scenario_type"] != "sensitive" or row["high_trust_sensitive"]) / len(rows),
+            3,
+        ),
         "unsafe_source_leakage_count": sum(len(row["unsafe_source_leakage"]) for row in rows),
-        "evaluation_mode": "golden_expected_use_filter",
+        "evaluation_mode": mode,
     }
     return {"summary": summary, "rows": rows}
+
+
+def evaluate_retrieval(top_k: int = 5) -> Dict:
+    calibrated = _evaluate_mode("calibrated_query_only", top_k=top_k)
+    metadata_filter = _evaluate_mode("metadata_filter_safety", top_k=top_k)
+    return {
+        "summary": calibrated["summary"],
+        "rows": calibrated["rows"],
+        "modes": {
+            "calibrated_query_only": calibrated,
+            "metadata_filter_safety": metadata_filter,
+        },
+    }
 
 
 def main() -> None:
@@ -266,23 +389,47 @@ def main() -> None:
     out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     csv_path = resolve_project_path("knowledge_base/processed/retrieval_evaluation.csv")
     with csv_path.open("w", encoding="utf-8", newline="") as handle:
+        rows = result["modes"]["calibrated_query_only"]["rows"] + result["modes"]["metadata_filter_safety"]["rows"]
         writer = csv.DictWriter(
             handle,
-            fieldnames=["query", "expected_uses", "precision_at_k", "has_match", "unsafe_source_leakage"],
+            fieldnames=[
+                "mode",
+                "query",
+                "scenario_type",
+                "expected_uses",
+                "expected_topics",
+                "expected_evidence_classes",
+                "precision_at_k",
+                "topic_precision_at_k",
+                "has_match",
+                "has_topic_match",
+                "has_expected_class",
+                "high_trust_sensitive",
+                "unsafe_source_leakage",
+            ],
             lineterminator="\n",
         )
         writer.writeheader()
-        for row in result["rows"]:
+        for row in rows:
             writer.writerow(
                 {
+                    "mode": row["mode"],
                     "query": row["query"],
+                    "scenario_type": row["scenario_type"],
                     "expected_uses": "|".join(row["expected_uses"]),
+                    "expected_topics": "|".join(row["expected_topics"]),
+                    "expected_evidence_classes": "|".join(row["expected_evidence_classes"]),
                     "precision_at_k": row["precision_at_k"],
+                    "topic_precision_at_k": row["topic_precision_at_k"],
                     "has_match": row["has_match"],
+                    "has_topic_match": row["has_topic_match"],
+                    "has_expected_class": row["has_expected_class"],
+                    "high_trust_sensitive": row["high_trust_sensitive"],
                     "unsafe_source_leakage": "|".join(row["unsafe_source_leakage"]),
                 }
             )
     print(json.dumps(result["summary"], ensure_ascii=False, indent=2))
+    print(json.dumps({"metadata_filter_safety": result["modes"]["metadata_filter_safety"]["summary"]}, ensure_ascii=False, indent=2))
     print(f"wrote {out_path}")
     print(f"wrote {csv_path}")
 

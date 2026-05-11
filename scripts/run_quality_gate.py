@@ -33,6 +33,9 @@ STOP_CRITERIA = {
     "min_report_fixtures": 50,
     "min_match_rate": 0.95,
     "min_precision_at_5": 0.85,
+    "min_topic_hit_rate": 0.90,
+    "min_recommendation_grounding_rate": 1.0,
+    "min_required_use_coverage_rate": 0.95,
 }
 
 
@@ -93,8 +96,11 @@ def _count_report_fixtures() -> int:
 
 def summarize_quality(commands: List[Dict]) -> Dict:
     audit = _load_json("knowledge_base/processed/kb_audit_report.json")
-    retrieval = _load_json("knowledge_base/processed/retrieval_evaluation.json").get("summary", {})
+    retrieval_result = _load_json("knowledge_base/processed/retrieval_evaluation.json")
+    retrieval = retrieval_result.get("summary", {})
+    metadata_filter = retrieval_result.get("modes", {}).get("metadata_filter_safety", {}).get("summary", {})
     reports = _load_json("knowledge_base/processed/evaluation_results.json").get("summary", {})
+    rule_report = reports.get("rule_rag_safety", {})
     benchmark = _load_json("knowledge_base/processed/report_benchmark.json")
     screen = _load_json("knowledge_base/processed/source_screening_report.json")
     test_count = _count_pytest_tests()
@@ -109,9 +115,19 @@ def summarize_quality(commands: List[Dict]) -> Dict:
         "report_fixture_count": report_fixture_count,
         "retrieval_match_rate": retrieval.get("match_rate", 0),
         "retrieval_precision_at_5": retrieval.get("mean_precision_at_5", 0),
+        "retrieval_topic_hit_rate": retrieval.get("topic_hit_rate", 0),
+        "retrieval_expected_class_hit_rate": retrieval.get("expected_class_hit_rate", 0),
+        "retrieval_high_trust_sensitive_rate": retrieval.get("high_trust_sensitive_rate", 0),
+        "retrieval_evaluation_mode": retrieval.get("evaluation_mode", "unknown"),
+        "metadata_filter_safety_match_rate": metadata_filter.get("match_rate", 0),
+        "metadata_filter_safety_precision_at_5": metadata_filter.get("mean_precision_at_5", 0),
         "unsafe_source_leakage_count": retrieval.get("unsafe_source_leakage_count", 999),
         "audit_quality": audit.get("quality", {}),
         "report_summary": reports,
+        "rule_report_required_use_coverage_rate": rule_report.get("required_use_coverage_rate", 0),
+        "rule_report_recommendation_grounding_rate": rule_report.get("recommendation_grounding_rate", 0),
+        "rule_report_sensitive_high_trust_rate": rule_report.get("sensitive_high_trust_rate", 0),
+        "rule_report_emergency_consistency": rule_report.get("emergency_consistency", 0),
         "report_p95_sec": benchmark.get("p95_sec", 999),
     }
     criteria = {
@@ -122,7 +138,12 @@ def summarize_quality(commands: List[Dict]) -> Dict:
         "report_fixtures": metrics["report_fixture_count"] >= STOP_CRITERIA["min_report_fixtures"],
         "retrieval_match_rate": metrics["retrieval_match_rate"] >= STOP_CRITERIA["min_match_rate"],
         "retrieval_precision_at_5": metrics["retrieval_precision_at_5"] >= STOP_CRITERIA["min_precision_at_5"],
+        "retrieval_topic_hit_rate": metrics["retrieval_topic_hit_rate"] >= STOP_CRITERIA["min_topic_hit_rate"],
         "unsafe_source_leakage": metrics["unsafe_source_leakage_count"] == 0,
+        "report_required_use_coverage": metrics["rule_report_required_use_coverage_rate"] >= STOP_CRITERIA["min_required_use_coverage_rate"],
+        "report_recommendation_grounding": metrics["rule_report_recommendation_grounding_rate"] >= STOP_CRITERIA["min_recommendation_grounding_rate"],
+        "report_sensitive_high_trust": metrics["rule_report_sensitive_high_trust_rate"] == 1.0,
+        "report_emergency_consistency": metrics["rule_report_emergency_consistency"] == 1.0,
         "audit": all(metrics["audit_quality"].values()) if metrics["audit_quality"] else False,
         "commands": metrics["commands_ok"],
         "performance": metrics["report_p95_sec"] < 3.0,
@@ -142,6 +163,25 @@ def run_quality_gate(fail_on_stop_criteria: bool = False) -> Dict:
     summary = summarize_quality(command_results)
     out_path = resolve_project_path("knowledge_base/processed/quality_gate_report.json")
     out_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+    calibration_path = resolve_project_path("knowledge_base/processed/rag_trust_calibration_report.json")
+    retrieval_result = _load_json("knowledge_base/processed/retrieval_evaluation.json")
+    report_result = _load_json("knowledge_base/processed/evaluation_results.json")
+    calibration_path.write_text(
+        json.dumps(
+            {
+                "timestamp": summary["timestamp"],
+                "purpose": "RAG trust calibration: separate query-only retrieval quality from metadata-filter safety and audit recommendation-level evidence grounding.",
+                "retrieval_summary": retrieval_result.get("summary", {}),
+                "metadata_filter_safety_summary": retrieval_result.get("modes", {}).get("metadata_filter_safety", {}).get("summary", {}),
+                "report_summary": report_result.get("summary", {}),
+                "quality_gate_criteria": summary["criteria"],
+                "known_risk": "calibrated_query_only is the primary retrieval metric; metadata_filter_safety is retained only as a safety-filter check.",
+            },
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
     if fail_on_stop_criteria and not summary["passed"]:
         raise SystemExit(1)
     if not summary["metrics"]["commands_ok"]:

@@ -195,6 +195,8 @@ def _retrieval_intents(recommendation_intents: List[str], category: str) -> List
     queries = [query_map[intent] for intent in recommendation_intents if intent in query_map]
     if category in {"stage_1_reference_range", "stage_2_reference_range", "severe_range"}:
         queries.append(f"{category} blood pressure reference range")
+    if category == "severe_range":
+        queries.append("severe blood pressure 180 120 emergency symptoms chest pain weakness vision")
     return list(dict.fromkeys(queries))
 
 
@@ -203,6 +205,7 @@ def _retrieval_allowed_uses(
     category: str,
     emergency: bool,
     special_population: bool,
+    medication_safety: bool = False,
 ) -> List[str]:
     uses = {"cuffless_ppg_limitations", "device_advice"}
     intent_map = {
@@ -221,10 +224,14 @@ def _retrieval_allowed_uses(
         uses.update(intent_map.get(intent, set()))
     if category in {"stage_1_reference_range", "stage_2_reference_range", "severe_range", "elevated_reference_range", "normal_reference_range"}:
         uses.add("bp_category_reference")
+    if category == "severe_range":
+        uses.add("emergency_alert")
     if emergency:
         return ["emergency_alert", "cuffless_ppg_limitations"]
     if special_population:
         uses.add("special_population")
+    if medication_safety:
+        uses.add("medication_safety")
     return sorted(uses)
 
 
@@ -236,7 +243,15 @@ def run_rule_engine(payload: MeasurementPayload) -> RuleResult:
     risk, urgency = _risk_and_urgency(category, quality, emergency)
     recommendation_intents = _recommendation_intents(category, quality, emergency, special)
     retrieval_intents = _retrieval_intents(recommendation_intents, category)
-    retrieval_allowed_uses = _retrieval_allowed_uses(recommendation_intents, category, emergency, special)
+    if payload.user_profile.antihypertensive_medication:
+        retrieval_intents.append("blood pressure medication safety do not stop or adjust dose")
+    retrieval_allowed_uses = _retrieval_allowed_uses(
+        recommendation_intents,
+        category,
+        emergency,
+        special,
+        medication_safety=payload.user_profile.antihypertensive_medication,
+    )
 
     warnings = list(quality.warnings)
     if category == "unavailable":

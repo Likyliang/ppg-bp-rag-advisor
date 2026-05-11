@@ -1,0 +1,83 @@
+{
+  "timestamp": 1778500664,
+  "purpose": "RAG trust calibration: separate query-only retrieval quality from metadata-filter safety and audit recommendation-level evidence grounding.",
+  "retrieval_summary": {
+    "query_count": 100,
+    "match_rate": 0.97,
+    "mean_precision_at_5": 0.86,
+    "topic_hit_rate": 0.97,
+    "mean_topic_precision_at_5": 0.782,
+    "expected_class_hit_rate": 0.96,
+    "high_trust_sensitive_rate": 0.99,
+    "unsafe_source_leakage_count": 0,
+    "evaluation_mode": "calibrated_query_only"
+  },
+  "metadata_filter_safety_summary": {
+    "query_count": 100,
+    "match_rate": 1.0,
+    "mean_precision_at_5": 1.0,
+    "topic_hit_rate": 1.0,
+    "mean_topic_precision_at_5": 0.904,
+    "expected_class_hit_rate": 0.94,
+    "high_trust_sensitive_rate": 1.0,
+    "unsafe_source_leakage_count": 0,
+    "evaluation_mode": "metadata_filter_safety"
+  },
+  "report_summary": {
+    "llm_only_mock": {
+      "has_summary": 0.0,
+      "has_evidence": 0.0,
+      "has_high_quality_evidence": 0.0,
+      "has_ppg_limitation": 0.0,
+      "safety_pass": 1.0,
+      "emergency_detected": 0.0,
+      "required_use_coverage_rate": 0.0,
+      "recommendation_grounding_rate": 0.0,
+      "sensitive_high_trust_rate": 0.48,
+      "emergency_consistency": 0.82
+    },
+    "rag_only_mock": {
+      "has_summary": 1.0,
+      "has_evidence": 1.0,
+      "has_high_quality_evidence": 1.0,
+      "has_ppg_limitation": 1.0,
+      "safety_pass": 1.0,
+      "emergency_detected": 0.18,
+      "required_use_coverage_rate": 1.0,
+      "recommendation_grounding_rate": 1.0,
+      "sensitive_high_trust_rate": 1.0,
+      "emergency_consistency": 1.0
+    },
+    "rule_rag_safety": {
+      "has_summary": 1.0,
+      "has_evidence": 1.0,
+      "has_high_quality_evidence": 1.0,
+      "has_ppg_limitation": 1.0,
+      "safety_pass": 1.0,
+      "emergency_detected": 0.18,
+      "required_use_coverage_rate": 1.0,
+      "recommendation_grounding_rate": 1.0,
+      "sensitive_high_trust_rate": 1.0,
+      "emergency_consistency": 1.0
+    }
+  },
+  "quality_gate_criteria": {
+    "tests": true,
+    "sources": true,
+    "chunks": true,
+    "golden_queries": true,
+    "report_fixtures": true,
+    "retrieval_match_rate": true,
+    "retrieval_precision_at_5": true,
+    "retrieval_topic_hit_rate": true,
+    "unsafe_source_leakage": true,
+    "report_required_use_coverage": true,
+    "report_recommendation_grounding": true,
+    "report_sensitive_high_trust": true,
+    "report_emergency_consistency": true,
+    "audit": true,
+    "commands": true,
+    "performance": true
+  },
+  "known_risk": "calibrated_query_only is the primary retrieval metric; metadata_filter_safety is retained only as a safety-filter check."
+}

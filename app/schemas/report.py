@@ -57,6 +57,17 @@ class Evidence(BaseModel):
     snippet: Optional[str] = None
 
 
+class RecommendationEvidence(BaseModel):
+    group: str
+    index: int
+    text: str
+    required_uses: List[str] = Field(default_factory=list)
+    evidence_ids: List[str] = Field(default_factory=list)
+    high_trust_required: bool = False
+    passed: bool = True
+    issues: List[str] = Field(default_factory=list)
+
+
 class SafetyReview(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
@@ -72,6 +83,8 @@ class CitationQuality(BaseModel):
     checked_uses: List[str] = Field(default_factory=list)
     missing_uses: List[str] = Field(default_factory=list)
     high_trust_sensitive_uses: bool = True
+    recommendation_grounding_rate: float = 1.0
+    ungrounded_recommendations: List[str] = Field(default_factory=list)
     issues: List[str] = Field(default_factory=list)
 
 
@@ -95,6 +108,7 @@ class HealthReport(BaseModel):
     recommendations: Recommendations
     safety_alert: SafetyAlert
     retrieved_evidence: List[Evidence] = Field(default_factory=list)
+    recommendation_evidence: List[RecommendationEvidence] = Field(default_factory=list)
     citation_quality: CitationQuality = Field(default_factory=CitationQuality)
     ui_summary: Optional[UiSummary] = None
     disclaimer: str

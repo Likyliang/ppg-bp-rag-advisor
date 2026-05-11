@@ -17,6 +17,7 @@ from app.schemas.report import (
     UiSummary,
 )
 from app.schemas.rule_result import RuleResult
+from app.services.evidence_quality import bind_recommendation_evidence, evaluate_citation_quality
 
 
 DISCLAIMER = (
@@ -154,6 +155,7 @@ def _markdown(report: HealthReport, rule_result: RuleResult) -> str:
             "",
             "## 引用质量",
             f"证据覆盖率：{report.citation_quality.coverage_rate}",
+            f"建议证据绑定率：{report.citation_quality.recommendation_grounding_rate}",
             f"敏感用途高可信来源：{'是' if report.citation_quality.high_trust_sensitive_uses else '否'}",
         ]
     )
@@ -196,6 +198,9 @@ def generate_template_report(
     citation_quality: CitationQuality = None,
 ) -> HealthReport:
     measurement = payload.measurement
+    recommendations = _recommendations(rule_result)
+    recommendation_evidence = bind_recommendation_evidence(recommendations, rule_result, evidence)
+    citation_quality = evaluate_citation_quality(rule_result, evidence, recommendation_evidence)
     report = HealthReport(
         report_id=str(uuid4()),
         generation_mode="template_only",
@@ -219,13 +224,14 @@ def generate_template_report(
             urgency_level=rule_result.urgency_level,
             explanation=_risk_explanation(rule_result),
         ),
-        recommendations=_recommendations(rule_result),
+        recommendations=recommendations,
         safety_alert=_safety_alert(rule_result),
         retrieved_evidence=evidence,
+        recommendation_evidence=recommendation_evidence,
         citation_quality=citation_quality or CitationQuality(),
         disclaimer=DISCLAIMER,
         markdown_report="",
-        warnings=list(warnings or []) + rule_result.warnings,
+        warnings=list(dict.fromkeys(list(warnings or []) + citation_quality.issues + rule_result.warnings)),
     )
     report.ui_summary = _ui_summary(report, rule_result)
     report.markdown_report = _markdown(report, rule_result)

@@ -8,6 +8,11 @@
 
 ## Unreleased
 
+- Calibrated RAG trust evaluation by separating query-only retrieval quality from metadata-filter safety checks; strict gate now uses `calibrated_query_only` as the primary retrieval metric.
+- Added recommendation-level evidence binding to reports with per-advice required uses, evidence ids, sensitive high-trust checks, and grounding-rate citation quality.
+- Expanded report evaluation with explicit case expectations, required-use coverage, recommendation grounding, sensitive high-trust evidence, and emergency consistency metrics.
+- Added `knowledge_base/processed/rag_trust_calibration_report.json` as a machine-readable audit summary for this calibration iteration.
+- Current strict quality gate: 220 tests, 93 included sources, 396 chunks, calibrated query-only match rate 0.97, precision@5 0.86, topic hit rate 0.97, unsafe-source leakage 0, Rule+RAG+Safety recommendation grounding 1.0.
 - Added a full quality-gate runner that regenerates knowledge artifacts, runs evaluations and tests, and writes a stop-criteria report.
 - Expanded the governed knowledge base to 63 included sources and 252 chunks through a supplemental source catalog.
 - Upgraded retrieval with rule-derived allowed uses, lightweight reranking, chunk caching, citation quality checks, and UI summary fields.

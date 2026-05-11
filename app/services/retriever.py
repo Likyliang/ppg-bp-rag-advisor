@@ -127,16 +127,11 @@ def _chunk_allowed(chunk: Dict, required_uses: Set[str], evidence_classes: Optio
         return True
 
     allowed_uses = set(_as_list(chunk.get("allowed_uses")))
-    for priority_use in ("emergency_alert", "medication_safety"):
-        if priority_use in required_uses:
-            if priority_use not in allowed_uses:
-                return False
-            break
-    else:
-        if not (allowed_uses & required_uses):
-            return False
+    matched_uses = allowed_uses & required_uses
+    if not matched_uses:
+        return False
 
-    sensitive = {"emergency_alert", "medication_safety", "special_population"} & required_uses
+    sensitive = {"emergency_alert", "medication_safety", "special_population"} & matched_uses
     if sensitive and chunk.get("evidence_class") not in HIGH_TRUST_EVIDENCE_CLASSES:
         return False
     return True
@@ -187,10 +182,7 @@ def _select_with_use_coverage(ranked: List[tuple], required_uses: Set[str], limi
         )
         if candidate is None:
             continue
-        if len(selected) < limit:
-            selected.append(candidate)
-        else:
-            selected[-1] = candidate
+        selected.append(candidate)
         selected_ids = {item[0].get("chunk_id") for item in selected}
     return sorted(selected, key=lambda item: item[1], reverse=True)
 
