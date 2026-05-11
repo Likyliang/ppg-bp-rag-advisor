@@ -1,9 +1,9 @@
 # Full-text Candidate Download Queue
 
-- Updated: 2026-05-10
-- Candidates: 25
+- Updated: 2026-05-11
+- Candidates: 38
 - Public auto-download: 1
-- Institution/browser queue: 21
+- Institution/browser queue: 20
 
 ## Safe Access Rules
 
@@ -48,17 +48,6 @@
 - pdf_url: https://www.sciopen.com/article/pdf/10.26599/1671-5411.2025.01.008
 - save_as: `knowledge_base/sources/downloads/chinese_hypertension_guideline_2024_catalog.pdf`
 - purpose: bp_category_reference; home_bp_monitoring; remeasurement; lifestyle; special_population
-
-### P2 FDA cuffless NIBP clinical performance testing draft guidance PDF
-
-- candidate_id: `fda_cuffless_nibp_draft_guidance_pdf`
-- source_id: `fda_cuffless_nibp_draft_guidance`
-- access_mode: `public_pdf`
-- status: `queued_manual`
-- landing_url: https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation
-- pdf_url: https://www.fda.gov/media/190675/download
-- save_as: `knowledge_base/sources/downloads/fda_cuffless_nibp_draft_guidance.pdf`
-- purpose: cuffless_ppg_limitations; device_advice; signal_quality; research_background
 
 ### P3 高血压营养和运动指导原则 2024 PDF
 

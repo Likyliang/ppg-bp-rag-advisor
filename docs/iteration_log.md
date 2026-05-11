@@ -114,3 +114,17 @@
 - Direct-download failures remain for 5 rows: Chinese Hypertension Guideline 2024 CHL-BHA mirror, 2019 Chinese home BP monitoring guideline, 2024 ESC guideline OUP PDF, AHA/AMA 2020 SMBP policy statement, and AHA PREVENT equations PDF.
 - Output artifacts: `knowledge_base/processed/pro_download_list_public_pdf_manifest.json` and `knowledge_base/processed/pro_download_list_public_pdf_report.md`.
 - Next risk: downloaded PDFs are not yet RAG evidence; the next iteration should add source-catalog records where missing, create Chinese summary notes, run ingest/audit/evaluation, and keep treatment/drug content restricted to safety reminders.
+
+## Special Iteration: Pro PDF Summary Ingest
+
+- Goal: promote the downloaded public PDFs into auditable RAG evidence without committing any PDF full text.
+- Added 13 source catalog records:
+  - Chinese primary-care hypertension standard, Chinese blood pressure measurement guideline, Chinese patient education guideline, Chinese elderly hypertension guideline, and Chinese secondary hypertension screening consensus.
+  - WHO pharmacological treatment guideline, AHA home BP measurement instructions, NHLBI DASH guide, AHA lifestyle sheets, CDC doctor-question prompt, and AHA pregnancy blood pressure categories.
+- Refreshed full-text candidate governance: 38 candidates, 20 summary-ready records, 0 validation errors.
+- Generated summary-only notes for all new promoted PDFs and refreshed existing NICE/FDA notes with local PDF availability.
+- Rebuilt raw notes and chunks: 93 included sources, 396 chunks.
+- Audit remains clean: no missing topics, no orphan sources, no duplicate source hashes, no unsafe-source leakage.
+- Retrieval evaluation: 100 golden queries, match rate 1.0, precision@5 1.0, unsafe-source leakage 0.
+- Strict quality gate passed: 105 tests, 50 report fixtures, report P95 0.0244s.
+- Safety note: WHO pharmacological guidance is only allowed for `medication_safety`; patient-education sources were intentionally not allowed to answer medication-adjustment sensitive queries.

@@ -1,0 +1,22 @@
+### Blood Pressure Categories for Individuals who are Pregnant
+
+- candidate_id: `aha_pregnancy_bp_categories_pdf`
+- access_mode: `public_pdf`
+- fulltext_status: local_pdf_available
+- source_url: https://www.heart.org/-/media/GRFW-Files/Know-Your-Risk/Maternal-Health/Pregnancy_Blood_Pressure_Categories.pdf?sc_lang=en
+- doi: n/a
+- pmid: n/a
+- access_recorded: 2026-05-11
+- local_pdf: `aha_pregnancy_blood_pressure_categories.pdf`
+
+#### 摘要入库要点
+
+- 已从公开 AHA 链接下载 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。
+- 该资料支持孕期血压异常时尽快联系产科或医生，并在严重症状时立即寻求急救。
+- PPG 估算不能排除或诊断孕期高血压风险。
+
+#### 使用边界
+
+- 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
+- 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
+- candidate_hash: `1f2edc42fc0d2062`

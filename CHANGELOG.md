@@ -19,6 +19,14 @@
 - Added a targeted official-source expansion with FDA cuffless NIBP draft guidance, WHO cuffed BP device specifications, USPSTF screening, Chinese NHC lifestyle guidance, KDIGO 2024 CKD, and ADA 2026 diabetes standards; current KB is 70 included sources and 289 chunks.
 - Added detailed PPG/optical signal-quality evidence for motion, skin tone/ambient light, contact pressure, acquisition duration, and sensor position; current KB is 80 included sources and 329 chunks.
 - Processed the Pro workbook download list and downloaded/validated 15 additional public PDFs into ignored local storage, with 2 existing PDFs reused and 5 direct-download failures recorded for manual/browser handling.
+- Promoted the downloaded public PDFs into governed source catalog records and summary-only full-text notes; current KB is 93 included sources and 396 chunks.
+
+## v1.0.0-rc6-pro-pdf-summary-ingest - 2026-05-11
+
+- Added 13 governed source records from the Pro PDF intake, including Chinese primary-care/measurement/patient-education/elderly/secondary-hypertension materials, WHO pharmacological treatment guidance, AHA home BP/pregnancy/lifestyle sheets, CDC doctor-question prompts, and NHLBI DASH guidance.
+- Generated 14 new summary-only full-text notes and refreshed existing NICE/FDA full-text notes; no PDF full text was committed.
+- Expanded golden retrieval coverage for Chinese primary care, Chinese measurement guidance, elderly users, WHO medication safety, pregnancy emergency categories, DASH lifestyle, and AHA home BP instructions.
+- Strict quality gate passes: 105 tests, 93 included sources, 396 chunks, 100 golden queries, 50 report fixtures, retrieval match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.0244s.
 
 ## v1.0.0-rc1 - 2026-05-10
 

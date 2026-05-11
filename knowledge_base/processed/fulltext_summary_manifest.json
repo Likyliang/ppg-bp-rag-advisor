@@ -1,18 +1,28 @@
 {
-  "written_count": 6,
+  "written_count": 20,
   "written": [
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/aha_cuffless_bp_scientific_statement.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_hypertension_guideline_2024_catalog.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/acc_aha_2025_full_guideline_record.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/aha_home_bp_measurement_instructions.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/fda_cuffless_nibp_draft_guidance.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/nhc_2025_primary_care_hypertension_standard_ws_t_872.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/aha_pregnancy_blood_pressure_categories.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/aha_reduce_high_blood_pressure_answers_by_heart.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/aha_steps_to_improve_high_bp.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_2011_bp_measurement_guideline.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_2023_elderly_hypertension_management_guideline.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/nhlbi_dash_lowering_blood_pressure_guide.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/nice_ng136_hypertension.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/aha_life_essential_8_manage_blood_pressure.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/cdc_managing_my_blood_pressure_questions.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_2013_hypertension_patient_education_guideline.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/ish_2020_global_guideline.summary.md",
-    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/stride_bp_validated_devices.summary.md"
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/who_2021_hypertension_pharmacological_treatment_guideline.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/stride_bp_validated_devices.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_2025_secondary_hypertension_screening_consensus.summary.md"
   ],
   "skipped": [
-    {
-      "candidate_id": "fda_cuffless_nibp_draft_guidance_pdf",
-      "reason": "include_in_summary=false"
-    },
     {
       "candidate_id": "esc_2024_essential_messages_pdf",
       "reason": "include_in_summary=false"

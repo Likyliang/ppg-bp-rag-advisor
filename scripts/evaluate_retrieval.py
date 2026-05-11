@@ -54,6 +54,13 @@ BASE_GOLDEN_QUERIES: List[Dict] = [
     {"query": "全国高血压日 规范测量 记录 生活方式", "expected_uses": ["home_bp_monitoring", "lifestyle"]},
     {"query": "KDIGO 2024 慢性肾病 CKD 血压偏高 复核", "expected_uses": ["special_population", "medication_safety"]},
     {"query": "ADA 2026 糖尿病 血压 心血管风险 用药安全", "expected_uses": ["special_population", "medication_safety"]},
+    {"query": "国家基层高血压防治管理标准 2025 基层 随访 健康教育", "expected_uses": ["home_bp_monitoring", "special_population"]},
+    {"query": "中国血压测量指南 测量姿势 复测 记录", "expected_uses": ["home_bp_monitoring", "remeasurement"]},
+    {"query": "老年高血压 PPG 偏高 体位性低血压 咨询医生", "expected_uses": ["special_population", "remeasurement"]},
+    {"query": "WHO 高血压药物治疗 PPG 结果 可以自行调药吗", "expected_uses": ["medication_safety"], "sensitive": True},
+    {"query": "孕期 血压 160 110 头痛 视力改变 急救", "expected_uses": ["special_population", "emergency_alert"], "sensitive": True},
+    {"query": "DASH 饮食 NHLBI 减盐 血压 生活方式", "expected_uses": ["lifestyle"]},
+    {"query": "AHA 家庭血压测量 读两次 间隔一分钟 记录", "expected_uses": ["home_bp_monitoring", "remeasurement"]},
 ]
 
 

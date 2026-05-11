@@ -3467,5 +3467,571 @@
     "source_quality_score": 20,
     "source_hash": "a9e2634d36c48e5e",
     "review_status": "included"
+  },
+  {
+    "source_id": "nhc_2025_primary_care_hypertension_standard_ws_t_872",
+    "title": "基层医疗卫生机构高血压防治管理标准 WS/T 872-2025",
+    "organization": "国家卫生健康委员会",
+    "url": "https://www.nhc.gov.cn/fzs/c100048/202509/2f3f7cce449145f8b361e70b3ed4ae9a/files/WS%20T%20872%E2%80%942025-20250930105429913.pdf",
+    "doi": "",
+    "pmid": "",
+    "year": 2025,
+    "language": "zh",
+    "region": "CN",
+    "topic": "home_bp_monitoring",
+    "evidence_class": "guideline",
+    "source_type": "national_health_standard",
+    "include": true,
+    "allowed_uses": [
+      "home_bp_monitoring",
+      "remeasurement",
+      "lifestyle",
+      "special_population"
+    ],
+    "copyright_note": "Public Chinese health industry standard PDF; summarize workflow and health education principles only.",
+    "access_note": "public PDF downloaded on 2026-05-11; tracked summary only",
+    "last_accessed": "2026-05-11",
+    "screening": {
+      "authority": 5,
+      "recency": 5,
+      "relevance": 5,
+      "accessibility": 5,
+      "safety_applicability": 5
+    },
+    "notes": {
+      "summary": "WS/T 872-2025 为基层医疗卫生机构高血压防治管理提供国家行业标准，可强化中文场景下的筛查、随访、健康教育和规范管理边界。",
+      "key_points": [
+        "中文报告可引用该来源支持基层健康管理、复测记录和医生沟通。",
+        "治疗和随访流程不得改写成小程序自动诊断或治疗方案。",
+        "PPG 估算结果仍需规范血压测量复核。"
+      ],
+      "implementation_notes": [
+        "用于 CN 场景 home_bp_monitoring、remeasurement 和 special_population。"
+      ]
+    },
+    "source_quality_score": 25,
+    "source_hash": "c9742f486a799bfa",
+    "review_status": "included"
+  },
+  {
+    "source_id": "chinese_2011_bp_measurement_guideline",
+    "title": "中国血压测量指南",
+    "organization": "中国高血压联盟 / 国家心血管病中心",
+    "url": "https://www.nccd.org.cn/UploadFile/201504/20150416170041172172.pdf",
+    "doi": "",
+    "pmid": "",
+    "year": 2011,
+    "language": "zh",
+    "region": "CN",
+    "topic": "home_bp_monitoring",
+    "evidence_class": "guideline",
+    "source_type": "measurement_guideline",
+    "include": true,
+    "allowed_uses": [
+      "home_bp_monitoring",
+      "remeasurement",
+      "device_advice"
+    ],
+    "copyright_note": "Public PDF; summarize measurement principles only and use newer guidelines for thresholds.",
+    "access_note": "public PDF downloaded on 2026-05-11; tracked summary only",
+    "last_accessed": "2026-05-11",
+    "screening": {
+      "authority": 4,
+      "recency": 1,
+      "relevance": 5,
+      "accessibility": 5,
+      "safety_applicability": 5
+    },
+    "notes": {
+      "summary": "中国血压测量指南可补充中文规范测量方法、影响测量准确性的因素和诊室/家庭/动态血压测量说明。",
+      "key_points": [
+        "复测建议应强调安静状态、合适设备、规范姿势和记录。",
+        "该来源用于测量规范，不使用其旧版阈值替代 2024/2025 指南。",
+        "PPG 估算不能替代指南要求的规范血压测量。"
+      ],
+      "implementation_notes": [
+        "用于 CN 场景 remeasurement、home_bp_monitoring 和 device_advice。"
+      ]
+    },
+    "source_quality_score": 20,
+    "source_hash": "d17c7612ea2e4cff",
+    "review_status": "included"
+  },
+  {
+    "source_id": "chinese_2013_hypertension_patient_education_guideline",
+    "title": "中国高血压患者教育指南",
+    "organization": "中国高血压患者教育指南编撰委员会",
+    "url": "https://www.nccd.org.cn/UploadFile/201504/20150418172843860860.pdf",
+    "doi": "",
+    "pmid": "",
+    "year": 2013,
+    "language": "zh",
+    "region": "CN",
+    "topic": "lifestyle",
+    "evidence_class": "patient_education",
+    "source_type": "patient_education_guideline",
+    "include": true,
+    "allowed_uses": [
+      "lifestyle",
+      "home_bp_monitoring",
+      "disclaimer"
+    ],
+    "copyright_note": "Public PDF; summarize patient education themes only.",
+    "access_note": "public PDF downloaded on 2026-05-11; tracked summary only",
+    "last_accessed": "2026-05-11",
+    "screening": {
+      "authority": 4,
+      "recency": 2,
+      "relevance": 5,
+      "accessibility": 5,
+      "safety_applicability": 5
+    },
+    "notes": {
+      "summary": "中国高血压患者教育指南可用于中文用户教育、常见误区、长期记录、生活方式和医患沟通模板。",
+      "key_points": [
+        "患者教育内容适合转化为通俗解释和咨询医生前的准备。",
+        "药物相关内容不得生成自行加药、减药或停药建议。",
+        "生活方式建议应保持一般健康教育口径。"
+      ],
+      "implementation_notes": [
+        "用于 lifestyle、home_bp_monitoring 和 disclaimer；不用于 medication_safety 检索。"
+      ]
+    },
+    "source_quality_score": 21,
+    "source_hash": "10f8438f9c5e5216",
+    "review_status": "included"
+  },
+  {
+    "source_id": "chinese_2023_elderly_hypertension_management_guideline",
+    "title": "中国老年高血压管理指南2023",
+    "organization": "中国老年医学学会高血压分会 / 北京高血压防治协会",
+    "url": "https://medtion-image.medtion.com/uploads/1/file/public/202312/20231222151125_hjo32b9lsf.pdf",
+    "doi": "10.16439/j.issn.1673-7245.2023.06.003",
+    "pmid": "",
+    "year": 2023,
+    "language": "zh",
+    "region": "CN",
+    "topic": "special_population",
+    "evidence_class": "guideline",
+    "source_type": "special_population_guideline",
+    "include": true,
+    "allowed_uses": [
+      "special_population",
+      "home_bp_monitoring",
+      "remeasurement",
+      "medication_safety"
+    ],
+    "copyright_note": "Public PDF; summarize elderly-user safety and monitoring principles only.",
+    "access_note": "public PDF downloaded on 2026-05-11; tracked summary only",
+    "last_accessed": "2026-05-11",
+    "screening": {
+      "authority": 4,
+      "recency": 4,
+      "relevance": 5,
+      "accessibility": 5,
+      "safety_applicability": 5
+    },
+    "notes": {
+      "summary": "中国老年高血压管理指南2023 可强化老年用户的保守复核、体位性症状关注、用药安全边界和医生沟通提醒。",
+      "key_points": [
+        "老年用户血压异常或伴头晕、跌倒风险等情况时，应更保守地建议规范复核和医生评估。",
+        "报告不得生成老年人个体化治疗目标或用药调整。",
+        "PPG 估算只能作为趋势参考。"
+      ],
+      "implementation_notes": [
+        "用于 elderly special_population 和 medication_safety 安全边界。"
+      ]
+    },
+    "source_quality_score": 23,
+    "source_hash": "f2151f33acd4e476",
+    "review_status": "included"
+  },
+  {
+    "source_id": "chinese_2025_secondary_hypertension_screening_consensus",
+    "title": "继发性高血压筛查和诊断中国专家共识",
+    "organization": "中国高血压联盟等",
+    "url": "https://bookcafe.yuntsg.com/ueditor/jsp/upload/file/20260117/1768636681085056202.pdf",
+    "doi": "",
+    "pmid": "",
+    "year": 2025,
+    "language": "zh",
+    "region": "CN",
+    "topic": "special_population",
+    "evidence_class": "guideline",
+    "source_type": "expert_consensus",
+    "include": true,
+    "allowed_uses": [
+      "special_population",
+      "home_bp_monitoring",
+      "disclaimer"
+    ],
+    "copyright_note": "Public PDF; summarize referral and clinician-evaluation principles only.",
+    "access_note": "public PDF downloaded on 2026-05-11; tracked summary only",
+    "last_accessed": "2026-05-11",
+    "screening": {
+      "authority": 4,
+      "recency": 5,
+      "relevance": 4,
+      "accessibility": 5,
+      "safety_applicability": 4
+    },
+    "notes": {
+      "summary": "继发性高血压筛查和诊断中国专家共识可用于提示异常或复杂情况需要临床医生进一步评估，而不是由系统自动判断病因。",
+      "key_points": [
+        "单次 PPG 估算不能筛查或诊断继发性高血压。",
+        "反复异常、年轻发病、难控制或伴特殊线索时应咨询医生。",
+        "该来源只支持转诊/进一步评估提醒，不生成病因诊断。"
+      ],
+      "implementation_notes": [
+        "用于 referral-style special_population 提醒和 disclaimer。"
+      ]
+    },
+    "source_quality_score": 22,
+    "source_hash": "5fb2d264bd07fc7d",
+    "review_status": "included"
+  },
+  {
+    "source_id": "who_2021_hypertension_pharmacological_treatment_guideline",
+    "title": "Guideline for the pharmacological treatment of hypertension in adults",
+    "organization": "World Health Organization",
+    "url": "https://iris.who.int/bitstreams/f062769d-f075-4a00-87af-0a2106e0bd04/download",
+    "doi": "",
+    "pmid": "",
+    "year": 2021,
+    "language": "en",
+    "region": "global",
+    "topic": "medication_safety",
+    "evidence_class": "guideline",
+    "source_type": "pharmacological_treatment_guideline",
+    "include": true,
+    "allowed_uses": [
+      "medication_safety",
+      "special_population",
+      "home_bp_monitoring"
+    ],
+    "copyright_note": "WHO public guideline PDF; summarize medication-safety boundaries only.",
+    "access_note": "public PDF downloaded on 2026-05-11; tracked summary only",
+    "last_accessed": "2026-05-11",
+    "screening": {
+      "authority": 5,
+      "recency": 3,
+      "relevance": 5,
+      "accessibility": 5,
+      "safety_applicability": 5
+    },
+    "notes": {
+      "summary": "WHO 成人高血压药物治疗指南可作为用药安全和临床随访边界来源，支持系统拒绝自行开药、调药或停药建议。",
+      "key_points": [
+        "药物治疗应由临床专业人员根据规范测量和整体风险评估决定。",
+        "PPG 估算偏高或偏低不能作为自行调整药物的依据。",
+        "报告可建议保留记录并咨询医生。"
+      ],
+      "implementation_notes": [
+        "用于 medication_safety；不得输出具体药名、剂量或治疗方案。"
+      ]
+    },
+    "source_quality_score": 23,
+    "source_hash": "6f22bf92bb6cc652",
+    "review_status": "included"
+  },
+  {
+    "source_id": "aha_home_bp_measurement_instructions",
+    "title": "Home Blood Pressure Measurement Instructions",
+    "organization": "American Heart Association",
+    "url": "https://www.heart.org/-/media/files/health-topics/high-blood-pressure/how_to_measure_your_blood_pressure_letter_size.pdf",
+    "doi": "",
+    "pmid": "",
+    "year": 2025,
+    "language": "en",
+    "region": "AHA",
+    "topic": "home_bp_monitoring",
+    "evidence_class": "official_health_education",
+    "source_type": "patient_instruction_pdf",
+    "include": true,
+    "allowed_uses": [
+      "home_bp_monitoring",
+      "remeasurement",
+      "device_advice"
+    ],
+    "copyright_note": "Public AHA patient instruction PDF; summarize measurement steps only.",
+    "access_note": "public PDF downloaded on 2026-05-11; tracked summary only",
+    "last_accessed": "2026-05-11",
+    "screening": {
+      "authority": 5,
+      "recency": 5,
+      "relevance": 5,
+      "accessibility": 5,
+      "safety_applicability": 5
+    },
+    "notes": {
+      "summary": "AHA 家庭血压测量说明卡适合转化为复测步骤，包括保持放松、不交谈、连续读数、记录并与医疗人员共享。",
+      "key_points": [
+        "复测时应保持安静放松并避免说话。",
+        "可连续测量并记录结果，用于与医生确认趋势。",
+        "PPG 估算异常时应使用规范设备复核。"
+      ],
+      "implementation_notes": [
+        "用于 report 中的 remeasurement card 和 home_bp_monitoring。"
+      ]
+    },
+    "source_quality_score": 25,
+    "source_hash": "22a04073642cd73f",
+    "review_status": "included"
+  },
+  {
+    "source_id": "nhlbi_dash_lowering_blood_pressure_guide",
+    "title": "Your Guide to Lowering Your Blood Pressure with DASH",
+    "organization": "National Heart Lung and Blood Institute",
+    "url": "https://www.nhlbi.nih.gov/files/docs/public/heart/new_dash.pdf",
+    "doi": "",
+    "pmid": "",
+    "year": 2026,
+    "language": "en",
+    "region": "US",
+    "topic": "lifestyle",
+    "evidence_class": "official_health_education",
+    "source_type": "patient_education_pdf",
+    "include": true,
+    "allowed_uses": [
+      "lifestyle"
+    ],
+    "copyright_note": "Public NHLBI PDF; summarize DASH principles only.",
+    "access_note": "public PDF downloaded on 2026-05-11; tracked summary only",
+    "last_accessed": "2026-05-11",
+    "screening": {
+      "authority": 5,
+      "recency": 5,
+      "relevance": 5,
+      "accessibility": 5,
+      "safety_applicability": 4
+    },
+    "notes": {
+      "summary": "NHLBI DASH 指南可支持饮食结构、减盐和健康饮食模式的用户教育。",
+      "key_points": [
+        "DASH 相关内容只作为一般生活方式教育。",
+        "中文报告需要本地化表达，不承诺个体降压效果。",
+        "特殊疾病、肾病或饮食限制用户应咨询医生或营养专业人员。"
+      ],
+      "implementation_notes": [
+        "用于 lifestyle；不输出个体化饮食处方。"
+      ]
+    },
+    "source_quality_score": 24,
+    "source_hash": "ab97cccbe3f42cc2",
+    "review_status": "included"
+  },
+  {
+    "source_id": "aha_reduce_high_blood_pressure_answers_by_heart",
+    "title": "How Can I Lower High Blood Pressure?",
+    "organization": "American Heart Association",
+    "url": "https://www.heart.org/-/media/files/health-topics/answers-by-heart/how-can-i-reduce-high-blood-pressure.pdf",
+    "doi": "",
+    "pmid": "",
+    "year": 2025,
+    "language": "en",
+    "region": "AHA",
+    "topic": "lifestyle",
+    "evidence_class": "official_health_education",
+    "source_type": "patient_education_pdf",
+    "include": true,
+    "allowed_uses": [
+      "lifestyle"
+    ],
+    "copyright_note": "Public AHA patient PDF; summarize lifestyle themes only.",
+    "access_note": "public PDF downloaded on 2026-05-11; tracked summary only",
+    "last_accessed": "2026-05-11",
+    "screening": {
+      "authority": 5,
+      "recency": 5,
+      "relevance": 5,
+      "accessibility": 5,
+      "safety_applicability": 4
+    },
+    "notes": {
+      "summary": "AHA Answers by Heart 高血压生活方式资料可支持体重管理、限钠、运动、戒烟限酒和饮食模式等通俗建议。",
+      "key_points": [
+        "生活方式建议应写成可选择的健康行动，而非治疗承诺。",
+        "如有症状、基础病或用药，应咨询医生。",
+        "不得根据 PPG 估算要求用户自行停药或改药。"
+      ],
+      "implementation_notes": [
+        "用于 patient-friendly lifestyle。"
+      ]
+    },
+    "source_quality_score": 24,
+    "source_hash": "2b109aaac52c2cdc",
+    "review_status": "included"
+  },
+  {
+    "source_id": "aha_steps_to_improve_high_bp",
+    "title": "Simple Steps to Improve Your High Blood Pressure",
+    "organization": "American Heart Association",
+    "url": "https://www.heart.org/-/media/Files/Health-Topics/High-Blood-Pressure/Steps-To-Improve-High-BP.pdf",
+    "doi": "",
+    "pmid": "",
+    "year": 2025,
+    "language": "en",
+    "region": "AHA",
+    "topic": "lifestyle",
+    "evidence_class": "official_health_education",
+    "source_type": "patient_education_pdf",
+    "include": true,
+    "allowed_uses": [
+      "lifestyle"
+    ],
+    "copyright_note": "Public AHA patient PDF; summarize lifestyle action categories only.",
+    "access_note": "public PDF downloaded on 2026-05-11; tracked summary only",
+    "last_accessed": "2026-05-11",
+    "screening": {
+      "authority": 5,
+      "recency": 5,
+      "relevance": 5,
+      "accessibility": 5,
+      "safety_applicability": 4
+    },
+    "notes": {
+      "summary": "AHA Simple Steps 资料把高血压相关生活方式拆成体重、饮食、活动、限酒和用药依从等行动类别，可用于建议卡片。",
+      "key_points": [
+        "建议应鼓励从小步骤开始。",
+        "不能承诺某个用户一定达到资料中的降压幅度。",
+        "用药相关内容只提示遵医嘱和咨询医生。"
+      ],
+      "implementation_notes": [
+        "用于 lifestyle suggestion cards；不用于 medication_safety。"
+      ]
+    },
+    "source_quality_score": 24,
+    "source_hash": "8cf338fcbc57d3a0",
+    "review_status": "included"
+  },
+  {
+    "source_id": "aha_life_essential_8_manage_blood_pressure",
+    "title": "Life's Essential 8 - How to Manage Blood Pressure",
+    "organization": "American Heart Association",
+    "url": "https://www.heart.org/-/media/Healthy-Living-Files/LE8-Fact-Sheets/LE8_How_To_Manage_Blood_Pressure.pdf",
+    "doi": "",
+    "pmid": "",
+    "year": 2026,
+    "language": "en",
+    "region": "AHA",
+    "topic": "lifestyle",
+    "evidence_class": "official_health_education",
+    "source_type": "patient_education_pdf",
+    "include": true,
+    "allowed_uses": [
+      "lifestyle"
+    ],
+    "copyright_note": "Public AHA patient PDF; summarize health behavior principles only.",
+    "access_note": "public PDF downloaded on 2026-05-11; tracked summary only",
+    "last_accessed": "2026-05-11",
+    "screening": {
+      "authority": 5,
+      "recency": 5,
+      "relevance": 4,
+      "accessibility": 5,
+      "safety_applicability": 4
+    },
+    "notes": {
+      "summary": "AHA Life's Essential 8 血压管理资料支持饮食、运动、戒烟、睡眠、体重和压力等综合生活方式健康教育。",
+      "key_points": [
+        "建议应保持健康教育口径。",
+        "不根据 PPG 估算给出治疗承诺。",
+        "特殊人群应咨询医生。"
+      ],
+      "implementation_notes": [
+        "用于 lifestyle 背景和报告简短建议。"
+      ]
+    },
+    "source_quality_score": 23,
+    "source_hash": "d980ca9f6ca29986",
+    "review_status": "included"
+  },
+  {
+    "source_id": "cdc_managing_my_blood_pressure_questions",
+    "title": "Managing My Blood Pressure - Questions to Ask My Doctor",
+    "organization": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/heart-disease/docs/Managing_My_Blood_Pressure.pdf",
+    "doi": "",
+    "pmid": "",
+    "year": 2026,
+    "language": "en",
+    "region": "US",
+    "topic": "home_bp_monitoring",
+    "evidence_class": "official_health_education",
+    "source_type": "patient_question_prompt_pdf",
+    "include": true,
+    "allowed_uses": [
+      "home_bp_monitoring",
+      "lifestyle",
+      "disclaimer"
+    ],
+    "copyright_note": "Public CDC PDF; summarize doctor-communication prompts only.",
+    "access_note": "public PDF downloaded on 2026-05-11; tracked summary only",
+    "last_accessed": "2026-05-11",
+    "screening": {
+      "authority": 5,
+      "recency": 5,
+      "relevance": 4,
+      "accessibility": 5,
+      "safety_applicability": 4
+    },
+    "notes": {
+      "summary": "CDC 血压管理问题清单可支持报告末尾的医生沟通建议，帮助用户围绕测量、生活方式和药物问题准备咨询。",
+      "key_points": [
+        "报告可建议用户带着记录向医生询问测量频率、生活方式和用药问题。",
+        "系统不替用户回答药物调整问题。",
+        "该来源用于沟通准备，不用于诊断。"
+      ],
+      "implementation_notes": [
+        "用于 home_bp_monitoring、lifestyle 和 disclaimer。"
+      ]
+    },
+    "source_quality_score": 23,
+    "source_hash": "e4b7c6fc3c247b6e",
+    "review_status": "included"
+  },
+  {
+    "source_id": "aha_pregnancy_blood_pressure_categories",
+    "title": "Blood Pressure Categories for Individuals who are Pregnant",
+    "organization": "American Heart Association",
+    "url": "https://www.heart.org/-/media/GRFW-Files/Know-Your-Risk/Maternal-Health/Pregnancy_Blood_Pressure_Categories.pdf?sc_lang=en",
+    "doi": "",
+    "pmid": "",
+    "year": 2025,
+    "language": "en",
+    "region": "AHA",
+    "topic": "special_population",
+    "evidence_class": "official_health_education",
+    "source_type": "patient_education_pdf",
+    "include": true,
+    "allowed_uses": [
+      "special_population",
+      "emergency_alert",
+      "remeasurement"
+    ],
+    "copyright_note": "Public AHA patient PDF; summarize pregnancy safety categories only.",
+    "access_note": "public PDF downloaded on 2026-05-11; tracked summary only",
+    "last_accessed": "2026-05-11",
+    "screening": {
+      "authority": 5,
+      "recency": 5,
+      "relevance": 5,
+      "accessibility": 5,
+      "safety_applicability": 5
+    },
+    "notes": {
+      "summary": "AHA 孕期血压分类资料可强化 pregnancy=true 场景下的保守提醒和症状急救边界。",
+      "key_points": [
+        "孕期血压估算偏高应建议尽快联系产科或医生并用规范方式复核。",
+        "出现严重头痛、视力改变、腹痛、胸痛、明显肿胀或气短等症状时应立即寻求急救。",
+        "PPG 估算不能排除或诊断孕期高血压风险。"
+      ],
+      "implementation_notes": [
+        "用于 pregnancy special_population 和 emergency_alert。"
+      ]
+    },
+    "source_quality_score": 25,
+    "source_hash": "43e1030867b0adb2",
+    "review_status": "included"
   }
 ]
