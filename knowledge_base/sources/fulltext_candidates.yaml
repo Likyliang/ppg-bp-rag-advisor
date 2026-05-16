@@ -1,5 +1,5 @@
 catalog_version: 1
-updated: 2026-05-11
+updated: 2026-05-16
 scope: "Full-text candidate governance for PPG blood pressure RAG knowledge expansion."
 policy:
   credential_handling: "Never store usernames, passwords, cookies, tokens, or institution session data."
@@ -263,13 +263,13 @@ candidates:
     priority: 3
     topic: validated_devices
     access_mode: public_landing
-    status: queued_manual
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: false
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://www.who.int/publications/i/item/9789240002654
-    pdf_url:
+    pdf_url: https://iris.who.int/server/api/core/bitstreams/9647149d-e9fd-422f-a27d-ca2a9c2f9696/content
     doi:
     pmid:
     year: 2020
@@ -277,9 +277,13 @@ candidates:
     region: global
     allowed_uses: [device_advice, home_bp_monitoring, signal_quality, research_background]
     selection_reason: "WHO 技术规范可作为验证袖带血压计与 PPG/无袖带设备边界的高可信来源。"
-    access_instruction: "用户可从 WHO publication 页面下载文件；若保存本地，请命名为 knowledge_base/sources/downloads/who_automated_cuff_bp_device_specs.pdf。"
-    last_accessed: 2026-05-10
-    summary_notes: []
+    access_instruction: "已从 WHO IRIS 官方 bitstream 下载 PDF 并保存为 knowledge_base/sources/downloads/who_automated_cuff_bp_device_specs.pdf；入库时只写摘要。"
+    last_accessed: 2026-05-16
+    summary_notes:
+      - "已从 WHO IRIS 官方 bitstream 下载 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "WHO 技术规范强调自动袖带血压设备需要明确验证、合适袖带、使用说明、测量姿势、质量控制、采购和维护要求。"
+      - "本系统引用该来源只支持“使用经过验证的袖带设备复核”和“PPG/无袖带估算不能替代验证设备”的设备边界。"
+      - "该来源不用于推荐具体商业型号，也不用于证明 PPG 或无袖带设备可诊断高血压。"
 
   - candidate_id: uspstf_hypertension_screening_fulltext
     source_id: uspstf_hypertension_screening_adults
@@ -288,13 +292,13 @@ candidates:
     priority: 3
     topic: home_bp_monitoring
     access_mode: public_html
-    status: queued_manual
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: false
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening
-    pdf_url:
+    pdf_url: https://www.uspreventiveservicestaskforce.org/home/getfilebytoken/5P_7f2rbEquA-ZR-fJJfHK
     doi:
     pmid:
     year: 2021
@@ -302,9 +306,13 @@ candidates:
     region: US
     allowed_uses: [home_bp_monitoring, remeasurement, bp_category_reference, disclaimer]
     selection_reason: "USPSTF 可强化诊断前需规范诊室外确认的边界，适合复测和免责声明。"
-    access_instruction: "公开 HTML 已可读；若用户下载网页 PDF/打印版，请保存为 knowledge_base/sources/downloads/uspstf_hypertension_screening_adults.pdf。"
-    last_accessed: 2026-05-10
-    summary_notes: []
+    access_instruction: "已从 USPSTF 官方 PDF 链接下载并保存为 knowledge_base/sources/downloads/uspstf_hypertension_screening_adults.pdf；入库时只写摘要。"
+    last_accessed: 2026-05-16
+    summary_notes:
+      - "已从 USPSTF 官方 PDF 链接下载；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "USPSTF 成人高血压筛查建议强调，在开始治疗前应通过诊室外血压测量确认血压升高。"
+      - "该来源强化本系统的非诊断边界：单次 PPG 估算或非规范读数不能作为高血压诊断依据。"
+      - "报告引用该来源时，只用于复测、家庭/动态监测、规范血压计确认和医生沟通提醒。"
 
   - candidate_id: nhc_2024_hypertension_nutrition_exercise_pdf
     source_id: nhc_2024_hypertension_nutrition_exercise_guidance
@@ -313,11 +321,11 @@ candidates:
     priority: 3
     topic: lifestyle
     access_mode: public_pdf
-    status: queued_manual
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: false
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html
     pdf_url: https://www.gov.cn/zhengce/zhengceku/202407/P020240701700333981869.pdf
     doi:
@@ -327,9 +335,13 @@ candidates:
     region: CN
     allowed_uses: [lifestyle, special_population, home_bp_monitoring]
     selection_reason: "国家卫健委本土指南可显著增强中文生活方式建议质量。"
-    access_instruction: "用户可自行下载 PDF 并保存为 knowledge_base/sources/downloads/nhc_2024_hypertension_nutrition_exercise_guidance.pdf；入库时只写摘要。"
-    last_accessed: 2026-05-10
-    summary_notes: []
+    access_instruction: "已从 gov.cn 公开 PDF 下载并保存为 knowledge_base/sources/downloads/nhc_2024_hypertension_nutrition_exercise_guidance.pdf；入库时只写摘要。"
+    last_accessed: 2026-05-16
+    summary_notes:
+      - "已从国家政务服务平台/政府网站公开 PDF 下载；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该指导原则支持中文报告中的减盐、合理膳食、规律运动、体重管理和生活方式记录等健康教育内容。"
+      - "生活方式建议只能作为一般健康教育，不承诺个体降压效果，也不能替代临床治疗或随访。"
+      - "特殊人群、合并疾病或正在用药用户，应提示咨询医生、营养或运动专业人员后个体化执行。"
 
   - candidate_id: kdigo_2024_ckd_guideline_pdf
     source_id: kdigo_2024_ckd_guideline
@@ -338,11 +350,11 @@ candidates:
     priority: 4
     topic: special_population
     access_mode: public_pdf
-    status: queued_manual
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: false
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/
     pdf_url: https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf
     doi:
@@ -352,9 +364,13 @@ candidates:
     region: global
     allowed_uses: [special_population, medication_safety, home_bp_monitoring]
     selection_reason: "KDIGO 2024 可强化 CKD 用户的保守复核、医生沟通和用药安全边界。"
-    access_instruction: "用户可自行下载 PDF 并保存为 knowledge_base/sources/downloads/kdigo_2024_ckd_guideline.pdf；入库时只写摘要。"
-    last_accessed: 2026-05-10
-    summary_notes: []
+    access_instruction: "已从 KDIGO 官方公开 PDF 下载并保存为 knowledge_base/sources/downloads/kdigo_2024_ckd_guideline.pdf；入库时只写摘要。"
+    last_accessed: 2026-05-16
+    summary_notes:
+      - "已从 KDIGO 官方公开 PDF 下载；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "CKD 用户的血压相关解释需要结合肾功能、用药、合并症和整体临床风险，不能由 PPG 估算单独判断。"
+      - "该来源只用于支持“慢性肾病用户应更保守复核并主动与医生沟通”的特殊人群提醒。"
+      - "报告不得输出 CKD 个体化血压目标、药物方案、加药、减药或停药建议。"
 
   - candidate_id: ada_2026_standards_cvd_bp_fulltext
     source_id: ada_2026_standards_cvd_bp
@@ -413,13 +429,13 @@ candidates:
     priority: 5
     topic: measurement_quality
     access_mode: public_html
-    status: queued_manual
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: false
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC9136485/
-    pdf_url:
+    pdf_url: https://iopscience.iop.org/article/10.1088/1361-6579/ac6cc4/pdf
     doi: 10.1088/1361-6579/ac6cc4
     pmid: 35508148
     year: 2022
@@ -427,9 +443,13 @@ candidates:
     region: global
     allowed_uses: [signal_quality, remeasurement, research_background]
     selection_reason: "PPG 采集和处理最佳实践候选，可支持采集时长、采样、质量评估和重新采集建议。"
-    access_instruction: "公开 PMC 页面已可读；若用户下载 PDF/打印版，请保存为 knowledge_base/sources/downloads/charlton_2022_ppg_best_practices.pdf。"
-    last_accessed: 2026-05-10
-    summary_notes: []
+    access_instruction: "已从 IOP 官方 PDF 链接下载并保存为 knowledge_base/sources/downloads/charlton_2022_ppg_best_practices.pdf；入库时只写摘要。"
+    last_accessed: 2026-05-16
+    summary_notes:
+      - "已从 IOP 官方 PDF 链接下载；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该文强调 PPG 采集和处理应报告设备、采样、传感器位置、采集环境、预处理、质量控制和数据排除标准。"
+      - "本系统可用该来源支持采集时长不足、波形不稳定、传感器位置不佳时的重新采集和质量解释。"
+      - "该来源只用于 signal_quality、remeasurement 和 research_background，不用于血压诊断、治疗决策或设备临床可靠性承诺。"
 
   - candidate_id: charlton_2022_wearable_ppg_cardiovascular_fulltext
     source_id: charlton_2022_wearable_ppg_cardiovascular_review
@@ -463,13 +483,13 @@ candidates:
     priority: 5
     topic: measurement_quality
     access_mode: public_html
-    status: queued_manual
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: false
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://iopscience.iop.org/article/10.1088/1361-6579/acead2
-    pdf_url: https://iopscience.iop.org/article/10.1088/1361-6579/acead2/pdf
+    pdf_url: https://iopscience.iop.org/article/10.1088/1361-6579/acead2/pdf?download=true
     doi: 10.1088/1361-6579/acead2
     pmid: 37494945
     year: 2023
@@ -477,9 +497,13 @@ candidates:
     region: global
     allowed_uses: [signal_quality, cuffless_ppg_limitations, device_advice, research_background]
     selection_reason: "PPG 路线图可支持运动伪影、肤色、接触、佩戴位置和真实世界质量挑战。"
-    access_instruction: "若用户下载 PDF，请保存为 knowledge_base/sources/downloads/charlton_2023_wearable_ppg_roadmap.pdf；入库只写摘要。"
-    last_accessed: 2026-05-10
-    summary_notes: []
+    access_instruction: "已从 IOP 官方 PDF 链接下载并保存为 knowledge_base/sources/downloads/charlton_2023_wearable_ppg_roadmap.pdf；入库时只写摘要。"
+    last_accessed: 2026-05-16
+    summary_notes:
+      - "已从 IOP 官方 PDF 链接下载；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "可穿戴 PPG 路线图指出，真实世界中的运动、皮肤/组织差异、传感器接触、佩戴位置、算法泛化、标注和验证仍是关键挑战。"
+      - "本系统引用该来源支持 PPG/无袖带局限、运动伪影、肤色/光照、接触状态、传感器位置和研究背景解释。"
+      - "该来源不得被用于推断设备可诊断高血压、可替代袖带血压计或可直接指导治疗。"
 
   - candidate_id: desquins_2022_ppg_quality_assessment_survey_pdf
     source_id: desquins_2022_ppg_quality_assessment_survey
@@ -488,13 +512,13 @@ candidates:
     priority: 5
     topic: measurement_quality
     access_mode: public_pdf
-    status: queued_manual
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: false
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://www.mdpi.com/2076-3417/12/19/9582
-    pdf_url: https://www.mdpi.com/2076-3417/12/19/9582/pdf
+    pdf_url: https://mdpi-res.com/d_attachment/applsci/applsci-12-09582/article_deploy/applsci-12-09582-v2.pdf?version=1663901507
     doi: 10.3390/app12199582
     pmid:
     year: 2022
@@ -502,9 +526,13 @@ candidates:
     region: global
     allowed_uses: [signal_quality, remeasurement, research_background]
     selection_reason: "PPG/iPPG 质量评估综述，可支持 quality score、环境光、运动和低质量拦截。"
-    access_instruction: "用户可自行下载公开 PDF 并保存为 knowledge_base/sources/downloads/desquins_2022_ppg_quality_assessment_survey.pdf；入库只写摘要。"
-    last_accessed: 2026-05-10
-    summary_notes: []
+    access_instruction: "已从 MDPI 公开 article deployment PDF 下载并保存为 knowledge_base/sources/downloads/desquins_2022_ppg_quality_assessment_survey.pdf；入库时只写摘要。"
+    last_accessed: 2026-05-16
+    summary_notes:
+      - "已从 MDPI 公开 PDF 资源下载；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该综述覆盖 PPG/iPPG 信号质量评估方法，强调运动、光照、低信噪比、ROI/接触/摄像头条件和自动质量分级的重要性。"
+      - "本系统可用该来源支持低质量拦截、重新采集、延长采集和“质量不足不做强风险解释”的边界。"
+      - "该来源只支持 signal_quality、remeasurement 和 research_background，不用于临床阈值、诊断或治疗建议。"
 
   - candidate_id: charlton_2025_wrist_ppg_signal_quality_pdf
     source_id: charlton_2025_wrist_ppg_signal_quality
@@ -513,11 +541,11 @@ candidates:
     priority: 5
     topic: measurement_quality
     access_mode: public_pdf
-    status: queued_manual
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: false
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000585
     pdf_url: https://journals.plos.org/digitalhealth/article/file?id=10.1371/journal.pdig.0000585&type=printable
     doi: 10.1371/journal.pdig.0000585
@@ -527,9 +555,13 @@ candidates:
     region: global
     allowed_uses: [signal_quality, research_background]
     selection_reason: "腕部 PPG 信号质量研究，可支持 sensor position、姿势、传感器高度和个体差异说明。"
-    access_instruction: "用户可自行下载公开 PDF/打印版并保存为 knowledge_base/sources/downloads/charlton_2025_wrist_ppg_signal_quality.pdf；入库只写摘要。"
-    last_accessed: 2026-05-10
-    summary_notes: []
+    access_instruction: "已从 PLOS Digital Health 官方 printable PDF 下载并保存为 knowledge_base/sources/downloads/charlton_2025_wrist_ppg_signal_quality.pdf；入库时只写摘要。"
+    last_accessed: 2026-05-16
+    summary_notes:
+      - "已从 PLOS Digital Health 官方 printable PDF 下载；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该研究分析腕部 PPG 信号质量决定因素，支持传感器位置、佩戴/接触、姿势、活动状态和个体差异会影响光学波形质量。"
+      - "报告可用该来源解释 wrist/sensor position 不稳定时估算不确定性更高，并建议重新放置传感器或用规范设备复核。"
+      - "该来源只用于 signal_quality 和 research_background，不用于血压分类、诊断、治疗或调药。"
 
   - candidate_id: teng_2004_contact_force_ppg_fulltext
     source_id: teng_2004_contact_force_ppg

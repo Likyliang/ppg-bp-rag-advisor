@@ -8,6 +8,8 @@
 
 ## Unreleased
 
+- Promoted 8 newly downloaded public full-text PDFs into summary-only governed notes: WHO cuffed BP device specifications, USPSTF hypertension screening, NHC 2024 nutrition/exercise guidance, KDIGO 2024 CKD guideline, and four PPG signal-quality sources from IOP, MDPI, and PLOS; no PDF full text was committed.
+- Current strict quality gate after public full-text expansion: 220 tests, 93 included sources, 406 chunks, calibrated query-only match rate 1.0, precision@5 1.0, unsafe-source leakage 0, Rule+RAG+Safety recommendation grounding 1.0.
 - Calibrated RAG trust evaluation by separating query-only retrieval quality from metadata-filter safety checks; strict gate now uses `calibrated_query_only` as the primary retrieval metric.
 - Added recommendation-level evidence binding to reports with per-advice required uses, evidence ids, sensitive high-trust checks, and grounding-rate citation quality.
 - Expanded report evaluation with explicit case expectations, required-use coverage, recommendation grounding, sensitive high-trust evidence, and emergency consistency metrics.

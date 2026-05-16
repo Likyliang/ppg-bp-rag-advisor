@@ -4918,6 +4918,27 @@
           "snippet": "## 可用于报告的要点 - 规范血压复核应优先使用经过验证的袖带式设备。 - 设备选择和测量质量会影响读数解释。 - 该来源用于说明验证原则，不推荐具体商业型号。"
         },
         {
+          "source_id": "who_automated_cuff_bp_device_specs_004",
+          "title": "Technical specifications for automated non-invasive blood pressure measuring devices with cuff",
+          "url": "https://www.who.int/publications/i/item/9789240002654",
+          "used_for": "WHO 袖带式 自动血压计 技术规范 验证设备",
+          "organization": "World Health Organization",
+          "region": "global",
+          "topic": "validated_devices",
+          "language": "en",
+          "evidence_class": "validation_standard",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "device_advice",
+            "home_bp_monitoring",
+            "signal_quality",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.6428,
+          "snippet": "## 全文候选与下载材料摘要 ### WHO automated cuff blood pressure device technical specifications publication - candidate_id: `who_automated_cuff_bp_device_specs_publication` - access_mode: `public_landing` - fulltext_status: local_pdf_available - sourc..."
+        },
+        {
           "source_id": "hypertension_canada_device_recommendations_001",
           "title": "Recommended blood pressure monitors",
           "url": "https://hypertension.ca/bpdevices",
@@ -4955,25 +4976,6 @@
           "review_status": "included",
           "score": 0.632,
           "snippet": "## 来源摘要 AHA 家庭血压监测页面支持使用上臂式设备复核、规范姿势和记录趋势。"
-        },
-        {
-          "source_id": "validatebp_validated_devices_002",
-          "title": "Validated Device Listing",
-          "url": "https://www.validatebp.org/",
-          "used_for": "WHO 袖带式 自动血压计 技术规范 验证设备",
-          "organization": "ValidateBP",
-          "region": "US",
-          "topic": "validated_devices",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "device_advice",
-            "home_bp_monitoring"
-          ],
-          "review_status": "included",
-          "score": 0.6311,
-          "snippet": "## 可用于报告的要点 - 建议选择经过验证的血压计。 - 不推荐具体商业型号。 - 上臂式设备通常更适合作为家庭复核工具。"
         }
       ],
       "precision_at_k": 1.0,
@@ -5192,7 +5194,7 @@
           "snippet": "## 可用于报告的要点 - 中文报告的减盐、合理膳食、运动和体重管理建议可优先引用该来源。 - 生活方式内容属于健康教育，不承诺个体降压效果。 - 特殊人群仍需医生或营养/运动专业人员个体化评估。"
         },
         {
-          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_004",
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_005",
           "title": "高血压营养和运动指导原则（2024年版）",
           "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
           "used_for": "国家卫健委 高血压 营养 运动 指导原则 减盐",
@@ -8715,7 +8717,7 @@
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         },
         {
-          "source_id": "uspstf_hypertension_screening_adults_004",
+          "source_id": "uspstf_hypertension_screening_adults_005",
           "title": "Hypertension in Adults - Screening",
           "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
           "used_for": "145 92 PPG 血压估算 偏高 复测",
@@ -12172,7 +12174,7 @@
           "snippet": "## 可用于报告的要点 - 老年用户血压异常或伴头晕、跌倒风险等情况时，应更保守地建议规范复核和医生评估。 - 报告不得生成老年人个体化治疗目标或用药调整。 - PPG 估算只能作为趋势参考。"
         },
         {
-          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_004",
+          "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_005",
           "title": "高血压营养和运动指导原则（2024年版）",
           "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
           "used_for": "65岁 老年人 血压估算 复测",
@@ -17634,6 +17636,27 @@
               "snippet": "## 可用于报告的要点 - 规范血压复核应优先使用经过验证的袖带式设备。 - 设备选择和测量质量会影响读数解释。 - 该来源用于说明验证原则，不推荐具体商业型号。"
             },
             {
+              "source_id": "who_automated_cuff_bp_device_specs_004",
+              "title": "Technical specifications for automated non-invasive blood pressure measuring devices with cuff",
+              "url": "https://www.who.int/publications/i/item/9789240002654",
+              "used_for": "WHO 袖带式 自动血压计 技术规范 验证设备",
+              "organization": "World Health Organization",
+              "region": "global",
+              "topic": "validated_devices",
+              "language": "en",
+              "evidence_class": "validation_standard",
+              "source_quality_score": 23.0,
+              "allowed_uses": [
+                "device_advice",
+                "home_bp_monitoring",
+                "signal_quality",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.6428,
+              "snippet": "## 全文候选与下载材料摘要 ### WHO automated cuff blood pressure device technical specifications publication - candidate_id: `who_automated_cuff_bp_device_specs_publication` - access_mode: `public_landing` - fulltext_status: local_pdf_available - sourc..."
+            },
+            {
               "source_id": "hypertension_canada_device_recommendations_001",
               "title": "Recommended blood pressure monitors",
               "url": "https://hypertension.ca/bpdevices",
@@ -17671,25 +17694,6 @@
               "review_status": "included",
               "score": 0.632,
               "snippet": "## 来源摘要 AHA 家庭血压监测页面支持使用上臂式设备复核、规范姿势和记录趋势。"
-            },
-            {
-              "source_id": "validatebp_validated_devices_002",
-              "title": "Validated Device Listing",
-              "url": "https://www.validatebp.org/",
-              "used_for": "WHO 袖带式 自动血压计 技术规范 验证设备",
-              "organization": "ValidateBP",
-              "region": "US",
-              "topic": "validated_devices",
-              "language": "en",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 23.0,
-              "allowed_uses": [
-                "device_advice",
-                "home_bp_monitoring"
-              ],
-              "review_status": "included",
-              "score": 0.6311,
-              "snippet": "## 可用于报告的要点 - 建议选择经过验证的血压计。 - 不推荐具体商业型号。 - 上臂式设备通常更适合作为家庭复核工具。"
             }
           ],
           "precision_at_k": 1.0,
@@ -17908,7 +17912,7 @@
               "snippet": "## 可用于报告的要点 - 中文报告的减盐、合理膳食、运动和体重管理建议可优先引用该来源。 - 生活方式内容属于健康教育，不承诺个体降压效果。 - 特殊人群仍需医生或营养/运动专业人员个体化评估。"
             },
             {
-              "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_004",
+              "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_005",
               "title": "高血压营养和运动指导原则（2024年版）",
               "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
               "used_for": "国家卫健委 高血压 营养 运动 指导原则 减盐",
@@ -21431,7 +21435,7 @@
               "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
             },
             {
-              "source_id": "uspstf_hypertension_screening_adults_004",
+              "source_id": "uspstf_hypertension_screening_adults_005",
               "title": "Hypertension in Adults - Screening",
               "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
               "used_for": "145 92 PPG 血压估算 偏高 复测",
@@ -24888,7 +24892,7 @@
               "snippet": "## 可用于报告的要点 - 老年用户血压异常或伴头晕、跌倒风险等情况时，应更保守地建议规范复核和医生评估。 - 报告不得生成老年人个体化治疗目标或用药调整。 - PPG 估算只能作为趋势参考。"
             },
             {
-              "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_004",
+              "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_005",
               "title": "高血压营养和运动指导原则（2024年版）",
               "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
               "used_for": "65岁 老年人 血压估算 复测",
@@ -26457,24 +26461,24 @@
               "snippet": "## 可用于报告的要点 - PPG 信号可能受外部和生理因素干扰，质量评估有助于避免误解。 - 成像/摄像头 PPG 更需要关注环境光、运动和画面稳定性。 - 低质量信号应触发重新采集、延长采集或改用规范设备复核。"
             },
             {
-              "source_id": "local_ppg_signal_quality_rule_002",
-              "title": "PPG signal quality and confidence safety rule",
-              "url": "",
+              "source_id": "charlton_2022_ppg_best_practices_004",
+              "title": "Establishing best practices in photoplethysmography signal acquisition and processing",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9136485/",
               "used_for": "PPG 采集时长 采样 信号处理 最佳实践",
-              "organization": "project",
+              "organization": "Physiological Measurement",
               "region": "global",
               "topic": "measurement_quality",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 23.0,
               "allowed_uses": [
                 "signal_quality",
                 "remeasurement",
-                "cuffless_ppg_limitations"
+                "research_background"
               ],
               "review_status": "included",
-              "score": 0.4775,
-              "snippet": "## 可用于报告的要点 - 质量差时优先重新采集。 - 采集时长短应提示复测。 - 置信度低时建议规范设备复核。"
+              "score": 0.4851,
+              "snippet": "## 全文候选与下载材料摘要 ### Establishing best practices in photoplethysmography signal acquisition and processing - candidate_id: `charlton_2022_ppg_best_practices_fulltext` - access_mode: `public_html` - fulltext_status: local_pdf_available - sourc..."
             }
           ],
           "precision_at_k": 1.0,
@@ -26565,6 +26569,25 @@
               "snippet": "## 可用于报告的要点 - 运动伪影、个体差异、肤色/组织光学特性和佩戴条件是可穿戴 PPG 的关键质量挑战。 - 传感器位置、姿势和接触稳定性会影响光学波形。 - 报告应把这些因素写成采集质量限制，而不是临床判断依据。"
             },
             {
+              "source_id": "charlton_2025_wrist_ppg_signal_quality_004",
+              "title": "Determinants of photoplethysmography signal quality at the wrist",
+              "url": "https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000585",
+              "used_for": "腕部 PPG 传感器位置 姿势 高度 信号质量",
+              "organization": "PLOS Digital Health",
+              "region": "global",
+              "topic": "measurement_quality",
+              "language": "en",
+              "evidence_class": "research_context",
+              "source_quality_score": 23.0,
+              "allowed_uses": [
+                "signal_quality",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.5826,
+              "snippet": "## 全文候选与下载材料摘要 ### Determinants of photoplethysmography signal quality at the wrist - candidate_id: `charlton_2025_wrist_ppg_signal_quality_pdf` - access_mode: `public_pdf` - fulltext_status: local_pdf_available - source_url: https://journa..."
+            },
+            {
               "source_id": "allen_2007_ppg_clinical_measurement_review_002",
               "title": "Photoplethysmography and its application in clinical physiological measurement",
               "url": "https://pubmed.ncbi.nlm.nih.gov/17322588/",
@@ -26584,26 +26607,6 @@
               "review_status": "included",
               "score": 0.5809,
               "snippet": "## 可用于报告的要点 - PPG 信号依赖光照、组织灌注和测量位置，不是直接血压测量。 - 运动、环境光、探头接触和传感器位置都可能改变波形质量。 - 低质量或不稳定波形应优先重新采集并用规范血压计复核。"
-            },
-            {
-              "source_id": "charlton_2022_wearable_ppg_cardiovascular_review_001",
-              "title": "Wearable Photoplethysmography for Cardiovascular Monitoring",
-              "url": "https://ieeexplore.ieee.org/document/9731763",
-              "used_for": "腕部 PPG 传感器位置 姿势 高度 信号质量",
-              "organization": "Proceedings of the IEEE",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "en",
-              "evidence_class": "review",
-              "source_quality_score": 22.0,
-              "allowed_uses": [
-                "signal_quality",
-                "cuffless_ppg_limitations",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.5706,
-              "snippet": "## 来源摘要 该综述覆盖可穿戴 PPG 心血管监测的应用与限制，可用于解释真实世界佩戴、运动和传感器位置对信号的影响。"
             }
           ],
           "precision_at_k": 1.0,
@@ -26803,6 +26806,26 @@
               "snippet": "## 实现使用说明 - 用于 signal_quality 和 RAG 检索解释；不用于临床阈值。"
             },
             {
+              "source_id": "desquins_2022_ppg_quality_assessment_survey_005",
+              "title": "A Survey of Photoplethysmography and Imaging Photoplethysmography Quality Assessment Methods",
+              "url": "https://www.mdpi.com/2076-3417/12/19/9582",
+              "used_for": "imaging PPG quality assessment ambient illumination motion artifact",
+              "organization": "Applied Sciences",
+              "region": "global",
+              "topic": "measurement_quality",
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 22.0,
+              "allowed_uses": [
+                "signal_quality",
+                "remeasurement",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.4757,
+              "snippet": "已检测到本地 PDF：desquins_2022_ppg_quality_assessment_survey.pdf。知识库只使用上述摘要和 citation，不复制全文。"
+            },
+            {
               "source_id": "desquins_2022_ppg_quality_assessment_survey_002",
               "title": "A Survey of Photoplethysmography and Imaging Photoplethysmography Quality Assessment Methods",
               "url": "https://www.mdpi.com/2076-3417/12/19/9582",
@@ -26823,7 +26846,7 @@
               "snippet": "## 可用于报告的要点 - PPG 信号可能受外部和生理因素干扰，质量评估有助于避免误解。 - 成像/摄像头 PPG 更需要关注环境光、运动和画面稳定性。 - 低质量信号应触发重新采集、延长采集或改用规范设备复核。"
             },
             {
-              "source_id": "desquins_2022_ppg_quality_assessment_survey_004",
+              "source_id": "desquins_2022_ppg_quality_assessment_survey_006",
               "title": "A Survey of Photoplethysmography and Imaging Photoplethysmography Quality Assessment Methods",
               "url": "https://www.mdpi.com/2076-3417/12/19/9582",
               "used_for": "imaging PPG quality assessment ambient illumination motion artifact",
@@ -26841,25 +26864,6 @@
               "review_status": "included",
               "score": 0.4579,
               "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。 - 研究或综述来源只用于背景和局限说明，不用于患者级临床建议。"
-            },
-            {
-              "source_id": "charlton_2025_wrist_ppg_signal_quality_003",
-              "title": "Determinants of photoplethysmography signal quality at the wrist",
-              "url": "https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000585",
-              "used_for": "imaging PPG quality assessment ambient illumination motion artifact",
-              "organization": "PLOS Digital Health",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "en",
-              "evidence_class": "research_context",
-              "source_quality_score": 23.0,
-              "allowed_uses": [
-                "signal_quality",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.4481,
-              "snippet": "## 实现使用说明 - 用于 sensor_position、wearable PPG 和 signal_quality 检索。"
             }
           ],
           "precision_at_k": 1.0,
@@ -30352,6 +30356,27 @@
               "snippet": "## 可用于报告的要点 - 规范血压复核应优先使用经过验证的袖带式设备。 - 设备选择和测量质量会影响读数解释。 - 该来源用于说明验证原则，不推荐具体商业型号。"
             },
             {
+              "source_id": "who_automated_cuff_bp_device_specs_004",
+              "title": "Technical specifications for automated non-invasive blood pressure measuring devices with cuff",
+              "url": "https://www.who.int/publications/i/item/9789240002654",
+              "used_for": "WHO 袖带式 自动血压计 技术规范 验证设备",
+              "organization": "World Health Organization",
+              "region": "global",
+              "topic": "validated_devices",
+              "language": "en",
+              "evidence_class": "validation_standard",
+              "source_quality_score": 23.0,
+              "allowed_uses": [
+                "device_advice",
+                "home_bp_monitoring",
+                "signal_quality",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.6428,
+              "snippet": "## 全文候选与下载材料摘要 ### WHO automated cuff blood pressure device technical specifications publication - candidate_id: `who_automated_cuff_bp_device_specs_publication` - access_mode: `public_landing` - fulltext_status: local_pdf_available - sourc..."
+            },
+            {
               "source_id": "hypertension_canada_device_recommendations_001",
               "title": "Recommended blood pressure monitors",
               "url": "https://hypertension.ca/bpdevices",
@@ -30389,25 +30414,6 @@
               "review_status": "included",
               "score": 0.632,
               "snippet": "## 来源摘要 AHA 家庭血压监测页面支持使用上臂式设备复核、规范姿势和记录趋势。"
-            },
-            {
-              "source_id": "validatebp_validated_devices_002",
-              "title": "Validated Device Listing",
-              "url": "https://www.validatebp.org/",
-              "used_for": "WHO 袖带式 自动血压计 技术规范 验证设备",
-              "organization": "ValidateBP",
-              "region": "US",
-              "topic": "validated_devices",
-              "language": "en",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 23.0,
-              "allowed_uses": [
-                "device_advice",
-                "home_bp_monitoring"
-              ],
-              "review_status": "included",
-              "score": 0.6311,
-              "snippet": "## 可用于报告的要点 - 建议选择经过验证的血压计。 - 不推荐具体商业型号。 - 上臂式设备通常更适合作为家庭复核工具。"
             }
           ],
           "precision_at_k": 1.0,
@@ -30501,6 +30507,27 @@
               "snippet": "## 来源摘要 中国血压测量指南可补充中文规范测量方法、影响测量准确性的因素和诊室/家庭/动态血压测量说明。"
             },
             {
+              "source_id": "uspstf_hypertension_screening_adults_004",
+              "title": "Hypertension in Adults - Screening",
+              "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
+              "used_for": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
+              "organization": "U.S. Preventive Services Task Force",
+              "region": "US",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "guideline",
+              "source_quality_score": 23.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "bp_category_reference",
+                "disclaimer"
+              ],
+              "review_status": "included",
+              "score": 0.6531,
+              "snippet": "## 全文候选与下载材料摘要 ### USPSTF hypertension in adults screening recommendation - candidate_id: `uspstf_hypertension_screening_fulltext` - access_mode: `public_html` - fulltext_status: local_pdf_available - source_url: https://www.uspreventiveser..."
+            },
+            {
               "source_id": "nice_ng136_hypertension_002",
               "title": "Hypertension in adults - diagnosis and management",
               "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
@@ -30519,26 +30546,6 @@
               "review_status": "included",
               "score": 0.646,
               "snippet": "## 可用于报告的要点 - 诊断需要规范测量，不依赖单次设备估算。 - 家庭血压监测可用于确认和随访。 - 本系统只引用其测量原则和复测理念。"
-            },
-            {
-              "source_id": "nice_ng136_hypertension_001",
-              "title": "Hypertension in adults - diagnosis and management",
-              "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
-              "used_for": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
-              "organization": "National Institute for Health and Care Excellence",
-              "region": "UK",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "guideline",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "bp_category_reference"
-              ],
-              "review_status": "included",
-              "score": 0.6283,
-              "snippet": "## 来源摘要 NICE NG136 为家庭/动态血压确认和复测提供国际对照依据。"
             }
           ],
           "precision_at_k": 1.0,
@@ -30626,7 +30633,7 @@
               "snippet": "## 可用于报告的要点 - 中文报告的减盐、合理膳食、运动和体重管理建议可优先引用该来源。 - 生活方式内容属于健康教育，不承诺个体降压效果。 - 特殊人群仍需医生或营养/运动专业人员个体化评估。"
             },
             {
-              "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_004",
+              "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_005",
               "title": "高血压营养和运动指导原则（2024年版）",
               "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
               "used_for": "国家卫健委 高血压 营养 运动 指导原则 减盐",
@@ -30738,7 +30745,7 @@
               "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
             },
             {
-              "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_004",
+              "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_005",
               "title": "高血压营养和运动指导原则（2024年版）",
               "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
               "used_for": "全国高血压日 规范测量 记录 生活方式",
@@ -30885,6 +30892,26 @@
               "snippet": "## 来源摘要 CDC CKD 风险因素页面补充慢性肾病和高血压相关风险背景。"
             },
             {
+              "source_id": "kdigo_2024_ckd_guideline_004",
+              "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+              "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/",
+              "used_for": "KDIGO 2024 慢性肾病 CKD 血压偏高 复核",
+              "organization": "Kidney Disease - Improving Global Outcomes",
+              "region": "global",
+              "topic": "special_population",
+              "language": "en",
+              "evidence_class": "guideline",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "special_population",
+                "medication_safety",
+                "home_bp_monitoring"
+              ],
+              "review_status": "included",
+              "score": 0.5873,
+              "snippet": "## 全文候选与下载材料摘要 ### KDIGO 2024 CKD guideline PDF - candidate_id: `kdigo_2024_ckd_guideline_pdf` - access_mode: `public_pdf` - fulltext_status: local_pdf_available - source_url: https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo..."
+            },
+            {
               "source_id": "chinese_2023_elderly_hypertension_management_guideline_001",
               "title": "中国老年高血压管理指南2023",
               "url": "https://medtion-image.medtion.com/uploads/1/file/public/202312/20231222151125_hjo32b9lsf.pdf",
@@ -30904,24 +30931,6 @@
               "review_status": "included",
               "score": 0.5824,
               "snippet": "## 来源摘要 中国老年高血压管理指南2023 可强化老年用户的保守复核、体位性症状关注、用药安全边界和医生沟通提醒。"
-            },
-            {
-              "source_id": "aha_kidney_disease_high_bp_001",
-              "title": "High Blood Pressure and Kidney Disease",
-              "url": "https://www.heart.org/en/health-topics/high-blood-pressure/health-threats-from-high-blood-pressure/high-blood-pressure-and-kidney-disease",
-              "used_for": "KDIGO 2024 慢性肾病 CKD 血压偏高 复核",
-              "organization": "American Heart Association",
-              "region": "AHA",
-              "topic": "special_population",
-              "language": "en",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "special_population"
-              ],
-              "review_status": "included",
-              "score": 0.5357,
-              "snippet": "## 来源摘要 AHA 肾病与高血压页面支持 CKD 用户的保守提醒。"
             }
           ],
           "precision_at_k": 1.0,
@@ -33361,24 +33370,24 @@
               "snippet": "## 来源摘要 本项目规则：低信号质量或低置信度时不生成强风险结论。"
             },
             {
-              "source_id": "local_ppg_signal_quality_rule_002",
-              "title": "PPG signal quality and confidence safety rule",
-              "url": "",
+              "source_id": "desquins_2022_ppg_quality_assessment_survey_004",
+              "title": "A Survey of Photoplethysmography and Imaging Photoplethysmography Quality Assessment Methods",
+              "url": "https://www.mdpi.com/2076-3417/12/19/9582",
               "used_for": "手指移动 强光 摄像头 PPG 信号差",
-              "organization": "project",
+              "organization": "Applied Sciences",
               "region": "global",
               "topic": "measurement_quality",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 22.0,
               "allowed_uses": [
                 "signal_quality",
                 "remeasurement",
-                "cuffless_ppg_limitations"
+                "research_background"
               ],
               "review_status": "included",
-              "score": 0.4861,
-              "snippet": "## 可用于报告的要点 - 质量差时优先重新采集。 - 采集时长短应提示复测。 - 置信度低时建议规范设备复核。"
+              "score": 0.4905,
+              "snippet": "## 全文候选与下载材料摘要 ### A Survey of Photoplethysmography and Imaging Photoplethysmography Quality Assessment Methods - candidate_id: `desquins_2022_ppg_quality_assessment_survey_pdf` - access_mode: `public_pdf` - fulltext_status: local_pdf_avail..."
             }
           ],
           "precision_at_k": 1.0,
@@ -34014,24 +34023,24 @@
               "snippet": "## 可用于报告的要点 - PPG 采集质量依赖设备设计、采样设置、采集场景和处理流程。 - 采集时长不足或波形不稳定时，不应生成强风险结论。 - 报告可建议延长采集、保持稳定姿势并重新采集。"
             },
             {
-              "source_id": "local_capture_environment_rule_001",
-              "title": "Camera PPG capture environment rule",
-              "url": "",
+              "source_id": "desquins_2022_ppg_quality_assessment_survey_004",
+              "title": "A Survey of Photoplethysmography and Imaging Photoplethysmography Quality Assessment Methods",
+              "url": "https://www.mdpi.com/2076-3417/12/19/9582",
               "used_for": "低质量信号 不生成强风险结论",
-              "organization": "project",
+              "organization": "Applied Sciences",
               "region": "global",
               "topic": "measurement_quality",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 22.0,
               "allowed_uses": [
                 "signal_quality",
                 "remeasurement",
-                "cuffless_ppg_limitations"
+                "research_background"
               ],
               "review_status": "included",
-              "score": 0.5535,
-              "snippet": "## 来源摘要 本地规则补充摄像头 PPG 采集环境对信号质量的影响。"
+              "score": 0.5717,
+              "snippet": "## 全文候选与下载材料摘要 ### A Survey of Photoplethysmography and Imaging Photoplethysmography Quality Assessment Methods - candidate_id: `desquins_2022_ppg_quality_assessment_survey_pdf` - access_mode: `public_pdf` - fulltext_status: local_pdf_avail..."
             }
           ],
           "precision_at_k": 1.0,
@@ -34146,7 +34155,7 @@
               "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
             },
             {
-              "source_id": "uspstf_hypertension_screening_adults_004",
+              "source_id": "uspstf_hypertension_screening_adults_005",
               "title": "Hypertension in Adults - Screening",
               "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
               "used_for": "145 92 PPG 血压估算 偏高 复测",
@@ -37612,7 +37621,7 @@
               "snippet": "## 可用于报告的要点 - 老年用户血压异常或伴头晕、跌倒风险等情况时，应更保守地建议规范复核和医生评估。 - 报告不得生成老年人个体化治疗目标或用药调整。 - PPG 估算只能作为趋势参考。"
             },
             {
-              "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_004",
+              "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_005",
               "title": "高血压营养和运动指导原则（2024年版）",
               "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
               "used_for": "65岁 老年人 血压估算 复测",

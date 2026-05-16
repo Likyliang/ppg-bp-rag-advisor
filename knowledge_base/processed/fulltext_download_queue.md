@@ -1,9 +1,9 @@
 # Full-text Candidate Download Queue
 
-- Updated: 2026-05-11
+- Updated: 2026-05-16
 - Candidates: 38
 - Public auto-download: 1
-- Institution/browser queue: 20
+- Institution/browser queue: 12
 
 ## Safe Access Rules
 
@@ -49,39 +49,6 @@
 - save_as: `knowledge_base/sources/downloads/chinese_hypertension_guideline_2024_catalog.pdf`
 - purpose: bp_category_reference; home_bp_monitoring; remeasurement; lifestyle; special_population
 
-### P3 高血压营养和运动指导原则 2024 PDF
-
-- candidate_id: `nhc_2024_hypertension_nutrition_exercise_pdf`
-- source_id: `nhc_2024_hypertension_nutrition_exercise_guidance`
-- access_mode: `public_pdf`
-- status: `queued_manual`
-- landing_url: https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html
-- pdf_url: https://www.gov.cn/zhengce/zhengceku/202407/P020240701700333981869.pdf
-- save_as: `knowledge_base/sources/downloads/nhc_2024_hypertension_nutrition_exercise_guidance.pdf`
-- purpose: lifestyle; special_population; home_bp_monitoring
-
-### P3 USPSTF hypertension in adults screening recommendation
-
-- candidate_id: `uspstf_hypertension_screening_fulltext`
-- source_id: `uspstf_hypertension_screening_adults`
-- access_mode: `public_html`
-- status: `queued_manual`
-- landing_url: https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening
-- pdf_url: n/a
-- save_as: `knowledge_base/sources/downloads/uspstf_hypertension_screening_adults.pdf`
-- purpose: home_bp_monitoring; remeasurement; bp_category_reference; disclaimer
-
-### P3 WHO automated cuff blood pressure device technical specifications publication
-
-- candidate_id: `who_automated_cuff_bp_device_specs_publication`
-- source_id: `who_automated_cuff_bp_device_specs`
-- access_mode: `public_landing`
-- status: `queued_manual`
-- landing_url: https://www.who.int/publications/i/item/9789240002654
-- pdf_url: n/a
-- save_as: `knowledge_base/sources/downloads/who_automated_cuff_bp_device_specs.pdf`
-- purpose: device_advice; home_bp_monitoring; signal_quality; research_background
-
 ### P4 ADA Standards of Care in Diabetes 2026 cardiovascular disease and risk management
 
 - candidate_id: `ada_2026_standards_cvd_bp_fulltext`
@@ -103,17 +70,6 @@
 - pdf_url: n/a
 - save_as: `knowledge_base/sources/downloads/esh_2023_hypertension_guideline.pdf`
 - purpose: home_bp_monitoring; remeasurement; special_population
-
-### P4 KDIGO 2024 CKD guideline PDF
-
-- candidate_id: `kdigo_2024_ckd_guideline_pdf`
-- source_id: `kdigo_2024_ckd_guideline`
-- access_mode: `public_pdf`
-- status: `queued_manual`
-- landing_url: https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/
-- pdf_url: https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf
-- save_as: `knowledge_base/sources/downloads/kdigo_2024_ckd_guideline.pdf`
-- purpose: special_population; medication_safety; home_bp_monitoring
 
 ### P5 Photoplethysmography and its application in clinical physiological measurement
 
@@ -148,17 +104,6 @@
 - save_as: `knowledge_base/sources/downloads/chandrasekhar_2020_contact_pressure_cuffless_bp.pdf`
 - purpose: signal_quality; cuffless_ppg_limitations; research_background
 
-### P5 Establishing best practices in photoplethysmography signal acquisition and processing
-
-- candidate_id: `charlton_2022_ppg_best_practices_fulltext`
-- source_id: `charlton_2022_ppg_best_practices`
-- access_mode: `public_html`
-- status: `queued_manual`
-- landing_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC9136485/
-- pdf_url: n/a
-- save_as: `knowledge_base/sources/downloads/charlton_2022_ppg_best_practices.pdf`
-- purpose: signal_quality; remeasurement; research_background
-
 ### P5 Wearable Photoplethysmography for Cardiovascular Monitoring
 
 - candidate_id: `charlton_2022_wearable_ppg_cardiovascular_fulltext`
@@ -169,39 +114,6 @@
 - pdf_url: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9731763
 - save_as: `knowledge_base/sources/downloads/charlton_2022_wearable_ppg_cardiovascular_review.pdf`
 - purpose: signal_quality; cuffless_ppg_limitations; research_background
-
-### P5 The 2023 wearable photoplethysmography roadmap
-
-- candidate_id: `charlton_2023_wearable_ppg_roadmap_fulltext`
-- source_id: `charlton_2023_wearable_ppg_roadmap`
-- access_mode: `public_html`
-- status: `queued_manual`
-- landing_url: https://iopscience.iop.org/article/10.1088/1361-6579/acead2
-- pdf_url: https://iopscience.iop.org/article/10.1088/1361-6579/acead2/pdf
-- save_as: `knowledge_base/sources/downloads/charlton_2023_wearable_ppg_roadmap.pdf`
-- purpose: signal_quality; cuffless_ppg_limitations; device_advice; research_background
-
-### P5 Determinants of photoplethysmography signal quality at the wrist
-
-- candidate_id: `charlton_2025_wrist_ppg_signal_quality_pdf`
-- source_id: `charlton_2025_wrist_ppg_signal_quality`
-- access_mode: `public_pdf`
-- status: `queued_manual`
-- landing_url: https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000585
-- pdf_url: https://journals.plos.org/digitalhealth/article/file?id=10.1371/journal.pdig.0000585&type=printable
-- save_as: `knowledge_base/sources/downloads/charlton_2025_wrist_ppg_signal_quality.pdf`
-- purpose: signal_quality; research_background
-
-### P5 A Survey of Photoplethysmography and Imaging Photoplethysmography Quality Assessment Methods
-
-- candidate_id: `desquins_2022_ppg_quality_assessment_survey_pdf`
-- source_id: `desquins_2022_ppg_quality_assessment_survey`
-- access_mode: `public_pdf`
-- status: `queued_manual`
-- landing_url: https://www.mdpi.com/2076-3417/12/19/9582
-- pdf_url: https://www.mdpi.com/2076-3417/12/19/9582/pdf
-- save_as: `knowledge_base/sources/downloads/desquins_2022_ppg_quality_assessment_survey.pdf`
-- purpose: signal_quality; remeasurement; research_background
 
 ### P5 Effect of Ambient Lighting and Skin Tone on Estimation of Heart Rate and Pulse Transit Time from Video Plethysmography
 

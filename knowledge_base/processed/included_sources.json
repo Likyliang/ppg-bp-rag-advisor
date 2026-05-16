@@ -2784,8 +2784,8 @@
       "research_background"
     ],
     "copyright_note": "WHO public technical specification page; summarize validation and cuff-device principles only.",
-    "access_note": "public landing page with downloadable publication",
-    "last_accessed": "2026-05-10",
+    "access_note": "public WHO IRIS PDF downloaded on 2026-05-16; tracked summary only",
+    "last_accessed": "2026-05-16",
     "screening": {
       "authority": 5,
       "recency": 3,
@@ -2829,8 +2829,8 @@
       "disclaimer"
     ],
     "copyright_note": "USPSTF public recommendation statement; summarize only.",
-    "access_note": "public",
-    "last_accessed": "2026-05-10",
+    "access_note": "public USPSTF PDF downloaded on 2026-05-16; tracked summary only",
+    "last_accessed": "2026-05-16",
     "screening": {
       "authority": 5,
       "recency": 3,
@@ -2873,8 +2873,8 @@
       "home_bp_monitoring"
     ],
     "copyright_note": "Public Chinese government guidance; summarize lifestyle principles only.",
-    "access_note": "public PDF available; manual download URL tracked in fulltext candidates",
-    "last_accessed": "2026-05-10",
+    "access_note": "public gov.cn PDF downloaded on 2026-05-16; tracked summary only",
+    "last_accessed": "2026-05-16",
     "screening": {
       "authority": 5,
       "recency": 5,
@@ -2962,8 +2962,8 @@
       "home_bp_monitoring"
     ],
     "copyright_note": "Public guideline page; summarize only and do not reproduce guideline tables.",
-    "access_note": "public PDF available; manual download URL tracked in fulltext candidates",
-    "last_accessed": "2026-05-10",
+    "access_note": "public KDIGO PDF downloaded on 2026-05-16; tracked summary only",
+    "last_accessed": "2026-05-16",
     "screening": {
       "authority": 5,
       "recency": 5,
@@ -3095,8 +3095,8 @@
       "research_background"
     ],
     "copyright_note": "Open PMC article; summarize best-practice principles only.",
-    "access_note": "public full text via PMC",
-    "last_accessed": "2026-05-10",
+    "access_note": "public IOP PDF downloaded on 2026-05-16; tracked summary only",
+    "last_accessed": "2026-05-16",
     "screening": {
       "authority": 4,
       "recency": 4,
@@ -3184,8 +3184,8 @@
       "research_background"
     ],
     "copyright_note": "Open IOP roadmap article; summarize high-level limitations and research gaps only.",
-    "access_note": "public landing page with open access article",
-    "last_accessed": "2026-05-10",
+    "access_note": "public IOP PDF downloaded on 2026-05-16; tracked summary only",
+    "last_accessed": "2026-05-16",
     "screening": {
       "authority": 4,
       "recency": 5,
@@ -3228,8 +3228,8 @@
       "research_background"
     ],
     "copyright_note": "Open-access MDPI review; summarize signal quality assessment concepts only.",
-    "access_note": "public full text and PDF",
-    "last_accessed": "2026-05-10",
+    "access_note": "public MDPI PDF downloaded on 2026-05-16; tracked summary only",
+    "last_accessed": "2026-05-16",
     "screening": {
       "authority": 3,
       "recency": 4,
@@ -3271,8 +3271,8 @@
       "research_background"
     ],
     "copyright_note": "Open-access PLOS article; summarize determinants and do not convert into clinical advice.",
-    "access_note": "public full text and PDF",
-    "last_accessed": "2026-05-10",
+    "access_note": "public PLOS printable PDF downloaded on 2026-05-16; tracked summary only",
+    "last_accessed": "2026-05-16",
     "screening": {
       "authority": 4,
       "recency": 5,

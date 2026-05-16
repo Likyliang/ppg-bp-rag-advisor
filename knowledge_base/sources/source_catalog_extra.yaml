@@ -654,8 +654,8 @@ sources:
     include: true
     allowed_uses: [device_advice, home_bp_monitoring, signal_quality, research_background]
     copyright_note: "WHO public technical specification page; summarize validation and cuff-device principles only."
-    access_note: public landing page with downloadable publication
-    last_accessed: 2026-05-10
+    access_note: public WHO IRIS PDF downloaded on 2026-05-16; tracked summary only
+    last_accessed: 2026-05-16
     screening: {authority: 5, recency: 3, relevance: 5, accessibility: 5, safety_applicability: 5}
     notes:
       summary: "WHO 袖带式自动无创血压计技术规范支持“复核应使用经过验证的袖带设备”的设备边界。"
@@ -676,8 +676,8 @@ sources:
     include: true
     allowed_uses: [home_bp_monitoring, remeasurement, bp_category_reference, disclaimer]
     copyright_note: "USPSTF public recommendation statement; summarize only."
-    access_note: public
-    last_accessed: 2026-05-10
+    access_note: public USPSTF PDF downloaded on 2026-05-16; tracked summary only
+    last_accessed: 2026-05-16
     screening: {authority: 5, recency: 3, relevance: 5, accessibility: 5, safety_applicability: 5}
     notes:
       summary: "USPSTF 成人高血压筛查建议强调在诊断前应通过诊室外血压测量进行确认，可强化本系统的复测和非诊断边界。"
@@ -698,8 +698,8 @@ sources:
     include: true
     allowed_uses: [lifestyle, special_population, home_bp_monitoring]
     copyright_note: "Public Chinese government guidance; summarize lifestyle principles only."
-    access_note: public PDF available; manual download URL tracked in fulltext candidates
-    last_accessed: 2026-05-10
+    access_note: public gov.cn PDF downloaded on 2026-05-16; tracked summary only
+    last_accessed: 2026-05-16
     screening: {authority: 5, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
     notes:
       summary: "国家卫健委 2024 高血压营养和运动指导原则是中文生活方式建议的高优先级本土来源。"
@@ -742,8 +742,8 @@ sources:
     include: true
     allowed_uses: [special_population, medication_safety, home_bp_monitoring]
     copyright_note: "Public guideline page; summarize only and do not reproduce guideline tables."
-    access_note: public PDF available; manual download URL tracked in fulltext candidates
-    last_accessed: 2026-05-10
+    access_note: public KDIGO PDF downloaded on 2026-05-16; tracked summary only
+    last_accessed: 2026-05-16
     screening: {authority: 5, recency: 5, relevance: 4, accessibility: 5, safety_applicability: 5}
     notes:
       summary: "KDIGO 2024 CKD 指南可强化慢性肾病用户的保守复核和医生沟通提醒。"
@@ -808,8 +808,8 @@ sources:
     include: true
     allowed_uses: [signal_quality, remeasurement, research_background]
     copyright_note: "Open PMC article; summarize best-practice principles only."
-    access_note: public full text via PMC
-    last_accessed: 2026-05-10
+    access_note: public IOP PDF downloaded on 2026-05-16; tracked summary only
+    last_accessed: 2026-05-16
     screening: {authority: 4, recency: 4, relevance: 5, accessibility: 5, safety_applicability: 5}
     notes:
       summary: "该文讨论 PPG 信号采集和处理最佳实践的必要性，可支持采集时长、采样、预处理和质量评估应被标准化。"
@@ -852,8 +852,8 @@ sources:
     include: true
     allowed_uses: [signal_quality, cuffless_ppg_limitations, device_advice, research_background]
     copyright_note: "Open IOP roadmap article; summarize high-level limitations and research gaps only."
-    access_note: public landing page with open access article
-    last_accessed: 2026-05-10
+    access_note: public IOP PDF downloaded on 2026-05-16; tracked summary only
+    last_accessed: 2026-05-16
     screening: {authority: 4, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 5}
     notes:
       summary: "2023 可穿戴 PPG 路线图提供了运动、肤色、接触、佩戴位置和真实世界可用性等研究挑战的高层框架。"
@@ -874,8 +874,8 @@ sources:
     include: true
     allowed_uses: [signal_quality, remeasurement, research_background]
     copyright_note: "Open-access MDPI review; summarize signal quality assessment concepts only."
-    access_note: public full text and PDF
-    last_accessed: 2026-05-10
+    access_note: public MDPI PDF downloaded on 2026-05-16; tracked summary only
+    last_accessed: 2026-05-16
     screening: {authority: 3, recency: 4, relevance: 5, accessibility: 5, safety_applicability: 5}
     notes:
       summary: "该综述聚焦 PPG 与成像 PPG 的信号质量评估，可用于说明为什么需要 quality score、波形筛选和低质量拦截。"
@@ -896,8 +896,8 @@ sources:
     include: true
     allowed_uses: [signal_quality, research_background]
     copyright_note: "Open-access PLOS article; summarize determinants and do not convert into clinical advice."
-    access_note: public full text and PDF
-    last_accessed: 2026-05-10
+    access_note: public PLOS printable PDF downloaded on 2026-05-16; tracked summary only
+    last_accessed: 2026-05-16
     screening: {authority: 4, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 4}
     notes:
       summary: "该研究分析腕部 PPG 信号质量影响因素，适合支持传感器位置、姿势和个体差异会影响波形质量。"

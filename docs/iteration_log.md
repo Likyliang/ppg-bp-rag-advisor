@@ -168,3 +168,23 @@
   - Rule+RAG+Safety report evaluation: required-use coverage 1.0, recommendation grounding 1.0, sensitive high-trust rate 1.0, emergency consistency 1.0.
   - Report benchmark: P95 0.0311s.
 - Remaining risk: expected evidence-class hit rate is 0.92; a later round can improve source-class ranking without relaxing topic or safety filters.
+
+## Special Iteration: Public Full-text Expansion Follow-up
+
+- Goal: continue enriching the RAG with legally accessible full text while preserving the summary-only, auditable knowledge-base boundary.
+- Downloaded and validated 8 public PDFs into ignored local storage:
+  - WHO automated cuff BP device technical specifications, USPSTF adult hypertension screening recommendation, NHC 2024 hypertension nutrition/exercise guidance, and KDIGO 2024 CKD guideline.
+  - PPG signal-quality sources: Charlton 2022 PPG acquisition/processing best practices, Charlton 2023 wearable PPG roadmap, Desquins 2022 PPG/iPPG quality-assessment survey, and Charlton 2025 wrist PPG signal-quality determinants.
+- Promoted all 8 candidates from `queued_manual/pending_fulltext` to `summarized/ready`, recorded direct download URLs and access date `2026-05-16`, and generated tracked Chinese summary notes only.
+- Rebuilt generated notes and chunks: included sources remain 93, chunks increased from 396 to 406; `measurement_quality` now has 62 chunks and 14 source-level notes.
+- Preserved safety boundaries:
+  - Downloaded PDFs remain under `knowledge_base/sources/downloads/`, which is Git-ignored.
+  - No credentials, cookies, tokens, or raw PDF text were stored in tracked files.
+  - PPG research sources remain limited to signal quality, remeasurement, cuffless/PPG limitations, device boundary, and research background.
+- Strict quality gate passed:
+  - Tests: 220 passed.
+  - Calibrated query-only retrieval: match rate 1.0, precision@5 1.0, topic hit rate 1.0, high-trust sensitive rate 1.0, unsafe-source leakage 0.
+  - Metadata-filter safety: match rate 1.0, precision@5 1.0, unsafe-source leakage 0.
+  - Rule+RAG+Safety report evaluation: required-use coverage 1.0, recommendation grounding 1.0, sensitive high-trust rate 1.0, emergency consistency 1.0.
+  - Report benchmark: P95 0.0311s.
+- Remaining risk: ADA 2026 PDF, Bent 2020 Nature PDF, and several IEEE/older PPG papers remain manual/browser or institution-access candidates; current summaries still avoid using those as full-text-derived evidence until PDF access is cleanly recorded.

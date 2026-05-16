@@ -1,5 +1,5 @@
 {
-  "written_count": 20,
+  "written_count": 28,
   "written": [
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/aha_cuffless_bp_scientific_statement.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_hypertension_guideline_2024_catalog.summary.md",
@@ -12,13 +12,21 @@
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/aha_steps_to_improve_high_bp.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_2011_bp_measurement_guideline.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_2023_elderly_hypertension_management_guideline.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/nhc_2024_hypertension_nutrition_exercise_guidance.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/nhlbi_dash_lowering_blood_pressure_guide.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/nice_ng136_hypertension.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/uspstf_hypertension_screening_adults.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/who_automated_cuff_bp_device_specs.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/aha_life_essential_8_manage_blood_pressure.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/cdc_managing_my_blood_pressure_questions.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_2013_hypertension_patient_education_guideline.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/ish_2020_global_guideline.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/kdigo_2024_ckd_guideline.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/who_2021_hypertension_pharmacological_treatment_guideline.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/charlton_2022_ppg_best_practices.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/charlton_2023_wearable_ppg_roadmap.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/charlton_2025_wrist_ppg_signal_quality.summary.md",
+    "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/desquins_2022_ppg_quality_assessment_survey.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/stride_bp_validated_devices.summary.md",
     "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/fulltext_summaries/chinese_2025_secondary_hypertension_screening_consensus.summary.md"
   ],
@@ -28,27 +36,11 @@
       "reason": "include_in_summary=false"
     },
     {
-      "candidate_id": "nhc_2024_hypertension_nutrition_exercise_pdf",
-      "reason": "include_in_summary=false"
-    },
-    {
-      "candidate_id": "uspstf_hypertension_screening_fulltext",
-      "reason": "include_in_summary=false"
-    },
-    {
-      "candidate_id": "who_automated_cuff_bp_device_specs_publication",
-      "reason": "include_in_summary=false"
-    },
-    {
       "candidate_id": "ada_2026_standards_cvd_bp_fulltext",
       "reason": "include_in_summary=false"
     },
     {
       "candidate_id": "esh_2023_guideline_fulltext",
-      "reason": "include_in_summary=false"
-    },
-    {
-      "candidate_id": "kdigo_2024_ckd_guideline_pdf",
       "reason": "include_in_summary=false"
     },
     {
@@ -64,23 +56,7 @@
       "reason": "include_in_summary=false"
     },
     {
-      "candidate_id": "charlton_2022_ppg_best_practices_fulltext",
-      "reason": "include_in_summary=false"
-    },
-    {
       "candidate_id": "charlton_2022_wearable_ppg_cardiovascular_fulltext",
-      "reason": "include_in_summary=false"
-    },
-    {
-      "candidate_id": "charlton_2023_wearable_ppg_roadmap_fulltext",
-      "reason": "include_in_summary=false"
-    },
-    {
-      "candidate_id": "charlton_2025_wrist_ppg_signal_quality_pdf",
-      "reason": "include_in_summary=false"
-    },
-    {
-      "candidate_id": "desquins_2022_ppg_quality_assessment_survey_pdf",
       "reason": "include_in_summary=false"
     },
     {
