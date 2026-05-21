@@ -381,3 +381,16 @@
 - Highlighted the source governance workflow: PDF registration, source catalog screening, Chinese notes, chunk generation, audit, and retrieval evaluation.
 - Kept the application boundary explicit: the system explains mini-program PPG estimate outputs and does not validate PPG BP accuracy, diagnose, treat, prescribe, stop medication, or replace validated cuff BP measurement.
 - Kept formal report generation and Streamlit Demo presentation as next-stage work rather than current-week achievements.
+
+## Presentation Artifact: Canva Weekly Update Deck
+
+- Goal: create a concise Canva presentation for this week's RAG-Agent progress update.
+- Used the presentation-ready weekly report as the content source and generated a 5-page Canva deck:
+  - `本周重点：先把知识库和评估链路打牢`
+  - `文献与知识库规模`
+  - `source catalog：让每条证据有边界`
+  - `评估与接口链路结果`
+  - `下周计划：报告与 Demo 展示`
+- Created Canva design `DAHKSZUYFqI`, titled `演示文稿 - 高血压 PPG 估算进展`.
+- Recorded edit/view links and candidate alternatives in `outputs/weekly_reports/canva_weekly_presentation_2026-05-21.md`.
+- Scope note: this artifact is for weekly display; it does not change the RAG system, evaluation design, knowledge base, or medical-safety claims.

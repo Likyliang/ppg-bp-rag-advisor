@@ -8,6 +8,7 @@
 
 ## Unreleased
 
+- Created a 5-page Canva weekly presentation deck for the high-blood-pressure PPG RAG-Agent progress update and recorded the editable/viewable links under `outputs/weekly_reports/`.
 - Reworked the practical weekly report into a neutral presentation-ready version while keeping the literature workload, source catalog workflow, evaluation results, concurrency limit, and next-week report/Demo scope explicit.
 - Added an exploratory API-level experiment runner that exercises existing FastAPI routes for rule preview, report generation, and KB search with capped concurrency; outputs JSON/CSV/Markdown under `outputs/experiments/` without replacing the calibrated retrieval quality gate.
 - Clarified the weekly-report application boundary as mini-program structured PPG-estimate input rather than open-ended clinical questioning, preserved PPG signal context in report `input_summary`, and added capped parallel experiment execution with `evaluation.max_concurrency=5` for report evaluation and benchmarking.
