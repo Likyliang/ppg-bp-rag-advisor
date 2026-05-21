@@ -322,3 +322,25 @@
 - Extended report `input_summary` so generated reports preserve mini-program context fields: module, PPG signal quality score, confidence, capture duration, PPG source, algorithm version, calculation principle, and timestamp.
 - Added regression tests to ensure requested concurrency above 5 is capped and recorded.
 - Strict quality gate passed after the change: 223 tests, 114 included sources, 524 chunks, calibrated query-only match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report evaluation max concurrency 5, benchmark max concurrency 5, report P95 0.2413s.
+
+## Special Iteration: Exploratory API Experiment
+
+- Goal: use the existing API surface for a lightweight experiment without adding new endpoints or changing the core evaluation definition.
+- Added `scripts/run_api_experiments.py`:
+  - Calls existing FastAPI routes through `TestClient`: `/api/v1/reports/preview-rules`, `/api/v1/reports/generate`, and `/api/v1/kb/search`.
+  - Runs report fixtures in parallel with the same `evaluation.max_concurrency` cap, never exceeding 5 workers.
+  - Records API success rate, safety pass rate, input context preservation, evidence coverage, recommendation grounding, sensitive high-trust evidence, emergency consistency, latency, and KB search expected-use hit rate.
+  - Writes JSON/CSV/Markdown experiment artifacts under `outputs/experiments/`.
+- Added `tests/test_api_experiments.py` to verify concurrency capping, successful API report generation, emergency consistency, search probe coverage, and output artifact creation.
+- Ran the API experiment over 50 report fixtures and 6 KB search probes:
+  - API report success rate 1.0.
+  - Safety pass rate 1.0.
+  - Input context preservation rate 1.0.
+  - Evidence coverage rate 1.0.
+  - Recommendation grounding rate 1.0.
+  - Sensitive high-trust rate 1.0.
+  - Emergency consistency rate 1.0.
+  - API P95 latency 0.1691s.
+  - KB search expected-use hit rate 1.0.
+- Strict quality gate passed after adding the API experiment: 224 tests, 114 included sources, 524 chunks, calibrated query-only match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report evaluation max concurrency 5, benchmark max concurrency 5, report P95 0.212s.
+- Scope note: this is an exploratory API-level experiment for Demo and weekly-report support. It does not replace the calibrated query-only retrieval evaluation, metadata-filter safety check, report fixtures, or strict quality gate.

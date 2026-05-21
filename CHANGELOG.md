@@ -8,10 +8,11 @@
 
 ## Unreleased
 
+- Added an exploratory API-level experiment runner that exercises existing FastAPI routes for rule preview, report generation, and KB search with capped concurrency; outputs JSON/CSV/Markdown under `outputs/experiments/` without replacing the calibrated retrieval quality gate.
 - Clarified the weekly-report application boundary as mini-program structured PPG-estimate input rather than open-ended clinical questioning, preserved PPG signal context in report `input_summary`, and added capped parallel experiment execution with `evaluation.max_concurrency=5` for report evaluation and benchmarking.
 - Processed Batch 3 user-downloaded PDFs into the governed RAG workflow: 11 newly archived PDFs, 11 source catalog records, 11 full-text summary notes, refreshed chunks/evaluations, and a current unresolved-download list with 6 remaining access-blocked/institution-required items.
 - Refreshed the Obsidian literature library after Batch 3: 62 PDF links, 48 sources with summary notes, 14 PDF-archived but summary-pending notes, and 6 unresolved full-text/access items.
-- Current strict quality gate after Batch 3 and input-boundary/concurrency update: 223 tests, 114 included sources, 524 chunks, calibrated query-only match rate 1.0, precision@5 1.0, topic hit rate 1.0, unsafe-source leakage 0, Rule+RAG+Safety recommendation grounding 1.0, report evaluation max concurrency 5, benchmark max concurrency 5, report P95 0.2413s.
+- Current strict quality gate after Batch 3, input-boundary/concurrency update, and exploratory API experiment: 224 tests, 114 included sources, 524 chunks, calibrated query-only match rate 1.0, precision@5 1.0, topic hit rate 1.0, unsafe-source leakage 0, Rule+RAG+Safety recommendation grounding 1.0, report evaluation max concurrency 5, benchmark max concurrency 5, report P95 0.212s.
 - Prepared Batch 3 legal full-text search request focused on non-duplicative cuffless BP validation/calibration and PPG optical signal-quality gaps, while excluding all locally archived Batch 1/2 PDFs and the current unresolved retry list.
 - Cleaned the Obsidian literature graph: PDFs now use external file links instead of wiki-links, noisy topic tags were removed, 10 topic hub notes were generated, and the graph structure is now `MOC -> Topic Hub -> Literature Note`.
 - Ingested Batch 2 user-downloaded PDFs into the governed RAG workflow: 10 newly archived PDFs, 10 source catalog records, 10 full-text summary notes, refreshed chunks/evaluations, and a current unresolved-download list with 3 remaining access-blocked items.

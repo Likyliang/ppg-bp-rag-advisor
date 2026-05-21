@@ -26,6 +26,7 @@ python scripts/ingest_kb.py
 python scripts/audit_kb.py
 python scripts/evaluate_retrieval.py
 python scripts/benchmark_report.py
+python scripts/run_api_experiments.py --max-concurrency 5
 pytest
 uvicorn app.main:app --reload
 streamlit run streamlit_app.py
@@ -59,6 +60,14 @@ python scripts/run_quality_gate.py --strict-stop
 ```
 
 该命令会重新生成知识库、运行审计、检索评估、报告评估、性能基准和测试，并写入 `knowledge_base/processed/quality_gate_report.json`。当前 release-candidate 门槛包括：60+ 纳入来源、250+ chunks、100 条 golden queries、50 个报告 fixtures、60+ 测试、敏感来源泄漏为 0、报告 P95 小于 3 秒。
+
+轻量 API 实验可使用：
+
+```bash
+python scripts/run_api_experiments.py --max-concurrency 5
+```
+
+该脚本通过现有 FastAPI 路由批量运行报告生成和知识库检索探针，输出到 `outputs/experiments/`。它用于 Demo/周报展示，不替代 calibrated query-only 检索评估或严格质量门禁。
 
 示例：
 

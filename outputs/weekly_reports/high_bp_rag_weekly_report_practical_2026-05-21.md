@@ -22,7 +22,7 @@
 | 已形成摘要 notes 的 PDF-backed 来源 | 48 | 已经完成中文摘要、citation 和使用边界整理，可进入 RAG/Obsidian |
 | 纳入 RAG 的正式来源 | 114 | 经过 source catalog 筛选后正式进入知识库的来源 |
 | RAG chunks | 524 | 从 114 个来源拆分得到的可检索证据片段 |
-| 自动化测试 | 223 passed | 当前测试集全部通过 |
+| 自动化测试 | 224 passed | 当前测试集全部通过 |
 | Golden queries | 100 | 用于评估检索质量的标准问题集 |
 | Report fixtures | 50 | 用于评估报告生成质量的小程序结构化病例输入集 |
 | Unsafe source leakage | 0 | 没有发现不合适来源进入高风险建议 |
@@ -164,7 +164,7 @@ RAG chunk 可以理解为“系统真正拿来检索的一小段证据”。一�
 
 本周很重要的一部分工作是把验证流程自动化。现在系统不是靠人工感觉“应该没问题”，而是每次更新知识库后都运行质量门禁。
 
-当前自动化测试包括 223 个测试点，主要覆盖：
+当前自动化测试包括 224 个测试点，主要覆盖：
 
 | 测试类别 | 测试内容 |
 | --- | --- |
@@ -176,6 +176,7 @@ RAG chunk 可以理解为“系统真正拿来检索的一小段证据”。一�
 | API 测试 | 检查报告生成、规则预览、知识库接口、错误输入处理 |
 | 报告评估测试 | 检查基于小程序结构化输入生成的报告是否包含 PPG 局限、免责声明、复测建议、证据引用和安全提醒 |
 | 建议级证据测试 | 检查报告中每条建议是否绑定 evidence_id，敏感建议是否绑定高可信来源 |
+| API 实验脚本测试 | 检查 API 级实验是否能限制并发、批量生成报告、识别急症一致性并写出 JSON/CSV/Markdown 结果 |
 
 实验评估允许并行运行以提高效率，但已经设置硬性并发上限：`evaluation.max_concurrency = 5`。报告评估和 benchmark 即使传入更高并发参数，也会被自动限制到 5，避免本地资源或后续 LLM/RAG 实验请求被打爆。
 
@@ -183,16 +184,46 @@ RAG chunk 可以理解为“系统真正拿来检索的一小段证据”。一�
 
 | 指标 | 结果 |
 | --- | ---: |
-| pytest | 223 passed |
+| pytest | 224 passed |
 | source audit | 无缺失主题、无重复 source hash、无 orphan source |
 | unsafe source leakage | 0 |
 | report recommendation grounding | 1.0 |
 | sensitive high-trust evidence rate | 1.0 |
-| report P95 | 0.2413s |
+| report P95 | 0.212s |
 
 这里的 `unsafe source leakage = 0` 很关键，表示系统没有把不合适的来源用于高风险场景。例如不会用 PPG 研究论文去支持急症判断，也不会用生活方式网页去支持用药建议。
 
-## 8. 检索问题集 Golden Queries
+## 8. 轻量 API 链路实验
+
+在自动化测试之外，我也基于现有 API 做了一轮轻量实验。这个实验不新增接口，也不替代主质量门禁，而是验证“真实 API 路由是否足够支撑 Demo 和后续论文实验”。
+
+实验脚本为 `scripts/run_api_experiments.py`，它通过 FastAPI 路由调用：
+
+- `/api/v1/reports/preview-rules`
+- `/api/v1/reports/generate`
+- `/api/v1/kb/search`
+
+实验仍然遵守最大并发 5。它把 50 个 report fixtures 当作小程序结构化输入，批量请求报告生成；同时设置 6 个知识库检索探针，覆盖运动伪差、低质量信号、185/122 胸痛、用药安全、孕妇和无袖带设备替代问题。
+
+API 实验结果：
+
+| 指标 | 结果 |
+| --- | ---: |
+| API 报告病例数 | 50 |
+| 最大并发 | 5 |
+| 报告生成成功率 | 1.0 |
+| Safety pass rate | 1.0 |
+| 输入上下文保留率 | 1.0 |
+| Evidence coverage rate | 1.0 |
+| Recommendation grounding rate | 1.0 |
+| Sensitive high-trust rate | 1.0 |
+| Emergency consistency rate | 1.0 |
+| API P95 latency | 0.1691s |
+| KB search expected-use hit rate | 1.0 |
+
+实验结果已输出到 `outputs/experiments/api_experiment_2026-05-21.json`、`.csv` 和 `.md`。这部分可以作为周报里的“系统链路可跑通”材料：说明不只是内部函数能跑，现有 API 也能在并发限制下完成规则预览、报告生成、证据检索和安全约束。
+
+## 9. 检索问题集 Golden Queries
 
 为了评估 RAG 是否真的能检索到合适证据，我设计了 100 条 golden queries。它们不是随便问几个问题，而是覆盖系统真实会遇到的高频场景和高风险场景。
 
@@ -224,7 +255,7 @@ RAG chunk 可以理解为“系统真正拿来检索的一小段证据”。一�
 
 这套问题集后续也可以直接作为论文实验的一部分，用来说明 RAG 检索质量和安全过滤效果。
 
-## 9. 报告生成评估
+## 10. 报告生成评估
 
 除了检索本身，我还设计了 50 个 report fixtures，也就是模拟小程序结构化输出的标准病例输入。它们用来测试完整报告生成流程，包括规则引擎、RAG evidence、模板报告和 Safety Agent。
 
@@ -244,7 +275,7 @@ RAG chunk 可以理解为“系统真正拿来检索的一小段证据”。一�
 
 报告评估重点不是让系统“说得更多”，而是检查它是否足够保守、是否有证据、是否没有越界。当前 Rule+RAG+Safety 报告的 required-use coverage、recommendation grounding、sensitive high-trust rate 和 emergency consistency 都达到 1.0。
 
-## 10. 当前 RAG 的组织原理
+## 11. 当前 RAG 的组织原理
 
 本系统采用 metadata-governed RAG，而不是简单地把论文全文丢进向量库。
 
@@ -259,7 +290,7 @@ RAG chunk 可以理解为“系统真正拿来检索的一小段证据”。一�
 
 例如，如果用户问“185/122 还有胸痛怎么办”，系统不能只检索 PPG 论文，也不能给出普通生活方式建议，而必须优先返回急症规则、AHA/CDC/指南类高可信来源，并输出及时就医/急救相关提醒。相反，如果用户问“运动会不会影响 PPG”，系统可以使用 PPG 信号质量综述或研究论文，但这些来源只能解释信号质量，不能扩展成临床诊断建议。
 
-## 11. 下一步计划
+## 12. 下一步计划
 
 下一步不再盲目堆文献，而是围绕“可展示、可解释、可评估”继续做优化。
 
@@ -281,6 +312,6 @@ RAG chunk 可以理解为“系统真正拿来检索的一小段证据”。一�
 6. 做正式文献等级核验  
    当前周报中使用的是项目内证据等级。后续如果论文或答辩需要正式期刊等级，可以用学校数据库、JCR 或中科院分区表逐条核验期刊分区。
 
-## 12. 汇报用总结
+## 13. 汇报用总结
 
-本周我主要完成了高血压 PPG 估算解释 RAG-Agent 的知识库扩充和评估闭环建设。系统输入边界已经明确为小程序上游输出的结构化 PPG 估算结果，包括估算血压值、心率、PPG 置信度、信号质量和采集信息；RAG-Agent 只负责解释、复测建议、证据检索和安全约束。当前本周已归档并维护 62 份完整 PDF 文献/资料；所有来源先经过 source catalog 治理，记录证据等级、主题、筛选分和 allowed_uses，筛选后纳入 114 个正式来源，并生成 524 个带 metadata 的 RAG chunks。为了保证系统不是“能生成就行”，我同时建立了自动化测试和评估体系，包括 223 个测试点、100 条 golden queries 检索问题集和 50 个标准病例报告 fixtures。当前严格质量门禁全部通过，检索 Precision@5 为 1.0，敏感场景高可信证据引用率为 1.0，unsafe source leakage 为 0；实验评估支持并行但最大并发限制为 5。下一步会继续处理剩余 PDF 摘要、维护未下载清单、扩展真实用户问题集，并强化 Demo 和论文实验展示。
+本周我主要完成了高血压 PPG 估算解释 RAG-Agent 的知识库扩充和评估闭环建设。系统输入边界已经明确为小程序上游输出的结构化 PPG 估算结果，包括估算血压值、心率、PPG 置信度、信号质量和采集信息；RAG-Agent 只负责解释、复测建议、证据检索和安全约束。当前本周已归档并维护 62 份完整 PDF 文献/资料；所有来源先经过 source catalog 治理，记录证据等级、主题、筛选分和 allowed_uses，筛选后纳入 114 个正式来源，并生成 524 个带 metadata 的 RAG chunks。为了保证系统不是“能生成就行”，我同时建立了自动化测试和评估体系，包括 224 个测试点、100 条 golden queries 检索问题集、50 个标准病例报告 fixtures，以及一轮基于现有 FastAPI 路由的轻量 API 链路实验。当前严格质量门禁全部通过，检索 Precision@5 为 1.0，敏感场景高可信证据引用率为 1.0，unsafe source leakage 为 0；API 实验中 50 个病例报告生成成功率为 1.0，Safety pass rate 为 1.0，实验评估支持并行但最大并发限制为 5。下一步会继续处理剩余 PDF 摘要、维护未下载清单、扩展真实用户问题集，并强化 Demo 和论文实验展示。
