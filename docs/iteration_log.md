@@ -394,3 +394,15 @@
 - Created Canva design `DAHKSZUYFqI`, titled `演示文稿 - 高血压 PPG 估算进展`.
 - Recorded edit/view links and candidate alternatives in `outputs/weekly_reports/canva_weekly_presentation_2026-05-21.md`.
 - Scope note: this artifact is for weekly display; it does not change the RAG system, evaluation design, knowledge base, or medical-safety claims.
+
+## Presentation Artifact Revision: Content-Rich Canva Deck
+
+- Goal: fix the first generated Canva deck because it was visually clean but too sparse for a real weekly work report.
+- Edited the same Canva design `DAHKSZUYFqI` directly and saved it as `高血压 PPG RAG-Agent 本周进展（内容版）`.
+- Added the missing key information:
+  - mini-program structured PPG-estimate input boundary.
+  - 62 PDFs, 48 PDF-backed Chinese summary notes, 114 included sources, and 524 chunks.
+  - source catalog workflow and evidence-use boundaries.
+  - 224 passing tests, 100 golden queries, 50 structured fixtures, 50 API link cases, and max concurrency 5.
+  - next-stage plan for pending PDF summaries, blocked sources, realistic queries, formal report generation, and Streamlit Demo.
+- Updated `outputs/weekly_reports/canva_weekly_presentation_2026-05-21.md` with the final Canva edit/view links and revised page structure.

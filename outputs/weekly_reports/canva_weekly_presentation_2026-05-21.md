@@ -5,26 +5,26 @@
 
 ## 已生成演示文稿
 
-- 标题：演示文稿 - 高血压 PPG 估算进展
+- 标题：高血压 PPG RAG-Agent 本周进展（内容版）
 - Canva design ID：`DAHKSZUYFqI`
 - 页数：5
-- 编辑链接：[Canva edit](https://www.canva.com/d/XmzMna5mASLGoU1)
-- 查看链接：[Canva view](https://www.canva.com/d/oylI0JC2cukWTsp)
+- 编辑链接：[Canva edit](https://www.canva.com/d/7MY-jqEiqYlIoEp)
+- 查看链接：[Canva view](https://www.canva.com/d/lHYLrRTLfV6j05-)
 - 来源底稿：[展示版周报](high_bp_rag_weekly_report_practical_2026-05-21.md)
 
 ## 页面结构
 
-1. 本周重点：先把知识库和评估链路打牢
-2. 文献与知识库规模
-3. source catalog：让每条证据有边界
-4. 评估与接口链路结果
-5. 下周计划：报告与 Demo 展示
+1. 高血压 PPG 估算解释 RAG-Agent：知识库与评估链路进展
+2. 本周定位：输入边界、工作重点和医学安全边界
+3. 文献与知识库规模：62 份 PDF、48 个摘要、114 个来源、524 chunks
+4. Source catalog：来源治理、用途边界和当前审计结果
+5. 测试、实验与下周计划：224 tests、100 queries、50 fixtures、API 链路实验和并发限制
 
 ## 生成说明
 
 - 基于上一版 RAG 汇报 PPT 的主题方向继续制作。
-- 采用 5 页短版结构，控制单页信息密度，适合组会或阶段展示。
-- 重点展示本周工作量、RAG 文献治理流程、source catalog 安全边界、评估结果和下一步计划。
+- 先生成 5 页短版候选，随后根据反馈升级为“内容版”，补充关键工作量、RAG 组织流程、source catalog、评估集、API 实验和并发限制。
+- 当前版本控制单页信息密度，但保留展示必需的事实和指标，适合组会或阶段展示。
 - 未把正式报告生成描述为本周成果；该部分保留为下周重点。
 
 ## 其他候选
