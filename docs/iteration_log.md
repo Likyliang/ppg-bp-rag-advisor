@@ -369,3 +369,15 @@
   - 224 passing tests, 100 golden queries, 50 structured fixtures, and 50 API link cases.
   - No claim that the project validates PPG BP accuracy.
   - Formal report generation and Demo presentation remain next-week work.
+
+## Documentation Iteration: Presentation Weekly Report
+
+- Goal: adapt the practical weekly report for presentation use, with a neutral project-summary voice instead of a first-person narrative.
+- Rewrote `outputs/weekly_reports/high_bp_rag_weekly_report_practical_2026-05-21.md` as a concise display version suitable for group reporting or PPT conversion.
+- Preserved the core factual workload:
+  - 62 locally archived full-text PDFs/materials are treated as this week's literature workload.
+  - 48 PDF-backed Chinese summary notes, 114 included RAG sources, and 524 chunks.
+  - 224 passing tests, 100 golden queries, 50 structured fixtures, and 50 API link experiment cases.
+- Highlighted the source governance workflow: PDF registration, source catalog screening, Chinese notes, chunk generation, audit, and retrieval evaluation.
+- Kept the application boundary explicit: the system explains mini-program PPG estimate outputs and does not validate PPG BP accuracy, diagnose, treat, prescribe, stop medication, or replace validated cuff BP measurement.
+- Kept formal report generation and Streamlit Demo presentation as next-stage work rather than current-week achievements.
