@@ -358,3 +358,4 @@
   - Precision@5 1.0, unsafe source leakage 0, recommendation grounding 1.0.
 - Kept the medical boundary prominent: the system explains mini-program PPG estimate outputs and does not validate PPG BP accuracy, diagnose, treat, prescribe, stop medication, or replace validated cuff BP measurement.
 - Kept the detailed report unchanged for backup/reference.
+- Follow-up wording adjustment: removed "report generation" as a current-week highlight in the practical weekly report and reframed the API experiment as rule preview, evidence retrieval, structured response, and safety-field validation. Formal report generation and Demo presentation are now left as next-week work.
