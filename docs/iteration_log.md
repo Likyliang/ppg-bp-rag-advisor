@@ -344,3 +344,17 @@
   - KB search expected-use hit rate 1.0.
 - Strict quality gate passed after adding the API experiment: 224 tests, 114 included sources, 524 chunks, calibrated query-only match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report evaluation max concurrency 5, benchmark max concurrency 5, report P95 0.212s.
 - Scope note: this is an exploratory API-level experiment for Demo and weekly-report support. It does not replace the calibrated query-only retrieval evaluation, metadata-filter safety check, report fixtures, or strict quality gate.
+
+## Documentation Iteration: Concise Weekly Report
+
+- Goal: make the weekly report easier to read for a group-meeting style update while still showing enough concrete workload.
+- Rewrote `outputs/weekly_reports/high_bp_rag_weekly_report_practical_2026-05-21.md` from a long detailed report into a concise reporting version.
+- Preserved the core workload and results:
+  - 62 locally archived full-text PDFs/materials.
+  - 48 PDF-backed summary notes.
+  - 114 included RAG sources and 524 chunks.
+  - 224 passing tests.
+  - 100 golden queries, 50 report fixtures, and 50 API experiment cases.
+  - Precision@5 1.0, unsafe source leakage 0, recommendation grounding 1.0.
+- Kept the medical boundary prominent: the system explains mini-program PPG estimate outputs and does not validate PPG BP accuracy, diagnose, treat, prescribe, stop medication, or replace validated cuff BP measurement.
+- Kept the detailed report unchanged for backup/reference.
