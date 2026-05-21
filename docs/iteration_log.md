@@ -359,3 +359,13 @@
 - Kept the medical boundary prominent: the system explains mini-program PPG estimate outputs and does not validate PPG BP accuracy, diagnose, treat, prescribe, stop medication, or replace validated cuff BP measurement.
 - Kept the detailed report unchanged for backup/reference.
 - Follow-up wording adjustment: removed "report generation" as a current-week highlight in the practical weekly report and reframed the API experiment as rule preview, evidence retrieval, structured response, and safety-field validation. Formal report generation and Demo presentation are now left as next-week work.
+
+## Documentation Iteration: Humanized Weekly Report
+
+- Goal: make the practical weekly report read more like a real group-meeting update instead of a generated metrics document.
+- Rewrote `outputs/weekly_reports/high_bp_rag_weekly_report_practical_2026-05-21.md` again with a more natural first-person narrative.
+- Kept the same factual workload and safety boundary:
+  - 62 archived PDFs/materials, 48 PDF-backed notes, 114 included sources, 524 chunks.
+  - 224 passing tests, 100 golden queries, 50 structured fixtures, and 50 API link cases.
+  - No claim that the project validates PPG BP accuracy.
+  - Formal report generation and Demo presentation remain next-week work.
