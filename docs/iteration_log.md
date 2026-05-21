@@ -419,3 +419,14 @@
   - short code snippets for non-circular retrieval evaluation, precision floor, and max concurrency capped at 5.
   - current retrieval/API metrics: Precision@5 1.0, unsafe source leakage 0, 50 API cases, success rate 1.0, and P95 latency 0.1691s.
 - Updated `outputs/weekly_reports/canva_weekly_presentation_2026-05-21.md` with the final Canva links and testing-enhanced page structure.
+
+## Presentation Artifact Revision: Workload and Governance Emphasis
+
+- Goal: make the weekly presentation more legible while restoring the key workload and knowledge-governance details that were lost during font-size enlargement.
+- Edited the same Canva design `DAHKSZUYFqI` and saved the final display-enhanced version.
+- Revised the deck structure:
+  - Page 2 now summarizes the main workload: 62 PDFs/materials, 48 Chinese summaries, 14 pending PDF summaries, 6 blocked sources, 114 included sources, 524 chunks, 100 golden queries, 50 fixtures, 224 pytest cases, and 50 API cases.
+  - Page 3 now explains the governed literature workflow: PDF registration, source catalog, evidence_class/allowed_uses/source_hash, Chinese notes, chunks.jsonl, and audit checks.
+  - Page 4 keeps the testing design: golden query coverage, structured mini-program fixtures, and automated test coverage.
+  - Page 5 keeps calibrated query-only retrieval metrics, unsafe leakage, API experiment results, and the max-concurrency cap.
+- Updated `outputs/weekly_reports/canva_weekly_presentation_2026-05-21.md` with the final edit/view links and final page structure.
