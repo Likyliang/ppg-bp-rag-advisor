@@ -1,0 +1,316 @@
+{
+  "generated_at": "2026-05-20",
+  "policy": "Public crawling only; no credentials, cookies, or institutional session data saved. PDFs remain in ignored downloads directory.",
+  "target_count": 12,
+  "downloaded_count": 4,
+  "existing_count": 0,
+  "failed_count": 8,
+  "results": [
+    {
+      "id": "esc_2024_bp_guideline_key_points",
+      "title": "ESC 2024 elevated blood pressure and hypertension essential messages PDF",
+      "save_as": "esc_2024_bp_guideline_key_points.pdf",
+      "urls": [
+        "https://www.escardio.org/static-file/Escardio/Guidelines/Products/Essential%20Messages/2024%20EM/Essential%20Messages_2024%20HTN.pdf"
+      ],
+      "target": "knowledge_base/sources/downloads/esc_2024_bp_guideline_key_points.pdf",
+      "status": "failed",
+      "failure_reason": "curl: (56) The requested URL returned error: 403",
+      "attempts": [
+        {
+          "url": "https://www.escardio.org/static-file/Escardio/Guidelines/Products/Essential%20Messages/2024%20EM/Essential%20Messages_2024%20HTN.pdf",
+          "returncode": 56,
+          "duration_sec": 2.12,
+          "error": "curl: (56) The requested URL returned error: 403"
+        }
+      ]
+    },
+    {
+      "id": "ada_2026_standards_cvd_bp",
+      "title": "ADA Standards of Care in Diabetes 2026 cardiovascular disease and risk management",
+      "save_as": "ada_2026_standards_cvd_bp.pdf",
+      "urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/pdf/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/pdf/dc26-S010.pdf",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/bin/dc26-S010.pdf"
+      ],
+      "target": "knowledge_base/sources/downloads/ada_2026_standards_cvd_bp.pdf",
+      "status": "failed",
+      "failure_reason": "not_pdf: first bytes=<!doctype html><html lang=\"en-US\" dir=\"ltr\"><head><base href=\"https://www.google.com/recaptcha/challengepage/\"><link rel",
+      "attempts": [
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/pdf/",
+          "returncode": 0,
+          "duration_sec": 1.66,
+          "reason": "not_pdf: first bytes=<!doctype html><html lang=\"en-US\" dir=\"ltr\"><head><base href=\"https://www.google.com/recaptcha/challengepage/\"><link rel"
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/pdf/dc26-S010.pdf",
+          "returncode": 0,
+          "duration_sec": 1.74,
+          "reason": "not_pdf: first bytes=<!doctype html><html lang=\"en-US\" dir=\"ltr\"><head><base href=\"https://www.google.com/recaptcha/challengepage/\"><link rel"
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/bin/dc26-S010.pdf",
+          "returncode": 0,
+          "duration_sec": 1.64,
+          "reason": "not_pdf: first bytes=<!doctype html><html lang=\"en-US\" dir=\"ltr\"><head><base href=\"https://www.google.com/recaptcha/challengepage/\"><link rel"
+        }
+      ]
+    },
+    {
+      "id": "esh_2023_hypertension_guideline",
+      "title": "2023 ESH Guidelines for the management of arterial hypertension",
+      "save_as": "esh_2023_hypertension_guideline.pdf",
+      "urls": [
+        "https://www.arcacardio.eu/download/2023-esh-guidelines-for-the-management-of-arterial-hypertension/?wpdmdl=6132&ind=1694426835912&refresh=3245ccef&filename=BdhashBjQHsTCiaAV4Uh6PiUkg5g",
+        "https://medua.mobi/wp-content/uploads/2023/07/2023_ESH_Guidelines-for-the-management-of-arterial-hypertension.pdf",
+        "https://iraqhs.com/wp-content/uploads/2023/07/2023_ESH_Guidelines_for_the_management_of_arterial.271.pdf"
+      ],
+      "target": "knowledge_base/sources/downloads/esh_2023_hypertension_guideline.pdf",
+      "status": "downloaded",
+      "successful_url": "https://medua.mobi/wp-content/uploads/2023/07/2023_ESH_Guidelines-for-the-management-of-arterial-hypertension.pdf",
+      "bytes": 8694794,
+      "pages": 199,
+      "sha256": "7b712008c76f8c9500ff8232371d3eb8d45d2d2b9a7445389ccf6a53b52529bf",
+      "attempts": [
+        {
+          "url": "https://www.arcacardio.eu/download/2023-esh-guidelines-for-the-management-of-arterial-hypertension/?wpdmdl=6132&ind=1694426835912&refresh=3245ccef&filename=BdhashBjQHsTCiaAV4Uh6PiUkg5g",
+          "returncode": 0,
+          "duration_sec": 10.28,
+          "reason": "not_pdf: first bytes=\r \r <!DOCTYPE html>\r <html dir=\"ltr\" lang=\"en-US\">\r     <head>\r \r <script type='text/javascript' data-ot-ignore>const ot"
+        },
+        {
+          "url": "https://medua.mobi/wp-content/uploads/2023/07/2023_ESH_Guidelines-for-the-management-of-arterial-hypertension.pdf",
+          "returncode": 0,
+          "duration_sec": 4.17,
+          "pages": 199,
+          "sha256": "7b712008c76f8c9500ff8232371d3eb8d45d2d2b9a7445389ccf6a53b52529bf",
+          "bytes": 8694794,
+          "status": "downloaded"
+        }
+      ]
+    },
+    {
+      "id": "chandrasekhar_2020_contact_pressure_cuffless_bp",
+      "title": "PPG Sensor Contact Pressure Should Be Taken Into Account for Cuff-Less Blood Pressure Measurement",
+      "save_as": "chandrasekhar_2020_contact_pressure_cuffless_bp.pdf",
+      "urls": [
+        "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9016235",
+        "https://doi.org/10.1109/TBME.2020.2976989"
+      ],
+      "target": "knowledge_base/sources/downloads/chandrasekhar_2020_contact_pressure_cuffless_bp.pdf",
+      "status": "failed",
+      "failure_reason": "curl: (35) LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to doi.org:443",
+      "attempts": [
+        {
+          "url": "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9016235",
+          "returncode": 0,
+          "duration_sec": 2.53,
+          "reason": "not_pdf: first bytes=<!DOCTYPE html>                                                \r <APM_DO_NOT_TOUCH>\r \r <script type=\"text/javascript\">\r "
+        },
+        {
+          "url": "https://doi.org/10.1109/TBME.2020.2976989",
+          "returncode": 35,
+          "duration_sec": 4.16,
+          "error": "curl: (35) LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to doi.org:443"
+        }
+      ]
+    },
+    {
+      "id": "charlton_2022_wearable_ppg_cardiovascular_review",
+      "title": "Wearable Photoplethysmography for Cardiovascular Monitoring",
+      "save_as": "charlton_2022_wearable_ppg_cardiovascular_review.pdf",
+      "urls": [
+        "https://openaccess.city.ac.uk/id/eprint/28025/1/Wearable_Photoplethysmography_for_Cardiovascular_Monitoring.pdf",
+        "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9731763"
+      ],
+      "target": "knowledge_base/sources/downloads/charlton_2022_wearable_ppg_cardiovascular_review.pdf",
+      "status": "downloaded",
+      "successful_url": "https://openaccess.city.ac.uk/id/eprint/28025/1/Wearable_Photoplethysmography_for_Cardiovascular_Monitoring.pdf",
+      "bytes": 4066651,
+      "pages": 28,
+      "sha256": "b9a062c3a9b628c0c0104f7fd12bb3ba4e473fbe9785ea469bab40c6f6581da5",
+      "attempts": [
+        {
+          "url": "https://openaccess.city.ac.uk/id/eprint/28025/1/Wearable_Photoplethysmography_for_Cardiovascular_Monitoring.pdf",
+          "returncode": 0,
+          "duration_sec": 4.45,
+          "pages": 28,
+          "sha256": "b9a062c3a9b628c0c0104f7fd12bb3ba4e473fbe9785ea469bab40c6f6581da5",
+          "bytes": 4066651,
+          "status": "downloaded"
+        }
+      ]
+    },
+    {
+      "id": "shirbani_2020_ambient_light_skin_tone_vpg",
+      "title": "Effect of Ambient Lighting and Skin Tone on Estimation of Heart Rate and Pulse Transit Time from Video Plethysmography",
+      "save_as": "shirbani_2020_ambient_light_skin_tone_vpg.pdf",
+      "urls": [
+        "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9176731",
+        "https://doi.org/10.1109/EMBC44109.2020.9176731"
+      ],
+      "target": "knowledge_base/sources/downloads/shirbani_2020_ambient_light_skin_tone_vpg.pdf",
+      "status": "failed",
+      "failure_reason": "not_pdf: first bytes=<!DOCTYPE html>                                                \r <APM_DO_NOT_TOUCH>\r \r <script type=\"text/javascript\">\r ",
+      "attempts": [
+        {
+          "url": "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9176731",
+          "returncode": 0,
+          "duration_sec": 2.53,
+          "reason": "not_pdf: first bytes=<!DOCTYPE html>                                                \r <APM_DO_NOT_TOUCH>\r \r <script type=\"text/javascript\">\r "
+        },
+        {
+          "url": "https://doi.org/10.1109/EMBC44109.2020.9176731",
+          "returncode": 0,
+          "duration_sec": 3.03,
+          "reason": "not_pdf: first bytes=<!DOCTYPE html>                                                \r <APM_DO_NOT_TOUCH>\r \r <script type=\"text/javascript\">\r "
+        }
+      ]
+    },
+    {
+      "id": "teng_2004_contact_force_ppg",
+      "title": "The effect of contacting force on photoplethysmographic signals",
+      "save_as": "teng_2004_contact_force_ppg.pdf",
+      "urls": [
+        "https://iopscience.iop.org/article/10.1088/0967-3334/25/5/020/pdf",
+        "https://doi.org/10.1088/0967-3334/25/5/020"
+      ],
+      "target": "knowledge_base/sources/downloads/teng_2004_contact_force_ppg.pdf",
+      "status": "failed",
+      "failure_reason": "not_pdf: first bytes=<head><title>Radware Bot Manager Captcha</title><script type=\"text/javascript\"> \twindow.SSJSInternal = 73287;  \tvar __uz",
+      "attempts": [
+        {
+          "url": "https://iopscience.iop.org/article/10.1088/0967-3334/25/5/020/pdf",
+          "returncode": 0,
+          "duration_sec": 4.42,
+          "reason": "not_pdf: first bytes=<head><title>Radware Bot Manager Captcha</title><script type=\"text/javascript\"> \twindow.SSJSInternal = 73287;  \tvar __uz"
+        },
+        {
+          "url": "https://doi.org/10.1088/0967-3334/25/5/020",
+          "returncode": 0,
+          "duration_sec": 4.68,
+          "reason": "not_pdf: first bytes=<head><title>Radware Bot Manager Captcha</title><script type=\"text/javascript\"> \twindow.SSJSInternal = 73287;  \tvar __uz"
+        }
+      ]
+    },
+    {
+      "id": "chinese_hypertension_guideline_2024_revision_chl_bha",
+      "title": "中国高血压防治指南（2024年修订版）CHL-BHA mirror",
+      "save_as": "chinese_hypertension_guideline_2024_revision_chl_bha.pdf",
+      "urls": [
+        "https://www.chl-bha.org.cn/Public/ueditor/php/upload/20240815/17236841017752.pdf"
+      ],
+      "target": "knowledge_base/sources/downloads/chinese_hypertension_guideline_2024_revision_chl_bha.pdf",
+      "status": "failed",
+      "failure_reason": "curl: (35) Recv failure: Connection reset by peer",
+      "attempts": [
+        {
+          "url": "https://www.chl-bha.org.cn/Public/ueditor/php/upload/20240815/17236841017752.pdf",
+          "returncode": 35,
+          "duration_sec": 5.16,
+          "error": "curl: (35) Recv failure: Connection reset by peer"
+        }
+      ]
+    },
+    {
+      "id": "chinese_2019_home_bp_monitoring_guideline",
+      "title": "2019中国家庭血压监测指南",
+      "save_as": "chinese_2019_home_bp_monitoring_guideline.pdf",
+      "urls": [
+        "https://file.medtrib.cn/pdf/8a0522ac-ef54-4d24-afa3-0e51edbd70b2/2019%E4%B8%AD%E5%9B%BD%E5%AE%B6%E5%BA%AD%E8%A1%80%E5%8E%8B%E7%9B%91%E6%B5%8B%E6%8C%87%E5%8D%97.pdf",
+        "https://zhgxyzz.xml-journal.net/cn/article/pdf/preview/10.16439/j.cnki.1673-7245.2019.08.005.pdf"
+      ],
+      "target": "knowledge_base/sources/downloads/chinese_2019_home_bp_monitoring_guideline.pdf",
+      "status": "downloaded",
+      "successful_url": "https://file.medtrib.cn/pdf/8a0522ac-ef54-4d24-afa3-0e51edbd70b2/2019%E4%B8%AD%E5%9B%BD%E5%AE%B6%E5%BA%AD%E8%A1%80%E5%8E%8B%E7%9B%91%E6%B5%8B%E6%8C%87%E5%8D%97.pdf",
+      "bytes": 1026828,
+      "pages": 5,
+      "sha256": "bf07395310ebae8c432fb493ff0c48abdb817b8fef5ff04c5b315d6a934451b3",
+      "attempts": [
+        {
+          "url": "https://file.medtrib.cn/pdf/8a0522ac-ef54-4d24-afa3-0e51edbd70b2/2019%E4%B8%AD%E5%9B%BD%E5%AE%B6%E5%BA%AD%E8%A1%80%E5%8E%8B%E7%9B%91%E6%B5%8B%E6%8C%87%E5%8D%97.pdf",
+          "returncode": 0,
+          "duration_sec": 0.49,
+          "pages": 5,
+          "sha256": "bf07395310ebae8c432fb493ff0c48abdb817b8fef5ff04c5b315d6a934451b3",
+          "bytes": 1026828,
+          "status": "downloaded"
+        }
+      ]
+    },
+    {
+      "id": "esc_2024_elevated_bp_hypertension_guideline",
+      "title": "2024 ESC Guidelines for the management of elevated blood pressure and hypertension full guideline",
+      "save_as": "esc_2024_elevated_bp_hypertension_guideline.pdf",
+      "urls": [
+        "https://academic.oup.com/eurheartj/article-pdf/45/38/3912/59633218/ehae178.pdf"
+      ],
+      "target": "knowledge_base/sources/downloads/esc_2024_elevated_bp_hypertension_guideline.pdf",
+      "status": "failed",
+      "failure_reason": "curl: (56) The requested URL returned error: 403",
+      "attempts": [
+        {
+          "url": "https://academic.oup.com/eurheartj/article-pdf/45/38/3912/59633218/ehae178.pdf",
+          "returncode": 56,
+          "duration_sec": 1.3,
+          "error": "curl: (56) The requested URL returned error: 403"
+        }
+      ]
+    },
+    {
+      "id": "aha_ama_2020_smbp_policy_statement",
+      "title": "Self-Measured Blood Pressure Monitoring at Home AHA/AMA policy statement",
+      "save_as": "aha_ama_2020_smbp_policy_statement.pdf",
+      "urls": [
+        "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000000803",
+        "https://www.ahajournals.org/doi/epdf/10.1161/CIR.0000000000000803"
+      ],
+      "target": "knowledge_base/sources/downloads/aha_ama_2020_smbp_policy_statement.pdf",
+      "status": "failed",
+      "failure_reason": "curl: (56) The requested URL returned error: 403",
+      "attempts": [
+        {
+          "url": "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000000803",
+          "returncode": 56,
+          "duration_sec": 2.08,
+          "error": "curl: (56) The requested URL returned error: 403"
+        },
+        {
+          "url": "https://www.ahajournals.org/doi/epdf/10.1161/CIR.0000000000000803",
+          "returncode": 56,
+          "duration_sec": 1.21,
+          "error": "curl: (56) The requested URL returned error: 403"
+        }
+      ]
+    },
+    {
+      "id": "aha_prevent_equations_circulation_2024",
+      "title": "AHA PREVENT equations Circulation 2024",
+      "save_as": "aha_prevent_equations_circulation_2024.pdf",
+      "urls": [
+        "https://escholarship.org/content/qt3mq512w9/qt3mq512w9.pdf?t=sridrr",
+        "https://www.ahajournals.org/doi/pdf/10.1161/circulationaha.123.067626",
+        "https://www.ahajournals.org/doi/epdf/10.1161/circulationaha.123.067626"
+      ],
+      "target": "knowledge_base/sources/downloads/aha_prevent_equations_circulation_2024.pdf",
+      "status": "downloaded",
+      "successful_url": "https://escholarship.org/content/qt3mq512w9/qt3mq512w9.pdf?t=sridrr",
+      "bytes": 1531789,
+      "pages": 44,
+      "sha256": "5f4582c8de6d613384cffea8c59de7db85c5db9d377ab9156b268f21168d08c5",
+      "attempts": [
+        {
+          "url": "https://escholarship.org/content/qt3mq512w9/qt3mq512w9.pdf?t=sridrr",
+          "returncode": 0,
+          "duration_sec": 3.53,
+          "pages": 44,
+          "sha256": "5f4582c8de6d613384cffea8c59de7db85c5db9d377ab9156b268f21168d08c5",
+          "bytes": 1531789,
+          "status": "downloaded"
+        }
+      ]
+    }
+  ]
+}

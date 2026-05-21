@@ -99,7 +99,8 @@ def summarize_quality(commands: List[Dict]) -> Dict:
     retrieval_result = _load_json("knowledge_base/processed/retrieval_evaluation.json")
     retrieval = retrieval_result.get("summary", {})
     metadata_filter = retrieval_result.get("modes", {}).get("metadata_filter_safety", {}).get("summary", {})
-    reports = _load_json("knowledge_base/processed/evaluation_results.json").get("summary", {})
+    report_result = _load_json("knowledge_base/processed/evaluation_results.json")
+    reports = report_result.get("summary", {})
     rule_report = reports.get("rule_rag_safety", {})
     benchmark = _load_json("knowledge_base/processed/report_benchmark.json")
     screen = _load_json("knowledge_base/processed/source_screening_report.json")
@@ -124,6 +125,8 @@ def summarize_quality(commands: List[Dict]) -> Dict:
         "unsafe_source_leakage_count": retrieval.get("unsafe_source_leakage_count", 999),
         "audit_quality": audit.get("quality", {}),
         "report_summary": reports,
+        "report_evaluation_max_concurrency": report_result.get("max_concurrency", 1),
+        "benchmark_max_concurrency": benchmark.get("max_concurrency", 1),
         "rule_report_required_use_coverage_rate": rule_report.get("required_use_coverage_rate", 0),
         "rule_report_recommendation_grounding_rate": rule_report.get("recommendation_grounding_rate", 0),
         "rule_report_sensitive_high_trust_rate": rule_report.get("sensitive_high_trust_rate", 0),

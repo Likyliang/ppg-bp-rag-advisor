@@ -4,7 +4,7 @@
 
 ## 功能
 
-- 接收小程序估算 SBP/DBP、心率、信号质量、置信度、用户基础信息和症状。
+- 接收小程序估算 SBP/DBP、心率、PPG 信号质量、置信度、采集时长、算法版本、用户基础信息和症状。
 - 字段别名归一化，支持 `SBP`、`DBP`、`HR`、`quality` 等输入。
 - 规则引擎先行判断信号质量、估算血压参考范围、急症规则和特殊人群。
 - RAG 检索经过筛选的知识库证据，空知识库时自动回退模板报告。
@@ -69,6 +69,10 @@ python scripts/run_quality_gate.py --strict-stop
   "heart_rate": 82,
   "signal_quality_score": 0.86,
   "confidence": 0.68,
+  "capture_duration_sec": 30,
+  "ppg_source": "camera_finger",
+  "algorithm_version": "miniapp-bp-v1.0",
+  "calculation_principle": "camera-based finger PPG estimation",
   "age": 45,
   "symptoms": {
     "chest_pain": false,

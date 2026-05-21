@@ -38,6 +38,10 @@ safety_level: standard
 
 - 用于 contact_pressure 和 cuffless_ppg_limitations；只作研究背景。
 
+## 全文候选与下载材料摘要
+
+已检测到本地 PDF：chandrasekhar_2020_contact_pressure_cuffless_bp.pdf。请先把人工摘要写入 tracked fulltext_summaries 或同名 .summary.md 后再进入知识库，避免复制受版权保护全文。
+
 ## 安全边界
 
 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。

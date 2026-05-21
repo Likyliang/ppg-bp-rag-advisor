@@ -36,6 +36,10 @@ safety_level: standard
 
 - 用于 motion_artifact、skin_tone 和 optical_sensor limitation 背景；不用于血压临床建议。
 
+## 全文候选与下载材料摘要
+
+已检测到本地 PDF：bent_2020_wearable_optical_hr_inaccuracy.pdf。请先把人工摘要写入 tracked fulltext_summaries 或同名 .summary.md 后再进入知识库，避免复制受版权保护全文。
+
 ## 安全边界
 
 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。

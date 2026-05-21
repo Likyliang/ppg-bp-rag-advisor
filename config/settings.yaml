@@ -22,3 +22,6 @@ safety:
   require_disclaimer: true
   block_diagnosis: true
   block_medication_changes: true
+
+evaluation:
+  max_concurrency: 5

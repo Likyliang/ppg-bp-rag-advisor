@@ -1,0 +1,133 @@
+{
+  "generated_at": "2026-05-21",
+  "source": "User-provided web-agent results plus local PDF archive verification",
+  "policy": "Legal links only. No Sci-Hub, pirated mirrors, credentials, cookies, tokens, or institution session data are stored. Archived PDFs remain under Git-ignored local downloads; only citation/status metadata should be committed.",
+  "summary": {
+    "total_items": 6,
+    "archived_from_local_downloads": 4,
+    "unresolved_or_not_archived": 2,
+    "unresolved_item_ids": [
+      "esc_2024_bp_guideline_key_points",
+      "chinese_hypertension_guideline_2024_revision_chl_bha"
+    ]
+  },
+  "items": [
+    {
+      "item_id": "aha_ama_2020_smbp_policy_statement",
+      "title": "Self-Measured Blood Pressure Monitoring at Home: A Joint Policy Statement From the American Heart Association and American Medical Association",
+      "best_pdf_url": "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000000803",
+      "landing_urls": [
+        "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000803",
+        "https://professional.heart.org/en/science-news/self-measured-blood-pressure-monitoring-at-home",
+        "https://pubmed.ncbi.nlm.nih.gov/32567342/"
+      ],
+      "web_access_type": "blocked",
+      "source_confidence": "high",
+      "desired_save_as": "knowledge_base/sources/downloads/aha_ama_2020_smbp_policy_statement.pdf",
+      "local_status": "archived_from_user_download",
+      "local_source_file": "~/Downloads/shimbo-et-al-2020-self-measured-blood-pressure-monitoring-at-home-a-joint-policy-statement-from-the-american-heart.pdf",
+      "archived_file": "knowledge_base/sources/downloads/aha_ama_2020_smbp_policy_statement.pdf",
+      "pages": 22,
+      "bytes": 716503,
+      "sha256": "98090f71f63a87a86cf3558b81707c102528760df6f5b975f1c8ccfa23e4b361",
+      "notes": "Web environment reported AHA Journals 403, but the user supplied a matching local PDF. The source supports home self-measured BP monitoring and policy context, not PPG accuracy validation."
+    },
+    {
+      "item_id": "chandrasekhar_2020_contact_pressure_cuffless_bp",
+      "title": "PPG Sensor Contact Pressure Should Be Taken Into Account for Cuff-Less Blood Pressure Measurement",
+      "best_pdf_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8856571/pdf/nihms-1777307.pdf",
+      "landing_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8856571/",
+        "https://europepmc.org/article/med/32142414",
+        "https://pubmed.ncbi.nlm.nih.gov/32142414/"
+      ],
+      "web_access_type": "open_pdf",
+      "source_confidence": "high",
+      "desired_save_as": "knowledge_base/sources/downloads/chandrasekhar_2020_contact_pressure_cuffless_bp.pdf",
+      "local_status": "archived_from_user_download",
+      "local_source_file": "~/Downloads/nihms-1777307.pdf",
+      "archived_file": "knowledge_base/sources/downloads/chandrasekhar_2020_contact_pressure_cuffless_bp.pdf",
+      "pages": 14,
+      "bytes": 1532411,
+      "sha256": "1a1db1b5bd96e8d46e415e2a16a3ed2c26df4f1bcfcbd97dcd926dfc06071673",
+      "notes": "PMC/Europe PMC open full text. Use only for contact-pressure and cuffless/PPG signal-quality context, not clinical BP diagnosis or treatment decisions."
+    },
+    {
+      "item_id": "shirbani_2020_ambient_light_skin_tone_vpg",
+      "title": "Effect of Ambient Lighting and Skin Tone on Estimation of Heart Rate and Pulse Transit Time from Video Plethysmography",
+      "best_pdf_url": "not_found",
+      "landing_urls": [
+        "https://doi.org/10.1109/EMBC44109.2020.9176731",
+        "https://researchers.mq.edu.au/en/publications/effect-of-ambient-lighting-and-skin-tone-on-estimation-of-heart-r/",
+        "https://pubmed.ncbi.nlm.nih.gov/33018549/"
+      ],
+      "web_access_type": "institution_required",
+      "source_confidence": "medium",
+      "desired_save_as": "knowledge_base/sources/downloads/shirbani_2020_ambient_light_skin_tone_vpg.pdf",
+      "local_status": "archived_from_user_download",
+      "local_source_file": "~/Downloads/Effect_of_Ambient_Lighting_and_Skin_Tone_on_Estimation_of_Heart_Rate_and_Pulse_Transit_Time_from_Video_Plethysmography.pdf",
+      "archived_file": "knowledge_base/sources/downloads/shirbani_2020_ambient_light_skin_tone_vpg.pdf",
+      "pages": 4,
+      "bytes": 667270,
+      "sha256": "9c2f5e2f688b8f73ad33123d0c6e18ec15b34e161c908753d7edec803ef7e014",
+      "notes": "Web search did not find a legal open PDF, but the user supplied a local PDF. Keep as signal-quality/research background only, especially for ambient lighting and skin-tone sensitivity in video PPG."
+    },
+    {
+      "item_id": "teng_2004_contact_force_ppg",
+      "title": "The effect of contacting force on photoplethysmographic signals",
+      "best_pdf_url": "not_found",
+      "landing_urls": [
+        "https://doi.org/10.1088/0967-3334/25/5/020",
+        "https://pubmed.ncbi.nlm.nih.gov/15535195/",
+        "https://iopscience.iop.org/article/10.1088/0967-3334/25/5/020"
+      ],
+      "web_access_type": "blocked",
+      "source_confidence": "medium",
+      "desired_save_as": "knowledge_base/sources/downloads/teng_2004_contact_force_ppg.pdf",
+      "local_status": "archived_from_user_download",
+      "local_source_file": "~/Downloads/Teng_2004_Physiol._Meas._25_1323.pdf",
+      "archived_file": "knowledge_base/sources/downloads/teng_2004_contact_force_ppg.pdf",
+      "pages": 14,
+      "bytes": 322073,
+      "sha256": "f0d8e784c3557b327dedb06bfbb2e23a53fb0dbae0b83ad74b75240a49a429dc",
+      "notes": "Official IOP path was blocked by bot protection in automated retrieval, but the user supplied a local PDF. Use only for contact-force/PPG waveform signal-quality context."
+    },
+    {
+      "item_id": "esc_2024_bp_guideline_key_points",
+      "title": "2024 ESC Guidelines for the management of elevated blood pressure and hypertension: Essential Messages",
+      "best_pdf_url": "https://www.escardio.org/static-file/Escardio/Guidelines/Products/Essential%20Messages/2024%20EM/Essential%20Messages_2024%20HTN.pdf",
+      "landing_urls": [
+        "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/elevated-blood-pressure-and-hypertension/"
+      ],
+      "web_access_type": "open_pdf",
+      "source_confidence": "high",
+      "desired_save_as": "knowledge_base/sources/downloads/esc_2024_bp_guideline_key_points.pdf",
+      "local_status": "unresolved_not_archived",
+      "local_source_file": null,
+      "archived_file": null,
+      "pages": null,
+      "bytes": null,
+      "sha256": null,
+      "notes": "The official ESC static URL was identified by the web agent, but local curl still returned 403. The similarly named local file is a pharmacotherapy short article, not the Essential Messages PDF, so it was not archived under this ID. The full ESC 2024 guideline is already archived separately as esc_2024_elevated_bp_hypertension_guideline.pdf."
+    },
+    {
+      "item_id": "chinese_hypertension_guideline_2024_revision_chl_bha",
+      "title": "中国高血压防治指南（2024年修订版）CHL-BHA mirror",
+      "best_pdf_url": "https://www.chl-bha.org.cn/Public/ueditor/php/upload/20240815/17236841017752.pdf",
+      "landing_urls": [
+        "https://www.chl-bha.org.cn/index.php?a=view&id=96&m=standard&pid=1",
+        "https://www.chl-bha.org.cn/index.php?a=index&m=standard&pid=1"
+      ],
+      "web_access_type": "blocked",
+      "source_confidence": "medium",
+      "desired_save_as": "knowledge_base/sources/downloads/chinese_hypertension_guideline_2024_revision_chl_bha.pdf",
+      "local_status": "unresolved_not_archived",
+      "local_source_file": null,
+      "archived_file": null,
+      "pages": null,
+      "bytes": null,
+      "sha256": null,
+      "notes": "Official CHL-BHA mirror was reported but remains blocked/connection-reset in automated access and no matching local file was found. The project already has the Chinese 2024 guideline represented through existing catalog/SciOpen-derived metadata; this CHL-BHA mirror remains a source-access gap rather than a content gap."
+    }
+  ]
+}

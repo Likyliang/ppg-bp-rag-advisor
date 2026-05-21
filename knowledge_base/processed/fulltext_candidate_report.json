@@ -1,12 +1,12 @@
 {
   "catalog_version": 1,
-  "updated": "2026-05-16",
-  "candidate_count": 38,
+  "updated": "2026-05-21",
+  "candidate_count": 59,
   "public_download_count": 1,
   "institution_queue_count": 8,
   "browser_queue_count": 12,
   "action_queue_count": 12,
-  "summary_ready_count": 28,
+  "summary_ready_count": 49,
   "issues": [],
   "candidates": [
     {
@@ -83,6 +83,39 @@
       ]
     },
     {
+      "candidate_id": "aami_esh_iso_2018_universal_validation_standard_pdf",
+      "source_id": "aami_esh_iso_2018_universal_validation_standard",
+      "title": "A universal standard for the validation of blood pressure measuring devices",
+      "organization": "AAMI / European Society of Hypertension / International Organization for Standardization",
+      "priority": 2,
+      "topic": "validated_devices",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5796427/",
+      "pdf_url": "https://europepmc.org/articles/PMC5796427?pdf=render",
+      "doi": "10.1097/HJH.0000000000001634",
+      "pmid": 29384983,
+      "year": 2018,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "device_advice",
+        "research_background"
+      ],
+      "selection_reason": "血压测量设备验证统一标准，用于设备验证原则和 validated-device 建议。",
+      "access_instruction": "PMC 公开 PDF 已下载为 knowledge_base/sources/downloads/aami_esh_iso_2018_universal_validation_standard.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 PMC/Europe PMC 合法公开入口下载 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该标准支持血压设备需要按统一验证协议评价，报告应建议使用经过验证的上臂式袖带血压计复核。",
+        "该来源不得用于推荐商业型号，也不得把 PPG/无袖带估算写成已满足标准验证。"
+      ]
+    },
+    {
       "candidate_id": "acc_aha_2025_guideline_fulltext",
       "source_id": "acc_aha_2025_full_guideline_record",
       "title": "2025 AHA ACC adult high blood pressure guideline full text",
@@ -154,6 +187,40 @@
       ]
     },
     {
+      "candidate_id": "esh_2021_home_bp_monitoring_position_paper_pdf",
+      "source_id": "esh_2021_home_bp_monitoring_position_paper",
+      "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+      "organization": "European Society of Hypertension",
+      "priority": 2,
+      "topic": "home_bp_monitoring",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
+      "pdf_url": "https://sussex.figshare.com/ndownloader/files/55227962",
+      "doi": "10.1097/HJH.0000000000002922",
+      "pmid": 34269334,
+      "year": 2021,
+      "language": "en",
+      "region": "EU",
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice"
+      ],
+      "selection_reason": "ESH 家庭血压监测立场文件可强化家庭测量方法、复测频率、记录和医生沟通建议。",
+      "access_instruction": "Sussex Figshare 公开 PDF 已下载为 knowledge_base/sources/downloads/esh_2021_home_bp_monitoring_position_paper.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从机构仓储合法公开入口下载 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该立场文件支持家庭血压监测需要标准化方法、连续记录和与医生沟通。",
+        "报告可用该来源支持复测、记录趋势和规范血压计复核，不输出诊断或治疗调整。"
+      ]
+    },
+    {
       "candidate_id": "fda_cuffless_nibp_draft_guidance_pdf",
       "source_id": "fda_cuffless_nibp_draft_guidance",
       "title": "FDA cuffless NIBP clinical performance testing draft guidance PDF",
@@ -190,6 +257,41 @@
       ]
     },
     {
+      "candidate_id": "muntner_2019_aha_bp_measurement_scientific_statement_pdf",
+      "source_id": "muntner_2019_aha_bp_measurement_scientific_statement",
+      "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+      "organization": "American Heart Association",
+      "priority": 2,
+      "topic": "home_bp_monitoring",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+      "pdf_url": "https://europepmc.org/articles/PMC11409525?pdf=render",
+      "doi": "10.1161/HYP.0000000000000087",
+      "pmid": 30827125,
+      "year": 2019,
+      "language": "en",
+      "region": "AHA",
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice",
+        "bp_category_reference"
+      ],
+      "selection_reason": "AHA 血压测量科学声明可强化规范测量、体位、袖带、设备和复测边界。",
+      "access_instruction": "PMC/Europe PMC 公开 PDF 已下载为 knowledge_base/sources/downloads/muntner_2019_aha_bp_measurement_scientific_statement.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 PMC/Europe PMC 合法公开入口下载 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该声明强调血压测量需要规范流程、合适袖带、正确体位、重复读数和经过验证的设备。",
+        "报告可用该来源解释 PPG 估算偏高或质量不足时应使用规范血压计复测并记录趋势，不能把 PPG 估算写成诊断。"
+      ]
+    },
+    {
       "candidate_id": "nhc_2025_primary_care_hypertension_standard_pdf",
       "source_id": "nhc_2025_primary_care_hypertension_standard_ws_t_872",
       "title": "基层医疗卫生机构高血压防治管理标准 WS/T 872-2025",
@@ -222,6 +324,41 @@
         "已从公开国家卫健委链接下载 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
         "该标准可用于中文场景下基层血压管理、随访记录、健康教育和规范复核建议。",
         "治疗流程和管理标准不得被改写成小程序自动诊断或治疗方案；PPG 估算仍只作为趋势参考。"
+      ]
+    },
+    {
+      "candidate_id": "parati_2026_esc_cuffless_bp_monitoring_statement_pdf",
+      "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement",
+      "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+      "organization": "European Society of Cardiology",
+      "priority": 2,
+      "topic": "cuffless_ppg_limitations",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+      "pdf_url": "https://academic.oup.com/eurjpc/advance-article-pdf/doi/10.1093/eurjpc/zwag058/67112169/zwag058.pdf",
+      "doi": "10.1093/eurjpc/zwag058",
+      "pmid": "",
+      "year": 2026,
+      "language": "en",
+      "region": "EU",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "device_advice",
+        "research_background",
+        "disclaimer"
+      ],
+      "selection_reason": "ESC 无袖带血压监测科学声明，用于校准、验证、适用场景和临床解释边界。",
+      "access_instruction": "Oxford Academic 公开 PDF 已归档为 knowledge_base/sources/downloads/parati_2026_esc_cuffless_bp_monitoring_statement.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 Oxford Academic 合法公开入口归档 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该科学声明支持无袖带血压监测需要关注技术原理、校准、验证、适用场景和临床边界。",
+        "报告可用该来源强化免责声明：PPG/无袖带结果只能作健康趋势参考，不能替代规范血压测量或医生判断。"
       ]
     },
     {
@@ -323,6 +460,73 @@
       ]
     },
     {
+      "candidate_id": "arguello_prada_2024_ppg_motion_artifact_detection_review_pdf",
+      "source_id": "arguello_prada_2024_ppg_motion_artifact_detection_review",
+      "title": "Machine Learning Applied to Reference Signal-Less Detection of Motion Artifacts in Photoplethysmographic Signals - A Review",
+      "organization": "Sensors",
+      "priority": 3,
+      "topic": "measurement_quality",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://www.mdpi.com/1424-8220/24/22/7193",
+      "pdf_url": "https://www.mdpi.com/1424-8220/24/22/7193/pdf",
+      "doi": "10.3390/s24227193",
+      "pmid": "",
+      "year": 2024,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "signal_quality",
+        "research_background"
+      ],
+      "selection_reason": "无参考信号 PPG 运动伪差检测综述，用于运动干扰、质量评分和低质量拦截解释。",
+      "access_instruction": "MDPI 公开 PDF 已归档为 knowledge_base/sources/downloads/arguello_prada_2024_ppg_motion_artifact_detection_review.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 MDPI 官方开放 PDF 归档；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该综述支持运动伪差是 PPG 可穿戴监测的重要误差来源，无参考信号质量判断仍需谨慎解释。",
+        "报告可用该来源支持运动后重新采集、稳定佩戴和置信度降低提示；不用于临床决策。"
+      ]
+    },
+    {
+      "candidate_id": "bradley_2022_cuffless_bp_devices_review_pdf",
+      "source_id": "bradley_2022_cuffless_bp_devices_review",
+      "title": "Cuffless Blood Pressure Devices",
+      "organization": "American Journal of Hypertension",
+      "priority": 3,
+      "topic": "cuffless_ppg_limitations",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9088838/",
+      "pdf_url": "https://academic.oup.com/ajh/article-pdf/35/5/380/43630856/hpac017.pdf",
+      "doi": "10.1093/ajh/hpac017",
+      "pmid": 35136906,
+      "year": 2022,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "device_advice",
+        "research_background"
+      ],
+      "selection_reason": "无袖带血压设备综述，用于技术路径、验证挑战和设备边界说明。",
+      "access_instruction": "Oxford/PMC 公开 PDF 已归档为 knowledge_base/sources/downloads/bradley_2022_cuffless_bp_devices_review.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 Oxford/PMC 合法公开入口归档 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该综述支持无袖带血压设备仍面临验证、校准、真实世界适用性和临床整合挑战。",
+        "报告可用该来源提示使用经验证袖带血压计复核 PPG 估算；不得推荐商业型号或替代临床测量。"
+      ]
+    },
+    {
       "candidate_id": "chinese_2011_bp_measurement_guideline_pdf",
       "source_id": "chinese_2011_bp_measurement_guideline",
       "title": "中国血压测量指南",
@@ -418,9 +622,112 @@
         "special_population"
       ],
       "selection_reason": "ESC essential messages 可用于欧洲指南对照，但自动下载可能被站点防护拦截。",
-      "access_instruction": "2026-05-10 浏览器访问 ESC 官方 PDF 时被 Cloudflare 阻止；保留官方 URL，不使用非官方镜像。若后续人工合法打开，保存为 knowledge_base/sources/downloads/esc_2024_bp_guideline_key_points.pdf。",
-      "last_accessed": "2026-05-10",
+      "access_instruction": "2026-05-21 网页端识别 ESC 官方 Essential Messages PDF URL，但本地自动下载仍返回 403；保留官方 URL，不使用非官方镜像。注意：本地同名下载文件经校验为 pharmacotherapy 短文，不是 Essential Messages，未归档到该 source_id。若后续人工合法打开，保存为 knowledge_base/sources/downloads/esc_2024_bp_guideline_key_points.pdf。",
+      "last_accessed": "2026-05-21",
+      "local_pdf_archived": false,
+      "unresolved_reason": "official ESC static PDF URL identified, but automated/local access returned 403; no verified Essential Messages PDF archived",
       "summary_notes": []
+    },
+    {
+      "candidate_id": "fine_2021_ppg_sources_of_inaccuracy_pdf",
+      "source_id": "fine_2021_ppg_sources_of_inaccuracy",
+      "title": "Sources of Inaccuracy in Photoplethysmography for Continuous Cardiovascular Monitoring",
+      "organization": "Biosensors",
+      "priority": 3,
+      "topic": "measurement_quality",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://www.mdpi.com/2079-6374/11/4/126",
+      "pdf_url": "https://www.mdpi.com/2079-6374/11/4/126/pdf",
+      "doi": "10.3390/bios11040126",
+      "pmid": "",
+      "year": 2021,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "signal_quality",
+        "cuffless_ppg_limitations",
+        "research_background"
+      ],
+      "selection_reason": "PPG 误差来源综述，直接覆盖运动、环境光、肤色、接触压力和个体差异。",
+      "access_instruction": "MDPI 公开 PDF 已下载为 knowledge_base/sources/downloads/fine_2021_ppg_sources_of_inaccuracy.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 MDPI 官方开放 PDF 下载；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该综述支持 PPG 信号可能受运动伪影、环境光、肤色、接触压力、体温和个体差异影响。",
+        "报告可用该来源说明低质量/低置信度 PPG 估算需要重新采集或用规范设备复核；不得用它证明 PPG 可诊断血压。"
+      ]
+    },
+    {
+      "candidate_id": "mukkamala_2015_ptt_bp_monitoring_theory_practice_pdf",
+      "source_id": "mukkamala_2015_ptt_bp_monitoring_theory_practice",
+      "title": "Toward Ubiquitous Blood Pressure Monitoring via Pulse Transit Time - Theory and Practice",
+      "organization": "IEEE Transactions on Biomedical Engineering",
+      "priority": 3,
+      "topic": "cuffless_ppg_limitations",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4515215/",
+      "pdf_url": "https://europepmc.org/articles/PMC4515215?pdf=render",
+      "doi": "10.1109/TBME.2015.2441951",
+      "pmid": 26057530,
+      "year": 2015,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "signal_quality",
+        "research_background"
+      ],
+      "selection_reason": "PTT 血压估算经典综述，用于校准、个体差异和无袖带边界说明。",
+      "access_instruction": "PMC/Europe PMC 公开 PDF 已归档为 knowledge_base/sources/downloads/mukkamala_2015_ptt_bp_monitoring_theory_practice.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 PMC/Europe PMC 合法公开入口归档 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该综述说明 PTT/PPG 血压估算受个体血管特性、传感器布置、校准和生理状态影响。",
+        "报告可用该来源解释 PPG/PTT 估算只能作为趋势参考或研究背景，不能替代经验证袖带血压测量。"
+      ]
+    },
+    {
+      "candidate_id": "mukkamala_2017_ptt_calibration_error_limits_pdf",
+      "source_id": "mukkamala_2017_ptt_calibration_error_limits",
+      "title": "Toward Ubiquitous Blood Pressure Monitoring via Pulse Transit Time - Predictions on Maximum Calibration Period and Acceptable Error Limits",
+      "organization": "IEEE Transactions on Biomedical Engineering",
+      "priority": 3,
+      "topic": "cuffless_ppg_limitations",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6014705/",
+      "pdf_url": "https://europepmc.org/articles/PMC6014705?pdf=render",
+      "doi": "10.1109/TBME.2017.2756018",
+      "pmid": 28952930,
+      "year": 2017,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "research_background"
+      ],
+      "selection_reason": "PTT 校准有效期与误差限制研究，用于说明无袖带估算需要校准且校准可能随时间失效。",
+      "access_instruction": "PMC/Europe PMC 公开 PDF 已归档为 knowledge_base/sources/downloads/mukkamala_2017_ptt_calibration_error_limits.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 PMC/Europe PMC 合法公开入口归档 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该研究支持 PTT-based 血压估算需要校准，校准间隔和误差容忍度是核心限制。",
+        "报告可用该来源支持重新校准、规范测量复核和设备边界提示；不得输出患者级诊断或治疗建议。"
+      ]
     },
     {
       "candidate_id": "nhc_2024_hypertension_nutrition_exercise_pdf",
@@ -521,6 +828,40 @@
         "NICE NG136 可作为家庭血压和动态血压确认流程的国际对照，强调不能依赖单次或非规范读数完成临床判断。",
         "对本系统而言，NICE 来源只支持复测、记录和规范测量建议，不改变 PPG 估算结果的非诊断边界。",
         "报告引用时应将其放在 home_bp_monitoring、remeasurement 或 bp_category_reference 语境中。"
+      ]
+    },
+    {
+      "candidate_id": "park_2022_ppg_analysis_applications_integrative_review_pdf",
+      "source_id": "park_2022_ppg_analysis_applications_integrative_review",
+      "title": "Photoplethysmogram Analysis and Applications - An Integrative Review",
+      "organization": "Frontiers in Physiology",
+      "priority": 3,
+      "topic": "measurement_quality",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2021.808451/full",
+      "pdf_url": "https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2021.808451/pdf",
+      "doi": "10.3389/fphys.2021.808451",
+      "pmid": 35300400,
+      "year": 2022,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "signal_quality",
+        "cuffless_ppg_limitations",
+        "research_background"
+      ],
+      "selection_reason": "PPG 波形分析整合综述，用于噪声、质量评估、特征提取和应用边界。",
+      "access_instruction": "Frontiers/PMC 公开 PDF 已归档为 knowledge_base/sources/downloads/park_2022_ppg_analysis_applications_integrative_review.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 Frontiers/PMC 合法公开入口归档 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该综述支持 PPG 分析依赖波形质量、噪声控制、特征提取和应用场景。",
+        "报告可用该来源说明低质量 PPG 不适合强解释，应重新采集或用规范设备复核；不得作为血压诊断依据。"
       ]
     },
     {
@@ -756,6 +1097,39 @@
       "summary_notes": []
     },
     {
+      "candidate_id": "frontiers_2019_ppg_measurement_site_waveform_pdf",
+      "source_id": "frontiers_2019_ppg_measurement_site_waveform",
+      "title": "Quantitative Comparison of Photoplethysmographic Waveform Characteristics - Effect of Measurement Site",
+      "organization": "Frontiers in Physiology",
+      "priority": 4,
+      "topic": "measurement_quality",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2019.00198/full",
+      "pdf_url": "https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2019.00198/pdf",
+      "doi": "10.3389/fphys.2019.00198",
+      "pmid": 30890959,
+      "year": 2019,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "signal_quality",
+        "research_background"
+      ],
+      "selection_reason": "不同 PPG 测量部位波形差异研究，可支持 sensor_position 解释。",
+      "access_instruction": "Frontiers 官方开放 PDF 已下载为 knowledge_base/sources/downloads/frontiers_2019_ppg_measurement_site_waveform.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 Frontiers 官方开放 PDF 下载；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该研究支持测量部位会影响 PPG 波形特征，报告可提醒传感器位置变化会影响信号稳定性。",
+        "该来源只用于 signal_quality 和 research_background，不用于血压分类、诊断或治疗建议。"
+      ]
+    },
+    {
       "candidate_id": "ish_2020_public_pdf",
       "source_id": "ish_2020_global_guideline",
       "title": "ISH 2020 global hypertension practice guideline public PDF",
@@ -823,6 +1197,175 @@
         "CKD 用户的血压相关解释需要结合肾功能、用药、合并症和整体临床风险，不能由 PPG 估算单独判断。",
         "该来源只用于支持“慢性肾病用户应更保守复核并主动与医生沟通”的特殊人群提醒。",
         "报告不得输出 CKD 个体化血压目标、药物方案、加药、减药或停药建议。"
+      ]
+    },
+    {
+      "candidate_id": "ode_2020_continuous_ambulatory_bp_ptt_data_acquisition_pdf",
+      "source_id": "ode_2020_continuous_ambulatory_bp_ptt_data_acquisition",
+      "title": "Towards Continuous and Ambulatory Blood Pressure Monitoring - Methods for Efficient Data Acquisition for Pulse Transit Time Estimation",
+      "organization": "Sensors",
+      "priority": 4,
+      "topic": "cuffless_ppg_limitations",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://www.mdpi.com/1424-8220/20/24/7106",
+      "pdf_url": "https://www.mdpi.com/1424-8220/20/24/7106/pdf",
+      "doi": "10.3390/s20247106",
+      "pmid": "",
+      "year": 2020,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "signal_quality",
+        "research_background"
+      ],
+      "selection_reason": "PTT 数据采集研究，用于连续/动态场景下的信号同步、采集质量和无袖带估算边界。",
+      "access_instruction": "MDPI/PMC 公开 PDF 已归档为 knowledge_base/sources/downloads/ode_2020_continuous_ambulatory_bp_ptt_data_acquisition.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 MDPI/PMC 合法公开入口归档 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该研究支持 PTT 估算依赖高质量同步信号和合适的数据采集流程，动态场景会影响可靠性。",
+        "报告可用该来源支持采集质量、重新采集和无袖带边界提示；不用于临床阈值或治疗建议。"
+      ]
+    },
+    {
+      "candidate_id": "shi_2022_skin_pigmentation_pulse_oximetry_systematic_review_pdf",
+      "source_id": "shi_2022_skin_pigmentation_pulse_oximetry_systematic_review",
+      "title": "The accuracy of pulse oximetry in measuring oxygen saturation by levels of skin pigmentation - a systematic review and meta-analysis",
+      "organization": "BMC Medicine",
+      "priority": 4,
+      "topic": "measurement_quality",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9377806/",
+      "pdf_url": "https://link.springer.com/content/pdf/10.1186/s12916-022-02452-8.pdf",
+      "doi": "10.1186/s12916-022-02452-8",
+      "pmid": "",
+      "year": 2022,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "signal_quality",
+        "research_background",
+        "disclaimer"
+      ],
+      "selection_reason": "脉搏氧肤色影响系统综述，用于光学传感器肤色影响和公平性 caveat。",
+      "access_instruction": "BMC/PMC 公开 PDF 已归档为 knowledge_base/sources/downloads/shi_2022_skin_pigmentation_pulse_oximetry_systematic_review.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 BMC/PMC 合法公开入口归档 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该系统综述支持皮肤色素可能影响部分光学测量准确性，需要谨慎解释光学传感估算。",
+        "报告可用该来源支持个体差异和测量局限提示；不得直接写成 PPG 血压误差定量结论。"
+      ]
+    },
+    {
+      "candidate_id": "sjoding_2020_racial_bias_pulse_oximetry_pdf",
+      "source_id": "sjoding_2020_racial_bias_pulse_oximetry",
+      "title": "Racial Bias in Pulse Oximetry Measurement",
+      "organization": "New England Journal of Medicine",
+      "priority": 4,
+      "topic": "measurement_quality",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7808260/",
+      "pdf_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7808260/pdf/nihms-1659369.pdf",
+      "doi": "10.1056/NEJMc2029240",
+      "pmid": 33326721,
+      "year": 2020,
+      "language": "en",
+      "region": "US",
+      "allowed_uses": [
+        "signal_quality",
+        "research_background",
+        "disclaimer"
+      ],
+      "selection_reason": "脉搏氧肤色偏差研究，用于光学传感器公平性和人群差异安全边界。",
+      "access_instruction": "PMC 公开 PDF 已归档为 knowledge_base/sources/downloads/sjoding_2020_racial_bias_pulse_oximetry.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 PMC 合法公开入口归档 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该研究支持光学传感器可能受皮肤色素和人群差异影响。",
+        "报告只能把该来源用于光学测量局限和公平性提醒，不能外推为 PPG 血压准确性结论。"
+      ]
+    },
+    {
+      "candidate_id": "sun_2016_ppg_revisited_contact_noncontact_imaging_pdf",
+      "source_id": "sun_2016_ppg_revisited_contact_noncontact_imaging",
+      "title": "Photoplethysmography Revisited - From Contact to Noncontact From Point to Imaging",
+      "organization": "IEEE Transactions on Biomedical Engineering",
+      "priority": 4,
+      "topic": "measurement_quality",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4822420/",
+      "pdf_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4822420/pdf/nihms763449.pdf",
+      "doi": "10.1109/TBME.2015.2476337",
+      "pmid": 26390439,
+      "year": 2016,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "signal_quality",
+        "cuffless_ppg_limitations",
+        "research_background"
+      ],
+      "selection_reason": "PPG 从接触式到非接触式/成像式的综述，可补强摄像头 PPG 的采集边界。",
+      "access_instruction": "PMC 公开 PDF 已下载为 knowledge_base/sources/downloads/sun_2016_ppg_revisited_contact_noncontact_imaging.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 PMC 合法公开入口下载 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该综述可用于解释接触式、非接触式和成像 PPG 的差异，以及摄像头 PPG 对光照、运动和成像条件敏感。",
+        "报告可用该来源支持 iPPG/摄像头采集质量提醒；不能把 PPG 写成规范血压测量。"
+      ]
+    },
+    {
+      "candidate_id": "tamura_2014_wearable_ppg_sensors_past_present_pdf",
+      "source_id": "tamura_2014_wearable_ppg_sensors_past_present",
+      "title": "Wearable Photoplethysmographic Sensors - Past and Present",
+      "organization": "Electronics",
+      "priority": 4,
+      "topic": "measurement_quality",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://www.mdpi.com/2079-9292/3/2/282",
+      "pdf_url": "https://www.mdpi.com/2079-9292/3/2/282/pdf",
+      "doi": "10.3390/electronics3020282",
+      "pmid": "",
+      "year": 2014,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "signal_quality",
+        "research_background"
+      ],
+      "selection_reason": "可穿戴 PPG 经典综述，可补充传感器类型、佩戴位置和信号采集限制。",
+      "access_instruction": "MDPI 公开 PDF 已下载为 knowledge_base/sources/downloads/tamura_2014_wearable_ppg_sensors_past_present.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 MDPI 官方开放 PDF 下载；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该综述支持 PPG 信号依赖光源、探测器、组织接触、佩戴位置和测量部位。",
+        "报告可用该来源说明传感器位置和佩戴稳定性会影响信号质量；不用于临床诊断。"
       ]
     },
     {
@@ -920,6 +1463,40 @@
       "summary_notes": []
     },
     {
+      "candidate_id": "cabanas_2022_skin_pigmentation_pulse_oximetry_bibliometric_pdf",
+      "source_id": "cabanas_2022_skin_pigmentation_pulse_oximetry_bibliometric",
+      "title": "Skin Pigmentation Influence on Pulse Oximetry Accuracy - A Systematic Review and Bibliometric Analysis",
+      "organization": "Sensors",
+      "priority": 5,
+      "topic": "measurement_quality",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://www.mdpi.com/1424-8220/22/9/3402",
+      "pdf_url": "https://www.mdpi.com/1424-8220/22/9/3402/pdf",
+      "doi": "10.3390/s22093402",
+      "pmid": "",
+      "year": 2022,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "signal_quality",
+        "research_background",
+        "disclaimer"
+      ],
+      "selection_reason": "脉搏氧肤色影响系统综述/文献计量分析，用于光学传感公平性背景补充。",
+      "access_instruction": "MDPI/PMC 公开 PDF 已归档为 knowledge_base/sources/downloads/cabanas_2022_skin_pigmentation_pulse_oximetry_bibliometric.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 MDPI/PMC 合法公开入口归档 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该综述支持光学测量可能存在与皮肤色素相关的误差风险。",
+        "报告可用该来源作为肤色/光学公平性 caveat 的补充证据；不用于 PPG 血压准确性量化或临床建议。"
+      ]
+    },
+    {
       "candidate_id": "chandrasekhar_2020_contact_pressure_cuffless_bp_fulltext",
       "source_id": "chandrasekhar_2020_contact_pressure_cuffless_bp",
       "title": "PPG Sensor Contact Pressure Should Be Taken Into Account for Cuff-Less Blood Pressure Measurement",
@@ -945,8 +1522,12 @@
         "research_background"
       ],
       "selection_reason": "直接讨论 PPG 接触压力对无袖带血压测量的影响，是 contact_pressure 的高相关研究候选。",
-      "access_instruction": "若用户可通过 IEEE 或机构页面下载 PDF，请保存为 knowledge_base/sources/downloads/chandrasekhar_2020_contact_pressure_cuffless_bp.pdf，并只提交中文摘要。",
-      "last_accessed": "2026-05-10",
+      "access_instruction": "2026-05-21 用户已提供 PMC/NIHMS 本地 PDF 并归档为 knowledge_base/sources/downloads/chandrasekhar_2020_contact_pressure_cuffless_bp.pdf；下一步只提交中文摘要，不提交全文 PDF。",
+      "last_accessed": "2026-05-21",
+      "local_pdf_archived": true,
+      "local_pdf_path": "knowledge_base/sources/downloads/chandrasekhar_2020_contact_pressure_cuffless_bp.pdf",
+      "local_pdf_pages": 14,
+      "local_pdf_sha256": "1a1db1b5bd96e8d46e415e2a16a3ed2c26df4f1bcfcbd97dcd926dfc06071673",
       "summary_notes": []
     },
     {
@@ -1120,6 +1701,106 @@
       ]
     },
     {
+      "candidate_id": "electronics_2023_ppg_wearable_devices_review_pdf",
+      "source_id": "electronics_2023_ppg_wearable_devices_review",
+      "title": "Photoplethysmography in Wearable Devices - A Comprehensive Review of Technological Advances Current Challenges and Future Directions",
+      "organization": "Electronics",
+      "priority": 5,
+      "topic": "measurement_quality",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://www.mdpi.com/2079-9292/12/13/2923",
+      "pdf_url": "https://www.mdpi.com/2079-9292/12/13/2923/pdf",
+      "doi": "10.3390/electronics12132923",
+      "pmid": "",
+      "year": 2023,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "signal_quality",
+        "cuffless_ppg_limitations",
+        "research_background"
+      ],
+      "selection_reason": "较新的可穿戴 PPG 综合综述，用于当前技术挑战和真实世界应用边界。",
+      "access_instruction": "MDPI 公开 PDF 已下载为 knowledge_base/sources/downloads/electronics_2023_ppg_wearable_devices_review.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 MDPI 官方开放 PDF 下载；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该综述支持可穿戴 PPG 仍面临运动、佩戴、传感器、个体差异和算法泛化挑战。",
+        "报告可用该来源支持 PPG 估算局限和重新采集建议；不得替代设备验证标准或临床指南。"
+      ]
+    },
+    {
+      "candidate_id": "lee_2013_rgb_reflection_ppg_motion_hr_pdf",
+      "source_id": "lee_2013_rgb_reflection_ppg_motion_hr",
+      "title": "Comparison between red green and blue light reflection photoplethysmography for heart rate monitoring during motion",
+      "organization": "IEEE EMBC / Kanazawa University Repository",
+      "priority": 5,
+      "topic": "measurement_quality",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://u-toyama.elsevierpure.com/en/publications/comparison-between-red-green-and-blue-light-reflection-photopleth/",
+      "pdf_url": "https://kanazawa-u.repo.nii.ac.jp/record/8500/files/TE-PR-YAMAKOSHI-T-1724.pdf",
+      "doi": "10.1109/EMBC.2013.6609852",
+      "pmid": 24110039,
+      "year": 2013,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "signal_quality",
+        "research_background"
+      ],
+      "selection_reason": "运动状态下 RGB 反射式 PPG 比较研究，用于光源/波长和运动伪差背景。",
+      "access_instruction": "Kanazawa University 机构仓储 PDF 已归档为 knowledge_base/sources/downloads/lee_2013_rgb_reflection_ppg_motion_hr.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从大学机构仓储合法公开入口归档 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该研究支持不同光源/波长在运动状态下可能产生不同的 PPG 信号质量表现。",
+        "报告可用该来源支持运动伪差和稳定采集建议；不用于血压分类、诊断或治疗。"
+      ]
+    },
+    {
+      "candidate_id": "lee_2021_skin_compatible_wearable_ppg_pdf",
+      "source_id": "lee_2021_skin_compatible_wearable_ppg",
+      "title": "Systematic Review on Human Skin-Compatible Wearable Photoplethysmography Sensors",
+      "organization": "Applied Sciences",
+      "priority": 5,
+      "topic": "measurement_quality",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://www.mdpi.com/2076-3417/11/5/2313",
+      "pdf_url": "https://www.mdpi.com/2076-3417/11/5/2313/pdf",
+      "doi": "10.3390/app11052313",
+      "pmid": "",
+      "year": 2021,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "signal_quality",
+        "research_background"
+      ],
+      "selection_reason": "皮肤兼容可穿戴 PPG 传感器系统综述，可补充贴合、接触和长期佩戴稳定性。",
+      "access_instruction": "MDPI 公开 PDF 已下载为 knowledge_base/sources/downloads/lee_2021_skin_compatible_wearable_ppg.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 MDPI 官方开放 PDF 下载；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该综述支持皮肤贴合、柔性传感器、接触稳定性和长期佩戴因素会影响可穿戴 PPG。",
+        "报告可用该来源支持佩戴稳定性和重新放置传感器建议；不用于临床治疗建议。"
+      ]
+    },
+    {
       "candidate_id": "shirbani_2020_ambient_light_skin_tone_vpg_fulltext",
       "source_id": "shirbani_2020_ambient_light_skin_tone_vpg",
       "title": "Effect of Ambient Lighting and Skin Tone on Estimation of Heart Rate and Pulse Transit Time from Video Plethysmography",
@@ -1144,8 +1825,12 @@
         "research_background"
       ],
       "selection_reason": "摄像头/视频 PPG 中环境光和肤色影响的直接候选，可补强光照与肤色提示。",
-      "access_instruction": "若用户可通过 IEEE 或机构页面下载 PDF，请保存为 knowledge_base/sources/downloads/shirbani_2020_ambient_light_skin_tone_vpg.pdf，并只提交中文摘要。",
-      "last_accessed": "2026-05-10",
+      "access_instruction": "2026-05-21 网页端未找到合法公开 PDF，标记为 institution_required；用户已提供本地 PDF 并归档为 knowledge_base/sources/downloads/shirbani_2020_ambient_light_skin_tone_vpg.pdf。下一步只提交中文摘要，不提交全文 PDF。",
+      "last_accessed": "2026-05-21",
+      "local_pdf_archived": true,
+      "local_pdf_path": "knowledge_base/sources/downloads/shirbani_2020_ambient_light_skin_tone_vpg.pdf",
+      "local_pdf_pages": 4,
+      "local_pdf_sha256": "9c2f5e2f688b8f73ad33123d0c6e18ec15b34e161c908753d7edec803ef7e014",
       "summary_notes": []
     },
     {
@@ -1182,6 +1867,39 @@
       ]
     },
     {
+      "candidate_id": "tamura_2019_current_progress_ppg_spo2_pdf",
+      "source_id": "tamura_2019_current_progress_ppg_spo2",
+      "title": "Current progress of photoplethysmography and SpO2 for health monitoring",
+      "organization": "Biomedical Engineering Letters",
+      "priority": 5,
+      "topic": "measurement_quality",
+      "access_mode": "public_pdf",
+      "status": "summarized",
+      "summary_status": "ready",
+      "institution_required": false,
+      "auto_download": false,
+      "include_in_summary": true,
+      "landing_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6431353/",
+      "pdf_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6431353/pdf/13534_2019_Article_97.pdf",
+      "doi": "10.1007/s13534-019-00097-w",
+      "pmid": 30956878,
+      "year": 2019,
+      "language": "en",
+      "region": "global",
+      "allowed_uses": [
+        "signal_quality",
+        "research_background"
+      ],
+      "selection_reason": "PPG 和 SpO2 健康监测进展综述，用作光学信号背景和局限说明。",
+      "access_instruction": "PMC 公开 PDF 已下载为 knowledge_base/sources/downloads/tamura_2019_current_progress_ppg_spo2.pdf；入库只写摘要。",
+      "last_accessed": "2026-05-21",
+      "summary_notes": [
+        "已从 PMC 合法公开入口下载 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。",
+        "该综述可作为 PPG/SpO2 光学监测背景，支持传感器和测量条件会影响信号的说明。",
+        "报告不得用该来源承诺 PPG 血压估算准确性。"
+      ]
+    },
+    {
       "candidate_id": "teng_2004_contact_force_ppg_fulltext",
       "source_id": "teng_2004_contact_force_ppg",
       "title": "The effect of contacting force on photoplethysmographic signals",
@@ -1206,8 +1924,12 @@
         "research_background"
       ],
       "selection_reason": "接触压力对 PPG 波形影响的经典研究，可支持“过松/过紧都会影响信号”。",
-      "access_instruction": "若用户后续可通过机构或出版社页面获取 PDF，请保存为 knowledge_base/sources/downloads/teng_2004_contact_force_ppg.pdf，并只提交中文摘要。",
-      "last_accessed": "2026-05-10",
+      "access_instruction": "2026-05-21 用户已提供本地 PDF 并归档为 knowledge_base/sources/downloads/teng_2004_contact_force_ppg.pdf；下一步只提交中文摘要，不提交全文 PDF。",
+      "last_accessed": "2026-05-21",
+      "local_pdf_archived": true,
+      "local_pdf_path": "knowledge_base/sources/downloads/teng_2004_contact_force_ppg.pdf",
+      "local_pdf_pages": 14,
+      "local_pdf_sha256": "f0d8e784c3557b327dedb06bfbb2e23a53fb0dbae0b83ad74b75240a49a429dc",
       "summary_notes": []
     },
     {

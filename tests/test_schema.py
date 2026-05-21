@@ -11,10 +11,19 @@ def test_parse_flat_payload():
             "estimated_dbp": 92,
             "heart_rate": 82,
             "signal_quality_score": 0.86,
+            "confidence": 0.68,
+            "capture_duration_sec": 30,
+            "ppg_source": "camera_finger",
+            "algorithm_version": "miniapp-bp-v1.0",
             "age": 45,
         }
     )
     assert payload.measurement.estimated_sbp == 145
+    assert payload.measurement.heart_rate == 82
+    assert payload.measurement.confidence == 0.68
+    assert payload.measurement.capture_duration_sec == 30
+    assert payload.measurement.ppg_source == "camera_finger"
+    assert payload.measurement.algorithm_version == "miniapp-bp-v1.0"
     assert payload.user_profile.age == 45
     assert payload.locale == "zh-CN"
 

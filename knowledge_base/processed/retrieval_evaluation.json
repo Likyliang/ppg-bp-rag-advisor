@@ -5,7 +5,7 @@
     "mean_precision_at_5": 1.0,
     "topic_hit_rate": 1.0,
     "mean_topic_precision_at_5": 0.894,
-    "expected_class_hit_rate": 0.92,
+    "expected_class_hit_rate": 0.93,
     "high_trust_sensitive_rate": 1.0,
     "unsafe_source_leakage_count": 0,
     "evaluation_mode": "calibrated_query_only"
@@ -638,24 +638,24 @@
           "snippet": "## 来源摘要 本地规则补充摄像头 PPG 采集环境对信号质量的影响。"
         },
         {
-          "source_id": "local_ppg_signal_quality_rule_001",
-          "title": "PPG signal quality and confidence safety rule",
-          "url": "",
+          "source_id": "sun_2016_ppg_revisited_contact_noncontact_imaging_002",
+          "title": "Photoplethysmography Revisited - From Contact to Noncontact From Point to Imaging",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4822420/",
           "used_for": "PPG 运动伪影 手指移动 光学信号质量",
-          "organization": "project",
+          "organization": "IEEE Transactions on Biomedical Engineering",
           "region": "global",
           "topic": "measurement_quality",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
+          "language": "en",
+          "evidence_class": "review",
+          "source_quality_score": 22.0,
           "allowed_uses": [
             "signal_quality",
-            "remeasurement",
-            "cuffless_ppg_limitations"
+            "cuffless_ppg_limitations",
+            "research_background"
           ],
           "review_status": "included",
-          "score": 0.6228,
-          "snippet": "## 来源摘要 本项目规则：低信号质量或低置信度时不生成强风险结论。"
+          "score": 0.6587,
+          "snippet": "## 可用于报告的要点 - 非接触式和成像 PPG 更容易受环境光、运动和图像采集条件影响。 - PPG 是间接光学信号，不等同于标准血压测量。 - 报告可用该来源支持 iPPG/摄像头采集质量提醒。"
         }
       ],
       "precision_at_k": 1.0,
@@ -856,6 +856,26 @@
           "snippet": "## 可用于报告的要点 - 强光、移动、按压力度和采集时间会影响信号。 - 低质量时优先重新采集。 - 不要输出强风险结论。"
         },
         {
+          "source_id": "sun_2016_ppg_revisited_contact_noncontact_imaging_002",
+          "title": "Photoplethysmography Revisited - From Contact to Noncontact From Point to Imaging",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4822420/",
+          "used_for": "摄像头 PPG 肤色 环境光 影响 测量",
+          "organization": "IEEE Transactions on Biomedical Engineering",
+          "region": "global",
+          "topic": "measurement_quality",
+          "language": "en",
+          "evidence_class": "review",
+          "source_quality_score": 22.0,
+          "allowed_uses": [
+            "signal_quality",
+            "cuffless_ppg_limitations",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.6227,
+          "snippet": "## 可用于报告的要点 - 非接触式和成像 PPG 更容易受环境光、运动和图像采集条件影响。 - PPG 是间接光学信号，不等同于标准血压测量。 - 报告可用该来源支持 iPPG/摄像头采集质量提醒。"
+        },
+        {
           "source_id": "allen_2007_ppg_clinical_measurement_review_001",
           "title": "Photoplethysmography and its application in clinical physiological measurement",
           "url": "https://pubmed.ncbi.nlm.nih.gov/17322588/",
@@ -896,25 +916,6 @@
           "review_status": "included",
           "score": 0.5972,
           "snippet": "## 可用于报告的要点 - PPG 信号依赖光照、组织灌注和测量位置，不是直接血压测量。 - 运动、环境光、探头接触和传感器位置都可能改变波形质量。 - 低质量或不稳定波形应优先重新采集并用规范血压计复核。"
-        },
-        {
-          "source_id": "shirbani_2020_ambient_light_skin_tone_vpg_001",
-          "title": "Effect of Ambient Lighting and Skin Tone on Estimation of Heart Rate and Pulse Transit Time from Video Plethysmography",
-          "url": "https://ieeexplore.ieee.org/document/9176731",
-          "used_for": "摄像头 PPG 肤色 环境光 影响 测量",
-          "organization": "IEEE EMBC",
-          "region": "global",
-          "topic": "measurement_quality",
-          "language": "en",
-          "evidence_class": "research_context",
-          "source_quality_score": 19.0,
-          "allowed_uses": [
-            "signal_quality",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.5767,
-          "snippet": "## 来源摘要 该研究聚焦视频 PPG 中环境光和肤色对心率与脉搏传导时间估计的影响，可补充摄像头 PPG 场景的光照/肤色质量提示。"
         }
       ],
       "precision_at_k": 1.0,
@@ -1502,6 +1503,27 @@
           "snippet": "## 来源摘要 AHA 血压读数解释页面支持 Normal/Elevated/Stage 范围和严重偏高症状提醒。"
         },
         {
+          "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+          "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+          "used_for": "145/92 血压估算 偏高 需要注意什么",
+          "organization": "American Heart Association",
+          "region": "AHA",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "device_advice",
+            "bp_category_reference"
+          ],
+          "review_status": "included",
+          "score": 0.4805,
+          "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
+        },
+        {
           "source_id": "nice_ng136_hypertension_002",
           "title": "Hypertension in adults - diagnosis and management",
           "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
@@ -1542,26 +1564,6 @@
           "review_status": "included",
           "score": 0.4716,
           "snippet": "## 可用于报告的要点 - 强调血压管理需要结合规范测量与长期风险。 - 家庭血压监测和连续记录适合用于临床沟通。 - 本系统只能用于估算值解释，不改变指南阈值或治疗建议。"
-        },
-        {
-          "source_id": "who_hypertension_fact_sheet_001",
-          "title": "Hypertension fact sheet",
-          "url": "https://www.who.int/news-room/fact-sheets/detail/hypertension",
-          "used_for": "145/92 血压估算 偏高 需要注意什么",
-          "organization": "World Health Organization",
-          "region": "global",
-          "topic": "bp_categories",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "bp_category_reference",
-            "lifestyle",
-            "special_population"
-          ],
-          "review_status": "included",
-          "score": 0.4627,
-          "snippet": "## 来源摘要 WHO 高血压 fact sheet 提供全球负担、风险因素和健康教育背景。"
         }
       ],
       "precision_at_k": 1.0,
@@ -1879,6 +1881,26 @@
           "snippet": "## 可用于报告的要点 - 复测建议应强调安静状态、合适设备、规范姿势和记录。 - 该来源用于测量规范，不使用其旧版阈值替代 2024/2025 指南。 - PPG 估算不能替代指南要求的规范血压测量。"
         },
         {
+          "source_id": "esh_2021_home_bp_monitoring_position_paper_002",
+          "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+          "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
+          "used_for": "180 120 没有症状 复测 规范血压计",
+          "organization": "European Society of Hypertension",
+          "region": "EU",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "device_advice"
+          ],
+          "review_status": "included",
+          "score": 0.622,
+          "snippet": "## 可用于报告的要点 - 家庭血压监测需要标准化流程和记录。 - 连续记录比单次读数更适合健康趋势沟通。 - PPG 估算偏高时应建议用规范血压计复核。"
+        },
+        {
           "source_id": "aha_home_bp_monitoring_public_004",
           "title": "Home Blood Pressure Monitoring",
           "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
@@ -1905,26 +1927,6 @@
           "used_for": "180 120 没有症状 复测 规范血压计",
           "organization": "American Heart Association",
           "region": "AHA",
-          "topic": "home_bp_monitoring",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "home_bp_monitoring",
-            "remeasurement",
-            "device_advice"
-          ],
-          "review_status": "included",
-          "score": 0.6103,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "ama_target_bp_measure_accurately_004",
-          "title": "Target BP - Measure Accurately",
-          "url": "https://targetbp.org/tools-downloads/",
-          "used_for": "180 120 没有症状 复测 规范血压计",
-          "organization": "American Medical Association / American Heart Association",
-          "region": "US",
           "topic": "home_bp_monitoring",
           "language": "en",
           "evidence_class": "official_health_education",
@@ -3378,6 +3380,26 @@
           "snippet": "## 来源摘要 AHA 家庭血压监测页面支持使用上臂式设备复核、规范姿势和记录趋势。"
         },
         {
+          "source_id": "esh_2021_home_bp_monitoring_position_paper_002",
+          "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+          "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
+          "used_for": "连续多天记录 家庭血压 趋势",
+          "organization": "European Society of Hypertension",
+          "region": "EU",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "device_advice"
+          ],
+          "review_status": "included",
+          "score": 0.775,
+          "snippet": "## 可用于报告的要点 - 家庭血压监测需要标准化流程和记录。 - 连续记录比单次读数更适合健康趋势沟通。 - PPG 估算偏高时应建议用规范血压计复核。"
+        },
+        {
           "source_id": "aha_home_bp_measurement_instructions_001",
           "title": "Home Blood Pressure Measurement Instructions",
           "url": "https://www.heart.org/-/media/files/health-topics/high-blood-pressure/how_to_measure_your_blood_pressure_letter_size.pdf",
@@ -3436,26 +3458,6 @@
           "review_status": "included",
           "score": 0.7387,
           "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
-        },
-        {
-          "source_id": "cdc_measure_blood_pressure_home_001",
-          "title": "Measure Your Blood Pressure",
-          "url": "https://www.cdc.gov/high-blood-pressure/measure/index.html",
-          "used_for": "连续多天记录 家庭血压 趋势",
-          "organization": "Centers for Disease Control and Prevention",
-          "region": "US",
-          "topic": "home_bp_monitoring",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "home_bp_monitoring",
-            "remeasurement",
-            "device_advice"
-          ],
-          "review_status": "included",
-          "score": 0.7239,
-          "snippet": "## 来源摘要 CDC 测量血压页面支持家庭测量、准备步骤和与医生共享记录。"
         }
       ],
       "precision_at_k": 1.0,
@@ -4168,29 +4170,29 @@
           "snippet": "## 来源摘要 AHA/ACC 2025 成人高血压指南正式全文用于新版指南追溯、规范测量边界和 PPG 免责声明。"
         },
         {
-          "source_id": "esc_2024_bp_guideline_key_points_001",
-          "title": "2024 ESC Guidelines for Elevated Blood Pressure and Hypertension - Key Points",
-          "url": "https://www.acc.org/Latest-in-Cardiology/ten-points-to-remember/2024/09/05/14/11/2024-esc-guidelines-for-bp-esc-2024",
+          "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+          "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
           "used_for": "AHA 血压分类 normal elevated stage 2",
-          "organization": "European Society of Cardiology / American College of Cardiology summary",
-          "region": "EU",
-          "topic": "bp_categories",
+          "organization": "American Heart Association",
+          "region": "AHA",
+          "topic": "home_bp_monitoring",
           "language": "en",
-          "evidence_class": "guideline",
-          "source_quality_score": 23.0,
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 24.0,
           "allowed_uses": [
-            "bp_category_reference",
             "home_bp_monitoring",
             "remeasurement",
-            "special_population"
+            "device_advice",
+            "bp_category_reference"
           ],
           "review_status": "included",
-          "score": 0.4049,
-          "snippet": "## 来源摘要 ESC 2024 指南要点可补充欧洲场景下血压管理和规范测量原则。"
+          "score": 0.4073,
+          "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
         }
       ],
       "precision_at_k": 1.0,
-      "topic_precision_at_k": 1.0,
+      "topic_precision_at_k": 0.8,
       "has_match": true,
       "has_topic_match": true,
       "has_expected_class": true,
@@ -4256,6 +4258,27 @@
           "snippet": "## 来源摘要 AHA 家庭血压监测页面支持使用上臂式设备复核、规范姿势和记录趋势。"
         },
         {
+          "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+          "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+          "used_for": "NICE 家庭血压监测 动态血压",
+          "organization": "American Heart Association",
+          "region": "AHA",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "device_advice",
+            "bp_category_reference"
+          ],
+          "review_status": "included",
+          "score": 0.649,
+          "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
+        },
+        {
           "source_id": "nice_ng136_hypertension_001",
           "title": "Hypertension in adults - diagnosis and management",
           "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
@@ -4294,26 +4317,6 @@
           "review_status": "included",
           "score": 0.6404,
           "snippet": "## 来源摘要 CDC SMBP 工具包支持家庭自测血压和医疗团队沟通。"
-        },
-        {
-          "source_id": "cdc_self_measured_bp_monitoring_002",
-          "title": "Self-Measured Blood Pressure Monitoring",
-          "url": "https://www.cdc.gov/high-blood-pressure/php/toolkits/self-measured-blood-pressure-monitoring.html",
-          "used_for": "NICE 家庭血压监测 动态血压",
-          "organization": "Centers for Disease Control and Prevention",
-          "region": "US",
-          "topic": "home_bp_monitoring",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "home_bp_monitoring",
-            "remeasurement",
-            "device_advice"
-          ],
-          "review_status": "included",
-          "score": 0.6373,
-          "snippet": "## 可用于报告的要点 - 家庭血压监测需要规范流程。 - 记录结果可辅助医生理解趋势。 - 不应只用单次 PPG 估算做判断。"
         }
       ],
       "precision_at_k": 1.0,
@@ -4645,6 +4648,48 @@
           "snippet": "## 来源摘要 本项目规则：报告必须声明仅供个人健康趋势参考，不能替代医生诊断和规范血压测量。"
         },
         {
+          "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_002",
+          "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+          "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+          "used_for": "报告 免责声明 PPG 不能替代诊断",
+          "organization": "European Society of Cardiology",
+          "region": "EU",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "research_background",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.5934,
+          "snippet": "## 可用于报告的要点 - 无袖带血压监测需要关注技术原理、校准、验证和适用场景。 - 报告可用该来源强化免责声明：PPG/无袖带结果只能作健康趋势参考，不能替代规范血压测量。 - 涉及设备建议时应强调经验证设备和医生沟通。"
+        },
+        {
+          "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_003",
+          "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+          "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+          "used_for": "报告 免责声明 PPG 不能替代诊断",
+          "organization": "European Society of Cardiology",
+          "region": "EU",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "research_background",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.5809,
+          "snippet": "## 实现使用说明 - 用于 cuffless_ppg_limitations、device_advice、research_background 和免责声明；不输出诊断或治疗结论。"
+        },
+        {
           "source_id": "aha_cuffless_bp_scientific_statement_002",
           "title": "Cuffless Devices for the Measurement of Blood Pressure",
           "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
@@ -4664,46 +4709,6 @@
           "review_status": "included",
           "score": 0.5695,
           "snippet": "## 可用于报告的要点 - 无袖带设备依赖间接估算，真实场景可靠性需验证。 - PPG 估算不能替代规范血压测量。 - 报告应避免准确性过度承诺。"
-        },
-        {
-          "source_id": "aha_cuffless_bp_scientific_statement_004",
-          "title": "Cuffless Devices for the Measurement of Blood Pressure",
-          "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-          "used_for": "报告 免责声明 PPG 不能替代诊断",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "cuffless_ppg_limitations",
-          "language": "en",
-          "evidence_class": "scientific_statement",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "cuffless_ppg_limitations",
-            "device_advice",
-            "signal_quality",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.5186,
-          "snippet": "## 全文候选与下载材料摘要 ### AHA cuffless blood pressure scientific statement full text - candidate_id: `aha_cuffless_bp_statement_fulltext` - access_mode: `institution_or_browser` - fulltext_status: local_pdf_available - source_url: https://professi..."
-        },
-        {
-          "source_id": "local_disclaimer_rule_004",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "报告 免责声明 PPG 不能替代诊断",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.4957,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
       "precision_at_k": 1.0,
@@ -4803,33 +4808,12 @@
           "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
         },
         {
-          "source_id": "fda_cuffless_nibp_draft_guidance_004",
-          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
-          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+          "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_001",
+          "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+          "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
           "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
-          "organization": "U.S. Food and Drug Administration",
-          "region": "US",
-          "topic": "cuffless_ppg_limitations",
-          "language": "en",
-          "evidence_class": "validation_standard",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "cuffless_ppg_limitations",
-            "device_advice",
-            "signal_quality",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.5702,
-          "snippet": "## 全文候选与下载材料摘要 ### FDA cuffless NIBP clinical performance testing draft guidance PDF - candidate_id: `fda_cuffless_nibp_draft_guidance_pdf` - access_mode: `public_pdf` - fulltext_status: local_pdf_available - source_url: https://www.fda.gov..."
-        },
-        {
-          "source_id": "aha_cuffless_bp_scientific_statement_001",
-          "title": "Cuffless Devices for the Measurement of Blood Pressure",
-          "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-          "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
-          "organization": "American Heart Association",
-          "region": "AHA",
+          "organization": "European Society of Cardiology",
+          "region": "EU",
           "topic": "cuffless_ppg_limitations",
           "language": "en",
           "evidence_class": "scientific_statement",
@@ -4837,12 +4821,32 @@
           "allowed_uses": [
             "cuffless_ppg_limitations",
             "device_advice",
-            "signal_quality",
+            "research_background",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.5878,
+          "snippet": "## 来源摘要 ESC 相关科学声明讨论无袖带血压监测设备的技术基础和临床含义，是解释无袖带设备验证、校准、使用场景和临床边界的高可信来源。"
+        },
+        {
+          "source_id": "bradley_2022_cuffless_bp_devices_review_002",
+          "title": "Cuffless Blood Pressure Devices",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9088838/",
+          "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
+          "organization": "American Journal of Hypertension",
+          "region": "global",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "review",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
             "research_background"
           ],
           "review_status": "included",
-          "score": 0.529,
-          "snippet": "## 来源摘要 AHA 无袖带血压科学声明是 PPG/无袖带估算局限的核心安全依据。"
+          "score": 0.5874,
+          "snippet": "## 可用于报告的要点 - 无袖带血压设备仍面临验证、校准、真实世界适用性和临床整合方面的挑战。 - 报告可提示用户用经过验证的袖带设备复核 PPG 估算，而不是把估算值当成诊断。 - 综述来源不能替代指南或设备验证标准。"
         }
       ],
       "precision_at_k": 1.0,
@@ -5048,6 +5052,27 @@
           "snippet": "## 来源摘要 USPSTF 成人高血压筛查建议强调在诊断前应通过诊室外血压测量进行确认，可强化本系统的复测和非诊断边界。"
         },
         {
+          "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+          "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+          "used_for": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
+          "organization": "American Heart Association",
+          "region": "AHA",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "device_advice",
+            "bp_category_reference"
+          ],
+          "review_status": "included",
+          "score": 0.6165,
+          "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
+        },
+        {
           "source_id": "aha_home_bp_monitoring_public_001",
           "title": "Home Blood Pressure Monitoring",
           "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
@@ -5087,26 +5112,6 @@
           "review_status": "included",
           "score": 0.5998,
           "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
-        },
-        {
-          "source_id": "aha_home_bp_monitoring_public_002",
-          "title": "Home Blood Pressure Monitoring",
-          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
-          "used_for": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "home_bp_monitoring",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "home_bp_monitoring",
-            "remeasurement",
-            "device_advice"
-          ],
-          "review_status": "included",
-          "score": 0.5959,
-          "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
         }
       ],
       "precision_at_k": 1.0,
@@ -6482,15 +6487,15 @@
           "snippet": "## 可用于报告的要点 - 家庭血压监测需要规范流程。 - 记录结果可辅助医生理解趋势。 - 不应只用单次 PPG 估算做判断。"
         },
         {
-          "source_id": "aha_home_bp_monitoring_public_002",
-          "title": "Home Blood Pressure Monitoring",
-          "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
+          "source_id": "esh_2021_home_bp_monitoring_position_paper_001",
+          "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+          "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
           "used_for": "AHA 家庭血压测量 读两次 间隔一分钟 记录",
-          "organization": "American Heart Association",
-          "region": "AHA",
+          "organization": "European Society of Hypertension",
+          "region": "EU",
           "topic": "home_bp_monitoring",
           "language": "en",
-          "evidence_class": "official_health_education",
+          "evidence_class": "scientific_statement",
           "source_quality_score": 25.0,
           "allowed_uses": [
             "home_bp_monitoring",
@@ -6498,8 +6503,8 @@
             "device_advice"
           ],
           "review_status": "included",
-          "score": 0.6925,
-          "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
+          "score": 0.6991,
+          "snippet": "## 来源摘要 ESH 2021 家庭血压监测立场文件可支持家庭测量方法、重复测量、记录和与医生沟通的建议。"
         }
       ],
       "precision_at_k": 1.0,
@@ -6743,25 +6748,25 @@
           "snippet": "## 来源摘要 2025 综述只用于解释无袖带血压研究背景和仍需验证的局限。"
         },
         {
-          "source_id": "fda_cuffless_nibp_draft_guidance_001",
-          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
-          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+          "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_001",
+          "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+          "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
           "used_for": "无袖带 血压设备 真实场景 局限",
-          "organization": "U.S. Food and Drug Administration",
-          "region": "US",
+          "organization": "European Society of Cardiology",
+          "region": "EU",
           "topic": "cuffless_ppg_limitations",
           "language": "en",
-          "evidence_class": "validation_standard",
+          "evidence_class": "scientific_statement",
           "source_quality_score": 25.0,
           "allowed_uses": [
             "cuffless_ppg_limitations",
             "device_advice",
-            "signal_quality",
-            "research_background"
+            "research_background",
+            "disclaimer"
           ],
           "review_status": "included",
-          "score": 0.5346,
-          "snippet": "## 来源摘要 FDA 无袖带无创血压设备草案指南可补充监管视角，说明无袖带设备需要临床性能测试、验证和清晰适用边界。"
+          "score": 0.5773,
+          "snippet": "## 来源摘要 ESC 相关科学声明讨论无袖带血压监测设备的技术基础和临床含义，是解释无袖带设备验证、校准、使用场景和临床边界的高可信来源。"
         }
       ],
       "precision_at_k": 1.0,
@@ -6835,6 +6840,26 @@
           "snippet": "- 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。 - candidate_hash: `afdfd83a3ea92780` 已检测到本地 PDF：aha_cuffless_bp_scientific_statement.pdf。知识库只使用上述摘要和 citation，不复制全文。"
         },
         {
+          "source_id": "bradley_2022_cuffless_bp_devices_review_002",
+          "title": "Cuffless Blood Pressure Devices",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9088838/",
+          "used_for": "PPG 估算值 能不能代替上臂血压计",
+          "organization": "American Journal of Hypertension",
+          "region": "global",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "review",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.6301,
+          "snippet": "## 可用于报告的要点 - 无袖带血压设备仍面临验证、校准、真实世界适用性和临床整合方面的挑战。 - 报告可提示用户用经过验证的袖带设备复核 PPG 估算，而不是把估算值当成诊断。 - 综述来源不能替代指南或设备验证标准。"
+        },
+        {
           "source_id": "aha_cuffless_bp_scientific_statement_006",
           "title": "Cuffless Devices for the Measurement of Blood Pressure",
           "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
@@ -6875,27 +6900,6 @@
           "review_status": "included",
           "score": 0.6196,
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "fda_cuffless_nibp_draft_guidance_002",
-          "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
-          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
-          "used_for": "PPG 估算值 能不能代替上臂血压计",
-          "organization": "U.S. Food and Drug Administration",
-          "region": "US",
-          "topic": "cuffless_ppg_limitations",
-          "language": "en",
-          "evidence_class": "validation_standard",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "cuffless_ppg_limitations",
-            "device_advice",
-            "signal_quality",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.615,
-          "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
         }
       ],
       "precision_at_k": 1.0,
@@ -6967,6 +6971,27 @@
           "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
         },
         {
+          "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_002",
+          "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+          "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+          "used_for": "手机摄像头测血压 为什么只能看趋势",
+          "organization": "European Society of Cardiology",
+          "region": "EU",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "research_background",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.4555,
+          "snippet": "## 可用于报告的要点 - 无袖带血压监测需要关注技术原理、校准、验证和适用场景。 - 报告可用该来源强化免责声明：PPG/无袖带结果只能作健康趋势参考，不能替代规范血压测量。 - 涉及设备建议时应强调经验证设备和医生沟通。"
+        },
+        {
           "source_id": "aha_cuffless_bp_scientific_statement_002",
           "title": "Cuffless Devices for the Measurement of Blood Pressure",
           "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
@@ -7007,26 +7032,6 @@
           "review_status": "included",
           "score": 0.416,
           "snippet": "## 来源摘要 FDA 无袖带无创血压设备草案指南可补充监管视角，说明无袖带设备需要临床性能测试、验证和清晰适用边界。"
-        },
-        {
-          "source_id": "local_capture_environment_rule_001",
-          "title": "Camera PPG capture environment rule",
-          "url": "",
-          "used_for": "手机摄像头测血压 为什么只能看趋势",
-          "organization": "project",
-          "region": "global",
-          "topic": "measurement_quality",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "signal_quality",
-            "remeasurement",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.4128,
-          "snippet": "## 来源摘要 本地规则补充摄像头 PPG 采集环境对信号质量的影响。"
         }
       ],
       "precision_at_k": 1.0,
@@ -7077,6 +7082,26 @@
           "review_status": "included",
           "score": 0.6818,
           "snippet": "## 来源摘要 AHA 无袖带血压科学声明是 PPG/无袖带估算局限的核心安全依据。"
+        },
+        {
+          "source_id": "fine_2021_ppg_sources_of_inaccuracy_002",
+          "title": "Sources of Inaccuracy in Photoplethysmography for Continuous Cardiovascular Monitoring",
+          "url": "https://www.mdpi.com/2079-6374/11/4/126",
+          "used_for": "血压估算 算法置信度 和 PPG 局限",
+          "organization": "Biosensors",
+          "region": "global",
+          "topic": "measurement_quality",
+          "language": "en",
+          "evidence_class": "review",
+          "source_quality_score": 23.0,
+          "allowed_uses": [
+            "signal_quality",
+            "cuffless_ppg_limitations",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.6225,
+          "snippet": "## 可用于报告的要点 - PPG 信号可受运动、光照、皮肤和传感器接触条件影响。 - 报告可用该来源解释低信号质量和置信度不足时应复测。 - 该来源不能证明 PPG 血压估算可替代规范血压计。"
         },
         {
           "source_id": "aha_cuffless_bp_scientific_statement_005",
@@ -7139,26 +7164,6 @@
           "review_status": "included",
           "score": 0.5882,
           "snippet": "## 可用于报告的要点 - 无袖带设备依赖间接估算，真实场景可靠性需验证。 - PPG 估算不能替代规范血压测量。 - 报告应避免准确性过度承诺。"
-        },
-        {
-          "source_id": "local_capture_environment_rule_002",
-          "title": "Camera PPG capture environment rule",
-          "url": "",
-          "used_for": "血压估算 算法置信度 和 PPG 局限",
-          "organization": "project",
-          "region": "global",
-          "topic": "measurement_quality",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "signal_quality",
-            "remeasurement",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.5701,
-          "snippet": "## 可用于报告的要点 - 强光、移动、按压力度和采集时间会影响信号。 - 低质量时优先重新采集。 - 不要输出强风险结论。"
         }
       ],
       "precision_at_k": 1.0,
@@ -7383,6 +7388,27 @@
           "snippet": "## 来源摘要 PubMed 记录提供 AHA 无袖带血压声明的索引、年份和可追溯 citation。"
         },
         {
+          "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_001",
+          "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+          "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+          "used_for": "无袖带血压 科学声明 PPG 间接估算",
+          "organization": "European Society of Cardiology",
+          "region": "EU",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "research_background",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.5661,
+          "snippet": "## 来源摘要 ESC 相关科学声明讨论无袖带血压监测设备的技术基础和临床含义，是解释无袖带设备验证、校准、使用场景和临床边界的高可信来源。"
+        },
+        {
           "source_id": "charlton_2022_wearable_ppg_cardiovascular_review_003",
           "title": "Wearable Photoplethysmography for Cardiovascular Monitoring",
           "url": "https://ieeexplore.ieee.org/document/9731763",
@@ -7401,26 +7427,6 @@
           "review_status": "included",
           "score": 0.5442,
           "snippet": "## 实现使用说明 - 用于 wearable PPG 局限和 sensor_position 说明；不用于证明无袖带血压可诊断。"
-        },
-        {
-          "source_id": "chandrasekhar_2020_contact_pressure_cuffless_bp_001",
-          "title": "PPG Sensor Contact Pressure Should Be Taken Into Account for Cuff-Less Blood Pressure Measurement",
-          "url": "https://ieeexplore.ieee.org/document/9016235",
-          "used_for": "无袖带血压 科学声明 PPG 间接估算",
-          "organization": "IEEE Transactions on Biomedical Engineering",
-          "region": "global",
-          "topic": "measurement_quality",
-          "language": "en",
-          "evidence_class": "research_context",
-          "source_quality_score": 20.0,
-          "allowed_uses": [
-            "signal_quality",
-            "cuffless_ppg_limitations",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.5332,
-          "snippet": "## 来源摘要 该研究把 PPG 传感器接触压力与无袖带血压测量联系起来，是支持接触压力影响 PPG 血压估算的直接研究背景。"
         }
       ],
       "precision_at_k": 1.0,
@@ -7492,6 +7498,27 @@
           "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
         },
         {
+          "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_002",
+          "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+          "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+          "used_for": "PPG 血压趋势参考 不能诊断",
+          "organization": "European Society of Cardiology",
+          "region": "EU",
+          "topic": "cuffless_ppg_limitations",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "cuffless_ppg_limitations",
+            "device_advice",
+            "research_background",
+            "disclaimer"
+          ],
+          "review_status": "included",
+          "score": 0.5576,
+          "snippet": "## 可用于报告的要点 - 无袖带血压监测需要关注技术原理、校准、验证和适用场景。 - 报告可用该来源强化免责声明：PPG/无袖带结果只能作健康趋势参考，不能替代规范血压测量。 - 涉及设备建议时应强调经验证设备和医生沟通。"
+        },
+        {
           "source_id": "charlton_2022_wearable_ppg_cardiovascular_review_003",
           "title": "Wearable Photoplethysmography for Cardiovascular Monitoring",
           "url": "https://ieeexplore.ieee.org/document/9731763",
@@ -7529,32 +7556,13 @@
           "review_status": "included",
           "score": 0.5159,
           "snippet": "## 可用于报告的要点 - 免责声明必须出现在 Markdown 和 JSON。 - PPG 局限必须显式表达。 - 不能写成诊断或治疗建议。"
-        },
-        {
-          "source_id": "local_disclaimer_rule_004",
-          "title": "Required disclaimer rule",
-          "url": "",
-          "used_for": "PPG 血压趋势参考 不能诊断",
-          "organization": "project",
-          "region": "global",
-          "topic": "disclaimer",
-          "language": "zh",
-          "evidence_class": "safety_rule",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "disclaimer",
-            "cuffless_ppg_limitations"
-          ],
-          "review_status": "included",
-          "score": 0.5139,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
       "precision_at_k": 1.0,
-      "topic_precision_at_k": 0.4,
+      "topic_precision_at_k": 0.6,
       "has_match": true,
       "has_topic_match": true,
-      "has_expected_class": false,
+      "has_expected_class": true,
       "high_trust_sensitive": true,
       "unsafe_source_leakage": [],
       "warnings": []
@@ -8396,6 +8404,26 @@
           "snippet": "## 来源摘要 本地规则补充摄像头 PPG 采集环境对信号质量的影响。"
         },
         {
+          "source_id": "sun_2016_ppg_revisited_contact_noncontact_imaging_002",
+          "title": "Photoplethysmography Revisited - From Contact to Noncontact From Point to Imaging",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4822420/",
+          "used_for": "摄像头 PPG 采集环境 影响血压估算",
+          "organization": "IEEE Transactions on Biomedical Engineering",
+          "region": "global",
+          "topic": "measurement_quality",
+          "language": "en",
+          "evidence_class": "review",
+          "source_quality_score": 22.0,
+          "allowed_uses": [
+            "signal_quality",
+            "cuffless_ppg_limitations",
+            "research_background"
+          ],
+          "review_status": "included",
+          "score": 0.4808,
+          "snippet": "## 可用于报告的要点 - 非接触式和成像 PPG 更容易受环境光、运动和图像采集条件影响。 - PPG 是间接光学信号，不等同于标准血压测量。 - 报告可用该来源支持 iPPG/摄像头采集质量提醒。"
+        },
+        {
           "source_id": "medlineplus_measuring_blood_pressure_002",
           "title": "Blood pressure measurement",
           "url": "https://medlineplus.gov/ency/article/007490.htm",
@@ -8452,26 +8480,6 @@
           "review_status": "included",
           "score": 0.3856,
           "snippet": "## 来源摘要 该研究聚焦视频 PPG 中环境光和肤色对心率与脉搏传导时间估计的影响，可补充摄像头 PPG 场景的光照/肤色质量提示。"
-        },
-        {
-          "source_id": "charlton_2022_wearable_ppg_cardiovascular_review_002",
-          "title": "Wearable Photoplethysmography for Cardiovascular Monitoring",
-          "url": "https://ieeexplore.ieee.org/document/9731763",
-          "used_for": "摄像头 PPG 采集环境 影响血压估算",
-          "organization": "Proceedings of the IEEE",
-          "region": "global",
-          "topic": "measurement_quality",
-          "language": "en",
-          "evidence_class": "review",
-          "source_quality_score": 22.0,
-          "allowed_uses": [
-            "signal_quality",
-            "cuffless_ppg_limitations",
-            "research_background"
-          ],
-          "review_status": "included",
-          "score": 0.3804,
-          "snippet": "## 可用于报告的要点 - 可穿戴 PPG 在日常环境中容易受运动、佩戴位置和接触状态影响。 - PPG 可用于趋势和研究背景，但血压解释必须保留不确定性。 - 传感器位置和姿势变化会影响波形及后续估算。"
         }
       ],
       "precision_at_k": 1.0,
@@ -8695,6 +8703,27 @@
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         },
         {
+          "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+          "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+          "used_for": "145 92 PPG 血压估算 偏高 复测",
+          "organization": "American Heart Association",
+          "region": "AHA",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "device_advice",
+            "bp_category_reference"
+          ],
+          "review_status": "included",
+          "score": 0.6219,
+          "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
+        },
+        {
           "source_id": "aha_2025_bp_guideline_top_things_004",
           "title": "2025 High Blood Pressure Guideline - Top Things to Know",
           "url": "https://professional.heart.org/en/science-news/2025-high-blood-pressure-guideline/top-things-to-know",
@@ -8714,27 +8743,6 @@
           ],
           "review_status": "included",
           "score": 0.6121,
-          "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "uspstf_hypertension_screening_adults_005",
-          "title": "Hypertension in Adults - Screening",
-          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
-          "used_for": "145 92 PPG 血压估算 偏高 复测",
-          "organization": "U.S. Preventive Services Task Force",
-          "region": "US",
-          "topic": "home_bp_monitoring",
-          "language": "en",
-          "evidence_class": "guideline",
-          "source_quality_score": 23.0,
-          "allowed_uses": [
-            "home_bp_monitoring",
-            "remeasurement",
-            "bp_category_reference",
-            "disclaimer"
-          ],
-          "review_status": "included",
-          "score": 0.6107,
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
         }
       ],
@@ -9070,6 +9078,27 @@
           "snippet": "## 来源摘要 中国高血压防治指南 2024 修订版是中文场景的核心参考。"
         },
         {
+          "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_002",
+          "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+          "used_for": "116 74 PPG 血压 正常参考 趋势",
+          "organization": "American Heart Association",
+          "region": "AHA",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "device_advice",
+            "bp_category_reference"
+          ],
+          "review_status": "included",
+          "score": 0.5267,
+          "snippet": "## 可用于报告的要点 - 血压解释依赖规范流程、合适袖带、正确体位、重复读数和经验证设备。 - 家庭血压监测应作为趋势记录和医生沟通材料，而不是单次估算诊断。 - 报告可用该来源支持复测、记录和规范设备复核建议。"
+        },
+        {
           "source_id": "acc_aha_2025_full_guideline_record_001",
           "title": "2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults",
           "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
@@ -9111,27 +9140,6 @@
           "review_status": "included",
           "score": 0.5021,
           "snippet": "## 可用于报告的要点 - 老年用户血压异常或伴头晕、跌倒风险等情况时，应更保守地建议规范复核和医生评估。 - 报告不得生成老年人个体化治疗目标或用药调整。 - PPG 估算只能作为趋势参考。"
-        },
-        {
-          "source_id": "nhc_2024_hypertension_day_key_messages_002",
-          "title": "2024年全国高血压日宣传要点",
-          "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
-          "used_for": "116 74 PPG 血压 正常参考 趋势",
-          "organization": "国家卫生健康委",
-          "region": "CN",
-          "topic": "home_bp_monitoring",
-          "language": "zh",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "home_bp_monitoring",
-            "lifestyle",
-            "remeasurement",
-            "disclaimer"
-          ],
-          "review_status": "included",
-          "score": 0.4953,
-          "snippet": "## 可用于报告的要点 - 中文报告可用该来源支持规范测量、记录和生活方式提醒。 - 系统不得把宣传要点改写成诊断或治疗结论。 - PPG 估算仍只能作为趋势参考。"
         }
       ],
       "precision_at_k": 1.0,
@@ -9182,6 +9190,27 @@
           "review_status": "included",
           "score": 0.601,
           "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
+        },
+        {
+          "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_002",
+          "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+          "used_for": "150 95 血压估算 stage 2 复核",
+          "organization": "American Heart Association",
+          "region": "AHA",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 24.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "device_advice",
+            "bp_category_reference"
+          ],
+          "review_status": "included",
+          "score": 0.5683,
+          "snippet": "## 可用于报告的要点 - 血压解释依赖规范流程、合适袖带、正确体位、重复读数和经验证设备。 - 家庭血压监测应作为趋势记录和医生沟通材料，而不是单次估算诊断。 - 报告可用该来源支持复测、记录和规范设备复核建议。"
         },
         {
           "source_id": "aha_understanding_bp_readings_public_002",
@@ -9244,26 +9273,6 @@
           "review_status": "included",
           "score": 0.5514,
           "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-        },
-        {
-          "source_id": "nice_ng136_hypertension_002",
-          "title": "Hypertension in adults - diagnosis and management",
-          "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
-          "used_for": "150 95 血压估算 stage 2 复核",
-          "organization": "National Institute for Health and Care Excellence",
-          "region": "UK",
-          "topic": "home_bp_monitoring",
-          "language": "en",
-          "evidence_class": "guideline",
-          "source_quality_score": 24.0,
-          "allowed_uses": [
-            "home_bp_monitoring",
-            "remeasurement",
-            "bp_category_reference"
-          ],
-          "review_status": "included",
-          "score": 0.5501,
-          "snippet": "## 可用于报告的要点 - 诊断需要规范测量，不依赖单次设备估算。 - 家庭血压监测可用于确认和随访。 - 本系统只引用其测量原则和复测理念。"
         }
       ],
       "precision_at_k": 1.0,
@@ -9601,6 +9610,26 @@
           "snippet": "## 可用于报告的要点 - 血压分类只作为 PPG 估算值参考范围。 - 严重偏高并伴急症症状时应提示紧急医疗帮助。 - 需要复测和连续记录来理解趋势。"
         },
         {
+          "source_id": "esh_2021_home_bp_monitoring_position_paper_002",
+          "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+          "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
+          "used_for": "单次血压估算 为什么要连续记录",
+          "organization": "European Society of Hypertension",
+          "region": "EU",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "device_advice"
+          ],
+          "review_status": "included",
+          "score": 0.6214,
+          "snippet": "## 可用于报告的要点 - 家庭血压监测需要标准化流程和记录。 - 连续记录比单次读数更适合健康趋势沟通。 - PPG 估算偏高时应建议用规范血压计复核。"
+        },
+        {
           "source_id": "uspstf_hypertension_screening_adults_002",
           "title": "Hypertension in Adults - Screening",
           "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
@@ -9640,26 +9669,6 @@
           "review_status": "included",
           "score": 0.6114,
           "snippet": "## 可用于报告的要点 - 家庭血压监测需要规范流程。 - 记录结果可辅助医生理解趋势。 - 不应只用单次 PPG 估算做判断。"
-        },
-        {
-          "source_id": "aha_home_bp_measurement_instructions_001",
-          "title": "Home Blood Pressure Measurement Instructions",
-          "url": "https://www.heart.org/-/media/files/health-topics/high-blood-pressure/how_to_measure_your_blood_pressure_letter_size.pdf",
-          "used_for": "单次血压估算 为什么要连续记录",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "home_bp_monitoring",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "home_bp_monitoring",
-            "remeasurement",
-            "device_advice"
-          ],
-          "review_status": "included",
-          "score": 0.5757,
-          "snippet": "## 来源摘要 AHA 家庭血压测量说明卡适合转化为复测步骤，包括保持放松、不交谈、连续读数、记录并与医疗人员共享。"
         }
       ],
       "precision_at_k": 1.0,
@@ -12646,6 +12655,26 @@
           "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
         },
         {
+          "source_id": "esh_2021_home_bp_monitoring_position_paper_002",
+          "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+          "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
+          "used_for": "家庭血压监测 上臂式 电子血压计 复核",
+          "organization": "European Society of Hypertension",
+          "region": "EU",
+          "topic": "home_bp_monitoring",
+          "language": "en",
+          "evidence_class": "scientific_statement",
+          "source_quality_score": 25.0,
+          "allowed_uses": [
+            "home_bp_monitoring",
+            "remeasurement",
+            "device_advice"
+          ],
+          "review_status": "included",
+          "score": 0.7175,
+          "snippet": "## 可用于报告的要点 - 家庭血压监测需要标准化流程和记录。 - 连续记录比单次读数更适合健康趋势沟通。 - PPG 估算偏高时应建议用规范血压计复核。"
+        },
+        {
           "source_id": "validatebp_validated_devices_002",
           "title": "Validated Device Listing",
           "url": "https://www.validatebp.org/",
@@ -12665,15 +12694,15 @@
           "snippet": "## 可用于报告的要点 - 建议选择经过验证的血压计。 - 不推荐具体商业型号。 - 上臂式设备通常更适合作为家庭复核工具。"
         },
         {
-          "source_id": "cdc_self_measured_bp_monitoring_001",
-          "title": "Self-Measured Blood Pressure Monitoring",
-          "url": "https://www.cdc.gov/high-blood-pressure/php/toolkits/self-measured-blood-pressure-monitoring.html",
+          "source_id": "esh_2021_home_bp_monitoring_position_paper_001",
+          "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+          "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
           "used_for": "家庭血压监测 上臂式 电子血压计 复核",
-          "organization": "Centers for Disease Control and Prevention",
-          "region": "US",
+          "organization": "European Society of Hypertension",
+          "region": "EU",
           "topic": "home_bp_monitoring",
           "language": "en",
-          "evidence_class": "official_health_education",
+          "evidence_class": "scientific_statement",
           "source_quality_score": 25.0,
           "allowed_uses": [
             "home_bp_monitoring",
@@ -12681,28 +12710,8 @@
             "device_advice"
           ],
           "review_status": "included",
-          "score": 0.6668,
-          "snippet": "## 来源摘要 CDC SMBP 工具包支持家庭自测血压和医疗团队沟通。"
-        },
-        {
-          "source_id": "aha_home_bp_measurement_instructions_001",
-          "title": "Home Blood Pressure Measurement Instructions",
-          "url": "https://www.heart.org/-/media/files/health-topics/high-blood-pressure/how_to_measure_your_blood_pressure_letter_size.pdf",
-          "used_for": "家庭血压监测 上臂式 电子血压计 复核",
-          "organization": "American Heart Association",
-          "region": "AHA",
-          "topic": "home_bp_monitoring",
-          "language": "en",
-          "evidence_class": "official_health_education",
-          "source_quality_score": 25.0,
-          "allowed_uses": [
-            "home_bp_monitoring",
-            "remeasurement",
-            "device_advice"
-          ],
-          "review_status": "included",
-          "score": 0.6643,
-          "snippet": "## 来源摘要 AHA 家庭血压测量说明卡适合转化为复测步骤，包括保持放松、不交谈、连续读数、记录并与医疗人员共享。"
+          "score": 0.6894,
+          "snippet": "## 来源摘要 ESH 2021 家庭血压监测立场文件可支持家庭测量方法、重复测量、记录和与医生沟通的建议。"
         }
       ],
       "precision_at_k": 1.0,
@@ -12723,7 +12732,7 @@
         "mean_precision_at_5": 1.0,
         "topic_hit_rate": 1.0,
         "mean_topic_precision_at_5": 0.894,
-        "expected_class_hit_rate": 0.92,
+        "expected_class_hit_rate": 0.93,
         "high_trust_sensitive_rate": 1.0,
         "unsafe_source_leakage_count": 0,
         "evaluation_mode": "calibrated_query_only"
@@ -13356,24 +13365,24 @@
               "snippet": "## 来源摘要 本地规则补充摄像头 PPG 采集环境对信号质量的影响。"
             },
             {
-              "source_id": "local_ppg_signal_quality_rule_001",
-              "title": "PPG signal quality and confidence safety rule",
-              "url": "",
+              "source_id": "sun_2016_ppg_revisited_contact_noncontact_imaging_002",
+              "title": "Photoplethysmography Revisited - From Contact to Noncontact From Point to Imaging",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4822420/",
               "used_for": "PPG 运动伪影 手指移动 光学信号质量",
-              "organization": "project",
+              "organization": "IEEE Transactions on Biomedical Engineering",
               "region": "global",
               "topic": "measurement_quality",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 22.0,
               "allowed_uses": [
                 "signal_quality",
-                "remeasurement",
-                "cuffless_ppg_limitations"
+                "cuffless_ppg_limitations",
+                "research_background"
               ],
               "review_status": "included",
-              "score": 0.6228,
-              "snippet": "## 来源摘要 本项目规则：低信号质量或低置信度时不生成强风险结论。"
+              "score": 0.6587,
+              "snippet": "## 可用于报告的要点 - 非接触式和成像 PPG 更容易受环境光、运动和图像采集条件影响。 - PPG 是间接光学信号，不等同于标准血压测量。 - 报告可用该来源支持 iPPG/摄像头采集质量提醒。"
             }
           ],
           "precision_at_k": 1.0,
@@ -13574,6 +13583,26 @@
               "snippet": "## 可用于报告的要点 - 强光、移动、按压力度和采集时间会影响信号。 - 低质量时优先重新采集。 - 不要输出强风险结论。"
             },
             {
+              "source_id": "sun_2016_ppg_revisited_contact_noncontact_imaging_002",
+              "title": "Photoplethysmography Revisited - From Contact to Noncontact From Point to Imaging",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4822420/",
+              "used_for": "摄像头 PPG 肤色 环境光 影响 测量",
+              "organization": "IEEE Transactions on Biomedical Engineering",
+              "region": "global",
+              "topic": "measurement_quality",
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 22.0,
+              "allowed_uses": [
+                "signal_quality",
+                "cuffless_ppg_limitations",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.6227,
+              "snippet": "## 可用于报告的要点 - 非接触式和成像 PPG 更容易受环境光、运动和图像采集条件影响。 - PPG 是间接光学信号，不等同于标准血压测量。 - 报告可用该来源支持 iPPG/摄像头采集质量提醒。"
+            },
+            {
               "source_id": "allen_2007_ppg_clinical_measurement_review_001",
               "title": "Photoplethysmography and its application in clinical physiological measurement",
               "url": "https://pubmed.ncbi.nlm.nih.gov/17322588/",
@@ -13614,25 +13643,6 @@
               "review_status": "included",
               "score": 0.5972,
               "snippet": "## 可用于报告的要点 - PPG 信号依赖光照、组织灌注和测量位置，不是直接血压测量。 - 运动、环境光、探头接触和传感器位置都可能改变波形质量。 - 低质量或不稳定波形应优先重新采集并用规范血压计复核。"
-            },
-            {
-              "source_id": "shirbani_2020_ambient_light_skin_tone_vpg_001",
-              "title": "Effect of Ambient Lighting and Skin Tone on Estimation of Heart Rate and Pulse Transit Time from Video Plethysmography",
-              "url": "https://ieeexplore.ieee.org/document/9176731",
-              "used_for": "摄像头 PPG 肤色 环境光 影响 测量",
-              "organization": "IEEE EMBC",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "en",
-              "evidence_class": "research_context",
-              "source_quality_score": 19.0,
-              "allowed_uses": [
-                "signal_quality",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.5767,
-              "snippet": "## 来源摘要 该研究聚焦视频 PPG 中环境光和肤色对心率与脉搏传导时间估计的影响，可补充摄像头 PPG 场景的光照/肤色质量提示。"
             }
           ],
           "precision_at_k": 1.0,
@@ -14220,6 +14230,27 @@
               "snippet": "## 来源摘要 AHA 血压读数解释页面支持 Normal/Elevated/Stage 范围和严重偏高症状提醒。"
             },
             {
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+              "used_for": "145/92 血压估算 偏高 需要注意什么",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice",
+                "bp_category_reference"
+              ],
+              "review_status": "included",
+              "score": 0.4805,
+              "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
+            },
+            {
               "source_id": "nice_ng136_hypertension_002",
               "title": "Hypertension in adults - diagnosis and management",
               "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
@@ -14260,26 +14291,6 @@
               "review_status": "included",
               "score": 0.4716,
               "snippet": "## 可用于报告的要点 - 强调血压管理需要结合规范测量与长期风险。 - 家庭血压监测和连续记录适合用于临床沟通。 - 本系统只能用于估算值解释，不改变指南阈值或治疗建议。"
-            },
-            {
-              "source_id": "who_hypertension_fact_sheet_001",
-              "title": "Hypertension fact sheet",
-              "url": "https://www.who.int/news-room/fact-sheets/detail/hypertension",
-              "used_for": "145/92 血压估算 偏高 需要注意什么",
-              "organization": "World Health Organization",
-              "region": "global",
-              "topic": "bp_categories",
-              "language": "en",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 23.0,
-              "allowed_uses": [
-                "bp_category_reference",
-                "lifestyle",
-                "special_population"
-              ],
-              "review_status": "included",
-              "score": 0.4627,
-              "snippet": "## 来源摘要 WHO 高血压 fact sheet 提供全球负担、风险因素和健康教育背景。"
             }
           ],
           "precision_at_k": 1.0,
@@ -14597,6 +14608,26 @@
               "snippet": "## 可用于报告的要点 - 复测建议应强调安静状态、合适设备、规范姿势和记录。 - 该来源用于测量规范，不使用其旧版阈值替代 2024/2025 指南。 - PPG 估算不能替代指南要求的规范血压测量。"
             },
             {
+              "source_id": "esh_2021_home_bp_monitoring_position_paper_002",
+              "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+              "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
+              "used_for": "180 120 没有症状 复测 规范血压计",
+              "organization": "European Society of Hypertension",
+              "region": "EU",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice"
+              ],
+              "review_status": "included",
+              "score": 0.622,
+              "snippet": "## 可用于报告的要点 - 家庭血压监测需要标准化流程和记录。 - 连续记录比单次读数更适合健康趋势沟通。 - PPG 估算偏高时应建议用规范血压计复核。"
+            },
+            {
               "source_id": "aha_home_bp_monitoring_public_004",
               "title": "Home Blood Pressure Monitoring",
               "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
@@ -14623,26 +14654,6 @@
               "used_for": "180 120 没有症状 复测 规范血压计",
               "organization": "American Heart Association",
               "region": "AHA",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "device_advice"
-              ],
-              "review_status": "included",
-              "score": 0.6103,
-              "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-            },
-            {
-              "source_id": "ama_target_bp_measure_accurately_004",
-              "title": "Target BP - Measure Accurately",
-              "url": "https://targetbp.org/tools-downloads/",
-              "used_for": "180 120 没有症状 复测 规范血压计",
-              "organization": "American Medical Association / American Heart Association",
-              "region": "US",
               "topic": "home_bp_monitoring",
               "language": "en",
               "evidence_class": "official_health_education",
@@ -16096,6 +16107,26 @@
               "snippet": "## 来源摘要 AHA 家庭血压监测页面支持使用上臂式设备复核、规范姿势和记录趋势。"
             },
             {
+              "source_id": "esh_2021_home_bp_monitoring_position_paper_002",
+              "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+              "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
+              "used_for": "连续多天记录 家庭血压 趋势",
+              "organization": "European Society of Hypertension",
+              "region": "EU",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice"
+              ],
+              "review_status": "included",
+              "score": 0.775,
+              "snippet": "## 可用于报告的要点 - 家庭血压监测需要标准化流程和记录。 - 连续记录比单次读数更适合健康趋势沟通。 - PPG 估算偏高时应建议用规范血压计复核。"
+            },
+            {
               "source_id": "aha_home_bp_measurement_instructions_001",
               "title": "Home Blood Pressure Measurement Instructions",
               "url": "https://www.heart.org/-/media/files/health-topics/high-blood-pressure/how_to_measure_your_blood_pressure_letter_size.pdf",
@@ -16154,26 +16185,6 @@
               "review_status": "included",
               "score": 0.7387,
               "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
-            },
-            {
-              "source_id": "cdc_measure_blood_pressure_home_001",
-              "title": "Measure Your Blood Pressure",
-              "url": "https://www.cdc.gov/high-blood-pressure/measure/index.html",
-              "used_for": "连续多天记录 家庭血压 趋势",
-              "organization": "Centers for Disease Control and Prevention",
-              "region": "US",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "device_advice"
-              ],
-              "review_status": "included",
-              "score": 0.7239,
-              "snippet": "## 来源摘要 CDC 测量血压页面支持家庭测量、准备步骤和与医生共享记录。"
             }
           ],
           "precision_at_k": 1.0,
@@ -16886,29 +16897,29 @@
               "snippet": "## 来源摘要 AHA/ACC 2025 成人高血压指南正式全文用于新版指南追溯、规范测量边界和 PPG 免责声明。"
             },
             {
-              "source_id": "esc_2024_bp_guideline_key_points_001",
-              "title": "2024 ESC Guidelines for Elevated Blood Pressure and Hypertension - Key Points",
-              "url": "https://www.acc.org/Latest-in-Cardiology/ten-points-to-remember/2024/09/05/14/11/2024-esc-guidelines-for-bp-esc-2024",
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
               "used_for": "AHA 血压分类 normal elevated stage 2",
-              "organization": "European Society of Cardiology / American College of Cardiology summary",
-              "region": "EU",
-              "topic": "bp_categories",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
               "language": "en",
-              "evidence_class": "guideline",
-              "source_quality_score": 23.0,
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
               "allowed_uses": [
-                "bp_category_reference",
                 "home_bp_monitoring",
                 "remeasurement",
-                "special_population"
+                "device_advice",
+                "bp_category_reference"
               ],
               "review_status": "included",
-              "score": 0.4049,
-              "snippet": "## 来源摘要 ESC 2024 指南要点可补充欧洲场景下血压管理和规范测量原则。"
+              "score": 0.4073,
+              "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
             }
           ],
           "precision_at_k": 1.0,
-          "topic_precision_at_k": 1.0,
+          "topic_precision_at_k": 0.8,
           "has_match": true,
           "has_topic_match": true,
           "has_expected_class": true,
@@ -16974,6 +16985,27 @@
               "snippet": "## 来源摘要 AHA 家庭血压监测页面支持使用上臂式设备复核、规范姿势和记录趋势。"
             },
             {
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+              "used_for": "NICE 家庭血压监测 动态血压",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice",
+                "bp_category_reference"
+              ],
+              "review_status": "included",
+              "score": 0.649,
+              "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
+            },
+            {
               "source_id": "nice_ng136_hypertension_001",
               "title": "Hypertension in adults - diagnosis and management",
               "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
@@ -17012,26 +17044,6 @@
               "review_status": "included",
               "score": 0.6404,
               "snippet": "## 来源摘要 CDC SMBP 工具包支持家庭自测血压和医疗团队沟通。"
-            },
-            {
-              "source_id": "cdc_self_measured_bp_monitoring_002",
-              "title": "Self-Measured Blood Pressure Monitoring",
-              "url": "https://www.cdc.gov/high-blood-pressure/php/toolkits/self-measured-blood-pressure-monitoring.html",
-              "used_for": "NICE 家庭血压监测 动态血压",
-              "organization": "Centers for Disease Control and Prevention",
-              "region": "US",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "device_advice"
-              ],
-              "review_status": "included",
-              "score": 0.6373,
-              "snippet": "## 可用于报告的要点 - 家庭血压监测需要规范流程。 - 记录结果可辅助医生理解趋势。 - 不应只用单次 PPG 估算做判断。"
             }
           ],
           "precision_at_k": 1.0,
@@ -17363,6 +17375,48 @@
               "snippet": "## 来源摘要 本项目规则：报告必须声明仅供个人健康趋势参考，不能替代医生诊断和规范血压测量。"
             },
             {
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_002",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+              "used_for": "报告 免责声明 PPG 不能替代诊断",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
+              "topic": "cuffless_ppg_limitations",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "cuffless_ppg_limitations",
+                "device_advice",
+                "research_background",
+                "disclaimer"
+              ],
+              "review_status": "included",
+              "score": 0.5934,
+              "snippet": "## 可用于报告的要点 - 无袖带血压监测需要关注技术原理、校准、验证和适用场景。 - 报告可用该来源强化免责声明：PPG/无袖带结果只能作健康趋势参考，不能替代规范血压测量。 - 涉及设备建议时应强调经验证设备和医生沟通。"
+            },
+            {
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_003",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+              "used_for": "报告 免责声明 PPG 不能替代诊断",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
+              "topic": "cuffless_ppg_limitations",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "cuffless_ppg_limitations",
+                "device_advice",
+                "research_background",
+                "disclaimer"
+              ],
+              "review_status": "included",
+              "score": 0.5809,
+              "snippet": "## 实现使用说明 - 用于 cuffless_ppg_limitations、device_advice、research_background 和免责声明；不输出诊断或治疗结论。"
+            },
+            {
               "source_id": "aha_cuffless_bp_scientific_statement_002",
               "title": "Cuffless Devices for the Measurement of Blood Pressure",
               "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
@@ -17382,46 +17436,6 @@
               "review_status": "included",
               "score": 0.5695,
               "snippet": "## 可用于报告的要点 - 无袖带设备依赖间接估算，真实场景可靠性需验证。 - PPG 估算不能替代规范血压测量。 - 报告应避免准确性过度承诺。"
-            },
-            {
-              "source_id": "aha_cuffless_bp_scientific_statement_004",
-              "title": "Cuffless Devices for the Measurement of Blood Pressure",
-              "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-              "used_for": "报告 免责声明 PPG 不能替代诊断",
-              "organization": "American Heart Association",
-              "region": "AHA",
-              "topic": "cuffless_ppg_limitations",
-              "language": "en",
-              "evidence_class": "scientific_statement",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "cuffless_ppg_limitations",
-                "device_advice",
-                "signal_quality",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.5186,
-              "snippet": "## 全文候选与下载材料摘要 ### AHA cuffless blood pressure scientific statement full text - candidate_id: `aha_cuffless_bp_statement_fulltext` - access_mode: `institution_or_browser` - fulltext_status: local_pdf_available - source_url: https://professi..."
-            },
-            {
-              "source_id": "local_disclaimer_rule_004",
-              "title": "Required disclaimer rule",
-              "url": "",
-              "used_for": "报告 免责声明 PPG 不能替代诊断",
-              "organization": "project",
-              "region": "global",
-              "topic": "disclaimer",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "disclaimer",
-                "cuffless_ppg_limitations"
-              ],
-              "review_status": "included",
-              "score": 0.4957,
-              "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
             }
           ],
           "precision_at_k": 1.0,
@@ -17521,33 +17535,12 @@
               "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
             },
             {
-              "source_id": "fda_cuffless_nibp_draft_guidance_004",
-              "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
-              "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_001",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
               "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
-              "organization": "U.S. Food and Drug Administration",
-              "region": "US",
-              "topic": "cuffless_ppg_limitations",
-              "language": "en",
-              "evidence_class": "validation_standard",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "cuffless_ppg_limitations",
-                "device_advice",
-                "signal_quality",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.5702,
-              "snippet": "## 全文候选与下载材料摘要 ### FDA cuffless NIBP clinical performance testing draft guidance PDF - candidate_id: `fda_cuffless_nibp_draft_guidance_pdf` - access_mode: `public_pdf` - fulltext_status: local_pdf_available - source_url: https://www.fda.gov..."
-            },
-            {
-              "source_id": "aha_cuffless_bp_scientific_statement_001",
-              "title": "Cuffless Devices for the Measurement of Blood Pressure",
-              "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-              "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
-              "organization": "American Heart Association",
-              "region": "AHA",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
               "topic": "cuffless_ppg_limitations",
               "language": "en",
               "evidence_class": "scientific_statement",
@@ -17555,12 +17548,32 @@
               "allowed_uses": [
                 "cuffless_ppg_limitations",
                 "device_advice",
-                "signal_quality",
+                "research_background",
+                "disclaimer"
+              ],
+              "review_status": "included",
+              "score": 0.5878,
+              "snippet": "## 来源摘要 ESC 相关科学声明讨论无袖带血压监测设备的技术基础和临床含义，是解释无袖带设备验证、校准、使用场景和临床边界的高可信来源。"
+            },
+            {
+              "source_id": "bradley_2022_cuffless_bp_devices_review_002",
+              "title": "Cuffless Blood Pressure Devices",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9088838/",
+              "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
+              "organization": "American Journal of Hypertension",
+              "region": "global",
+              "topic": "cuffless_ppg_limitations",
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 23.0,
+              "allowed_uses": [
+                "cuffless_ppg_limitations",
+                "device_advice",
                 "research_background"
               ],
               "review_status": "included",
-              "score": 0.529,
-              "snippet": "## 来源摘要 AHA 无袖带血压科学声明是 PPG/无袖带估算局限的核心安全依据。"
+              "score": 0.5874,
+              "snippet": "## 可用于报告的要点 - 无袖带血压设备仍面临验证、校准、真实世界适用性和临床整合方面的挑战。 - 报告可提示用户用经过验证的袖带设备复核 PPG 估算，而不是把估算值当成诊断。 - 综述来源不能替代指南或设备验证标准。"
             }
           ],
           "precision_at_k": 1.0,
@@ -17766,6 +17779,27 @@
               "snippet": "## 来源摘要 USPSTF 成人高血压筛查建议强调在诊断前应通过诊室外血压测量进行确认，可强化本系统的复测和非诊断边界。"
             },
             {
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+              "used_for": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice",
+                "bp_category_reference"
+              ],
+              "review_status": "included",
+              "score": 0.6165,
+              "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
+            },
+            {
               "source_id": "aha_home_bp_monitoring_public_001",
               "title": "Home Blood Pressure Monitoring",
               "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
@@ -17805,26 +17839,6 @@
               "review_status": "included",
               "score": 0.5998,
               "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
-            },
-            {
-              "source_id": "aha_home_bp_monitoring_public_002",
-              "title": "Home Blood Pressure Monitoring",
-              "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
-              "used_for": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
-              "organization": "American Heart Association",
-              "region": "AHA",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "device_advice"
-              ],
-              "review_status": "included",
-              "score": 0.5959,
-              "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
             }
           ],
           "precision_at_k": 1.0,
@@ -19200,15 +19214,15 @@
               "snippet": "## 可用于报告的要点 - 家庭血压监测需要规范流程。 - 记录结果可辅助医生理解趋势。 - 不应只用单次 PPG 估算做判断。"
             },
             {
-              "source_id": "aha_home_bp_monitoring_public_002",
-              "title": "Home Blood Pressure Monitoring",
-              "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
+              "source_id": "esh_2021_home_bp_monitoring_position_paper_001",
+              "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+              "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
               "used_for": "AHA 家庭血压测量 读两次 间隔一分钟 记录",
-              "organization": "American Heart Association",
-              "region": "AHA",
+              "organization": "European Society of Hypertension",
+              "region": "EU",
               "topic": "home_bp_monitoring",
               "language": "en",
-              "evidence_class": "official_health_education",
+              "evidence_class": "scientific_statement",
               "source_quality_score": 25.0,
               "allowed_uses": [
                 "home_bp_monitoring",
@@ -19216,8 +19230,8 @@
                 "device_advice"
               ],
               "review_status": "included",
-              "score": 0.6925,
-              "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
+              "score": 0.6991,
+              "snippet": "## 来源摘要 ESH 2021 家庭血压监测立场文件可支持家庭测量方法、重复测量、记录和与医生沟通的建议。"
             }
           ],
           "precision_at_k": 1.0,
@@ -19461,25 +19475,25 @@
               "snippet": "## 来源摘要 2025 综述只用于解释无袖带血压研究背景和仍需验证的局限。"
             },
             {
-              "source_id": "fda_cuffless_nibp_draft_guidance_001",
-              "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
-              "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_001",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
               "used_for": "无袖带 血压设备 真实场景 局限",
-              "organization": "U.S. Food and Drug Administration",
-              "region": "US",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
               "topic": "cuffless_ppg_limitations",
               "language": "en",
-              "evidence_class": "validation_standard",
+              "evidence_class": "scientific_statement",
               "source_quality_score": 25.0,
               "allowed_uses": [
                 "cuffless_ppg_limitations",
                 "device_advice",
-                "signal_quality",
-                "research_background"
+                "research_background",
+                "disclaimer"
               ],
               "review_status": "included",
-              "score": 0.5346,
-              "snippet": "## 来源摘要 FDA 无袖带无创血压设备草案指南可补充监管视角，说明无袖带设备需要临床性能测试、验证和清晰适用边界。"
+              "score": 0.5773,
+              "snippet": "## 来源摘要 ESC 相关科学声明讨论无袖带血压监测设备的技术基础和临床含义，是解释无袖带设备验证、校准、使用场景和临床边界的高可信来源。"
             }
           ],
           "precision_at_k": 1.0,
@@ -19553,6 +19567,26 @@
               "snippet": "- 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。 - candidate_hash: `afdfd83a3ea92780` 已检测到本地 PDF：aha_cuffless_bp_scientific_statement.pdf。知识库只使用上述摘要和 citation，不复制全文。"
             },
             {
+              "source_id": "bradley_2022_cuffless_bp_devices_review_002",
+              "title": "Cuffless Blood Pressure Devices",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9088838/",
+              "used_for": "PPG 估算值 能不能代替上臂血压计",
+              "organization": "American Journal of Hypertension",
+              "region": "global",
+              "topic": "cuffless_ppg_limitations",
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 23.0,
+              "allowed_uses": [
+                "cuffless_ppg_limitations",
+                "device_advice",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.6301,
+              "snippet": "## 可用于报告的要点 - 无袖带血压设备仍面临验证、校准、真实世界适用性和临床整合方面的挑战。 - 报告可提示用户用经过验证的袖带设备复核 PPG 估算，而不是把估算值当成诊断。 - 综述来源不能替代指南或设备验证标准。"
+            },
+            {
               "source_id": "aha_cuffless_bp_scientific_statement_006",
               "title": "Cuffless Devices for the Measurement of Blood Pressure",
               "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
@@ -19593,27 +19627,6 @@
               "review_status": "included",
               "score": 0.6196,
               "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-            },
-            {
-              "source_id": "fda_cuffless_nibp_draft_guidance_002",
-              "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
-              "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
-              "used_for": "PPG 估算值 能不能代替上臂血压计",
-              "organization": "U.S. Food and Drug Administration",
-              "region": "US",
-              "topic": "cuffless_ppg_limitations",
-              "language": "en",
-              "evidence_class": "validation_standard",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "cuffless_ppg_limitations",
-                "device_advice",
-                "signal_quality",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.615,
-              "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
             }
           ],
           "precision_at_k": 1.0,
@@ -19685,6 +19698,27 @@
               "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
             },
             {
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_002",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+              "used_for": "手机摄像头测血压 为什么只能看趋势",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
+              "topic": "cuffless_ppg_limitations",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "cuffless_ppg_limitations",
+                "device_advice",
+                "research_background",
+                "disclaimer"
+              ],
+              "review_status": "included",
+              "score": 0.4555,
+              "snippet": "## 可用于报告的要点 - 无袖带血压监测需要关注技术原理、校准、验证和适用场景。 - 报告可用该来源强化免责声明：PPG/无袖带结果只能作健康趋势参考，不能替代规范血压测量。 - 涉及设备建议时应强调经验证设备和医生沟通。"
+            },
+            {
               "source_id": "aha_cuffless_bp_scientific_statement_002",
               "title": "Cuffless Devices for the Measurement of Blood Pressure",
               "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
@@ -19725,26 +19759,6 @@
               "review_status": "included",
               "score": 0.416,
               "snippet": "## 来源摘要 FDA 无袖带无创血压设备草案指南可补充监管视角，说明无袖带设备需要临床性能测试、验证和清晰适用边界。"
-            },
-            {
-              "source_id": "local_capture_environment_rule_001",
-              "title": "Camera PPG capture environment rule",
-              "url": "",
-              "used_for": "手机摄像头测血压 为什么只能看趋势",
-              "organization": "project",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "signal_quality",
-                "remeasurement",
-                "cuffless_ppg_limitations"
-              ],
-              "review_status": "included",
-              "score": 0.4128,
-              "snippet": "## 来源摘要 本地规则补充摄像头 PPG 采集环境对信号质量的影响。"
             }
           ],
           "precision_at_k": 1.0,
@@ -19795,6 +19809,26 @@
               "review_status": "included",
               "score": 0.6818,
               "snippet": "## 来源摘要 AHA 无袖带血压科学声明是 PPG/无袖带估算局限的核心安全依据。"
+            },
+            {
+              "source_id": "fine_2021_ppg_sources_of_inaccuracy_002",
+              "title": "Sources of Inaccuracy in Photoplethysmography for Continuous Cardiovascular Monitoring",
+              "url": "https://www.mdpi.com/2079-6374/11/4/126",
+              "used_for": "血压估算 算法置信度 和 PPG 局限",
+              "organization": "Biosensors",
+              "region": "global",
+              "topic": "measurement_quality",
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 23.0,
+              "allowed_uses": [
+                "signal_quality",
+                "cuffless_ppg_limitations",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.6225,
+              "snippet": "## 可用于报告的要点 - PPG 信号可受运动、光照、皮肤和传感器接触条件影响。 - 报告可用该来源解释低信号质量和置信度不足时应复测。 - 该来源不能证明 PPG 血压估算可替代规范血压计。"
             },
             {
               "source_id": "aha_cuffless_bp_scientific_statement_005",
@@ -19857,26 +19891,6 @@
               "review_status": "included",
               "score": 0.5882,
               "snippet": "## 可用于报告的要点 - 无袖带设备依赖间接估算，真实场景可靠性需验证。 - PPG 估算不能替代规范血压测量。 - 报告应避免准确性过度承诺。"
-            },
-            {
-              "source_id": "local_capture_environment_rule_002",
-              "title": "Camera PPG capture environment rule",
-              "url": "",
-              "used_for": "血压估算 算法置信度 和 PPG 局限",
-              "organization": "project",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "signal_quality",
-                "remeasurement",
-                "cuffless_ppg_limitations"
-              ],
-              "review_status": "included",
-              "score": 0.5701,
-              "snippet": "## 可用于报告的要点 - 强光、移动、按压力度和采集时间会影响信号。 - 低质量时优先重新采集。 - 不要输出强风险结论。"
             }
           ],
           "precision_at_k": 1.0,
@@ -20101,6 +20115,27 @@
               "snippet": "## 来源摘要 PubMed 记录提供 AHA 无袖带血压声明的索引、年份和可追溯 citation。"
             },
             {
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_001",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+              "used_for": "无袖带血压 科学声明 PPG 间接估算",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
+              "topic": "cuffless_ppg_limitations",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "cuffless_ppg_limitations",
+                "device_advice",
+                "research_background",
+                "disclaimer"
+              ],
+              "review_status": "included",
+              "score": 0.5661,
+              "snippet": "## 来源摘要 ESC 相关科学声明讨论无袖带血压监测设备的技术基础和临床含义，是解释无袖带设备验证、校准、使用场景和临床边界的高可信来源。"
+            },
+            {
               "source_id": "charlton_2022_wearable_ppg_cardiovascular_review_003",
               "title": "Wearable Photoplethysmography for Cardiovascular Monitoring",
               "url": "https://ieeexplore.ieee.org/document/9731763",
@@ -20119,26 +20154,6 @@
               "review_status": "included",
               "score": 0.5442,
               "snippet": "## 实现使用说明 - 用于 wearable PPG 局限和 sensor_position 说明；不用于证明无袖带血压可诊断。"
-            },
-            {
-              "source_id": "chandrasekhar_2020_contact_pressure_cuffless_bp_001",
-              "title": "PPG Sensor Contact Pressure Should Be Taken Into Account for Cuff-Less Blood Pressure Measurement",
-              "url": "https://ieeexplore.ieee.org/document/9016235",
-              "used_for": "无袖带血压 科学声明 PPG 间接估算",
-              "organization": "IEEE Transactions on Biomedical Engineering",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "en",
-              "evidence_class": "research_context",
-              "source_quality_score": 20.0,
-              "allowed_uses": [
-                "signal_quality",
-                "cuffless_ppg_limitations",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.5332,
-              "snippet": "## 来源摘要 该研究把 PPG 传感器接触压力与无袖带血压测量联系起来，是支持接触压力影响 PPG 血压估算的直接研究背景。"
             }
           ],
           "precision_at_k": 1.0,
@@ -20210,6 +20225,27 @@
               "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
             },
             {
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_002",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+              "used_for": "PPG 血压趋势参考 不能诊断",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
+              "topic": "cuffless_ppg_limitations",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "cuffless_ppg_limitations",
+                "device_advice",
+                "research_background",
+                "disclaimer"
+              ],
+              "review_status": "included",
+              "score": 0.5576,
+              "snippet": "## 可用于报告的要点 - 无袖带血压监测需要关注技术原理、校准、验证和适用场景。 - 报告可用该来源强化免责声明：PPG/无袖带结果只能作健康趋势参考，不能替代规范血压测量。 - 涉及设备建议时应强调经验证设备和医生沟通。"
+            },
+            {
               "source_id": "charlton_2022_wearable_ppg_cardiovascular_review_003",
               "title": "Wearable Photoplethysmography for Cardiovascular Monitoring",
               "url": "https://ieeexplore.ieee.org/document/9731763",
@@ -20247,32 +20283,13 @@
               "review_status": "included",
               "score": 0.5159,
               "snippet": "## 可用于报告的要点 - 免责声明必须出现在 Markdown 和 JSON。 - PPG 局限必须显式表达。 - 不能写成诊断或治疗建议。"
-            },
-            {
-              "source_id": "local_disclaimer_rule_004",
-              "title": "Required disclaimer rule",
-              "url": "",
-              "used_for": "PPG 血压趋势参考 不能诊断",
-              "organization": "project",
-              "region": "global",
-              "topic": "disclaimer",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "disclaimer",
-                "cuffless_ppg_limitations"
-              ],
-              "review_status": "included",
-              "score": 0.5139,
-              "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
             }
           ],
           "precision_at_k": 1.0,
-          "topic_precision_at_k": 0.4,
+          "topic_precision_at_k": 0.6,
           "has_match": true,
           "has_topic_match": true,
-          "has_expected_class": false,
+          "has_expected_class": true,
           "high_trust_sensitive": true,
           "unsafe_source_leakage": [],
           "warnings": []
@@ -21114,6 +21131,26 @@
               "snippet": "## 来源摘要 本地规则补充摄像头 PPG 采集环境对信号质量的影响。"
             },
             {
+              "source_id": "sun_2016_ppg_revisited_contact_noncontact_imaging_002",
+              "title": "Photoplethysmography Revisited - From Contact to Noncontact From Point to Imaging",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4822420/",
+              "used_for": "摄像头 PPG 采集环境 影响血压估算",
+              "organization": "IEEE Transactions on Biomedical Engineering",
+              "region": "global",
+              "topic": "measurement_quality",
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 22.0,
+              "allowed_uses": [
+                "signal_quality",
+                "cuffless_ppg_limitations",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.4808,
+              "snippet": "## 可用于报告的要点 - 非接触式和成像 PPG 更容易受环境光、运动和图像采集条件影响。 - PPG 是间接光学信号，不等同于标准血压测量。 - 报告可用该来源支持 iPPG/摄像头采集质量提醒。"
+            },
+            {
               "source_id": "medlineplus_measuring_blood_pressure_002",
               "title": "Blood pressure measurement",
               "url": "https://medlineplus.gov/ency/article/007490.htm",
@@ -21170,26 +21207,6 @@
               "review_status": "included",
               "score": 0.3856,
               "snippet": "## 来源摘要 该研究聚焦视频 PPG 中环境光和肤色对心率与脉搏传导时间估计的影响，可补充摄像头 PPG 场景的光照/肤色质量提示。"
-            },
-            {
-              "source_id": "charlton_2022_wearable_ppg_cardiovascular_review_002",
-              "title": "Wearable Photoplethysmography for Cardiovascular Monitoring",
-              "url": "https://ieeexplore.ieee.org/document/9731763",
-              "used_for": "摄像头 PPG 采集环境 影响血压估算",
-              "organization": "Proceedings of the IEEE",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "en",
-              "evidence_class": "review",
-              "source_quality_score": 22.0,
-              "allowed_uses": [
-                "signal_quality",
-                "cuffless_ppg_limitations",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.3804,
-              "snippet": "## 可用于报告的要点 - 可穿戴 PPG 在日常环境中容易受运动、佩戴位置和接触状态影响。 - PPG 可用于趋势和研究背景，但血压解释必须保留不确定性。 - 传感器位置和姿势变化会影响波形及后续估算。"
             }
           ],
           "precision_at_k": 1.0,
@@ -21413,6 +21430,27 @@
               "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
             },
             {
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+              "used_for": "145 92 PPG 血压估算 偏高 复测",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice",
+                "bp_category_reference"
+              ],
+              "review_status": "included",
+              "score": 0.6219,
+              "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
+            },
+            {
               "source_id": "aha_2025_bp_guideline_top_things_004",
               "title": "2025 High Blood Pressure Guideline - Top Things to Know",
               "url": "https://professional.heart.org/en/science-news/2025-high-blood-pressure-guideline/top-things-to-know",
@@ -21432,27 +21470,6 @@
               ],
               "review_status": "included",
               "score": 0.6121,
-              "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-            },
-            {
-              "source_id": "uspstf_hypertension_screening_adults_005",
-              "title": "Hypertension in Adults - Screening",
-              "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
-              "used_for": "145 92 PPG 血压估算 偏高 复测",
-              "organization": "U.S. Preventive Services Task Force",
-              "region": "US",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "guideline",
-              "source_quality_score": 23.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "bp_category_reference",
-                "disclaimer"
-              ],
-              "review_status": "included",
-              "score": 0.6107,
               "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
             }
           ],
@@ -21788,6 +21805,27 @@
               "snippet": "## 来源摘要 中国高血压防治指南 2024 修订版是中文场景的核心参考。"
             },
             {
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_002",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+              "used_for": "116 74 PPG 血压 正常参考 趋势",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice",
+                "bp_category_reference"
+              ],
+              "review_status": "included",
+              "score": 0.5267,
+              "snippet": "## 可用于报告的要点 - 血压解释依赖规范流程、合适袖带、正确体位、重复读数和经验证设备。 - 家庭血压监测应作为趋势记录和医生沟通材料，而不是单次估算诊断。 - 报告可用该来源支持复测、记录和规范设备复核建议。"
+            },
+            {
               "source_id": "acc_aha_2025_full_guideline_record_001",
               "title": "2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults",
               "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
@@ -21829,27 +21867,6 @@
               "review_status": "included",
               "score": 0.5021,
               "snippet": "## 可用于报告的要点 - 老年用户血压异常或伴头晕、跌倒风险等情况时，应更保守地建议规范复核和医生评估。 - 报告不得生成老年人个体化治疗目标或用药调整。 - PPG 估算只能作为趋势参考。"
-            },
-            {
-              "source_id": "nhc_2024_hypertension_day_key_messages_002",
-              "title": "2024年全国高血压日宣传要点",
-              "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
-              "used_for": "116 74 PPG 血压 正常参考 趋势",
-              "organization": "国家卫生健康委",
-              "region": "CN",
-              "topic": "home_bp_monitoring",
-              "language": "zh",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "lifestyle",
-                "remeasurement",
-                "disclaimer"
-              ],
-              "review_status": "included",
-              "score": 0.4953,
-              "snippet": "## 可用于报告的要点 - 中文报告可用该来源支持规范测量、记录和生活方式提醒。 - 系统不得把宣传要点改写成诊断或治疗结论。 - PPG 估算仍只能作为趋势参考。"
             }
           ],
           "precision_at_k": 1.0,
@@ -21900,6 +21917,27 @@
               "review_status": "included",
               "score": 0.601,
               "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
+            },
+            {
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_002",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+              "used_for": "150 95 血压估算 stage 2 复核",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice",
+                "bp_category_reference"
+              ],
+              "review_status": "included",
+              "score": 0.5683,
+              "snippet": "## 可用于报告的要点 - 血压解释依赖规范流程、合适袖带、正确体位、重复读数和经验证设备。 - 家庭血压监测应作为趋势记录和医生沟通材料，而不是单次估算诊断。 - 报告可用该来源支持复测、记录和规范设备复核建议。"
             },
             {
               "source_id": "aha_understanding_bp_readings_public_002",
@@ -21962,26 +22000,6 @@
               "review_status": "included",
               "score": 0.5514,
               "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-            },
-            {
-              "source_id": "nice_ng136_hypertension_002",
-              "title": "Hypertension in adults - diagnosis and management",
-              "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
-              "used_for": "150 95 血压估算 stage 2 复核",
-              "organization": "National Institute for Health and Care Excellence",
-              "region": "UK",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "guideline",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "bp_category_reference"
-              ],
-              "review_status": "included",
-              "score": 0.5501,
-              "snippet": "## 可用于报告的要点 - 诊断需要规范测量，不依赖单次设备估算。 - 家庭血压监测可用于确认和随访。 - 本系统只引用其测量原则和复测理念。"
             }
           ],
           "precision_at_k": 1.0,
@@ -22319,6 +22337,26 @@
               "snippet": "## 可用于报告的要点 - 血压分类只作为 PPG 估算值参考范围。 - 严重偏高并伴急症症状时应提示紧急医疗帮助。 - 需要复测和连续记录来理解趋势。"
             },
             {
+              "source_id": "esh_2021_home_bp_monitoring_position_paper_002",
+              "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+              "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
+              "used_for": "单次血压估算 为什么要连续记录",
+              "organization": "European Society of Hypertension",
+              "region": "EU",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice"
+              ],
+              "review_status": "included",
+              "score": 0.6214,
+              "snippet": "## 可用于报告的要点 - 家庭血压监测需要标准化流程和记录。 - 连续记录比单次读数更适合健康趋势沟通。 - PPG 估算偏高时应建议用规范血压计复核。"
+            },
+            {
               "source_id": "uspstf_hypertension_screening_adults_002",
               "title": "Hypertension in Adults - Screening",
               "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
@@ -22358,26 +22396,6 @@
               "review_status": "included",
               "score": 0.6114,
               "snippet": "## 可用于报告的要点 - 家庭血压监测需要规范流程。 - 记录结果可辅助医生理解趋势。 - 不应只用单次 PPG 估算做判断。"
-            },
-            {
-              "source_id": "aha_home_bp_measurement_instructions_001",
-              "title": "Home Blood Pressure Measurement Instructions",
-              "url": "https://www.heart.org/-/media/files/health-topics/high-blood-pressure/how_to_measure_your_blood_pressure_letter_size.pdf",
-              "used_for": "单次血压估算 为什么要连续记录",
-              "organization": "American Heart Association",
-              "region": "AHA",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "device_advice"
-              ],
-              "review_status": "included",
-              "score": 0.5757,
-              "snippet": "## 来源摘要 AHA 家庭血压测量说明卡适合转化为复测步骤，包括保持放松、不交谈、连续读数、记录并与医疗人员共享。"
             }
           ],
           "precision_at_k": 1.0,
@@ -25364,6 +25382,26 @@
               "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
             },
             {
+              "source_id": "esh_2021_home_bp_monitoring_position_paper_002",
+              "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+              "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
+              "used_for": "家庭血压监测 上臂式 电子血压计 复核",
+              "organization": "European Society of Hypertension",
+              "region": "EU",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice"
+              ],
+              "review_status": "included",
+              "score": 0.7175,
+              "snippet": "## 可用于报告的要点 - 家庭血压监测需要标准化流程和记录。 - 连续记录比单次读数更适合健康趋势沟通。 - PPG 估算偏高时应建议用规范血压计复核。"
+            },
+            {
               "source_id": "validatebp_validated_devices_002",
               "title": "Validated Device Listing",
               "url": "https://www.validatebp.org/",
@@ -25383,15 +25421,15 @@
               "snippet": "## 可用于报告的要点 - 建议选择经过验证的血压计。 - 不推荐具体商业型号。 - 上臂式设备通常更适合作为家庭复核工具。"
             },
             {
-              "source_id": "cdc_self_measured_bp_monitoring_001",
-              "title": "Self-Measured Blood Pressure Monitoring",
-              "url": "https://www.cdc.gov/high-blood-pressure/php/toolkits/self-measured-blood-pressure-monitoring.html",
+              "source_id": "esh_2021_home_bp_monitoring_position_paper_001",
+              "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+              "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
               "used_for": "家庭血压监测 上臂式 电子血压计 复核",
-              "organization": "Centers for Disease Control and Prevention",
-              "region": "US",
+              "organization": "European Society of Hypertension",
+              "region": "EU",
               "topic": "home_bp_monitoring",
               "language": "en",
-              "evidence_class": "official_health_education",
+              "evidence_class": "scientific_statement",
               "source_quality_score": 25.0,
               "allowed_uses": [
                 "home_bp_monitoring",
@@ -25399,28 +25437,8 @@
                 "device_advice"
               ],
               "review_status": "included",
-              "score": 0.6668,
-              "snippet": "## 来源摘要 CDC SMBP 工具包支持家庭自测血压和医疗团队沟通。"
-            },
-            {
-              "source_id": "aha_home_bp_measurement_instructions_001",
-              "title": "Home Blood Pressure Measurement Instructions",
-              "url": "https://www.heart.org/-/media/files/health-topics/high-blood-pressure/how_to_measure_your_blood_pressure_letter_size.pdf",
-              "used_for": "家庭血压监测 上臂式 电子血压计 复核",
-              "organization": "American Heart Association",
-              "region": "AHA",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "device_advice"
-              ],
-              "review_status": "included",
-              "score": 0.6643,
-              "snippet": "## 来源摘要 AHA 家庭血压测量说明卡适合转化为复测步骤，包括保持放松、不交谈、连续读数、记录并与医疗人员共享。"
+              "score": 0.6894,
+              "snippet": "## 来源摘要 ESH 2021 家庭血压监测立场文件可支持家庭测量方法、重复测量、记录和与医生沟通的建议。"
             }
           ],
           "precision_at_k": 1.0,
@@ -25441,7 +25459,7 @@
         "mean_precision_at_5": 1.0,
         "topic_hit_rate": 1.0,
         "mean_topic_precision_at_5": 0.904,
-        "expected_class_hit_rate": 0.94,
+        "expected_class_hit_rate": 0.95,
         "high_trust_sensitive_rate": 1.0,
         "unsafe_source_leakage_count": 0,
         "evaluation_mode": "metadata_filter_safety"
@@ -25861,6 +25879,26 @@
           ],
           "retrieved": [
             {
+              "source_id": "fine_2021_ppg_sources_of_inaccuracy_002",
+              "title": "Sources of Inaccuracy in Photoplethysmography for Continuous Cardiovascular Monitoring",
+              "url": "https://www.mdpi.com/2079-6374/11/4/126",
+              "used_for": "置信度低 血压估算 是否可信",
+              "organization": "Biosensors",
+              "region": "global",
+              "topic": "measurement_quality",
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 23.0,
+              "allowed_uses": [
+                "signal_quality",
+                "cuffless_ppg_limitations",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.6363,
+              "snippet": "## 可用于报告的要点 - PPG 信号可受运动、光照、皮肤和传感器接触条件影响。 - 报告可用该来源解释低信号质量和置信度不足时应复测。 - 该来源不能证明 PPG 血压估算可替代规范血压计。"
+            },
+            {
               "source_id": "aha_cuffless_bp_scientific_statement_001",
               "title": "Cuffless Devices for the Measurement of Blood Pressure",
               "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
@@ -25941,25 +25979,6 @@
               "review_status": "included",
               "score": 0.5792,
               "snippet": "## 可用于报告的要点 - 强光、移动、按压力度和采集时间会影响信号。 - 低质量时优先重新采集。 - 不要输出强风险结论。"
-            },
-            {
-              "source_id": "local_confidence_interpretation_rule_002",
-              "title": "Model confidence interpretation rule",
-              "url": "",
-              "used_for": "置信度低 血压估算 是否可信",
-              "organization": "project",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "signal_quality",
-                "remeasurement"
-              ],
-              "review_status": "included",
-              "score": 0.5756,
-              "snippet": "## 可用于报告的要点 - 低置信度不等同疾病风险。 - 报告应避免确定性结论。 - 优先说明估算不确定性。"
             }
           ],
           "precision_at_k": 1.0,
@@ -26291,6 +26310,26 @@
               "snippet": "## 来源摘要 本地规则补充摄像头 PPG 采集环境对信号质量的影响。"
             },
             {
+              "source_id": "sun_2016_ppg_revisited_contact_noncontact_imaging_002",
+              "title": "Photoplethysmography Revisited - From Contact to Noncontact From Point to Imaging",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4822420/",
+              "used_for": "摄像头 PPG 肤色 环境光 影响 测量",
+              "organization": "IEEE Transactions on Biomedical Engineering",
+              "region": "global",
+              "topic": "measurement_quality",
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 22.0,
+              "allowed_uses": [
+                "signal_quality",
+                "cuffless_ppg_limitations",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.6627,
+              "snippet": "## 可用于报告的要点 - 非接触式和成像 PPG 更容易受环境光、运动和图像采集条件影响。 - PPG 是间接光学信号，不等同于标准血压测量。 - 报告可用该来源支持 iPPG/摄像头采集质量提醒。"
+            },
+            {
               "source_id": "shirbani_2020_ambient_light_skin_tone_vpg_002",
               "title": "Effect of Ambient Lighting and Skin Tone on Estimation of Heart Rate and Pulse Transit Time from Video Plethysmography",
               "url": "https://ieeexplore.ieee.org/document/9176731",
@@ -26310,45 +26349,24 @@
               "snippet": "## 可用于报告的要点 - 环境光条件会影响视频/摄像头 PPG 的稳定性。 - 肤色和皮肤光学特性可能改变可获得的 PPG 信号质量。 - 报告可建议保持稳定、均匀、不过曝的光照，并避免把单次低质量结果作强解释。"
             },
             {
-              "source_id": "desquins_2022_ppg_quality_assessment_survey_002",
-              "title": "A Survey of Photoplethysmography and Imaging Photoplethysmography Quality Assessment Methods",
-              "url": "https://www.mdpi.com/2076-3417/12/19/9582",
+              "source_id": "fine_2021_ppg_sources_of_inaccuracy_001",
+              "title": "Sources of Inaccuracy in Photoplethysmography for Continuous Cardiovascular Monitoring",
+              "url": "https://www.mdpi.com/2079-6374/11/4/126",
               "used_for": "摄像头 PPG 肤色 环境光 影响 测量",
-              "organization": "Applied Sciences",
+              "organization": "Biosensors",
               "region": "global",
               "topic": "measurement_quality",
               "language": "en",
               "evidence_class": "review",
-              "source_quality_score": 22.0,
-              "allowed_uses": [
-                "signal_quality",
-                "remeasurement",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.5515,
-              "snippet": "## 可用于报告的要点 - PPG 信号可能受外部和生理因素干扰，质量评估有助于避免误解。 - 成像/摄像头 PPG 更需要关注环境光、运动和画面稳定性。 - 低质量信号应触发重新采集、延长采集或改用规范设备复核。"
-            },
-            {
-              "source_id": "charlton_2023_wearable_ppg_roadmap_002",
-              "title": "The 2023 wearable photoplethysmography roadmap",
-              "url": "https://iopscience.iop.org/article/10.1088/1361-6579/acead2",
-              "used_for": "摄像头 PPG 肤色 环境光 影响 测量",
-              "organization": "Physiological Measurement",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "en",
-              "evidence_class": "review",
-              "source_quality_score": 24.0,
+              "source_quality_score": 23.0,
               "allowed_uses": [
                 "signal_quality",
                 "cuffless_ppg_limitations",
-                "device_advice",
                 "research_background"
               ],
               "review_status": "included",
-              "score": 0.5266,
-              "snippet": "## 可用于报告的要点 - 运动伪影、个体差异、肤色/组织光学特性和佩戴条件是可穿戴 PPG 的关键质量挑战。 - 传感器位置、姿势和接触稳定性会影响光学波形。 - 报告应把这些因素写成采集质量限制，而不是临床判断依据。"
+              "score": 0.6009,
+              "snippet": "## 来源摘要 该综述总结连续心血管监测中 PPG 的误差来源，覆盖运动伪影、环境光、肤色、接触压力、体温、个体差异和设备因素。"
             }
           ],
           "precision_at_k": 1.0,
@@ -26461,11 +26479,11 @@
               "snippet": "## 可用于报告的要点 - PPG 信号可能受外部和生理因素干扰，质量评估有助于避免误解。 - 成像/摄像头 PPG 更需要关注环境光、运动和画面稳定性。 - 低质量信号应触发重新采集、延长采集或改用规范设备复核。"
             },
             {
-              "source_id": "charlton_2022_ppg_best_practices_004",
-              "title": "Establishing best practices in photoplethysmography signal acquisition and processing",
-              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9136485/",
+              "source_id": "arguello_prada_2024_ppg_motion_artifact_detection_review_002",
+              "title": "Machine Learning Applied to Reference Signal-Less Detection of Motion Artifacts in Photoplethysmographic Signals - A Review",
+              "url": "https://www.mdpi.com/1424-8220/24/22/7193",
               "used_for": "PPG 采集时长 采样 信号处理 最佳实践",
-              "organization": "Physiological Measurement",
+              "organization": "Sensors",
               "region": "global",
               "topic": "measurement_quality",
               "language": "en",
@@ -26473,12 +26491,11 @@
               "source_quality_score": 23.0,
               "allowed_uses": [
                 "signal_quality",
-                "remeasurement",
                 "research_background"
               ],
               "review_status": "included",
-              "score": 0.4851,
-              "snippet": "## 全文候选与下载材料摘要 ### Establishing best practices in photoplethysmography signal acquisition and processing - candidate_id: `charlton_2022_ppg_best_practices_fulltext` - access_mode: `public_html` - fulltext_status: local_pdf_available - sourc..."
+              "score": 0.4936,
+              "snippet": "## 可用于报告的要点 - 运动伪差是 PPG 可穿戴监测的重要误差来源。 - 在没有参考信号时，自动质量判断仍需谨慎解释。 - 报告可用该来源支持运动后重新采集、稳定佩戴和置信度降低提示。"
             }
           ],
           "precision_at_k": 1.0,
@@ -26548,65 +26565,62 @@
               "snippet": "## 可用于报告的要点 - 腕部 PPG 容易受到传感器高度、姿势、位置和个体特征影响。 - sensor position 不稳定时，算法估算的不确定性应提高。 - 该来源只支持信号质量解释，不支持患者级临床结论。"
             },
             {
-              "source_id": "charlton_2023_wearable_ppg_roadmap_002",
-              "title": "The 2023 wearable photoplethysmography roadmap",
-              "url": "https://iopscience.iop.org/article/10.1088/1361-6579/acead2",
+              "source_id": "frontiers_2019_ppg_measurement_site_waveform_001",
+              "title": "Quantitative Comparison of Photoplethysmographic Waveform Characteristics - Effect of Measurement Site",
+              "url": "https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2019.00198/full",
               "used_for": "腕部 PPG 传感器位置 姿势 高度 信号质量",
-              "organization": "Physiological Measurement",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "en",
-              "evidence_class": "review",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "signal_quality",
-                "cuffless_ppg_limitations",
-                "device_advice",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.5872,
-              "snippet": "## 可用于报告的要点 - 运动伪影、个体差异、肤色/组织光学特性和佩戴条件是可穿戴 PPG 的关键质量挑战。 - 传感器位置、姿势和接触稳定性会影响光学波形。 - 报告应把这些因素写成采集质量限制，而不是临床判断依据。"
-            },
-            {
-              "source_id": "charlton_2025_wrist_ppg_signal_quality_004",
-              "title": "Determinants of photoplethysmography signal quality at the wrist",
-              "url": "https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000585",
-              "used_for": "腕部 PPG 传感器位置 姿势 高度 信号质量",
-              "organization": "PLOS Digital Health",
+              "organization": "Frontiers in Physiology",
               "region": "global",
               "topic": "measurement_quality",
               "language": "en",
               "evidence_class": "research_context",
-              "source_quality_score": 23.0,
+              "source_quality_score": 22.0,
               "allowed_uses": [
                 "signal_quality",
                 "research_background"
               ],
               "review_status": "included",
-              "score": 0.5826,
-              "snippet": "## 全文候选与下载材料摘要 ### Determinants of photoplethysmography signal quality at the wrist - candidate_id: `charlton_2025_wrist_ppg_signal_quality_pdf` - access_mode: `public_pdf` - fulltext_status: local_pdf_available - source_url: https://journa..."
+              "score": 0.6451,
+              "snippet": "## 来源摘要 该研究比较不同测量部位的 PPG 波形特征，可支持“传感器位置/测量部位会影响 PPG 信号形态和稳定性”的提示。"
             },
             {
-              "source_id": "allen_2007_ppg_clinical_measurement_review_002",
-              "title": "Photoplethysmography and its application in clinical physiological measurement",
-              "url": "https://pubmed.ncbi.nlm.nih.gov/17322588/",
+              "source_id": "tamura_2014_wearable_ppg_sensors_past_present_002",
+              "title": "Wearable Photoplethysmographic Sensors - Past and Present",
+              "url": "https://www.mdpi.com/2079-9292/3/2/282",
               "used_for": "腕部 PPG 传感器位置 姿势 高度 信号质量",
-              "organization": "Physiological Measurement",
+              "organization": "Electronics",
               "region": "global",
               "topic": "measurement_quality",
               "language": "en",
               "evidence_class": "review",
-              "source_quality_score": 19.0,
+              "source_quality_score": 21.0,
               "allowed_uses": [
                 "signal_quality",
-                "cuffless_ppg_limitations",
-                "remeasurement",
                 "research_background"
               ],
               "review_status": "included",
-              "score": 0.5809,
-              "snippet": "## 可用于报告的要点 - PPG 信号依赖光照、组织灌注和测量位置，不是直接血压测量。 - 运动、环境光、探头接触和传感器位置都可能改变波形质量。 - 低质量或不稳定波形应优先重新采集并用规范血压计复核。"
+              "score": 0.6304,
+              "snippet": "## 可用于报告的要点 - PPG 信号依赖光源、探测器、组织接触和测量部位。 - 可穿戴 PPG 适合趋势和背景解释，但不能直接转写为血压诊断能力。 - 报告可用该来源支持传感器位置和佩戴稳定性提示。"
+            },
+            {
+              "source_id": "fine_2021_ppg_sources_of_inaccuracy_002",
+              "title": "Sources of Inaccuracy in Photoplethysmography for Continuous Cardiovascular Monitoring",
+              "url": "https://www.mdpi.com/2079-6374/11/4/126",
+              "used_for": "腕部 PPG 传感器位置 姿势 高度 信号质量",
+              "organization": "Biosensors",
+              "region": "global",
+              "topic": "measurement_quality",
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 23.0,
+              "allowed_uses": [
+                "signal_quality",
+                "cuffless_ppg_limitations",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.6108,
+              "snippet": "## 可用于报告的要点 - PPG 信号可受运动、光照、皮肤和传感器接触条件影响。 - 报告可用该来源解释低信号质量和置信度不足时应复测。 - 该来源不能证明 PPG 血压估算可替代规范血压计。"
             }
           ],
           "precision_at_k": 1.0,
@@ -26935,6 +26949,27 @@
               "snippet": "## 来源摘要 AHA 血压读数解释页面支持 Normal/Elevated/Stage 范围和严重偏高症状提醒。"
             },
             {
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+              "used_for": "145/92 血压估算 偏高 需要注意什么",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice",
+                "bp_category_reference"
+              ],
+              "review_status": "included",
+              "score": 0.5605,
+              "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
+            },
+            {
               "source_id": "nice_ng136_hypertension_002",
               "title": "Hypertension in adults - diagnosis and management",
               "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
@@ -26975,27 +27010,6 @@
               "review_status": "included",
               "score": 0.5516,
               "snippet": "## 可用于报告的要点 - 强调血压管理需要结合规范测量与长期风险。 - 家庭血压监测和连续记录适合用于临床沟通。 - 本系统只能用于估算值解释，不改变指南阈值或治疗建议。"
-            },
-            {
-              "source_id": "uspstf_hypertension_screening_adults_002",
-              "title": "Hypertension in Adults - Screening",
-              "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
-              "used_for": "145/92 血压估算 偏高 需要注意什么",
-              "organization": "U.S. Preventive Services Task Force",
-              "region": "US",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "guideline",
-              "source_quality_score": 23.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "bp_category_reference",
-                "disclaimer"
-              ],
-              "review_status": "included",
-              "score": 0.5304,
-              "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
             }
           ],
           "precision_at_k": 1.0,
@@ -28826,6 +28840,26 @@
               "snippet": "## 可用于报告的要点 - 血压测量受姿势和准备状态影响。 - 家庭记录可以帮助理解趋势。 - PPG 估算不能替代标准测量。"
             },
             {
+              "source_id": "esh_2021_home_bp_monitoring_position_paper_002",
+              "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+              "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
+              "used_for": "连续多天记录 家庭血压 趋势",
+              "organization": "European Society of Hypertension",
+              "region": "EU",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice"
+              ],
+              "review_status": "included",
+              "score": 0.695,
+              "snippet": "## 可用于报告的要点 - 家庭血压监测需要标准化流程和记录。 - 连续记录比单次读数更适合健康趋势沟通。 - PPG 估算偏高时应建议用规范血压计复核。"
+            },
+            {
               "source_id": "aha_home_bp_measurement_instructions_001",
               "title": "Home Blood Pressure Measurement Instructions",
               "url": "https://www.heart.org/-/media/files/health-topics/high-blood-pressure/how_to_measure_your_blood_pressure_letter_size.pdf",
@@ -28864,26 +28898,6 @@
               "review_status": "included",
               "score": 0.6786,
               "snippet": "## 可用于报告的要点 - 家庭血压监测需要规范流程。 - 记录结果可辅助医生理解趋势。 - 不应只用单次 PPG 估算做判断。"
-            },
-            {
-              "source_id": "aha_home_bp_monitoring_public_002",
-              "title": "Home Blood Pressure Monitoring",
-              "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
-              "used_for": "连续多天记录 家庭血压 趋势",
-              "organization": "American Heart Association",
-              "region": "AHA",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "device_advice"
-              ],
-              "review_status": "included",
-              "score": 0.6587,
-              "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
             }
           ],
           "precision_at_k": 1.0,
@@ -29596,29 +29610,29 @@
               "snippet": "## 来源摘要 AHA/ACC 2025 成人高血压指南正式全文用于新版指南追溯、规范测量边界和 PPG 免责声明。"
             },
             {
-              "source_id": "esc_2024_bp_guideline_key_points_001",
-              "title": "2024 ESC Guidelines for Elevated Blood Pressure and Hypertension - Key Points",
-              "url": "https://www.acc.org/Latest-in-Cardiology/ten-points-to-remember/2024/09/05/14/11/2024-esc-guidelines-for-bp-esc-2024",
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
               "used_for": "AHA 血压分类 normal elevated stage 2",
-              "organization": "European Society of Cardiology / American College of Cardiology summary",
-              "region": "EU",
-              "topic": "bp_categories",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
               "language": "en",
-              "evidence_class": "guideline",
-              "source_quality_score": 23.0,
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
               "allowed_uses": [
-                "bp_category_reference",
                 "home_bp_monitoring",
                 "remeasurement",
-                "special_population"
+                "device_advice",
+                "bp_category_reference"
               ],
               "review_status": "included",
-              "score": 0.4049,
-              "snippet": "## 来源摘要 ESC 2024 指南要点可补充欧洲场景下血压管理和规范测量原则。"
+              "score": 0.4073,
+              "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
             }
           ],
           "precision_at_k": 1.0,
-          "topic_precision_at_k": 1.0,
+          "topic_precision_at_k": 0.8,
           "has_match": true,
           "has_topic_match": true,
           "has_expected_class": true,
@@ -29723,24 +29737,25 @@
               "snippet": "## 可用于报告的要点 - 血压测量受姿势和准备状态影响。 - 家庭记录可以帮助理解趋势。 - PPG 估算不能替代标准测量。"
             },
             {
-              "source_id": "cdc_self_measured_bp_monitoring_001",
-              "title": "Self-Measured Blood Pressure Monitoring",
-              "url": "https://www.cdc.gov/high-blood-pressure/php/toolkits/self-measured-blood-pressure-monitoring.html",
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
               "used_for": "NICE 家庭血压监测 动态血压",
-              "organization": "Centers for Disease Control and Prevention",
-              "region": "US",
+              "organization": "American Heart Association",
+              "region": "AHA",
               "topic": "home_bp_monitoring",
               "language": "en",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 25.0,
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
               "allowed_uses": [
                 "home_bp_monitoring",
                 "remeasurement",
-                "device_advice"
+                "device_advice",
+                "bp_category_reference"
               ],
               "review_status": "included",
-              "score": 0.5604,
-              "snippet": "## 来源摘要 CDC SMBP 工具包支持家庭自测血压和医疗团队沟通。"
+              "score": 0.569,
+              "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
             }
           ],
           "precision_at_k": 1.0,
@@ -29950,6 +29965,44 @@
               "snippet": "## 可用于报告的要点 - 规范血压设备需要经过验证。 - PPG 估算结果不应替代经验证设备。 - 仅使用标准元数据和验证原则。"
             },
             {
+              "source_id": "aami_esh_iso_2018_universal_validation_standard_001",
+              "title": "A universal standard for the validation of blood pressure measuring devices",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5796427/",
+              "used_for": "ISO 81060 血压计 验证 标准",
+              "organization": "AAMI / European Society of Hypertension / International Organization for Standardization",
+              "region": "global",
+              "topic": "validated_devices",
+              "language": "en",
+              "evidence_class": "validation_standard",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "device_advice",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.6698,
+              "snippet": "## 来源摘要 AAMI/ESH/ISO 血压设备验证统一标准可支持“优先使用经验证的血压设备”和设备验证原则，不用于推荐具体商业型号。"
+            },
+            {
+              "source_id": "aami_esh_iso_2018_universal_validation_standard_002",
+              "title": "A universal standard for the validation of blood pressure measuring devices",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5796427/",
+              "used_for": "ISO 81060 血压计 验证 标准",
+              "organization": "AAMI / European Society of Hypertension / International Organization for Standardization",
+              "region": "global",
+              "topic": "validated_devices",
+              "language": "en",
+              "evidence_class": "validation_standard",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "device_advice",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.6034,
+              "snippet": "## 可用于报告的要点 - 血压设备需要经过标准化验证协议评价。 - 报告中的设备建议应强调经验证上臂式袖带设备复核。 - 无袖带或 PPG 估算不能因单篇研究替代标准验证。"
+            },
+            {
               "source_id": "who_automated_cuff_bp_device_specs_001",
               "title": "Technical specifications for automated non-invasive blood pressure measuring devices with cuff",
               "url": "https://www.who.int/publications/i/item/9789240002654",
@@ -29969,48 +30022,6 @@
               "review_status": "included",
               "score": 0.5867,
               "snippet": "## 来源摘要 WHO 袖带式自动无创血压计技术规范支持“复核应使用经过验证的袖带设备”的设备边界。"
-            },
-            {
-              "source_id": "aha_cuffless_bp_scientific_statement_002",
-              "title": "Cuffless Devices for the Measurement of Blood Pressure",
-              "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-              "used_for": "ISO 81060 血压计 验证 标准",
-              "organization": "American Heart Association",
-              "region": "AHA",
-              "topic": "cuffless_ppg_limitations",
-              "language": "en",
-              "evidence_class": "scientific_statement",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "cuffless_ppg_limitations",
-                "device_advice",
-                "signal_quality",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.58,
-              "snippet": "## 可用于报告的要点 - 无袖带设备依赖间接估算，真实场景可靠性需验证。 - PPG 估算不能替代规范血压测量。 - 报告应避免准确性过度承诺。"
-            },
-            {
-              "source_id": "fda_cuffless_nibp_draft_guidance_002",
-              "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
-              "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
-              "used_for": "ISO 81060 血压计 验证 标准",
-              "organization": "U.S. Food and Drug Administration",
-              "region": "US",
-              "topic": "cuffless_ppg_limitations",
-              "language": "en",
-              "evidence_class": "validation_standard",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "cuffless_ppg_limitations",
-                "device_advice",
-                "signal_quality",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.5541,
-              "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
             }
           ],
           "precision_at_k": 1.0,
@@ -30083,31 +30094,12 @@
               "snippet": "## 来源摘要 本项目规则：报告必须声明仅供个人健康趋势参考，不能替代医生诊断和规范血压测量。"
             },
             {
-              "source_id": "local_disclaimer_rule_004",
-              "title": "Required disclaimer rule",
-              "url": "",
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_002",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
               "used_for": "报告 免责声明 PPG 不能替代诊断",
-              "organization": "project",
-              "region": "global",
-              "topic": "disclaimer",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "disclaimer",
-                "cuffless_ppg_limitations"
-              ],
-              "review_status": "included",
-              "score": 0.5757,
-              "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-            },
-            {
-              "source_id": "aha_cuffless_bp_scientific_statement_002",
-              "title": "Cuffless Devices for the Measurement of Blood Pressure",
-              "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-              "used_for": "报告 免责声明 PPG 不能替代诊断",
-              "organization": "American Heart Association",
-              "region": "AHA",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
               "topic": "cuffless_ppg_limitations",
               "language": "en",
               "evidence_class": "scientific_statement",
@@ -30115,20 +30107,20 @@
               "allowed_uses": [
                 "cuffless_ppg_limitations",
                 "device_advice",
-                "signal_quality",
-                "research_background"
+                "research_background",
+                "disclaimer"
               ],
               "review_status": "included",
-              "score": 0.5295,
-              "snippet": "## 可用于报告的要点 - 无袖带设备依赖间接估算，真实场景可靠性需验证。 - PPG 估算不能替代规范血压测量。 - 报告应避免准确性过度承诺。"
+              "score": 0.6734,
+              "snippet": "## 可用于报告的要点 - 无袖带血压监测需要关注技术原理、校准、验证和适用场景。 - 报告可用该来源强化免责声明：PPG/无袖带结果只能作健康趋势参考，不能替代规范血压测量。 - 涉及设备建议时应强调经验证设备和医生沟通。"
             },
             {
-              "source_id": "aha_cuffless_bp_scientific_statement_004",
-              "title": "Cuffless Devices for the Measurement of Blood Pressure",
-              "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_003",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
               "used_for": "报告 免责声明 PPG 不能替代诊断",
-              "organization": "American Heart Association",
-              "region": "AHA",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
               "topic": "cuffless_ppg_limitations",
               "language": "en",
               "evidence_class": "scientific_statement",
@@ -30136,12 +30128,33 @@
               "allowed_uses": [
                 "cuffless_ppg_limitations",
                 "device_advice",
-                "signal_quality",
-                "research_background"
+                "research_background",
+                "disclaimer"
               ],
               "review_status": "included",
-              "score": 0.4786,
-              "snippet": "## 全文候选与下载材料摘要 ### AHA cuffless blood pressure scientific statement full text - candidate_id: `aha_cuffless_bp_statement_fulltext` - access_mode: `institution_or_browser` - fulltext_status: local_pdf_available - source_url: https://professi..."
+              "score": 0.6609,
+              "snippet": "## 实现使用说明 - 用于 cuffless_ppg_limitations、device_advice、research_background 和免责声明；不输出诊断或治疗结论。"
+            },
+            {
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_004",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+              "used_for": "报告 免责声明 PPG 不能替代诊断",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
+              "topic": "cuffless_ppg_limitations",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "cuffless_ppg_limitations",
+                "device_advice",
+                "research_background",
+                "disclaimer"
+              ],
+              "review_status": "included",
+              "score": 0.6102,
+              "snippet": "## 全文候选与下载材料摘要 ### Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications - candidate_id: `parati_2026_esc_cuffless_bp_monitoring_statement_pdf` - access_mode: `public_pdf` - fulltext_status: local_pdf_..."
             }
           ],
           "precision_at_k": 1.0,
@@ -30241,33 +30254,12 @@
               "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
             },
             {
-              "source_id": "fda_cuffless_nibp_draft_guidance_004",
-              "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
-              "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_001",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
               "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
-              "organization": "U.S. Food and Drug Administration",
-              "region": "US",
-              "topic": "cuffless_ppg_limitations",
-              "language": "en",
-              "evidence_class": "validation_standard",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "cuffless_ppg_limitations",
-                "device_advice",
-                "signal_quality",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.6502,
-              "snippet": "## 全文候选与下载材料摘要 ### FDA cuffless NIBP clinical performance testing draft guidance PDF - candidate_id: `fda_cuffless_nibp_draft_guidance_pdf` - access_mode: `public_pdf` - fulltext_status: local_pdf_available - source_url: https://www.fda.gov..."
-            },
-            {
-              "source_id": "aha_cuffless_bp_scientific_statement_001",
-              "title": "Cuffless Devices for the Measurement of Blood Pressure",
-              "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
-              "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
-              "organization": "American Heart Association",
-              "region": "AHA",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
               "topic": "cuffless_ppg_limitations",
               "language": "en",
               "evidence_class": "scientific_statement",
@@ -30275,12 +30267,32 @@
               "allowed_uses": [
                 "cuffless_ppg_limitations",
                 "device_advice",
-                "signal_quality",
+                "research_background",
+                "disclaimer"
+              ],
+              "review_status": "included",
+              "score": 0.6678,
+              "snippet": "## 来源摘要 ESC 相关科学声明讨论无袖带血压监测设备的技术基础和临床含义，是解释无袖带设备验证、校准、使用场景和临床边界的高可信来源。"
+            },
+            {
+              "source_id": "bradley_2022_cuffless_bp_devices_review_002",
+              "title": "Cuffless Blood Pressure Devices",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9088838/",
+              "used_for": "FDA 无袖带 血压设备 临床性能 测试 PPG",
+              "organization": "American Journal of Hypertension",
+              "region": "global",
+              "topic": "cuffless_ppg_limitations",
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 23.0,
+              "allowed_uses": [
+                "cuffless_ppg_limitations",
+                "device_advice",
                 "research_background"
               ],
               "review_status": "included",
-              "score": 0.609,
-              "snippet": "## 来源摘要 AHA 无袖带血压科学声明是 PPG/无袖带估算局限的核心安全依据。"
+              "score": 0.6674,
+              "snippet": "## 可用于报告的要点 - 无袖带血压设备仍面临验证、校准、真实世界适用性和临床整合方面的挑战。 - 报告可提示用户用经过验证的袖带设备复核 PPG 估算，而不是把估算值当成诊断。 - 综述来源不能替代指南或设备验证标准。"
             }
           ],
           "precision_at_k": 1.0,
@@ -32191,25 +32203,25 @@
               "snippet": "## 来源摘要 2025 综述只用于解释无袖带血压研究背景和仍需验证的局限。"
             },
             {
-              "source_id": "fda_cuffless_nibp_draft_guidance_001",
-              "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
-              "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation",
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_001",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
               "used_for": "无袖带 血压设备 真实场景 局限",
-              "organization": "U.S. Food and Drug Administration",
-              "region": "US",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
               "topic": "cuffless_ppg_limitations",
               "language": "en",
-              "evidence_class": "validation_standard",
+              "evidence_class": "scientific_statement",
               "source_quality_score": 25.0,
               "allowed_uses": [
                 "cuffless_ppg_limitations",
                 "device_advice",
-                "signal_quality",
-                "research_background"
+                "research_background",
+                "disclaimer"
               ],
               "review_status": "included",
-              "score": 0.5346,
-              "snippet": "## 来源摘要 FDA 无袖带无创血压设备草案指南可补充监管视角，说明无袖带设备需要临床性能测试、验证和清晰适用边界。"
+              "score": 0.5773,
+              "snippet": "## 来源摘要 ESC 相关科学声明讨论无袖带血压监测设备的技术基础和临床含义，是解释无袖带设备验证、校准、使用场景和临床边界的高可信来源。"
             }
           ],
           "precision_at_k": 1.0,
@@ -32281,6 +32293,26 @@
               "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
             },
             {
+              "source_id": "fine_2021_ppg_sources_of_inaccuracy_002",
+              "title": "Sources of Inaccuracy in Photoplethysmography for Continuous Cardiovascular Monitoring",
+              "url": "https://www.mdpi.com/2079-6374/11/4/126",
+              "used_for": "PPG 估算值 能不能代替上臂血压计",
+              "organization": "Biosensors",
+              "region": "global",
+              "topic": "measurement_quality",
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 23.0,
+              "allowed_uses": [
+                "signal_quality",
+                "cuffless_ppg_limitations",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.5635,
+              "snippet": "## 可用于报告的要点 - PPG 信号可受运动、光照、皮肤和传感器接触条件影响。 - 报告可用该来源解释低信号质量和置信度不足时应复测。 - 该来源不能证明 PPG 血压估算可替代规范血压计。"
+            },
+            {
               "source_id": "local_capture_environment_rule_004",
               "title": "Camera PPG capture environment rule",
               "url": "",
@@ -32320,26 +32352,6 @@
               "review_status": "included",
               "score": 0.5546,
               "snippet": "- 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。 - candidate_hash: `afdfd83a3ea92780` 已检测到本地 PDF：aha_cuffless_bp_scientific_statement.pdf。知识库只使用上述摘要和 citation，不复制全文。"
-            },
-            {
-              "source_id": "local_ppg_signal_quality_rule_004",
-              "title": "PPG signal quality and confidence safety rule",
-              "url": "",
-              "used_for": "PPG 估算值 能不能代替上臂血压计",
-              "organization": "project",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "signal_quality",
-                "remeasurement",
-                "cuffless_ppg_limitations"
-              ],
-              "review_status": "included",
-              "score": 0.5531,
-              "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
             }
           ],
           "precision_at_k": 1.0,
@@ -32411,6 +32423,27 @@
               "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
             },
             {
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_002",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+              "used_for": "手机摄像头测血压 为什么只能看趋势",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
+              "topic": "cuffless_ppg_limitations",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "cuffless_ppg_limitations",
+                "device_advice",
+                "research_background",
+                "disclaimer"
+              ],
+              "review_status": "included",
+              "score": 0.4555,
+              "snippet": "## 可用于报告的要点 - 无袖带血压监测需要关注技术原理、校准、验证和适用场景。 - 报告可用该来源强化免责声明：PPG/无袖带结果只能作健康趋势参考，不能替代规范血压测量。 - 涉及设备建议时应强调经验证设备和医生沟通。"
+            },
+            {
               "source_id": "aha_cuffless_bp_scientific_statement_002",
               "title": "Cuffless Devices for the Measurement of Blood Pressure",
               "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
@@ -32451,26 +32484,6 @@
               "review_status": "included",
               "score": 0.416,
               "snippet": "## 来源摘要 FDA 无袖带无创血压设备草案指南可补充监管视角，说明无袖带设备需要临床性能测试、验证和清晰适用边界。"
-            },
-            {
-              "source_id": "local_capture_environment_rule_001",
-              "title": "Camera PPG capture environment rule",
-              "url": "",
-              "used_for": "手机摄像头测血压 为什么只能看趋势",
-              "organization": "project",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "signal_quality",
-                "remeasurement",
-                "cuffless_ppg_limitations"
-              ],
-              "review_status": "included",
-              "score": 0.4128,
-              "snippet": "## 来源摘要 本地规则补充摄像头 PPG 采集环境对信号质量的影响。"
             }
           ],
           "precision_at_k": 1.0,
@@ -32521,6 +32534,26 @@
               "review_status": "included",
               "score": 0.6018,
               "snippet": "## 来源摘要 AHA 无袖带血压科学声明是 PPG/无袖带估算局限的核心安全依据。"
+            },
+            {
+              "source_id": "fine_2021_ppg_sources_of_inaccuracy_002",
+              "title": "Sources of Inaccuracy in Photoplethysmography for Continuous Cardiovascular Monitoring",
+              "url": "https://www.mdpi.com/2079-6374/11/4/126",
+              "used_for": "血压估算 算法置信度 和 PPG 局限",
+              "organization": "Biosensors",
+              "region": "global",
+              "topic": "measurement_quality",
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 23.0,
+              "allowed_uses": [
+                "signal_quality",
+                "cuffless_ppg_limitations",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.5425,
+              "snippet": "## 可用于报告的要点 - PPG 信号可受运动、光照、皮肤和传感器接触条件影响。 - 报告可用该来源解释低信号质量和置信度不足时应复测。 - 该来源不能证明 PPG 血压估算可替代规范血压计。"
             },
             {
               "source_id": "aha_cuffless_bp_scientific_statement_005",
@@ -32583,26 +32616,6 @@
               "review_status": "included",
               "score": 0.5082,
               "snippet": "## 可用于报告的要点 - 无袖带设备依赖间接估算，真实场景可靠性需验证。 - PPG 估算不能替代规范血压测量。 - 报告应避免准确性过度承诺。"
-            },
-            {
-              "source_id": "local_capture_environment_rule_002",
-              "title": "Camera PPG capture environment rule",
-              "url": "",
-              "used_for": "血压估算 算法置信度 和 PPG 局限",
-              "organization": "project",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "signal_quality",
-                "remeasurement",
-                "cuffless_ppg_limitations"
-              ],
-              "review_status": "included",
-              "score": 0.4901,
-              "snippet": "## 可用于报告的要点 - 强光、移动、按压力度和采集时间会影响信号。 - 低质量时优先重新采集。 - 不要输出强风险结论。"
             }
           ],
           "precision_at_k": 1.0,
@@ -32827,6 +32840,27 @@
               "snippet": "## 来源摘要 PubMed 记录提供 AHA 无袖带血压声明的索引、年份和可追溯 citation。"
             },
             {
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_001",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+              "used_for": "无袖带血压 科学声明 PPG 间接估算",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
+              "topic": "cuffless_ppg_limitations",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "cuffless_ppg_limitations",
+                "device_advice",
+                "research_background",
+                "disclaimer"
+              ],
+              "review_status": "included",
+              "score": 0.5661,
+              "snippet": "## 来源摘要 ESC 相关科学声明讨论无袖带血压监测设备的技术基础和临床含义，是解释无袖带设备验证、校准、使用场景和临床边界的高可信来源。"
+            },
+            {
               "source_id": "charlton_2022_wearable_ppg_cardiovascular_review_003",
               "title": "Wearable Photoplethysmography for Cardiovascular Monitoring",
               "url": "https://ieeexplore.ieee.org/document/9731763",
@@ -32845,26 +32879,6 @@
               "review_status": "included",
               "score": 0.5442,
               "snippet": "## 实现使用说明 - 用于 wearable PPG 局限和 sensor_position 说明；不用于证明无袖带血压可诊断。"
-            },
-            {
-              "source_id": "chandrasekhar_2020_contact_pressure_cuffless_bp_001",
-              "title": "PPG Sensor Contact Pressure Should Be Taken Into Account for Cuff-Less Blood Pressure Measurement",
-              "url": "https://ieeexplore.ieee.org/document/9016235",
-              "used_for": "无袖带血压 科学声明 PPG 间接估算",
-              "organization": "IEEE Transactions on Biomedical Engineering",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "en",
-              "evidence_class": "research_context",
-              "source_quality_score": 20.0,
-              "allowed_uses": [
-                "signal_quality",
-                "cuffless_ppg_limitations",
-                "research_background"
-              ],
-              "review_status": "included",
-              "score": 0.5332,
-              "snippet": "## 来源摘要 该研究把 PPG 传感器接触压力与无袖带血压测量联系起来，是支持接触压力影响 PPG 血压估算的直接研究背景。"
             }
           ],
           "precision_at_k": 1.0,
@@ -32936,6 +32950,27 @@
               "snippet": "## 可用于报告的要点 - 无袖带设备的临床性能需要专门验证，不能默认等同袖带血压计。 - PPG/无袖带输出应解释为估算和趋势参考。 - 该来源是草案指南，不能单独支撑患者级临床行动。"
             },
             {
+              "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement_002",
+              "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+              "url": "https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606",
+              "used_for": "PPG 血压趋势参考 不能诊断",
+              "organization": "European Society of Cardiology",
+              "region": "EU",
+              "topic": "cuffless_ppg_limitations",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 25.0,
+              "allowed_uses": [
+                "cuffless_ppg_limitations",
+                "device_advice",
+                "research_background",
+                "disclaimer"
+              ],
+              "review_status": "included",
+              "score": 0.5576,
+              "snippet": "## 可用于报告的要点 - 无袖带血压监测需要关注技术原理、校准、验证和适用场景。 - 报告可用该来源强化免责声明：PPG/无袖带结果只能作健康趋势参考，不能替代规范血压测量。 - 涉及设备建议时应强调经验证设备和医生沟通。"
+            },
+            {
               "source_id": "charlton_2022_wearable_ppg_cardiovascular_review_003",
               "title": "Wearable Photoplethysmography for Cardiovascular Monitoring",
               "url": "https://ieeexplore.ieee.org/document/9731763",
@@ -32973,32 +33008,13 @@
               "review_status": "included",
               "score": 0.5159,
               "snippet": "## 可用于报告的要点 - 免责声明必须出现在 Markdown 和 JSON。 - PPG 局限必须显式表达。 - 不能写成诊断或治疗建议。"
-            },
-            {
-              "source_id": "local_disclaimer_rule_004",
-              "title": "Required disclaimer rule",
-              "url": "",
-              "used_for": "PPG 血压趋势参考 不能诊断",
-              "organization": "project",
-              "region": "global",
-              "topic": "disclaimer",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "disclaimer",
-                "cuffless_ppg_limitations"
-              ],
-              "review_status": "included",
-              "score": 0.5139,
-              "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
             }
           ],
           "precision_at_k": 1.0,
-          "topic_precision_at_k": 0.4,
+          "topic_precision_at_k": 0.6,
           "has_match": true,
           "has_topic_match": true,
-          "has_expected_class": false,
+          "has_expected_class": true,
           "high_trust_sensitive": true,
           "unsafe_source_leakage": [],
           "warnings": []
@@ -33872,6 +33888,26 @@
               "snippet": "## 可用于报告的要点 - PPG 信号可能受外部和生理因素干扰，质量评估有助于避免误解。 - 成像/摄像头 PPG 更需要关注环境光、运动和画面稳定性。 - 低质量信号应触发重新采集、延长采集或改用规范设备复核。"
             },
             {
+              "source_id": "sun_2016_ppg_revisited_contact_noncontact_imaging_002",
+              "title": "Photoplethysmography Revisited - From Contact to Noncontact From Point to Imaging",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4822420/",
+              "used_for": "摄像头 PPG 采集环境 影响血压估算",
+              "organization": "IEEE Transactions on Biomedical Engineering",
+              "region": "global",
+              "topic": "measurement_quality",
+              "language": "en",
+              "evidence_class": "review",
+              "source_quality_score": 22.0,
+              "allowed_uses": [
+                "signal_quality",
+                "cuffless_ppg_limitations",
+                "research_background"
+              ],
+              "review_status": "included",
+              "score": 0.5608,
+              "snippet": "## 可用于报告的要点 - 非接触式和成像 PPG 更容易受环境光、运动和图像采集条件影响。 - PPG 是间接光学信号，不等同于标准血压测量。 - 报告可用该来源支持 iPPG/摄像头采集质量提醒。"
+            },
+            {
               "source_id": "allen_2007_ppg_clinical_measurement_review_002",
               "title": "Photoplethysmography and its application in clinical physiological measurement",
               "url": "https://pubmed.ncbi.nlm.nih.gov/17322588/",
@@ -33891,25 +33927,6 @@
               "review_status": "included",
               "score": 0.5397,
               "snippet": "## 可用于报告的要点 - PPG 信号依赖光照、组织灌注和测量位置，不是直接血压测量。 - 运动、环境光、探头接触和传感器位置都可能改变波形质量。 - 低质量或不稳定波形应优先重新采集并用规范血压计复核。"
-            },
-            {
-              "source_id": "local_confidence_interpretation_rule_004",
-              "title": "Model confidence interpretation rule",
-              "url": "",
-              "used_for": "摄像头 PPG 采集环境 影响血压估算",
-              "organization": "project",
-              "region": "global",
-              "topic": "measurement_quality",
-              "language": "zh",
-              "evidence_class": "safety_rule",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "signal_quality",
-                "remeasurement"
-              ],
-              "review_status": "included",
-              "score": 0.5305,
-              "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
             }
           ],
           "precision_at_k": 1.0,
@@ -34133,6 +34150,27 @@
               "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
             },
             {
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+              "used_for": "145 92 PPG 血压估算 偏高 复测",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice",
+                "bp_category_reference"
+              ],
+              "review_status": "included",
+              "score": 0.6219,
+              "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
+            },
+            {
               "source_id": "aha_2025_bp_guideline_top_things_004",
               "title": "2025 High Blood Pressure Guideline - Top Things to Know",
               "url": "https://professional.heart.org/en/science-news/2025-high-blood-pressure-guideline/top-things-to-know",
@@ -34152,27 +34190,6 @@
               ],
               "review_status": "included",
               "score": 0.6121,
-              "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-            },
-            {
-              "source_id": "uspstf_hypertension_screening_adults_005",
-              "title": "Hypertension in Adults - Screening",
-              "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
-              "used_for": "145 92 PPG 血压估算 偏高 复测",
-              "organization": "U.S. Preventive Services Task Force",
-              "region": "US",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "guideline",
-              "source_quality_score": 23.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "bp_category_reference",
-                "disclaimer"
-              ],
-              "review_status": "included",
-              "score": 0.6107,
               "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
             }
           ],
@@ -34420,25 +34437,25 @@
               "snippet": "## 来源摘要 AHA 血压读数解释页面支持 Normal/Elevated/Stage 范围和严重偏高症状提醒。"
             },
             {
-              "source_id": "esc_2024_bp_guideline_key_points_004",
-              "title": "2024 ESC Guidelines for Elevated Blood Pressure and Hypertension - Key Points",
-              "url": "https://www.acc.org/Latest-in-Cardiology/ten-points-to-remember/2024/09/05/14/11/2024-esc-guidelines-for-bp-esc-2024",
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
               "used_for": "125 78 血压估算 elevated 注意什么",
-              "organization": "European Society of Cardiology / American College of Cardiology summary",
-              "region": "EU",
-              "topic": "bp_categories",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
               "language": "en",
-              "evidence_class": "guideline",
-              "source_quality_score": 23.0,
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
               "allowed_uses": [
-                "bp_category_reference",
                 "home_bp_monitoring",
                 "remeasurement",
-                "special_population"
+                "device_advice",
+                "bp_category_reference"
               ],
               "review_status": "included",
-              "score": 0.5095,
-              "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
+              "score": 0.5123,
+              "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
             }
           ],
           "precision_at_k": 1.0,
@@ -34512,6 +34529,27 @@
               "snippet": "## 来源摘要 中国高血压防治指南 2024 修订版是中文场景的核心参考。"
             },
             {
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_002",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+              "used_for": "116 74 PPG 血压 正常参考 趋势",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice",
+                "bp_category_reference"
+              ],
+              "review_status": "included",
+              "score": 0.5267,
+              "snippet": "## 可用于报告的要点 - 血压解释依赖规范流程、合适袖带、正确体位、重复读数和经验证设备。 - 家庭血压监测应作为趋势记录和医生沟通材料，而不是单次估算诊断。 - 报告可用该来源支持复测、记录和规范设备复核建议。"
+            },
+            {
               "source_id": "acc_aha_2025_full_guideline_record_001",
               "title": "2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults",
               "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
@@ -34553,27 +34591,6 @@
               "review_status": "included",
               "score": 0.5021,
               "snippet": "## 可用于报告的要点 - 老年用户血压异常或伴头晕、跌倒风险等情况时，应更保守地建议规范复核和医生评估。 - 报告不得生成老年人个体化治疗目标或用药调整。 - PPG 估算只能作为趋势参考。"
-            },
-            {
-              "source_id": "nhc_2024_hypertension_day_key_messages_002",
-              "title": "2024年全国高血压日宣传要点",
-              "url": "https://www.nhc.gov.cn/ylyjs/gzdt/202409/bfc23c5086044eb0b4879e58e4df69e1.shtml",
-              "used_for": "116 74 PPG 血压 正常参考 趋势",
-              "organization": "国家卫生健康委",
-              "region": "CN",
-              "topic": "home_bp_monitoring",
-              "language": "zh",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "lifestyle",
-                "remeasurement",
-                "disclaimer"
-              ],
-              "review_status": "included",
-              "score": 0.4953,
-              "snippet": "## 可用于报告的要点 - 中文报告可用该来源支持规范测量、记录和生活方式提醒。 - 系统不得把宣传要点改写成诊断或治疗结论。 - PPG 估算仍只能作为趋势参考。"
             }
           ],
           "precision_at_k": 1.0,
@@ -34624,6 +34641,27 @@
               "review_status": "included",
               "score": 0.601,
               "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
+            },
+            {
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_002",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+              "used_for": "150 95 血压估算 stage 2 复核",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice",
+                "bp_category_reference"
+              ],
+              "review_status": "included",
+              "score": 0.5683,
+              "snippet": "## 可用于报告的要点 - 血压解释依赖规范流程、合适袖带、正确体位、重复读数和经验证设备。 - 家庭血压监测应作为趋势记录和医生沟通材料，而不是单次估算诊断。 - 报告可用该来源支持复测、记录和规范设备复核建议。"
             },
             {
               "source_id": "aha_understanding_bp_readings_public_002",
@@ -34686,26 +34724,6 @@
               "review_status": "included",
               "score": 0.5514,
               "snippet": "## 安全边界 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。 - 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。"
-            },
-            {
-              "source_id": "nice_ng136_hypertension_002",
-              "title": "Hypertension in adults - diagnosis and management",
-              "url": "https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations",
-              "used_for": "150 95 血压估算 stage 2 复核",
-              "organization": "National Institute for Health and Care Excellence",
-              "region": "UK",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "guideline",
-              "source_quality_score": 24.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "bp_category_reference"
-              ],
-              "review_status": "included",
-              "score": 0.5501,
-              "snippet": "## 可用于报告的要点 - 诊断需要规范测量，不依赖单次设备估算。 - 家庭血压监测可用于确认和随访。 - 本系统只引用其测量原则和复测理念。"
             }
           ],
           "precision_at_k": 1.0,
@@ -35048,6 +35066,27 @@
               "snippet": "## 可用于报告的要点 - 单次或非规范估算不应作为诊断依据。 - 诊室外测量和家庭血压监测可用于确认与长期记录。 - PPG 估算报告应引导用户用规范设备复核。"
             },
             {
+              "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_002",
+              "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+              "used_for": "单次血压估算 为什么要连续记录",
+              "organization": "American Heart Association",
+              "region": "AHA",
+              "topic": "home_bp_monitoring",
+              "language": "en",
+              "evidence_class": "scientific_statement",
+              "source_quality_score": 24.0,
+              "allowed_uses": [
+                "home_bp_monitoring",
+                "remeasurement",
+                "device_advice",
+                "bp_category_reference"
+              ],
+              "review_status": "included",
+              "score": 0.6509,
+              "snippet": "## 可用于报告的要点 - 血压解释依赖规范流程、合适袖带、正确体位、重复读数和经验证设备。 - 家庭血压监测应作为趋势记录和医生沟通材料，而不是单次估算诊断。 - 报告可用该来源支持复测、记录和规范设备复核建议。"
+            },
+            {
               "source_id": "aha_2025_bp_guideline_top_things_002",
               "title": "2025 High Blood Pressure Guideline - Top Things to Know",
               "url": "https://professional.heart.org/en/science-news/2025-high-blood-pressure-guideline/top-things-to-know",
@@ -35088,26 +35127,6 @@
               "review_status": "included",
               "score": 0.5875,
               "snippet": "## 可用于报告的要点 - 诊断需要规范测量，不依赖单次设备估算。 - 家庭血压监测可用于确认和随访。 - 本系统只引用其测量原则和复测理念。"
-            },
-            {
-              "source_id": "aha_home_bp_monitoring_public_002",
-              "title": "Home Blood Pressure Monitoring",
-              "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
-              "used_for": "单次血压估算 为什么要连续记录",
-              "organization": "American Heart Association",
-              "region": "AHA",
-              "topic": "home_bp_monitoring",
-              "language": "en",
-              "evidence_class": "official_health_education",
-              "source_quality_score": 25.0,
-              "allowed_uses": [
-                "home_bp_monitoring",
-                "remeasurement",
-                "device_advice"
-              ],
-              "review_status": "included",
-              "score": 0.5841,
-              "snippet": "## 可用于报告的要点 - 优先使用经过验证的上臂式电子血压计。 - 家庭监测适合记录趋势并带给医生。 - 单次估算结果不应被解释为临床诊断。"
             }
           ],
           "precision_at_k": 1.0,
@@ -38131,15 +38150,15 @@
               "snippet": "## 来源摘要 STRIDE BP 可支持建议用户选择经过验证的上臂式血压计。"
             },
             {
-              "source_id": "cdc_self_measured_bp_monitoring_001",
-              "title": "Self-Measured Blood Pressure Monitoring",
-              "url": "https://www.cdc.gov/high-blood-pressure/php/toolkits/self-measured-blood-pressure-monitoring.html",
+              "source_id": "esh_2021_home_bp_monitoring_position_paper_002",
+              "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+              "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
               "used_for": "家庭血压监测 上臂式 电子血压计 复核",
-              "organization": "Centers for Disease Control and Prevention",
-              "region": "US",
+              "organization": "European Society of Hypertension",
+              "region": "EU",
               "topic": "home_bp_monitoring",
               "language": "en",
-              "evidence_class": "official_health_education",
+              "evidence_class": "scientific_statement",
               "source_quality_score": 25.0,
               "allowed_uses": [
                 "home_bp_monitoring",
@@ -38147,8 +38166,8 @@
                 "device_advice"
               ],
               "review_status": "included",
-              "score": 0.5868,
-              "snippet": "## 来源摘要 CDC SMBP 工具包支持家庭自测血压和医疗团队沟通。"
+              "score": 0.6375,
+              "snippet": "## 可用于报告的要点 - 家庭血压监测需要标准化流程和记录。 - 连续记录比单次读数更适合健康趋势沟通。 - PPG 估算偏高时应建议用规范血压计复核。"
             }
           ],
           "precision_at_k": 1.0,

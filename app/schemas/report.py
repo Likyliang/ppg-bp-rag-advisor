@@ -6,11 +6,18 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class InputSummary(BaseModel):
+    module: str = "CHS-BloodPressure"
     estimated_sbp: Optional[float] = None
     estimated_dbp: Optional[float] = None
     heart_rate: Optional[float] = None
+    signal_quality_score: Optional[float] = None
     signal_quality_label: str = "unknown"
     confidence: Optional[float] = None
+    capture_duration_sec: Optional[float] = None
+    ppg_source: str = "unknown"
+    algorithm_version: Optional[str] = None
+    calculation_principle: Optional[str] = None
+    timestamp: Optional[str] = None
 
 
 class MeasurementStatus(BaseModel):

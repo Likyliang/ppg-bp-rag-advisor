@@ -1,7 +1,7 @@
 # Full-text Candidate Download Queue
 
-- Updated: 2026-05-16
-- Candidates: 38
+- Updated: 2026-05-21
+- Candidates: 59
 - Public auto-download: 1
 - Institution/browser queue: 12
 

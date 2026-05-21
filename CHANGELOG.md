@@ -8,6 +8,15 @@
 
 ## Unreleased
 
+- Clarified the weekly-report application boundary as mini-program structured PPG-estimate input rather than open-ended clinical questioning, preserved PPG signal context in report `input_summary`, and added capped parallel experiment execution with `evaluation.max_concurrency=5` for report evaluation and benchmarking.
+- Processed Batch 3 user-downloaded PDFs into the governed RAG workflow: 11 newly archived PDFs, 11 source catalog records, 11 full-text summary notes, refreshed chunks/evaluations, and a current unresolved-download list with 6 remaining access-blocked/institution-required items.
+- Refreshed the Obsidian literature library after Batch 3: 62 PDF links, 48 sources with summary notes, 14 PDF-archived but summary-pending notes, and 6 unresolved full-text/access items.
+- Current strict quality gate after Batch 3 and input-boundary/concurrency update: 223 tests, 114 included sources, 524 chunks, calibrated query-only match rate 1.0, precision@5 1.0, topic hit rate 1.0, unsafe-source leakage 0, Rule+RAG+Safety recommendation grounding 1.0, report evaluation max concurrency 5, benchmark max concurrency 5, report P95 0.2413s.
+- Prepared Batch 3 legal full-text search request focused on non-duplicative cuffless BP validation/calibration and PPG optical signal-quality gaps, while excluding all locally archived Batch 1/2 PDFs and the current unresolved retry list.
+- Cleaned the Obsidian literature graph: PDFs now use external file links instead of wiki-links, noisy topic tags were removed, 10 topic hub notes were generated, and the graph structure is now `MOC -> Topic Hub -> Literature Note`.
+- Ingested Batch 2 user-downloaded PDFs into the governed RAG workflow: 10 newly archived PDFs, 10 source catalog records, 10 full-text summary notes, refreshed chunks/evaluations, and a current unresolved-download list with 3 remaining access-blocked items.
+- Refreshed the Obsidian literature library after Batch 2: 51 PDF links, 37 sources with summary notes, 14 PDF-archived but summary-pending notes, and 3 unresolved full-text/access items.
+- Added an Obsidian literature maintenance workflow with `scripts/sync_obsidian_literature.py`, creating a project literature library in the local Obsidian Vault with PDF symlinks, per-source notes, a master index, unresolved-download tracking, and a machine-readable sync manifest; no PDF full text is committed.
 - Promoted 8 newly downloaded public full-text PDFs into summary-only governed notes: WHO cuffed BP device specifications, USPSTF hypertension screening, NHC 2024 nutrition/exercise guidance, KDIGO 2024 CKD guideline, and four PPG signal-quality sources from IOP, MDPI, and PLOS; no PDF full text was committed.
 - Current strict quality gate after public full-text expansion: 220 tests, 93 included sources, 406 chunks, calibrated query-only match rate 1.0, precision@5 1.0, unsafe-source leakage 0, Rule+RAG+Safety recommendation grounding 1.0.
 - Calibrated RAG trust evaluation by separating query-only retrieval quality from metadata-filter safety checks; strict gate now uses `calibrated_query_only` as the primary retrieval metric.

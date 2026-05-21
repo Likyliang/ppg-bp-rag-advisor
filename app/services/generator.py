@@ -107,6 +107,15 @@ def _safety_alert(rule_result: RuleResult) -> SafetyAlert:
 def _markdown(report: HealthReport, rule_result: RuleResult) -> str:
     summary = report.input_summary
     lines: List[str] = []
+    quality_parts = []
+    if summary.signal_quality_score is not None:
+        quality_parts.append(f"信号质量分 {summary.signal_quality_score}")
+    if summary.confidence is not None:
+        quality_parts.append(f"PPG 置信度 {summary.confidence}")
+    if summary.capture_duration_sec is not None:
+        quality_parts.append(f"采集时长 {summary.capture_duration_sec} 秒")
+    if summary.ppg_source and summary.ppg_source != "unknown":
+        quality_parts.append(f"来源 {summary.ppg_source}")
     if report.safety_alert.emergency:
         lines.append("## 可能存在紧急风险")
         lines.append(report.safety_alert.message)
@@ -120,6 +129,7 @@ def _markdown(report: HealthReport, rule_result: RuleResult) -> str:
                 f"{summary.estimated_sbp}/{summary.estimated_dbp} mmHg，"
                 f"{_category_text(rule_result.estimated_bp_category)}。"
             ),
+            f"本次输入信息：{'；'.join(quality_parts)}。" if quality_parts else "本次输入信息未提供完整 PPG 质量字段。",
             "该结果来自 PPG 估算，仅供个人健康趋势参考，不能替代规范血压测量。",
             "",
             "## 质量与风险解释",
@@ -205,11 +215,18 @@ def generate_template_report(
         report_id=str(uuid4()),
         generation_mode="template_only",
         input_summary=InputSummary(
+            module=measurement.module,
             estimated_sbp=measurement.estimated_sbp,
             estimated_dbp=measurement.estimated_dbp,
             heart_rate=measurement.heart_rate,
+            signal_quality_score=measurement.signal_quality_score,
             signal_quality_label=measurement.signal_quality_label,
             confidence=measurement.confidence,
+            capture_duration_sec=measurement.capture_duration_sec,
+            ppg_source=measurement.ppg_source,
+            algorithm_version=measurement.algorithm_version,
+            calculation_principle=measurement.calculation_principle,
+            timestamp=measurement.timestamp.isoformat() if measurement.timestamp else None,
         ),
         measurement_status=MeasurementStatus(
             is_usable=rule_result.quality.is_usable,

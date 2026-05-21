@@ -40,7 +40,16 @@ def health() -> Dict[str, str]:
 def preview_rules_endpoint(payload: Dict[str, Any] = Body(openapi_examples={
     "high_bp": {
         "summary": "偏高估算值",
-        "value": {"estimated_sbp": 145, "estimated_dbp": 92, "signal_quality_score": 0.86, "confidence": 0.68},
+        "value": {
+            "estimated_sbp": 145,
+            "estimated_dbp": 92,
+            "heart_rate": 82,
+            "signal_quality_score": 0.86,
+            "confidence": 0.68,
+            "capture_duration_sec": 30,
+            "ppg_source": "camera_finger",
+            "algorithm_version": "miniapp-bp-v1.0",
+        },
     },
     "emergency": {
         "summary": "严重偏高且胸痛",
@@ -59,12 +68,32 @@ def preview_rules_endpoint(payload: Dict[str, Any] = Body(openapi_examples={
 def generate_report_endpoint(payload: Dict[str, Any] = Body(openapi_examples={
     "flat_payload": {
         "summary": "小程序扁平字段输入",
-        "value": {"SBP": 142, "DBP": 91, "HR": 78, "quality": "good", "conf": 0.7, "age": 45},
+        "value": {
+            "SBP": 142,
+            "DBP": 91,
+            "HR": 78,
+            "quality_score": 0.86,
+            "quality": "good",
+            "conf": 0.7,
+            "duration": 30,
+            "sensor_source": "camera_finger",
+            "model_version": "miniapp-bp-v1.0",
+            "age": 45,
+        },
     },
     "nested_payload": {
         "summary": "标准嵌套输入",
         "value": {
-            "measurement": {"estimated_sbp": 145, "estimated_dbp": 92, "heart_rate": 82, "signal_quality_score": 0.86},
+            "measurement": {
+                "estimated_sbp": 145,
+                "estimated_dbp": 92,
+                "heart_rate": 82,
+                "signal_quality_score": 0.86,
+                "confidence": 0.68,
+                "capture_duration_sec": 30,
+                "ppg_source": "camera_finger",
+                "algorithm_version": "miniapp-bp-v1.0",
+            },
             "user_profile": {"age": 45, "antihypertensive_medication": False},
             "symptoms": {"chest_pain": False, "shortness_of_breath": False},
         },

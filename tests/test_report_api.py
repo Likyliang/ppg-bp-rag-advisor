@@ -28,10 +28,25 @@ def test_preview_rules_endpoint():
 def test_generate_report_endpoint():
     response = client.post(
         "/api/v1/reports/generate",
-        json={"estimated_sbp": 145, "estimated_dbp": 92, "signal_quality_score": 0.86},
+        json={
+            "estimated_sbp": 145,
+            "estimated_dbp": 92,
+            "heart_rate": 82,
+            "signal_quality_score": 0.86,
+            "confidence": 0.68,
+            "capture_duration_sec": 30,
+            "ppg_source": "camera_finger",
+            "algorithm_version": "miniapp-bp-v1.0",
+        },
     )
     assert response.status_code == 200
     body = response.json()
+    assert body["input_summary"]["heart_rate"] == 82
+    assert body["input_summary"]["signal_quality_score"] == 0.86
+    assert body["input_summary"]["confidence"] == 0.68
+    assert body["input_summary"]["capture_duration_sec"] == 30
+    assert body["input_summary"]["ppg_source"] == "camera_finger"
+    assert body["input_summary"]["algorithm_version"] == "miniapp-bp-v1.0"
     assert body["risk_assessment"]["estimated_bp_category"] == "stage_2_reference_range"
     assert body["safety_review"]["pass"] is True
     assert "diagnosis" not in body["risk_assessment"]

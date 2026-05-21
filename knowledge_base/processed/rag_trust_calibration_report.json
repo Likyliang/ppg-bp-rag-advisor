@@ -1,5 +1,5 @@
 {
-  "timestamp": 1778942132,
+  "timestamp": 1779353406,
   "purpose": "RAG trust calibration: separate query-only retrieval quality from metadata-filter safety and audit recommendation-level evidence grounding.",
   "retrieval_summary": {
     "query_count": 100,
@@ -7,7 +7,7 @@
     "mean_precision_at_5": 1.0,
     "topic_hit_rate": 1.0,
     "mean_topic_precision_at_5": 0.894,
-    "expected_class_hit_rate": 0.92,
+    "expected_class_hit_rate": 0.93,
     "high_trust_sensitive_rate": 1.0,
     "unsafe_source_leakage_count": 0,
     "evaluation_mode": "calibrated_query_only"
@@ -18,7 +18,7 @@
     "mean_precision_at_5": 1.0,
     "topic_hit_rate": 1.0,
     "mean_topic_precision_at_5": 0.904,
-    "expected_class_hit_rate": 0.94,
+    "expected_class_hit_rate": 0.95,
     "high_trust_sensitive_rate": 1.0,
     "unsafe_source_leakage_count": 0,
     "evaluation_mode": "metadata_filter_safety"

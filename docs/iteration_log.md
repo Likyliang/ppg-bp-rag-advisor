@@ -188,3 +188,137 @@
   - Rule+RAG+Safety report evaluation: required-use coverage 1.0, recommendation grounding 1.0, sensitive high-trust rate 1.0, emergency consistency 1.0.
   - Report benchmark: P95 0.0311s.
 - Remaining risk: ADA 2026 PDF, Bent 2020 Nature PDF, and several IEEE/older PPG papers remain manual/browser or institution-access candidates; current summaries still avoid using those as full-text-derived evidence until PDF access is cleanly recorded.
+
+## Special Iteration: Batch 1 Web Result Maintenance
+
+- Goal: record the web-agent results for the first manual-download batch, archive user-supplied PDFs, and maintain a clean unresolved-download list.
+- Archived 4 first-batch PDFs into ignored local storage:
+  - AHA/AMA 2020 self-measured blood pressure policy statement.
+  - Chandrasekhar 2020 contact pressure and cuffless BP measurement paper.
+  - Shirbani 2020 ambient lighting / skin tone video PPG paper.
+  - Teng 2004 contacting force and PPG signal paper.
+- Recorded pages and SHA-256 hashes in `outputs/literature_download_tracker/web_batch1_results_2026-05-21.json`.
+- Created the unresolved list `outputs/literature_download_tracker/unavailable_fulltext_list_2026-05-21.md`.
+- Updated `knowledge_base/sources/fulltext_candidates.yaml` with first-batch local PDF archive metadata for Chandrasekhar 2020, Shirbani 2020, and Teng 2004, while leaving them pending summary ingest.
+- Refreshed candidate governance outputs with `scripts/prepare_fulltext_candidates.py`: 38 candidates, 12 action-queue items, 28 summary-ready items, 0 validation issues.
+- Strict quality gate passed after maintenance: 220 tests, 93 included sources, 414 chunks, 100 golden queries, calibrated query-only match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.031s.
+- Remaining unresolved source-access gaps:
+  - ESC 2024 Essential Messages official PDF link exists, but local automated access still returns 403; the similarly named local file is a pharmacotherapy short article and was not misclassified.
+  - CHL-BHA Chinese 2024 guideline mirror remains blocked/connection-reset and no matching local PDF was found; existing Chinese 2024 guideline metadata remains available from the prior catalog/SciOpen representation.
+- Safety note: the newly archived PPG research PDFs are still only full-text candidates until catalog/summary ingest is done, and their allowed use must remain limited to signal quality, remeasurement, cuffless/PPG limitations, device boundary, or research background.
+
+## Special Iteration: Obsidian Literature Library Maintenance
+
+- Goal: maintain downloaded PDFs in an Obsidian-friendly project library without moving the canonical RAG PDF store or committing raw full text.
+- Used the configured local productivity/Obsidian workflow; `codex-productivity doctor` confirmed the Obsidian app and Vault at `/Users/lianghao/Documents/Codex/2026-05-12/obsiden-zetro/KnowledgeVault`.
+- Added `scripts/sync_obsidian_literature.py` as a repeatable sync command.
+- Created the Obsidian library at `/Users/lianghao/Documents/Codex/2026-05-12/obsiden-zetro/KnowledgeVault/10 Literature/High Blood Pressure RAG` with:
+  - `PDF Library/`: 41 symlinks to canonical PDFs in `knowledge_base/sources/downloads/`.
+  - `Notes/`: 41 one-note-per-source Markdown files with source_id, topic, allowed uses, PDF link, summary status, DOI/PMID when available, and RAG safety boundary.
+  - `MOC - High Blood Pressure RAG Literature.md`: master index with topic coverage, downloaded PDF table, and unresolved items.
+  - `Unresolved Full Text.md`: manual download queue for ESC 2024 Essential Messages and the CHL-BHA Chinese 2024 mirror.
+- Wrote sync manifest `outputs/literature_download_tracker/obsidian_literature_sync_2026-05-21.json`.
+- Current Obsidian inventory: 41 archived PDFs, 27 with summary notes, 14 PDF-archived but summary-pending, 2 unresolved full-text/access items.
+- Rebuilt the local productivity/Obsidian search index: 100 chunks indexed.
+- Strict quality gate still passed after Obsidian maintenance: 220 tests, 93 included sources, 414 chunks, 100 golden queries, calibrated query-only match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.0325s.
+- Safety note: the Obsidian `PDF Library/` contains symlinks, not a new committed full-text corpus; Git/RAG ingest should still use summary-only notes and audited source metadata.
+
+## Special Iteration: Batch 2 PDF Intake and RAG Ingest
+
+- Goal: process the user's second-batch literature downloads, maintain a clean unavailable list, ingest usable sources into the governed RAG knowledge base, and refresh Obsidian.
+- Archived 10 Batch 2 PDFs into ignored local storage:
+  - High-trust measurement/device sources: Muntner 2019 AHA blood pressure measurement statement, AAMI/ESH/ISO 2018 validation standard, and ESH 2021 home BP monitoring position paper.
+  - PPG/optical signal-quality sources: Fine 2021, Tamura 2014, Sun 2016, Frontiers 2019 measurement-site waveform, Tamura 2019 PPG/SpO2, Lee 2021 skin-compatible wearable PPG, and Electronics 2023 wearable PPG review.
+- Maintained Batch 2 web result record and unresolved list:
+  - `outputs/literature_download_tracker/web_batch2_results_2026-05-21.json`
+  - `outputs/literature_download_tracker/unavailable_fulltext_list_batch2_2026-05-21.md`
+  - `outputs/literature_download_tracker/unavailable_fulltext_list_current_2026-05-21.md`
+- Remaining unresolved/download-blocked items now total 3:
+  - ESC 2024 Essential Messages official PDF.
+  - CHL-BHA Chinese 2024 guideline mirror.
+  - ESH 2010 International Protocol validation PDF from DABL.
+- Added 10 source catalog records and 10 full-text candidate records; generated 38 tracked Chinese full-text summary notes.
+- Rebuilt source notes and chunks: 103 included sources, 467 chunks.
+- Audit and evaluation after Batch 2:
+  - No missing topics, no duplicate source hashes, no orphan source IDs, unsafe-source leakage 0.
+  - Calibrated query-only retrieval: 100 golden queries, match rate 1.0, precision@5 1.0, topic hit rate 1.0, expected class hit rate 0.92.
+  - Report evaluation: required-use coverage 1.0, recommendation grounding 1.0, sensitive high-trust rate 1.0, emergency consistency 1.0.
+  - Strict quality gate passed: 220 tests, 103 included sources, 467 chunks, report P95 0.0348s.
+- Refreshed Obsidian library:
+  - 51 PDF symlinks, 37 sources with summary notes, 14 PDF-archived but summary-pending notes, 3 unresolved full-text/access items.
+  - Local productivity index rebuilt: 100 chunks indexed.
+- Safety note: the newly added PPG/optical literature is restricted to `signal_quality`, `cuffless_ppg_limitations`, or `research_background`; it cannot support diagnosis, treatment, medication changes, or replacement of validated cuff BP measurement.
+
+## Special Iteration: Obsidian Clean Graph Refactor
+
+- Goal: reduce noisy Obsidian graph nodes after the PDF literature library grew to 51 PDFs.
+- Finding: graph clutter came mainly from generated wiki-links to PDF files, per-note topic tags, and the MOC linking directly to every literature note.
+- Updated `scripts/sync_obsidian_literature.py`:
+  - Replaced PDF wiki-links with external local `file://` links, so PDF attachments no longer become graph nodes.
+  - Removed generated topic tags from literature notes (`tags: []`), avoiding tag-node clutter.
+  - Added `Hubs/` with 10 topic hub notes.
+  - Changed graph structure to `MOC -> Topic Hub -> Literature Note`.
+  - Kept the full downloaded PDF index in the MOC as plain table rows without note wiki-links.
+  - Added `Graph - Clean View.md` with recommended Obsidian graph settings and filters.
+- Refreshed Obsidian library:
+  - 51 literature notes, 10 topic hub notes, 1 clean graph guide, 1 MOC, 1 unresolved list.
+  - No generated `[[...PDF Library...]]` links remain.
+  - No generated `topic/...` tags remain.
+- Rebuilt local productivity index: 137 chunks indexed.
+- Strict quality gate still passed after the Obsidian graph cleanup: 220 tests, 103 included sources, 467 chunks, calibrated query-only match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report P95 0.0357s.
+- Safety note: this is an Obsidian organization change only; it does not alter RAG medical boundaries, source catalog rules, or PDF full-text commit policy.
+
+## Special Iteration: Batch 3 Download Request Planning
+
+- Goal: prepare a third manual/web-agent download batch without duplicating Batch 1/2, local archived PDFs, or the current unresolved retry queue.
+- Current KB audit before planning: 103 included sources, 467 chunks, no missing topics, no duplicate source hashes, no orphan source IDs, unsafe-source leakage 0.
+- Gap assessment:
+  - Strong coverage already exists for home BP monitoring, lifestyle, special populations, emergency guidance, and general PPG signal-quality summaries.
+  - The next useful evidence gaps are narrower: cuffless BP validation/calibration standards, PTT-specific calibration limits, PPG motion/measurement-site evidence, light-source/optical-path effects, and skin-tone/fairness caveats for optical sensing.
+- Created `outputs/literature_download_tracker/web_download_link_request_batch3_2026-05-21.md` with:
+  - Batch 3A: 6 non-duplicative cuffless BP validation/calibration/device-boundary sources.
+  - Batch 3B: 8 non-duplicative PPG optical signal-quality, motion-artifact, and skin-tone/fairness sources.
+  - Explicit return schema for the web agent and rules against Sci-Hub, pirate mirrors, credentials, cookies, and tokenized temporary URLs.
+  - A do-not-repeat list covering locally archived Batch 1/2 PDFs and the 3 current unresolved full-text items.
+- Safety note: the planned Batch 3 PPG and cuffless-device research sources are intended only for `signal_quality`, `cuffless_ppg_limitations`, `validation`, or `research_background`; they must not be used to support diagnosis, treatment, medication changes, emergency reassurance, or replacement of validated cuff BP measurement.
+
+## Special Iteration: Batch 3 PDF Intake and RAG Ingest
+
+- Goal: archive the user's third-batch downloads, keep a clean unavailable list, promote usable sources into the governed summary-only RAG knowledge base, and refresh Obsidian.
+- Archived 11 Batch 3 PDFs into ignored local storage:
+  - Cuffless/PTT/device-boundary sources: Mukkamala 2015 PTT theory/practice, Mukkamala 2017 PTT calibration/error limits, Bradley 2022 cuffless BP devices, Parati 2026 ESC cuffless BP monitoring statement, and Ode 2020 PTT data acquisition.
+  - PPG optical signal-quality and fairness sources: Park 2022 PPG analysis review, Arguello-Prada 2024 motion artifact review, Lee 2013 RGB reflection PPG during motion, Sjoding 2020 racial bias in pulse oximetry, Shi 2022 skin pigmentation systematic review, and Cabanas 2022 skin pigmentation systematic/bibliometric review.
+- Recorded Batch 3 results and unresolved items:
+  - `outputs/literature_download_tracker/web_batch3_results_2026-05-21.json`
+  - `outputs/literature_download_tracker/unavailable_fulltext_list_batch3_2026-05-21.md`
+  - `outputs/literature_download_tracker/unavailable_fulltext_list_current_2026-05-21.md`
+- Remaining unresolved/download-blocked items now total 6:
+  - ESC 2024 Essential Messages official PDF.
+  - CHL-BHA Chinese 2024 guideline mirror.
+  - ESH 2010 International Protocol validation PDF from DABL.
+  - Stergiou 2023 ESH cuffless BP validation recommendations.
+  - Maeda 2011 measurement-site motion-artifact PPG paper.
+  - Sole-Morillo 2024 LED viewing angle / optical window PPG signal-quality paper.
+- Added 11 source catalog records and 11 full-text candidate records; generated 49 tracked Chinese full-text summary notes.
+- Rebuilt source notes and chunks: 114 included sources, 524 chunks.
+- Audit and evaluation after Batch 3:
+  - No missing topics, no duplicate source hashes, no orphan source IDs, unsafe-source leakage 0.
+  - Calibrated query-only retrieval: 100 golden queries, match rate 1.0, precision@5 1.0, topic hit rate 1.0, expected class hit rate 0.93.
+  - Report evaluation: required-use coverage 1.0, recommendation grounding 1.0, sensitive high-trust rate 1.0, emergency consistency 1.0.
+  - Strict quality gate passed: 220 tests, 114 included sources, 524 chunks, report P95 0.0401s.
+- Refreshed Obsidian library:
+  - 62 PDF symlinks, 48 PDF-backed sources with summary notes, 14 PDF-archived but summary-pending notes, 6 unresolved full-text/access items.
+  - Local productivity index rebuilt: 163 chunks indexed.
+- Safety note: Batch 3 optical fairness and pulse-oximetry evidence is restricted to `signal_quality`, `research_background`, and disclaimer caveats; it must not be used to quantify PPG blood-pressure accuracy or justify clinical decisions.
+
+## Special Iteration: Weekly Report Input Boundary and Experiment Concurrency
+
+- Goal: make the weekly report accurately describe the application input boundary and enforce the user's experiment execution constraint that parallel tests may run, but concurrency must not exceed 5.
+- Updated the practical weekly report to describe the real input shape as mini-program structured PPG-estimate output:
+  - estimated SBP/DBP, heart rate, PPG confidence, signal quality score/label, capture duration, PPG source, algorithm version, calculation principle, selected user profile fields, and symptom flags.
+  - Clarified that the RAG-Agent explains upstream estimates and performs evidence retrieval/safety review; it does not validate PPG BP estimation accuracy.
+- Added `evaluation.max_concurrency: 5` to settings and a shared `scripts/evaluation_runtime.py` helper that caps requested experiment concurrency at 5.
+- Updated `scripts/evaluate_reports.py` and `scripts/benchmark_report.py` to support parallel execution with capped workers and to record `max_concurrency` in output JSON.
+- Extended report `input_summary` so generated reports preserve mini-program context fields: module, PPG signal quality score, confidence, capture duration, PPG source, algorithm version, calculation principle, and timestamp.
+- Added regression tests to ensure requested concurrency above 5 is capped and recorded.
+- Strict quality gate passed after the change: 223 tests, 114 included sources, 524 chunks, calibrated query-only match rate 1.0, precision@5 1.0, unsafe-source leakage 0, report evaluation max concurrency 5, benchmark max concurrency 5, report P95 0.2413s.

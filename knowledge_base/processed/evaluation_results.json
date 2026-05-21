@@ -1,6 +1,7 @@
 {
   "case_count": 50,
   "expectation_count": 10,
+  "max_concurrency": 5,
   "rows": [
     {
       "case_id": "normal_good_quality",
