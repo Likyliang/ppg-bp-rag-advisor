@@ -8,6 +8,7 @@
 
 ## Unreleased
 
+- Enriched the Canva weekly presentation with testing-system details, including structured input examples, golden query and fixture construction, non-circular retrieval-evaluation snippets, API metrics, and the max-concurrency cap.
 - Revised the Canva weekly presentation into a content-rich version after review, adding the mini-program input boundary, literature/chunk counts, source catalog workflow, evaluation metrics, API experiment details, and concurrency limit.
 - Created a 5-page Canva weekly presentation deck for the high-blood-pressure PPG RAG-Agent progress update and recorded the editable/viewable links under `outputs/weekly_reports/`.
 - Reworked the practical weekly report into a neutral presentation-ready version while keeping the literature workload, source catalog workflow, evaluation results, concurrency limit, and next-week report/Demo scope explicit.

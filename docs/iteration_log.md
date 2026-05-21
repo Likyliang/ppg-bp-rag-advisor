@@ -406,3 +406,16 @@
   - 224 passing tests, 100 golden queries, 50 structured fixtures, 50 API link cases, and max concurrency 5.
   - next-stage plan for pending PDF summaries, blocked sources, realistic queries, formal report generation, and Streamlit Demo.
 - Updated `outputs/weekly_reports/canva_weekly_presentation_2026-05-21.md` with the final Canva edit/view links and revised page structure.
+
+## Presentation Artifact Revision: Testing-Enhanced Canva Deck
+
+- Goal: explain the testing system in the weekly presentation rather than showing only headline metrics.
+- Edited the same Canva design `DAHKSZUYFqI` and saved a testing-enhanced version.
+- Added concrete testing content:
+  - structured mini-program input examples, including `145/92 + HR 82 + signal_quality 0.86 + confidence 0.68`, low-quality PPG, emergency symptoms, and alias inputs.
+  - test dataset construction: 100 golden queries, 50 case fixtures, and 224 passing pytest cases.
+  - golden query coverage across PPG limitations, signal quality, home remeasurement, emergency, medication, special populations, lifestyle, and device validation.
+  - calibrated query-only evaluation explanation to show that gold expected uses are not passed to the retriever during the main metric.
+  - short code snippets for non-circular retrieval evaluation, precision floor, and max concurrency capped at 5.
+  - current retrieval/API metrics: Precision@5 1.0, unsafe source leakage 0, 50 API cases, success rate 1.0, and P95 latency 0.1691s.
+- Updated `outputs/weekly_reports/canva_weekly_presentation_2026-05-21.md` with the final Canva links and testing-enhanced page structure.
