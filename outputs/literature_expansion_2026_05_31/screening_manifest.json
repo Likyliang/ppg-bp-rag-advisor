@@ -1,0 +1,2046 @@
+{
+  "collection": {
+    "api_log": [
+      {
+        "label": "ppg_cuffless",
+        "page": 1,
+        "hit_count": 450,
+        "returned": 100
+      },
+      {
+        "label": "ppg_cuffless",
+        "page": 2,
+        "hit_count": 450,
+        "returned": 100
+      },
+      {
+        "label": "ppg_cuffless",
+        "page": 3,
+        "hit_count": 450,
+        "returned": 100
+      },
+      {
+        "label": "ppg_cuffless",
+        "page": 4,
+        "hit_count": 450,
+        "returned": 100
+      },
+      {
+        "label": "ppg_cuffless",
+        "page": 5,
+        "hit_count": 450,
+        "returned": 50
+      },
+      {
+        "label": "ppg_high_quality_journals",
+        "page": 1,
+        "hit_count": 58,
+        "returned": 58
+      },
+      {
+        "label": "bp_measurement",
+        "page": 1,
+        "hit_count": 2254,
+        "returned": 100
+      },
+      {
+        "label": "bp_measurement",
+        "page": 2,
+        "hit_count": 2254,
+        "returned": 100
+      },
+      {
+        "label": "bp_measurement",
+        "page": 3,
+        "hit_count": 2254,
+        "returned": 100
+      },
+      {
+        "label": "bp_measurement",
+        "page": 4,
+        "hit_count": 2254,
+        "returned": 100
+      },
+      {
+        "label": "bp_measurement",
+        "page": 5,
+        "hit_count": 2254,
+        "returned": 100
+      },
+      {
+        "label": "hypertension_cvd",
+        "page": 1,
+        "hit_count": 14126,
+        "returned": 100
+      },
+      {
+        "label": "hypertension_cvd",
+        "page": 2,
+        "hit_count": 14126,
+        "returned": 100
+      },
+      {
+        "label": "hypertension_cvd",
+        "page": 3,
+        "hit_count": 14126,
+        "returned": 100
+      },
+      {
+        "label": "hypertension_cvd",
+        "page": 4,
+        "hit_count": 14126,
+        "returned": 100
+      },
+      {
+        "label": "hypertension_cvd",
+        "page": 5,
+        "hit_count": 14126,
+        "returned": 100
+      },
+      {
+        "label": "top_medical_cardiology_journals",
+        "page": 1,
+        "hit_count": 2627,
+        "returned": 100
+      },
+      {
+        "label": "top_medical_cardiology_journals",
+        "page": 2,
+        "hit_count": 2627,
+        "returned": 100
+      },
+      {
+        "label": "top_medical_cardiology_journals",
+        "page": 3,
+        "hit_count": 2627,
+        "returned": 100
+      },
+      {
+        "label": "top_medical_cardiology_journals",
+        "page": 4,
+        "hit_count": 2627,
+        "returned": 100
+      },
+      {
+        "label": "top_medical_cardiology_journals",
+        "page": 5,
+        "hit_count": 2627,
+        "returned": 100
+      }
+    ],
+    "existing_id_count": 80
+  },
+  "summary": {
+    "candidate_pool_after_filters": 974,
+    "selected_count": 100,
+    "downloaded_or_existing_pdf_count": 100,
+    "failed_pdf_count": 0,
+    "claude_replaced_count": 19,
+    "final_topic_cleanup_replaced_count": 5,
+    "topic_counts": {
+      "ppg_cuffless_bp": 27,
+      "hypertension_cvd_context": 35,
+      "hypertension_general": 15,
+      "bp_measurement_monitoring": 23
+    },
+    "journal_tier_counts": {
+      "2": 77,
+      "1": 14,
+      "3": 9
+    },
+    "journal_counts": {
+      "Hypertension (Dallas, Tex. : 1979)": 33,
+      "European heart journal": 11,
+      "NPJ digital medicine": 7,
+      "Physiological measurement": 6,
+      "European heart journal. Digital health": 5,
+      "Nature medicine": 5,
+      "BMJ open": 5,
+      "JAMA": 4,
+      "JAMA cardiology": 4,
+      "Journal of the American Heart Association": 3,
+      "Lancet regional health. Americas": 2,
+      "Lancet (London, England)": 2,
+      "Korean circulation journal": 2,
+      "Circulation": 2,
+      "Annals of internal medicine": 2,
+      "IEEE journal of biomedical and health informatics": 2,
+      "JAMA network open": 1,
+      "JAMA neurology": 1,
+      "BMJ global health": 1,
+      "BMJ medicine": 1,
+      "Circulation reports": 1
+    }
+  },
+  "download_results": [
+    {
+      "source_id": "litexp_lee_2019_can_pulse_check_by_the_photoplethysmography_sensor_on",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_lee_2019_can_pulse_check_by_the_photoplethysmography_sensor_on.pdf",
+      "url": "https://europepmc.org/articles/PMC6367979?pdf=render",
+      "bytes": 948809,
+      "sha256": "d7602ad3177ad7782c67c7a4b37dad4bafc8ff2ce9301500c8b0d73fe86458b4",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_pereira_2020_photoplethysmography_based_atrial_fibrillation_detection_a_review",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_pereira_2020_photoplethysmography_based_atrial_fibrillation_detection_a_review.pdf",
+      "url": "https://europepmc.org/articles/PMC6954115?pdf=render",
+      "bytes": 1141167,
+      "sha256": "92dff46e86b2f69ea05d009b517ec963c140500b906a1a92cffa08d307769c6f",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_mukkamala_2021_evaluation_of_the_accuracy_of_cuffless_blood_pressure",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mukkamala_2021_evaluation_of_the_accuracy_of_cuffless_blood_pressure.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC8516718?pdf=render: HTTP 500",
+        "https://www.ahajournals.org/doi/pdf/10.1161/HYPERTENSIONAHA.121.17747: HTTP 403"
+      ]
+    },
+    {
+      "source_id": "litexp_mukkamala_2023_the_microsoft_research_aurora_project_important_findings_on",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mukkamala_2023_the_microsoft_research_aurora_project_important_findings_on.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC9931644?pdf=render: HTTP 500"
+      ]
+    },
+    {
+      "source_id": "litexp_islam_2022_wearable_cuffless_blood_pressure_monitoring_devices_a_systematic",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_islam_2022_wearable_cuffless_blood_pressure_monitoring_devices_a_systematic.pdf",
+      "url": "https://europepmc.org/articles/PMC9708022?pdf=render",
+      "bytes": 1074784,
+      "sha256": "cd2829f2354b601e44169179dc8f8c3c2f05e63978ed0783a6336dea5ee156d5",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_zhao_2023_emerging_sensing_and_modeling_technologies_for_wearable_and",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_zhao_2023_emerging_sensing_and_modeling_technologies_for_wearable_and.pdf",
+      "url": "https://europepmc.org/articles/PMC10203315?pdf=render",
+      "bytes": 2401674,
+      "sha256": "414f1463979b9563177b98dd24da8d025fda86ceede1b59fbd929a1c281c68c4",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_mukkamala_2025_cuffless_blood_pressure_measurement_where_do_we_actually",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mukkamala_2025_cuffless_blood_pressure_measurement_where_do_we_actually.pdf",
+      "url": "https://europepmc.org/articles/PMC12331212?pdf=render",
+      "bytes": 2250641,
+      "sha256": "adcd6c8f168bbdd5b000897e4fd0622dbe7a0985e74b886266a25b4a7fb855a6",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_ding_2024_photoplethysmography_based_atrial_fibrillation_detection_a_continually_",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_ding_2024_photoplethysmography_based_atrial_fibrillation_detection_a_continually_.pdf",
+      "errors": [
+        "oa_error:no_pdf_link",
+        "https://europepmc.org/articles/PMC11744514?pdf=render: HTTP 500"
+      ]
+    },
+    {
+      "source_id": "litexp_varzideh_2026_artificial_intelligence_in_cardiovascular_medicine_focus_on_hyperte",
+      "status": "downloaded_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_varzideh_2026_artificial_intelligence_in_cardiovascular_medicine_focus_on_hyperte.pdf",
+      "url": "https://europepmc.org/articles/PMC13094858?pdf=render",
+      "bytes": 464211,
+      "sha256": "98b20e20a808996353aacf4386ec4e61b82b7062fbe7e77f99f880cced99b2a6",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_elgendi_2019_the_use_of_photoplethysmography_for_assessing_hypertension",
+      "status": "existing",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_elgendi_2019_the_use_of_photoplethysmography_for_assessing_hypertension.pdf",
+      "bytes": 1572386,
+      "sha256": "5b49723b09d11b29fbfc2cdf52bf85d96841286850bfdba95a14b2315f0dd133"
+    },
+    {
+      "source_id": "litexp_bernjak_2009_pulse_transit_times_to_the_capillary_bed_evaluated",
+      "status": "downloaded_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_bernjak_2009_pulse_transit_times_to_the_capillary_bed_evaluated.pdf",
+      "url": "https://europepmc.org/articles/PMC2933509?pdf=render",
+      "bytes": 1323837,
+      "sha256": "9192d62f3cca58f12d8ada4158157d41b8863515766d6075c7b8cba440629bf1",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_torres_soto_2020_multi_task_deep_learning_for_cardiac_rhythm_detection",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_torres_soto_2020_multi_task_deep_learning_for_cardiac_rhythm_detection.pdf",
+      "url": "https://www.nature.com/articles/s41746-020-00320-4.pdf",
+      "bytes": 1186833,
+      "sha256": "189598943efdff9263765c226f7e8abadd326a87c57ef32275ba970f585a8ff5",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_franklin_2023_synchronized_wearables_for_the_detection_of_haemodynamic_states",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_franklin_2023_synchronized_wearables_for_the_detection_of_haemodynamic_states.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC10653655?pdf=render: HTTP 500"
+      ]
+    },
+    {
+      "source_id": "litexp_ganti_2021_wearable_cuff_less_blood_pressure_estimation_at_home",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_ganti_2021_wearable_cuff_less_blood_pressure_estimation_at_home.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC8221527?pdf=render: HTTP 500"
+      ]
+    },
+    {
+      "source_id": "litexp_sel_2023_continuous_cuffless_blood_pressure_monitoring_with_a_wearable",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_sel_2023_continuous_cuffless_blood_pressure_monitoring_with_a_wearable.pdf",
+      "url": "https://europepmc.org/articles/PMC10063561?pdf=render",
+      "bytes": 2763510,
+      "sha256": "27f05ca1a994896d5c6d46ce3c5b359d69fb3fa5429f6161c109a9f8d889a952",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_goda_2024_pyppg_a_python_toolbox_for_comprehensive_photoplethysmography_signal",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_goda_2024_pyppg_a_python_toolbox_for_comprehensive_photoplethysmography_signal.pdf",
+      "url": "https://europepmc.org/articles/PMC11003363?pdf=render",
+      "bytes": 1387763,
+      "sha256": "efe84fe352fbe95a7c553752127b33b960a81adfab5ee582e753236338a64868",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_gurel_2020_automatic_detection_of_target_engagement_in_transcutaneous_cervical",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_gurel_2020_automatic_detection_of_target_engagement_in_transcutaneous_cervical.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC7393996?pdf=render: HTTP 500"
+      ]
+    },
+    {
+      "source_id": "litexp_nuckols_2020_beat_to_beat_blood_pressure_variability_in_the",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_nuckols_2020_beat_to_beat_blood_pressure_variability_in_the.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC7706825?pdf=render: HTTP 500",
+        "https://www.ahajournals.org/doi/pdf/10.1161/HYPERTENSIONAHA.120.15019: HTTP 403"
+      ]
+    },
+    {
+      "source_id": "litexp_yang_2026_effects_of_modified_site_for_radial_artery_cannulation",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_yang_2026_effects_of_modified_site_for_radial_artery_cannulation.pdf",
+      "url": "https://europepmc.org/articles/PMC13084924?pdf=render",
+      "bytes": 1508588,
+      "sha256": "c86bda26f188b1e5d033439e58caac8e298e52cb49380146d28f5e37bb4f7252",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_miao_2025_out_of_office_blood_pressure_measurements_in_patients",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_miao_2025_out_of_office_blood_pressure_measurements_in_patients.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/2d/87/bmjopen-15-9.PMC12414197.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC12414197?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_rickard_2023_community_stroke_team_use_of_home_blood_pressure",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_rickard_2023_community_stroke_team_use_of_home_blood_pressure.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/10/0a/bmjoq-2022-002067.PMC10255310.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC10255310?pdf=render: HTTP 429",
+        "https://bmjopenquality.bmj.com/content/bmjqir/12/2/e002067.full.pdf: HTTP 403"
+      ]
+    },
+    {
+      "source_id": "litexp_reynolds_2025_cohort_profile_ambulatory_blood_pressure_in_older_adults",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_reynolds_2025_cohort_profile_ambulatory_blood_pressure_in_older_adults.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/c2/94/bmjopen-15-5.PMC12104915.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC12104915?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_schoenthaler_2024_navigating_remote_blood_pressure_monitoring_the_devil_is",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_schoenthaler_2024_navigating_remote_blood_pressure_monitoring_the_devil_is.pdf",
+      "errors": [
+        "oa_error:no_pdf_link",
+        "https://europepmc.org/articles/PMC11478244?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_zhao_2026_association_of_systolic_blood_pressure_time_in_target",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_zhao_2026_association_of_systolic_blood_pressure_time_in_target.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/78/51/bmjopen-16-3.PMC13007161.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC13007161?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_zhang_2025_implementation_of_home_blood_pressure_monitoring_in_preoperative",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_zhang_2025_implementation_of_home_blood_pressure_monitoring_in_preoperative.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/cf/3e/bmjoq-14-3.PMC12273120.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC12273120?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_smith_2025_effect_of_systolic_blood_pressure_measurement_error_on",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_smith_2025_effect_of_systolic_blood_pressure_measurement_error_on.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC12875532?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_ye_2025_characteristics_of_ambulatory_blood_pressure_parameters_and_influencing",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_ye_2025_characteristics_of_ambulatory_blood_pressure_parameters_and_influencing.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/92/37/bmjopen-15-9.PMC12443174.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC12443174?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_kario_2020_management_of_hypertension_in_the_digital_era_small",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_kario_2020_management_of_hypertension_in_the_digital_era_small.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/18/f2/hyp-76-0640.PMC7418935.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC7418935?pdf=render: HTTP 429",
+        "https://www.ahajournals.org/doi/pdf/10.1161/HYPERTENSIONAHA.120.14742: HTTP 403"
+      ]
+    },
+    {
+      "source_id": "litexp_flynn_2022_ambulatory_blood_pressure_monitoring_in_children_and_adolescents",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_flynn_2022_ambulatory_blood_pressure_monitoring_in_children_and_adolescents.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC12168719?pdf=render: HTTP 429",
+        "https://www.ahajournals.org/doi/pdf/10.1161/HYP.0000000000000215: HTTP 403"
+      ]
+    },
+    {
+      "source_id": "litexp_huang_2021_ambulatory_blood_pressure_monitoring_to_diagnose_and_manage",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_huang_2021_ambulatory_blood_pressure_monitoring_to_diagnose_and_manage.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/c9/62/hyp-77-254.PMC7803442.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC7803442?pdf=render: HTTP 429",
+        "https://www.ahajournals.org/doi/pdf/10.1161/HYPERTENSIONAHA.120.14591: HTTP 403"
+      ]
+    },
+    {
+      "source_id": "litexp_abdalla_2023_implementation_strategies_to_improve_blood_pressure_control_in",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_abdalla_2023_implementation_strategies_to_improve_blood_pressure_control_in.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC10578150?pdf=render: HTTP 429",
+        "https://www.ahajournals.org/doi/pdf/10.1161/HYP.0000000000000232: HTTP 403"
+      ]
+    },
+    {
+      "source_id": "litexp_juraschek_2024_orthostatic_hypotension_in_adults_with_hypertension_a_scientific",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_juraschek_2024_orthostatic_hypotension_in_adults_with_hypertension_a_scientific.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC11067441?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_acharya_2024_self_measured_blood_pressure_guided_pharmacotherapy_a_systematic",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_acharya_2024_self_measured_blood_pressure_guided_pharmacotherapy_a_systematic.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC11213974?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_lee_2023_innovative_remote_management_solutions_for_the_control_of",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_lee_2023_innovative_remote_management_solutions_for_the_control_of.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC10134059?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_smith_2023_target_bp_a_national_initiative_to_improve_blood",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_smith_2023_target_bp_a_national_initiative_to_improve_blood.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/54/41/hyp-80-2523.PMC10651269.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC10651269?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_mitsnefes_2021_pediatric_ambulatory_blood_pressure_classification_the_case_for",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mitsnefes_2021_pediatric_ambulatory_blood_pressure_classification_the_case_for.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC8516706?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_zhang_2025_ambulatory_blood_pressure_monitoring_european_guideline_targets_and",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_zhang_2025_ambulatory_blood_pressure_monitoring_european_guideline_targets_and.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/bc/3f/ehaf220.PMC12342635.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC12342635?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_groenland_2022_smartphone_application_assisted_home_blood_pressure_monitoring_com",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_groenland_2022_smartphone_application_assisted_home_blood_pressure_monitoring_com.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/bd/94/hyp-79-2373.PMC9444260.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC9444260?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_zhang_2025_hypotensive_episodes_on_24_hour_ambulatory_blood_pressure",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_zhang_2025_hypotensive_episodes_on_24_hour_ambulatory_blood_pressure.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC11922650?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_kario_2026_renal_denervation_in_asia_2025_asia_renal_denervation",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_kario_2026_renal_denervation_in_asia_2025_asia_renal_denervation.pdf",
+      "errors": [
+        "oa_error:no_pdf_link",
+        "https://europepmc.org/articles/PMC12711283?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_jones_2019_implementing_automated_office_blood_pressure_measurement",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_jones_2019_implementing_automated_office_blood_pressure_measurement.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC6685739?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_rivasi_2022_association_between_hypotension_during_24_h_ambulatory_blood",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_rivasi_2022_association_between_hypotension_during_24_h_ambulatory_blood.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/16/94/ehac347.PMC9553097.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC9553097?pdf=render: HTTP 429",
+        "https://academic.oup.com/eurheartj/article-pdf/43/38/3765/46441847/ehac347.pdf: HTTP 403"
+      ]
+    },
+    {
+      "source_id": "litexp_groppelli_2025_mechanism_of_syncope_role_of_ambulatory_blood_pressure",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_groppelli_2025_mechanism_of_syncope_role_of_ambulatory_blood_pressure.pdf",
+      "errors": [
+        "oa_error:no_pdf_link",
+        "https://europepmc.org/articles/PMC11879164?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_bernabe_ortiz_2020_effect_of_salt_substitution_on_community_wide_blood",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_bernabe_ortiz_2020_effect_of_salt_substitution_on_community_wide_blood.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC7613083?pdf=render: HTTP 429",
+        "https://www.nature.com/articles/s41591-020-0754-2.pdf: not PDF content_type=text/html; charset=\"UTF-8\" first=b'<!DOCTYPE html>\\n<html la'"
+      ]
+    },
+    {
+      "source_id": "litexp_honigberg_2023_polygenic_prediction_of_preeclampsia_and_gestational_hypertension",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_honigberg_2023_polygenic_prediction_of_preeclampsia_and_gestational_hypertension.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC10330886?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_saxena_2025_lorundrostat_in_participants_with_uncontrolled_hypertension_and_treat",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_saxena_2025_lorundrostat_in_participants_with_uncontrolled_hypertension_and_treat.pdf",
+      "url": "https://europepmc.org/articles/PMC12210145?pdf=render",
+      "bytes": 442761,
+      "sha256": "29b487a608719643aae36b8e49681d6aeb636c3b4cfaaf9a4dffb76fa3e96d75",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_young_2023_blood_pressure_effect_of_traffic_related_air_pollution",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_young_2023_blood_pressure_effect_of_traffic_related_air_pollution.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC11259360?pdf=render: HTTP 500"
+      ]
+    },
+    {
+      "source_id": "litexp_prendergast_2025_emergency_department_based_education_and_mhealth_empowerment_int",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_prendergast_2025_emergency_department_based_education_and_mhealth_empowerment_int.pdf",
+      "url": "https://europepmc.org/articles/PMC12019670?pdf=render",
+      "bytes": 372413,
+      "sha256": "f81c8a2181cdccb28d903ae9d4f763f767ee191b4a2961ece679933e9d0d118b",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_guo_2026_intensive_blood_pressure_control_and_cardiovascular_outcomes_across",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_guo_2026_intensive_blood_pressure_control_and_cardiovascular_outcomes_across.pdf",
+      "url": "https://europepmc.org/articles/PMC12905657?pdf=render",
+      "bytes": 1053374,
+      "sha256": "27960b713bb10afd34c6ccdbed2563f57a55d838f1611b35672fe31a95991f68",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_kileel_2026_risk_of_obesity_diabetes_hypertension_and_major_adverse",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_kileel_2026_risk_of_obesity_diabetes_hypertension_and_major_adverse.pdf",
+      "url": "https://europepmc.org/articles/PMC13185539?pdf=render",
+      "bytes": 384938,
+      "sha256": "2c2a77e94ff9037257059d314ecc054c776ad1789fcea4c7aed8f7d80862221c",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_londo_o_2026_hearts_quality_a_policy_framework_to_strengthen_hypertension",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_londo_o_2026_hearts_quality_a_policy_framework_to_strengthen_hypertension.pdf",
+      "url": "https://europepmc.org/articles/PMC12719693?pdf=render",
+      "bytes": 3793457,
+      "sha256": "d4a6f9cc9d4a603e4c2d1362ee007c6e3d632d20e5638671d43752e3e2895f88",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_lapidaire_2026_brain_volumes_after_hypertensive_pregnancy_and_postpartum_blood",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_lapidaire_2026_brain_volumes_after_hypertensive_pregnancy_and_postpartum_blood.pdf",
+      "url": "https://europepmc.org/articles/PMC12771390?pdf=render",
+      "bytes": 826581,
+      "sha256": "fc6bc0c3658b674fbe125f20505d9ab597413351052cd926e95104ee171a24e5",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_gupta_2025_association_of_drinking_water_salinity_with_elevated_blood",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_gupta_2025_association_of_drinking_water_salinity_with_elevated_blood.pdf",
+      "url": "https://europepmc.org/articles/PMC12699556?pdf=render",
+      "bytes": 1109454,
+      "sha256": "8f1d4c8e789fffdd3e47e8b454fa8aefe97110770fe72f5f1894962d6f9be1ab",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_razo_2022_effects_of_elevated_systolic_blood_pressure_on_ischemic",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_razo_2022_effects_of_elevated_systolic_blood_pressure_on_ischemic.pdf",
+      "url": "https://europepmc.org/articles/PMC9556328?pdf=render",
+      "bytes": 15171951,
+      "sha256": "e7b0bc50e7a06b2bf0d8d2a2cbb517f7864aba362e9b00335f5b11ee0a1ccf4a",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_pickersgill_2022_modeling_global_80_80_80_blood_pressure_targets",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_pickersgill_2022_modeling_global_80_80_80_blood_pressure_targets.pdf",
+      "url": "https://europepmc.org/articles/PMC9388375?pdf=render",
+      "bytes": 3996471,
+      "sha256": "e5b7dd2e7bc40e7dcb45f783b57825fcdeec468700e01353ee51a2a09273a227",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_yang_2024_sex_specific_genetic_architecture_of_blood_pressure",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_yang_2024_sex_specific_genetic_architecture_of_blood_pressure.pdf",
+      "url": "https://europepmc.org/articles/PMC11797078?pdf=render",
+      "bytes": 6335211,
+      "sha256": "eb0955f4041319c08962cbcfdc1c610d75f3b557ebf32ae2fde840042f790d23",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_schuermans_2024_genetic_associations_of_circulating_cardiovascular_proteins_with_",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_schuermans_2024_genetic_associations_of_circulating_cardiovascular_proteins_with_.pdf",
+      "url": "https://europepmc.org/articles/PMC10765315?pdf=render",
+      "bytes": 709440,
+      "sha256": "4fdf07e1209872baddefe0221844583fb5bfdf724a988a8ebcf79566df4a44b8",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_sau_2025_artificial_intelligence_enhanced_electrocardiography_for_prediction_of_i",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_sau_2025_artificial_intelligence_enhanced_electrocardiography_for_prediction_of_i.pdf",
+      "url": "https://europepmc.org/articles/PMC11904724?pdf=render",
+      "bytes": 1080570,
+      "sha256": "6a4318e6f85a7b57b0c1f8653c1b67f7c1b2fa8919de237966678ab19c0d6941",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_johnson_2025_hypertension_diabetes_and_high_cholesterol_awareness_among_us",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_johnson_2025_hypertension_diabetes_and_high_cholesterol_awareness_among_us.pdf",
+      "url": "https://europepmc.org/articles/PMC12138794?pdf=render",
+      "bytes": 811648,
+      "sha256": "a4afca9522209c3547a2cec878404435c7fcd697c856417ceab3b0ebf672b8c2",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_freedman_2025_high_blood_pressure_in_childhood_and_premature_cardiovascular",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_freedman_2025_high_blood_pressure_in_childhood_and_premature_cardiovascular.pdf",
+      "url": "https://europepmc.org/articles/PMC12415700?pdf=render",
+      "bytes": 422969,
+      "sha256": "c692fcdc10d25cb8eb94c855141c6f9bcffc416c029695e590065de13158d153",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_hernandez_2026_the_notch3_extracellular_domain_is_a_serum_biomarker",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_hernandez_2026_the_notch3_extracellular_domain_is_a_serum_biomarker.pdf",
+      "url": "https://europepmc.org/articles/PMC12823441?pdf=render",
+      "bytes": 11956513,
+      "sha256": "cc0471af3d054c35b890966773d9bc3e8abc5b4833d0dfa85036e5723e70702b",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_zhang_2026_outcome_specific_optimal_systolic_blood_pressure_targets_in",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_zhang_2026_outcome_specific_optimal_systolic_blood_pressure_targets_in.pdf",
+      "url": "https://europepmc.org/articles/PMC12863318?pdf=render",
+      "bytes": 1248653,
+      "sha256": "a2d471c891d7659473c240cac54b650f0203bd8a7626fc103961624e42f442d2",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_zheng_2026_pulmonary_hypertension_in_takayasu_arteritis_with_pulmonary_artery",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_zheng_2026_pulmonary_hypertension_in_takayasu_arteritis_with_pulmonary_artery.pdf",
+      "url": "https://europepmc.org/articles/PMC13052587?pdf=render",
+      "bytes": 526807,
+      "sha256": "2f39d342ea222f45253f3b377dfd4117b510b29b712df767ac3f053c1e29e0ba",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_nordin_2026_individuals_with_the_metabolic_syndrome_without_diabetes_and",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_nordin_2026_individuals_with_the_metabolic_syndrome_without_diabetes_and.pdf",
+      "url": "https://europepmc.org/articles/PMC13110558?pdf=render",
+      "bytes": 435790,
+      "sha256": "e35ba3ed717dd9a45707a94d9ff489e7a06a75a555f5dbf42a358c7260072f1b",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_loo_2026_hypertension_management_in_s_o_paulo_insights_from",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_loo_2026_hypertension_management_in_s_o_paulo_insights_from.pdf",
+      "url": "https://europepmc.org/articles/PMC13051922?pdf=render",
+      "bytes": 5758198,
+      "sha256": "70dd06ac3df3d7c6c96ef85e262dd61b53b99628f900f91e2f0a7b74c76e60e5",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_mangalesh_2026_risk_guided_antihypertensive_treatment_eligibility_in_older_adults",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mangalesh_2026_risk_guided_antihypertensive_treatment_eligibility_in_older_adults.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC13101656?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_tawengi_2025_blood_pressure_variability_and_mortality_in_patients_admitted",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_tawengi_2025_blood_pressure_variability_and_mortality_in_patients_admitted.pdf",
+      "errors": [
+        "oa_error:no_pdf_link",
+        "https://europepmc.org/articles/PMC12083430?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_hustrini_2025_prevalence_incidence_and_risk_factors_of_chronic_kidney",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_hustrini_2025_prevalence_incidence_and_risk_factors_of_chronic_kidney.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/40/9e/bmjopen-15-10.PMC12548581.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC12548581?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_kaur_2025_scaling_india_hypertension_control_initiative_strategies_to_15",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_kaur_2025_scaling_india_hypertension_control_initiative_strategies_to_15.pdf",
+      "errors": [
+        "oa_error:no_pdf_link",
+        "https://europepmc.org/articles/PMC12666080?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_gerdts_2022_sex_differences_in_arterial_hypertension",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_gerdts_2022_sex_differences_in_arterial_hypertension.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/33/18/ehac470.PMC9726450.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC9726450?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_fatani_2021_systolic_blood_pressure_time_in_target_range_and",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_fatani_2021_systolic_blood_pressure_time_in_target_range_and.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC7959178?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_dachs_2022_riociguat_in_pulmonary_hypertension_and_heart_failure_with",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_dachs_2022_riociguat_in_pulmonary_hypertension_and_heart_failure_with.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/44/61/ehac389.PMC9492239.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC9492239?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_bhm_2023_empagliflozin_irrespective_of_blood_pressure_improves_outcomes_in",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_bhm_2023_empagliflozin_irrespective_of_blood_pressure_improves_outcomes_in.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/44/3b/ehac693.PMC9890225.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC9890225?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_countouris_2025_hypertension_in_pregnancy_and_postpartum_current_standards_and",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_countouris_2025_hypertension_in_pregnancy_and_postpartum_current_standards_and.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC11973590?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_ascher_2022_intensive_blood_pressure_lowering_in_patients_with_malignant",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_ascher_2022_intensive_blood_pressure_lowering_in_patients_with_malignant.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC9982833?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_moutchia_2024_pulmonary_arterial_hypertension_treatment_an_individual_participant",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_moutchia_2024_pulmonary_arterial_hypertension_treatment_an_individual_participant.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC11143388?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_kobayashi_2025_aldosterone_targeted_therapies_early_implementation_in_resistant_h",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_kobayashi_2025_aldosterone_targeted_therapies_early_implementation_in_resistant_h.pdf",
+      "errors": [
+        "oa_error:no_pdf_link",
+        "https://europepmc.org/articles/PMC12257296?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_b_hm_2025_empagliflozin_in_resistant_hypertension_and_heart_failure_with",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_b_hm_2025_empagliflozin_in_resistant_hypertension_and_heart_failure_with.pdf",
+      "errors": [
+        "oa_error:no_pdf_link",
+        "https://europepmc.org/articles/PMC11973566?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_barone_2024_effects_of_sedentary_behavior_reduction_on_blood_pressure",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_barone_2024_effects_of_sedentary_behavior_reduction_on_blood_pressure.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/e6/26/cir-150-1416.PMC11512617.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC11512617?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_cooper_2024_equitable_care_for_hypertension_blood_pressure_and_patient",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_cooper_2024_equitable_care_for_hypertension_blood_pressure_and_patient.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC11254328?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_prabhakaran_2025_comparison_of_dual_therapies_for_hypertension_treatment_in",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_prabhakaran_2025_comparison_of_dual_therapies_for_hypertension_treatment_in.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/09/06/41591_2025_Article_3854.PMC12443627.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC12443627?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_laffin_2023_aldosterone_synthase_inhibition_with_lorundrostat_for_uncontrolled_hy",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_laffin_2023_aldosterone_synthase_inhibition_with_lorundrostat_for_uncontrolled_hy.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC10493865?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_ncd_2024_general_and_abdominal_adiposity_and_hypertension_in_eight",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_ncd_2024_general_and_abdominal_adiposity_and_hypertension_in_eight.pdf",
+      "errors": [
+        "oa_error:no_pdf_link",
+        "https://europepmc.org/articles/PMC7616775?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_maron_2022_finding_pulmonary_arterial_hypertension_switching_to_offense_to",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_maron_2022_finding_pulmonary_arterial_hypertension_switching_to_offense_to.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC9040384?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_abdalla_2021_the_uspstf_recommendation_on_blood_pressure_screening_making",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_abdalla_2021_the_uspstf_recommendation_on_blood_pressure_screening_making.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC11455601?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_mccarthy_2025_global_and_european_landscape_of_major_hypertension_guidelines",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mccarthy_2025_global_and_european_landscape_of_major_hypertension_guidelines.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC12068379?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_cohen_2026_impact_of_a_smartwatch_hypertension_notification_feature_for",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_cohen_2026_impact_of_a_smartwatch_hypertension_notification_feature_for.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC12887835?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_olojo_2025_singing_for_health_a_participatory_process_to_design",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_olojo_2025_singing_for_health_a_participatory_process_to_design.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC12320242?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_lang_2023_balloon_pulmonary_angioplasty_for_chronic_thromboembolic_pulmonary_hype",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_lang_2023_balloon_pulmonary_angioplasty_for_chronic_thromboembolic_pulmonary_hype.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/19/4a/ehad413.PMC10393078.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC10393078?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_whelton_2022_harmonization_of_the_american_college_of_cardiology_american",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_whelton_2022_harmonization_of_the_american_college_of_cardiology_american.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/a7/9a/ehac432.PMC9470378.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC9470378?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_vukadinovi_2024_effects_of_catheter_based_renal_denervation_in_hypertension",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_vukadinovi_2024_effects_of_catheter_based_renal_denervation_in_hypertension.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC11560572?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_kennedy_2024_semaglutide_and_blood_pressure_an_individual_patient_data",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_kennedy_2024_semaglutide_and_blood_pressure_an_individual_patient_data.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/53/66/ehae564.PMC11458150.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC11458150?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_hosokawa_2024_a_multicenter_single_blind_randomized_warfarin_controlled_trial",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_hosokawa_2024_a_multicenter_single_blind_randomized_warfarin_controlled_trial.pdf",
+      "url": "https://europepmc.org/articles/PMC10814998?pdf=render",
+      "bytes": 463935,
+      "sha256": "82492c088da41e0f8bd6a3f3ccfd2db1f65212e81383b12452bb64bddad00c5b",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_jiang_2024_efficacy_and_safety_of_catheter_based_radiofrequency_renal",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_jiang_2024_efficacy_and_safety_of_catheter_based_radiofrequency_renal.pdf",
+      "errors": [
+        "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/ff/5b/cir-150-1588.PMC11548818.pdf: HTTP Error 404: Not Found",
+        "https://europepmc.org/articles/PMC11548818?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_omote_2022_pulmonary_vascular_disease_in_pulmonary_hypertension_due_to",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_omote_2022_pulmonary_vascular_disease_in_pulmonary_hypertension_due_to.pdf",
+      "url": "https://europepmc.org/articles/PMC9794188?pdf=render",
+      "bytes": 1220525,
+      "sha256": "c630e465bf97939915d2612840626b481b178b0461232736407b264fdd6c7a90",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_siedlinski_2023_genetic_analyses_identify_brain_structures_related_to_cognitive",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_siedlinski_2023_genetic_analyses_identify_brain_structures_related_to_cognitive.pdf",
+      "url": "https://europepmc.org/articles/PMC10281555?pdf=render",
+      "bytes": 1480515,
+      "sha256": "d931a5c282b3f9c5262e28660a5dbb87536c156177a236d756a3cdb19bf30477",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_chen_2022_novel_smooth_muscle_ca_sup_2_sup_signaling",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_chen_2022_novel_smooth_muscle_ca_sup_2_sup_signaling.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC9378684?pdf=render: HTTP 429"
+      ]
+    },
+    {
+      "source_id": "litexp_cecelja_2020_genetic_aetiology_of_blood_pressure_relates_to_aortic",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_cecelja_2020_genetic_aetiology_of_blood_pressure_relates_to_aortic.pdf",
+      "url": "https://europepmc.org/articles/PMC7544538?pdf=render",
+      "bytes": 597402,
+      "sha256": "ac65d5cfd68610e7837160bfa256846f3ae020f95c07828e82b419353d353dd9",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_shen_2024_brcc3_regulation_of_alk2_in_vascular_smooth_muscle",
+      "status": "failed",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_shen_2024_brcc3_regulation_of_alk2_in_vascular_smooth_muscle.pdf",
+      "errors": [
+        "oa_error:idIsNotOpenAccess",
+        "https://europepmc.org/articles/PMC11230848?pdf=render: HTTP 500",
+        "https://www.ahajournals.org/doi/pdf/10.1161/CIRCULATIONAHA.123.066430: HTTP 403"
+      ]
+    },
+    {
+      "source_id": "litexp_zhuang_2023_a2ar_mediated_lymphangiogenesis_via_vegfr2_signaling_prevents_salt",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_zhuang_2023_a2ar_mediated_lymphangiogenesis_via_vegfr2_signaling_prevents_salt.pdf",
+      "url": "https://europepmc.org/articles/PMC10393074?pdf=render",
+      "bytes": 2530830,
+      "sha256": "2d6679cd885148ab7cfd76ab3eae1c4240847d20c4c56e7ed0b57e0e061b2175",
+      "content_type": "application/pdf"
+    }
+  ],
+  "oa_retry_completed_at": 1780211033.300374,
+  "replacement_completed_at": 1780211909.1405199,
+  "final_download_results": [
+    {
+      "source_id": "litexp_islam_2022_wearable_cuffless_blood_pressure_monitoring_devices_a_systematic",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_islam_2022_wearable_cuffless_blood_pressure_monitoring_devices_a_systematic.pdf",
+      "url": "https://europepmc.org/articles/PMC9708022?pdf=render",
+      "bytes": 1074784,
+      "sha256": "cd2829f2354b601e44169179dc8f8c3c2f05e63978ed0783a6336dea5ee156d5",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_zhao_2023_emerging_sensing_and_modeling_technologies_for_wearable_and",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_zhao_2023_emerging_sensing_and_modeling_technologies_for_wearable_and.pdf",
+      "url": "https://europepmc.org/articles/PMC10203315?pdf=render",
+      "bytes": 2401674,
+      "sha256": "414f1463979b9563177b98dd24da8d025fda86ceede1b59fbd929a1c281c68c4",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_mukkamala_2025_cuffless_blood_pressure_measurement_where_do_we_actually",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mukkamala_2025_cuffless_blood_pressure_measurement_where_do_we_actually.pdf",
+      "url": "https://europepmc.org/articles/PMC12331212?pdf=render",
+      "bytes": 2250641,
+      "sha256": "adcd6c8f168bbdd5b000897e4fd0622dbe7a0985e74b886266a25b4a7fb855a6",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_varzideh_2026_artificial_intelligence_in_cardiovascular_medicine_focus_on_hyperte",
+      "status": "downloaded_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_varzideh_2026_artificial_intelligence_in_cardiovascular_medicine_focus_on_hyperte.pdf",
+      "url": "https://europepmc.org/articles/PMC13094858?pdf=render",
+      "bytes": 464211,
+      "sha256": "98b20e20a808996353aacf4386ec4e61b82b7062fbe7e77f99f880cced99b2a6",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_elgendi_2019_the_use_of_photoplethysmography_for_assessing_hypertension",
+      "status": "existing",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_elgendi_2019_the_use_of_photoplethysmography_for_assessing_hypertension.pdf",
+      "bytes": 1572386,
+      "sha256": "5b49723b09d11b29fbfc2cdf52bf85d96841286850bfdba95a14b2315f0dd133"
+    },
+    {
+      "source_id": "litexp_bernjak_2009_pulse_transit_times_to_the_capillary_bed_evaluated",
+      "status": "downloaded_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_bernjak_2009_pulse_transit_times_to_the_capillary_bed_evaluated.pdf",
+      "url": "https://europepmc.org/articles/PMC2933509?pdf=render",
+      "bytes": 1323837,
+      "sha256": "9192d62f3cca58f12d8ada4158157d41b8863515766d6075c7b8cba440629bf1",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_sel_2023_continuous_cuffless_blood_pressure_monitoring_with_a_wearable",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_sel_2023_continuous_cuffless_blood_pressure_monitoring_with_a_wearable.pdf",
+      "url": "https://europepmc.org/articles/PMC10063561?pdf=render",
+      "bytes": 2763510,
+      "sha256": "27f05ca1a994896d5c6d46ce3c5b359d69fb3fa5429f6161c109a9f8d889a952",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_goda_2024_pyppg_a_python_toolbox_for_comprehensive_photoplethysmography_signal",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_goda_2024_pyppg_a_python_toolbox_for_comprehensive_photoplethysmography_signal.pdf",
+      "url": "https://europepmc.org/articles/PMC11003363?pdf=render",
+      "bytes": 1387763,
+      "sha256": "efe84fe352fbe95a7c553752127b33b960a81adfab5ee582e753236338a64868",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_saxena_2025_lorundrostat_in_participants_with_uncontrolled_hypertension_and_treat",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_saxena_2025_lorundrostat_in_participants_with_uncontrolled_hypertension_and_treat.pdf",
+      "url": "https://europepmc.org/articles/PMC12210145?pdf=render",
+      "bytes": 442761,
+      "sha256": "29b487a608719643aae36b8e49681d6aeb636c3b4cfaaf9a4dffb76fa3e96d75",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_prendergast_2025_emergency_department_based_education_and_mhealth_empowerment_int",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_prendergast_2025_emergency_department_based_education_and_mhealth_empowerment_int.pdf",
+      "url": "https://europepmc.org/articles/PMC12019670?pdf=render",
+      "bytes": 372413,
+      "sha256": "f81c8a2181cdccb28d903ae9d4f763f767ee191b4a2961ece679933e9d0d118b",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_guo_2026_intensive_blood_pressure_control_and_cardiovascular_outcomes_across",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_guo_2026_intensive_blood_pressure_control_and_cardiovascular_outcomes_across.pdf",
+      "url": "https://europepmc.org/articles/PMC12905657?pdf=render",
+      "bytes": 1053374,
+      "sha256": "27960b713bb10afd34c6ccdbed2563f57a55d838f1611b35672fe31a95991f68",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_londo_o_2026_hearts_quality_a_policy_framework_to_strengthen_hypertension",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_londo_o_2026_hearts_quality_a_policy_framework_to_strengthen_hypertension.pdf",
+      "url": "https://europepmc.org/articles/PMC12719693?pdf=render",
+      "bytes": 3793457,
+      "sha256": "d4a6f9cc9d4a603e4c2d1362ee007c6e3d632d20e5638671d43752e3e2895f88",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_lapidaire_2026_brain_volumes_after_hypertensive_pregnancy_and_postpartum_blood",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_lapidaire_2026_brain_volumes_after_hypertensive_pregnancy_and_postpartum_blood.pdf",
+      "url": "https://europepmc.org/articles/PMC12771390?pdf=render",
+      "bytes": 826581,
+      "sha256": "fc6bc0c3658b674fbe125f20505d9ab597413351052cd926e95104ee171a24e5",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_gupta_2025_association_of_drinking_water_salinity_with_elevated_blood",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_gupta_2025_association_of_drinking_water_salinity_with_elevated_blood.pdf",
+      "url": "https://europepmc.org/articles/PMC12699556?pdf=render",
+      "bytes": 1109454,
+      "sha256": "8f1d4c8e789fffdd3e47e8b454fa8aefe97110770fe72f5f1894962d6f9be1ab",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_razo_2022_effects_of_elevated_systolic_blood_pressure_on_ischemic",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_razo_2022_effects_of_elevated_systolic_blood_pressure_on_ischemic.pdf",
+      "url": "https://europepmc.org/articles/PMC9556328?pdf=render",
+      "bytes": 15171951,
+      "sha256": "e7b0bc50e7a06b2bf0d8d2a2cbb517f7864aba362e9b00335f5b11ee0a1ccf4a",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_pickersgill_2022_modeling_global_80_80_80_blood_pressure_targets",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_pickersgill_2022_modeling_global_80_80_80_blood_pressure_targets.pdf",
+      "url": "https://europepmc.org/articles/PMC9388375?pdf=render",
+      "bytes": 3996471,
+      "sha256": "e5b7dd2e7bc40e7dcb45f783b57825fcdeec468700e01353ee51a2a09273a227",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_yang_2024_sex_specific_genetic_architecture_of_blood_pressure",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_yang_2024_sex_specific_genetic_architecture_of_blood_pressure.pdf",
+      "url": "https://europepmc.org/articles/PMC11797078?pdf=render",
+      "bytes": 6335211,
+      "sha256": "eb0955f4041319c08962cbcfdc1c610d75f3b557ebf32ae2fde840042f790d23",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_schuermans_2024_genetic_associations_of_circulating_cardiovascular_proteins_with_",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_schuermans_2024_genetic_associations_of_circulating_cardiovascular_proteins_with_.pdf",
+      "url": "https://europepmc.org/articles/PMC10765315?pdf=render",
+      "bytes": 709440,
+      "sha256": "4fdf07e1209872baddefe0221844583fb5bfdf724a988a8ebcf79566df4a44b8",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_sau_2025_artificial_intelligence_enhanced_electrocardiography_for_prediction_of_i",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_sau_2025_artificial_intelligence_enhanced_electrocardiography_for_prediction_of_i.pdf",
+      "url": "https://europepmc.org/articles/PMC11904724?pdf=render",
+      "bytes": 1080570,
+      "sha256": "6a4318e6f85a7b57b0c1f8653c1b67f7c1b2fa8919de237966678ab19c0d6941",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_johnson_2025_hypertension_diabetes_and_high_cholesterol_awareness_among_us",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_johnson_2025_hypertension_diabetes_and_high_cholesterol_awareness_among_us.pdf",
+      "url": "https://europepmc.org/articles/PMC12138794?pdf=render",
+      "bytes": 811648,
+      "sha256": "a4afca9522209c3547a2cec878404435c7fcd697c856417ceab3b0ebf672b8c2",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_freedman_2025_high_blood_pressure_in_childhood_and_premature_cardiovascular",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_freedman_2025_high_blood_pressure_in_childhood_and_premature_cardiovascular.pdf",
+      "url": "https://europepmc.org/articles/PMC12415700?pdf=render",
+      "bytes": 422969,
+      "sha256": "c692fcdc10d25cb8eb94c855141c6f9bcffc416c029695e590065de13158d153",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_zhang_2026_outcome_specific_optimal_systolic_blood_pressure_targets_in",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_zhang_2026_outcome_specific_optimal_systolic_blood_pressure_targets_in.pdf",
+      "url": "https://europepmc.org/articles/PMC12863318?pdf=render",
+      "bytes": 1248653,
+      "sha256": "a2d471c891d7659473c240cac54b650f0203bd8a7626fc103961624e42f442d2",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_loo_2026_hypertension_management_in_s_o_paulo_insights_from",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_loo_2026_hypertension_management_in_s_o_paulo_insights_from.pdf",
+      "url": "https://europepmc.org/articles/PMC13051922?pdf=render",
+      "bytes": 5758198,
+      "sha256": "70dd06ac3df3d7c6c96ef85e262dd61b53b99628f900f91e2f0a7b74c76e60e5",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_siedlinski_2023_genetic_analyses_identify_brain_structures_related_to_cognitive",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_siedlinski_2023_genetic_analyses_identify_brain_structures_related_to_cognitive.pdf",
+      "url": "https://europepmc.org/articles/PMC10281555?pdf=render",
+      "bytes": 1480515,
+      "sha256": "d931a5c282b3f9c5262e28660a5dbb87536c156177a236d756a3cdb19bf30477",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_cecelja_2020_genetic_aetiology_of_blood_pressure_relates_to_aortic",
+      "status": "downloaded",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_cecelja_2020_genetic_aetiology_of_blood_pressure_relates_to_aortic.pdf",
+      "url": "https://europepmc.org/articles/PMC7544538?pdf=render",
+      "bytes": 597402,
+      "sha256": "ac65d5cfd68610e7837160bfa256846f3ae020f95c07828e82b419353d353dd9",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_zhuang_2023_a2ar_mediated_lymphangiogenesis_via_vegfr2_signaling_prevents_salt",
+      "status": "downloaded_render_retry",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_zhuang_2023_a2ar_mediated_lymphangiogenesis_via_vegfr2_signaling_prevents_salt.pdf",
+      "url": "https://europepmc.org/articles/PMC10393074?pdf=render",
+      "bytes": 2530830,
+      "sha256": "2d6679cd885148ab7cfd76ab3eae1c4240847d20c4c56e7ed0b57e0e061b2175",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_tawengi_2025_blood_pressure_variability_and_mortality_in_patients_admitted",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_tawengi_2025_blood_pressure_variability_and_mortality_in_patients_admitted.pdf",
+      "url": "https://europepmc.org/articles/PMC12083430?pdf=render",
+      "bytes": 488186,
+      "sha256": "3eaa690d477d5897bf324a37ca3353ce1470cbdf10224535bf72e744a26f9215",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_prabhakaran_2025_comparison_of_dual_therapies_for_hypertension_treatment_in",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_prabhakaran_2025_comparison_of_dual_therapies_for_hypertension_treatment_in.pdf",
+      "url": "https://europepmc.org/articles/PMC12443627?pdf=render",
+      "bytes": 8915105,
+      "sha256": "7e3191818258d3bd175089e2bb42c2a0f960d194e978345a99cdcb804ee45803",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_mej_a_mej_a_2021_differential_effects_of_the_blood_pressure_state_on",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mej_a_mej_a_2021_differential_effects_of_the_blood_pressure_state_on.pdf",
+      "url": "https://www.nature.com/articles/s41746-021-00447-y.pdf",
+      "bytes": 1434036,
+      "sha256": "2f1d196a78836cd811602ee312a6b1a34613a99e8f7c2ad1a322788b788718d2",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_hustrini_2025_prevalence_incidence_and_risk_factors_of_chronic_kidney",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_hustrini_2025_prevalence_incidence_and_risk_factors_of_chronic_kidney.pdf",
+      "url": "https://europepmc.org/articles/PMC12548581?pdf=render",
+      "bytes": 397735,
+      "sha256": "b8ed2df064390cda33182bcfa17e3876c3b6190c6ff4f99db407795181fd2679",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_ncd_2024_general_and_abdominal_adiposity_and_hypertension_in_eight",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_ncd_2024_general_and_abdominal_adiposity_and_hypertension_in_eight.pdf",
+      "url": "https://europepmc.org/articles/PMC7616775?pdf=render",
+      "bytes": 1768386,
+      "sha256": "3f07e57f19f810cbadbc4a8d152bd89af6026fc2feb040dc7362480b177293e8",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_sel_2023_physics_informed_neural_networks_for_modeling_physiological_time",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_sel_2023_physics_informed_neural_networks_for_modeling_physiological_time.pdf",
+      "url": "https://www.nature.com/articles/s41746-023-00853-4.pdf",
+      "bytes": 2965914,
+      "sha256": "93eb5a35c6c25689878de2edbae8cd8b70ec4ab86042bbf166ba6391c5ab1a70",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_kaur_2025_scaling_india_hypertension_control_initiative_strategies_to_15",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_kaur_2025_scaling_india_hypertension_control_initiative_strategies_to_15.pdf",
+      "url": "https://europepmc.org/articles/PMC12666080?pdf=render",
+      "bytes": 738806,
+      "sha256": "c5b5e1b813a2cc308fc56708abd9132d9cff6156060fdb9420d57d947b2e16b7",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_laffin_2023_aldosterone_synthase_inhibition_with_lorundrostat_for_uncontrolled_hy",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_laffin_2023_aldosterone_synthase_inhibition_with_lorundrostat_for_uncontrolled_hy.pdf",
+      "url": "https://europepmc.org/articles/PMC10493865?pdf=render",
+      "bytes": 390013,
+      "sha256": "52020e34997d5af548d2261f482df3d5bd6fb67d263bbf01e4a8b1dd0e112e53",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_bernabe_ortiz_2020_effect_of_salt_substitution_on_community_wide_blood",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_bernabe_ortiz_2020_effect_of_salt_substitution_on_community_wide_blood.pdf",
+      "url": "https://europepmc.org/articles/PMC7613083?pdf=render",
+      "bytes": 957682,
+      "sha256": "5a8c0c3c7c496911a560470b80bc6d6128ed32507f48d88c99707f6f3b9432d9",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_di_2023_alcohol_intake_and_blood_pressure_levels_a_dose",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_di_2023_alcohol_intake_and_blood_pressure_levels_a_dose.pdf",
+      "url": "https://europepmc.org/articles/PMC10510850?pdf=render",
+      "bytes": 479280,
+      "sha256": "e5e25c34f31ebd41cc70e109400ba789d89f0aa60acc8603615d451740b2df15",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_lee_2024_feasibility_and_effectiveness_of_a_ring_type_blood",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_lee_2024_feasibility_and_effectiveness_of_a_ring_type_blood.pdf",
+      "url": "https://europepmc.org/articles/PMC10864248?pdf=render",
+      "bytes": 1281502,
+      "sha256": "1dc261c0409e9f6718cf7b59a51db0d3f176b3b03e2abfb723936168769bb35e",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_zhao_2026_association_of_systolic_blood_pressure_time_in_target",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_zhao_2026_association_of_systolic_blood_pressure_time_in_target.pdf",
+      "url": "https://europepmc.org/articles/PMC13007161?pdf=render",
+      "bytes": 471658,
+      "sha256": "7d1fc2ebfb35b3bc3047501b2eee6056075e024fb13719ca71a69ddb59e66b8e",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_van_2024_evaluation_of_a_novel_cuffless_photoplethysmography_based_wristband",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_van_2024_evaluation_of_a_novel_cuffless_photoplethysmography_based_wristband.pdf",
+      "url": "https://europepmc.org/articles/PMC11104472?pdf=render",
+      "bytes": 540092,
+      "sha256": "cc2ce0ca9ec37790e6822b3356ea364258bec2545947a274beaf539b3fb95703",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_whelton_2022_harmonization_of_the_american_college_of_cardiology_american",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_whelton_2022_harmonization_of_the_american_college_of_cardiology_american.pdf",
+      "url": "https://europepmc.org/articles/PMC9470378?pdf=render",
+      "bytes": 540217,
+      "sha256": "e107e3e1d7099aa5c4e4af3d58da30f5c5ed8f673218a1ab81f2459aaebc7d20",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_ding_2024_siamquality_a_convnet_based_foundation_model_for_photoplethysmography",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_ding_2024_siamquality_a_convnet_based_foundation_model_for_photoplethysmography.pdf",
+      "url": "https://europepmc.org/articles/PMC11334241?pdf=render",
+      "bytes": 1079567,
+      "sha256": "527b18e213ca74d54311949d04288eacacbfbcfd4b489b33a55ff8a774dbbde5",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_ye_2025_characteristics_of_ambulatory_blood_pressure_parameters_and_influencing",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_ye_2025_characteristics_of_ambulatory_blood_pressure_parameters_and_influencing.pdf",
+      "url": "https://europepmc.org/articles/PMC12443174?pdf=render",
+      "bytes": 416882,
+      "sha256": "ca4a605cb6f4dc27e05fc5dbcf1c156d353493245ace85342ef0a223ff035fa5",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_hainsworth_2024_cerebral_small_vessel_disease_hypertension_and_vascular_contribut",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_hainsworth_2024_cerebral_small_vessel_disease_hypertension_and_vascular_contribut.pdf",
+      "url": "https://europepmc.org/articles/PMC10734789?pdf=render",
+      "bytes": 678749,
+      "sha256": "e56e98d9dc585b3118e0e0b2d04e07c3191942b47e0e52a3dc0ed7f2cad116f1",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_kennedy_2024_semaglutide_and_blood_pressure_an_individual_patient_data",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_kennedy_2024_semaglutide_and_blood_pressure_an_individual_patient_data.pdf",
+      "url": "https://europepmc.org/articles/PMC11458150?pdf=render",
+      "bytes": 642210,
+      "sha256": "86f01a868536b652b5da904de2194a7b8894cb5223f285764f87d14edca3ad86",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_kario_2020_management_of_hypertension_in_the_digital_era_small",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_kario_2020_management_of_hypertension_in_the_digital_era_small.pdf",
+      "url": "https://europepmc.org/articles/PMC7418935?pdf=render",
+      "bytes": 2410622,
+      "sha256": "78799b0a1caa3bde8565986cda1a62082549250e01d28271fa56936f96f33d20",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_gerdts_2022_sex_differences_in_arterial_hypertension",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_gerdts_2022_sex_differences_in_arterial_hypertension.pdf",
+      "url": "https://europepmc.org/articles/PMC9726450?pdf=render",
+      "bytes": 445266,
+      "sha256": "cddaecfef6584a23ffcc924f2c52786c4b48dfeb7dbf413ae92b66c9dd8859a4",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_jiang_2024_efficacy_and_safety_of_catheter_based_radiofrequency_renal",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_jiang_2024_efficacy_and_safety_of_catheter_based_radiofrequency_renal.pdf",
+      "url": "https://europepmc.org/articles/PMC11548818?pdf=render",
+      "bytes": 1202410,
+      "sha256": "eeb863686b3d7976c5b75bdd5a4727c839309680c64cb9925020f1800207b8f8",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_huang_2021_ambulatory_blood_pressure_monitoring_to_diagnose_and_manage",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_huang_2021_ambulatory_blood_pressure_monitoring_to_diagnose_and_manage.pdf",
+      "url": "https://europepmc.org/articles/PMC7803442?pdf=render",
+      "bytes": 589345,
+      "sha256": "61ca6b78b6fd26f75b793db959f4d2c153d3da42da9aa705884963e63b2dd27f",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_chaturvedi_2024_social_determinants_of_health_and_disparities_in_hypertension",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_chaturvedi_2024_social_determinants_of_health_and_disparities_in_hypertension.pdf",
+      "url": "https://europepmc.org/articles/PMC10863660?pdf=render",
+      "bytes": 1504571,
+      "sha256": "a46383d294b99b43d97630befd61428b6064b2b003871a2484ef88e26cf44717",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_smith_2023_target_bp_a_national_initiative_to_improve_blood",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_smith_2023_target_bp_a_national_initiative_to_improve_blood.pdf",
+      "url": "https://europepmc.org/articles/PMC10651269?pdf=render",
+      "bytes": 1592430,
+      "sha256": "43a3f9d8f83364c5e6e9285d5ec9740d6d5a5ca1f2700ec5e2f0874a1521a137",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_ruilope_2022_blood_pressure_and_cardiorenal_outcomes_with_finerenone_in",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_ruilope_2022_blood_pressure_and_cardiorenal_outcomes_with_finerenone_in.pdf",
+      "url": "https://europepmc.org/articles/PMC9640256?pdf=render",
+      "bytes": 1059303,
+      "sha256": "c648c9725426d9e7bba01e7a758393538d4e27612f36761ba7a7d2dd0c963dc6",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_zhang_2025_ambulatory_blood_pressure_monitoring_european_guideline_targets_and",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_zhang_2025_ambulatory_blood_pressure_monitoring_european_guideline_targets_and.pdf",
+      "url": "https://europepmc.org/articles/PMC12342635?pdf=render",
+      "bytes": 2232027,
+      "sha256": "466569dfc17f337661a354fd664581303e86f9a2edb7f949693a1b42f2944b1a",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_mcnally_2024_influence_of_blood_pressure_reduction_on_pulse_wave",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mcnally_2024_influence_of_blood_pressure_reduction_on_pulse_wave.pdf",
+      "url": "https://europepmc.org/articles/PMC11177599?pdf=render",
+      "bytes": 629412,
+      "sha256": "d2f5caef9b63cd45118a24548d9a2741a08da26ffaa3318f3b52328d0c75f66b",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_cheng_2022_risk_stratification_by_cross_classification_of_central_and",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_cheng_2022_risk_stratification_by_cross_classification_of_central_and.pdf",
+      "url": "https://europepmc.org/articles/PMC8997688?pdf=render",
+      "bytes": 552915,
+      "sha256": "adcc04fdd4c435824c34422da6950412728251b6a205399e9c1db4cbfe1477ba",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_kario_2026_renal_denervation_in_asia_2025_asia_renal_denervation",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_kario_2026_renal_denervation_in_asia_2025_asia_renal_denervation.pdf",
+      "url": "https://europepmc.org/articles/PMC12711283?pdf=render",
+      "bytes": 2678033,
+      "sha256": "862ad928953c763e3bc81d2f87b278cb65e0748c213b0d2f76c4b547649215eb",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_dasgupta_2022_is_the_kdigo_systolic_blood_pressure_target_120",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_dasgupta_2022_is_the_kdigo_systolic_blood_pressure_target_120.pdf",
+      "url": "https://europepmc.org/articles/PMC8654101?pdf=render",
+      "bytes": 433817,
+      "sha256": "b6e39fa98e5a8a19c0865b36f96293dd476ae001b9609ee8fa583bf10d18fa70",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_smith_2025_effect_of_systolic_blood_pressure_measurement_error_on",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_smith_2025_effect_of_systolic_blood_pressure_measurement_error_on.pdf",
+      "url": "https://europepmc.org/articles/PMC12875532?pdf=render",
+      "bytes": 903922,
+      "sha256": "01f1a47274e1c0a823ca82f8fa3c2125814501cb6f44540161f1c7aad26a0990",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_bhm_2023_empagliflozin_irrespective_of_blood_pressure_improves_outcomes_in",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_bhm_2023_empagliflozin_irrespective_of_blood_pressure_improves_outcomes_in.pdf",
+      "url": "https://europepmc.org/articles/PMC9890225?pdf=render",
+      "bytes": 1456533,
+      "sha256": "960ff63a205e0c9448e7a8d35a0b602396c731bbfb4b020c951467958090550b",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_virwani_2023_sex_differences_in_association_between_gut_microbiome_and",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_virwani_2023_sex_differences_in_association_between_gut_microbiome_and.pdf",
+      "url": "https://europepmc.org/articles/PMC10191209?pdf=render",
+      "bytes": 1511304,
+      "sha256": "6522bba64f4de116bafac6836133104fe698b0310a7e46dc60900f9f2fe37628",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_clark_2022_higher_arm_versus_lower_arm_systolic_blood_pressure",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_clark_2022_higher_arm_versus_lower_arm_systolic_blood_pressure.pdf",
+      "url": "https://europepmc.org/articles/PMC9444257?pdf=render",
+      "bytes": 410779,
+      "sha256": "c9b412a58b13de9368f5a73a09c01dd256cd01541fd026a0aaf6da00b9dd8ff2",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_rivasi_2022_association_between_hypotension_during_24_h_ambulatory_blood",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_rivasi_2022_association_between_hypotension_during_24_h_ambulatory_blood.pdf",
+      "url": "https://europepmc.org/articles/PMC9553097?pdf=render",
+      "bytes": 1629592,
+      "sha256": "1f65f38376a6203c63abc80201968d71cc65edde192250ea26cc99f1932127de",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_mary_2022_role_of_uromodulin_in_salt_sensitive_hypertension",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mary_2022_role_of_uromodulin_in_salt_sensitive_hypertension.pdf",
+      "url": "https://europepmc.org/articles/PMC9553220?pdf=render",
+      "bytes": 1014721,
+      "sha256": "763a3894a1c4d1adb98019637831d72d3f59a00735f0152c51b9b8f4b3df4368",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_de_2024_tirzepatide_reduces_24_hour_ambulatory_blood_pressure_in",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_de_2024_tirzepatide_reduces_24_hour_ambulatory_blood_pressure_in.pdf",
+      "url": "https://europepmc.org/articles/PMC10956672?pdf=render",
+      "bytes": 548422,
+      "sha256": "73389ad51038915a9bc0a02f597744333e289767bb44c546b031d4ff0427a26b",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_tobushi_2024_sleep_apnea_autonomic_disturbances_and_blood_pressure_variability",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_tobushi_2024_sleep_apnea_autonomic_disturbances_and_blood_pressure_variability.pdf",
+      "url": "https://europepmc.org/articles/PMC11319079?pdf=render",
+      "bytes": 453387,
+      "sha256": "ddee2118ad710f6558d432c9b084db0d8e3b333832ce3510cbc6ad15f2c2c5dc",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_mcevoy_2021_isolated_diastolic_hypertension_in_the_idaco_study_an",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mcevoy_2021_isolated_diastolic_hypertension_in_the_idaco_study_an.pdf",
+      "url": "https://europepmc.org/articles/PMC8516806?pdf=render",
+      "bytes": 661572,
+      "sha256": "49b7856a8d163ce6e210904c0b342a5fca6f1c68da491d4e6d7ecf6edb49b37e",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_palatini_2023_orthostatic_hypertension_a_newcomer_among_the_hypertension_phenotyp",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_palatini_2023_orthostatic_hypertension_a_newcomer_among_the_hypertension_phenotyp.pdf",
+      "url": "https://europepmc.org/articles/PMC10510801?pdf=render",
+      "bytes": 554654,
+      "sha256": "f8f6d48e698e7171758ce90396f9a1ba558c04ca3d4950c8c3a36f768ca8a6de",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_grassi_2021_sympathetic_neural_mechanisms_underlying_attended_and_unattended_bloo",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_grassi_2021_sympathetic_neural_mechanisms_underlying_attended_and_unattended_bloo.pdf",
+      "url": "https://europepmc.org/articles/PMC9634723?pdf=render",
+      "bytes": 497135,
+      "sha256": "46293d4e39263827d06e6faeecf8d5c28d36a87fcf55547800e4b16494baabcc",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_kario_2022_home_blood_pressure_can_predict_the_risk_for",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_kario_2022_home_blood_pressure_can_predict_the_risk_for.pdf",
+      "url": "https://europepmc.org/articles/PMC9640260?pdf=render",
+      "bytes": 1231213,
+      "sha256": "74984f9daf6f5bd2b186e0d7170824070fcbaefab11a40e61b49c9395388278c",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_bondarenko_2025_the_role_of_face_regions_in_remote_photoplethysmography",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_bondarenko_2025_the_role_of_face_regions_in_remote_photoplethysmography.pdf",
+      "url": "https://europepmc.org/articles/PMC12297079?pdf=render",
+      "bytes": 2118041,
+      "sha256": "f1af8bcdee160eef15cff46376da06a579d565fb02a36d8fb7b9a2d861e7a18f",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_liu_2024_cignn_a_causality_informed_and_graph_neural_network",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_liu_2024_cignn_a_causality_informed_and_graph_neural_network.pdf",
+      "url": "https://europepmc.org/articles/PMC11100861?pdf=render",
+      "bytes": 4334157,
+      "sha256": "f2f289ca7483b4999d68709e2c014f011e0b62f75ebe7d204d22eba562bf5936",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_ohashi_2025_nighttime_systolic_blood_pressure_determined_by_pulse_transit",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_ohashi_2025_nighttime_systolic_blood_pressure_determined_by_pulse_transit.pdf",
+      "url": "https://europepmc.org/articles/PMC12449993?pdf=render",
+      "bytes": 379141,
+      "sha256": "373b3d48a08cc5caf909bc4c1e6a5fff6d877cec76529f3749c85a8f90b5375e",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_sakamoto_2025_low_arterial_stiffness_by_pulse_wave_analysis_and",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_sakamoto_2025_low_arterial_stiffness_by_pulse_wave_analysis_and.pdf",
+      "url": "https://europepmc.org/articles/PMC12148350?pdf=render",
+      "bytes": 1146199,
+      "sha256": "4f02b18e0da13e69dec97aa759967172ebf4dd379d3d855638c493ca787ce46c",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_shin_2024_evaluation_of_applicability_and_accuracy_of_a_new",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_shin_2024_evaluation_of_applicability_and_accuracy_of_a_new.pdf",
+      "url": "https://europepmc.org/articles/PMC10864252?pdf=render",
+      "bytes": 408321,
+      "sha256": "a16b4eef1138b7604786a9e8dad631faf85fd80b6966f810796c868f92a3c97c",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_huang_2024_diagnostic_potential_of_combined_photoplethysmography_and_ankle_brachi",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_huang_2024_diagnostic_potential_of_combined_photoplethysmography_and_ankle_brachi.pdf",
+      "url": "https://europepmc.org/articles/PMC11681468?pdf=render",
+      "bytes": 1685319,
+      "sha256": "add01703cdb63263b541281414089b1bfb0c936896039e4824e2aa766487f61f",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_kwon_2024_non_invasive_pulse_arrival_time_is_associated_with",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_kwon_2024_non_invasive_pulse_arrival_time_is_associated_with.pdf",
+      "url": "https://europepmc.org/articles/PMC11262133?pdf=render",
+      "bytes": 735328,
+      "sha256": "4e53f5f61c1bb630df41c5bc81fe5972fd1eff9e19aa4f9728ff4ee58f59606c",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_cheng_2026_continuous_blood_pressure_monitoring_via_hemodynamic_parameter_and",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_cheng_2026_continuous_blood_pressure_monitoring_via_hemodynamic_parameter_and.pdf",
+      "url": "https://europepmc.org/articles/PMC13058602?pdf=render",
+      "bytes": 1624918,
+      "sha256": "be2c09cc8f110990c9cb21306c8145c0f12c5e19ed5d56049601f3b9900c1576",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_goda_2026_analysis_of_differential_photoplethysmography_signal_patterns_in_apnea",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_goda_2026_analysis_of_differential_photoplethysmography_signal_patterns_in_apnea.pdf",
+      "url": "https://europepmc.org/articles/PMC12891985?pdf=render",
+      "bytes": 1200830,
+      "sha256": "77e98fc933b914d6a68cd786ad24e794084a6e263589f84f4d4e3b57881f795e",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_tian_2026_adaptive_physiology_informed_correction_for_reliable_remote_photoplethy",
+      "status": "downloaded_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_tian_2026_adaptive_physiology_informed_correction_for_reliable_remote_photoplethy.pdf",
+      "url": "https://europepmc.org/articles/PMC13000236?pdf=render",
+      "bytes": 2879630,
+      "sha256": "ae3c6b0e144489b99af7377442e2b5afd8cc510bc23c20473935ab235a2c4a2e",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_flynn_2022_ambulatory_blood_pressure_monitoring_in_children_and_adolescents",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_flynn_2022_ambulatory_blood_pressure_monitoring_in_children_and_adolescents.pdf",
+      "url": "https://europepmc.org/articles/PMC12168719?pdf=render",
+      "bytes": 429680,
+      "sha256": "197b974ac3d887d7c3fa5299bf3abd97cbe727f4d6b30743d16f5e248a499c3a",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_mccarthy_2025_global_and_european_landscape_of_major_hypertension_guidelines",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mccarthy_2025_global_and_european_landscape_of_major_hypertension_guidelines.pdf",
+      "url": "https://europepmc.org/articles/PMC12068379?pdf=render",
+      "bytes": 43436,
+      "sha256": "ca2cd2aafe641e846be996373e7746b01bbc344538a0a13736fee0b59a41a2d1",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_mangalesh_2026_risk_guided_antihypertensive_treatment_eligibility_in_older_adults",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mangalesh_2026_risk_guided_antihypertensive_treatment_eligibility_in_older_adults.pdf",
+      "url": "https://europepmc.org/articles/PMC13101656?pdf=render",
+      "bytes": 338463,
+      "sha256": "3ad2e2bd9adde71d3c9f72b8a6bff987cfda232150608cf3e7d73b53588b1055",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_acharya_2024_self_measured_blood_pressure_guided_pharmacotherapy_a_systematic",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_acharya_2024_self_measured_blood_pressure_guided_pharmacotherapy_a_systematic.pdf",
+      "url": "https://europepmc.org/articles/PMC11213974?pdf=render",
+      "bytes": 799035,
+      "sha256": "8b58ab6b7abd7c379e7921c021c2558723662af31d90d3cb401cee5f1ab18a50",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_cohen_2026_impact_of_a_smartwatch_hypertension_notification_feature_for",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_cohen_2026_impact_of_a_smartwatch_hypertension_notification_feature_for.pdf",
+      "url": "https://europepmc.org/articles/PMC12887835?pdf=render",
+      "bytes": 167606,
+      "sha256": "85bd80b4ae1cd1d511df9b5fc512d1deb76a095b1401b74951ed11635cca7c37",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_mitsnefes_2021_pediatric_ambulatory_blood_pressure_classification_the_case_for",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mitsnefes_2021_pediatric_ambulatory_blood_pressure_classification_the_case_for.pdf",
+      "url": "https://europepmc.org/articles/PMC8516706?pdf=render",
+      "bytes": 47400,
+      "sha256": "6842f7453c8a93ad0a408ae0229e49f7b8409207da08d08eaba42f2e37384cac",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_margolis_2022_comparing_pharmacist_led_telehealth_care_and_clinic_based",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_margolis_2022_comparing_pharmacist_led_telehealth_care_and_clinic_based.pdf",
+      "url": "https://europepmc.org/articles/PMC9649877?pdf=render",
+      "bytes": 1246834,
+      "sha256": "a14591ae0098273b3b9c5f2508452ea797a6c9a1b313a42c1e6d93e6717efe80",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_dos_2024_immunomodulatory_activity_of_cytokines_in_hypertension_a_vascular",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_dos_2024_immunomodulatory_activity_of_cytokines_in_hypertension_a_vascular.pdf",
+      "url": "https://europepmc.org/articles/PMC11168883?pdf=render",
+      "bytes": 1997878,
+      "sha256": "973b4bb9d869b318d9311ba5ff072e7ddeef3249e0aa1f4244fc507042d6702e",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_pacholko_2024_hypertension_neurodegeneration_and_cognitive_decline",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_pacholko_2024_hypertension_neurodegeneration_and_cognitive_decline.pdf",
+      "url": "https://europepmc.org/articles/PMC11023809?pdf=render",
+      "bytes": 1984682,
+      "sha256": "8d4a36553cd53fb165629c96f3d92a5054fa32a5b734602b91206cbbb9689089",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_whelton_2024_optimal_antihypertensive_systolic_blood_pressure_a_systematic_review",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_whelton_2024_optimal_antihypertensive_systolic_blood_pressure_a_systematic_review.pdf",
+      "url": "https://europepmc.org/articles/PMC11483200?pdf=render",
+      "bytes": 1156206,
+      "sha256": "6eb4db83cb2735071c2eb1ee8f9d9e679dad85ab1f5038e5083595743fed9567",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_groppelli_2025_mechanism_of_syncope_role_of_ambulatory_blood_pressure",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_groppelli_2025_mechanism_of_syncope_role_of_ambulatory_blood_pressure.pdf",
+      "url": "https://europepmc.org/articles/PMC11879164?pdf=render",
+      "bytes": 954262,
+      "sha256": "d28930e62eb0c49eaf2a6d29d8379ddc71169691de316478092f3efe033604fb",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_mizuno_2023_diagnostic_accuracy_of_office_blood_pressure_measurement_and",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_mizuno_2023_diagnostic_accuracy_of_office_blood_pressure_measurement_and.pdf",
+      "url": "https://europepmc.org/articles/PMC10863761?pdf=render",
+      "bytes": 358854,
+      "sha256": "970437623bef0b329df9834f5d3775285bfcc8f95f465f718b7026a91cd4c4b7",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_bryant_2022_home_blood_pressure_monitoring_for_hypertension_diagnosis_by",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_bryant_2022_home_blood_pressure_monitoring_for_hypertension_diagnosis_by.pdf",
+      "url": "https://europepmc.org/articles/PMC8754001?pdf=render",
+      "bytes": 274291,
+      "sha256": "f1e36e1bb63177e3c49395bb6aa5eb030be33d3471e5af5fc71e5c3d1f701f0f",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_harrison_2024_immune_mechanisms_in_hypertension",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_harrison_2024_immune_mechanisms_in_hypertension.pdf",
+      "url": "https://europepmc.org/articles/PMC11254551?pdf=render",
+      "bytes": 2026830,
+      "sha256": "928440831909741d498bc0b18ff639366be40faa5cc45c1e80154d6bd4ec8c83",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_b_hm_2024_office_measurement_vs_ambulatory_blood_pressure_monitoring_associations",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_b_hm_2024_office_measurement_vs_ambulatory_blood_pressure_monitoring_associations.pdf",
+      "url": "https://europepmc.org/articles/PMC11328865?pdf=render",
+      "bytes": 866548,
+      "sha256": "6de877f480e5a71520bca735df111be6b5c963508c03c730c378269d66e3b143",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_campbell_2024_detection_and_control_of_pregnancy_hypertension_using_self",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_campbell_2024_detection_and_control_of_pregnancy_hypertension_using_self.pdf",
+      "url": "https://europepmc.org/articles/PMC10956677?pdf=render",
+      "bytes": 287341,
+      "sha256": "dc4166e20a76a289dd06d493ca14291ecc4427698e50305579cac4413310c53d",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_countouris_2025_hypertension_in_pregnancy_and_postpartum_current_standards_and",
+      "status": "downloaded_claude_replacement",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_countouris_2025_hypertension_in_pregnancy_and_postpartum_current_standards_and.pdf",
+      "url": "https://europepmc.org/articles/PMC11973590?pdf=render",
+      "bytes": 1710436,
+      "sha256": "65452c674f95f8997cb4047b65b6c78e36c08d4f36da91319fddb9a9e9132d46",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_choi_2026_feasibility_and_performance_evaluation_of_ppg_on_a",
+      "status": "downloaded_final_cleanup",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_choi_2026_feasibility_and_performance_evaluation_of_ppg_on_a.pdf",
+      "url": "https://europepmc.org/articles/PMC12912915?pdf=render",
+      "bytes": 2067783,
+      "sha256": "da4a6823384459d67b545af6f4f310097cb9641be7f16ea37a22e0f065d08ab5",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_van_2025_assessment_of_photoplethysmography_based_blood_pressure_determinations_d",
+      "status": "downloaded_final_cleanup",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_van_2025_assessment_of_photoplethysmography_based_blood_pressure_determinations_d.pdf",
+      "url": "https://europepmc.org/articles/PMC12282382?pdf=render",
+      "bytes": 1064298,
+      "sha256": "907bdd8c70aa47f936af7dc6ce06d23ddabcb858ef3ac99ebd2291f38dd32760",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_nowroozilarki_2023_variational_autoencoders_for_biomedical_signal_morphology_clus",
+      "status": "downloaded_final_cleanup",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_nowroozilarki_2023_variational_autoencoders_for_biomedical_signal_morphology_clus.pdf",
+      "url": "https://europepmc.org/articles/PMC10984704?pdf=render",
+      "bytes": 1977176,
+      "sha256": "c739cef039a5ee7e477932e42d91d1c78d8f32c85452fb686b9135c7e74164fe",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_paper_2022_insights_into_diurnal_variations_of_advanced_hemodynamic_parameters",
+      "status": "downloaded_final_cleanup",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_paper_2022_insights_into_diurnal_variations_of_advanced_hemodynamic_parameters.pdf",
+      "url": "https://europepmc.org/articles/PMC9779848?pdf=render",
+      "bytes": 355686,
+      "sha256": "8d81d18d4a633ee206d63f7fa1fbaee8f4e443043da443667c75fbe20a156920",
+      "content_type": "application/pdf"
+    },
+    {
+      "source_id": "litexp_abraham_2026_accuracy_of_visually_estimated_home_blood_pressure_result",
+      "status": "downloaded_final_cleanup",
+      "path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/sources/downloads/literature_expansion_2026_05_31/litexp_abraham_2026_accuracy_of_visually_estimated_home_blood_pressure_result.pdf",
+      "url": "https://europepmc.org/articles/PMC12912109?pdf=render",
+      "bytes": 626331,
+      "sha256": "cf0bb459c96cd33d48422602fddacd98dec62f88ecbd69405e495ac5cb0c55f9",
+      "content_type": "application/pdf"
+    }
+  ],
+  "strict_tier_audited_at": 1780211980.290703,
+  "claude_review_cleanup_at": 1780213690.089671,
+  "claude_removed_source_ids": [
+    "litexp_lee_2019_can_pulse_check_by_the_photoplethysmography_sensor_on",
+    "litexp_torres_soto_2020_multi_task_deep_learning_for_cardiac_rhythm_detection",
+    "litexp_yang_2026_effects_of_modified_site_for_radial_artery_cannulation",
+    "litexp_kileel_2026_risk_of_obesity_diabetes_hypertension_and_major_adverse",
+    "litexp_hernandez_2026_the_notch3_extracellular_domain_is_a_serum_biomarker",
+    "litexp_zheng_2026_pulmonary_hypertension_in_takayasu_arteritis_with_pulmonary_artery",
+    "litexp_nordin_2026_individuals_with_the_metabolic_syndrome_without_diabetes_and",
+    "litexp_hosokawa_2024_a_multicenter_single_blind_randomized_warfarin_controlled_trial",
+    "litexp_omote_2022_pulmonary_vascular_disease_in_pulmonary_hypertension_due_to",
+    "litexp_miao_2025_out_of_office_blood_pressure_measurements_in_patients",
+    "litexp_rickard_2023_community_stroke_team_use_of_home_blood_pressure",
+    "litexp_reynolds_2025_cohort_profile_ambulatory_blood_pressure_in_older_adults",
+    "litexp_erickson_2023_predicting_labor_onset_relative_to_the_estimated_date",
+    "litexp_lang_2023_balloon_pulmonary_angioplasty_for_chronic_thromboembolic_pulmonary_hype",
+    "litexp_zhang_2025_implementation_of_home_blood_pressure_monitoring_in_preoperative",
+    "litexp_scheer_2023_bevacizumab_induced_hypertension_in_glioblastoma_patients_and_its",
+    "litexp_dachs_2022_riociguat_in_pulmonary_hypertension_and_heart_failure_with",
+    "litexp_mccallum_2024_i_umod_i_genotype_blinded_trial_of_ambulatory",
+    "litexp_kim_2024_transmission_line_model_as_a_digital_twin_for"
+  ],
+  "claude_replacements": [
+    "litexp_flynn_2022_ambulatory_blood_pressure_monitoring_in_children_and_adolescents",
+    "litexp_mccarthy_2025_global_and_european_landscape_of_major_hypertension_guidelines",
+    "litexp_mangalesh_2026_risk_guided_antihypertensive_treatment_eligibility_in_older_adults",
+    "litexp_acharya_2024_self_measured_blood_pressure_guided_pharmacotherapy_a_systematic",
+    "litexp_cohen_2026_impact_of_a_smartwatch_hypertension_notification_feature_for",
+    "litexp_olojo_2025_singing_for_health_a_participatory_process_to_design",
+    "litexp_mitsnefes_2021_pediatric_ambulatory_blood_pressure_classification_the_case_for",
+    "litexp_margolis_2022_comparing_pharmacist_led_telehealth_care_and_clinic_based",
+    "litexp_dos_2024_immunomodulatory_activity_of_cytokines_in_hypertension_a_vascular",
+    "litexp_pacholko_2024_hypertension_neurodegeneration_and_cognitive_decline",
+    "litexp_birrer_2024_evaluating_reliability_in_wearable_devices_for_sleep_staging",
+    "litexp_whelton_2024_optimal_antihypertensive_systolic_blood_pressure_a_systematic_review",
+    "litexp_groppelli_2025_mechanism_of_syncope_role_of_ambulatory_blood_pressure",
+    "litexp_mizuno_2023_diagnostic_accuracy_of_office_blood_pressure_measurement_and",
+    "litexp_bryant_2022_home_blood_pressure_monitoring_for_hypertension_diagnosis_by",
+    "litexp_harrison_2024_immune_mechanisms_in_hypertension",
+    "litexp_b_hm_2024_office_measurement_vs_ambulatory_blood_pressure_monitoring_associations",
+    "litexp_campbell_2024_detection_and_control_of_pregnancy_hypertension_using_self",
+    "litexp_countouris_2025_hypertension_in_pregnancy_and_postpartum_current_standards_and"
+  ],
+  "final_topic_cleanup_at": 1780214074.205002,
+  "final_topic_cleanup_removed": [
+    "litexp_pereira_2020_photoplethysmography_based_atrial_fibrillation_detection_a_review",
+    "litexp_yavarimanesh_2022_abdominal_aortic_aneurysm_monitoring_via_arterial_waveform_anal",
+    "litexp_van_2025_ambulatory_atrial_fibrillation_detection_and_quantification_by_wristworn",
+    "litexp_olojo_2025_singing_for_health_a_participatory_process_to_design",
+    "litexp_birrer_2024_evaluating_reliability_in_wearable_devices_for_sleep_staging"
+  ],
+  "final_topic_cleanup_replacements": [
+    "litexp_choi_2026_feasibility_and_performance_evaluation_of_ppg_on_a",
+    "litexp_van_2025_assessment_of_photoplethysmography_based_blood_pressure_determinations_d",
+    "litexp_nowroozilarki_2023_variational_autoencoders_for_biomedical_signal_morphology_clus",
+    "litexp_paper_2022_insights_into_diurnal_variations_of_advanced_hemodynamic_parameters",
+    "litexp_abraham_2026_accuracy_of_visually_estimated_home_blood_pressure_result"
+  ]
+}
