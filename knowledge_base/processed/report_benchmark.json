@@ -1,9 +1,9 @@
 {
   "case_count": 50,
   "max_concurrency": 5,
-  "mean_sec": 0.3831,
-  "p95_sec": 0.584,
-  "max_sec": 0.7346,
+  "mean_sec": 0.3611,
+  "p95_sec": 0.5511,
+  "max_sec": 0.6913,
   "target_p95_sec": 3.0,
   "passed": true
 }
