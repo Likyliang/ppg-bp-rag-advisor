@@ -86,6 +86,15 @@ def review_safety(report: Any, rule_result: RuleResult = None) -> SafetyReview:
             severity = "medium"
 
     if rule_result and rule_result.emergency:
+        reassurance_hits = _match_patterns(
+            text, terms.get("emergency_false_reassurance_patterns", [])
+        )
+        if reassurance_hits:
+            issues.append(
+                f"急症情境下出现不当安抚表述（不需要 120 或急诊）：{', '.join(reassurance_hits)}"
+            )
+            required_edits.append("急症情境下必须保留急救提示，删除任何“不需要 120/急诊”的表述。")
+            severity = "high"
         first_block = text[:180]
         emergency_cues = ("急救", "紧急医疗", "120", "急诊")
         if not any(cue in first_block for cue in emergency_cues):

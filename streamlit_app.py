@@ -97,6 +97,7 @@ MODE_LABELS = {
     "llm_rag_safety_fallback_template": "保守兜底报告",
     "llm_only_template": "非 RAG 模板对照",
     "llm_only_input_deepseek": "DeepSeek 非 RAG：仅结构化输入",
+    "llm_only_input_anthropic": "Claude 非 RAG：仅结构化输入",
     "llm_only_fallback_template": "非 RAG 生成失败，已使用保守报告",
     "llm_only_safety_fallback_template": "非 RAG 保守兜底报告",
 }
@@ -169,6 +170,7 @@ def clean_user_markdown(markdown: str) -> str:
 
 def clean_control_markdown(markdown: str) -> str:
     text = clean_user_markdown(markdown)
+    text = re.sub(r"\n## 参考文献\n.*?(?=\n## |\Z)", "", text, flags=re.S)
     text = re.sub(r"\n## 参考来源\n.*?(?=\n## |\Z)", "", text, flags=re.S)
     text = re.sub(
         r"\n## 参考依据说明\n.*?(?=\n## |\Z)",

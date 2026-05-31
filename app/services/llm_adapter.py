@@ -146,6 +146,150 @@ def generate_deepseek_report_body(
     return cleaned
 
 
+def _number_evidence(evidence: Iterable[Evidence]) -> List[dict[str, Any]]:
+    numbered = []
+    for index, item in enumerate(evidence, start=1):
+        numbered.append(
+            {
+                "citation_number": index,
+                "title": item.title,
+                "organization": item.organization,
+                "region": item.region,
+                "year": item.year,
+                "evidence_class": item.evidence_class,
+                "allowed_uses": item.allowed_uses,
+                "snippet": item.snippet,
+            }
+        )
+    return numbered
+
+
+def _anthropic_chat(
+    *, system: str, user: str, max_tokens: int, temperature: float, timeout: float
+) -> str:
+    api_key = os.getenv("ANTHROPIC_API_KEY") or os.getenv("CLAUDE_API_KEY")
+    if not api_key:
+        raise LlmGenerationError("ANTHROPIC_API_KEY is not set")
+
+    base_url = os.getenv("ANTHROPIC_BASE_URL", "https://api.anthropic.com").rstrip("/")
+    model = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-5")
+    headers = {
+        "x-api-key": api_key,
+        "anthropic-version": os.getenv("ANTHROPIC_VERSION", "2023-06-01"),
+        "content-type": "application/json",
+    }
+    payload = {
+        "model": model,
+        "max_tokens": max_tokens,
+        "temperature": temperature,
+        "system": system,
+        "messages": [{"role": "user", "content": user}],
+    }
+    try:
+        response = requests.post(
+            f"{base_url}/v1/messages", headers=headers, json=payload, timeout=timeout
+        )
+    except requests.RequestException as exc:
+        raise LlmGenerationError(f"Anthropic request failed: {exc.__class__.__name__}") from exc
+    if response.status_code >= 400:
+        raise LlmGenerationError(
+            f"Anthropic API returned HTTP {response.status_code}: {response.text[:500]}"
+        )
+    try:
+        data = response.json()
+        blocks = data["content"]
+        content = "".join(block.get("text", "") for block in blocks if block.get("type") == "text")
+    except (KeyError, IndexError, TypeError, ValueError) as exc:
+        raise LlmGenerationError("Anthropic API response did not contain text content") from exc
+    cleaned = _clean_markdown(content)
+    if not cleaned:
+        raise LlmGenerationError("Anthropic API returned empty content")
+    return cleaned
+
+
+_SAFETY_CONSTRAINTS = (
+    "医学安全底线必须保留：不得诊断、不得开药、不得调药、不得停药、不得承诺 PPG 准确性，"
+    "不得声称可替代规范袖带血压测量或医生判断。"
+    "即使是否定句，也不要出现停药、加药、减药、调药、服药等用药操作词，只说\u201c用药问题请咨询医生\u201d。"
+    "不要把血压计写成诊断工具，只能写成复核和家庭记录工具。"
+    "不要使用\u201c确诊\u201d这个词；需要表达时说\u201c不是诊断结果\u201d。"
+    "如果规则结果没有触发急症（emergency 为 false），可以说明目前没有需要立即处理的症状，"
+    "但必须同时提示\u201c如果之后出现胸痛、气短、肢体无力、视物改变、说话困难或严重头痛，请立即拨打 120 或前往急诊\u201d。"
+    "如果 emergency 为 true，必须把拨打 120 或前往急诊放在最前面，绝不能写任何\u201c不需要 120/急诊\u201d的安抚。"
+)
+
+
+def generate_anthropic_report_body(
+    *,
+    template_body: str,
+    rule_result: RuleResult,
+    evidence: Iterable[Evidence],
+    rag_enabled: bool = True,
+    timeout_sec: float | None = None,
+) -> str:
+    timeout = timeout_sec or float(os.getenv("LLM_TIMEOUT_SEC", "45"))
+    numbered = _number_evidence(evidence) if rag_enabled else []
+    system_prompt = (
+        "你是一名严谨的中文健康科普写作者，面向中国大陆普通用户解释手机 PPG 血压估算结果。"
+        "语言要专业、清晰、有条理，同时让普通人能读懂：先讲结论，再讲依据，最后讲下一步。"
+        + _SAFETY_CONSTRAINTS
+        + "你会收到一份按编号排列的循证资料（evidence）。"
+        "请在正文相关结论或建议句末用方括号编号标注引用，例如\u201c家庭血压监测有助于判断趋势[2]\u201d；"
+        "可以合并标注如[1,3]；只能引用 evidence 中真实存在的编号，不得编造编号或来源。"
+        "不要自己写\u201c参考文献\u201d\u201c参考来源\u201d或免责声明小节，这些由系统统一附加。"
+        "保留与模板相同的 Markdown 小标题结构（## 先看结论、## 现在最该做什么、## 为什么这样提醒你、"
+        "## 怎么看这次测量、## 建议背后的原因、## 接下来怎么做、## 在国内可以怎么做、## 几个容易误解的点）。"
+        "直接从第一个 Markdown 标题开始，不要写\u201c好的\u201d\u201c以下是\u201d等开场白。"
+    )
+    if not rag_enabled:
+        system_prompt += "当前为非 RAG 模式：没有可引用的资料，正文中不要出现任何方括号编号引用。"
+    user_payload = {
+        "instruction": (
+            "请基于 rule_result、evidence 与 template_body，重写出一份更专业、更具个性化的中文健康解释报告。"
+            "要结合本次的具体数值、信号质量和用户背景给出有针对性的解释，避免空泛套话。"
+        ),
+        "rule_result": rule_result.model_dump(),
+        "evidence": numbered,
+        "template_body": template_body,
+    }
+    return _anthropic_chat(
+        system=system_prompt,
+        user=json.dumps(user_payload, ensure_ascii=False),
+        max_tokens=int(os.getenv("ANTHROPIC_MAX_TOKENS", "2400")),
+        temperature=float(os.getenv("ANTHROPIC_TEMPERATURE", "0.4")),
+        timeout=timeout,
+    )
+
+
+def generate_anthropic_input_only_report(
+    *,
+    payload: MeasurementPayload,
+    timeout_sec: float | None = None,
+) -> str:
+    timeout = timeout_sec or float(os.getenv("LLM_TIMEOUT_SEC", "45"))
+    system_prompt = (
+        "你是中文健康小程序里的健康说明助手。只根据用户提交的结构化输入写报告，"
+        "不使用本地文档库、检索证据或参考来源，也不要声称参考了任何指南或资料，不要列参考文献。"
+        + _SAFETY_CONSTRAINTS
+        + "直接输出 Markdown，不要写\u201c好的\u201d\u201c以下是\u201d等开场白。"
+    )
+    user_payload = {
+        "instruction": (
+            "请根据 structured_input 直接生成一份面向普通用户的中文健康解释报告。"
+            "这是非 RAG 对照组：不要使用证据、不要引用来源、不要提本地文档库，也不要出现方括号编号引用。"
+            "建议包含：先看结论、现在最该做什么、为什么这样提醒你、接下来怎么做、几个容易误解的点。"
+        ),
+        "structured_input": payload.model_dump(mode="json"),
+    }
+    return _anthropic_chat(
+        system=system_prompt,
+        user=json.dumps(user_payload, ensure_ascii=False),
+        max_tokens=int(os.getenv("ANTHROPIC_MAX_TOKENS", "2400")),
+        temperature=float(os.getenv("ANTHROPIC_TEMPERATURE", "0.6")),
+        timeout=timeout,
+    )
+
+
 def generate_deepseek_input_only_report(
     *,
     payload: MeasurementPayload,

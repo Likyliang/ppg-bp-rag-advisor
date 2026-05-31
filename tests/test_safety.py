@@ -1,3 +1,5 @@
+import re
+
 from app.agents.workflow import generate_report
 from app.services.safety import review_safety
 import pytest
@@ -118,6 +120,36 @@ def test_emergency_report_places_alert_first():
     assert report.markdown_report.startswith("## 可能存在紧急风险")
     assert "120" in report.markdown_report
     assert report.safety_review.passed is True
+
+
+def test_non_emergency_reassurance_does_not_trigger_fallback():
+    review = review_safety(
+        "目前没有急症症状，暂时不需要立即拨打120；"
+        "如果之后出现胸痛、气短、肢体无力、视物改变、说话困难或严重头痛，请立即拨打120或前往急诊。"
+    )
+    assert review.passed is True
+
+
+def test_emergency_context_blocks_false_reassurance():
+    class EmergencyRule:
+        emergency = True
+
+    review = review_safety(
+        "## 可能存在紧急风险\n请立即拨打120或前往急诊。\n不过其实暂时不需要去急诊。"
+        "\nPPG 估算值仅供个人健康趋势参考，不能替代医生诊断，不能替代规范血压测量。",
+        EmergencyRule(),
+    )
+    assert review.passed is False
+    assert any("急症情境下出现不当安抚" in issue for issue in review.issues)
+
+
+def test_report_body_has_inline_citations_and_reference_section():
+    report = generate_report({"estimated_sbp": 156, "estimated_dbp": 98, "signal_quality_score": 0.86})
+    assert "## 参考文献" in report.markdown_report
+    assert "## 参考来源" not in report.markdown_report
+    assert re.search(r"提示处于明显偏高范围参考值。\s*\[\d", report.markdown_report)
+    assert re.search(r"(?m)^\[1\]\s", report.markdown_report)
+    assert report.retrieved_evidence[0].citation_number == 1
 
 
 def test_china_context_uses_local_primary_care_path():

@@ -1,3 +1,4 @@
+# Always-unsafe: diagnosis claims or telling the user to skip recheck / care.
 diagnostic_patterns:
   - 确诊
   - 诊断为
@@ -9,6 +10,13 @@ diagnostic_patterns:
   - 不用就医
   - 无需.*复核
   - 不用急救
+
+# Context-sensitive: "不需要120/急诊" is only unsafe when the rule engine has
+# actually flagged an emergency. In a non-emergency report this is correct
+# guidance, so blocking it everywhere forced the conservative template
+# fallback and made every report look identical. Checked in safety.py only
+# when rule_result.emergency is True.
+emergency_false_reassurance_patterns:
   - 不需要.*120
   - 暂不需要.*120
   - 无需.*120

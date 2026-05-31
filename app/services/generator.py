@@ -18,9 +18,16 @@ from app.schemas.report import (
     UiSummary,
 )
 from app.schemas.rule_result import RuleResult
+from app.services.citations import build_registry
 from app.services.evidence_quality import bind_recommendation_evidence, evaluate_citation_quality
 from app.services.config_loader import load_yaml_config
-from app.services.llm_adapter import LlmGenerationError, generate_deepseek_input_only_report, generate_deepseek_report_body
+from app.services.llm_adapter import (
+    LlmGenerationError,
+    generate_anthropic_input_only_report,
+    generate_anthropic_report_body,
+    generate_deepseek_input_only_report,
+    generate_deepseek_report_body,
+)
 
 
 DISCLAIMER = (
@@ -240,10 +247,12 @@ def _why_lines(payload: MeasurementPayload, rule_result: RuleResult) -> List[str
     return lines
 
 
-def _append_recommendation_group(lines: List[str], title: str, items: List[str]) -> None:
+def _append_recommendation_group(
+    lines: List[str], title: str, items: List[str], cite: str = ""
+) -> None:
     if not items:
         return
-    lines.append(f"### {title}")
+    lines.append(f"### {title}{cite}")
     for item in items:
         lines.append(f"- {item}")
 
@@ -309,6 +318,10 @@ def _plain_language_lines(report: HealthReport, rule_result: RuleResult, payload
 
 def _markdown(report: HealthReport, rule_result: RuleResult, payload: MeasurementPayload, uses_rag: bool = True) -> str:
     summary = report.input_summary
+    registry = build_registry(report.retrieved_evidence)
+    cite_bp = registry.cite("bp_category_reference") if rule_result.quality.is_usable and not rule_result.emergency else ""
+    cite_ppg = registry.cite("cuffless_ppg_limitations", "signal_quality")
+    cite_emergency = registry.cite("emergency_alert")
     lines: List[str] = []
     quality_parts = []
     if summary.signal_quality_score is not None:
@@ -330,7 +343,7 @@ def _markdown(report: HealthReport, rule_result: RuleResult, payload: Measuremen
         quality_parts.append(f"采集方式 {source_text}")
     if report.safety_alert.emergency:
         lines.append("## 可能存在紧急风险")
-        lines.append(report.safety_alert.message)
+        lines.append(report.safety_alert.message + cite_emergency)
         lines.append("")
 
     lines.extend(
@@ -339,7 +352,7 @@ def _markdown(report: HealthReport, rule_result: RuleResult, payload: Measuremen
             (
                 f"这次小程序给出的估算值是 "
                 f"{summary.estimated_sbp}/{summary.estimated_dbp} mmHg，"
-                f"提示{_category_text(rule_result.estimated_bp_category)}。"
+                f"提示{_category_text(rule_result.estimated_bp_category)}。{cite_bp}"
             ),
             f"这次采集的信息包括：{'；'.join(quality_parts)}。" if quality_parts else "这次测量信息还不完整。",
             "先别把它当成诊断结果。它更像一次提醒：需要用规范血压计复核，再看连续记录。",
@@ -368,26 +381,40 @@ def _markdown(report: HealthReport, rule_result: RuleResult, payload: Measuremen
             "## 接下来怎么做",
         ]
     )
-    _append_recommendation_group(lines, "复测与记录", report.recommendations.remeasurement)
-    _append_recommendation_group(lines, "设备复核", report.recommendations.device_advice)
-    _append_recommendation_group(lines, "生活方式", report.recommendations.lifestyle)
-    _append_recommendation_group(lines, "就医沟通", report.recommendations.medical_consultation)
+    medical_cite = cite_emergency if rule_result.emergency else registry.cite(
+        "home_bp_monitoring", "special_population"
+    )
+    _append_recommendation_group(
+        lines, "复测与记录", report.recommendations.remeasurement,
+        registry.cite("remeasurement", "home_bp_monitoring", "signal_quality"),
+    )
+    _append_recommendation_group(
+        lines, "设备复核", report.recommendations.device_advice,
+        registry.cite("device_advice", "cuffless_ppg_limitations"),
+    )
+    _append_recommendation_group(
+        lines, "生活方式", report.recommendations.lifestyle, registry.cite("lifestyle"),
+    )
+    _append_recommendation_group(
+        lines, "就医沟通", report.recommendations.medical_consultation, medical_cite,
+    )
     lines.extend(["", "## 在国内可以怎么做"])
     lines.extend(f"- {item}" for item in _china_context_lines(payload, rule_result, uses_rag=uses_rag))
     lines.extend(["", "## 几个容易误解的点"])
-    lines.extend(f"- {item}" for item in _plain_language_lines(report, rule_result, payload, uses_rag=uses_rag))
+    plain_lines = _plain_language_lines(report, rule_result, payload, uses_rag=uses_rag)
+    if plain_lines and cite_ppg:
+        plain_lines[0] = plain_lines[0] + cite_ppg
+    lines.extend(f"- {item}" for item in plain_lines)
 
-    if report.retrieved_evidence:
-        lines.extend(["", "## 参考来源"])
-        for evidence in report.retrieved_evidence:
-            source = evidence.title
-            if evidence.organization:
-                source += f"（{evidence.organization}）"
-            if evidence.evidence_class:
-                source += f" · 来源类型：{evidence.evidence_class}"
-            if evidence.url:
-                source += f": {evidence.url}"
-            lines.append(f"- {source}")
+    if registry.has_evidence:
+        lines.extend(
+            [
+                "",
+                "## 参考文献",
+                "正文中的 [n] 标注对应下列经治理的权威来源；每条建议只引用其被授权用途范围内的资料。",
+            ]
+        )
+        lines.extend(registry.references_markdown())
 
     evidence_count = len(report.retrieved_evidence)
     grounding_text = "是" if report.citation_quality.recommendation_grounding_rate >= 1.0 else "部分建议需要继续补充资料"
@@ -395,7 +422,7 @@ def _markdown(report: HealthReport, rule_result: RuleResult, payload: Measuremen
         [
             "",
             "## 参考依据说明",
-            f"本报告使用了 {evidence_count} 条本地文档库资料。" if uses_rag else "本对照报告未使用本地文档库资料。",
+            f"本报告基于 {evidence_count} 条本地治理知识库资料，并在正文中以 [n] 形式标注引用。" if uses_rag else "本对照报告未使用本地文档库资料，因此正文不含文献引用。",
             f"主要建议是否能对应到资料来源：{grounding_text}。",
             f"涉及安全提醒时是否优先使用高可信来源：{'是' if report.citation_quality.high_trust_sensitive_uses else '否'}。",
         ]
@@ -406,7 +433,7 @@ def _markdown(report: HealthReport, rule_result: RuleResult, payload: Measuremen
 
 
 def _split_report_tail(markdown_report: str) -> tuple[str, str]:
-    tail_markers = ["\n## 参考来源", "\n## 参考依据说明", "\n## 引用质量", "\n## 免责声明"]
+    tail_markers = ["\n## 参考文献", "\n## 参考来源", "\n## 参考依据说明", "\n## 引用质量", "\n## 免责声明"]
     indexes = [markdown_report.find(marker) for marker in tail_markers if markdown_report.find(marker) >= 0]
     if not indexes:
         return markdown_report.strip(), ""
@@ -757,6 +784,17 @@ def generate_report_draft(
             report.markdown_report = _with_replaced_body(report.markdown_report, llm_body)
             report.generation_mode = f"llm_only_input_deepseek:{os.getenv('DEEPSEEK_MODEL', 'deepseek-v4-flash')}"
             return report
+        if provider in {"anthropic", "claude"}:
+            try:
+                llm_body = generate_anthropic_input_only_report(payload=payload)
+            except LlmGenerationError as exc:
+                report.generation_mode = "llm_only_fallback_template"
+                report.warnings.append(f"Claude 对照组生成失败，已回退到 no_rag_template：{exc}")
+                return report
+            llm_body = _sanitize_llm_body(llm_body)
+            report.markdown_report = _with_replaced_body(report.markdown_report, llm_body)
+            report.generation_mode = f"llm_only_input_anthropic:{os.getenv('ANTHROPIC_MODEL', 'claude-sonnet-4-5')}"
+            return report
         report.generation_mode = "llm_only_template"
         return report
     if requested_mode == "llm_rag" and provider == "deepseek":
@@ -776,6 +814,24 @@ def generate_report_draft(
         llm_body = _ensure_plain_language_section(llm_body, report, rule_result, payload, uses_rag=True)
         report.markdown_report = _with_replaced_body(report.markdown_report, llm_body)
         report.generation_mode = f"llm_rag_deepseek:{os.getenv('DEEPSEEK_MODEL', 'deepseek-v4-flash')}"
+        return report
+    if requested_mode == "llm_rag" and provider in {"anthropic", "claude"}:
+        template_body, _ = _split_report_tail(report.markdown_report)
+        try:
+            llm_body = generate_anthropic_report_body(
+                template_body=template_body,
+                rule_result=rule_result,
+                evidence=evidence,
+            )
+        except LlmGenerationError as exc:
+            report.generation_mode = "llm_rag_fallback_template"
+            report.warnings.append(f"Claude 生成失败，已回退到 template_only：{exc}")
+            return report
+        llm_body = _sanitize_llm_body(llm_body)
+        llm_body = _ensure_china_context_section(llm_body, rule_result, payload, uses_rag=True)
+        llm_body = _ensure_plain_language_section(llm_body, report, rule_result, payload, uses_rag=True)
+        report.markdown_report = _with_replaced_body(report.markdown_report, llm_body)
+        report.generation_mode = f"llm_rag_anthropic:{os.getenv('ANTHROPIC_MODEL', 'claude-sonnet-4-5')}"
         return report
     if requested_mode == "llm_rag" and provider != "mock":
         report.generation_mode = "llm_rag_fallback_template"

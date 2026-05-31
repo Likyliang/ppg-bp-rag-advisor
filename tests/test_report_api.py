@@ -126,6 +126,48 @@ def test_deepseek_llm_mode_uses_adapter(monkeypatch):
     assert "## 免责声明" in report.markdown_report
 
 
+def test_anthropic_llm_mode_uses_adapter(monkeypatch):
+    monkeypatch.setenv("LLM_PROVIDER", "anthropic")
+    monkeypatch.setenv("ANTHROPIC_MODEL", "claude-sonnet-4-5")
+
+    def fake_anthropic_report_body(**kwargs):
+        return (
+            "## 先看结论\n这是 Claude 个性化改写，引用了证据[1]，"
+            "仍说明 PPG 不能替代规范血压测量。"
+        )
+
+    monkeypatch.setattr(generator_service, "generate_anthropic_report_body", fake_anthropic_report_body)
+    payload = parse_payload({"estimated_sbp": 145, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    rules = run_rule_engine(payload)
+    evidence = retrieve_knowledge(
+        rules.retrieval_intents,
+        allowed_uses=rules.retrieval_allowed_uses,
+        min_quality_score=18,
+    ).evidence
+    report = generate_report_draft(payload, rules, evidence, mode="llm_rag")
+    assert report.generation_mode == "llm_rag_anthropic:claude-sonnet-4-5"
+    assert "Claude 个性化改写" in report.markdown_report
+    assert "证据[1]" in report.markdown_report
+    assert "## 参考文献" in report.markdown_report
+
+
+def test_anthropic_llm_only_mode_uses_input_adapter(monkeypatch):
+    monkeypatch.setenv("LLM_PROVIDER", "anthropic")
+    monkeypatch.setenv("ANTHROPIC_MODEL", "claude-sonnet-4-5")
+
+    def fake_anthropic_input_only(**kwargs):
+        return "## 先看结论\n这是 Claude 仅凭结构化输入的对照报告，PPG 不能替代规范血压测量。"
+
+    monkeypatch.setattr(generator_service, "generate_anthropic_input_only_report", fake_anthropic_input_only)
+    report = generate_report(
+        {"estimated_sbp": 145, "estimated_dbp": 92, "signal_quality_score": 0.86},
+        report_mode="llm_only",
+    )
+    assert report.generation_mode == "llm_only_input_anthropic:claude-sonnet-4-5"
+    assert report.retrieved_evidence == []
+    assert "## 参考文献" not in report.markdown_report
+
+
 def test_deepseek_output_preface_is_removed(monkeypatch):
     monkeypatch.setenv("LLM_PROVIDER", "deepseek")
     monkeypatch.setenv("DEEPSEEK_MODEL", "deepseek-v4-flash")

@@ -229,6 +229,9 @@ def _chunk_to_evidence(chunk: Dict, used_for: str, score: float) -> Evidence:
         review_status=chunk.get("review_status"),
         score=round(score, 4),
         snippet=snippet,
+        year=str(chunk.get("year")) if chunk.get("year") not in (None, "") else None,
+        doi=str(chunk.get("doi")) if chunk.get("doi") not in (None, "") else None,
+        pmid=str(chunk.get("pmid")) if chunk.get("pmid") not in (None, "") else None,
     )
 
 

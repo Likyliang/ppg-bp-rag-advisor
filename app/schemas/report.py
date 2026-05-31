@@ -66,6 +66,10 @@ class Evidence(BaseModel):
     review_status: Optional[str] = None
     score: Optional[float] = None
     snippet: Optional[str] = None
+    year: Optional[str] = None
+    doi: Optional[str] = None
+    pmid: Optional[str] = None
+    citation_number: Optional[int] = None
 
 
 class RecommendationEvidence(BaseModel):
