@@ -14,6 +14,14 @@ confidence:
   aliases: [confidence, conf, model_confidence, bp_confidence]
 capture_duration_sec:
   aliases: [capture_duration_sec, duration, duration_sec, record_seconds]
+motion_artifact_score:
+  aliases: [motion_artifact_score, motion_score, motion_artifact, movement_score, artifact_score, 手指移动评分, 运动伪影分]
+finger_coverage_score:
+  aliases: [finger_coverage_score, coverage_score, finger_coverage, camera_coverage_score, 手指覆盖评分, 覆盖完整度]
+contact_pressure_level:
+  aliases: [contact_pressure_level, contact_pressure, finger_pressure, pressure_level, 按压力度, 接触压力]
+ambient_light_level:
+  aliases: [ambient_light_level, ambient_light, light_level, illumination_level, 环境光, 光照水平]
 ppg_source:
   aliases: [ppg_source, source, sensor_source]
 algorithm_version:

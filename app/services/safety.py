@@ -87,9 +87,10 @@ def review_safety(report: Any, rule_result: RuleResult = None) -> SafetyReview:
 
     if rule_result and rule_result.emergency:
         first_block = text[:180]
-        if "急救" not in first_block and "紧急医疗" not in first_block:
+        emergency_cues = ("急救", "紧急医疗", "120", "急诊")
+        if not any(cue in first_block for cue in emergency_cues):
             issues.append("急症规则已触发，但报告开头缺少急救提示。")
-            required_edits.append("把急救或紧急医疗提示放在报告最前面。")
+            required_edits.append("把急救、120、急诊或紧急医疗提示放在报告最前面。")
             severity = "high"
 
     passed = severity not in {"high", "critical"}
@@ -109,5 +110,7 @@ def apply_safety_edits(report: HealthReport, safety_review: SafetyReview) -> Hea
             report.disclaimer.rstrip("。")
             + "，不能替代医生诊断、治疗决策或规范血压测量。"
         )
+    if "不能替代规范血压测量" not in report.disclaimer:
+        report.disclaimer = report.disclaimer.rstrip("。") + "，也不能替代规范血压测量。"
     report.safety_review = safety_review
     return report

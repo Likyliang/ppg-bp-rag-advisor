@@ -19,6 +19,9 @@ USER_PROFILE_FIELDS = {
     "pregnancy",
     "antihypertensive_medication",
     "medication_names",
+    "province",
+    "residence_area",
+    "primary_care_preference",
 }
 
 SYMPTOM_FIELDS = {

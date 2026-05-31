@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -41,9 +42,13 @@ STOP_CRITERIA = {
 
 def _run_command(name: str, command: List[str]) -> Dict:
     started = time.time()
+    env = os.environ.copy()
+    env["REPORT_MODE"] = "template_only"
+    env["LLM_PROVIDER"] = "mock"
     result = subprocess.run(
         command,
         cwd=resolve_project_path("."),
+        env=env,
         text=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
@@ -65,9 +70,13 @@ def _load_json(path: str) -> Dict:
 
 
 def _count_pytest_tests() -> int:
+    env = os.environ.copy()
+    env["REPORT_MODE"] = "template_only"
+    env["LLM_PROVIDER"] = "mock"
     result = subprocess.run(
         [sys.executable, "-m", "pytest", "--collect-only", "-q"],
         cwd=resolve_project_path("."),
+        env=env,
         text=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,

@@ -10,6 +10,10 @@ def test_field_aliases_are_normalized():
             "quality": "good",
             "conf": 0.7,
             "duration": 30,
+            "movement_score": 0.2,
+            "coverage_score": 0.91,
+            "finger_pressure": "normal",
+            "light_level": "normal",
             "sensor_source": "camera_finger",
             "model_version": "miniapp-bp-v1.0",
         }
@@ -20,6 +24,10 @@ def test_field_aliases_are_normalized():
     assert normalized["measurement"]["signal_quality_label"] == "good"
     assert normalized["measurement"]["confidence"] == 0.7
     assert normalized["measurement"]["capture_duration_sec"] == 30
+    assert normalized["measurement"]["motion_artifact_score"] == 0.2
+    assert normalized["measurement"]["finger_coverage_score"] == 0.91
+    assert normalized["measurement"]["contact_pressure_level"] == "normal"
+    assert normalized["measurement"]["ambient_light_level"] == "normal"
     assert normalized["measurement"]["ppg_source"] == "camera_finger"
     assert normalized["measurement"]["algorithm_version"] == "miniapp-bp-v1.0"
 

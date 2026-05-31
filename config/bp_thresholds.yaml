@@ -3,6 +3,10 @@ quality:
   fair_signal_score_lt: 0.75
   low_confidence_lt: 0.50
   short_capture_duration_lt_sec: 20
+  high_motion_artifact_gte: 0.70
+  moderate_motion_artifact_gte: 0.45
+  poor_finger_coverage_lt: 0.60
+  fair_finger_coverage_lt: 0.75
 
 AHA:
   normal:

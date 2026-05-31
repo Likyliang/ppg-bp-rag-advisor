@@ -97,6 +97,7 @@ def infer_allowed_uses(retrieval_intents: Iterable[str]) -> Set[str]:
     text = " ".join(retrieval_intents).lower()
     has_bp_value = bool(BP_VALUE_RE.search(text))
     ppg_context = any(term in text for term in ["ppg", "cuffless", "无袖带", "摄像头", "手机", "手指", "光学", "估算"])
+    ptt_context = any(term in text for term in ["pat", "ptt", "pulse arrival", "pulse transit", "脉搏到达", "脉搏传导", "传导时间", "到达时间"])
     medication_context = any(term in text for term in ["medication", "drug", "medicine", "pharmacological", "服药", "服用", "停药", "用药", "降压药", "药物", "药物治疗", "调药", "加药", "剂量", "自行"])
     special_context = any(term in text for term in ["pregnancy", "pregnant", "妊娠", "孕", "diabetes", "kidney", "ckd", "cvd", "cardiovascular", "糖尿", "肾", "老年", "65", "心血管", "既往心血管病", "特殊人群"])
     cuffless_question = ppg_context and any(
@@ -163,12 +164,14 @@ def infer_allowed_uses(retrieval_intents: Iterable[str]) -> Set[str]:
         uses.add("lifestyle")
     if bp_category_question:
         uses.add("bp_category_reference")
-    if cuffless_question or any(term in text for term in ["无袖带", "cuffless", "信号", "置信度", "quality_score", "confidence", "motion", "artifact", "伪影", "环境光", "肤色", "接触压力", "采集时长", "传感器位置"]):
+    if cuffless_question or any(term in text for term in ["无袖带", "cuffless", "信号", "置信度", "quality_score", "confidence", "motion", "artifact", "motion_artifact_score", "伪影", "环境光", "ambient_light", "肤色", "接触压力", "contact_pressure", "采集时长", "传感器位置", "finger_coverage"]):
         uses.add("cuffless_ppg_limitations")
-    if any(term in text for term in ["信号", "置信度", "quality_score", "confidence", "motion", "artifact", "伪影", "环境光", "肤色", "接触压力", "采集时长", "传感器位置", "手指移动", "覆盖不完整"]):
+    if any(term in text for term in ["信号", "置信度", "quality_score", "confidence", "motion", "artifact", "motion_artifact_score", "伪影", "环境光", "ambient_light", "光照", "过曝", "过暗", "肤色", "接触压力", "contact_pressure", "按压力度", "采集时长", "传感器位置", "finger_coverage", "手指覆盖", "手指移动", "覆盖不完整"]):
         uses.update({"signal_quality", "remeasurement"})
     if ppg_motion_or_sensor_question:
         uses.update({"signal_quality", "research_background"})
+    if ptt_context:
+        uses.update({"cuffless_ppg_limitations", "research_background"})
     device_context = any(term in text for term in ["home", "monitoring", "upper arm", "validated", "上臂", "家庭", "stride", "validatebp", "验证设备"])
     recheck_context = any(term in text for term in ["复测", "复核", "记录", "连续", "趋势", "rest", "reading"])
     if device_context:

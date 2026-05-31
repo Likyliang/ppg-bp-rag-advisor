@@ -1,0 +1,47 @@
+{
+  "quality": {
+    "is_usable": false,
+    "quality_level": "low_quality",
+    "confidence_level": "low",
+    "explanation": "本次信号质量不足，不生成强风险结论。",
+    "warnings": [
+      "信号质量分低于阈值，本次估算不适合做风险解释。",
+      "上游估算置信度偏低，应优先复测。",
+      "采集时长偏短，建议重新采集不少于 20 秒。"
+    ]
+  },
+  "estimated_bp_category": "not_interpretable_low_quality",
+  "bp_category_reference": "quality_rule",
+  "risk_level": "remeasurement_required",
+  "urgency_level": "remeasurement_first",
+  "emergency": false,
+  "emergency_reasons": [],
+  "special_population": false,
+  "special_population_reasons": [],
+  "recommendation_intents": [
+    "remeasurement",
+    "signal_quality_improvement",
+    "validated_upper_arm_cuff_recheck"
+  ],
+  "retrieval_intents": [
+    "中国 高血压 复测 安静休息 家庭血压 记录",
+    "手指 摄像头 PPG 信号质量 重新采集 复测",
+    "中国 高血压 规范测量 上臂式 血压计 复核",
+    "blood pressure remeasurement rest five minutes home monitoring",
+    "finger camera PPG signal quality limitations",
+    "home blood pressure monitoring validated upper arm cuff"
+  ],
+  "retrieval_allowed_uses": [
+    "cuffless_ppg_limitations",
+    "device_advice",
+    "home_bp_monitoring",
+    "remeasurement",
+    "signal_quality"
+  ],
+  "warnings": [
+    "信号质量分低于阈值，本次估算不适合做风险解释。",
+    "上游估算置信度偏低，应优先复测。",
+    "采集时长偏短，建议重新采集不少于 20 秒。"
+  ],
+  "guideline_region_used": "CN"
+}

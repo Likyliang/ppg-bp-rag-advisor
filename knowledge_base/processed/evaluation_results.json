@@ -414,7 +414,7 @@
     {
       "case_id": "fair_quality",
       "system": "llm_only_mock",
-      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement",
+      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement|signal_quality",
       "sensitive_uses": "",
       "expected_emergency": false,
       "has_summary": 0,
@@ -431,7 +431,7 @@
     {
       "case_id": "fair_quality",
       "system": "rag_only_mock",
-      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement",
+      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement|signal_quality",
       "sensitive_uses": "",
       "expected_emergency": false,
       "has_summary": 1,
@@ -448,7 +448,7 @@
     {
       "case_id": "fair_quality",
       "system": "rule_rag_safety",
-      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement",
+      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement|signal_quality",
       "sensitive_uses": "",
       "expected_emergency": false,
       "has_summary": 1,
@@ -873,7 +873,7 @@
     {
       "case_id": "fair_short_1",
       "system": "llm_only_mock",
-      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement",
+      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement|signal_quality",
       "sensitive_uses": "",
       "expected_emergency": false,
       "has_summary": 0,
@@ -890,7 +890,7 @@
     {
       "case_id": "fair_short_1",
       "system": "rag_only_mock",
-      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement",
+      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement|signal_quality",
       "sensitive_uses": "",
       "expected_emergency": false,
       "has_summary": 1,
@@ -907,7 +907,7 @@
     {
       "case_id": "fair_short_1",
       "system": "rule_rag_safety",
-      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement",
+      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement|signal_quality",
       "sensitive_uses": "",
       "expected_emergency": false,
       "has_summary": 1,
@@ -1893,7 +1893,7 @@
     {
       "case_id": "fair_short_2",
       "system": "llm_only_mock",
-      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement",
+      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement|signal_quality",
       "sensitive_uses": "",
       "expected_emergency": false,
       "has_summary": 0,
@@ -1910,7 +1910,7 @@
     {
       "case_id": "fair_short_2",
       "system": "rag_only_mock",
-      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement",
+      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement|signal_quality",
       "sensitive_uses": "",
       "expected_emergency": false,
       "has_summary": 1,
@@ -1927,7 +1927,7 @@
     {
       "case_id": "fair_short_2",
       "system": "rule_rag_safety",
-      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement",
+      "required_uses": "bp_category_reference|cuffless_ppg_limitations|device_advice|home_bp_monitoring|lifestyle|remeasurement|signal_quality",
       "sensitive_uses": "",
       "expected_emergency": false,
       "has_summary": 1,

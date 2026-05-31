@@ -1,9 +1,9 @@
 # Full-text Candidate Download Queue
 
-- Updated: 2026-05-21
-- Candidates: 59
-- Public auto-download: 1
-- Institution/browser queue: 12
+- Updated: 2026-05-28
+- Candidates: 76
+- Public auto-download: 8
+- Institution/browser queue: 11
 
 ## Safe Access Rules
 
@@ -13,6 +13,61 @@
 - 只有中文摘要和 citation 进入可提交知识库，不复制受版权保护全文。
 
 ## Public Auto-download
+
+### P2 国家基层高血压防治管理指南（2020版）
+
+- candidate_id: `nccd_2020_primary_hypertension_management_guideline_pdf`
+- source_id: `nccd_2020_primary_hypertension_management_guideline`
+- access_mode: `public_pdf`
+- status: `downloadable`
+- landing_url: https://www.nccd.org.cn/Sites/Uploaded/File/2021/3/%E5%9B%BD%E5%AE%B6%E5%9F%BA%E5%B1%82%E9%AB%98%E8%A1%80%E5%8E%8B%E9%98%B2%E6%B2%BB%E7%AE%A1%E7%90%86%E6%8C%87%E5%8D%97%202020%E7%89%88.pdf
+- pdf_url: https://www.nccd.org.cn/Sites/Uploaded/File/2021/3/%E5%9B%BD%E5%AE%B6%E5%9F%BA%E5%B1%82%E9%AB%98%E8%A1%80%E5%8E%8B%E9%98%B2%E6%B2%BB%E7%AE%A1%E7%90%86%E6%8C%87%E5%8D%97%202020%E7%89%88.pdf
+- save_as: `knowledge_base/sources/downloads/nccd_2020_primary_hypertension_management_guideline.pdf`
+- purpose: home_bp_monitoring; remeasurement; lifestyle; special_population; emergency_alert
+
+### P2 国家基本公共卫生服务规范（第三版）高血压患者健康管理服务规范
+
+- candidate_id: `nhc_2017_basic_public_health_service_hypertension_management_pdf`
+- source_id: `nhc_2017_basic_public_health_service_hypertension_management`
+- access_mode: `public_pdf`
+- status: `downloadable`
+- landing_url: https://www.nhc.gov.cn/ewebeditor/uploadfile/2017/04/20170417104506514.pdf
+- pdf_url: https://www.nhc.gov.cn/ewebeditor/uploadfile/2017/04/20170417104506514.pdf
+- save_as: `knowledge_base/sources/downloads/nhc_2017_basic_public_health_service_hypertension_management.pdf`
+- purpose: home_bp_monitoring; remeasurement; special_population; emergency_alert
+
+### P2 成人高血压食养指南（2023年版）
+
+- candidate_id: `nhc_2023_adult_hypertension_dietary_guideline_pdf`
+- source_id: `nhc_2023_adult_hypertension_dietary_guideline`
+- access_mode: `public_pdf`
+- status: `downloadable`
+- landing_url: https://www.nhc.gov.cn/sps/c100088/202301/f01895a06c5349ef999f25da833c166d.shtml
+- pdf_url: https://www.nhc.gov.cn/sps/c100088/202301/f01895a06c5349ef999f25da833c166d/files/1732844468193_68545.pdf
+- save_as: `knowledge_base/sources/downloads/nhc_2023_adult_hypertension_dietary_guideline.pdf`
+- purpose: lifestyle; home_bp_monitoring; remeasurement; special_population
+
+### P3 Self-Measured Blood Pressure
+
+- candidate_id: `nhlbi_self_measured_blood_pressure_fact_sheet_pdf`
+- source_id: `nhlbi_self_measured_blood_pressure_fact_sheet`
+- access_mode: `public_pdf`
+- status: `downloadable`
+- landing_url: https://www.nhlbi.nih.gov/resources/self-measured-blood-pressure-fact-sheet
+- pdf_url: https://www.nhlbi.nih.gov/sites/default/files/publications/self_measured_blood_pressure_0.pdf
+- save_as: `knowledge_base/sources/downloads/nhlbi_self_measured_blood_pressure_fact_sheet.pdf`
+- purpose: home_bp_monitoring; remeasurement; device_advice
+
+### P4 健康中国行动（2019-2030年）
+
+- candidate_id: `healthy_china_2019_2030_action_pdf`
+- source_id: `healthy_china_2019_2030_action`
+- access_mode: `public_pdf`
+- status: `downloadable`
+- landing_url: https://www.nhc.gov.cn/cms-search/downFiles/470339610aea4a7887d0810b4c00c9bd.pdf
+- pdf_url: https://www.nhc.gov.cn/cms-search/downFiles/470339610aea4a7887d0810b4c00c9bd.pdf
+- save_as: `knowledge_base/sources/downloads/healthy_china_2019_2030_action.pdf`
+- purpose: lifestyle; home_bp_monitoring; remeasurement; disclaimer
 
 ### P4 ISH 2020 global hypertension practice guideline public PDF
 
@@ -24,6 +79,28 @@
 - pdf_url: https://www.pascar.org/uploads/files/International_Society_of_Hypertension_Global_Guidelines_2020.pdf
 - save_as: `knowledge_base/sources/downloads/ish_2020_global_guideline.pdf`
 - purpose: home_bp_monitoring; remeasurement; lifestyle; special_population
+
+### P4 高血压患者膳食指导 WS/T 430-2013
+
+- candidate_id: `nhc_ws_t_430_2013_hypertension_dietary_guidance_pdf`
+- source_id: `nhc_ws_t_430_2013_hypertension_dietary_guidance`
+- access_mode: `public_pdf`
+- status: `downloadable`
+- landing_url: https://www.nhc.gov.cn/wjw/yingyang/201308/cce5017663e6457d98db7be683c36b4c.shtml
+- pdf_url: https://www.nhc.gov.cn/wjw/yingyang/201308/cce5017663e6457d98db7be683c36b4c/files/1739783533114_47513.pdf
+- save_as: `knowledge_base/sources/downloads/nhc_ws_t_430_2013_hypertension_dietary_guidance.pdf`
+- purpose: lifestyle; home_bp_monitoring; remeasurement
+
+### P5 Investigating sources of inaccuracy in wearable optical heart rate sensors
+
+- candidate_id: `bent_2020_wearable_optical_hr_inaccuracy_fulltext`
+- source_id: `bent_2020_wearable_optical_hr_inaccuracy`
+- access_mode: `public_pdf`
+- status: `summarized`
+- landing_url: https://www.nature.com/articles/s41746-020-0226-6
+- pdf_url: https://www.nature.com/articles/s41746-020-0226-6.pdf
+- save_as: `knowledge_base/sources/downloads/bent_2020_wearable_optical_hr_inaccuracy.pdf`
+- purpose: signal_quality; research_background
 
 ## Needs Browser Or Institution
 
@@ -49,17 +126,6 @@
 - save_as: `knowledge_base/sources/downloads/chinese_hypertension_guideline_2024_catalog.pdf`
 - purpose: bp_category_reference; home_bp_monitoring; remeasurement; lifestyle; special_population
 
-### P4 ADA Standards of Care in Diabetes 2026 cardiovascular disease and risk management
-
-- candidate_id: `ada_2026_standards_cvd_bp_fulltext`
-- source_id: `ada_2026_standards_cvd_bp`
-- access_mode: `public_html`
-- status: `queued_manual`
-- landing_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/
-- pdf_url: n/a
-- save_as: `knowledge_base/sources/downloads/ada_2026_standards_cvd_bp.pdf`
-- purpose: special_population; medication_safety; home_bp_monitoring
-
 ### P4 ESH 2023 arterial hypertension guideline full text
 
 - candidate_id: `esh_2023_guideline_fulltext`
@@ -82,23 +148,12 @@
 - save_as: `knowledge_base/sources/downloads/allen_2007_ppg_clinical_measurement_review.pdf`
 - purpose: signal_quality; cuffless_ppg_limitations; remeasurement; research_background
 
-### P5 Investigating sources of inaccuracy in wearable optical heart rate sensors
-
-- candidate_id: `bent_2020_wearable_optical_hr_inaccuracy_fulltext`
-- source_id: `bent_2020_wearable_optical_hr_inaccuracy`
-- access_mode: `public_html`
-- status: `queued_manual`
-- landing_url: https://www.nature.com/articles/s41746-020-0226-6
-- pdf_url: https://www.nature.com/articles/s41746-020-0226-6.pdf
-- save_as: `knowledge_base/sources/downloads/bent_2020_wearable_optical_hr_inaccuracy.pdf`
-- purpose: signal_quality; research_background
-
 ### P5 PPG Sensor Contact Pressure Should Be Taken Into Account for Cuff-Less Blood Pressure Measurement
 
 - candidate_id: `chandrasekhar_2020_contact_pressure_cuffless_bp_fulltext`
 - source_id: `chandrasekhar_2020_contact_pressure_cuffless_bp`
 - access_mode: `institution_or_browser`
-- status: `queued_manual`
+- status: `summarized`
 - landing_url: https://ieeexplore.ieee.org/document/9016235
 - pdf_url: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9016235
 - save_as: `knowledge_base/sources/downloads/chandrasekhar_2020_contact_pressure_cuffless_bp.pdf`
@@ -120,7 +175,7 @@
 - candidate_id: `shirbani_2020_ambient_light_skin_tone_vpg_fulltext`
 - source_id: `shirbani_2020_ambient_light_skin_tone_vpg`
 - access_mode: `institution_or_browser`
-- status: `queued_manual`
+- status: `summarized`
 - landing_url: https://ieeexplore.ieee.org/document/9176731
 - pdf_url: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9176731
 - save_as: `knowledge_base/sources/downloads/shirbani_2020_ambient_light_skin_tone_vpg.pdf`
@@ -131,7 +186,7 @@
 - candidate_id: `teng_2004_contact_force_ppg_fulltext`
 - source_id: `teng_2004_contact_force_ppg`
 - access_mode: `institution_or_browser`
-- status: `queued_manual`
+- status: `summarized`
 - landing_url: https://pubmed.ncbi.nlm.nih.gov/15535195/
 - pdf_url: https://iopscience.iop.org/article/10.1088/0967-3334/25/5/020/pdf
 - save_as: `knowledge_base/sources/downloads/teng_2004_contact_force_ppg.pdf`

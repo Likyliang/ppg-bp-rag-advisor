@@ -1,0 +1,44 @@
+{
+  "quality": {
+    "is_usable": true,
+    "quality_level": "acceptable",
+    "confidence_level": "acceptable",
+    "explanation": "本次信号质量可用于生成保守的趋势解释。",
+    "warnings": []
+  },
+  "estimated_bp_category": "stage_2_reference_range",
+  "bp_category_reference": "CN_stage_2_reference_range",
+  "risk_level": "elevated_attention",
+  "urgency_level": "non_emergency",
+  "emergency": false,
+  "emergency_reasons": [],
+  "special_population": false,
+  "special_population_reasons": [],
+  "recommendation_intents": [
+    "ppg_limitation_explanation",
+    "validated_upper_arm_cuff_recheck",
+    "remeasurement",
+    "home_bp_monitoring",
+    "lifestyle",
+    "medical_consultation"
+  ],
+  "retrieval_intents": [
+    "PPG cuffless blood pressure estimation limitations",
+    "home blood pressure monitoring validated upper arm cuff",
+    "blood pressure remeasurement rest five minutes home monitoring",
+    "home blood pressure monitoring repeated readings record",
+    "hypertension lifestyle sodium exercise weight smoking sleep",
+    "when to consult doctor for high blood pressure readings",
+    "stage_2_reference_range blood pressure reference range"
+  ],
+  "retrieval_allowed_uses": [
+    "bp_category_reference",
+    "cuffless_ppg_limitations",
+    "device_advice",
+    "home_bp_monitoring",
+    "lifestyle",
+    "remeasurement"
+  ],
+  "warnings": [],
+  "guideline_region_used": "CN"
+}

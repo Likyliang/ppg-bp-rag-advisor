@@ -1,0 +1,35 @@
+## 本次结果摘要
+本次手指摄像头 PPG 算法估算血压为 146.0/92.0 mmHg，处于明显偏高范围参考值。
+本次输入信息：信号质量分 0.86；PPG 置信度 0.72；采集时长 30.0 秒；来源 camera_finger。
+该结果来自 PPG 估算，仅供个人健康趋势参考，不能替代规范血压测量。
+
+## 质量与风险解释
+本次信号质量可用于生成保守的趋势解释。
+本次估算值处于偏高参考范围，建议复测并结合连续记录判断趋势。
+
+## 建议
+- 安静休息至少 5 分钟后重新测量。
+- 连续多天记录测量趋势，避免只看单次估算值。
+- 按固定时间记录家庭血压，并保留记录供医生参考。
+- 使用经过验证的上臂式电子血压计进行复核。
+- 减少钠盐摄入。
+- 保持规律运动和体重管理。
+- 戒烟限酒，保证睡眠。
+- 管理压力，避免过量咖啡因。
+- 若多次规范复核仍偏高，建议咨询医生。
+
+## 参考来源
+- [muntner_2019_aha_bp_measurement_scientific_statement_001] Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association（American Heart Association） · scientific_statement: https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/
+- [nhc_2023_adult_hypertension_dietary_guideline_001] 成人高血压食养指南（2023年版）（国家卫生健康委办公厅） · guideline: https://www.nhc.gov.cn/sps/c100088/202301/f01895a06c5349ef999f25da833c166d.shtml
+- [acc_aha_2025_full_guideline_record_002] 2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults（American Heart Association / American College of Cardiology） · guideline: https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356
+- [nhc_2023_adult_hypertension_dietary_guideline_002] 成人高血压食养指南（2023年版）（国家卫生健康委办公厅） · guideline: https://www.nhc.gov.cn/sps/c100088/202301/f01895a06c5349ef999f25da833c166d.shtml
+- [nhc_2024_hypertension_nutrition_exercise_guidance_002] 高血压营养和运动指导原则（2024年版）（国家卫生健康委办公厅） · official_health_education: https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html
+- [aha_cuffless_bp_scientific_statement_002] Cuffless Devices for the Measurement of Blood Pressure（American Heart Association） · scientific_statement: https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know
+
+## 引用质量
+证据覆盖率：1.0
+建议证据绑定率：1.0
+敏感用途高可信来源：是
+
+## 免责声明
+本报告仅供个人健康趋势参考，不能替代医生诊断、治疗决策或规范血压测量。如有不适或多次复核仍异常，请咨询专业医务人员。

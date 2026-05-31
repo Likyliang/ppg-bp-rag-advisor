@@ -24,10 +24,25 @@
 
 ```bash
 .venv/bin/python scripts/prepare_fulltext_candidates.py
-.venv/bin/python scripts/download_fulltext_candidates.py
+.venv/bin/python scripts/download_fulltext_candidates.py --all-public-pdf
 .venv/bin/python scripts/create_fulltext_summaries.py
 .venv/bin/python scripts/extract_source_notes.py --clean
 .venv/bin/python scripts/ingest_kb.py
+.venv/bin/python scripts/ingest_fulltext_pdfs.py --query "PPG 接触压力 环境光 复测"
+```
+
+`scripts/ingest_fulltext_pdfs.py` 会把 `knowledge_base/sources/downloads/` 中已治理的本地 PDF 细切成约 850 字符、带重叠的 chunks，并写入 ignored 本地向量目录：
+
+- `knowledge_base/vector_store/fulltext_chunks.jsonl`
+- `knowledge_base/vector_store/fulltext_hashing_vectors.npz`
+- `knowledge_base/processed/fulltext_vector_manifest.json`
+
+这些本地 chunk 和向量文件用于 demo 与检索调试，不提交 PDF 全文或全文抽取文本。可提交的知识库仍由 `fulltext_summaries/`、`raw/expanded/` 和 `processed/chunks.jsonl` 组成。
+
+小程序结构化数据到报告的本地 demo：
+
+```bash
+.venv/bin/python scripts/run_structured_report_demo.py --input examples/miniapp_payload.json --prefix miniapp_demo
 ```
 
 完整质量门禁会自动校验候选清单并重新生成可提交摘要：

@@ -27,7 +27,7 @@ USE_TOPIC_MAP = {
 
 USE_EVIDENCE_CLASS_MAP = {
     "bp_category_reference": ["guideline", "official_health_education", "safety_rule"],
-    "cuffless_ppg_limitations": ["scientific_statement", "guideline", "official_health_education", "research_review", "peer_reviewed_research"],
+    "cuffless_ppg_limitations": ["scientific_statement", "guideline", "official_health_education", "review", "research_context", "safety_rule"],
     "device_advice": ["validation_standard", "official_registry", "guideline", "official_health_education"],
     "disclaimer": ["safety_rule", "scientific_statement", "official_health_education"],
     "emergency_alert": ["guideline", "official_health_education", "safety_rule"],
@@ -35,8 +35,8 @@ USE_EVIDENCE_CLASS_MAP = {
     "lifestyle": ["guideline", "official_health_education"],
     "medication_safety": ["guideline", "official_health_education", "safety_rule"],
     "remeasurement": ["guideline", "official_health_education", "safety_rule"],
-    "research_background": ["research_review", "peer_reviewed_research", "scientific_statement"],
-    "signal_quality": ["research_review", "peer_reviewed_research", "scientific_statement", "official_health_education"],
+    "research_background": ["review", "research_context", "scientific_statement", "safety_rule"],
+    "signal_quality": ["review", "research_context", "scientific_statement", "official_health_education", "safety_rule"],
     "special_population": ["guideline", "official_health_education"],
     "validated_devices": ["validation_standard", "official_registry", "guideline"],
 }
@@ -51,6 +51,12 @@ BASE_GOLDEN_QUERIES: List[Dict] = [
     {"query": "PPG 接触压力 过紧 过松 波形质量", "expected_uses": ["signal_quality"]},
     {"query": "摄像头 PPG 肤色 环境光 影响 测量", "expected_uses": ["signal_quality", "research_background"]},
     {"query": "PPG 采集时长 采样 信号处理 最佳实践", "expected_uses": ["signal_quality", "research_background"]},
+    {"query": "motion_artifact_score 偏高 PPG 手指移动 重新采集", "expected_uses": ["signal_quality", "remeasurement"]},
+    {"query": "finger_coverage_score 低 手指覆盖不完整 摄像头 PPG", "expected_uses": ["signal_quality", "remeasurement"]},
+    {"query": "contact_pressure_level high 手指按压过紧 PPG 波形质量", "expected_uses": ["signal_quality"]},
+    {"query": "ambient_light_level bright 强光 摄像头 PPG 信号质量", "expected_uses": ["signal_quality", "research_background"]},
+    {"query": "PPG 采集 8 秒 有效脉搏不足 能不能看", "expected_uses": ["signal_quality", "remeasurement"]},
+    {"query": "PAT PTT 校准限制 可以证明血压准确吗", "expected_uses": ["cuffless_ppg_limitations", "research_background"]},
     {"query": "腕部 PPG 传感器位置 姿势 高度 信号质量", "expected_uses": ["signal_quality", "research_background"]},
     {"query": "可穿戴光学传感器 活动状态 运动 误差 PPG", "expected_uses": ["signal_quality", "research_background"]},
     {"query": "imaging PPG quality assessment ambient illumination motion artifact", "expected_uses": ["signal_quality", "research_background"]},

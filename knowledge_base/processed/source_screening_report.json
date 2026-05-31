@@ -1,31 +1,32 @@
 {
-  "total_sources": 118,
-  "included_count": 114,
+  "total_sources": 140,
+  "included_count": 136,
   "excluded_count": 4,
   "threshold": 18,
   "issues": [],
   "duplicate_source_hashes": [],
   "topic_counts": {
-    "bp_categories": 7,
-    "home_bp_monitoring": 16,
+    "bp_categories": 9,
+    "home_bp_monitoring": 24,
     "emergency": 6,
     "cuffless_ppg_limitations": 9,
     "validated_devices": 7,
-    "lifestyle": 18,
+    "lifestyle": 22,
     "special_population": 16,
-    "measurement_quality": 27,
+    "measurement_quality": 32,
     "medication_safety": 5,
-    "disclaimer": 3
+    "disclaimer": 3,
+    "research_context": 3
   },
   "evidence_class_counts": {
-    "guideline": 15,
-    "official_health_education": 51,
-    "scientific_statement": 5,
+    "guideline": 20,
+    "official_health_education": 58,
+    "scientific_statement": 6,
     "review": 18,
-    "validation_standard": 4,
+    "validation_standard": 5,
     "patient_education": 2,
-    "safety_rule": 9,
-    "research_context": 10
+    "safety_rule": 14,
+    "research_context": 13
   },
   "included_sources": [
     {
@@ -4979,6 +4980,987 @@
       },
       "source_quality_score": 22,
       "source_hash": "27bc77c3382a30b5",
+      "review_status": "included"
+    },
+    {
+      "source_id": "who_global_hypertension_report_2023",
+      "title": "Global report on hypertension: the race against a silent killer",
+      "organization": "World Health Organization",
+      "url": "https://iris.who.int/handle/10665/372896",
+      "doi": "",
+      "pmid": "",
+      "year": 2023,
+      "language": "en",
+      "region": "global",
+      "topic": "bp_categories",
+      "evidence_class": "official_health_education",
+      "source_type": "global_report_pdf",
+      "include": true,
+      "allowed_uses": [
+        "bp_category_reference",
+        "lifestyle",
+        "home_bp_monitoring",
+        "disclaimer"
+      ],
+      "copyright_note": "WHO report with CC BY-NC-SA 3.0 IGO license; summarize only in committed knowledge notes.",
+      "access_note": "public WHO IRIS landing; direct PDF request returned 403/html from this environment on 2026-05-22",
+      "last_accessed": "2026-05-22",
+      "screening": {
+        "authority": 5,
+        "recency": 4,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "WHO 2023 全球高血压报告提供全球负担、准确诊断、基层管理和生活方式政策背景，可补充论文和报告中的公共卫生解释。",
+        "key_points": [
+          "高血压控制需要准确诊断、规范测量和长期管理。",
+          "公共卫生和生活方式内容只能作为背景和健康教育，不改变本系统阈值。",
+          "PPG 估算不能替代规范血压测量或临床诊断。"
+        ],
+        "implementation_notes": [
+          "用于全球背景、bp_category_reference、home_bp_monitoring 和免责声明，不用于个体化治疗。"
+        ]
+      },
+      "source_quality_score": 22,
+      "source_hash": "c952dfe0321293bb",
+      "review_status": "included"
+    },
+    {
+      "source_id": "cdc_million_hearts_smbp_action_guide",
+      "title": "Million Hearts Self-Measured Blood Pressure Monitoring: Action Steps for Clinicians",
+      "organization": "Centers for Disease Control and Prevention / Million Hearts",
+      "url": "https://stacks.cdc.gov/view/cdc/251870",
+      "doi": "10.15620/cdc/251870",
+      "pmid": "",
+      "year": 2014,
+      "language": "en",
+      "region": "US",
+      "topic": "home_bp_monitoring",
+      "evidence_class": "official_health_education",
+      "source_type": "clinical_toolkit_pdf",
+      "include": true,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice"
+      ],
+      "copyright_note": "Public domain CDC Stacks PDF; summarize SMBP workflow principles only.",
+      "access_note": "public CDC Stacks landing; direct PDF request returned 403 from this environment on 2026-05-22",
+      "last_accessed": "2026-05-22",
+      "screening": {
+        "authority": 5,
+        "recency": 2,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "CDC/Million Hearts SMBP 行动指南可补充家庭自测血压与临床支持结合、记录和复核流程。",
+        "key_points": [
+          "家庭血压监测应与规范设备、连续记录和临床沟通结合。",
+          "本系统可借鉴其复测和记录流程，但不能替代医务人员判断。",
+          "PPG 异常提示应转化为规范血压计复核和记录。"
+        ],
+        "implementation_notes": [
+          "用于 home_bp_monitoring、remeasurement 和 device_advice。"
+        ]
+      },
+      "source_quality_score": 22,
+      "source_hash": "e695d916df17f914",
+      "review_status": "included"
+    },
+    {
+      "source_id": "nhlbi_self_measured_blood_pressure_fact_sheet",
+      "title": "Self-Measured Blood Pressure",
+      "organization": "National Heart Lung and Blood Institute",
+      "url": "https://www.nhlbi.nih.gov/resources/self-measured-blood-pressure-fact-sheet",
+      "doi": "",
+      "pmid": "",
+      "year": 2023,
+      "language": "en",
+      "region": "US",
+      "topic": "home_bp_monitoring",
+      "evidence_class": "official_health_education",
+      "source_type": "patient_instruction_pdf",
+      "include": true,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice"
+      ],
+      "copyright_note": "Public NHLBI PDF; summarize self-measured BP principles only.",
+      "access_note": "public NHLBI PDF archived on 2026-05-22; tracked summary only",
+      "last_accessed": "2026-05-22",
+      "screening": {
+        "authority": 5,
+        "recency": 4,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "NHLBI 自测血压资料支持家庭自测、规范设备、连续记录和与医疗团队共享结果。",
+        "key_points": [
+          "家庭自测血压应使用合适设备并按规范流程记录。",
+          "记录可帮助医生理解趋势。",
+          "PPG 估算异常应转化为规范血压计复核。"
+        ],
+        "implementation_notes": [
+          "用于 home_bp_monitoring、remeasurement 和 device_advice。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "6aa2672efe0ffbab",
+      "review_status": "included"
+    },
+    {
+      "source_id": "aha_ama_2020_smbp_policy_statement",
+      "title": "Self-Measured Blood Pressure Monitoring at Home: A Joint Policy Statement From the American Heart Association and American Medical Association",
+      "organization": "American Heart Association / American Medical Association",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32567342/",
+      "doi": "10.1161/CIR.0000000000000803",
+      "pmid": 32567342,
+      "year": 2020,
+      "language": "en",
+      "region": "US",
+      "topic": "home_bp_monitoring",
+      "evidence_class": "scientific_statement",
+      "source_type": "policy_statement_pdf",
+      "include": true,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice"
+      ],
+      "copyright_note": "Policy statement metadata and local PDF summary only; do not commit article full text.",
+      "access_note": "local browser PDF archived on 2026-05-21; tracked summary only",
+      "last_accessed": "2026-05-22",
+      "screening": {
+        "authority": 5,
+        "recency": 3,
+        "relevance": 5,
+        "accessibility": 4,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "AHA/AMA 家庭自测血压政策声明支持把家庭血压监测作为诊室外测量方法，并强调设备、流程和临床支持。",
+        "key_points": [
+          "家庭自测血压适合连续记录并辅助医生了解趋势。",
+          "需要规范设备和测量流程。",
+          "PPG 估算只能触发复核和记录，不可作为诊断或治疗依据。"
+        ],
+        "implementation_notes": [
+          "用于 home_bp_monitoring、remeasurement 和 device_advice。"
+        ]
+      },
+      "source_quality_score": 22,
+      "source_hash": "e4ca866e67811b14",
+      "review_status": "included"
+    },
+    {
+      "source_id": "nhc_2023_adult_hypertension_dietary_guideline",
+      "title": "成人高血压食养指南（2023年版）",
+      "organization": "国家卫生健康委办公厅",
+      "url": "https://www.nhc.gov.cn/sps/c100088/202301/f01895a06c5349ef999f25da833c166d.shtml",
+      "doi": "",
+      "pmid": "",
+      "year": 2023,
+      "language": "zh",
+      "region": "CN",
+      "topic": "lifestyle",
+      "evidence_class": "guideline",
+      "source_type": "national_nutrition_guideline_pdf",
+      "include": true,
+      "allowed_uses": [
+        "lifestyle",
+        "home_bp_monitoring",
+        "remeasurement",
+        "special_population"
+      ],
+      "copyright_note": "国家卫健委公开食养指南 PDF；提交中文摘要和 citation，不提交全文。",
+      "access_note": "public NHC PDF archived locally on 2026-05-27; tracked summary only",
+      "last_accessed": "2026-05-27",
+      "screening": {
+        "authority": 5,
+        "recency": 4,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "国家卫健委《成人高血压食养指南（2023年版）》提供中国成人高血压膳食、减钠增钾、体重管理和自我血压监测的官方食养依据。",
+        "key_points": [
+          "高血压管理中的膳食干预应强调减钠增钾、合理膳食、吃动平衡和体重管理。",
+          "报告可把该来源用于中国用户生活方式解释和血压自我管理提醒。",
+          "食养指南不能被改写为个体化诊断、处方或替代医生治疗方案。"
+        ],
+        "implementation_notes": [
+          "优先用于中国场景 lifestyle、home_bp_monitoring 和 remeasurement；不输出个体化食疗处方。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "5ffa3d99eaef807c",
+      "review_status": "included"
+    },
+    {
+      "source_id": "nhc_ws_t_430_2013_hypertension_dietary_guidance",
+      "title": "高血压患者膳食指导 WS/T 430-2013",
+      "organization": "国家卫生健康委员会",
+      "url": "https://www.nhc.gov.cn/wjw/yingyang/201308/cce5017663e6457d98db7be683c36b4c.shtml",
+      "doi": "",
+      "pmid": "",
+      "year": 2013,
+      "language": "zh",
+      "region": "CN",
+      "topic": "lifestyle",
+      "evidence_class": "validation_standard",
+      "source_type": "health_industry_standard_pdf",
+      "include": true,
+      "allowed_uses": [
+        "lifestyle",
+        "home_bp_monitoring",
+        "remeasurement"
+      ],
+      "copyright_note": "国家卫健委卫生行业标准公开 PDF；提交摘要和标准引用，不提交全文。",
+      "access_note": "public NHC standard PDF archived locally on 2026-05-27; tracked summary only",
+      "last_accessed": "2026-05-27",
+      "screening": {
+        "authority": 5,
+        "recency": 2,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "WS/T 430-2013 是国家卫健委发布的高血压患者膳食指导标准，可作为中国场景饮食建议的标准化背景来源。",
+        "key_points": [
+          "高血压饮食解释应围绕限盐、合理膳食和长期生活方式管理。",
+          "标准来源可用于支撑报告中的通用饮食原则。",
+          "本系统不得基于该标准生成针对个人病情的治疗或用药建议。"
+        ],
+        "implementation_notes": [
+          "用于 lifestyle 和 remeasurement 背景；与 2023 食养指南搭配使用。"
+        ]
+      },
+      "source_quality_score": 20,
+      "source_hash": "26ae207561462f33",
+      "review_status": "included"
+    },
+    {
+      "source_id": "nhc_2017_basic_public_health_service_hypertension_management",
+      "title": "国家基本公共卫生服务规范（第三版）高血压患者健康管理服务规范",
+      "organization": "原国家卫生计生委",
+      "url": "https://www.nhc.gov.cn/ewebeditor/uploadfile/2017/04/20170417104506514.pdf",
+      "doi": "",
+      "pmid": "",
+      "year": 2017,
+      "language": "zh",
+      "region": "CN",
+      "topic": "home_bp_monitoring",
+      "evidence_class": "guideline",
+      "source_type": "public_health_service_standard_pdf",
+      "include": true,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "special_population",
+        "emergency_alert"
+      ],
+      "copyright_note": "国家基本公共卫生服务规范公开 PDF；仅提交高血压管理相关摘要。",
+      "access_note": "public NHC PDF archived locally on 2026-05-27; tracked summary only",
+      "last_accessed": "2026-05-27",
+      "screening": {
+        "authority": 5,
+        "recency": 3,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "《国家基本公共卫生服务规范（第三版）》中的高血压患者健康管理服务规范可支持中国基层随访、分类干预和转诊边界说明。",
+        "key_points": [
+          "基层高血压管理强调建档、随访、分类干预和必要时转诊。",
+          "报告可引用该来源支持记录、复测和与基层医疗服务沟通。",
+          "急症或明显异常时应触发安全提醒，不由小程序作临床判断。"
+        ],
+        "implementation_notes": [
+          "用于 home_bp_monitoring、remeasurement、special_population 和 emergency_alert；不生成诊断或治疗调整。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "02403d691c902f1c",
+      "review_status": "included"
+    },
+    {
+      "source_id": "nccd_2020_primary_hypertension_management_guideline",
+      "title": "国家基层高血压防治管理指南（2020版）",
+      "organization": "国家心血管病中心 / 国家基本公共卫生服务项目基层高血压管理办公室",
+      "url": "https://www.nccd.org.cn/Sites/Uploaded/File/2021/3/%E5%9B%BD%E5%AE%B6%E5%9F%BA%E5%B1%82%E9%AB%98%E8%A1%80%E5%8E%8B%E9%98%B2%E6%B2%BB%E7%AE%A1%E7%90%86%E6%8C%87%E5%8D%97%202020%E7%89%88.pdf",
+      "doi": "",
+      "pmid": "",
+      "year": 2020,
+      "language": "zh",
+      "region": "CN",
+      "topic": "home_bp_monitoring",
+      "evidence_class": "guideline",
+      "source_type": "primary_care_guideline_pdf",
+      "include": true,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "lifestyle",
+        "special_population",
+        "emergency_alert"
+      ],
+      "copyright_note": "国家心血管病中心公开基层高血压指南 PDF；提交摘要和 citation，不提交全文。",
+      "access_note": "public NCCD PDF archived locally on 2026-05-27; tracked summary only",
+      "last_accessed": "2026-05-27",
+      "screening": {
+        "authority": 5,
+        "recency": 3,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "《国家基层高血压防治管理指南（2020版）》面向基层成人原发性高血压管理，可强化中国场景下复测、分级管理、长期随访和转诊边界。",
+        "key_points": [
+          "基层高血压管理需要规范测量、长期随访和分级管理。",
+          "小程序报告只能提示复测、记录和就医沟通，不能替代基层医生判断。",
+          "异常或特殊人群场景应更保守地提示规范设备复核和医疗咨询。"
+        ],
+        "implementation_notes": [
+          "用于中国场景 home_bp_monitoring、remeasurement 和安全转诊边界；不输出治疗方案。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "a2887ca0c5def708",
+      "review_status": "included"
+    },
+    {
+      "source_id": "healthy_china_2019_2030_action",
+      "title": "健康中国行动（2019-2030年）",
+      "organization": "健康中国行动推进委员会",
+      "url": "https://www.nhc.gov.cn/cms-search/downFiles/470339610aea4a7887d0810b4c00c9bd.pdf",
+      "doi": "",
+      "pmid": "",
+      "year": 2019,
+      "language": "zh",
+      "region": "CN",
+      "topic": "lifestyle",
+      "evidence_class": "official_health_education",
+      "source_type": "national_policy_plan_pdf",
+      "include": true,
+      "allowed_uses": [
+        "lifestyle",
+        "home_bp_monitoring",
+        "remeasurement",
+        "disclaimer"
+      ],
+      "copyright_note": "健康中国行动官方公开 PDF；仅提交政策背景摘要。",
+      "access_note": "public NHC PDF archived locally on 2026-05-27; tracked summary only",
+      "last_accessed": "2026-05-27",
+      "screening": {
+        "authority": 5,
+        "recency": 3,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "《健康中国行动（2019-2030年）》提供中国慢病防控、心脑血管疾病防治、健康生活方式和高血压规范管理率目标的政策背景。",
+        "key_points": [
+          "中国高血压防控强调健康生活方式、基层管理和长期规范管理。",
+          "该来源适合用于公共卫生背景和中国场景解释。",
+          "政策目标不能被转写为个体诊断或治疗建议。"
+        ],
+        "implementation_notes": [
+          "用于中国公共卫生背景、lifestyle 和免责声明；不用于个体化临床决策。"
+        ]
+      },
+      "source_quality_score": 21,
+      "source_hash": "ef395958e8d6bd25",
+      "review_status": "included"
+    },
+    {
+      "source_id": "healthy_china_cvd_action_2023_2030",
+      "title": "健康中国行动—心脑血管疾病防治行动实施方案（2023—2030年）",
+      "organization": "国家卫生健康委等14部门",
+      "url": "https://www.gov.cn/zhengce/zhengceku/202311/content_6915365.htm",
+      "doi": "",
+      "pmid": "",
+      "year": 2023,
+      "language": "zh",
+      "region": "CN",
+      "topic": "home_bp_monitoring",
+      "evidence_class": "official_health_education",
+      "source_type": "national_action_plan_html",
+      "include": true,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "lifestyle",
+        "remeasurement",
+        "special_population",
+        "disclaimer"
+      ],
+      "copyright_note": "中国政府网公开政策文本；提交摘要，不复制全文。",
+      "access_note": "public Chinese government policy page",
+      "last_accessed": "2026-05-27",
+      "screening": {
+        "authority": 5,
+        "recency": 4,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "《健康中国行动—心脑血管疾病防治行动实施方案（2023—2030年）》是国家卫健委等部门发布的心脑血管疾病防治专项行动方案，可补充中国高血压综合防控和基层能力建设背景。",
+        "key_points": [
+          "心脑血管疾病防控强调预防为主、基层重点、健康素养和综合防控。",
+          "报告可用该来源解释为什么要复测、记录、长期管理和关注危险因素。",
+          "该政策来源不用于个体诊断、用药或急症 reassurance。"
+        ],
+        "implementation_notes": [
+          "用于中国场景公共卫生背景、home_bp_monitoring 和 lifestyle；不改变报告阈值。"
+        ]
+      },
+      "source_quality_score": 23,
+      "source_hash": "1ebf4db8b0aa2296",
+      "review_status": "included"
+    },
+    {
+      "source_id": "state_council_chronic_disease_plan_2017_2025",
+      "title": "中国防治慢性病中长期规划（2017—2025年）",
+      "organization": "国务院办公厅",
+      "url": "https://www.gov.cn/zhengce/content/2017-02/14/content_5167886.htm",
+      "doi": "",
+      "pmid": "",
+      "year": 2017,
+      "language": "zh",
+      "region": "CN",
+      "topic": "home_bp_monitoring",
+      "evidence_class": "official_health_education",
+      "source_type": "national_chronic_disease_plan_html",
+      "include": true,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "lifestyle",
+        "remeasurement",
+        "disclaimer"
+      ],
+      "copyright_note": "中国政府网公开政策文本；提交摘要，不复制全文。",
+      "access_note": "public State Council policy page",
+      "last_accessed": "2026-05-27",
+      "screening": {
+        "authority": 5,
+        "recency": 2,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 4
+      },
+      "notes": {
+        "summary": "国务院办公厅《中国防治慢性病中长期规划（2017—2025年）》提供高血压等慢性病健康管理、分级诊疗和健康教育的国家政策背景。",
+        "key_points": [
+          "慢性病防治强调健康教育、早诊早治、规范诊疗和全流程健康管理。",
+          "高血压、糖尿病等慢性病患者健康管理是国家基本公共卫生服务的重要组成。",
+          "该来源只用于政策背景和安全边界，不用于生成个人诊疗结论。"
+        ],
+        "implementation_notes": [
+          "用于中国政策背景、home_bp_monitoring 和 disclaimer；不作个体化治疗依据。"
+        ]
+      },
+      "source_quality_score": 20,
+      "source_hash": "45650d4d85edf590",
+      "review_status": "included"
+    },
+    {
+      "source_id": "nhc_2024_chinese_health_literacy_basic_skills",
+      "title": "中国公民健康素养——基本知识与技能（2024年版）",
+      "organization": "国家卫生健康委办公厅",
+      "url": "https://www.nhc.gov.cn/xcs/c100123/202405/73a4927142f34152abed875634a3c13b.shtml",
+      "doi": "",
+      "pmid": "",
+      "year": 2024,
+      "language": "zh",
+      "region": "CN",
+      "topic": "lifestyle",
+      "evidence_class": "official_health_education",
+      "source_type": "national_health_literacy_html",
+      "include": true,
+      "allowed_uses": [
+        "lifestyle",
+        "home_bp_monitoring",
+        "remeasurement",
+        "emergency_alert",
+        "medication_safety",
+        "disclaimer"
+      ],
+      "copyright_note": "国家卫健委公开健康素养文本；提交摘要，不复制全文。",
+      "access_note": "public NHC policy page",
+      "last_accessed": "2026-05-27",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 4,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "国家卫健委《中国公民健康素养——基本知识与技能（2024年版）》明确关注血压变化、控制高血压危险因素、做好自我健康管理，以及会测量血压和及时急救。",
+        "key_points": [
+          "健康素养包括关注血压变化、控制危险因素和自我健康管理。",
+          "公众应具备测量血压、识别紧急医疗救助需求和科学就医的基本技能。",
+          "报告可用该来源强化中国用户的复测、记录、急救和遵医嘱边界。"
+        ],
+        "implementation_notes": [
+          "用于 lifestyle、home_bp_monitoring、emergency_alert、medication_safety 和免责声明；不输出诊断或用药调整。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "34dae19c29d00ee2",
+      "review_status": "included"
+    },
+    {
+      "source_id": "chinese_2019_home_bp_monitoring_guideline",
+      "title": "2019中国家庭血压监测指南",
+      "organization": "中国高血压联盟《家庭血压监测指南》委员会",
+      "url": "https://zhgxyzz.xml-journal.net/cn/article/pdf/preview/10.16439/j.cnki.1673-7245.2019.08.005.pdf",
+      "doi": "10.3969/j.issn.1000-3614.2019.07.003",
+      "pmid": "",
+      "year": 2019,
+      "language": "zh",
+      "region": "CN",
+      "topic": "home_bp_monitoring",
+      "evidence_class": "guideline",
+      "source_type": "home_bp_monitoring_guideline_pdf",
+      "include": true,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice",
+        "bp_category_reference"
+      ],
+      "copyright_note": "中国循环杂志公开 PDF；只提交摘要、citation 和访问记录，不提交全文。",
+      "access_note": "local PDF archived on 2026-05-28; tracked summary only",
+      "last_accessed": "2026-05-28",
+      "screening": {
+        "authority": 4,
+        "recency": 3,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "《2019中国家庭血压监测指南》围绕家庭血压计选择、测量频率、测量时间、记录方式和家庭血压正常值等问题给出规范化建议，是中国场景家庭复测和连续记录的重要补充来源。",
+        "key_points": [
+          "家庭血压监测是高血压管理的重要组成，强调规范设备和固定流程。",
+          "报告可引用该来源解释为什么单次 PPG 估算后需要上臂式血压计复核和连续记录。",
+          "家庭血压记录适合辅助医生或基层医疗人员理解趋势。"
+        ],
+        "implementation_notes": [
+          "用于中国用户 home_bp_monitoring、remeasurement 和 device_advice；不生成诊断、治疗或用药调整。"
+        ]
+      },
+      "source_quality_score": 22,
+      "source_hash": "403599d13ae153ba",
+      "review_status": "included"
+    },
+    {
+      "source_id": "esc_2024_elevated_bp_hypertension_guideline",
+      "title": "2024 ESC Guidelines for the management of elevated blood pressure and hypertension",
+      "organization": "European Society of Cardiology / European Heart Journal",
+      "url": "https://academic.oup.com/eurheartj/article/45/38/3912/7741010",
+      "doi": "10.1093/eurheartj/ehae178",
+      "pmid": "",
+      "year": 2024,
+      "language": "en",
+      "region": "EU",
+      "topic": "bp_categories",
+      "evidence_class": "guideline",
+      "source_type": "guideline_pdf",
+      "include": true,
+      "allowed_uses": [
+        "bp_category_reference",
+        "home_bp_monitoring",
+        "remeasurement",
+        "lifestyle",
+        "special_population"
+      ],
+      "copyright_note": "ESC / European Heart Journal PDF stored locally for private research workflow; submit citation and Chinese summary only.",
+      "access_note": "local PDF archived on 2026-05-28; tracked summary only",
+      "last_accessed": "2026-05-28",
+      "screening": {
+        "authority": 5,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 4,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "2024 ESC 高血压指南可作为欧洲高血压分类、测量、风险评估、生活方式和管理流程的国际对照来源。",
+        "key_points": [
+          "指南强调血压解释需要规范测量和持续管理，不应依赖单次非规范估算。",
+          "欧洲指南可用于国际对照，但不替代本 demo 面向中国用户时的中国官方资料优先级。",
+          "特殊人群和合并疾病内容只用于更保守的复测和就医沟通提醒。"
+        ],
+        "implementation_notes": [
+          "用于 bp_category_reference、home_bp_monitoring 和论文国际对照；不混用为中国默认诊断阈值或治疗建议。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "23786f6376627f58",
+      "review_status": "included"
+    },
+    {
+      "source_id": "esc_2024_elevated_bp_hypertension_doi_report",
+      "title": "ESC Declaration of Interests Report for the 2024 elevated blood pressure and hypertension guideline",
+      "organization": "European Society of Cardiology",
+      "url": "https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Elevated-Blood-Pressure-and-Hypertension",
+      "doi": "",
+      "pmid": "",
+      "year": 2024,
+      "language": "en",
+      "region": "EU",
+      "topic": "research_context",
+      "evidence_class": "research_context",
+      "source_type": "guideline_disclosure_report_pdf",
+      "include": true,
+      "allowed_uses": [
+        "research_background"
+      ],
+      "copyright_note": "ESC declaration-of-interests report stored locally for transparency context; do not use as clinical advice source.",
+      "access_note": "local PDF archived on 2026-05-28; supplemental only",
+      "last_accessed": "2026-05-28",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 3,
+        "accessibility": 4,
+        "safety_applicability": 3
+      },
+      "notes": {
+        "summary": "该 PDF 是 2024 ESC 高血压指南的利益声明报告，只用于说明指南治理和透明度背景。",
+        "key_points": [
+          "它不是临床建议来源，也不支撑用户报告中的复测、生活方式或就医建议。",
+          "可在组会或论文方法部分作为指南治理透明度补充材料。",
+          "不得把利益声明报告误归类为 Essential Messages 或临床指南正文。"
+        ],
+        "implementation_notes": [
+          "仅用于 research_background；不进入用户级建议证据链。"
+        ]
+      },
+      "source_quality_score": 19,
+      "source_hash": "7309007da7d7318d",
+      "review_status": "included"
+    },
+    {
+      "source_id": "esc_2024_pharmacotherapy_what_is_new",
+      "title": "2024 ESC Guidelines for elevated blood pressure and hypertension - what is new in pharmacotherapy",
+      "organization": "European Heart Journal - Cardiovascular Pharmacotherapy",
+      "url": "https://academic.oup.com/ehjcvp/article/11/1/7/7818405",
+      "doi": "10.1093/ehjcvp/pvae084",
+      "pmid": "",
+      "year": 2025,
+      "language": "en",
+      "region": "EU",
+      "topic": "research_context",
+      "evidence_class": "research_context",
+      "source_type": "commentary_pdf",
+      "include": true,
+      "allowed_uses": [
+        "research_background"
+      ],
+      "copyright_note": "Commentary PDF stored locally for research background; not used for patient medication advice.",
+      "access_note": "local PDF archived on 2026-05-28; supplemental only",
+      "last_accessed": "2026-05-28",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 3,
+        "accessibility": 4,
+        "safety_applicability": 3
+      },
+      "notes": {
+        "summary": "该短文概述 ESC 2024 高血压指南中药物治疗方面的新变化，只作为研究背景和指南变化讨论材料。",
+        "key_points": [
+          "本 demo 不提供开药、停药或调药建议。",
+          "该文献不得作为用户报告中的用药行动依据。",
+          "若汇报中提到，只用于说明为什么系统需要 medication safety 边界。"
+        ],
+        "implementation_notes": [
+          "仅用于 research_background；不得用于 medication_safety 的用户级行动建议。"
+        ]
+      },
+      "source_quality_score": 19,
+      "source_hash": "c758701b10d0fdbb",
+      "review_status": "included"
+    },
+    {
+      "source_id": "aha_prevent_equations_circulation_2024",
+      "title": "Development and Validation of the American Heart Association Predicting Risk of Cardiovascular Disease EVENTs PREVENT Equations",
+      "organization": "American Heart Association / Circulation",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.123.067626",
+      "doi": "10.1161/CIRCULATIONAHA.123.067626",
+      "pmid": "",
+      "year": 2024,
+      "language": "en",
+      "region": "US",
+      "topic": "research_context",
+      "evidence_class": "research_context",
+      "source_type": "risk_equation_research_pdf",
+      "include": true,
+      "allowed_uses": [
+        "research_background"
+      ],
+      "copyright_note": "AHA/Circulation research PDF stored locally for research background; not used for individual risk prediction in the demo.",
+      "access_note": "local PDF archived on 2026-05-28; supplemental only",
+      "last_accessed": "2026-05-28",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 3,
+        "accessibility": 4,
+        "safety_applicability": 3
+      },
+      "notes": {
+        "summary": "AHA PREVENT 方程论文用于心血管风险评估方法背景，不属于当前 PPG 血压估算解释 demo 的核心用户报告来源。",
+        "key_points": [
+          "该论文可用于后续扩展到心血管风险评估时的方法背景。",
+          "当前 demo 不计算或宣称个体 10 年心血管风险。",
+          "不得把研究模型输出写成诊断、治疗或用药建议。"
+        ],
+        "implementation_notes": [
+          "仅用于 research_background；不改变当前 demo 的血压估算解释和安全边界。"
+        ]
+      },
+      "source_quality_score": 19,
+      "source_hash": "fdef43d8277e4c0c",
+      "review_status": "included"
+    },
+    {
+      "source_id": "local_ppg_motion_artifact_feature_rule",
+      "title": "PPG motion artifact feature interpretation rule",
+      "organization": "project",
+      "url": "",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "zh",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "safety_rule",
+      "source_type": "local_feature_dictionary_rule",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "remeasurement",
+        "cuffless_ppg_limitations",
+        "research_background"
+      ],
+      "copyright_note": "Project-authored PPG feature dictionary rule.",
+      "access_note": "local",
+      "last_accessed": "2026-05-31",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "本地特征字典规则：motion_artifact_score 只用于解释手指移动或运动伪影对 PPG 采集稳定性的影响。",
+        "key_points": [
+          "motion_artifact_score 偏高时，报告应提示保持静止并重新采集。",
+          "该特征可降低本次解释强度，但不能证明血压估算是否准确。",
+          "异常运动伪影不应被解释为疾病风险或血压升高原因。"
+        ],
+        "implementation_notes": [
+          "用于 signal_quality 和 remeasurement；不得用于诊断、治疗、用药或 PPG 准确性验证。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "e8be3f1530472de9",
+      "review_status": "included"
+    },
+    {
+      "source_id": "local_ppg_finger_coverage_feature_rule",
+      "title": "PPG finger coverage feature interpretation rule",
+      "organization": "project",
+      "url": "",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "zh",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "safety_rule",
+      "source_type": "local_feature_dictionary_rule",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "remeasurement",
+        "cuffless_ppg_limitations"
+      ],
+      "copyright_note": "Project-authored PPG feature dictionary rule.",
+      "access_note": "local",
+      "last_accessed": "2026-05-31",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "本地特征字典规则：finger_coverage_score 只用于解释手指覆盖摄像头是否稳定。",
+        "key_points": [
+          "覆盖不完整时，摄像头 PPG 波形可能不稳定，报告应建议重新覆盖后复测。",
+          "覆盖完整度只说明采集条件，不代表血压估算值一定准确。",
+          "用户报告应使用易懂表达，不展示复杂算法术语。"
+        ],
+        "implementation_notes": [
+          "用于 signal_quality 和 remeasurement；与摄像头 PPG 采集流程提示配合使用。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "2845db01975cc5e6",
+      "review_status": "included"
+    },
+    {
+      "source_id": "local_ppg_contact_pressure_feature_rule",
+      "title": "PPG contact pressure feature interpretation rule",
+      "organization": "project",
+      "url": "",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "zh",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "safety_rule",
+      "source_type": "local_feature_dictionary_rule",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "remeasurement",
+        "cuffless_ppg_limitations",
+        "research_background"
+      ],
+      "copyright_note": "Project-authored PPG feature dictionary rule.",
+      "access_note": "local",
+      "last_accessed": "2026-05-31",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "本地特征字典规则：contact_pressure_level 只用于解释手指按压力度对 PPG 波形质量的影响。",
+        "key_points": [
+          "按压力度过紧、过松或不稳定时，报告应建议放松手指并保持稳定。",
+          "接触压力异常只能说明采集质量不确定，不能估计真实血压偏差。",
+          "该特征应与 contact pressure / contact force PPG 研究证据一起用于研发审计。"
+        ],
+        "implementation_notes": [
+          "用于 signal_quality、remeasurement 和研究背景；不用于个体诊断或血压准确性验证。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "3e7332f7541fc2c4",
+      "review_status": "included"
+    },
+    {
+      "source_id": "local_ppg_ambient_light_feature_rule",
+      "title": "PPG ambient light feature interpretation rule",
+      "organization": "project",
+      "url": "",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "zh",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "safety_rule",
+      "source_type": "local_feature_dictionary_rule",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "remeasurement",
+        "cuffless_ppg_limitations",
+        "research_background"
+      ],
+      "copyright_note": "Project-authored PPG feature dictionary rule.",
+      "access_note": "local",
+      "last_accessed": "2026-05-31",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "本地特征字典规则：ambient_light_level 只用于解释环境光对摄像头 PPG 采集的影响。",
+        "key_points": [
+          "强光、过暗或光线不稳定时，报告应建议在稳定光线下重新测量。",
+          "环境光异常不应被解释为用户血压异常原因。",
+          "该特征可与 imaging/video PPG 光照研究和光学传感局限证据共同使用。"
+        ],
+        "implementation_notes": [
+          "用于 signal_quality、remeasurement 和 research_background；不用于诊断或治疗建议。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "934bfdf642d2f6c8",
+      "review_status": "included"
+    },
+    {
+      "source_id": "local_ppg_waveform_feature_boundary_rule",
+      "title": "PPG waveform and PAT PTT feature boundary rule",
+      "organization": "project",
+      "url": "",
+      "doi": "",
+      "pmid": "",
+      "year": 2026,
+      "language": "zh",
+      "region": "global",
+      "topic": "measurement_quality",
+      "evidence_class": "safety_rule",
+      "source_type": "local_feature_dictionary_rule",
+      "include": true,
+      "allowed_uses": [
+        "signal_quality",
+        "cuffless_ppg_limitations",
+        "research_background",
+        "disclaimer"
+      ],
+      "copyright_note": "Project-authored PPG feature dictionary rule.",
+      "access_note": "local",
+      "last_accessed": "2026-05-31",
+      "screening": {
+        "authority": 4,
+        "recency": 5,
+        "relevance": 5,
+        "accessibility": 5,
+        "safety_applicability": 5
+      },
+      "notes": {
+        "summary": "本地特征字典规则：波形形态、PAT/PTT 和分布外评分只用于研究背景、质量解释和安全边界。",
+        "key_points": [
+          "upstroke_time、pulse_width、dicrotic_notch、reflection_index、stiffness_index 等不应直接转成用户诊断。",
+          "PAT/PTT 可解释无袖带估算背景和校准限制，但不能证明单次 PPG 血压估算准确。",
+          "ood_score 偏高时应说明算法可能不适用于该输入，并建议规范复核。"
+        ],
+        "implementation_notes": [
+          "用于 research_background、cuffless_ppg_limitations 和 disclaimer；不进入诊断、治疗、用药或准确性验证结论。"
+        ]
+      },
+      "source_quality_score": 24,
+      "source_hash": "46bf8c4c84698211",
       "review_status": "included"
     }
   ],

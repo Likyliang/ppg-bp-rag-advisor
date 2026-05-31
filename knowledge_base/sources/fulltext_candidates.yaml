@@ -1,5 +1,5 @@
 catalog_version: 1
-updated: 2026-05-21
+updated: 2026-05-28
 scope: "Full-text candidate governance for PPG blood pressure RAG knowledge expansion."
 policy:
   credential_handling: "Never store usernames, passwords, cookies, tokens, or institution session data."
@@ -381,11 +381,11 @@ candidates:
     priority: 4
     topic: special_population
     access_mode: public_html
-    status: queued_manual
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: false
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/
     pdf_url:
     doi: 10.2337/dc26-S010
@@ -396,8 +396,11 @@ candidates:
     allowed_uses: [special_population, medication_safety, home_bp_monitoring]
     selection_reason: "ADA 2026 可强化糖尿病用户的特殊人群和用药安全边界。"
     access_instruction: "公开 HTML 已可读；若用户下载 PDF/打印版，请保存为 knowledge_base/sources/downloads/ada_2026_standards_cvd_bp.pdf。"
-    last_accessed: 2026-05-10
-    summary_notes: []
+    last_accessed: 2026-05-22
+    summary_notes:
+      - "已从 PMC 公开 HTML/本地 PDF 归档；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "糖尿病用户的血压解释需要结合整体心血管风险、用药和随访，不应由 PPG 估算单独判断。"
+      - "报告引用该来源时，只用于糖尿病特殊人群保守提醒、规范设备复核和医生沟通；不得输出个体化治疗目标或调药建议。"
 
   - candidate_id: allen_2007_ppg_clinical_measurement_fulltext
     source_id: allen_2007_ppg_clinical_measurement_review
@@ -572,11 +575,11 @@ candidates:
     priority: 5
     topic: measurement_quality
     access_mode: institution_or_browser
-    status: queued_manual
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: true
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://pubmed.ncbi.nlm.nih.gov/15535195/
     pdf_url: https://iopscience.iop.org/article/10.1088/0967-3334/25/5/020/pdf
     doi: 10.1088/0967-3334/25/5/020
@@ -586,13 +589,16 @@ candidates:
     region: global
     allowed_uses: [signal_quality, research_background]
     selection_reason: "接触压力对 PPG 波形影响的经典研究，可支持“过松/过紧都会影响信号”。"
-    access_instruction: "2026-05-21 用户已提供本地 PDF 并归档为 knowledge_base/sources/downloads/teng_2004_contact_force_ppg.pdf；下一步只提交中文摘要，不提交全文 PDF。"
-    last_accessed: 2026-05-21
+    access_instruction: "2026-05-21 用户已提供本地 PDF 并归档为 knowledge_base/sources/downloads/teng_2004_contact_force_ppg.pdf；入库只写摘要，不提交全文 PDF。"
+    last_accessed: 2026-05-22
     local_pdf_archived: true
     local_pdf_path: knowledge_base/sources/downloads/teng_2004_contact_force_ppg.pdf
     local_pdf_pages: 14
     local_pdf_sha256: f0d8e784c3557b327dedb06bfbb2e23a53fb0dbae0b83ad74b75240a49a429dc
-    summary_notes: []
+    summary_notes:
+      - "已归档用户提供的本地 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该研究支持 PPG 探头接触力会影响波形幅度和形态，手指摄像头或传感器接触过松/过紧都可能降低信号可靠性。"
+      - "报告可用该来源提示保持自然、稳定、不过度按压的接触状态，并在接触不稳时重新采集；不得用于血压分类或诊断。"
 
   - candidate_id: chandrasekhar_2020_contact_pressure_cuffless_bp_fulltext
     source_id: chandrasekhar_2020_contact_pressure_cuffless_bp
@@ -601,11 +607,11 @@ candidates:
     priority: 5
     topic: measurement_quality
     access_mode: institution_or_browser
-    status: queued_manual
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: true
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://ieeexplore.ieee.org/document/9016235
     pdf_url: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9016235
     doi: 10.1109/TBME.2020.2976989
@@ -615,13 +621,16 @@ candidates:
     region: global
     allowed_uses: [signal_quality, cuffless_ppg_limitations, research_background]
     selection_reason: "直接讨论 PPG 接触压力对无袖带血压测量的影响，是 contact_pressure 的高相关研究候选。"
-    access_instruction: "2026-05-21 用户已提供 PMC/NIHMS 本地 PDF 并归档为 knowledge_base/sources/downloads/chandrasekhar_2020_contact_pressure_cuffless_bp.pdf；下一步只提交中文摘要，不提交全文 PDF。"
-    last_accessed: 2026-05-21
+    access_instruction: "2026-05-21 用户已提供 PMC/NIHMS 本地 PDF 并归档为 knowledge_base/sources/downloads/chandrasekhar_2020_contact_pressure_cuffless_bp.pdf；入库只写摘要，不提交全文 PDF。"
+    last_accessed: 2026-05-22
     local_pdf_archived: true
     local_pdf_path: knowledge_base/sources/downloads/chandrasekhar_2020_contact_pressure_cuffless_bp.pdf
     local_pdf_pages: 14
     local_pdf_sha256: 1a1db1b5bd96e8d46e415e2a16a3ed2c26df4f1bcfcbd97dcd926dfc06071673
-    summary_notes: []
+    summary_notes:
+      - "已归档用户提供的本地 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该研究直接说明 PPG 传感器接触压力会影响无袖带血压估算相关特征，接触压力变化应被纳入质量解释。"
+      - "报告可用该来源支持 contact_pressure、PPG 局限和重新采集建议；不得写成设备可诊断或可替代袖带血压计。"
 
   - candidate_id: shirbani_2020_ambient_light_skin_tone_vpg_fulltext
     source_id: shirbani_2020_ambient_light_skin_tone_vpg
@@ -630,11 +639,11 @@ candidates:
     priority: 5
     topic: measurement_quality
     access_mode: institution_or_browser
-    status: queued_manual
-    summary_status: pending_fulltext
+    status: summarized
+    summary_status: ready
     institution_required: true
     auto_download: false
-    include_in_summary: false
+    include_in_summary: true
     landing_url: https://ieeexplore.ieee.org/document/9176731
     pdf_url: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9176731
     doi: 10.1109/EMBC44109.2020.9176731
@@ -644,13 +653,16 @@ candidates:
     region: global
     allowed_uses: [signal_quality, research_background]
     selection_reason: "摄像头/视频 PPG 中环境光和肤色影响的直接候选，可补强光照与肤色提示。"
-    access_instruction: "2026-05-21 网页端未找到合法公开 PDF，标记为 institution_required；用户已提供本地 PDF 并归档为 knowledge_base/sources/downloads/shirbani_2020_ambient_light_skin_tone_vpg.pdf。下一步只提交中文摘要，不提交全文 PDF。"
-    last_accessed: 2026-05-21
+    access_instruction: "2026-05-21 网页端未找到合法公开 PDF，标记为 institution_required；用户已提供本地 PDF 并归档为 knowledge_base/sources/downloads/shirbani_2020_ambient_light_skin_tone_vpg.pdf。入库只写摘要，不提交全文 PDF。"
+    last_accessed: 2026-05-22
     local_pdf_archived: true
     local_pdf_path: knowledge_base/sources/downloads/shirbani_2020_ambient_light_skin_tone_vpg.pdf
     local_pdf_pages: 4
     local_pdf_sha256: 9c2f5e2f688b8f73ad33123d0c6e18ec15b34e161c908753d7edec803ef7e014
-    summary_notes: []
+    summary_notes:
+      - "已归档用户提供的本地 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该研究支持视频/摄像头 PPG 会受到环境光条件和肤色/皮肤光学特性的影响，心率和脉搏传导时间估计都需要谨慎解释。"
+      - "报告可用该来源提示保持稳定、均匀、不过曝光照，并避免将单次低质量摄像头 PPG 结果作强风险解释。"
 
   - candidate_id: bent_2020_wearable_optical_hr_inaccuracy_fulltext
     source_id: bent_2020_wearable_optical_hr_inaccuracy
@@ -658,12 +670,12 @@ candidates:
     organization: npj Digital Medicine
     priority: 5
     topic: measurement_quality
-    access_mode: public_html
-    status: queued_manual
-    summary_status: pending_fulltext
+    access_mode: public_pdf
+    status: summarized
+    summary_status: ready
     institution_required: false
-    auto_download: false
-    include_in_summary: false
+    auto_download: true
+    include_in_summary: true
     landing_url: https://www.nature.com/articles/s41746-020-0226-6
     pdf_url: https://www.nature.com/articles/s41746-020-0226-6.pdf
     doi: 10.1038/s41746-020-0226-6
@@ -673,9 +685,12 @@ candidates:
     region: US
     allowed_uses: [signal_quality, research_background]
     selection_reason: "可穿戴光学心率传感器误差来源研究，可补充运动、肤色、设备差异和活动状态的光学质量背景。"
-    access_instruction: "公开 HTML/PDF 可读；若用户下载 PDF，请保存为 knowledge_base/sources/downloads/bent_2020_wearable_optical_hr_inaccuracy.pdf；入库只写摘要。"
-    last_accessed: 2026-05-10
-    summary_notes: []
+    access_instruction: "Nature 公开 PDF 已归档为 knowledge_base/sources/downloads/bent_2020_wearable_optical_hr_inaccuracy.pdf；入库只写摘要。"
+    last_accessed: 2026-05-22
+    summary_notes:
+      - "已从公开 Nature/npj Digital Medicine 入口归档 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该研究支持可穿戴光学传感器误差与设备、活动类型和个体因素有关，运动状态下误差可能增加。"
+      - "报告可用该来源补充运动、肤色/个体因素和设备差异的光学质量背景；不得外推为 PPG 血压诊断能力。"
 
   - candidate_id: nhc_2025_primary_care_hypertension_standard_pdf
     source_id: nhc_2025_primary_care_hypertension_standard_ws_t_872
@@ -1653,3 +1668,479 @@ candidates:
       - "已从 MDPI/PMC 合法公开入口归档 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
       - "该综述支持光学测量可能存在与皮肤色素相关的误差风险。"
       - "报告可用该来源作为肤色/光学公平性 caveat 的补充证据；不用于 PPG 血压准确性量化或临床建议。"
+
+  - candidate_id: who_global_hypertension_report_2023_pdf
+    source_id: who_global_hypertension_report_2023
+    title: "Global report on hypertension: the race against a silent killer"
+    organization: World Health Organization
+    priority: 3
+    topic: bp_categories
+    access_mode: public_landing
+    status: access_blocked
+    summary_status: ready
+    institution_required: false
+    auto_download: false
+    include_in_summary: true
+    landing_url: https://iris.who.int/handle/10665/372896
+    pdf_url: https://iris.who.int/bitstream/handle/10665/372896/9789240081062-eng.pdf?sequence=1
+    doi:
+    pmid:
+    year: 2023
+    language: en
+    region: global
+    allowed_uses: [bp_category_reference, lifestyle, home_bp_monitoring, disclaimer]
+    selection_reason: "WHO 全球高血压报告可补充公共卫生背景、规范诊断和长期管理边界。"
+    access_instruction: "WHO IRIS 公开 landing 可读；2026-05-22 直接 PDF 请求在本环境返回 403/html，保留为人工浏览器候选；若后续合法下载，保存为 knowledge_base/sources/downloads/who_global_hypertension_report_2023.pdf。"
+    last_accessed: 2026-05-22
+    summary_notes:
+      - "基于 WHO IRIS 官方 landing/citation 与登记摘要要点入库；2026-05-22 直接 PDF 请求在本环境未自动归档，后续若合法下载再刷新本地 PDF 记录。"
+      - "该报告强调高血压控制依赖准确诊断、规范测量、长期管理和公共卫生支持。"
+      - "系统引用该来源只用于全球背景、健康教育、复测和免责声明；不能改变阈值配置或生成诊断、治疗建议。"
+
+  - candidate_id: cdc_million_hearts_smbp_action_guide_pdf
+    source_id: cdc_million_hearts_smbp_action_guide
+    title: "Million Hearts Self-Measured Blood Pressure Monitoring: Action Steps for Clinicians"
+    organization: Centers for Disease Control and Prevention / Million Hearts
+    priority: 3
+    topic: home_bp_monitoring
+    access_mode: public_landing
+    status: access_blocked
+    summary_status: ready
+    institution_required: false
+    auto_download: false
+    include_in_summary: true
+    landing_url: https://stacks.cdc.gov/view/cdc/251870
+    pdf_url: https://stacks.cdc.gov/view/cdc/251870/cdc_251870_DS1.pdf
+    doi: 10.15620/cdc/251870
+    pmid:
+    year: 2014
+    language: en
+    region: US
+    allowed_uses: [home_bp_monitoring, remeasurement, device_advice]
+    selection_reason: "CDC/Million Hearts SMBP 行动指南可增强家庭自测、连续记录和医务人员沟通流程。"
+    access_instruction: "CDC Stacks landing 可读；2026-05-22 直接 PDF 请求在本环境返回 403，保留为人工浏览器候选；若后续合法下载，保存为 knowledge_base/sources/downloads/cdc_million_hearts_smbp_action_guide.pdf。"
+    last_accessed: 2026-05-22
+    summary_notes:
+      - "基于 CDC Stacks 官方 landing/citation 与登记摘要要点入库；2026-05-22 直接 PDF 请求在本环境未自动归档，后续若合法下载再刷新本地 PDF 记录。"
+      - "该指南支持家庭自测血压与规范设备、连续记录和临床支持结合。"
+      - "报告可用该来源支持复测、记录趋势和医生沟通；PPG 估算不能替代规范家庭血压测量。"
+
+  - candidate_id: nhlbi_self_measured_blood_pressure_fact_sheet_pdf
+    source_id: nhlbi_self_measured_blood_pressure_fact_sheet
+    title: Self-Measured Blood Pressure
+    organization: National Heart Lung and Blood Institute
+    priority: 3
+    topic: home_bp_monitoring
+    access_mode: public_pdf
+    status: downloadable
+    summary_status: ready
+    institution_required: false
+    auto_download: true
+    include_in_summary: true
+    landing_url: https://www.nhlbi.nih.gov/resources/self-measured-blood-pressure-fact-sheet
+    pdf_url: https://www.nhlbi.nih.gov/sites/default/files/publications/self_measured_blood_pressure_0.pdf
+    doi:
+    pmid:
+    year: 2023
+    language: en
+    region: US
+    allowed_uses: [home_bp_monitoring, remeasurement, device_advice]
+    selection_reason: "NHLBI 自测血压资料可作为公开 PDF 直接入库，增强家庭复测步骤和记录建议。"
+    access_instruction: "NHLBI 公开 PDF 可自动下载为 knowledge_base/sources/downloads/nhlbi_self_measured_blood_pressure_fact_sheet.pdf；入库只写摘要。"
+    last_accessed: 2026-05-22
+    summary_notes:
+      - "从 NHLBI 官方公开 PDF 归档；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该资料支持家庭自测血压、规范设备、固定流程、记录结果并与医疗团队沟通。"
+      - "报告可用该来源支持复测和记录趋势；PPG 估算不能替代规范自测血压。"
+
+  - candidate_id: aha_ama_2020_smbp_policy_statement_pdf
+    source_id: aha_ama_2020_smbp_policy_statement
+    title: "Self-Measured Blood Pressure Monitoring at Home: A Joint Policy Statement From the American Heart Association and American Medical Association"
+    organization: American Heart Association / American Medical Association
+    priority: 3
+    topic: home_bp_monitoring
+    access_mode: browser_required
+    status: summarized
+    summary_status: ready
+    institution_required: false
+    auto_download: false
+    include_in_summary: true
+    landing_url: https://pubmed.ncbi.nlm.nih.gov/32567342/
+    pdf_url: https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000000803
+    doi: 10.1161/CIR.0000000000000803
+    pmid: 32567342
+    year: 2020
+    language: en
+    region: US
+    allowed_uses: [home_bp_monitoring, remeasurement, device_advice]
+    selection_reason: "AHA/AMA SMBP 政策声明可补强家庭血压监测、设备验证和临床支持边界。"
+    access_instruction: "本地已归档 PDF 为 knowledge_base/sources/downloads/aha_ama_2020_smbp_policy_statement.pdf；入库只写摘要。"
+    last_accessed: 2026-05-22
+    summary_notes:
+      - "已通过合法浏览器下载记录归档 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该政策声明支持家庭自测血压作为规范诊室外测量方式之一，需要合适设备、测量流程和临床支持。"
+      - "报告可用该来源支持上臂式血压计复核、连续记录和医生沟通；不得把 PPG 估算写成诊断或治疗依据。"
+
+  - candidate_id: nhc_2023_adult_hypertension_dietary_guideline_pdf
+    source_id: nhc_2023_adult_hypertension_dietary_guideline
+    title: 成人高血压食养指南（2023年版）
+    organization: 国家卫生健康委办公厅
+    priority: 2
+    topic: lifestyle
+    access_mode: public_pdf
+    status: downloadable
+    summary_status: ready
+    institution_required: false
+    auto_download: true
+    include_in_summary: true
+    landing_url: https://www.nhc.gov.cn/sps/c100088/202301/f01895a06c5349ef999f25da833c166d.shtml
+    pdf_url: https://www.nhc.gov.cn/sps/c100088/202301/f01895a06c5349ef999f25da833c166d/files/1732844468193_68545.pdf
+    doi:
+    pmid:
+    year: 2023
+    language: zh
+    region: CN
+    allowed_uses: [lifestyle, home_bp_monitoring, remeasurement, special_population]
+    selection_reason: "国家卫健委成人高血压食养指南可显著加强中国用户饮食、减钠增钾、体重管理和血压自我管理依据。"
+    access_instruction: "国家卫健委公开 PDF 可自动下载为 knowledge_base/sources/downloads/nhc_2023_adult_hypertension_dietary_guideline.pdf；入库只写摘要。"
+    last_accessed: 2026-05-27
+    summary_notes:
+      - "从国家卫健委官方公开 PDF 归档；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该指南支持中国成人高血压人群的减钠增钾、合理膳食、吃动平衡、体重管理和血压自我监测解释。"
+      - "报告只能把该来源用于生活方式教育、复测和自我管理提醒；不得生成个体化食疗处方、诊断或治疗建议。"
+
+  - candidate_id: nhc_ws_t_430_2013_hypertension_dietary_guidance_pdf
+    source_id: nhc_ws_t_430_2013_hypertension_dietary_guidance
+    title: 高血压患者膳食指导 WS/T 430-2013
+    organization: 国家卫生健康委员会
+    priority: 4
+    topic: lifestyle
+    access_mode: public_pdf
+    status: downloadable
+    summary_status: ready
+    institution_required: false
+    auto_download: true
+    include_in_summary: true
+    landing_url: https://www.nhc.gov.cn/wjw/yingyang/201308/cce5017663e6457d98db7be683c36b4c.shtml
+    pdf_url: https://www.nhc.gov.cn/wjw/yingyang/201308/cce5017663e6457d98db7be683c36b4c/files/1739783533114_47513.pdf
+    doi:
+    pmid:
+    year: 2013
+    language: zh
+    region: CN
+    allowed_uses: [lifestyle, home_bp_monitoring, remeasurement]
+    selection_reason: "国家卫健委卫生行业标准可补充中国高血压患者膳食指导的标准化依据。"
+    access_instruction: "国家卫健委公开标准 PDF 可自动下载为 knowledge_base/sources/downloads/nhc_ws_t_430_2013_hypertension_dietary_guidance.pdf；入库只写摘要。"
+    last_accessed: 2026-05-27
+    summary_notes:
+      - "从国家卫健委官方标准页面归档公开 PDF；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该标准支持中国场景下限盐、合理膳食和长期生活方式管理的通用解释。"
+      - "报告引用该来源时只输出一般性健康教育和复测提示，不生成个体化治疗或用药建议。"
+
+  - candidate_id: nhc_2017_basic_public_health_service_hypertension_management_pdf
+    source_id: nhc_2017_basic_public_health_service_hypertension_management
+    title: 国家基本公共卫生服务规范（第三版）高血压患者健康管理服务规范
+    organization: 原国家卫生计生委
+    priority: 2
+    topic: home_bp_monitoring
+    access_mode: public_pdf
+    status: downloadable
+    summary_status: ready
+    institution_required: false
+    auto_download: true
+    include_in_summary: true
+    landing_url: https://www.nhc.gov.cn/ewebeditor/uploadfile/2017/04/20170417104506514.pdf
+    pdf_url: https://www.nhc.gov.cn/ewebeditor/uploadfile/2017/04/20170417104506514.pdf
+    doi:
+    pmid:
+    year: 2017
+    language: zh
+    region: CN
+    allowed_uses: [home_bp_monitoring, remeasurement, special_population, emergency_alert]
+    selection_reason: "国家基本公共卫生服务规范中的高血压患者健康管理服务规范可增强中国基层随访、分类干预和转诊边界。"
+    access_instruction: "国家卫健委公开 PDF 可自动下载为 knowledge_base/sources/downloads/nhc_2017_basic_public_health_service_hypertension_management.pdf；入库只写摘要。"
+    last_accessed: 2026-05-27
+    summary_notes:
+      - "从国家卫健委公开 PDF 归档；本项目只提交高血压健康管理相关中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该规范支持基层高血压管理中的建档、随访、分类干预和必要时转诊。"
+      - "报告可用该来源支持记录、复测和基层医疗沟通；不能替代基层医生诊疗或生成治疗调整。"
+
+  - candidate_id: nccd_2020_primary_hypertension_management_guideline_pdf
+    source_id: nccd_2020_primary_hypertension_management_guideline
+    title: 国家基层高血压防治管理指南（2020版）
+    organization: 国家心血管病中心 / 国家基本公共卫生服务项目基层高血压管理办公室
+    priority: 2
+    topic: home_bp_monitoring
+    access_mode: public_pdf
+    status: downloadable
+    summary_status: ready
+    institution_required: false
+    auto_download: true
+    include_in_summary: true
+    landing_url: https://www.nccd.org.cn/Sites/Uploaded/File/2021/3/%E5%9B%BD%E5%AE%B6%E5%9F%BA%E5%B1%82%E9%AB%98%E8%A1%80%E5%8E%8B%E9%98%B2%E6%B2%BB%E7%AE%A1%E7%90%86%E6%8C%87%E5%8D%97%202020%E7%89%88.pdf
+    pdf_url: https://www.nccd.org.cn/Sites/Uploaded/File/2021/3/%E5%9B%BD%E5%AE%B6%E5%9F%BA%E5%B1%82%E9%AB%98%E8%A1%80%E5%8E%8B%E9%98%B2%E6%B2%BB%E7%AE%A1%E7%90%86%E6%8C%87%E5%8D%97%202020%E7%89%88.pdf
+    doi:
+    pmid:
+    year: 2020
+    language: zh
+    region: CN
+    allowed_uses: [home_bp_monitoring, remeasurement, lifestyle, special_population, emergency_alert]
+    selection_reason: "国家基层高血压防治管理指南可增强中国基层管理、复测、长期随访和转诊边界依据。"
+    access_instruction: "国家心血管病中心公开 PDF 可自动下载为 knowledge_base/sources/downloads/nccd_2020_primary_hypertension_management_guideline.pdf；入库只写摘要。"
+    last_accessed: 2026-05-27
+    summary_notes:
+      - "从国家心血管病中心公开 PDF 归档；本项目只提交中文摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该指南支持基层高血压防治管理中的规范测量、随访、分级管理和转诊边界。"
+      - "小程序报告只能提示规范设备复核、记录和就医沟通，不能替代基层医生判断或治疗方案。"
+
+  - candidate_id: healthy_china_2019_2030_action_pdf
+    source_id: healthy_china_2019_2030_action
+    title: 健康中国行动（2019-2030年）
+    organization: 健康中国行动推进委员会
+    priority: 4
+    topic: lifestyle
+    access_mode: public_pdf
+    status: downloadable
+    summary_status: ready
+    institution_required: false
+    auto_download: true
+    include_in_summary: true
+    landing_url: https://www.nhc.gov.cn/cms-search/downFiles/470339610aea4a7887d0810b4c00c9bd.pdf
+    pdf_url: https://www.nhc.gov.cn/cms-search/downFiles/470339610aea4a7887d0810b4c00c9bd.pdf
+    doi:
+    pmid:
+    year: 2019
+    language: zh
+    region: CN
+    allowed_uses: [lifestyle, home_bp_monitoring, remeasurement, disclaimer]
+    selection_reason: "健康中国行动可补充中国慢病防控、心脑血管疾病防治和高血压规范管理率目标的国家政策背景。"
+    access_instruction: "国家卫健委公开 PDF 可自动下载为 knowledge_base/sources/downloads/healthy_china_2019_2030_action.pdf；入库只写摘要。"
+    last_accessed: 2026-05-27
+    summary_notes:
+      - "从国家卫健委公开 PDF 归档；本项目只提交政策背景摘要、citation 和访问记录，不提交全文 PDF。"
+      - "该行动方案支持中国高血压防控中的健康生活方式、基层管理和长期规范管理背景。"
+      - "报告引用该来源只用于公共卫生背景和免责声明，不用于个体化临床判断。"
+
+  - candidate_id: healthy_china_cvd_action_2023_2030_html
+    source_id: healthy_china_cvd_action_2023_2030
+    title: 健康中国行动—心脑血管疾病防治行动实施方案（2023—2030年）
+    organization: 国家卫生健康委等14部门
+    priority: 3
+    topic: home_bp_monitoring
+    access_mode: public_html
+    status: summarized
+    summary_status: ready
+    institution_required: false
+    auto_download: false
+    include_in_summary: true
+    landing_url: https://www.gov.cn/zhengce/zhengceku/202311/content_6915365.htm
+    pdf_url:
+    doi:
+    pmid:
+    year: 2023
+    language: zh
+    region: CN
+    allowed_uses: [home_bp_monitoring, lifestyle, remeasurement, special_population, disclaimer]
+    selection_reason: "国家卫健委等14部门心脑血管疾病防治行动方案可强化中国场景综合防控、基层重点和健康素养背景。"
+    access_instruction: "中国政府网公开 HTML 已足够用于摘要；不复制全文。"
+    last_accessed: 2026-05-27
+    summary_notes:
+      - "基于中国政府网公开政策文本摘要入库；本项目只提交摘要、citation 和访问记录，不复制全文。"
+      - "该方案强调预防为主、基层重点、健康素养提升和心脑血管疾病综合防控体系。"
+      - "报告可用该来源解释复测、记录、长期管理和危险因素控制；不用于诊断、用药或急症 reassurance。"
+
+  - candidate_id: state_council_chronic_disease_plan_2017_2025_html
+    source_id: state_council_chronic_disease_plan_2017_2025
+    title: 中国防治慢性病中长期规划（2017—2025年）
+    organization: 国务院办公厅
+    priority: 5
+    topic: home_bp_monitoring
+    access_mode: public_html
+    status: summarized
+    summary_status: ready
+    institution_required: false
+    auto_download: false
+    include_in_summary: true
+    landing_url: https://www.gov.cn/zhengce/content/2017-02/14/content_5167886.htm
+    pdf_url:
+    doi:
+    pmid:
+    year: 2017
+    language: zh
+    region: CN
+    allowed_uses: [home_bp_monitoring, lifestyle, remeasurement, disclaimer]
+    selection_reason: "国务院慢性病中长期规划可补充中国慢病防治、家庭医生签约和高血压健康管理政策背景。"
+    access_instruction: "中国政府网公开 HTML 已足够用于摘要；不复制全文。"
+    last_accessed: 2026-05-27
+    summary_notes:
+      - "基于中国政府网公开政策文本摘要入库；本项目只提交摘要、citation 和访问记录，不复制全文。"
+      - "该规划支持慢病健康教育、早诊早治、规范诊疗、分级诊疗和全流程健康管理背景。"
+      - "报告只把该来源用于中国政策背景和安全边界，不生成个体化诊疗结论。"
+
+  - candidate_id: nhc_2024_chinese_health_literacy_basic_skills_html
+    source_id: nhc_2024_chinese_health_literacy_basic_skills
+    title: 中国公民健康素养——基本知识与技能（2024年版）
+    organization: 国家卫生健康委办公厅
+    priority: 3
+    topic: lifestyle
+    access_mode: public_html
+    status: summarized
+    summary_status: ready
+    institution_required: false
+    auto_download: false
+    include_in_summary: true
+    landing_url: https://www.nhc.gov.cn/xcs/c100123/202405/73a4927142f34152abed875634a3c13b.shtml
+    pdf_url:
+    doi:
+    pmid:
+    year: 2024
+    language: zh
+    region: CN
+    allowed_uses: [lifestyle, home_bp_monitoring, remeasurement, emergency_alert, medication_safety, disclaimer]
+    selection_reason: "国家卫健委健康素养 2024 明确关注血压变化、控制高血压危险因素、会测量血压和及时急救，可增强中国用户解释语言。"
+    access_instruction: "国家卫健委公开 HTML 已足够用于摘要；不复制全文。"
+    last_accessed: 2026-05-27
+    summary_notes:
+      - "基于国家卫健委公开健康素养文本摘要入库；本项目只提交摘要、citation 和访问记录，不复制全文。"
+      - "该文本支持关注血压变化、控制高血压危险因素、自我健康管理、会测量血压、科学就医和紧急救助。"
+      - "报告可用该来源强化复测、记录、急救和遵医嘱边界；不得输出诊断、开药或停药建议。"
+
+  - candidate_id: chinese_2019_home_bp_monitoring_guideline_pdf
+    source_id: chinese_2019_home_bp_monitoring_guideline
+    title: 2019中国家庭血压监测指南
+    organization: 中国高血压联盟《家庭血压监测指南》委员会
+    priority: 1
+    topic: home_bp_monitoring
+    access_mode: public_pdf
+    status: summarized
+    summary_status: ready
+    institution_required: false
+    auto_download: false
+    include_in_summary: true
+    landing_url: https://zhgxyzz.xml-journal.net/cn/article/doi/10.16439/j.cnki.1673-7245.2019.08.005
+    pdf_url: https://zhgxyzz.xml-journal.net/cn/article/pdf/preview/10.16439/j.cnki.1673-7245.2019.08.005.pdf
+    doi: 10.3969/j.issn.1000-3614.2019.07.003
+    pmid:
+    year: 2019
+    language: zh
+    region: CN
+    allowed_uses: [home_bp_monitoring, remeasurement, device_advice, bp_category_reference]
+    selection_reason: "中国家庭血压监测的核心指南之一，用于补强复测、测量频率、记录方式和家庭血压解释。"
+    access_instruction: "本地 PDF 已保存为 knowledge_base/sources/downloads/chinese_2019_home_bp_monitoring_guideline.pdf；只提交摘要和 citation。"
+    last_accessed: 2026-05-28
+    summary_notes:
+      - "该指南强调家庭血压监测在高血压管理中的重要性，并讨论血压计选择、校准、测量次数、测量天数和家庭血压正常值。"
+      - "报告可用该来源解释为什么 PPG 估算偏高后需要上臂式血压计复核，并把日期、时间、血压和状态连续记录。"
+      - "该来源支持家庭复测和医生沟通，不支持用小程序单次估算结果作诊断或治疗调整。"
+
+  - candidate_id: esc_2024_elevated_bp_hypertension_guideline_pdf
+    source_id: esc_2024_elevated_bp_hypertension_guideline
+    title: 2024 ESC Guidelines for the management of elevated blood pressure and hypertension
+    organization: European Society of Cardiology / European Heart Journal
+    priority: 2
+    topic: bp_categories
+    access_mode: public_pdf
+    status: summarized
+    summary_status: ready
+    institution_required: false
+    auto_download: false
+    include_in_summary: true
+    landing_url: https://academic.oup.com/eurheartj/article/45/38/3912/7741010
+    pdf_url: https://academic.oup.com/eurheartj/article-pdf/45/38/3912/59633218/ehae178.pdf
+    doi: 10.1093/eurheartj/ehae178
+    pmid:
+    year: 2024
+    language: en
+    region: EU
+    allowed_uses: [bp_category_reference, home_bp_monitoring, remeasurement, lifestyle, special_population]
+    selection_reason: "ESC 2024 指南正文已本地归档，用作欧洲指南对照和规范测量边界补充。"
+    access_instruction: "本地 PDF 已保存为 knowledge_base/sources/downloads/esc_2024_elevated_bp_hypertension_guideline.pdf；只提交摘要和 citation。"
+    last_accessed: 2026-05-28
+    summary_notes:
+      - "ESC 2024 指南正文可用于国际指南对照，强调规范血压测量、风险评估、生活方式和持续管理。"
+      - "在当前中国用户 demo 中，该来源只作为国际对照，不替代中国官方资料的优先级，也不改变默认安全边界。"
+      - "报告引用时只支持复测、记录、规范设备和就医沟通，不生成诊断、处方或调药建议。"
+
+  - candidate_id: esc_2024_elevated_bp_hypertension_doi_report_pdf
+    source_id: esc_2024_elevated_bp_hypertension_doi_report
+    title: ESC Declaration of Interests Report for the 2024 elevated blood pressure and hypertension guideline
+    organization: European Society of Cardiology
+    priority: 6
+    topic: research_context
+    access_mode: public_pdf
+    status: summarized
+    summary_status: ready
+    institution_required: false
+    auto_download: false
+    include_in_summary: true
+    landing_url: https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Elevated-Blood-Pressure-and-Hypertension
+    pdf_url:
+    doi:
+    pmid:
+    year: 2024
+    language: en
+    region: EU
+    allowed_uses: [research_background]
+    selection_reason: "ESC DOI report 只作为指南治理透明度和利益声明背景，不作为临床建议来源。"
+    access_instruction: "本地 PDF 已保存为 knowledge_base/sources/downloads/esc_2024_elevated_bp_hypertension_doi_report.pdf；不要误归类为 Essential Messages。"
+    last_accessed: 2026-05-28
+    summary_notes:
+      - "该材料是 ESC 指南利益声明报告，用于记录指南制定透明度。"
+      - "它不是临床指南正文，也不是 Essential Messages，不用于用户级复测、生活方式或就医建议。"
+      - "只可用于组会或论文方法中的治理背景说明。"
+
+  - candidate_id: esc_2024_pharmacotherapy_what_is_new_pdf
+    source_id: esc_2024_pharmacotherapy_what_is_new
+    title: 2024 ESC Guidelines for elevated blood pressure and hypertension - what is new in pharmacotherapy
+    organization: European Heart Journal - Cardiovascular Pharmacotherapy
+    priority: 6
+    topic: research_context
+    access_mode: public_pdf
+    status: summarized
+    summary_status: ready
+    institution_required: false
+    auto_download: false
+    include_in_summary: true
+    landing_url: https://academic.oup.com/ehjcvp/article/11/1/7/7818405
+    pdf_url:
+    doi: 10.1093/ehjcvp/pvae084
+    pmid:
+    year: 2025
+    language: en
+    region: EU
+    allowed_uses: [research_background]
+    selection_reason: "该短文只用于 ESC 2024 药物治疗变化背景，不能进入用户用药建议链路。"
+    access_instruction: "本地 PDF 已保存为 knowledge_base/sources/downloads/esc_2024_pharmacotherapy_what_is_new.pdf；不要误归类为 Essential Messages。"
+    last_accessed: 2026-05-28
+    summary_notes:
+      - "该短文概述 ESC 2024 指南中 pharmacotherapy 相关变化。"
+      - "当前 demo 不提供药物启动、停药或剂量调整建议，因此该来源只用于研究背景和安全边界说明。"
+      - "不得把该来源作为用户报告中的个体化用药依据。"
+
+  - candidate_id: aha_prevent_equations_circulation_2024_pdf
+    source_id: aha_prevent_equations_circulation_2024
+    title: Development and Validation of the American Heart Association Predicting Risk of Cardiovascular Disease EVENTs PREVENT Equations
+    organization: American Heart Association / Circulation
+    priority: 6
+    topic: research_context
+    access_mode: public_pdf
+    status: summarized
+    summary_status: ready
+    institution_required: false
+    auto_download: false
+    include_in_summary: true
+    landing_url: https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.123.067626
+    pdf_url: https://www.ahajournals.org/doi/pdf/10.1161/CIRCULATIONAHA.123.067626
+    doi: 10.1161/CIRCULATIONAHA.123.067626
+    pmid:
+    year: 2024
+    language: en
+    region: US
+    allowed_uses: [research_background]
+    selection_reason: "PREVENT 方程论文用于后续心血管风险评估扩展的方法背景，不属于当前用户报告核心证据。"
+    access_instruction: "本地 PDF 已保存为 knowledge_base/sources/downloads/aha_prevent_equations_circulation_2024.pdf；只提交摘要和 citation。"
+    last_accessed: 2026-05-28
+    summary_notes:
+      - "该论文开发并验证 AHA PREVENT 风险方程，可作为心血管风险评估方法背景。"
+      - "当前高血压 PPG 解释 demo 不计算个体 10 年心血管风险，也不把 PREVENT 方程结果写入用户报告。"
+      - "该来源只用于 research_background，不支持诊断、治疗或用药建议。"

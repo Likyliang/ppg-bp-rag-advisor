@@ -1,0 +1,882 @@
+{
+  "timestamp": 1779960780,
+  "backend": "local_hashing_vectors",
+  "purpose": "Local full-text PDF chunking and vector indexing. Raw PDF text stays in ignored vector_store files and is not committed.",
+  "target_chars": 850,
+  "overlap_chars": 140,
+  "embedding_dims": 384,
+  "source_count": 67,
+  "page_count": 2446,
+  "chunk_count": 14849,
+  "chunks_path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/vector_store/fulltext_chunks.jsonl",
+  "vector_path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/vector_store/fulltext_hashing_vectors.npz",
+  "duration_sec": 61.732,
+  "sources": [
+    {
+      "source_id": "aami_esh_iso_2018_universal_validation_standard",
+      "title": "A universal standard for the validation of blood pressure measuring devices",
+      "local_pdf": "knowledge_base/sources/downloads/aami_esh_iso_2018_universal_validation_standard.pdf",
+      "pdf_sha256": "fde57346c5fa1ed6f8a77c5345df39731e117a602189e0d268f2eebb52f5853a",
+      "page_count": 16,
+      "chunk_count": 69,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "acc_aha_2025_full_guideline_record",
+      "title": "2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults",
+      "local_pdf": "knowledge_base/sources/downloads/acc_aha_2025_full_guideline_record.pdf",
+      "pdf_sha256": "edf9b37d98ce794ba430169b5e45976e430de7e08a6a60acf0c666dc60f527a0",
+      "page_count": 105,
+      "chunk_count": 978,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "ada_2026_standards_cvd_bp",
+      "title": "Cardiovascular Disease and Risk Management - Standards of Care in Diabetes 2026",
+      "local_pdf": "knowledge_base/sources/downloads/ada_2026_standards_cvd_bp.pdf",
+      "pdf_sha256": "d6d6cdad9f86d8ed3bf10ced05455863ba30ec9a4bb175bbb32c772cabdd7824",
+      "page_count": 30,
+      "chunk_count": 360,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "aha_ama_2020_smbp_policy_statement",
+      "title": "Self-Measured Blood Pressure Monitoring at Home: A Joint Policy Statement From the American Heart Association and American Medical Association",
+      "local_pdf": "knowledge_base/sources/downloads/aha_ama_2020_smbp_policy_statement.pdf",
+      "pdf_sha256": "98090f71f63a87a86cf3558b81707c102528760df6f5b975f1c8ccfa23e4b361",
+      "page_count": 22,
+      "chunk_count": 205,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "aha_cuffless_bp_scientific_statement",
+      "title": "Cuffless Devices for the Measurement of Blood Pressure",
+      "local_pdf": "knowledge_base/sources/downloads/aha_cuffless_bp_scientific_statement.pdf",
+      "pdf_sha256": "112e2e6597855ac85bec115747d800f0e8eed1682645534bf6415beab96cb44e",
+      "page_count": 11,
+      "chunk_count": 97,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "aha_home_bp_measurement_instructions",
+      "title": "Home Blood Pressure Measurement Instructions",
+      "local_pdf": "knowledge_base/sources/downloads/aha_home_bp_measurement_instructions.pdf",
+      "pdf_sha256": "076eb70138239fe945577b92da607b67e27b441da05b27f78ad751c9087bc3bf",
+      "page_count": 1,
+      "chunk_count": 4,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "aha_life_essential_8_manage_blood_pressure",
+      "title": "Life's Essential 8 - How to Manage Blood Pressure",
+      "local_pdf": "knowledge_base/sources/downloads/aha_life_essential_8_manage_blood_pressure.pdf",
+      "pdf_sha256": "e15ccef40ccf0a2824152352360cdfbb195300dffe69ced012b1844cdbd4b6bd",
+      "page_count": 1,
+      "chunk_count": 5,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "aha_pregnancy_blood_pressure_categories",
+      "title": "Blood Pressure Categories for Individuals who are Pregnant",
+      "local_pdf": "knowledge_base/sources/downloads/aha_pregnancy_blood_pressure_categories.pdf",
+      "pdf_sha256": "533937ed638e3c4cc17cb22da0487e8f5492f01ca721c5fd757bd968d5c533a0",
+      "page_count": 1,
+      "chunk_count": 1,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "aha_prevent_equations_circulation_2024",
+      "title": "Development and Validation of the American Heart Association Predicting Risk of Cardiovascular Disease EVENTs PREVENT Equations",
+      "local_pdf": "knowledge_base/sources/downloads/aha_prevent_equations_circulation_2024.pdf",
+      "pdf_sha256": "5f4582c8de6d613384cffea8c59de7db85c5db9d377ab9156b268f21168d08c5",
+      "page_count": 44,
+      "chunk_count": 212,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "aha_reduce_high_blood_pressure_answers_by_heart",
+      "title": "How Can I Lower High Blood Pressure?",
+      "local_pdf": "knowledge_base/sources/downloads/aha_reduce_high_blood_pressure_answers_by_heart.pdf",
+      "pdf_sha256": "bacb007189a3fcf8572d1c3f032fcef243e75a9221f7b0a130e4b876a59a2c59",
+      "page_count": 2,
+      "chunk_count": 8,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "aha_steps_to_improve_high_bp",
+      "title": "Simple Steps to Improve Your High Blood Pressure",
+      "local_pdf": "knowledge_base/sources/downloads/aha_steps_to_improve_high_bp.pdf",
+      "pdf_sha256": "48dc4f5a94300757f7d43601326ad4c97fa7f21757e9b7c1bb6f94854c2e3d17",
+      "page_count": 1,
+      "chunk_count": 4,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "allen_2007_ppg_clinical_measurement_review",
+      "title": "Photoplethysmography and its application in clinical physiological measurement",
+      "local_pdf": "knowledge_base/sources/downloads/allen_2007_ppg_clinical_measurement_review.pdf",
+      "pdf_sha256": "89255deb05c70054f56a4bf728115c8fb56b0c30a3fb5f0294d5b5d96c8ed1b4",
+      "page_count": 40,
+      "chunk_count": 234,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "arguello_prada_2024_ppg_motion_artifact_detection_review",
+      "title": "Machine Learning Applied to Reference Signal-Less Detection of Motion Artifacts in Photoplethysmographic Signals - A Review",
+      "local_pdf": "knowledge_base/sources/downloads/arguello_prada_2024_ppg_motion_artifact_detection_review.pdf",
+      "pdf_sha256": "b62adc0b3708bd4ba191c926e6f956c45db471408d1073e5d86ec9b9bae64e28",
+      "page_count": 17,
+      "chunk_count": 124,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "bent_2020_wearable_optical_hr_inaccuracy",
+      "title": "Investigating sources of inaccuracy in wearable optical heart rate sensors",
+      "local_pdf": "knowledge_base/sources/downloads/bent_2020_wearable_optical_hr_inaccuracy.pdf",
+      "pdf_sha256": "449b451ffbf1ad8a34bd0c0c5502b4419767eed216853ed61cfc4ba918df1d72",
+      "page_count": 9,
+      "chunk_count": 94,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "bradley_2022_cuffless_bp_devices_review",
+      "title": "Cuffless Blood Pressure Devices",
+      "local_pdf": "knowledge_base/sources/downloads/bradley_2022_cuffless_bp_devices_review.pdf",
+      "pdf_sha256": "30a90ad11c610e8a49654b995cb4726f804ca3bf100d595e9ef153f02b96e133",
+      "page_count": 8,
+      "chunk_count": 75,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "cabanas_2022_skin_pigmentation_pulse_oximetry_bibliometric",
+      "title": "Skin Pigmentation Influence on Pulse Oximetry Accuracy - A Systematic Review and Bibliometric Analysis",
+      "local_pdf": "knowledge_base/sources/downloads/cabanas_2022_skin_pigmentation_pulse_oximetry_bibliometric.pdf",
+      "pdf_sha256": "d0a2cc2c379ce4b1e7ef5885f50ae0f3e0ffc640047569d8d3664ad2322c1d4e",
+      "page_count": 20,
+      "chunk_count": 127,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "cdc_managing_my_blood_pressure_questions",
+      "title": "Managing My Blood Pressure - Questions to Ask My Doctor",
+      "local_pdf": "knowledge_base/sources/downloads/cdc_managing_my_blood_pressure_questions.pdf",
+      "pdf_sha256": "7874ffec17e7e74f04b33542a17086fcf1c1352089598939223d7cb3299ece5e",
+      "page_count": 1,
+      "chunk_count": 3,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "chandrasekhar_2020_contact_pressure_cuffless_bp",
+      "title": "PPG Sensor Contact Pressure Should Be Taken Into Account for Cuff-Less Blood Pressure Measurement",
+      "local_pdf": "knowledge_base/sources/downloads/chandrasekhar_2020_contact_pressure_cuffless_bp.pdf",
+      "pdf_sha256": "1a1db1b5bd96e8d46e415e2a16a3ed2c26df4f1bcfcbd97dcd926dfc06071673",
+      "page_count": 14,
+      "chunk_count": 56,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "charlton_2022_ppg_best_practices",
+      "title": "Establishing best practices in photoplethysmography signal acquisition and processing",
+      "local_pdf": "knowledge_base/sources/downloads/charlton_2022_ppg_best_practices.pdf",
+      "pdf_sha256": "1ada09f74bb2cad371213d03e7c11aabb4927670625c4c61b7561bb26ac93626",
+      "page_count": 6,
+      "chunk_count": 48,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "charlton_2022_wearable_ppg_cardiovascular_review",
+      "title": "Wearable Photoplethysmography for Cardiovascular Monitoring",
+      "local_pdf": "knowledge_base/sources/downloads/charlton_2022_wearable_ppg_cardiovascular_review.pdf",
+      "pdf_sha256": "b9a062c3a9b628c0c0104f7fd12bb3ba4e473fbe9785ea469bab40c6f6581da5",
+      "page_count": 28,
+      "chunk_count": 259,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "charlton_2023_wearable_ppg_roadmap",
+      "title": "The 2023 wearable photoplethysmography roadmap",
+      "local_pdf": "knowledge_base/sources/downloads/charlton_2023_wearable_ppg_roadmap.pdf",
+      "pdf_sha256": "062cebb4b9fb7b1c4b95cbca715aee2e5f5ceed97f33c516169814e6813a50d9",
+      "page_count": 90,
+      "chunk_count": 577,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "charlton_2025_wrist_ppg_signal_quality",
+      "title": "Determinants of photoplethysmography signal quality at the wrist",
+      "local_pdf": "knowledge_base/sources/downloads/charlton_2025_wrist_ppg_signal_quality.pdf",
+      "pdf_sha256": "51d925d59468f1ad8c0653776952a631d9e8f7a8589b5bc8a5273e642397996d",
+      "page_count": 24,
+      "chunk_count": 140,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "chinese_2011_bp_measurement_guideline",
+      "title": "中国血压测量指南",
+      "local_pdf": "knowledge_base/sources/downloads/chinese_2011_bp_measurement_guideline.pdf",
+      "pdf_sha256": "27f5d78504993a77a297a95325fb857871af0561a4812c8b4c56acb23464ff60",
+      "page_count": 15,
+      "chunk_count": 124,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "chinese_2013_hypertension_patient_education_guideline",
+      "title": "中国高血压患者教育指南",
+      "local_pdf": "knowledge_base/sources/downloads/chinese_2013_hypertension_patient_education_guideline.pdf",
+      "pdf_sha256": "e6e879d33687f2fecdf8148f48620b51926a18a313574e58675a0a2d1232e836",
+      "page_count": 77,
+      "chunk_count": 81,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "chinese_2019_home_bp_monitoring_guideline",
+      "title": "2019中国家庭血压监测指南",
+      "local_pdf": "knowledge_base/sources/downloads/chinese_2019_home_bp_monitoring_guideline.pdf",
+      "pdf_sha256": "bf07395310ebae8c432fb493ff0c48abdb817b8fef5ff04c5b315d6a934451b3",
+      "page_count": 5,
+      "chunk_count": 26,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "chinese_2023_elderly_hypertension_management_guideline",
+      "title": "中国老年高血压管理指南2023",
+      "local_pdf": "knowledge_base/sources/downloads/chinese_2023_elderly_hypertension_management_guideline.pdf",
+      "pdf_sha256": "faf7a5d8c8b5ec10bb628b8afd16608134fd292392db253b07d16d980b7af316",
+      "page_count": 31,
+      "chunk_count": 150,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "chinese_2025_secondary_hypertension_screening_consensus",
+      "title": "继发性高血压筛查和诊断中国专家共识",
+      "local_pdf": "knowledge_base/sources/downloads/chinese_2025_secondary_hypertension_screening_consensus.pdf",
+      "pdf_sha256": "b5fa5af387a3e31082c9c45a714643f24c91b7d373368fe88ac584c8a7b73a69",
+      "page_count": 15,
+      "chunk_count": 79,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "chinese_hypertension_guideline_2024_catalog",
+      "title": "Chinese Guidelines for the Prevention and Treatment of Hypertension (2024 revision)",
+      "local_pdf": "knowledge_base/sources/downloads/chinese_hypertension_guideline_2024_catalog.pdf",
+      "pdf_sha256": "6887434ffbe38083c22e93597023079d0f79a8168fb8596775b61cd526cfd75d",
+      "page_count": 149,
+      "chunk_count": 1137,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "desquins_2022_ppg_quality_assessment_survey",
+      "title": "A Survey of Photoplethysmography and Imaging Photoplethysmography Quality Assessment Methods",
+      "local_pdf": "knowledge_base/sources/downloads/desquins_2022_ppg_quality_assessment_survey.pdf",
+      "pdf_sha256": "f63e4f39f3c5428e5540812be2b734dc3c3971f462092b28e175ebf432e9f1b6",
+      "page_count": 25,
+      "chunk_count": 132,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "electronics_2023_ppg_wearable_devices_review",
+      "title": "Photoplethysmography in Wearable Devices - A Comprehensive Review of Technological Advances Current Challenges and Future Directions",
+      "local_pdf": "knowledge_base/sources/downloads/electronics_2023_ppg_wearable_devices_review.pdf",
+      "pdf_sha256": "d4bb857da671a2ceedf9b26de32731aa633a3da4aa974991068ea7a4e26d92c4",
+      "page_count": 24,
+      "chunk_count": 179,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "esc_2024_elevated_bp_hypertension_doi_report",
+      "title": "ESC Declaration of Interests Report for the 2024 elevated blood pressure and hypertension guideline",
+      "local_pdf": "knowledge_base/sources/downloads/esc_2024_elevated_bp_hypertension_doi_report.pdf",
+      "pdf_sha256": "20decffab76c4c2b7278c3216d98b2740cec1ce6951db9639736db102ffb3cf7",
+      "page_count": 67,
+      "chunk_count": 257,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "esc_2024_elevated_bp_hypertension_guideline",
+      "title": "2024 ESC Guidelines for the management of elevated blood pressure and hypertension",
+      "local_pdf": "knowledge_base/sources/downloads/esc_2024_elevated_bp_hypertension_guideline.pdf",
+      "pdf_sha256": "37f1c96768e70e514965760e2ee9b454c07fe5eab0f212881d1dcbf2f48113b4",
+      "page_count": 107,
+      "chunk_count": 1162,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "esc_2024_pharmacotherapy_what_is_new",
+      "title": "2024 ESC Guidelines for elevated blood pressure and hypertension - what is new in pharmacotherapy",
+      "local_pdf": "knowledge_base/sources/downloads/esc_2024_pharmacotherapy_what_is_new.pdf",
+      "pdf_sha256": "21a20ffd4acc3601e12c25251b7e78db66d9861c9c86f9a75c18ffeea0232aa4",
+      "page_count": 3,
+      "chunk_count": 24,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "esh_2021_home_bp_monitoring_position_paper",
+      "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+      "local_pdf": "knowledge_base/sources/downloads/esh_2021_home_bp_monitoring_position_paper.pdf",
+      "pdf_sha256": "167a88c4f171071900f9017cb96341a90afa5ee7edeca0474de24d42bc27684c",
+      "page_count": 26,
+      "chunk_count": 295,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "esh_2023_hypertension_guideline",
+      "title": "2023 ESH Guidelines for the management of arterial hypertension",
+      "local_pdf": "knowledge_base/sources/downloads/esh_2023_hypertension_guideline.pdf",
+      "pdf_sha256": "7b712008c76f8c9500ff8232371d3eb8d45d2d2b9a7445389ccf6a53b52529bf",
+      "page_count": 199,
+      "chunk_count": 1976,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "fda_cuffless_nibp_draft_guidance",
+      "title": "Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation",
+      "local_pdf": "knowledge_base/sources/downloads/fda_cuffless_nibp_draft_guidance.pdf",
+      "pdf_sha256": "eeaf36da61a51a729e6232fc5455474c2fda26cbcc24638f6bab218cd7f92c92",
+      "page_count": 11,
+      "chunk_count": 42,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "fine_2021_ppg_sources_of_inaccuracy",
+      "title": "Sources of Inaccuracy in Photoplethysmography for Continuous Cardiovascular Monitoring",
+      "local_pdf": "knowledge_base/sources/downloads/fine_2021_ppg_sources_of_inaccuracy.pdf",
+      "pdf_sha256": "84eead3a164efb3ba955ce535b54ce3400b5046ac668462c3d4efab59f858d3e",
+      "page_count": 36,
+      "chunk_count": 284,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "frontiers_2019_ppg_measurement_site_waveform",
+      "title": "Quantitative Comparison of Photoplethysmographic Waveform Characteristics - Effect of Measurement Site",
+      "local_pdf": "knowledge_base/sources/downloads/frontiers_2019_ppg_measurement_site_waveform.pdf",
+      "pdf_sha256": "9a670065d044b151000078e0eeaed7700bc3ed85c93be4e56f6fe88671dc3ab8",
+      "page_count": 8,
+      "chunk_count": 59,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "healthy_china_2019_2030_action",
+      "title": "健康中国行动（2019-2030年）",
+      "local_pdf": "knowledge_base/sources/downloads/healthy_china_2019_2030_action.pdf",
+      "pdf_sha256": "a6ff39335b691368888fb5c172ce4f8a98639894475ad5ea4ad554a359e40cb8",
+      "page_count": 108,
+      "chunk_count": 121,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "ish_2020_global_guideline",
+      "title": "2020 International Society of Hypertension Global Hypertension Practice Guidelines",
+      "local_pdf": "knowledge_base/sources/downloads/ish_2020_global_guideline.pdf",
+      "pdf_sha256": "c4cc2460633c0e509cd934f99def9d291426ed27114f353acc81e8d800cc8a12",
+      "page_count": 24,
+      "chunk_count": 196,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "kdigo_2024_ckd_guideline",
+      "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+      "local_pdf": "knowledge_base/sources/downloads/kdigo_2024_ckd_guideline.pdf",
+      "pdf_sha256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0",
+      "page_count": 199,
+      "chunk_count": 1632,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "lee_2013_rgb_reflection_ppg_motion_hr",
+      "title": "Comparison between red green and blue light reflection photoplethysmography for heart rate monitoring during motion",
+      "local_pdf": "knowledge_base/sources/downloads/lee_2013_rgb_reflection_ppg_motion_hr.pdf",
+      "pdf_sha256": "62657a4a38681822cfe45372bfffcc8e167f23199425735a4fb6a0e8918837d3",
+      "page_count": 4,
+      "chunk_count": 33,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "lee_2021_skin_compatible_wearable_ppg",
+      "title": "Systematic Review on Human Skin-Compatible Wearable Photoplethysmography Sensors",
+      "local_pdf": "knowledge_base/sources/downloads/lee_2021_skin_compatible_wearable_ppg.pdf",
+      "pdf_sha256": "2dcb353c9a99be8ddb510ea165f384c8d5c6e2682ccdb34aa0d3838daeb3393c",
+      "page_count": 21,
+      "chunk_count": 178,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "mukkamala_2015_ptt_bp_monitoring_theory_practice",
+      "title": "Toward Ubiquitous Blood Pressure Monitoring via Pulse Transit Time - Theory and Practice",
+      "local_pdf": "knowledge_base/sources/downloads/mukkamala_2015_ptt_bp_monitoring_theory_practice.pdf",
+      "pdf_sha256": "8b76dcbcf81d4d39ef40d629ae1c0278a12a45cfe1580105717f239b8af50ed9",
+      "page_count": 48,
+      "chunk_count": 228,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "mukkamala_2017_ptt_calibration_error_limits",
+      "title": "Toward Ubiquitous Blood Pressure Monitoring via Pulse Transit Time - Predictions on Maximum Calibration Period and Acceptable Error Limits",
+      "local_pdf": "knowledge_base/sources/downloads/mukkamala_2017_ptt_calibration_error_limits.pdf",
+      "pdf_sha256": "ad83f7d1448330dc0100268de69050fc6b9fd3d47c5070f2aeb68cde13c14243",
+      "page_count": 28,
+      "chunk_count": 121,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "muntner_2019_aha_bp_measurement_scientific_statement",
+      "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+      "local_pdf": "knowledge_base/sources/downloads/muntner_2019_aha_bp_measurement_scientific_statement.pdf",
+      "pdf_sha256": "5bc2ef5c0d79ae997b14a0bafbe19e5e7e502c99a420177017930db31ddce20d",
+      "page_count": 70,
+      "chunk_count": 380,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "nccd_2020_primary_hypertension_management_guideline",
+      "title": "国家基层高血压防治管理指南（2020版）",
+      "local_pdf": "knowledge_base/sources/downloads/nccd_2020_primary_hypertension_management_guideline.pdf",
+      "pdf_sha256": "2bfeb70595cace663851f78a30045d94c8d554a3848fa6befe96118600212263",
+      "page_count": 35,
+      "chunk_count": 46,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "nhc_2017_basic_public_health_service_hypertension_management",
+      "title": "国家基本公共卫生服务规范（第三版）高血压患者健康管理服务规范",
+      "local_pdf": "knowledge_base/sources/downloads/nhc_2017_basic_public_health_service_hypertension_management.pdf",
+      "pdf_sha256": "5e61460188040be01605e8294561f8d82f29c09720dca40ff8c1eab7703431d8",
+      "page_count": 101,
+      "chunk_count": 139,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "nhc_2023_adult_hypertension_dietary_guideline",
+      "title": "成人高血压食养指南（2023年版）",
+      "local_pdf": "knowledge_base/sources/downloads/nhc_2023_adult_hypertension_dietary_guideline.pdf",
+      "pdf_sha256": "e6c5227d95d289a810c953d895afc740ae922fc80ed4a8f1d5f4e39a9cd6c000",
+      "page_count": 56,
+      "chunk_count": 67,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance",
+      "title": "高血压营养和运动指导原则（2024年版）",
+      "local_pdf": "knowledge_base/sources/downloads/nhc_2024_hypertension_nutrition_exercise_guidance.pdf",
+      "pdf_sha256": "a3057e7ed7c2e4dfd16486bf171b208e5f9162920271465709cfc47b31dd1173",
+      "page_count": 14,
+      "chunk_count": 1,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "nhc_2025_primary_care_hypertension_standard_ws_t_872",
+      "title": "基层医疗卫生机构高血压防治管理标准 WS/T 872-2025",
+      "local_pdf": "knowledge_base/sources/downloads/nhc_2025_primary_care_hypertension_standard_ws_t_872.pdf",
+      "pdf_sha256": "4c099a4a656b72d6524c7acd05359da10b4dd861def402b80acd94a307d410d6",
+      "page_count": 8,
+      "chunk_count": 10,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "nhc_ws_t_430_2013_hypertension_dietary_guidance",
+      "title": "高血压患者膳食指导 WS/T 430-2013",
+      "local_pdf": "knowledge_base/sources/downloads/nhc_ws_t_430_2013_hypertension_dietary_guidance.pdf",
+      "pdf_sha256": "525ffd3ff8d6ab60a566bea31850a72d658bd8926f720e8705ba42d2b2415ad4",
+      "page_count": 12,
+      "chunk_count": 0,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "nhlbi_dash_lowering_blood_pressure_guide",
+      "title": "Your Guide to Lowering Your Blood Pressure with DASH",
+      "local_pdf": "knowledge_base/sources/downloads/nhlbi_dash_lowering_blood_pressure_guide.pdf",
+      "pdf_sha256": "a950723fa1047238ecf843723668c1bcae1f4ff4ee0722e475470211fbcc415d",
+      "page_count": 64,
+      "chunk_count": 116,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "nhlbi_self_measured_blood_pressure_fact_sheet",
+      "title": "Self-Measured Blood Pressure",
+      "local_pdf": "knowledge_base/sources/downloads/nhlbi_self_measured_blood_pressure_fact_sheet.pdf",
+      "pdf_sha256": "e8a8cc93cb4209c3b12750b62fe484663f041f931333beb28614d099a9aba528",
+      "page_count": 2,
+      "chunk_count": 5,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "nice_ng136_hypertension",
+      "title": "Hypertension in adults - diagnosis and management",
+      "local_pdf": "knowledge_base/sources/downloads/nice_ng136_hypertension.pdf",
+      "pdf_sha256": "07f00ff626bb0aa930912fdf66cb0d05d2be6fca69469dbbce66233b063f6348",
+      "page_count": 52,
+      "chunk_count": 169,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "ode_2020_continuous_ambulatory_bp_ptt_data_acquisition",
+      "title": "Towards Continuous and Ambulatory Blood Pressure Monitoring - Methods for Efficient Data Acquisition for Pulse Transit Time Estimation",
+      "local_pdf": "knowledge_base/sources/downloads/ode_2020_continuous_ambulatory_bp_ptt_data_acquisition.pdf",
+      "pdf_sha256": "7f192e3a6883f3e39d53dde97be1e42db673eca280ad10558609cf81ea28d579",
+      "page_count": 25,
+      "chunk_count": 131,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement",
+      "title": "Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications",
+      "local_pdf": "knowledge_base/sources/downloads/parati_2026_esc_cuffless_bp_monitoring_statement.pdf",
+      "pdf_sha256": "53dfb62f2afdb2ec94e8587b826ba060b537f3f943577528f06c50f4d7109f6f",
+      "page_count": 14,
+      "chunk_count": 136,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "park_2022_ppg_analysis_applications_integrative_review",
+      "title": "Photoplethysmogram Analysis and Applications - An Integrative Review",
+      "local_pdf": "knowledge_base/sources/downloads/park_2022_ppg_analysis_applications_integrative_review.pdf",
+      "pdf_sha256": "bfd491b1a2c85c2434696894eb5f53f336ead276c386c8737b92c3394842f7c7",
+      "page_count": 23,
+      "chunk_count": 230,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "shi_2022_skin_pigmentation_pulse_oximetry_systematic_review",
+      "title": "The accuracy of pulse oximetry in measuring oxygen saturation by levels of skin pigmentation - a systematic review and meta-analysis",
+      "local_pdf": "knowledge_base/sources/downloads/shi_2022_skin_pigmentation_pulse_oximetry_systematic_review.pdf",
+      "pdf_sha256": "73d73b5924487664cb7538d9d80c4a3b0cb1e91c6ba9f316cc46ecde72ed629e",
+      "page_count": 14,
+      "chunk_count": 98,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "shirbani_2020_ambient_light_skin_tone_vpg",
+      "title": "Effect of Ambient Lighting and Skin Tone on Estimation of Heart Rate and Pulse Transit Time from Video Plethysmography",
+      "local_pdf": "knowledge_base/sources/downloads/shirbani_2020_ambient_light_skin_tone_vpg.pdf",
+      "pdf_sha256": "9c2f5e2f688b8f73ad33123d0c6e18ec15b34e161c908753d7edec803ef7e014",
+      "page_count": 4,
+      "chunk_count": 36,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "sjoding_2020_racial_bias_pulse_oximetry",
+      "title": "Racial Bias in Pulse Oximetry Measurement",
+      "local_pdf": "knowledge_base/sources/downloads/sjoding_2020_racial_bias_pulse_oximetry.pdf",
+      "pdf_sha256": "2129e5490ca8bd5cb283f12239abd2c9e16968a0f996b6605a5d8d0bf905f398",
+      "page_count": 5,
+      "chunk_count": 13,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "sun_2016_ppg_revisited_contact_noncontact_imaging",
+      "title": "Photoplethysmography Revisited - From Contact to Noncontact From Point to Imaging",
+      "local_pdf": "knowledge_base/sources/downloads/sun_2016_ppg_revisited_contact_noncontact_imaging.pdf",
+      "pdf_sha256": "5672a7f9a1aef5d8900f634ed333a657df2f098de050e534dc17889cdd852487",
+      "page_count": 35,
+      "chunk_count": 179,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "tamura_2014_wearable_ppg_sensors_past_present",
+      "title": "Wearable Photoplethysmographic Sensors - Past and Present",
+      "local_pdf": "knowledge_base/sources/downloads/tamura_2014_wearable_ppg_sensors_past_present.pdf",
+      "pdf_sha256": "a4cbd709910f2c10ce644a6da9532666e327646b9c9824d3b404d2b8f68d4ea0",
+      "page_count": 21,
+      "chunk_count": 103,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "tamura_2019_current_progress_ppg_spo2",
+      "title": "Current progress of photoplethysmography and SpO2 for health monitoring",
+      "local_pdf": "knowledge_base/sources/downloads/tamura_2019_current_progress_ppg_spo2.pdf",
+      "pdf_sha256": "7e76b4cb19a0eb65e7ef2f90b73ded263f64d4c36d590832a908187c90cf4c55",
+      "page_count": 16,
+      "chunk_count": 127,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "teng_2004_contact_force_ppg",
+      "title": "The effect of contacting force on photoplethysmographic signals",
+      "local_pdf": "knowledge_base/sources/downloads/teng_2004_contact_force_ppg.pdf",
+      "pdf_sha256": "f0d8e784c3557b327dedb06bfbb2e23a53fb0dbae0b83ad74b75240a49a429dc",
+      "page_count": 14,
+      "chunk_count": 60,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "uspstf_hypertension_screening_adults",
+      "title": "Hypertension in Adults - Screening",
+      "local_pdf": "knowledge_base/sources/downloads/uspstf_hypertension_screening_adults.pdf",
+      "pdf_sha256": "a7083f690b0dc863af82faa8b876bb8893e05a4fb2680b7943edd3d2b0e0b388",
+      "page_count": 7,
+      "chunk_count": 63,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "who_2021_hypertension_pharmacological_treatment_guideline",
+      "title": "Guideline for the pharmacological treatment of hypertension in adults",
+      "local_pdf": "knowledge_base/sources/downloads/who_2021_hypertension_pharmacological_treatment_guideline.pdf",
+      "pdf_sha256": "57f6376d5c9bc4ea6c44873625547c8a5443d5a6ad8c8c422733681563db05fb",
+      "page_count": 61,
+      "chunk_count": 262,
+      "extraction_method": "pypdf"
+    },
+    {
+      "source_id": "who_automated_cuff_bp_device_specs",
+      "title": "Technical specifications for automated non-invasive blood pressure measuring devices with cuff",
+      "local_pdf": "knowledge_base/sources/downloads/who_automated_cuff_bp_device_specs.pdf",
+      "pdf_sha256": "33ab60db98b392f77a56243230b821176572dbdc07568547270d16eacd79f34b",
+      "page_count": 72,
+      "chunk_count": 282,
+      "extraction_method": "pypdf"
+    }
+  ],
+  "skipped": [
+    {
+      "source_id": "acog_preeclampsia_faq",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "ada_diabetes_bp",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_2025_bp_guideline_top_things",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_bp_medicines_patient",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_diabetes_high_bp",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_getting_active_bp",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_home_bp_monitoring_public",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_hypertensive_crisis_public",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_kidney_disease_high_bp",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_lifestyle_manage_bp",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_sodium_salt",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_stress_management",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_understanding_bp_readings_public",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_weight_bp",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_women_high_bp",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "ama_target_bp_measure_accurately",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "bihs_validated_bp_monitors",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "cdc_bp_pregnancy",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "cdc_ckd_risk_factors",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "cdc_heart_disease_symptoms",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "cdc_high_bp_risk_factors",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "cdc_measure_blood_pressure_home",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "cdc_million_hearts_smbp_action_guide",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "cdc_physical_activity_basics",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "cdc_prevent_high_blood_pressure",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "cdc_quit_smoking",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "cdc_self_measured_bp_monitoring",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "cdc_stroke_signs",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "esc_2024_bp_guideline_key_points",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "fda_pulse_oximeter_limitations",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "fda_taking_medicines_safely",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "healthy_china_cvd_action_2023_2030",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "hypertension_canada_device_recommendations",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "iso_81060_2_validation_standard",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "local_capture_environment_rule",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "local_confidence_interpretation_rule",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "local_disclaimer_rule",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "local_evidence_quality_rule",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "local_hypertensive_emergency_rule",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "local_kb_governance_rule",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "local_medication_safety_rule",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "local_ppg_signal_quality_rule",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "local_special_population_rule",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "medlineplus_high_blood_pressure",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "medlineplus_high_bp_medicines",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "medlineplus_hypertensive_crisis",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "medlineplus_measuring_blood_pressure",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "nhc_2024_chinese_health_literacy_basic_skills",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "nhc_2024_hypertension_day_key_messages",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "nhlbi_high_blood_pressure",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "nhlbi_preeclampsia_pregnancy",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "nhs_high_blood_pressure",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "nia_high_blood_pressure_older_adults",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "nia_sleep_health",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "nih_dash_eating_plan",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "nkf_high_bp_ckd",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "pubmed_cuffless_bp_review_41460057",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "pubmed_cuffless_bp_statement_41376592",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "state_council_chronic_disease_plan_2017_2025",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "stride_bp_validated_devices",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "validatebp_validated_devices",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "who_global_hypertension_report_2023",
+      "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "who_hypertension_fact_sheet",
+      "reason": "local_pdf_missing"
+    }
+  ]
+}

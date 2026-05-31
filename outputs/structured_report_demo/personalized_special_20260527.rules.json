@@ -1,0 +1,59 @@
+{
+  "quality": {
+    "is_usable": true,
+    "quality_level": "acceptable",
+    "confidence_level": "acceptable",
+    "explanation": "本次信号质量可用于生成保守的趋势解释。",
+    "warnings": []
+  },
+  "estimated_bp_category": "stage_2_reference_range",
+  "bp_category_reference": "CN_stage_2_reference_range",
+  "risk_level": "elevated_attention",
+  "urgency_level": "non_emergency",
+  "emergency": false,
+  "emergency_reasons": [],
+  "special_population": true,
+  "special_population_reasons": [
+    "年龄达到 65 岁及以上",
+    "合并糖尿病",
+    "合并慢性肾脏病",
+    "正在使用降压药"
+  ],
+  "recommendation_intents": [
+    "ppg_limitation_explanation",
+    "validated_upper_arm_cuff_recheck",
+    "remeasurement",
+    "home_bp_monitoring",
+    "lifestyle",
+    "medical_consultation"
+  ],
+  "retrieval_intents": [
+    "PPG 无袖带 血压估算 局限 不能替代规范血压测量",
+    "中国 高血压 规范测量 上臂式 血压计 复核",
+    "中国 高血压 复测 安静休息 家庭血压 记录",
+    "国家卫健委 基层高血压 家庭血压 监测 随访 记录",
+    "国家卫健委 高血压 食养 减盐 运动 体重管理 生活方式",
+    "中国 基层高血压 多次复核 偏高 医生 咨询",
+    "PPG cuffless blood pressure estimation limitations",
+    "home blood pressure monitoring validated upper arm cuff",
+    "blood pressure remeasurement rest five minutes home monitoring",
+    "home blood pressure monitoring repeated readings record",
+    "hypertension lifestyle sodium exercise weight smoking sleep",
+    "when to consult doctor for high blood pressure readings",
+    "中国 高血压 指南 stage_2_reference_range 血压分类 参考范围 140 90",
+    "stage_2_reference_range blood pressure reference range",
+    "blood pressure medication safety do not stop or adjust dose"
+  ],
+  "retrieval_allowed_uses": [
+    "bp_category_reference",
+    "cuffless_ppg_limitations",
+    "device_advice",
+    "home_bp_monitoring",
+    "lifestyle",
+    "medication_safety",
+    "remeasurement",
+    "special_population"
+  ],
+  "warnings": [],
+  "guideline_region_used": "CN"
+}

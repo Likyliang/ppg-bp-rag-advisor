@@ -14,6 +14,10 @@ class InputSummary(BaseModel):
     signal_quality_label: str = "unknown"
     confidence: Optional[float] = None
     capture_duration_sec: Optional[float] = None
+    motion_artifact_score: Optional[float] = None
+    finger_coverage_score: Optional[float] = None
+    contact_pressure_level: str = "unknown"
+    ambient_light_level: str = "unknown"
     ppg_source: str = "unknown"
     algorithm_version: Optional[str] = None
     calculation_principle: Optional[str] = None

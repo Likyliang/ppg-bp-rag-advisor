@@ -29,6 +29,10 @@ def _run_quality_rules(payload: MeasurementPayload) -> QualityResult:
     fair_score = config.get("fair_signal_score_lt", 0.75)
     low_confidence = config.get("low_confidence_lt", 0.50)
     short_duration = config.get("short_capture_duration_lt_sec", 20)
+    high_motion_artifact = config.get("high_motion_artifact_gte", 0.70)
+    moderate_motion_artifact = config.get("moderate_motion_artifact_gte", 0.45)
+    poor_finger_coverage = config.get("poor_finger_coverage_lt", 0.60)
+    fair_finger_coverage = config.get("fair_finger_coverage_lt", 0.75)
 
     is_usable = True
     quality_level = "acceptable"
@@ -60,6 +64,32 @@ def _run_quality_rules(payload: MeasurementPayload) -> QualityResult:
         warnings.append("采集时长偏短，建议重新采集不少于 20 秒。")
         if quality_level == "acceptable":
             quality_level = "fair"
+
+    if measurement.motion_artifact_score is not None:
+        if measurement.motion_artifact_score >= high_motion_artifact:
+            is_usable = False
+            quality_level = "low_quality"
+            warnings.append("手指移动或运动伪影偏高，本次估算只适合提示重新采集。")
+        elif measurement.motion_artifact_score >= moderate_motion_artifact and quality_level != "low_quality":
+            quality_level = "fair"
+            warnings.append("采集过程中可能存在手指移动影响，建议保持静止后复测。")
+
+    if measurement.finger_coverage_score is not None:
+        if measurement.finger_coverage_score < poor_finger_coverage:
+            is_usable = False
+            quality_level = "low_quality"
+            warnings.append("手指覆盖摄像头不完整，本次估算只适合提示重新采集。")
+        elif measurement.finger_coverage_score < fair_finger_coverage and quality_level != "low_quality":
+            quality_level = "fair"
+            warnings.append("手指覆盖可能不够稳定，建议重新覆盖摄像头后复测。")
+
+    if measurement.contact_pressure_level in {"low", "high", "unstable"} and quality_level != "low_quality":
+        quality_level = "fair"
+        warnings.append("手指按压力度可能影响 PPG 波形，建议放松手指、保持稳定后复测。")
+
+    if measurement.ambient_light_level in {"dim", "bright", "unstable"} and quality_level != "low_quality":
+        quality_level = "fair"
+        warnings.append("环境光可能影响摄像头 PPG 采集，建议在稳定光线下重新测量。")
 
     if is_usable and quality_level == "acceptable":
         explanation = "本次信号质量可用于生成保守的趋势解释。"
@@ -174,12 +204,18 @@ def _recommendation_intents(
         intents.extend(["home_bp_monitoring", "lifestyle"])
     else:
         intents.extend(["routine_monitoring", "healthy_lifestyle"])
+    if quality.quality_level == "fair":
+        intents.extend(["remeasurement", "signal_quality_improvement"])
     if special_population and "medical_consultation" not in intents:
         intents.append("medical_consultation")
-    return intents
+    return list(dict.fromkeys(intents))
 
 
-def _retrieval_intents(recommendation_intents: List[str], category: str) -> List[str]:
+def _retrieval_intents(
+    recommendation_intents: List[str],
+    category: str,
+    guideline_region: str = "CN",
+) -> List[str]:
     query_map = {
         "ppg_limitation_explanation": "PPG cuffless blood pressure estimation limitations",
         "validated_upper_arm_cuff_recheck": "home blood pressure monitoring validated upper arm cuff",
@@ -192,10 +228,30 @@ def _retrieval_intents(recommendation_intents: List[str], category: str) -> List
         "routine_monitoring": "normal blood pressure routine monitoring healthy lifestyle",
         "healthy_lifestyle": "healthy lifestyle blood pressure prevention",
     }
-    queries = [query_map[intent] for intent in recommendation_intents if intent in query_map]
+    cn_query_map = {
+        "ppg_limitation_explanation": "PPG 无袖带 血压估算 局限 不能替代规范血压测量",
+        "validated_upper_arm_cuff_recheck": "中国 高血压 规范测量 上臂式 血压计 复核",
+        "remeasurement": "中国 高血压 复测 安静休息 家庭血压 记录",
+        "signal_quality_improvement": "手指 摄像头 PPG 信号质量 重新采集 复测",
+        "home_bp_monitoring": "国家卫健委 基层高血压 家庭血压 监测 随访 记录",
+        "lifestyle": "国家卫健委 高血压 食养 减盐 运动 体重管理 生活方式",
+        "medical_consultation": "中国 基层高血压 多次复核 偏高 医生 咨询",
+        "emergency_care": "高血压 急症 180 120 胸痛 气短 肢体无力 视物改变",
+        "routine_monitoring": "中国 血压 正常范围 定期监测 健康生活方式",
+        "healthy_lifestyle": "健康中国 高血压 预防 减盐 运动 健康生活方式",
+    }
+
+    queries: List[str] = []
+    if guideline_region != "AHA":
+        queries.extend(cn_query_map[intent] for intent in recommendation_intents if intent in cn_query_map)
+    queries.extend(query_map[intent] for intent in recommendation_intents if intent in query_map)
     if category in {"stage_1_reference_range", "stage_2_reference_range", "severe_range"}:
+        if guideline_region != "AHA":
+            queries.append(f"中国 高血压 指南 {category} 血压分类 参考范围 140 90")
         queries.append(f"{category} blood pressure reference range")
     if category == "severe_range":
+        if guideline_region != "AHA":
+            queries.append("中国 高血压 严重偏高 180 120 急症症状 胸痛 肢体无力 视物改变")
         queries.append("severe blood pressure 180 120 emergency symptoms chest pain weakness vision")
     return list(dict.fromkeys(queries))
 
@@ -235,6 +291,28 @@ def _retrieval_allowed_uses(
     return sorted(uses)
 
 
+def _ppg_feature_quality_queries(payload: MeasurementPayload) -> List[str]:
+    measurement = payload.measurement
+    config = load_yaml_config("config/bp_thresholds.yaml").get("quality", {})
+    queries: List[str] = []
+
+    if (
+        measurement.motion_artifact_score is not None
+        and measurement.motion_artifact_score >= config.get("moderate_motion_artifact_gte", 0.45)
+    ):
+        queries.append("PPG motion artifact 手指移动 运动伪影 信号质量 重新采集")
+    if (
+        measurement.finger_coverage_score is not None
+        and measurement.finger_coverage_score < config.get("fair_finger_coverage_lt", 0.75)
+    ):
+        queries.append("手指覆盖不完整 摄像头 PPG signal quality finger coverage")
+    if measurement.contact_pressure_level in {"low", "high", "unstable"}:
+        queries.append("PPG contact pressure 手指按压力度 接触压力 波形质量")
+    if measurement.ambient_light_level in {"dim", "bright", "unstable"}:
+        queries.append("camera PPG ambient light 环境光 光照干扰 signal quality")
+    return queries
+
+
 def run_rule_engine(payload: MeasurementPayload) -> RuleResult:
     quality = _run_quality_rules(payload)
     category, reference = _bp_category(payload, quality)
@@ -242,7 +320,9 @@ def run_rule_engine(payload: MeasurementPayload) -> RuleResult:
     special, special_reasons = _special_population(payload)
     risk, urgency = _risk_and_urgency(category, quality, emergency)
     recommendation_intents = _recommendation_intents(category, quality, emergency, special)
-    retrieval_intents = _retrieval_intents(recommendation_intents, category)
+    retrieval_intents = _retrieval_intents(recommendation_intents, category, payload.guideline_region)
+    retrieval_intents.extend(_ppg_feature_quality_queries(payload))
+    retrieval_intents = list(dict.fromkeys(retrieval_intents))
     if payload.user_profile.antihypertensive_medication:
         retrieval_intents.append("blood pressure medication safety do not stop or adjust dose")
     retrieval_allowed_uses = _retrieval_allowed_uses(

@@ -1,0 +1,408 @@
+{
+  "report_id": "4d4bc85b-59d5-42eb-a03b-9dcae68d2e78",
+  "mode": "user_health_report",
+  "generation_mode": "template_only",
+  "input_summary": {
+    "module": "CHS-BloodPressure",
+    "estimated_sbp": 146.0,
+    "estimated_dbp": 92.0,
+    "heart_rate": 82.0,
+    "signal_quality_score": 0.86,
+    "signal_quality_label": "good",
+    "confidence": 0.72,
+    "capture_duration_sec": 30.0,
+    "ppg_source": "camera_finger",
+    "algorithm_version": "miniapp-bp-v1.0-demo",
+    "calculation_principle": "camera-based finger PPG estimation",
+    "timestamp": null
+  },
+  "measurement_status": {
+    "is_usable": true,
+    "quality_level": "acceptable",
+    "quality_explanation": "本次信号质量可用于生成保守的趋势解释。",
+    "warnings": []
+  },
+  "risk_assessment": {
+    "bp_category_reference": "CN_stage_2_reference_range",
+    "estimated_bp_category": "stage_2_reference_range",
+    "risk_level": "elevated_attention",
+    "urgency_level": "non_emergency",
+    "explanation": "本次估算值处于偏高参考范围，建议复测并结合连续记录判断趋势。"
+  },
+  "recommendations": {
+    "remeasurement": [
+      "安静休息至少 5 分钟后重新测量。",
+      "连续多天记录测量趋势，避免只看单次估算值。",
+      "按固定时间记录家庭血压，并保留记录供医生参考。"
+    ],
+    "device_advice": [
+      "使用经过验证的上臂式电子血压计进行复核。"
+    ],
+    "lifestyle": [
+      "减少钠盐摄入。",
+      "保持规律运动和体重管理。",
+      "戒烟限酒，保证睡眠。",
+      "管理压力，避免过量咖啡因。"
+    ],
+    "medical_consultation": [
+      "若多次规范复核仍偏高，建议咨询医生。"
+    ]
+  },
+  "safety_alert": {
+    "emergency": false,
+    "message": "当前未触发急症规则。若出现胸痛、气短、肢体无力、视物改变或说话困难，请及时寻求急救。"
+  },
+  "retrieved_evidence": [
+    {
+      "source_id": "aha_home_bp_monitoring_public_003",
+      "title": "Home Blood Pressure Monitoring",
+      "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
+      "used_for": "blood pressure remeasurement rest five minutes home monitoring",
+      "organization": "American Heart Association",
+      "region": "AHA",
+      "topic": "home_bp_monitoring",
+      "language": "en",
+      "evidence_class": "official_health_education",
+      "source_quality_score": 25.0,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice"
+      ],
+      "review_status": "included",
+      "score": 0.7502,
+      "snippet": "## 实现使用说明 - 报告中的 device_advice 和 remeasurement 优先引用该来源。"
+    },
+    {
+      "source_id": "esh_2021_home_bp_monitoring_position_paper_003",
+      "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
+      "url": "https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019",
+      "used_for": "blood pressure remeasurement rest five minutes home monitoring",
+      "organization": "European Society of Hypertension",
+      "region": "EU",
+      "topic": "home_bp_monitoring",
+      "language": "en",
+      "evidence_class": "scientific_statement",
+      "source_quality_score": 25.0,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice"
+      ],
+      "review_status": "included",
+      "score": 0.7436,
+      "snippet": "## 实现使用说明 - 用于 home_bp_monitoring、remeasurement 和 device_advice。"
+    },
+    {
+      "source_id": "aha_ama_2020_smbp_policy_statement_003",
+      "title": "Self-Measured Blood Pressure Monitoring at Home: A Joint Policy Statement From the American Heart Association and American Medical Association",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32567342/",
+      "used_for": "blood pressure remeasurement rest five minutes home monitoring",
+      "organization": "American Heart Association / American Medical Association",
+      "region": "US",
+      "topic": "home_bp_monitoring",
+      "language": "en",
+      "evidence_class": "scientific_statement",
+      "source_quality_score": 22.0,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice"
+      ],
+      "review_status": "included",
+      "score": 0.7263,
+      "snippet": "## 实现使用说明 - 用于 home_bp_monitoring、remeasurement 和 device_advice。"
+    },
+    {
+      "source_id": "cdc_self_measured_bp_monitoring_003",
+      "title": "Self-Measured Blood Pressure Monitoring",
+      "url": "https://www.cdc.gov/high-blood-pressure/php/toolkits/self-measured-blood-pressure-monitoring.html",
+      "used_for": "blood pressure remeasurement rest five minutes home monitoring",
+      "organization": "Centers for Disease Control and Prevention",
+      "region": "US",
+      "topic": "home_bp_monitoring",
+      "language": "en",
+      "evidence_class": "official_health_education",
+      "source_quality_score": 25.0,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice"
+      ],
+      "review_status": "included",
+      "score": 0.7186,
+      "snippet": "## 实现使用说明 - 用于 home_bp_monitoring。"
+    },
+    {
+      "source_id": "aha_home_bp_measurement_instructions_003",
+      "title": "Home Blood Pressure Measurement Instructions",
+      "url": "https://www.heart.org/-/media/files/health-topics/high-blood-pressure/how_to_measure_your_blood_pressure_letter_size.pdf",
+      "used_for": "blood pressure remeasurement rest five minutes home monitoring",
+      "organization": "American Heart Association",
+      "region": "AHA",
+      "topic": "home_bp_monitoring",
+      "language": "en",
+      "evidence_class": "official_health_education",
+      "source_quality_score": 25.0,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice"
+      ],
+      "review_status": "included",
+      "score": 0.7049,
+      "snippet": "## 实现使用说明 - 用于 report 中的 remeasurement card 和 home_bp_monitoring。"
+    },
+    {
+      "source_id": "acc_aha_2025_full_guideline_record_003",
+      "title": "2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
+      "used_for": "when to consult doctor for high blood pressure readings",
+      "organization": "American Heart Association / American College of Cardiology",
+      "region": "AHA",
+      "topic": "bp_categories",
+      "language": "en",
+      "evidence_class": "guideline",
+      "source_quality_score": 25.0,
+      "allowed_uses": [
+        "bp_category_reference",
+        "home_bp_monitoring",
+        "remeasurement",
+        "lifestyle",
+        "special_population"
+      ],
+      "review_status": "included",
+      "score": 0.6957,
+      "snippet": "## 实现使用说明 - 用于 guideline traceability、bp_category_reference、home_bp_monitoring 和 PPG 安全边界。"
+    },
+    {
+      "source_id": "aha_2025_bp_guideline_top_things_003",
+      "title": "2025 High Blood Pressure Guideline - Top Things to Know",
+      "url": "https://professional.heart.org/en/science-news/2025-high-blood-pressure-guideline/top-things-to-know",
+      "used_for": "when to consult doctor for high blood pressure readings",
+      "organization": "American Heart Association",
+      "region": "AHA",
+      "topic": "bp_categories",
+      "language": "en",
+      "evidence_class": "guideline",
+      "source_quality_score": 25.0,
+      "allowed_uses": [
+        "bp_category_reference",
+        "home_bp_monitoring",
+        "remeasurement",
+        "lifestyle",
+        "special_population"
+      ],
+      "review_status": "included",
+      "score": 0.6933,
+      "snippet": "## 实现使用说明 - 用于解释参考范围、复测和生活方式，不用于直接诊断。"
+    },
+    {
+      "source_id": "aha_cuffless_bp_scientific_statement_003",
+      "title": "Cuffless Devices for the Measurement of Blood Pressure",
+      "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
+      "used_for": "PPG cuffless blood pressure estimation limitations",
+      "organization": "American Heart Association",
+      "region": "AHA",
+      "topic": "cuffless_ppg_limitations",
+      "language": "en",
+      "evidence_class": "scientific_statement",
+      "source_quality_score": 25.0,
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "device_advice",
+        "signal_quality",
+        "research_background"
+      ],
+      "review_status": "included",
+      "score": 0.6187,
+      "snippet": "## 实现使用说明 - 任何 PPG 局限说明优先引用该来源。"
+    }
+  ],
+  "recommendation_evidence": [
+    {
+      "group": "remeasurement",
+      "index": 0,
+      "text": "安静休息至少 5 分钟后重新测量。",
+      "required_uses": [
+        "remeasurement"
+      ],
+      "evidence_ids": [
+        "aha_home_bp_monitoring_public_003",
+        "esh_2021_home_bp_monitoring_position_paper_003",
+        "aha_ama_2020_smbp_policy_statement_003"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "remeasurement",
+      "index": 1,
+      "text": "连续多天记录测量趋势，避免只看单次估算值。",
+      "required_uses": [
+        "home_bp_monitoring",
+        "remeasurement"
+      ],
+      "evidence_ids": [
+        "aha_home_bp_monitoring_public_003",
+        "esh_2021_home_bp_monitoring_position_paper_003",
+        "aha_ama_2020_smbp_policy_statement_003"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "remeasurement",
+      "index": 2,
+      "text": "按固定时间记录家庭血压，并保留记录供医生参考。",
+      "required_uses": [
+        "home_bp_monitoring",
+        "remeasurement"
+      ],
+      "evidence_ids": [
+        "aha_home_bp_monitoring_public_003",
+        "esh_2021_home_bp_monitoring_position_paper_003",
+        "aha_ama_2020_smbp_policy_statement_003"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "device_advice",
+      "index": 0,
+      "text": "使用经过验证的上臂式电子血压计进行复核。",
+      "required_uses": [
+        "device_advice"
+      ],
+      "evidence_ids": [
+        "aha_home_bp_monitoring_public_003",
+        "esh_2021_home_bp_monitoring_position_paper_003",
+        "aha_ama_2020_smbp_policy_statement_003"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "lifestyle",
+      "index": 0,
+      "text": "减少钠盐摄入。",
+      "required_uses": [
+        "lifestyle"
+      ],
+      "evidence_ids": [
+        "acc_aha_2025_full_guideline_record_003",
+        "aha_2025_bp_guideline_top_things_003"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "lifestyle",
+      "index": 1,
+      "text": "保持规律运动和体重管理。",
+      "required_uses": [
+        "lifestyle"
+      ],
+      "evidence_ids": [
+        "acc_aha_2025_full_guideline_record_003",
+        "aha_2025_bp_guideline_top_things_003"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "lifestyle",
+      "index": 2,
+      "text": "戒烟限酒，保证睡眠。",
+      "required_uses": [
+        "lifestyle"
+      ],
+      "evidence_ids": [
+        "acc_aha_2025_full_guideline_record_003",
+        "aha_2025_bp_guideline_top_things_003"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "lifestyle",
+      "index": 3,
+      "text": "管理压力，避免过量咖啡因。",
+      "required_uses": [
+        "lifestyle"
+      ],
+      "evidence_ids": [
+        "acc_aha_2025_full_guideline_record_003",
+        "aha_2025_bp_guideline_top_things_003"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "medical_consultation",
+      "index": 0,
+      "text": "若多次规范复核仍偏高，建议咨询医生。",
+      "required_uses": [
+        "home_bp_monitoring",
+        "remeasurement"
+      ],
+      "evidence_ids": [
+        "aha_home_bp_monitoring_public_003",
+        "esh_2021_home_bp_monitoring_position_paper_003",
+        "aha_ama_2020_smbp_policy_statement_003"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    }
+  ],
+  "citation_quality": {
+    "passed": true,
+    "coverage_rate": 1.0,
+    "checked_uses": [
+      "bp_category_reference",
+      "cuffless_ppg_limitations",
+      "device_advice",
+      "home_bp_monitoring",
+      "lifestyle",
+      "remeasurement"
+    ],
+    "missing_uses": [],
+    "high_trust_sensitive_uses": true,
+    "recommendation_grounding_rate": 1.0,
+    "ungrounded_recommendations": [],
+    "issues": []
+  },
+  "ui_summary": {
+    "title": "血压估算趋势解释",
+    "status": "elevated_attention",
+    "priority": "medium",
+    "chips": [
+      "stage_2_reference_range",
+      "acceptable",
+      "non_emergency"
+    ],
+    "next_actions": [
+      "安静休息至少 5 分钟后重新测量。",
+      "连续多天记录测量趋势，避免只看单次估算值。",
+      "按固定时间记录家庭血压，并保留记录供医生参考。"
+    ]
+  },
+  "disclaimer": "本报告仅供个人健康趋势参考，不能替代医生诊断、治疗决策或规范血压测量。如有不适或多次复核仍异常，请咨询专业医务人员。",
+  "markdown_report": "## 本次结果摘要\n本次手指摄像头 PPG 算法估算血压为 146.0/92.0 mmHg，处于明显偏高范围参考值。\n本次输入信息：信号质量分 0.86；PPG 置信度 0.72；采集时长 30.0 秒；来源 camera_finger。\n该结果来自 PPG 估算，仅供个人健康趋势参考，不能替代规范血压测量。\n\n## 质量与风险解释\n本次信号质量可用于生成保守的趋势解释。\n本次估算值处于偏高参考范围，建议复测并结合连续记录判断趋势。\n\n## 建议\n- 安静休息至少 5 分钟后重新测量。\n- 连续多天记录测量趋势，避免只看单次估算值。\n- 按固定时间记录家庭血压，并保留记录供医生参考。\n- 使用经过验证的上臂式电子血压计进行复核。\n- 减少钠盐摄入。\n- 保持规律运动和体重管理。\n- 戒烟限酒，保证睡眠。\n- 管理压力，避免过量咖啡因。\n- 若多次规范复核仍偏高，建议咨询医生。\n\n## 参考来源\n- [aha_home_bp_monitoring_public_003] Home Blood Pressure Monitoring（American Heart Association） · official_health_education: https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home\n- [esh_2021_home_bp_monitoring_position_paper_003] Home blood pressure monitoring - methodology clinical relevance and practical application（European Society of Hypertension） · scientific_statement: https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019\n- [aha_ama_2020_smbp_policy_statement_003] Self-Measured Blood Pressure Monitoring at Home: A Joint Policy Statement From the American Heart Association and American Medical Association（American Heart Association / American Medical Association） · scientific_statement: https://pubmed.ncbi.nlm.nih.gov/32567342/\n- [cdc_self_measured_bp_monitoring_003] Self-Measured Blood Pressure Monitoring（Centers for Disease Control and Prevention） · official_health_education: https://www.cdc.gov/high-blood-pressure/php/toolkits/self-measured-blood-pressure-monitoring.html\n- [aha_home_bp_measurement_instructions_003] Home Blood Pressure Measurement Instructions（American Heart Association） · official_health_education: https://www.heart.org/-/media/files/health-topics/high-blood-pressure/how_to_measure_your_blood_pressure_letter_size.pdf\n- [acc_aha_2025_full_guideline_record_003] 2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults（American Heart Association / American College of Cardiology） · guideline: https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356\n- [aha_2025_bp_guideline_top_things_003] 2025 High Blood Pressure Guideline - Top Things to Know（American Heart Association） · guideline: https://professional.heart.org/en/science-news/2025-high-blood-pressure-guideline/top-things-to-know\n- [aha_cuffless_bp_scientific_statement_003] Cuffless Devices for the Measurement of Blood Pressure（American Heart Association） · scientific_statement: https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know\n\n## 引用质量\n证据覆盖率：1.0\n建议证据绑定率：1.0\n敏感用途高可信来源：是\n\n## 免责声明\n本报告仅供个人健康趋势参考，不能替代医生诊断、治疗决策或规范血压测量。如有不适或多次复核仍异常，请咨询专业医务人员。",
+  "safety_review": {
+    "pass": true,
+    "issues": [],
+    "required_edits": [],
+    "severity": "none"
+  },
+  "warnings": []
+}

@@ -1,0 +1,372 @@
+{
+  "report_id": "cb6c53d9-f8a4-4f9d-8aa4-6bfca2233556",
+  "mode": "user_health_report",
+  "generation_mode": "template_only",
+  "input_summary": {
+    "module": "CHS-BloodPressure",
+    "estimated_sbp": 146.0,
+    "estimated_dbp": 92.0,
+    "heart_rate": 82.0,
+    "signal_quality_score": 0.86,
+    "signal_quality_label": "good",
+    "confidence": 0.72,
+    "capture_duration_sec": 30.0,
+    "ppg_source": "camera_finger",
+    "algorithm_version": "miniapp-bp-v1.0-demo",
+    "calculation_principle": "camera-based finger PPG estimation",
+    "timestamp": null
+  },
+  "measurement_status": {
+    "is_usable": true,
+    "quality_level": "acceptable",
+    "quality_explanation": "本次信号质量可用于生成保守的趋势解释。",
+    "warnings": []
+  },
+  "risk_assessment": {
+    "bp_category_reference": "CN_stage_2_reference_range",
+    "estimated_bp_category": "stage_2_reference_range",
+    "risk_level": "elevated_attention",
+    "urgency_level": "non_emergency",
+    "explanation": "本次估算值处于偏高参考范围，建议复测并结合连续记录判断趋势。"
+  },
+  "recommendations": {
+    "remeasurement": [
+      "安静休息至少 5 分钟后重新测量。",
+      "连续多天记录测量趋势，避免只看单次估算值。",
+      "按固定时间记录家庭血压，并保留记录供医生参考。"
+    ],
+    "device_advice": [
+      "使用经过验证的上臂式电子血压计进行复核。"
+    ],
+    "lifestyle": [
+      "减少钠盐摄入。",
+      "保持规律运动和体重管理。",
+      "戒烟限酒，保证睡眠。",
+      "管理压力，避免过量咖啡因。"
+    ],
+    "medical_consultation": [
+      "若多次规范复核仍偏高，建议咨询医生。"
+    ]
+  },
+  "safety_alert": {
+    "emergency": false,
+    "message": "当前未触发急症规则。若出现胸痛、气短、肢体无力、视物改变或说话困难，请及时寻求急救。"
+  },
+  "retrieved_evidence": [
+    {
+      "source_id": "muntner_2019_aha_bp_measurement_scientific_statement_001",
+      "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/",
+      "used_for": "PPG 无袖带 血压估算 局限 不能替代规范血压测量",
+      "organization": "American Heart Association",
+      "region": "AHA",
+      "topic": "home_bp_monitoring",
+      "language": "en",
+      "evidence_class": "scientific_statement",
+      "source_quality_score": 24.0,
+      "allowed_uses": [
+        "home_bp_monitoring",
+        "remeasurement",
+        "device_advice",
+        "bp_category_reference"
+      ],
+      "review_status": "included",
+      "score": 0.9147,
+      "snippet": "## 来源摘要 AHA 血压测量科学声明系统说明诊室、家庭和动态血压测量的规范流程、测量误差来源、袖带和设备要求，是解释 PPG 估算不能替代规范测量的高可信依据。"
+    },
+    {
+      "source_id": "nhc_2023_adult_hypertension_dietary_guideline_001",
+      "title": "成人高血压食养指南（2023年版）",
+      "url": "https://www.nhc.gov.cn/sps/c100088/202301/f01895a06c5349ef999f25da833c166d.shtml",
+      "used_for": "国家卫健委 高血压 食养 减盐 运动 体重管理 生活方式",
+      "organization": "国家卫生健康委办公厅",
+      "region": "CN",
+      "topic": "lifestyle",
+      "language": "zh",
+      "evidence_class": "guideline",
+      "source_quality_score": 24.0,
+      "allowed_uses": [
+        "lifestyle",
+        "home_bp_monitoring",
+        "remeasurement",
+        "special_population"
+      ],
+      "review_status": "included",
+      "score": 0.9086,
+      "snippet": "## 来源摘要 国家卫健委《成人高血压食养指南（2023年版）》提供中国成人高血压膳食、减钠增钾、体重管理和自我血压监测的官方食养依据。"
+    },
+    {
+      "source_id": "acc_aha_2025_full_guideline_record_002",
+      "title": "2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
+      "used_for": "PPG 无袖带 血压估算 局限 不能替代规范血压测量",
+      "organization": "American Heart Association / American College of Cardiology",
+      "region": "AHA",
+      "topic": "bp_categories",
+      "language": "en",
+      "evidence_class": "guideline",
+      "source_quality_score": 25.0,
+      "allowed_uses": [
+        "bp_category_reference",
+        "home_bp_monitoring",
+        "remeasurement",
+        "lifestyle",
+        "special_population"
+      ],
+      "review_status": "included",
+      "score": 0.9015,
+      "snippet": "## 可用于报告的要点 - 规范测量、重复读数、合适袖带和经验证设备是血压解释前提。 - 家庭血压记录可支持医生沟通。 - PPG 或无袖带估算值不能替代指南要求的测量。"
+    },
+    {
+      "source_id": "nhc_2023_adult_hypertension_dietary_guideline_002",
+      "title": "成人高血压食养指南（2023年版）",
+      "url": "https://www.nhc.gov.cn/sps/c100088/202301/f01895a06c5349ef999f25da833c166d.shtml",
+      "used_for": "国家卫健委 高血压 食养 减盐 运动 体重管理 生活方式",
+      "organization": "国家卫生健康委办公厅",
+      "region": "CN",
+      "topic": "lifestyle",
+      "language": "zh",
+      "evidence_class": "guideline",
+      "source_quality_score": 24.0,
+      "allowed_uses": [
+        "lifestyle",
+        "home_bp_monitoring",
+        "remeasurement",
+        "special_population"
+      ],
+      "review_status": "included",
+      "score": 0.8632,
+      "snippet": "## 可用于报告的要点 - 高血压管理中的膳食干预应强调减钠增钾、合理膳食、吃动平衡和体重管理。 - 报告可把该来源用于中国用户生活方式解释和血压自我管理提醒。 - 食养指南不能被改写为个体化诊断、处方或替代医生治疗方案。"
+    },
+    {
+      "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance_002",
+      "title": "高血压营养和运动指导原则（2024年版）",
+      "url": "https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html",
+      "used_for": "国家卫健委 高血压 食养 减盐 运动 体重管理 生活方式",
+      "organization": "国家卫生健康委办公厅",
+      "region": "CN",
+      "topic": "lifestyle",
+      "language": "zh",
+      "evidence_class": "official_health_education",
+      "source_quality_score": 25.0,
+      "allowed_uses": [
+        "lifestyle",
+        "special_population",
+        "home_bp_monitoring"
+      ],
+      "review_status": "included",
+      "score": 0.8418,
+      "snippet": "## 可用于报告的要点 - 中文报告的减盐、合理膳食、运动和体重管理建议可优先引用该来源。 - 生活方式内容属于健康教育，不承诺个体降压效果。 - 特殊人群仍需医生或营养/运动专业人员个体化评估。"
+    },
+    {
+      "source_id": "aha_cuffless_bp_scientific_statement_002",
+      "title": "Cuffless Devices for the Measurement of Blood Pressure",
+      "url": "https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know",
+      "used_for": "PPG 无袖带 血压估算 局限 不能替代规范血压测量",
+      "organization": "American Heart Association",
+      "region": "AHA",
+      "topic": "cuffless_ppg_limitations",
+      "language": "en",
+      "evidence_class": "scientific_statement",
+      "source_quality_score": 25.0,
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "device_advice",
+        "signal_quality",
+        "research_background"
+      ],
+      "review_status": "included",
+      "score": 0.8051,
+      "snippet": "## 可用于报告的要点 - 无袖带设备依赖间接估算，真实场景可靠性需验证。 - PPG 估算不能替代规范血压测量。 - 报告应避免准确性过度承诺。"
+    }
+  ],
+  "recommendation_evidence": [
+    {
+      "group": "remeasurement",
+      "index": 0,
+      "text": "安静休息至少 5 分钟后重新测量。",
+      "required_uses": [
+        "remeasurement"
+      ],
+      "evidence_ids": [
+        "muntner_2019_aha_bp_measurement_scientific_statement_001",
+        "nhc_2023_adult_hypertension_dietary_guideline_001",
+        "acc_aha_2025_full_guideline_record_002"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "remeasurement",
+      "index": 1,
+      "text": "连续多天记录测量趋势，避免只看单次估算值。",
+      "required_uses": [
+        "home_bp_monitoring",
+        "remeasurement"
+      ],
+      "evidence_ids": [
+        "muntner_2019_aha_bp_measurement_scientific_statement_001",
+        "nhc_2023_adult_hypertension_dietary_guideline_001",
+        "acc_aha_2025_full_guideline_record_002"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "remeasurement",
+      "index": 2,
+      "text": "按固定时间记录家庭血压，并保留记录供医生参考。",
+      "required_uses": [
+        "home_bp_monitoring",
+        "remeasurement"
+      ],
+      "evidence_ids": [
+        "muntner_2019_aha_bp_measurement_scientific_statement_001",
+        "nhc_2023_adult_hypertension_dietary_guideline_001",
+        "acc_aha_2025_full_guideline_record_002"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "device_advice",
+      "index": 0,
+      "text": "使用经过验证的上臂式电子血压计进行复核。",
+      "required_uses": [
+        "device_advice"
+      ],
+      "evidence_ids": [
+        "muntner_2019_aha_bp_measurement_scientific_statement_001",
+        "aha_cuffless_bp_scientific_statement_002"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "lifestyle",
+      "index": 0,
+      "text": "减少钠盐摄入。",
+      "required_uses": [
+        "lifestyle"
+      ],
+      "evidence_ids": [
+        "nhc_2023_adult_hypertension_dietary_guideline_001",
+        "acc_aha_2025_full_guideline_record_002",
+        "nhc_2023_adult_hypertension_dietary_guideline_002"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "lifestyle",
+      "index": 1,
+      "text": "保持规律运动和体重管理。",
+      "required_uses": [
+        "lifestyle"
+      ],
+      "evidence_ids": [
+        "nhc_2023_adult_hypertension_dietary_guideline_001",
+        "acc_aha_2025_full_guideline_record_002",
+        "nhc_2023_adult_hypertension_dietary_guideline_002"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "lifestyle",
+      "index": 2,
+      "text": "戒烟限酒，保证睡眠。",
+      "required_uses": [
+        "lifestyle"
+      ],
+      "evidence_ids": [
+        "nhc_2023_adult_hypertension_dietary_guideline_001",
+        "acc_aha_2025_full_guideline_record_002",
+        "nhc_2023_adult_hypertension_dietary_guideline_002"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "lifestyle",
+      "index": 3,
+      "text": "管理压力，避免过量咖啡因。",
+      "required_uses": [
+        "lifestyle"
+      ],
+      "evidence_ids": [
+        "nhc_2023_adult_hypertension_dietary_guideline_001",
+        "acc_aha_2025_full_guideline_record_002",
+        "nhc_2023_adult_hypertension_dietary_guideline_002"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "group": "medical_consultation",
+      "index": 0,
+      "text": "若多次规范复核仍偏高，建议咨询医生。",
+      "required_uses": [
+        "home_bp_monitoring",
+        "remeasurement"
+      ],
+      "evidence_ids": [
+        "muntner_2019_aha_bp_measurement_scientific_statement_001",
+        "nhc_2023_adult_hypertension_dietary_guideline_001",
+        "acc_aha_2025_full_guideline_record_002"
+      ],
+      "high_trust_required": false,
+      "passed": true,
+      "issues": []
+    }
+  ],
+  "citation_quality": {
+    "passed": true,
+    "coverage_rate": 1.0,
+    "checked_uses": [
+      "bp_category_reference",
+      "cuffless_ppg_limitations",
+      "device_advice",
+      "home_bp_monitoring",
+      "lifestyle",
+      "remeasurement"
+    ],
+    "missing_uses": [],
+    "high_trust_sensitive_uses": true,
+    "recommendation_grounding_rate": 1.0,
+    "ungrounded_recommendations": [],
+    "issues": []
+  },
+  "ui_summary": {
+    "title": "血压估算趋势解释",
+    "status": "elevated_attention",
+    "priority": "medium",
+    "chips": [
+      "stage_2_reference_range",
+      "acceptable",
+      "non_emergency"
+    ],
+    "next_actions": [
+      "安静休息至少 5 分钟后重新测量。",
+      "连续多天记录测量趋势，避免只看单次估算值。",
+      "按固定时间记录家庭血压，并保留记录供医生参考。"
+    ]
+  },
+  "disclaimer": "本报告仅供个人健康趋势参考，不能替代医生诊断、治疗决策或规范血压测量。如有不适或多次复核仍异常，请咨询专业医务人员。",
+  "markdown_report": "## 本次结果摘要\n本次手指摄像头 PPG 算法估算血压为 146.0/92.0 mmHg，处于明显偏高范围参考值。\n本次输入信息：信号质量分 0.86；PPG 置信度 0.72；采集时长 30.0 秒；来源 camera_finger。\n该结果来自 PPG 估算，仅供个人健康趋势参考，不能替代规范血压测量。\n\n## 质量与风险解释\n本次信号质量可用于生成保守的趋势解释。\n本次估算值处于偏高参考范围，建议复测并结合连续记录判断趋势。\n\n## 建议\n- 安静休息至少 5 分钟后重新测量。\n- 连续多天记录测量趋势，避免只看单次估算值。\n- 按固定时间记录家庭血压，并保留记录供医生参考。\n- 使用经过验证的上臂式电子血压计进行复核。\n- 减少钠盐摄入。\n- 保持规律运动和体重管理。\n- 戒烟限酒，保证睡眠。\n- 管理压力，避免过量咖啡因。\n- 若多次规范复核仍偏高，建议咨询医生。\n\n## 参考来源\n- [muntner_2019_aha_bp_measurement_scientific_statement_001] Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association（American Heart Association） · scientific_statement: https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/\n- [nhc_2023_adult_hypertension_dietary_guideline_001] 成人高血压食养指南（2023年版）（国家卫生健康委办公厅） · guideline: https://www.nhc.gov.cn/sps/c100088/202301/f01895a06c5349ef999f25da833c166d.shtml\n- [acc_aha_2025_full_guideline_record_002] 2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults（American Heart Association / American College of Cardiology） · guideline: https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356\n- [nhc_2023_adult_hypertension_dietary_guideline_002] 成人高血压食养指南（2023年版）（国家卫生健康委办公厅） · guideline: https://www.nhc.gov.cn/sps/c100088/202301/f01895a06c5349ef999f25da833c166d.shtml\n- [nhc_2024_hypertension_nutrition_exercise_guidance_002] 高血压营养和运动指导原则（2024年版）（国家卫生健康委办公厅） · official_health_education: https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html\n- [aha_cuffless_bp_scientific_statement_002] Cuffless Devices for the Measurement of Blood Pressure（American Heart Association） · scientific_statement: https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure/top-things-to-know\n\n## 引用质量\n证据覆盖率：1.0\n建议证据绑定率：1.0\n敏感用途高可信来源：是\n\n## 免责声明\n本报告仅供个人健康趋势参考，不能替代医生诊断、治疗决策或规范血压测量。如有不适或多次复核仍异常，请咨询专业医务人员。",
+  "safety_review": {
+    "pass": true,
+    "issues": [],
+    "required_edits": [],
+    "severity": "none"
+  },
+  "warnings": []
+}

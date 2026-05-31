@@ -1,0 +1,30 @@
+{
+  "module": "CHS-BloodPressure",
+  "SBP": 146,
+  "DBP": 92,
+  "HR": 82,
+  "quality_score": 0.86,
+  "quality": "good",
+  "conf": 0.72,
+  "duration": 30,
+  "sensor_source": "camera_finger",
+  "model_version": "miniapp-bp-v1.0-demo",
+  "age": 46,
+  "sex": "male",
+  "diabetes": false,
+  "kidney_disease": false,
+  "cvd_history": false,
+  "pregnancy": false,
+  "antihypertensive_medication": false,
+  "symptoms": {
+    "chest_pain": false,
+    "shortness_of_breath": false,
+    "numbness_or_weakness": false,
+    "vision_change": false,
+    "speech_difficulty": false,
+    "severe_headache": false
+  },
+  "locale": "zh-CN",
+  "guideline_region": "CN",
+  "user_question": "这个小程序估算结果需要注意什么？"
+}

@@ -298,7 +298,19 @@ def _download_pdf(url: str, timeout: int) -> Tuple[bytes, Dict[str, str]]:
     return data, headers
 
 
-def download_public_candidates(force: bool = False, timeout: int = 60) -> Dict[str, Any]:
+def _is_public_pdf_download(candidate: Dict[str, Any], include_all_public_pdf: bool) -> bool:
+    if candidate.get("auto_download"):
+        return True
+    if not include_all_public_pdf:
+        return False
+    return (
+        candidate.get("access_mode") == "public_pdf"
+        and not candidate.get("institution_required")
+        and bool(candidate.get("pdf_url"))
+    )
+
+
+def download_public_candidates(force: bool = False, timeout: int = 60, include_all_public_pdf: bool = False) -> Dict[str, Any]:
     report = validate_fulltext_catalog()
     errors = [issue for issue in report["issues"] if issue["severity"] == "error"]
     if errors:
@@ -309,7 +321,7 @@ def download_public_candidates(force: bool = False, timeout: int = 60) -> Dict[s
     downloads_root.mkdir(parents=True, exist_ok=True)
 
     for candidate in report["candidates"]:
-        if not candidate.get("auto_download"):
+        if not _is_public_pdf_download(candidate, include_all_public_pdf=include_all_public_pdf):
             continue
         path = candidate_download_path(candidate)
         item = {
