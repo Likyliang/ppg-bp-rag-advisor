@@ -18,7 +18,7 @@ from app.schemas.report import (
     UiSummary,
 )
 from app.schemas.rule_result import RuleResult
-from app.services.citations import build_registry
+from app.services.citations import build_registry, extract_citation_numbers
 from app.services.evidence_quality import bind_recommendation_evidence, evaluate_citation_quality
 from app.services.config_loader import load_yaml_config
 from app.services.llm_adapter import (
@@ -746,6 +746,49 @@ def generate_template_report(
     return report
 
 
+def _repair_glued_headings(body: str) -> str:
+    """Fix cases where an LLM glues the next heading onto a sentence.
+
+    e.g. ``…请直接拨打 120 或前往急诊。## 为什么这样提醒你`` becomes two lines.
+    """
+    # Insert a newline before any inline '## '/'### ' heading that follows text.
+    return re.sub(r"(?<!\n)(#{2,3}\s)", r"\n\n\1", body)
+
+
+def _finalize_rag_llm_body(
+    llm_body: str,
+    report: HealthReport,
+    rule_result: RuleResult,
+    payload: MeasurementPayload,
+    evidence: List[Evidence],
+) -> tuple[str, bool]:
+    """Sanitize + citation-enforce an LLM RAG body.
+
+    Returns ``(body, consistent)`` where ``consistent`` means: if evidence
+    exists, the body now carries at least one valid inline ``[n]`` and no marker
+    exceeds the evidence count. The body is deterministically repaired
+    (strip out-of-range markers, inject missing section citations) so the tail
+    "正文中的 [n] 标注对应…" is never contradicted by a citation-free body.
+    """
+    registry = build_registry(evidence)
+    # Sanitize first (it collapses the no-emergency clause and may swallow
+    # newlines), THEN split any heading the LLM glued onto a sentence — otherwise
+    # the sanitizer's whitespace-collapsing regexes re-glue the heading.
+    body = _sanitize_llm_body(llm_body)
+    body = _repair_glued_headings(body)
+    body = _ensure_china_context_section(body, rule_result, payload, uses_rag=True)
+    body = _ensure_plain_language_section(body, report, rule_result, payload, uses_rag=True)
+
+    if registry.has_evidence:
+        # Drop any hallucinated/out-of-range markers, then guarantee coverage.
+        body = registry.strip_invalid_markers(body)
+        body = registry.enforce_section_citations(body)
+        consistent = registry.body_is_consistent(body)
+    else:
+        consistent = True
+    return body, consistent
+
+
 def generate_report_draft(
     payload: MeasurementPayload,
     rule_result: RuleResult,
@@ -809,10 +852,12 @@ def generate_report_draft(
             report.generation_mode = "llm_rag_fallback_template"
             report.warnings.append(f"DeepSeek 生成失败，已回退到 template_only：{exc}")
             return report
-        llm_body = _sanitize_llm_body(llm_body)
-        llm_body = _ensure_china_context_section(llm_body, rule_result, payload, uses_rag=True)
-        llm_body = _ensure_plain_language_section(llm_body, report, rule_result, payload, uses_rag=True)
-        report.markdown_report = _with_replaced_body(report.markdown_report, llm_body)
+        body, consistent = _finalize_rag_llm_body(llm_body, report, rule_result, payload, evidence)
+        if not consistent:
+            report.warnings.append("DeepSeek RAG 正文缺少可用内联引用且自动补全失败，已回退到 template_only。")
+            report.generation_mode = "llm_rag_fallback_template"
+            return report
+        report.markdown_report = _with_replaced_body(report.markdown_report, body)
         report.generation_mode = f"llm_rag_deepseek:{os.getenv('DEEPSEEK_MODEL', 'deepseek-v4-flash')}"
         return report
     if requested_mode == "llm_rag" and provider in {"anthropic", "claude"}:
@@ -827,10 +872,12 @@ def generate_report_draft(
             report.generation_mode = "llm_rag_fallback_template"
             report.warnings.append(f"Claude 生成失败，已回退到 template_only：{exc}")
             return report
-        llm_body = _sanitize_llm_body(llm_body)
-        llm_body = _ensure_china_context_section(llm_body, rule_result, payload, uses_rag=True)
-        llm_body = _ensure_plain_language_section(llm_body, report, rule_result, payload, uses_rag=True)
-        report.markdown_report = _with_replaced_body(report.markdown_report, llm_body)
+        body, consistent = _finalize_rag_llm_body(llm_body, report, rule_result, payload, evidence)
+        if not consistent:
+            report.warnings.append("Claude RAG 正文缺少可用内联引用且自动补全失败，已回退到 template_only。")
+            report.generation_mode = "llm_rag_fallback_template"
+            return report
+        report.markdown_report = _with_replaced_body(report.markdown_report, body)
         report.generation_mode = f"llm_rag_anthropic:{os.getenv('ANTHROPIC_MODEL', 'claude-sonnet-4-5')}"
         return report
     if requested_mode == "llm_rag" and provider != "mock":

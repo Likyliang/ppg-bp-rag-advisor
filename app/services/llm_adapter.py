@@ -63,6 +63,10 @@ def generate_deepseek_report_body(
     model = os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash")
     timeout = timeout_sec or float(os.getenv("LLM_TIMEOUT_SEC", "30"))
 
+    numbered_evidence = _number_evidence(evidence) if rag_enabled else []
+    evidence_count = len(numbered_evidence)
+    valid_numbers = "、".join(f"[{i}]" for i in range(1, evidence_count + 1)) or "（无）"
+
     system_prompt = (
         "你是一个医学安全约束 RAG 报告写作器。"
         "面向中国大陆普通小程序用户写作，语言要像耐心的健康助手：温和、清楚、有行动感。"
@@ -86,10 +90,22 @@ def generate_deepseek_report_body(
         "避免把参考范围写成确诊标签；可以说“明显偏高参考范围”，并说明不等于诊断。"
         "不要输出内部字段名、英文枚举值、规则编号、CN_stage、stage_2_reference_range、RAG、检索、chunk、向量等开发词。"
     )
-    if not rag_enabled:
+    if rag_enabled:
+        system_prompt += (
+            "你会收到一份按编号排列的循证资料（evidence，字段 citation_number）。"
+            "这是硬性要求：正文必须在关键结论句、复测建议、设备复核、生活方式、PPG 局限说明、"
+            "以及安全/急症提醒等句子末尾，用方括号编号标注引用，例如“家庭血压监测有助于判断趋势[2]”，"
+            "需要时可合并标注为 [1,3]。"
+            f"当前可用的合法编号只有：{valid_numbers}；只能引用这些真实存在的编号，"
+            "绝对不能编造不存在的编号，也不能写超出范围的编号。"
+            "尽量让每个有实质内容的小节都至少出现一次引用。"
+            "不要自己写“参考文献”“参考来源”小节，也不要在正文里粘贴链接或 DOI；"
+            "编号到具体文献的映射由系统统一拼接。"
+        )
+    else:
         system_prompt += (
             "当前任务是非 RAG 对照组：不要声称参考了文档库、指南库或检索证据，"
-            "不要输出参考来源；只能根据结构化输入做一般性、保守解释。"
+            "不要输出参考来源，正文中不要出现任何方括号编号引用；只能根据结构化输入做一般性、保守解释。"
         )
     user_payload = {
         "task": (
@@ -98,16 +114,23 @@ def generate_deepseek_report_body(
             "保留相同标题结构，不输出参考来源、参考依据说明或免责声明章节；这些会由系统本地拼接。"
             "报告要像真实健康小程序面向用户的说明，不要暴露规则名、枚举值、模型字段或工程实现。"
             "文字要比模板更有人味：少用机械罗列，多用短句解释“为什么”和“下一步”。"
+            "要结合本次具体输入（血压数值、心率、信号质量分、置信度、采集时长、年龄、症状、"
+            "是否特殊人群、是否在用降压药、所在地区）写出有针对性的解释，避免空泛套话或只替换数字。"
             "不要为了显得专业而新增具体阈值、测量频次、厘米数、指宽、运动频次或盐摄入量。"
             "保留或补充“## 现在最该做什么”“## 在国内可以怎么做”和“## 几个容易误解的点”章节。"
             "“现在最该做什么”必须像结论：直接说明本次属于什么情况、今天先做什么、什么情况下去哪里咨询。"
             "易懂解释要解释 PPG 是什么、为什么要用上臂式血压计复核、用户下一步怎么做，"
             "并把下一步落到中国大陆常见基层/门诊沟通路径。"
             "建议必须保持保守、可复测、可就医沟通，不提供诊断或治疗方案。"
+            + (
+                "再次强调：正文关键句必须带上 evidence 的方括号编号引用，且只用给定的合法编号。"
+                if rag_enabled
+                else ""
+            )
         ),
         "rule_result": rule_result.model_dump(),
         "rag_enabled": rag_enabled,
-        "evidence": _compact_evidence(evidence) if rag_enabled else [],
+        "evidence": numbered_evidence,
         "template_body": template_body,
     }
     payload = {

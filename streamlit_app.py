@@ -95,6 +95,7 @@ MODE_LABELS = {
     "template_only": "本地模板",
     "llm_rag_fallback_template": "模型生成失败，已使用保守报告",
     "llm_rag_safety_fallback_template": "保守兜底报告",
+    "llm_rag_citation_fallback_template": "引用一致性兜底报告",
     "llm_only_template": "非 RAG 模板对照",
     "llm_only_input_deepseek": "DeepSeek 非 RAG：仅结构化输入",
     "llm_only_input_anthropic": "Claude 非 RAG：仅结构化输入",

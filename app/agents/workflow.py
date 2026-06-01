@@ -7,12 +7,42 @@ from pydantic import ValidationError
 
 from app.schemas.report import CitationQuality, HealthReport
 from app.schemas.rule_result import RuleResult
+from app.services.citations import extract_citation_numbers
 from app.services.evidence_quality import evaluate_citation_quality
 from app.services.generator import generate_report_draft, generate_template_report
 from app.services.retriever import retrieve_knowledge
 from app.services.rule_engine import run_rule_engine
 from app.services.safety import apply_safety_edits, review_safety
 from app.services.validator import parse_payload
+
+
+TAIL_CITATION_CLAIM = "正文中的 [n]"
+
+
+def _citation_consistency_issue(report: HealthReport) -> Optional[str]:
+    """Return a problem string if the report's inline citations are inconsistent.
+
+    Guards the final invariant: when evidence exists and the tail claims the body
+    uses [n] markers, the body must actually contain valid markers, and no inline
+    number may exceed the evidence count. Returns None when consistent.
+    """
+    evidence_count = len(report.retrieved_evidence)
+    if evidence_count == 0:
+        return None
+    body = report.markdown_report or ""
+    # Only enforce when the tail advertises inline citations (RAG reports do).
+    if TAIL_CITATION_CLAIM not in body:
+        return None
+    numbers = extract_citation_numbers(body)
+    # Markers found include the reference list itself; restrict to the body part.
+    body_only = body.split("## 参考文献", 1)[0]
+    body_numbers = extract_citation_numbers(body_only)
+    if not body_numbers:
+        return "正文缺少内联引用，但尾部声明使用 [n] 标注。"
+    over_range = [n for n in numbers if n > evidence_count or n < 1]
+    if over_range:
+        return f"正文引用编号超出证据数量（{evidence_count}）：{over_range}。"
+    return None
 
 
 def preview_rules(raw_payload: Mapping) -> RuleResult:
@@ -77,4 +107,26 @@ def generate_report(raw_payload: Mapping, report_mode: Optional[str] = None) -> 
             fallback.generation_mode = "llm_rag_safety_fallback_template"
         safety_review = review_safety(fallback, rule_result)
         return apply_safety_edits(fallback, safety_review)
+
+    # Final citation-consistency guard: a RAG body whose tail promises inline
+    # [n] must actually deliver valid, in-range markers. The generator already
+    # repairs DeepSeek/Claude output; this is the last line of defence so a
+    # leaked inconsistency degrades safely to the template instead of shipping.
+    if draft.generation_mode.startswith("llm_rag"):
+        issue = _citation_consistency_issue(draft)
+        if issue:
+            fallback = generate_report_draft(
+                payload=payload,
+                rule_result=rule_result,
+                evidence=retrieval_result.evidence,
+                mode="template_only",
+                warnings=retrieval_result.warnings
+                + citation_quality.issues
+                + [f"LLM 输出引用一致性校验未通过，已回退到 template_only：{issue}"],
+                citation_quality=citation_quality,
+            )
+            fallback.generation_mode = "llm_rag_citation_fallback_template"
+            safety_review = review_safety(fallback, rule_result)
+            return apply_safety_edits(fallback, safety_review)
+
     return apply_safety_edits(draft, safety_review)

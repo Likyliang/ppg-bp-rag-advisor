@@ -13,9 +13,25 @@ Design goals
 
 from __future__ import annotations
 
+import re
 from typing import Dict, Iterable, List, Optional
 
 from app.schemas.report import Evidence
+
+
+# Matches inline academic markers like [1], [2,5], [1, 3] in report bodies.
+INLINE_CITE_RE = re.compile(r"\[(\d+(?:\s*,\s*\d+)*)\]")
+
+
+def extract_citation_numbers(text: str) -> List[int]:
+    """Return every citation number referenced inline in ``text`` (deduped, sorted)."""
+    numbers: set[int] = set()
+    for group in INLINE_CITE_RE.findall(text or ""):
+        for part in group.split(","):
+            part = part.strip()
+            if part.isdigit():
+                numbers.add(int(part))
+    return sorted(numbers)
 
 
 EVIDENCE_CLASS_LABELS = {
@@ -99,6 +115,101 @@ class CitationRegistry:
 
     def references_markdown(self) -> List[str]:
         return [self._format_entry(item) for item in self.evidence]
+
+    # ------------------------------------------------------------------ repair
+
+    @property
+    def max_number(self) -> int:
+        return len(self.evidence)
+
+    def strip_invalid_markers(self, text: str) -> str:
+        """Remove inline markers whose numbers exceed the evidence count.
+
+        An LLM may hallucinate ``[9]`` when only 6 sources exist. We drop the
+        whole bracket group if *any* member is out of range, leaving prose intact.
+        """
+        if not text:
+            return text
+
+        def _repl(match: "re.Match[str]") -> str:
+            parts = [p.strip() for p in match.group(1).split(",")]
+            if all(p.isdigit() and 1 <= int(p) <= self.max_number for p in parts):
+                return match.group(0)
+            return ""
+
+        cleaned = INLINE_CITE_RE.sub(_repl, text)
+        # Collapse whitespace left where a marker was removed mid-sentence.
+        cleaned = re.sub(r"[ \t]{2,}", " ", cleaned)
+        cleaned = re.sub(r"\s+([。，、；：！？])", r"\1", cleaned)
+        return cleaned
+
+    def enforce_section_citations(self, body: str) -> str:
+        """Guarantee that key sections carry at least one valid inline ``[n]``.
+
+        For each `## / ###` section heading we recognise, if the section's body
+        has no inline marker we append the registry's use-mapped marker to the
+        first substantive line. This is deterministic and only uses real
+        evidence numbers, so the body can never claim a citation that the
+        reference list does not back.
+        """
+        if not self.has_evidence:
+            return body
+
+        # heading keyword -> uses to cite for that section
+        section_uses = {
+            "先看结论": ("bp_category_reference", "cuffless_ppg_limitations"),
+            "现在最该做什么": ("remeasurement", "home_bp_monitoring", "device_advice"),
+            "为什么这样提醒你": ("bp_category_reference", "cuffless_ppg_limitations"),
+            "怎么看这次测量": ("signal_quality", "cuffless_ppg_limitations"),
+            "建议背后的原因": ("bp_category_reference", "lifestyle"),
+            "复测与记录": ("remeasurement", "home_bp_monitoring", "signal_quality"),
+            "设备复核": ("device_advice", "cuffless_ppg_limitations"),
+            "生活方式": ("lifestyle",),
+            "就医沟通": ("home_bp_monitoring", "special_population", "emergency_alert"),
+            "几个容易误解的点": ("cuffless_ppg_limitations", "signal_quality"),
+            "可能存在紧急风险": ("emergency_alert",),
+        }
+
+        lines = body.splitlines()
+        # Identify section spans by heading lines.
+        heading_idx = [i for i, ln in enumerate(lines) if ln.lstrip().startswith("#")]
+        spans = []
+        for pos, start in enumerate(heading_idx):
+            end = heading_idx[pos + 1] if pos + 1 < len(heading_idx) else len(lines)
+            spans.append((start, end))
+
+        for start, end in spans:
+            heading = lines[start]
+            uses = next((u for kw, u in section_uses.items() if kw in heading), None)
+            if not uses:
+                continue
+            marker = self.cite(*uses)
+            if not marker:
+                continue
+            block = "\n".join(lines[start:end])
+            if extract_citation_numbers(block):
+                continue  # section already cited
+            # Find first substantive content line (bullet or paragraph) to tag.
+            target = None
+            for i in range(start + 1, end):
+                stripped = lines[i].strip()
+                if not stripped:
+                    continue
+                if stripped.startswith("#"):
+                    break
+                target = i
+                break
+            if target is None:
+                continue
+            lines[target] = lines[target].rstrip() + marker
+        return "\n".join(lines)
+
+    def body_is_consistent(self, body: str) -> bool:
+        """True iff the body carries >=1 valid inline marker, none out of range."""
+        numbers = extract_citation_numbers(body)
+        if not numbers:
+            return False
+        return all(1 <= n <= self.max_number for n in numbers)
 
 
 def build_registry(evidence: Optional[Iterable[Evidence]]) -> CitationRegistry:

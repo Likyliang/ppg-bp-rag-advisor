@@ -1,5 +1,5 @@
 {
-  "timestamp": 1780226967,
+  "timestamp": 1780312050,
   "purpose": "RAG trust calibration: separate query-only retrieval quality from metadata-filter safety and audit recommendation-level evidence grounding.",
   "retrieval_summary": {
     "query_count": 100,

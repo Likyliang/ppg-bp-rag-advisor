@@ -1,3 +1,5 @@
+import re
+
 from fastapi.testclient import TestClient
 
 from app.main import app
@@ -223,6 +225,118 @@ def test_unsafe_llm_output_falls_back_to_template(monkeypatch):
     assert report.generation_mode == "llm_rag_safety_fallback_template"
     assert report.safety_review.passed is True
     assert "你患有高血压" not in report.markdown_report
+
+
+def test_deepseek_rag_body_without_citations_gets_them_injected(monkeypatch):
+    # DeepSeek often drops [n]; the generator must inject valid markers so the
+    # body never contradicts the "正文中的 [n]" tail, and mode stays llm_rag_deepseek.
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+
+    def no_citation_body(**kwargs):
+        return (
+            "## 先看结论\n这次估算值明显偏高，不是诊断结果，建议先规范复核。\n\n"
+            "## 接下来怎么做\n### 复测与记录\n- 安静休息后用上臂式血压计复核。\n"
+            "### 生活方式\n- 减少钠盐摄入。\n\n"
+            "## 几个容易误解的点\n- PPG 只能看趋势，不能替代规范血压测量。"
+        )
+
+    monkeypatch.setattr(generator_service, "generate_deepseek_report_body", no_citation_body)
+    report = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    assert report.generation_mode.startswith("llm_rag_deepseek")
+    assert report.warnings == []
+    body_only = report.markdown_report.split("## 参考文献", 1)[0]
+    nums = re.findall(r"\[\d+(?:,\d+)*\]", body_only)
+    assert nums, "expected injected inline citations in the body"
+    # every inline number must be within evidence range
+    n_ev = len(report.retrieved_evidence)
+    for grp in nums:
+        for part in grp.strip("[]").split(","):
+            assert 1 <= int(part) <= n_ev
+
+
+def test_deepseek_rag_strips_hallucinated_citation_numbers(monkeypatch):
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+
+    def hallucinated_body(**kwargs):
+        return (
+            "## 先看结论\n这次估算值明显偏高[1]，但也参考了不存在的来源[99]。\n\n"
+            "## 接下来怎么做\n### 复测与记录\n- 用上臂式血压计复核[1]。\n"
+            "## 几个容易误解的点\n- PPG 只能看趋势[2]。"
+        )
+
+    monkeypatch.setattr(generator_service, "generate_deepseek_report_body", hallucinated_body)
+    report = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    assert report.generation_mode.startswith("llm_rag_deepseek")
+    body_only = report.markdown_report.split("## 参考文献", 1)[0]
+    assert "[99]" not in body_only
+    n_ev = len(report.retrieved_evidence)
+    for grp in re.findall(r"\[\d+(?:,\d+)*\]", body_only):
+        for part in grp.strip("[]").split(","):
+            assert int(part) <= n_ev
+
+
+def test_deepseek_rag_glued_heading_is_repaired(monkeypatch):
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+
+    def glued_body(**kwargs):
+        # The exact real-world form: the no-emergency clause (which the sanitizer
+        # rewrites and whose trailing whitespace it collapses) glued to a heading.
+        return (
+            "## 现在最该做什么\n这次数值明显偏高，建议复核[1]。\n"
+            "目前没有填写胸痛、气短、肢体无力、视物改变、说话困难或严重头痛等需要立刻处理的症状；"
+            "如果之后出现这些不适，请直接拨打 120 或前往急诊。## 为什么这样提醒你\n"
+            "- 估算值进入偏高范围[1]。"
+        )
+
+    monkeypatch.setattr(generator_service, "generate_deepseek_report_body", glued_body)
+    report = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    assert "急诊。## 为什么" not in report.markdown_report
+    assert "\n## 为什么这样提醒你" in report.markdown_report
+    # the heading must be a real standalone line
+    assert any(ln.strip() == "## 为什么这样提醒你" for ln in report.markdown_report.splitlines())
+
+
+def test_deepseek_rag_recovers_even_from_unmapped_headings(monkeypatch):
+    # Even if DeepSeek returns only unmapped headings, the pipeline appends the
+    # standard citable sections (在国内可以怎么做 / 几个容易误解的点) and injects
+    # markers, so it stays a real RAG report instead of silently shipping an
+    # inconsistent body.
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+
+    def odd_body(**kwargs):
+        return "## 随便写的标题\n一些内容，不是诊断结果。\n\n## 另一个标题\n继续写，建议规范复核。"
+
+    monkeypatch.setattr(generator_service, "generate_deepseek_report_body", odd_body)
+    report = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    assert report.generation_mode.startswith("llm_rag_deepseek")
+    body_only = report.markdown_report.split("## 参考文献", 1)[0]
+    assert re.search(r"\[\d+(?:,\d+)*\]", body_only)  # body is citation-consistent
+
+
+def test_workflow_citation_guard_detects_inconsistency_directly():
+    # Unit-test the guard: a hand-built RAG report whose tail promises [n] but
+    # whose body has none must be flagged so the workflow can degrade it.
+    from app.agents.workflow import _citation_consistency_issue
+
+    report = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    assert report.retrieved_evidence  # has evidence
+    # Sanity: a normal report is consistent.
+    assert _citation_consistency_issue(report) is None
+
+    # Corrupt the body: keep the tail claim, strip body markers.
+    body, _, tail = report.markdown_report.partition("## 参考文献")
+    stripped_body = re.sub(r"\s*\[\d+(?:,\d+)*\]", "", body)
+    report.markdown_report = stripped_body + "## 参考文献" + tail
+    assert _citation_consistency_issue(report) is not None
+
+    # Out-of-range marker is also flagged.
+    report2 = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    report2.markdown_report = report2.markdown_report.replace("## 先看结论", "## 先看结论\n越界引用[999]。", 1)
+    assert _citation_consistency_issue(report2) is not None
 
 
 def test_unsafe_llm_only_fallback_keeps_no_evidence(monkeypatch):
