@@ -299,6 +299,135 @@ def test_deepseek_rag_glued_heading_is_repaired(monkeypatch):
     assert any(ln.strip() == "## 为什么这样提醒你" for ln in report.markdown_report.splitlines())
 
 
+def test_deepseek_rag_isolated_hash_and_group_level_normalized(monkeypatch):
+    # DeepSeek emits "#\n\n## 复测与记录" separators; the report must have no
+    # standalone '#' lines and group headings must render as ### (under 接下来怎么做).
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+
+    def grouped_body(**kwargs):
+        return (
+            "## 先看结论\n这次估算值明显偏高，不是诊断结果[1]。\n\n"
+            "## 接下来怎么做\n#\n\n## 复测与记录 [1,2,3]\n- 用上臂式血压计复核。\n#\n\n"
+            "## 设备复核 [1,4,5]\n- 使用经过验证的上臂式电子血压计。\n#\n\n"
+            "## 生活方式 [2,3]\n- 减少钠盐摄入。\n#\n\n"
+            "## 几个容易误解的点\n- PPG 只能看趋势[6]。"
+        )
+
+    monkeypatch.setattr(generator_service, "generate_deepseek_report_body", grouped_body)
+    report = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    body = report.markdown_report.split("## 参考文献", 1)[0]
+    # No isolated '#' lines anywhere in the body.
+    assert not any(ln.strip() in ("#", "# ") for ln in body.splitlines())
+    # No empty heading lines.
+    assert not any(re.fullmatch(r"#{1,6}\s*", ln.strip()) for ln in body.splitlines())
+    # Recommendation groups demoted to ###.
+    assert "### 复测与记录" in body
+    assert "### 设备复核" in body
+    assert "### 生活方式" in body
+    assert "\n## 复测与记录" not in body
+
+
+def test_deepseek_rag_strips_introduced_specific_details(monkeypatch):
+    # DeepSeek adds forbidden specifics (fixed timepoints, sleep hours, week
+    # durations, prep micro-steps); the report must scrub them to generic phrasing.
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+
+    def detailed_body(**kwargs):
+        return (
+            "## 先看结论\n这次估算值明显偏高[1]。\n\n"
+            "## 接下来怎么做\n### 复测与记录\n"
+            "- 连续多天在同一时间（例如早晨起床排尿后、晚饭前）测量并记录[1,2,3]。\n"
+            "- 测量前半小时不吸烟、不喝咖啡，排空膀胱，坐靠背椅，双脚平放。\n"
+            "### 生活方式\n- 减少钠盐摄入，增加蔬菜水果，保证每晚 7-8 小时睡眠[2,3]。\n"
+            "- 后续稳定后连续记录一周。\n"
+            "## 几个容易误解的点\n- PPG 只能看趋势[6]。"
+        )
+
+    monkeypatch.setattr(generator_service, "generate_deepseek_report_body", detailed_body)
+    report = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    md = report.markdown_report
+    for forbidden in [
+        "晚饭前", "起床排尿后", "排空膀胱", "双脚平放", "测量前半小时",
+        "7-8 小时", "7-8小时", "连续一周", "连续记录一周", "增加蔬菜水果",
+    ]:
+        assert forbidden not in md, f"forbidden detail leaked: {forbidden}"
+    # safe replacements present
+    assert ("在相对固定、方便的时间" in md) or ("连续记录一段时间" in md)
+
+
+def test_deepseek_rag_empty_content_retries_then_succeeds(monkeypatch):
+    # First DeepSeek call returns empty; the adapter retries once (still DeepSeek)
+    # and the report stays llm_rag_deepseek instead of falling back.
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "test-key")
+
+    from app.services import llm_adapter
+
+    calls = {"n": 0}
+
+    class FakeResp:
+        status_code = 200
+
+        def __init__(self, content):
+            self._content = content
+
+        def json(self):
+            return {"choices": [{"message": {"content": self._content}}]}
+
+    def fake_post(url, headers=None, json=None, timeout=None):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            return FakeResp("   ")  # empty -> triggers retry
+        return FakeResp(
+            "## 先看结论\n本次信号质量不足，先重新采集，再用上臂式电子血压计复核[1]。\n"
+            "## 现在最该做什么\n先别看血压高低，重新规范采集[1]。\n"
+            "## 接下来怎么做\n### 复测与记录\n- 重新采集后规范复核[1,2]。\n"
+            "## 几个容易误解的点\n- PPG 只能看趋势，不能替代规范血压测量[3]。"
+        )
+
+    monkeypatch.setattr(llm_adapter.requests, "post", fake_post)
+    report = generate_report(
+        {"estimated_sbp": 150, "estimated_dbp": 95, "signal_quality_score": 0.42,
+         "confidence": 0.38, "capture_duration_sec": 11, "signal_quality_label": "poor"}
+    )
+    assert calls["n"] == 2  # empty then retry
+    assert report.generation_mode.startswith("llm_rag_deepseek")
+    assert not any("回退" in w for w in report.warnings)
+
+
+def test_deepseek_rag_double_empty_falls_back(monkeypatch):
+    # If both the initial call and the retry return empty, degrade to template.
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "test-key")
+
+    from app.services import llm_adapter
+
+    calls = {"n": 0}
+
+    class FakeResp:
+        status_code = 200
+
+        def json(self):
+            return {"choices": [{"message": {"content": ""}}]}
+
+    def fake_post(url, headers=None, json=None, timeout=None):
+        calls["n"] += 1
+        return FakeResp()
+
+    monkeypatch.setattr(llm_adapter.requests, "post", fake_post)
+    report = generate_report(
+        {"estimated_sbp": 150, "estimated_dbp": 95, "signal_quality_score": 0.42,
+         "signal_quality_label": "poor"}
+    )
+    assert calls["n"] == 2  # one retry, then give up
+    assert report.generation_mode == "llm_rag_fallback_template"
+    assert any("回退" in w or "empty content" in w for w in report.warnings)
+
+
 def test_deepseek_rag_recovers_even_from_unmapped_headings(monkeypatch):
     # Even if DeepSeek returns only unmapped headings, the pipeline appends the
     # standard citable sections (在国内可以怎么做 / 几个容易误解的点) and injects

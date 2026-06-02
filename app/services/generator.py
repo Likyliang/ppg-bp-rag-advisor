@@ -581,6 +581,39 @@ def _sanitize_llm_body(body: str) -> str:
         "马上吃药或调整生活方式": "自己处理",
         "马上吃药": "自己处理",
         "但不算高质量信号，只能当作趋势参考": "但仍只能当作趋势参考",
+        # Newly-introduced sleep-hour / duration / prep-step details that the
+        # prompt forbids but DeepSeek still occasionally adds.
+        "保证每晚 7-8 小时睡眠": "保持规律作息",
+        "保证每晚7-8小时睡眠": "保持规律作息",
+        "每晚 7-8 小时睡眠": "规律作息",
+        "每晚7-8小时睡眠": "规律作息",
+        "每晚 7~8 小时睡眠": "规律作息",
+        "每晚7~8小时睡眠": "规律作息",
+        "保证 7-8 小时睡眠": "保持规律作息",
+        "保证7-8小时睡眠": "保持规律作息",
+        "7-8 小时睡眠": "规律作息",
+        "7-8小时睡眠": "规律作息",
+        "7～8小时睡眠": "规律作息",
+        "保证充足睡眠": "保持规律作息",
+        "充足睡眠": "规律作息",
+        "增加蔬菜水果": "均衡饮食",
+        "多吃蔬菜水果": "均衡饮食",
+        "增加蔬菜和水果": "均衡饮食",
+        "连续记录一周": "连续记录一段时间",
+        "连续测一周": "连续记录一段时间",
+        "记录一周": "连续记录一段时间",
+        "持续一周": "连续记录一段时间",
+        "连续一周": "连续记录一段时间",
+        "连续两周": "连续记录一段时间",
+        "连续记录两周": "连续记录一段时间",
+        "测量前半小时不吸烟、不喝咖啡，排空膀胱，坐靠背椅，双脚平放": "按设备说明书规范测量",
+        "测量前半小时不吸烟、不喝咖啡": "按设备说明书规范测量",
+        "测量前 30 分钟不吸烟、不喝咖啡": "按设备说明书规范测量",
+        "测量前30分钟不吸烟、不喝咖啡": "按设备说明书规范测量",
+        "排空膀胱，坐靠背椅，双脚平放": "按说明书规范姿势测量",
+        "坐靠背椅，双脚平放": "按说明书规范姿势测量",
+        "双脚平放": "按说明书规范姿势",
+        "排空膀胱": "按说明书规范准备",
     }
     for old, new in replacements.items():
         body = body.replace(old, new)
@@ -635,6 +668,66 @@ def _sanitize_llm_body(body: str) -> str:
             continue
         safe_lines.append(safe_line)
     body = "\n".join(safe_lines)
+    body = _scrub_introduced_details(body)
+    return body
+
+
+# Free-form variants of forbidden "newly introduced specifics" that the literal
+# replacement dict cannot enumerate. Each (pattern, replacement) rewrites the
+# offending span into safe, generic guidance instead of dropping the sentence.
+_DETAIL_SCRUB_RULES: List[tuple] = [
+    # Redundant "在同一/固定时间（例如…）" lead-ins before the timepoint detail.
+    (re.compile(r"(在|于)?\s*(同一|固定)(的)?时间\s*(（|\()?\s*(例如|比如|如)"), "在相对固定、方便的时间（"),
+    # Fixed measurement timepoints: "（例如/比如）早晨起床排尿后、晚饭前(测量/记录)"
+    (re.compile(r"(（|\()?\s*(例如|比如|如)?\s*[早晚][上晨]?[^，。；、\n]{0,6}(起床|排尿|睡前|睡觉前|晚饭前|早饭前|饭前|饭后)[^，。；\n]{0,12}(）|\))?"),
+     "在相对固定、方便的时间"),
+    # Sleep hours: "(每晚/保证)(7-8/7~8/8)小时(的)?睡眠"
+    (re.compile(r"(保证|每晚|确保|建议)?\s*\d+\s*[-~～到]\s*\d+\s*小时(的)?睡眠"), "保持规律作息"),
+    (re.compile(r"(保证|每晚|确保)\s*\d+\s*小时(的)?睡眠"), "保持规律作息"),
+    # Generic "保证/确保充足睡眠".
+    (re.compile(r"(保证|确保|建议)?\s*充足(的)?睡眠"), "保持规律作息"),
+    # Explicit day/week durations introduced for measuring/recording, incl.
+    # ranges like "3~5天" / "3 ～ 5 天" / "三到五天".
+    (re.compile(r"连续\s*(测量|记录|监测)?\s*[0-9一二两三四五六七八九十]+\s*[-~～到至]\s*[0-9一二两三四五六七八九十]+\s*(天|周|星期)"), "连续记录一段时间"),
+    (re.compile(r"(持续|记录|监测)\s*[0-9一二两三四五六七八九十]+\s*[-~～到至]\s*[0-9一二两三四五六七八九十]+\s*(天|周|星期)"), "连续记录一段时间"),
+    (re.compile(r"连续\s*(测量|记录|监测)?\s*(一|二|两|三|四|五|六|七|\d+)\s*(天|周|星期)"), "连续记录一段时间"),
+    (re.compile(r"(持续|记录|监测)\s*(一|二|两|三|四|五|六|七|\d+)\s*(天|周|星期)"), "连续记录一段时间"),
+    # "每天早晚/早晨/晚上(各一次)?(测量/记录)" fixed-frequency phrasing.
+    (re.compile(r"每天(早晚|早晨|晚上|早上|清晨)(各一次)?\s*(测量|记录)?"), "在相对固定、方便的时间"),
+    (re.compile(r"每日(早晚|早晨|晚上|早上|清晨)(各一次)?\s*(测量|记录)?"), "在相对固定、方便的时间"),
+    # Measurement prep micro-steps.
+    (re.compile(r"测量前\s*(半小时|\d+\s*分钟)[^。；\n]*"), "按设备说明书规范测量"),
+    (re.compile(r"排空膀胱[^。；\n]*"), "按说明书规范准备"),
+    (re.compile(r"(坐靠背椅|靠背椅)[^。；\n]*双脚平放"), "按说明书规范姿势测量"),
+    (re.compile(r"双脚平放[^。；\n]*"), "按说明书规范姿势测量"),
+    (re.compile(r"增加蔬菜(和)?水果[的摄入]*"), "均衡饮食"),
+]
+
+
+def _scrub_introduced_details(body: str) -> str:
+    """Rewrite forbidden newly-introduced specifics into safe generic phrasing.
+
+    The prompt already forbids fixed timepoints, sleep-hour counts, day/week
+    durations and measurement micro-steps, but DeepSeek still emits free-form
+    variants. This deterministic pass guarantees they never reach the user.
+    """
+    for pattern, replacement in _DETAIL_SCRUB_RULES:
+        body = pattern.sub(replacement, body)
+    # Tidy artifacts left by span removal.
+    body = re.sub(r"在相对固定、方便的时间(（）|\(\))?", "在相对固定、方便的时间", body)
+    body = body.replace("（）", "").replace("()", "")
+    # Collapse redundant lead-ins like "连续多天在同一时间在相对固定、方便的时间".
+    body = re.sub(r"(连续多天|连续)?\s*(在)?(同一|固定)(的)?时间(在相对固定、方便的时间)", r"\5", body)
+    body = re.sub(r"(在相对固定、方便的时间)+", r"\1", body)
+    body = re.sub(r"连续多天(在相对固定、方便的时间)", r"\1", body)
+    # Remove stray modal verbs left dangling before the safe replacement.
+    body = re.sub(r"(保证|确保|建议|尽量)(保持规律作息|均衡饮食|连续记录一段时间)", r"\2", body)
+    body = re.sub(r"[，、]{2,}", "，", body)
+    body = re.sub(r"，(）|\))", r"\1", body)
+    body = re.sub(r"(在相对固定、方便的时间)(测量并记录|测量|记录|监测)", r"\1连续记录", body)
+    body = re.sub(r"(连续记录一段时间)(测量并记录|测量|记录|监测)", r"\1", body)
+    body = re.sub(r"(按设备说明书规范测量|按说明书规范姿势测量|按说明书规范准备)([，、])+", r"\1。", body)
+    body = body.replace("。。", "。").replace("；。", "。").replace("，。", "。")
     return body
 
 
@@ -755,6 +848,41 @@ def _repair_glued_headings(body: str) -> str:
     return re.sub(r"(?<!\n)(#{2,3}\s)", r"\n\n\1", body)
 
 
+# Recommendation sub-groups that must render as ### under "## 接下来怎么做".
+_RECOMMENDATION_GROUP_TITLES = ("复测与记录", "设备复核", "生活方式", "就医沟通")
+
+
+def _normalize_markdown_headings(body: str) -> str:
+    """Clean up LLM heading artifacts.
+
+    * Drop standalone ``#`` / ``# `` lines (DeepSeek sometimes emits an empty
+      ``#`` separator line, leaving an empty heading in the report).
+    * Demote recommendation group headings (复测与记录 / 设备复核 / 生活方式 /
+      就医沟通) to ``###`` so they nest under ``## 接下来怎么做`` instead of
+      becoming top-level sections.
+    * Remove any heading line whose text is empty after the marker.
+    """
+    out: List[str] = []
+    for line in body.splitlines():
+        stripped = line.strip()
+        # Empty heading: only '#' characters (and optional spaces), no text.
+        if re.fullmatch(r"#{1,6}\s*", stripped):
+            continue
+        heading = re.match(r"^(#{1,6})\s+(.*\S)\s*$", stripped)
+        if heading:
+            text = heading.group(2)
+            # Strip trailing inline citation when matching the group title.
+            title_core = re.sub(r"\s*\[\d+(?:\s*,\s*\d+)*\]\s*$", "", text).strip()
+            if any(title_core.startswith(t) for t in _RECOMMENDATION_GROUP_TITLES):
+                out.append(f"### {text}")
+                continue
+        out.append(line)
+    # Collapse any 3+ blank lines left behind into a single blank line.
+    normalized = "\n".join(out)
+    normalized = re.sub(r"\n{3,}", "\n\n", normalized)
+    return normalized
+
+
 def _finalize_rag_llm_body(
     llm_body: str,
     report: HealthReport,
@@ -776,6 +904,7 @@ def _finalize_rag_llm_body(
     # the sanitizer's whitespace-collapsing regexes re-glue the heading.
     body = _sanitize_llm_body(llm_body)
     body = _repair_glued_headings(body)
+    body = _normalize_markdown_headings(body)
     body = _ensure_china_context_section(body, rule_result, payload, uses_rag=True)
     body = _ensure_plain_language_section(body, report, rule_result, payload, uses_rag=True)
 

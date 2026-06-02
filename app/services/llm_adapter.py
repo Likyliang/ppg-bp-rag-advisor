@@ -133,16 +133,64 @@ def generate_deepseek_report_body(
         "evidence": numbered_evidence,
         "template_body": template_body,
     }
+    try:
+        return _deepseek_chat(
+            api_key=api_key,
+            base_url=base_url,
+            model=model,
+            system_prompt=system_prompt,
+            user_content=json.dumps(user_payload, ensure_ascii=False),
+            timeout=timeout,
+            temperature=0.2,
+            max_tokens=1800,
+        )
+    except _DeepseekEmptyContent:
+        # DeepSeek intermittently returns empty content. Retry once with a
+        # shorter, more constrained prompt before giving up to fallback. The
+        # retry still goes through the DeepSeek API (no other provider).
+        retry_system, retry_user = _deepseek_retry_prompts(
+            rule_result=rule_result,
+            numbered_evidence=numbered_evidence,
+            template_body=template_body,
+            valid_numbers=valid_numbers,
+            rag_enabled=rag_enabled,
+        )
+        return _deepseek_chat(
+            api_key=api_key,
+            base_url=base_url,
+            model=model,
+            system_prompt=retry_system,
+            user_content=retry_user,
+            timeout=timeout,
+            temperature=0.3,
+            max_tokens=1200,
+        )
+
+
+class _DeepseekEmptyContent(LlmGenerationError):
+    """Raised when DeepSeek returns empty content, so callers can retry."""
+
+
+def _deepseek_chat(
+    *,
+    api_key: str,
+    base_url: str,
+    model: str,
+    system_prompt: str,
+    user_content: str,
+    timeout: float,
+    temperature: float,
+    max_tokens: int,
+) -> str:
     payload = {
         "model": model,
         "messages": [
             {"role": "system", "content": system_prompt},
-            {"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)},
+            {"role": "user", "content": user_content},
         ],
-        "temperature": 0.2,
-        "max_tokens": 1800,
+        "temperature": temperature,
+        "max_tokens": max_tokens,
     }
-
     try:
         response = requests.post(
             f"{base_url}/chat/completions",
@@ -165,8 +213,65 @@ def generate_deepseek_report_body(
 
     cleaned = _clean_markdown(content)
     if not cleaned:
-        raise LlmGenerationError("DeepSeek API returned empty content")
+        raise _DeepseekEmptyContent("DeepSeek API returned empty content")
     return cleaned
+
+
+def _deepseek_retry_prompts(
+    *,
+    rule_result: RuleResult,
+    numbered_evidence: List[dict[str, Any]],
+    template_body: str,
+    valid_numbers: str,
+    rag_enabled: bool,
+) -> tuple[str, str]:
+    """Build a shorter, sturdier prompt for the empty-content retry.
+
+    For low-quality / not-interpretable cases the report only needs to say:
+    re-capture, verify with a cuffed upper-arm monitor, and do NOT interpret the
+    blood-pressure range. We strip the long stylistic guidance to reduce the
+    chance of another empty completion.
+    """
+    is_low_quality = (
+        not rule_result.quality.is_usable
+        or rule_result.estimated_bp_category == "not_interpretable_low_quality"
+    )
+    cite_clause = (
+        f"正文关键句末尾必须用方括号编号引用，只能用这些合法编号：{valid_numbers}。"
+        if rag_enabled and numbered_evidence
+        else "正文中不要出现方括号编号引用。"
+    )
+    system = (
+        "你是医学安全约束健康报告写作器，面向中国大陆普通用户，语言温和、简洁、清楚。"
+        "硬性安全底线：不诊断、不开药/停药/调药、不承诺 PPG 准确、不把 PPG 或血压计说成可替代规范测量或医生判断。"
+        "不要输出 RAG、chunk、向量、枚举值等工程词，不要写参考来源/免责声明小节。"
+        "不要新增固定测量时点、睡眠小时数、连续几天/几周等具体细节；"
+        "只说“按说明书规范测量”“在相对固定、方便的时间连续记录”“保持规律作息”“带记录咨询医生”。"
+        + cite_clause
+    )
+    if is_low_quality:
+        task = (
+            "请生成一份简短的中文 Markdown 健康说明，重点是：本次信号质量不足，"
+            "不解释血压高低，先重新规范采集，再用经过验证的上臂式电子血压计复核。"
+            "包含小标题：## 先看结论、## 现在最该做什么、## 接下来怎么做、## 几个容易误解的点。"
+            "直接从第一个 Markdown 标题开始，不要写开场白。"
+        )
+    else:
+        task = (
+            "请基于 rule_result 和 template_body 生成一份简短、个性化的中文 Markdown 健康说明，"
+            "结合本次血压数值与信号质量给出有针对性的解释，保持保守、可复测、可就医沟通。"
+            "保留 template_body 的小标题结构。直接从第一个 Markdown 标题开始，不要写开场白。"
+        )
+    user = json.dumps(
+        {
+            "task": task,
+            "rule_result": rule_result.model_dump(),
+            "evidence": numbered_evidence,
+            "template_body": template_body,
+        },
+        ensure_ascii=False,
+    )
+    return system, user
 
 
 def _number_evidence(evidence: Iterable[Evidence]) -> List[dict[str, Any]]:
