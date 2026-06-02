@@ -299,6 +299,61 @@ def test_deepseek_rag_glued_heading_is_repaired(monkeypatch):
     assert any(ln.strip() == "## 为什么这样提醒你" for ln in report.markdown_report.splitlines())
 
 
+def test_deepseek_rag_medical_copy_cleans_wrong_words_and_colloquial(monkeypatch):
+    # Editorial pass through the full RAG path: wrong words, over-reassurance,
+    # colloquialisms and lifestyle detail must all be cleaned in the final report.
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+
+    def messy_body(**kwargs):
+        return (
+            "## 先看结论\n这个数字本身只是估算，不说明任何问题[1]。算法置信度并非 100%，信号质量算中上等。\n\n"
+            "## 现在最该做什么\n先别着急给自己下结论，建议休息后用药师（上臂式血压计）复核[1]。\n\n"
+            "## 接下来怎么做\n### 生活方式\n- 保持规律运动（如快走、慢跑），少吃咸菜和加工食品[2,3]。\n\n"
+            "## 几个容易误解的点\n- PPG 只能看趋势[6]。"
+        )
+
+    monkeypatch.setattr(generator_service, "generate_deepseek_report_body", messy_body)
+    report = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    md = report.markdown_report
+    for bad in [
+        "药师（上臂式血压计）", "用药师", "不说明任何问题", "并非 100%",
+        "算中上等", "先别着急给自己下结论", "快走", "慢跑", "少吃咸菜",
+        "这个数字本身只是估算",
+    ]:
+        assert bad not in md, f"medical copy leaked: {bad}"
+    assert "用上臂式血压计复核" in md
+    assert "适合自身情况的规律身体活动" in md or "减少高盐食物摄入" in md
+    assert report.generation_mode.startswith("llm_rag_deepseek")
+
+
+def test_deepseek_rag_emergency_strips_new_operational_advice(monkeypatch):
+    # Emergency report must keep only 拨打120/急诊 + 不要等待复测; no driving/escort.
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+
+    def emergency_body(**kwargs):
+        return (
+            "## 可能存在紧急风险\n这次估算值很高且伴随胸痛，请立即拨打 120 或前往急诊[1]。\n"
+            "- 也不要自己开车去医院。\n"
+            "- 最好有家人陪同前往，路上保持平躺。\n\n"
+            "## 先看结论\n这次属于严重偏高参考范围[1]，先处理急症。"
+        )
+
+    monkeypatch.setattr(generator_service, "generate_deepseek_report_body", emergency_body)
+    report = generate_report(
+        {"estimated_sbp": 192, "estimated_dbp": 124, "signal_quality_score": 0.84,
+         "symptoms": {"chest_pain": True}}
+    )
+    md = report.markdown_report
+    assert report.safety_alert.emergency is True
+    assert md.lstrip().startswith("## 可能存在紧急风险")
+    assert "120" in md
+    for bad in ["开车", "陪同", "平躺"]:
+        assert bad not in md, f"emergency ops advice leaked: {bad}"
+    assert "不要等待" in md
+
+
 def test_deepseek_rag_isolated_hash_and_group_level_normalized(monkeypatch):
     # DeepSeek emits "#\n\n## 复测与记录" separators; the report must have no
     # standalone '#' lines and group headings must render as ### (under 接下来怎么做).

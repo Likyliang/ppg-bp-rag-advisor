@@ -20,6 +20,7 @@ from app.schemas.report import (
 from app.schemas.rule_result import RuleResult
 from app.services.citations import build_registry, extract_citation_numbers
 from app.services.evidence_quality import bind_recommendation_evidence, evaluate_citation_quality
+from app.services.medical_copy import sanitize_medical_copy
 from app.services.config_loader import load_yaml_config
 from app.services.llm_adapter import (
     LlmGenerationError,
@@ -690,8 +691,15 @@ _DETAIL_SCRUB_RULES: List[tuple] = [
     # ranges like "3~5天" / "3 ～ 5 天" / "三到五天".
     (re.compile(r"连续\s*(测量|记录|监测)?\s*[0-9一二两三四五六七八九十]+\s*[-~～到至]\s*[0-9一二两三四五六七八九十]+\s*(天|周|星期)"), "连续记录一段时间"),
     (re.compile(r"(持续|记录|监测)\s*[0-9一二两三四五六七八九十]+\s*[-~～到至]\s*[0-9一二两三四五六七八九十]+\s*(天|周|星期)"), "连续记录一段时间"),
-    (re.compile(r"连续\s*(测量|记录|监测)?\s*(一|二|两|三|四|五|六|七|\d+)\s*(天|周|星期)"), "连续记录一段时间"),
-    (re.compile(r"(持续|记录|监测)\s*(一|二|两|三|四|五|六|七|\d+)\s*(天|周|星期)"), "连续记录一段时间"),
+    (re.compile(r"连续\s*(测量|记录|监测)?\s*(一|二|两|三|四|五|六|七|几|\d+)\s*(天|周|星期)"), "连续记录一段时间"),
+    (re.compile(r"(持续|记录|监测)\s*(一|二|两|三|四|五|六|七|几|\d+)\s*(天|周|星期)"), "连续记录一段时间"),
+    # "(连续)?测量几天" / "连续几天的记录" with the indefinite quantifier 几.
+    (re.compile(r"连续\s*(测量|记录|监测)?\s*几\s*(天|周|星期)"), "连续记录一段时间"),
+    (re.compile(r"(测量|记录|监测)\s*几\s*(天|周|星期)"), "连续记录一段时间"),
+    (re.compile(r"连续\s*几\s*(天|周|星期)(的记录)?"), "连续一段时间的记录"),
+    # "(连续)?记录/测量几次" indefinite count.
+    (re.compile(r"连续\s*(测量|记录|监测)?\s*几\s*次"), "连续记录一段时间"),
+    (re.compile(r"(测量|记录|监测)\s*几\s*次"), "连续记录"),
     # "每天早晚/早晨/晚上(各一次)?(测量/记录)" fixed-frequency phrasing.
     (re.compile(r"每天(早晚|早晨|晚上|早上|清晨)(各一次)?\s*(测量|记录)?"), "在相对固定、方便的时间"),
     (re.compile(r"每日(早晚|早晨|晚上|早上|清晨)(各一次)?\s*(测量|记录)?"), "在相对固定、方便的时间"),
@@ -726,6 +734,7 @@ def _scrub_introduced_details(body: str) -> str:
     body = re.sub(r"，(）|\))", r"\1", body)
     body = re.sub(r"(在相对固定、方便的时间)(测量并记录|测量|记录|监测)", r"\1连续记录", body)
     body = re.sub(r"(连续记录一段时间)(测量并记录|测量|记录|监测)", r"\1", body)
+    body = body.replace("连续记录一段时间的记录", "连续一段时间的记录")
     body = re.sub(r"(按设备说明书规范测量|按说明书规范姿势测量|按说明书规范准备)([，、])+", r"\1。", body)
     body = body.replace("。。", "。").replace("；。", "。").replace("，。", "。")
     return body
@@ -905,6 +914,10 @@ def _finalize_rag_llm_body(
     body = _sanitize_llm_body(llm_body)
     body = _repair_glued_headings(body)
     body = _normalize_markdown_headings(body)
+    # Editorial pass: wrong words, over-reassurance, emergency ops advice,
+    # colloquialisms, lifestyle detail. Runs before citation enforcement so any
+    # rewritten section still gets its inline [n] re-covered below.
+    body = sanitize_medical_copy(body, rule_result)
     body = _ensure_china_context_section(body, rule_result, payload, uses_rag=True)
     body = _ensure_plain_language_section(body, report, rule_result, payload, uses_rag=True)
 
