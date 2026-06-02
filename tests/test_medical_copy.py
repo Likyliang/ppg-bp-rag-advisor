@@ -85,3 +85,69 @@ def test_non_emergency_keeps_ops_words_untouched_by_emergency_rule():
     text = "家人可以陪同你去社区卫生服务中心咨询。"
     out = sanitize_medical_copy(text, rr)
     assert "陪同" in out  # unchanged by emergency rule
+
+
+def test_emergency_strips_recheck_while_waiting_variants():
+    rr = _RR(emergency=True)
+    out = sanitize_medical_copy(
+        "- 在等待医疗帮助时，如果条件允许（且不影响急救），可以请家人帮忙用规范上臂式血压计复核一次。",
+        rr,
+    )
+    assert "请家人帮忙" not in out
+    assert "复核一次" not in out
+    assert "条件允许" not in out
+    assert "不要等待" in out
+
+    for variant in ["- 可以先复核一次。", "- 家人帮忙测一下。", "- 等待医疗帮助时先复核。"]:
+        out = sanitize_medical_copy(variant, rr)
+        assert "复核" not in out or "不要等待" in out
+
+
+def test_emergency_alert_line_with_citation_is_preserved():
+    rr = _RR(emergency=True)
+    line = "请立即拨打 120 或前往最近医院的急诊，不要等待小程序复测结果[2,4]。"
+    out = sanitize_medical_copy(line, rr)
+    assert "120" in out and "急诊" in out
+    assert "[2,4]" in out  # citation intact
+
+
+# 6a. Concept error: symptoms are not a special population --------------------
+
+def test_concept_symptoms_not_special_population():
+    out = sanitize_medical_copy("特殊人群（你勾选了需要重视的症状）更不应依赖单次 PPG 结果。")
+    assert "特殊人群" not in out
+    assert "出现急症相关症状时" in out
+    assert "更不应依赖单次 PPG 结果" in out
+
+
+# 6b. More colloquial tightening ---------------------------------------------
+
+def test_more_colloquial_tightened():
+    assert "先别盯着数字看" not in sanitize_medical_copy("先别盯着数字看，先复核。")
+    assert "不要仅依据本次估算值判断" in sanitize_medical_copy("先别盯着数字看。")
+    assert "先别慌" not in sanitize_medical_copy("先别慌，这只是估算。")
+    assert "请先进行规范复核" in sanitize_medical_copy("先别慌。")
+    # "先别把它当成结果" (without 诊断) is also softened.
+    out = sanitize_medical_copy("但先别把它当成结果。因为信号质量不够。")
+    assert "先别把它当成结果" not in out
+    assert "不要将本次结果作为诊断结论" in out
+
+
+# 5. Dangling bracket / citation fragments -----------------------------------
+
+def test_clean_citation_fragments_preserves_valid_markers():
+    from app.services.medical_copy import clean_citation_fragments
+
+    assert clean_citation_fragments("结论[1]，建议[1,2]，再看[3]。") == "结论[1]，建议[1,2]，再看[3]。"
+    assert clean_citation_fragments("复核[1, 2]后记录[5]。") == "复核[1, 2]后记录[5]。"
+
+
+def test_clean_citation_fragments_removes_dangling():
+    from app.services.medical_copy import clean_citation_fragments
+
+    assert clean_citation_fragments("不要等待小程序或家庭复测结果。 [") == "不要等待小程序或家庭复测结果。"
+    assert "[1," not in clean_citation_fragments("这次偏高[1,")
+    assert clean_citation_fragments("残留[1, ]结尾").count("[") == 0
+    assert clean_citation_fragments("空[ ]括号") == "空括号"
+    # line-end fragment after punctuation
+    assert clean_citation_fragments("第一行。 [\n第二行。").splitlines()[0] == "第一行。"

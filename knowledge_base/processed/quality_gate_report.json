@@ -1,5 +1,5 @@
 {
-  "timestamp": 1780369372,
+  "timestamp": 1780371359,
   "stop_criteria": {
     "min_tests": 60,
     "min_included_sources": 60,
@@ -14,7 +14,7 @@
   },
   "metrics": {
     "commands_ok": true,
-    "test_count": 279,
+    "test_count": 287,
     "included_sources": 136,
     "chunk_count": 629,
     "golden_query_count": 100,
@@ -77,7 +77,7 @@
     "rule_report_recommendation_grounding_rate": 1.0,
     "rule_report_sensitive_high_trust_rate": 1.0,
     "rule_report_emergency_consistency": 1.0,
-    "report_p95_sec": 0.579
+    "report_p95_sec": 0.5733
   },
   "criteria": {
     "tests": true,
@@ -103,7 +103,7 @@
       "name": "prepare_fulltext_candidates",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/prepare_fulltext_candidates.py",
       "returncode": 0,
-      "duration_sec": 0.526,
+      "duration_sec": 0.509,
       "output_tail": "{\n  \"catalog_version\": 1,\n  \"updated\": \"2026-05-28\",\n  \"candidate_count\": 76,\n  \"public_download_count\": 8,\n  \"institution_queue_count\": 8,\n  \"browser_queue_count\": 11,\n  \"action_queue_count\": 11,\n  \"summary_ready_count\": 71,\n  \"issues\": [],\n  \"files\": {\n    \"candidate_report\": \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/fulltext_candidate_report.json\",\n    \"download_queue\": \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/fulltext_download_queue.md\"\n  }\n}\n"
     },
     {
@@ -117,57 +117,57 @@
       "name": "screen_sources",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/screen_sources.py",
       "returncode": 0,
-      "duration_sec": 0.361,
+      "duration_sec": 0.351,
       "output_tail": "{\n  \"total_sources\": 140,\n  \"included_count\": 136,\n  \"excluded_count\": 4,\n  \"threshold\": 18,\n  \"issues\": [],\n  \"duplicate_source_hashes\": [],\n  \"topic_counts\": {\n    \"bp_categories\": 9,\n    \"home_bp_monitoring\": 24,\n    \"emergency\": 6,\n    \"cuffless_ppg_limitations\": 9,\n    \"validated_devices\": 7,\n    \"lifestyle\": 22,\n    \"special_population\": 16,\n    \"measurement_quality\": 32,\n    \"medication_safety\": 5,\n    \"disclaimer\": 3,\n    \"research_context\": 3\n  },\n  \"evidence_class_counts\": {\n    \"guideline\": 20,\n    \"official_health_education\": 58,\n    \"scientific_statement\": 6,\n    \"review\": 18,\n    \"validation_standard\": 5,\n    \"patient_education\": 2,\n    \"safety_rule\": 14,\n    \"research_context\": 13\n  }\n}\n{\n  \"files\": {\n    \"screening_report\": \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/source_screening_report.json\",\n    \"included_sources\": \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/included_sources.json\",\n    \"excluded_sources\": \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/excluded_sources.json\"\n  }\n}\n"
     },
     {
       "name": "extract_source_notes",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/extract_source_notes.py --clean",
       "returncode": 0,
-      "duration_sec": 0.279,
+      "duration_sec": 0.278,
       "output_tail": "written_count: 136\nroot: /Users/lianghao/Work/high blood pressure RAG/knowledge_base/raw/expanded\n\n"
     },
     {
       "name": "ingest_kb",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/ingest_kb.py",
       "returncode": 0,
-      "duration_sec": 0.161,
+      "duration_sec": 0.158,
       "output_tail": "{\n  \"chunk_count\": 629,\n  \"chunks_path\": \"/Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/chunks.jsonl\",\n  \"vector_status\": \"vector index skipped: set build_vector=true to enable optional Chroma indexing\"\n}\n"
     },
     {
       "name": "audit_kb",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/audit_kb.py",
       "returncode": 0,
-      "duration_sec": 0.199,
+      "duration_sec": 0.194,
       "output_tail": "{\n  \"chunk_count\": 629,\n  \"source_count\": 136,\n  \"catalog_included_count\": 136,\n  \"topic_counts\": {\n    \"bp_categories\": 42,\n    \"cuffless_ppg_limitations\": 45,\n    \"disclaimer\": 12,\n    \"emergency\": 24,\n    \"home_bp_monitoring\": 116,\n    \"lifestyle\": 98,\n    \"measurement_quality\": 156,\n    \"medication_safety\": 21,\n    \"research_context\": 15,\n    \"special_population\": 69,\n    \"validated_devices\": 31\n  },\n  \"topic_source_counts\": {\n    \"bp_categories\": 9,\n    \"cuffless_ppg_limitations\": 9,\n    \"disclaimer\": 3,\n    \"emergency\": 6,\n    \"home_bp_monitoring\": 24,\n    \"lifestyle\": 22,\n    \"measurement_quality\": 32,\n    \"medication_safety\": 5,\n    \"research_context\": 3,\n    \"special_population\": 16,\n    \"validated_devices\": 7\n  },\n  \"evidence_class_counts\": {\n    \"guideline\": 100,\n    \"official_health_education\": 248,\n    \"scientific_statement\": 32,\n    \"review\": 91,\n    \"validation_standard\": 25,\n    \"research_context\": 68,\n    \"safety_rule\": 56,\n    \"patient_education\": 9\n  },\n  \"missing_topics\": [],\n  \"duplicate_source_hashes\": [],\n  \"orphan_source_ids\": [],\n  \"unsafe_source_leakage\": [],\n  \"quality\": {\n    \"has_all_expected_topics\": true,\n    \"has_no_unsafe_source_leakage\": true,\n    \"has_catalog_alignment\": true\n  }\n}\n"
     },
     {
       "name": "evaluate_retrieval",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/evaluate_retrieval.py",
       "returncode": 0,
-      "duration_sec": 0.784,
+      "duration_sec": 0.786,
       "output_tail": "{\n  \"query_count\": 100,\n  \"match_rate\": 1.0,\n  \"mean_precision_at_5\": 1.0,\n  \"topic_hit_rate\": 1.0,\n  \"mean_topic_precision_at_5\": 0.908,\n  \"expected_class_hit_rate\": 1.0,\n  \"high_trust_sensitive_rate\": 1.0,\n  \"unsafe_source_leakage_count\": 0,\n  \"evaluation_mode\": \"calibrated_query_only\"\n}\n{\n  \"metadata_filter_safety\": {\n    \"query_count\": 100,\n    \"match_rate\": 1.0,\n    \"mean_precision_at_5\": 1.0,\n    \"topic_hit_rate\": 1.0,\n    \"mean_topic_precision_at_5\": 0.912,\n    \"expected_class_hit_rate\": 1.0,\n    \"high_trust_sensitive_rate\": 1.0,\n    \"unsafe_source_leakage_count\": 0,\n    \"evaluation_mode\": \"metadata_filter_safety\"\n  }\n}\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/retrieval_evaluation.json\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/retrieval_evaluation.csv\n"
     },
     {
       "name": "evaluate_reports",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/evaluate_reports.py",
       "returncode": 0,
-      "duration_sec": 3.81,
+      "duration_sec": 3.729,
       "output_tail": "/Users/lianghao/Work/high blood pressure RAG/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\n{\n  \"llm_only_mock\": {\n    \"has_summary\": 0.0,\n    \"has_evidence\": 0.0,\n    \"has_high_quality_evidence\": 0.0,\n    \"has_ppg_limitation\": 0.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.0,\n    \"required_use_coverage_rate\": 0.0,\n    \"recommendation_grounding_rate\": 0.0,\n    \"sensitive_high_trust_rate\": 0.48,\n    \"emergency_consistency\": 0.82\n  },\n  \"rag_only_mock\": {\n    \"has_summary\": 1.0,\n    \"has_evidence\": 1.0,\n    \"has_high_quality_evidence\": 1.0,\n    \"has_ppg_limitation\": 1.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.18,\n    \"required_use_coverage_rate\": 1.0,\n    \"recommendation_grounding_rate\": 1.0,\n    \"sensitive_high_trust_rate\": 1.0,\n    \"emergency_consistency\": 1.0\n  },\n  \"rule_rag_safety\": {\n    \"has_summary\": 1.0,\n    \"has_evidence\": 1.0,\n    \"has_high_quality_evidence\": 1.0,\n    \"has_ppg_limitation\": 1.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.18,\n    \"required_use_coverage_rate\": 1.0,\n    \"recommendation_grounding_rate\": 1.0,\n    \"sensitive_high_trust_rate\": 1.0,\n    \"emergency_consistency\": 1.0\n  }\n}\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/evaluation_results.json\nwrote /Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/evaluation_results.csv\n"
     },
     {
       "name": "benchmark_report",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python scripts/benchmark_report.py",
       "returncode": 0,
-      "duration_sec": 3.796,
-      "output_tail": "/Users/lianghao/Work/high blood pressure RAG/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\n{\n  \"case_count\": 50,\n  \"max_concurrency\": 5,\n  \"mean_sec\": 0.3568,\n  \"p95_sec\": 0.579,\n  \"max_sec\": 0.6618,\n  \"target_p95_sec\": 3.0,\n  \"passed\": true\n}\n"
+      "duration_sec": 3.731,
+      "output_tail": "/Users/lianghao/Work/high blood pressure RAG/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\n{\n  \"case_count\": 50,\n  \"max_concurrency\": 5,\n  \"mean_sec\": 0.3518,\n  \"p95_sec\": 0.5733,\n  \"max_sec\": 0.6599,\n  \"target_p95_sec\": 3.0,\n  \"passed\": true\n}\n"
     },
     {
       "name": "pytest",
       "command": "/Users/lianghao/Work/high blood pressure RAG/.venv/bin/python -m pytest",
       "returncode": 0,
-      "duration_sec": 10.367,
-      "output_tail": "........................................................................ [ 25%]\n........................................................................ [ 51%]\n........................................................................ [ 77%]\n...............................................................          [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.9/site-packages/urllib3/__init__.py:35\n  /Users/lianghao/Work/high blood pressure RAG/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n279 passed, 1 warning in 10.16s\n"
+      "duration_sec": 10.321,
+      "output_tail": "........................................................................ [ 25%]\n........................................................................ [ 50%]\n........................................................................ [ 75%]\n.......................................................................  [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.9/site-packages/urllib3/__init__.py:35\n  /Users/lianghao/Work/high blood pressure RAG/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n287 passed, 1 warning in 10.14s\n"
     }
   ]
 }
