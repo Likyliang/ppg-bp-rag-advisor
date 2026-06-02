@@ -137,7 +137,12 @@ _EMERGENCY_OPS_PATTERN = re.compile(
     # Recheck-while-waiting variants: in an emergency the report must NOT suggest
     # doing a home/PPG recheck first.
     r"条件允许.*复核|等待医疗帮助.*复核|等待.*复测.*复核|先复核|复核一次|"
-    r"用规范.*血压计复核|帮忙.*血压计"
+    r"用规范.*血压计复核|帮忙.*血压计|"
+    # Call-handling / phone micro-instructions: not licensed by the emergency
+    # boundary (which is only: call 120 / go to ER, do not wait for re-measure).
+    r"保持电话畅通|电话畅通|保持通讯|手机畅通|开门|解锁门|备好.*病历|带好.*病历|"
+    r"告诉接线员|告知接线员|向接线员|对接线员|和接线员|跟接线员|"
+    r"说明.*症状|描述.*症状|报出.*估算值|告知.*估算值|说出.*血压值|准备.*病史"
 )
 _EMERGENCY_SAFE_LINE = "不要等待小程序再次测量或家庭复测结果。"
 # Only protect a line that carries the actionable destination (call 120 / go to
@@ -171,7 +176,8 @@ def _sanitize_emergency_ops(body: str) -> str:
                 continue
             out.append(safe_line)
             continue
-        # Mixed line: forbidden action + 120 mention -> drop only the action clause.
+        # Mixed line: forbidden action + 120/ER mention -> drop only the action
+        # clauses, keep the licensed destination clause.
         if _EMERGENCY_OPS_PATTERN.search(line):
             clauses = re.split(r"([，。；])", line)
             kept = []
@@ -180,8 +186,28 @@ def _sanitize_emergency_ops(body: str) -> str:
                     continue
                 kept.append(part)
             rebuilt = "".join(kept)
-            rebuilt = re.sub(r"[，；]{2,}", "，", rebuilt).replace("，。", "。")
-            out.append(rebuilt if rebuilt.strip() else line)
+            # Strip dangling connectors left when a trailing clause was removed
+            # (e.g. "拨打 120 时，" -> "拨打 120 时" -> needs completing).
+            rebuilt = re.sub(r"[，、；]{2,}", "，", rebuilt)
+            rebuilt = re.sub(r"[，、；]\s*$", "。", rebuilt)
+            rebuilt = rebuilt.replace("，。", "。")
+            # If the kept text is just a dangling lead-in (e.g. "拨打 120 时",
+            # "拨打 120 的时候") rather than a complete instruction, normalise it
+            # to the full licensed instruction.
+            prefix_match = re.match(r"^(\s*(?:[-*]\s+|\d+[.、)]\s*)?)", rebuilt)
+            prefix = prefix_match.group(1) if prefix_match else ""
+            core = rebuilt[len(prefix):].strip()
+            if re.fullmatch(r"(请)?(立即)?拨打\s*120(\s*或前往(最近)?(医院)?急诊)?\s*(时|的时候|时候)?[。.，,]?", core):
+                if "前往" in core or "急诊" in core:
+                    rebuilt = f"{prefix}{core.rstrip('。.，,时的候')}。"
+                else:
+                    rebuilt = f"{prefix}请立即拨打 120 或前往急诊。"
+            # Safety net: if an ops phrase survived (e.g. it sat in the same clause
+            # as 120 with no delimiter to split on), fall back to the licensed
+            # instruction so no unauthorised action leaks.
+            if _EMERGENCY_OPS_PATTERN.search(rebuilt):
+                rebuilt = f"{prefix}请立即拨打 120 或前往急诊；{_EMERGENCY_SAFE_LINE}"
+            out.append(rebuilt if rebuilt.strip() else f"{prefix}{_EMERGENCY_SAFE_LINE}")
             continue
         out.append(line)
     return "\n".join(out)

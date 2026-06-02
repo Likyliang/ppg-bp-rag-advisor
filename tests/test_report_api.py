@@ -443,6 +443,29 @@ def test_deepseek_rag_v10_variant_leaks_are_all_cleaned(monkeypatch):
     assert report.generation_mode.startswith("llm_rag_deepseek")
 
 
+def test_template_only_has_no_multi_day_phrasing():
+    # P2-A: the hardcoded recommendation must not reintroduce "连续多天".
+    report = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    assert report.generation_mode == "template_only"
+    assert "连续多天" not in report.markdown_report
+    assert "连续记录一段时间" in report.markdown_report
+
+
+def test_citation_fallback_template_has_no_multi_day_phrasing(monkeypatch):
+    # P2-A: a RAG citation fallback also routes through the template text, which
+    # must likewise be free of "连续多天".
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+
+    def uncitable_body(**kwargs):
+        return "## 随便写的标题\n一些没有可引用小节的内容。\n\n## 另一个标题\n继续写，建议规范复核。"
+
+    monkeypatch.setattr(generator_service, "generate_deepseek_report_body", uncitable_body)
+    report = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    assert report.generation_mode.endswith("fallback_template") or report.generation_mode.startswith("llm_rag_deepseek")
+    assert "连续多天" not in report.markdown_report
+
+
 def test_deepseek_rag_emergency_strips_recheck_and_concept_error(monkeypatch):
     # Emergency: "请家人帮忙…复核一次" stripped; "特殊人群（症状）" concept fixed;
     # 120/急诊 stays first.

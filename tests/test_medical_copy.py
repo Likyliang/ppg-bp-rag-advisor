@@ -111,6 +111,28 @@ def test_emergency_alert_line_with_citation_is_preserved():
     assert "[2,4]" in out  # citation intact
 
 
+def test_emergency_strips_call_handling_micro_instructions():
+    rr = _RR(emergency=True)
+    for variant in [
+        "- 保持电话畅通，方便急救人员联系。",
+        "- 向接线员说明你的血压估算值。",
+        "- 备好既往病历，方便医生参考。",
+    ]:
+        out = sanitize_medical_copy(variant, rr)
+        for bad in ["保持电话畅通", "接线员", "病历"]:
+            assert bad not in out
+        assert "不要等待" in out
+
+    # Mixed line: keep 120/ER, drop the call-handling clause (with or without
+    # a delimiter before the ops phrase).
+    out = sanitize_medical_copy("- 拨打 120 时，告诉接线员你的估算值和症状。", rr)
+    assert "120" in out
+    assert "接线员" not in out
+    out = sanitize_medical_copy("- 拨打 120 的时候告诉接线员症状。", rr)
+    assert "120" in out
+    assert "接线员" not in out
+
+
 # 6a. Concept error: symptoms are not a special population --------------------
 
 def test_concept_symptoms_not_special_population():

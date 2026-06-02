@@ -101,7 +101,7 @@ def _recommendations(rule_result: RuleResult) -> Recommendations:
     consultation: List[str] = []
 
     if "remeasurement" in rule_result.recommendation_intents:
-        remeasurement.extend(["安静休息至少 5 分钟后重新测量。", "连续多天记录测量趋势，避免只看单次估算值。"])
+        remeasurement.extend(["安静休息至少 5 分钟后重新测量。", "连续记录一段时间观察趋势，避免只看单次估算值。"])
     if "signal_quality_improvement" in rule_result.recommendation_intents:
         remeasurement.extend(["重新采集时保持手指覆盖摄像头、身体静止，避免强光干扰。"])
     if "home_bp_monitoring" in rule_result.recommendation_intents:
