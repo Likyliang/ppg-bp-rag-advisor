@@ -91,6 +91,29 @@ RISK_LABELS = {
     "insufficient_input": "信息不足",
 }
 
+CONTACT_PRESSURE_OPTIONS = {
+    "正常": "normal",
+    "偏低/过松": "low",
+    "偏高/过紧": "high",
+    "不稳定": "unstable",
+    "不填写": "unknown",
+}
+
+AMBIENT_LIGHT_OPTIONS = {
+    "正常": "normal",
+    "偏暗": "dim",
+    "强光/过亮": "bright",
+    "不稳定": "unstable",
+    "不填写": "unknown",
+}
+
+PPG_SOURCE_OPTIONS = {
+    "手机摄像头手指 PPG": "camera_finger",
+    "外部波形输入": "waveform",
+    "其他来源": "other",
+    "不确定": "unknown",
+}
+
 MODE_LABELS = {
     "template_only": "本地模板",
     "llm_rag_fallback_template": "模型生成失败，已使用保守报告",
@@ -102,6 +125,94 @@ MODE_LABELS = {
     "llm_only_fallback_template": "非 RAG 生成失败，已使用保守报告",
     "llm_only_safety_fallback_template": "非 RAG 保守兜底报告",
 }
+
+
+def _option_index(options: dict[str, str], selected_value: str, default: int = 0) -> int:
+    labels = list(options.keys())
+    return next(
+        (idx for idx, label in enumerate(labels) if options[label] == selected_value),
+        default,
+    )
+
+
+def _score_label(value, higher_is_better: bool = True) -> str:
+    if value is None:
+        return "未输入"
+    if higher_is_better:
+        if value >= 0.75:
+            return "较好"
+        if value >= 0.60:
+            return "一般"
+        return "偏低"
+    if value >= 0.70:
+        return "偏高"
+    if value >= 0.45:
+        return "中等"
+    return "较低"
+
+
+def build_ppg_parameter_rows(payload: dict, rules) -> list[dict[str, str]]:
+    measurement = payload["measurement"]
+    warnings_text = "；".join(rules.quality.warnings)
+    rows = [
+        {
+            "参数": "信号质量分",
+            "当前值": f"{measurement.get('signal_quality_score'):.2f}",
+            "页面解读": _score_label(measurement.get("signal_quality_score"), higher_is_better=True),
+            "对报告的影响": "低于阈值时会弱化或停止风险解释，优先提示重新采集。",
+        },
+        {
+            "参数": "上游置信度",
+            "当前值": f"{measurement.get('confidence'):.2f}",
+            "页面解读": _score_label(measurement.get("confidence"), higher_is_better=True),
+            "对报告的影响": "偏低时加入复测提醒，但不等同于血压准确或不准确。",
+        },
+        {
+            "参数": "采集时长",
+            "当前值": f"{measurement.get('capture_duration_sec')} 秒",
+            "页面解读": "偏短" if measurement.get("capture_duration_sec", 0) < 20 else "可展示",
+            "对报告的影响": "偏短时提示重新采集不少于20秒；这是采集质量提示，不是诊断。",
+        },
+        {
+            "参数": "运动伪影",
+            "当前值": f"{measurement.get('motion_artifact_score'):.2f}",
+            "页面解读": _score_label(measurement.get("motion_artifact_score"), higher_is_better=False),
+            "对报告的影响": "中高时触发 PPG 运动伪影检索意图；过高时本次结果只适合提示重测。",
+        },
+        {
+            "参数": "手指覆盖完整度",
+            "当前值": f"{measurement.get('finger_coverage_score'):.2f}",
+            "页面解读": _score_label(measurement.get("finger_coverage_score"), higher_is_better=True),
+            "对报告的影响": "覆盖不足时提示重新覆盖摄像头；不推断真实血压偏差方向。",
+        },
+        {
+            "参数": "接触压力",
+            "当前值": measurement.get("contact_pressure_level", "unknown"),
+            "页面解读": "可能影响波形" if measurement.get("contact_pressure_level") in {"low", "high", "unstable"} else "未触发",
+            "对报告的影响": "异常时触发接触压力/波形质量相关证据检索。",
+        },
+        {
+            "参数": "环境光",
+            "当前值": measurement.get("ambient_light_level", "unknown"),
+            "页面解读": "可能干扰采集" if measurement.get("ambient_light_level") in {"dim", "bright", "unstable"} else "未触发",
+            "对报告的影响": "异常时触发摄像头 PPG 环境光和光照干扰相关检索。",
+        },
+    ]
+    if warnings_text:
+        rows.append(
+            {
+                "参数": "规则层提示",
+                "当前值": str(len(rules.quality.warnings)),
+                "页面解读": "已触发",
+                "对报告的影响": warnings_text,
+            }
+        )
+    return rows
+
+
+def ppg_related_intents(rules) -> list[str]:
+    keywords = ("PPG", "ppg", "signal", "信号", "伪影", "环境光", "接触压力", "手指", "摄像头")
+    return [intent for intent in rules.retrieval_intents if any(keyword in intent for keyword in keywords)]
 
 
 def clean_user_markdown(markdown: str) -> str:
@@ -323,12 +434,13 @@ FEATURED_DEMO_CASES = [
     },
     {
         "case_id": "cn_ppg_feature_quality_demo",
-        "display_name": "PPG特征异常：手指移动和光照干扰",
+        "display_name": "本周新增：PPG信号参数输入演示",
         "estimated_sbp": 142,
         "estimated_dbp": 90,
         "heart_rate": 81,
         "signal_quality_score": 0.79,
         "confidence": 0.62,
+        "capture_duration_sec": 18,
         "motion_artifact_score": 0.58,
         "finger_coverage_score": 0.68,
         "contact_pressure_level": "high",
@@ -525,6 +637,7 @@ def _case_label(case):
 
 st.set_page_config(page_title="PPG 血压估算解释 RAG-Agent", layout="wide")
 st.title("PPG 血压估算解释 RAG-Agent")
+st.caption("导师演示分支：展示 PPG 信号参数如何进入规则层、检索意图和报告生成。该 demo 只做健康解释，不验证 PPG 血压估算准确性。")
 
 with st.sidebar:
     demo_cases = _load_demo_cases()
@@ -537,26 +650,36 @@ with st.sidebar:
     sbp = st.number_input("估算收缩压 SBP (mmHg)", min_value=40, max_value=260, value=int(selected_case.get("estimated_sbp", 145)) if selected_case else 145)
     dbp = st.number_input("估算舒张压 DBP (mmHg)", min_value=30, max_value=180, value=int(selected_case.get("estimated_dbp", 92)) if selected_case else 92)
     heart_rate = st.number_input("心率 bpm", min_value=20, max_value=240, value=int(selected_case.get("heart_rate", 82)) if selected_case else 82)
+
+    st.header("PPG 信号参数")
+    st.caption("本周新增展示：这些参数只影响采集质量解释和复测建议，不用于诊断或证明估算准确。")
     quality_score = st.slider("信号质量分", min_value=0.0, max_value=1.0, value=float(selected_case.get("signal_quality_score", 0.86)) if selected_case else 0.86, step=0.01)
     confidence = st.slider("上游置信度", min_value=0.0, max_value=1.0, value=float(selected_case.get("confidence", 0.68)) if selected_case else 0.68, step=0.01)
+    capture_duration_sec = st.number_input(
+        "采集时长（秒）",
+        min_value=5,
+        max_value=120,
+        value=int(selected_case.get("capture_duration_sec", 30)) if selected_case else 30,
+        step=1,
+    )
     motion_artifact_score = st.slider("手指移动/运动伪影", min_value=0.0, max_value=1.0, value=float(selected_case.get("motion_artifact_score", 0.10)) if selected_case else 0.10, step=0.01)
     finger_coverage_score = st.slider("手指覆盖完整度", min_value=0.0, max_value=1.0, value=float(selected_case.get("finger_coverage_score", 0.92)) if selected_case else 0.92, step=0.01)
-    contact_pressure_options = {"正常": "normal", "偏低/过松": "low", "偏高/过紧": "high", "不稳定": "unstable", "不填写": "unknown"}
     selected_contact_pressure = selected_case.get("contact_pressure_level", "normal") if selected_case else "normal"
-    contact_pressure_labels = list(contact_pressure_options.keys())
-    contact_pressure_index = next(
-        (idx for idx, label in enumerate(contact_pressure_labels) if contact_pressure_options[label] == selected_contact_pressure),
-        0,
-    )
+    contact_pressure_labels = list(CONTACT_PRESSURE_OPTIONS.keys())
+    contact_pressure_index = _option_index(CONTACT_PRESSURE_OPTIONS, selected_contact_pressure)
     contact_pressure_label = st.selectbox("手指按压力度", contact_pressure_labels, index=contact_pressure_index)
-    ambient_light_options = {"正常": "normal", "偏暗": "dim", "强光/过亮": "bright", "不稳定": "unstable", "不填写": "unknown"}
     selected_ambient_light = selected_case.get("ambient_light_level", "normal") if selected_case else "normal"
-    ambient_light_labels = list(ambient_light_options.keys())
-    ambient_light_index = next(
-        (idx for idx, label in enumerate(ambient_light_labels) if ambient_light_options[label] == selected_ambient_light),
-        0,
-    )
+    ambient_light_labels = list(AMBIENT_LIGHT_OPTIONS.keys())
+    ambient_light_index = _option_index(AMBIENT_LIGHT_OPTIONS, selected_ambient_light)
     ambient_light_label = st.selectbox("环境光", ambient_light_labels, index=ambient_light_index)
+    selected_ppg_source = selected_case.get("ppg_source", "camera_finger") if selected_case else "camera_finger"
+    ppg_source_labels = list(PPG_SOURCE_OPTIONS.keys())
+    ppg_source_index = _option_index(PPG_SOURCE_OPTIONS, selected_ppg_source)
+    ppg_source_label = st.selectbox("PPG 来源", ppg_source_labels, index=ppg_source_index)
+    algorithm_version = st.text_input(
+        "算法版本",
+        value=str(selected_case.get("algorithm_version", "miniapp-bp-v1.1-signal-demo")) if selected_case else "miniapp-bp-v1.1-signal-demo",
+    )
     age = st.number_input("年龄", min_value=0, max_value=120, value=int(selected_case.get("age", 45)) if selected_case else 45)
     selected_region = selected_case.get("guideline_region", "CN") if selected_case else "CN"
     region_labels = list(GUIDELINE_REGION_OPTIONS.keys())
@@ -611,12 +734,14 @@ payload = {
         "signal_quality_score": quality_score,
         "confidence": confidence,
         "signal_quality_label": "good" if quality_score >= 0.75 else "fair" if quality_score >= 0.6 else "poor",
-        "capture_duration_sec": 30,
+        "capture_duration_sec": capture_duration_sec,
         "motion_artifact_score": motion_artifact_score,
         "finger_coverage_score": finger_coverage_score,
-        "contact_pressure_level": contact_pressure_options[contact_pressure_label],
-        "ambient_light_level": ambient_light_options[ambient_light_label],
-        "ppg_source": "camera_finger",
+        "contact_pressure_level": CONTACT_PRESSURE_OPTIONS[contact_pressure_label],
+        "ambient_light_level": AMBIENT_LIGHT_OPTIONS[ambient_light_label],
+        "ppg_source": PPG_SOURCE_OPTIONS[ppg_source_label],
+        "algorithm_version": algorithm_version,
+        "calculation_principle": "camera-based finger PPG estimation",
     },
     "user_profile": {
         "age": age,
@@ -669,7 +794,64 @@ control_report = st.session_state.get("demo_control_report")
 display_report_markdown = clean_user_markdown(report.markdown_report)
 display_control_markdown = clean_control_markdown(control_report.markdown_report) if control_report else None
 
-report_tab, compare_tab, evidence_tab, audit_tab, json_tab = st.tabs(["用户报告", "RAG 对照实验", "证据依据", "过程审计", "原始 JSON"])
+signal_tab, report_tab, compare_tab, evidence_tab, audit_tab, json_tab = st.tabs([
+    "PPG 信号参数",
+    "用户报告",
+    "RAG 对照实验",
+    "证据依据",
+    "过程审计",
+    "原始 JSON",
+])
+
+with signal_tab:
+    st.subheader("PPG 信号参数输入与规则联动")
+    st.markdown(
+        "这页适合给导师先看：同一组血压估算值下，改变信号质量、运动伪影、手指覆盖、接触压力和环境光，"
+        "系统会把报告从“可解释”逐步收敛到“先复测”。"
+    )
+
+    signal_cols = st.columns(5)
+    signal_cols[0].metric("信号质量", f"{payload['measurement']['signal_quality_score']:.2f}", _score_label(payload["measurement"]["signal_quality_score"]))
+    signal_cols[1].metric("置信度", f"{payload['measurement']['confidence']:.2f}", _score_label(payload["measurement"]["confidence"]))
+    signal_cols[2].metric("运动伪影", f"{payload['measurement']['motion_artifact_score']:.2f}", _score_label(payload["measurement"]["motion_artifact_score"], higher_is_better=False))
+    signal_cols[3].metric("手指覆盖", f"{payload['measurement']['finger_coverage_score']:.2f}", _score_label(payload["measurement"]["finger_coverage_score"]))
+    signal_cols[4].metric("采集时长", f"{payload['measurement']['capture_duration_sec']} 秒")
+
+    left, right = st.columns([1.35, 1])
+    with left:
+        st.markdown("### 参数如何影响报告")
+        st.table(build_ppg_parameter_rows(payload, rules))
+    with right:
+        st.markdown("### 规则输出")
+        st.write(
+            {
+                "quality_level": rules.quality.quality_level,
+                "is_usable": rules.quality.is_usable,
+                "confidence_level": rules.quality.confidence_level,
+                "risk_level": rules.risk_level,
+                "urgency_level": rules.urgency_level,
+            }
+        )
+        related_intents = ppg_related_intents(rules)
+        st.markdown("### PPG 相关检索意图")
+        if related_intents:
+            for intent in related_intents:
+                st.caption(intent)
+        else:
+            st.caption("当前输入没有额外触发 PPG 特征检索。")
+
+    if rules.quality.warnings:
+        st.warning("；".join(rules.quality.warnings))
+    else:
+        st.success("当前信号参数没有触发明显质量问题；报告仍会保留 PPG/无袖带边界说明。")
+
+    st.markdown("### 故意保留的演示瑕疵")
+    st.info(
+        "这个网页目前展示的是“参数级输入 + 规则联动 + 报告变化”，还没有接真实 PPG 波形图，"
+        "也不会量化每个信号因素对真实血压误差的方向和大小。这个缺口可以作为下一步工作继续汇报。"
+    )
+    with st.expander("查看发送给后端的 measurement payload"):
+        st.json(payload["measurement"])
 
 with report_tab:
     metric_cols = st.columns(3)
