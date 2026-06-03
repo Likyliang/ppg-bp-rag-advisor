@@ -637,7 +637,7 @@ def _case_label(case):
 
 st.set_page_config(page_title="PPG 血压估算解释 RAG-Agent", layout="wide")
 st.title("PPG 血压估算解释 RAG-Agent")
-st.caption("导师演示分支：展示 PPG 信号参数如何进入规则层、检索意图和报告生成。该 demo 只做健康解释，不验证 PPG 血压估算准确性。")
+st.caption("网页演示版：展示 PPG 信号参数如何进入规则层、检索意图和报告生成。该 demo 只做健康解释，不验证 PPG 血压估算准确性。")
 
 with st.sidebar:
     demo_cases = _load_demo_cases()
@@ -806,8 +806,8 @@ signal_tab, report_tab, compare_tab, evidence_tab, audit_tab, json_tab = st.tabs
 with signal_tab:
     st.subheader("PPG 信号参数输入与规则联动")
     st.markdown(
-        "这页适合给导师先看：同一组血压估算值下，改变信号质量、运动伪影、手指覆盖、接触压力和环境光，"
-        "系统会把报告从“可解释”逐步收敛到“先复测”。"
+        "同一组血压估算值下，改变信号质量、运动伪影、手指覆盖、接触压力和环境光，"
+        "系统会将报告从“可解释”逐步收敛到“先复测”。"
     )
 
     signal_cols = st.columns(5)
