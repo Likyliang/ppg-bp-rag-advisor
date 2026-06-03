@@ -413,9 +413,13 @@ def _markdown(report: HealthReport, rule_result: RuleResult, payload: Measuremen
                 "",
                 "## 参考文献",
                 "正文中的 [n] 标注对应下列经治理的权威来源；每条建议只引用其被授权用途范围内的资料。",
+                "",
             ]
         )
-        lines.extend(registry.references_markdown())
+        for index, reference_line in enumerate(registry.references_markdown()):
+            if index:
+                lines.append("")
+            lines.append(reference_line)
 
     evidence_count = len(report.retrieved_evidence)
     grounding_text = "是" if report.citation_quality.recommendation_grounding_rate >= 1.0 else "部分建议需要继续补充资料"

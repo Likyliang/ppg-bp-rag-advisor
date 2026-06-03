@@ -147,6 +147,8 @@ def test_report_body_has_inline_citations_and_reference_section():
     report = generate_report({"estimated_sbp": 156, "estimated_dbp": 98, "signal_quality_score": 0.86})
     assert "## 参考文献" in report.markdown_report
     assert "## 参考来源" not in report.markdown_report
+    assert "资料。\n\n[1] " in report.markdown_report
+    assert re.search(r"(?m)^\[1\].+\n\n\[2\]\s", report.markdown_report, flags=re.S)
     assert re.search(r"提示处于明显偏高范围参考值。\s*\[\d", report.markdown_report)
     assert re.search(r"(?m)^\[1\]\s", report.markdown_report)
     assert report.retrieved_evidence[0].citation_number == 1
