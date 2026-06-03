@@ -412,6 +412,88 @@ def test_deepseek_rag_strips_introduced_specific_details(monkeypatch):
     assert ("在相对固定、方便的时间" in md) or ("连续记录一段时间" in md)
 
 
+def test_deepseek_rag_v10_variant_leaks_are_all_cleaned(monkeypatch):
+    # Second-round acceptance: indefinite frequency + fixed-timepoint variants +
+    # dangling bracket must all be cleaned while a valid [n] survives.
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+
+    def variant_body(**kwargs):
+        return (
+            "## 先看结论\n如果之后几天用同样方法测出来还是偏高，建议复核[1]。\n\n"
+            "## 接下来怎么做\n### 复测与记录\n"
+            "- 连续多天记录测量趋势，避免只看单次估算值[1,2,3]。\n"
+            "- 在相对固定、方便的时间（早上、晚上）用同一个上臂式血压计测[1,4,5]。\n"
+            "- 不要等待小程序或家庭复测结果。 [\n"
+            "## 几个容易误解的点\n- PPG 只能看趋势[6]。"
+        )
+
+    monkeypatch.setattr(generator_service, "generate_deepseek_report_body", variant_body)
+    report = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    md = report.markdown_report
+    body_only = md.split("## 参考文献", 1)[0]
+    for forbidden in ["之后几天", "连续多天", "早上、晚上", "。 ["]:
+        assert forbidden not in md, f"v10 variant leaked: {forbidden}"
+    # body still carries valid inline citations
+    assert re.search(r"\[\d+(?:,\d+)*\]", body_only)
+    n_ev = len(report.retrieved_evidence)
+    for grp in re.findall(r"\[(\d+(?:,\d+)*)\]", body_only):
+        for part in grp.split(","):
+            assert 1 <= int(part) <= n_ev
+    assert report.generation_mode.startswith("llm_rag_deepseek")
+
+
+def test_template_only_has_no_multi_day_phrasing():
+    # P2-A: the hardcoded recommendation must not reintroduce "连续多天".
+    report = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    assert report.generation_mode == "template_only"
+    assert "连续多天" not in report.markdown_report
+    assert "连续记录一段时间" in report.markdown_report
+
+
+def test_citation_fallback_template_has_no_multi_day_phrasing(monkeypatch):
+    # P2-A: a RAG citation fallback also routes through the template text, which
+    # must likewise be free of "连续多天".
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+
+    def uncitable_body(**kwargs):
+        return "## 随便写的标题\n一些没有可引用小节的内容。\n\n## 另一个标题\n继续写，建议规范复核。"
+
+    monkeypatch.setattr(generator_service, "generate_deepseek_report_body", uncitable_body)
+    report = generate_report({"estimated_sbp": 146, "estimated_dbp": 92, "signal_quality_score": 0.86})
+    assert report.generation_mode.endswith("fallback_template") or report.generation_mode.startswith("llm_rag_deepseek")
+    assert "连续多天" not in report.markdown_report
+
+
+def test_deepseek_rag_emergency_strips_recheck_and_concept_error(monkeypatch):
+    # Emergency: "请家人帮忙…复核一次" stripped; "特殊人群（症状）" concept fixed;
+    # 120/急诊 stays first.
+    monkeypatch.setenv("REPORT_MODE", "llm_rag")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+
+    def emergency_variant_body(**kwargs):
+        return (
+            "## 可能存在紧急风险\n估算值很高且伴随胸痛，请立即拨打 120 或前往急诊[1]。\n"
+            "- 在等待医疗帮助时，如果条件允许，可以请家人帮忙用规范上臂式血压计复核一次。\n\n"
+            "## 先看结论\n特殊人群（你勾选了需要重视的症状）更不应依赖单次 PPG 结果[1]。"
+        )
+
+    monkeypatch.setattr(generator_service, "generate_deepseek_report_body", emergency_variant_body)
+    report = generate_report(
+        {"estimated_sbp": 192, "estimated_dbp": 124, "signal_quality_score": 0.84,
+         "symptoms": {"chest_pain": True}}
+    )
+    md = report.markdown_report
+    assert report.safety_alert.emergency is True
+    assert md.lstrip().startswith("## 可能存在紧急风险")
+    assert "120" in md
+    for forbidden in ["请家人帮忙", "复核一次", "特殊人群（", "特殊人群("]:
+        assert forbidden not in md, f"emergency variant leaked: {forbidden}"
+    assert "出现急症相关症状时" in md
+    assert "不要等待" in md
+
+
 def test_deepseek_rag_empty_content_retries_then_succeeds(monkeypatch):
     # First DeepSeek call returns empty; the adapter retries once (still DeepSeek)
     # and the report stays llm_rag_deepseek instead of falling back.

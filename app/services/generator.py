@@ -20,7 +20,7 @@ from app.schemas.report import (
 from app.schemas.rule_result import RuleResult
 from app.services.citations import build_registry, extract_citation_numbers
 from app.services.evidence_quality import bind_recommendation_evidence, evaluate_citation_quality
-from app.services.medical_copy import sanitize_medical_copy
+from app.services.medical_copy import clean_citation_fragments, sanitize_medical_copy
 from app.services.config_loader import load_yaml_config
 from app.services.llm_adapter import (
     LlmGenerationError,
@@ -101,7 +101,7 @@ def _recommendations(rule_result: RuleResult) -> Recommendations:
     consultation: List[str] = []
 
     if "remeasurement" in rule_result.recommendation_intents:
-        remeasurement.extend(["安静休息至少 5 分钟后重新测量。", "连续多天记录测量趋势，避免只看单次估算值。"])
+        remeasurement.extend(["安静休息至少 5 分钟后重新测量。", "连续记录一段时间观察趋势，避免只看单次估算值。"])
     if "signal_quality_improvement" in rule_result.recommendation_intents:
         remeasurement.extend(["重新采集时保持手指覆盖摄像头、身体静止，避免强光干扰。"])
     if "home_bp_monitoring" in rule_result.recommendation_intents:
@@ -356,7 +356,7 @@ def _markdown(report: HealthReport, rule_result: RuleResult, payload: Measuremen
                 f"提示{_category_text(rule_result.estimated_bp_category)}。{cite_bp}"
             ),
             f"这次采集的信息包括：{'；'.join(quality_parts)}。" if quality_parts else "这次测量信息还不完整。",
-            "先别把它当成诊断结果。它更像一次提醒：需要用规范血压计复核，再看连续记录。",
+            "不要将本次结果作为诊断结论。它更像一次提醒：需要用规范血压计复核，再结合连续记录判断趋势。",
             "",
             "## 现在最该做什么",
             _one_sentence_takeaway(rule_result),
@@ -700,6 +700,20 @@ _DETAIL_SCRUB_RULES: List[tuple] = [
     # "(连续)?记录/测量几次" indefinite count.
     (re.compile(r"连续\s*(测量|记录|监测)?\s*几\s*次"), "连续记录一段时间"),
     (re.compile(r"(测量|记录|监测)\s*几\s*次"), "连续记录"),
+    # Indefinite multi-day phrasing: "之后/接下来几天" -> "后续"; "连续多天(记录)" ->
+    # "连续记录一段时间". No fixed-day / 几天 / 多天 frequency hints may survive.
+    (re.compile(r"(之后|后面|接下来|往后|这)\s*几\s*天"), "后续"),
+    (re.compile(r"连续\s*多\s*天\s*(记录|测量|监测)(测量趋势|趋势)?"), "连续记录一段时间"),
+    (re.compile(r"连续\s*多\s*天"), "连续记录一段时间"),
+    (re.compile(r"多\s*天\s*(连续)?\s*(记录|测量|监测)"), "连续记录一段时间"),
+    (re.compile(r"(记录|测量|监测)\s*多\s*天"), "连续记录一段时间"),
+    # Fixed timepoint variants without the meal/wake anchors: "早上、晚上" /
+    # "早晚" / "早晨和晚上" / "早上或晚上" / "上午、下午" (optionally parenthesised).
+    (re.compile(r"[（(]\s*(早上|早晨|清晨|上午)[、和或／/]+(晚上|傍晚|睡前|下午)\s*[）)]"), ""),
+    (re.compile(r"(早上|早晨|清晨|上午)\s*[、和或／/]\s*(晚上|傍晚|下午)(各[一二]次)?"), ""),
+    (re.compile(r"[（(]\s*早晚\s*[）)]"), ""),
+    (re.compile(r"早晚各[一二]次"), ""),
+    (re.compile(r"(上午|下午|早上|晚上)\s*固定时间"), "相对固定、方便的时间"),
     # "每天早晚/早晨/晚上(各一次)?(测量/记录)" fixed-frequency phrasing.
     (re.compile(r"每天(早晚|早晨|晚上|早上|清晨)(各一次)?\s*(测量|记录)?"), "在相对固定、方便的时间"),
     (re.compile(r"每日(早晚|早晨|晚上|早上|清晨)(各一次)?\s*(测量|记录)?"), "在相对固定、方便的时间"),
@@ -854,7 +868,9 @@ def _repair_glued_headings(body: str) -> str:
     e.g. ``…请直接拨打 120 或前往急诊。## 为什么这样提醒你`` becomes two lines.
     """
     # Insert a newline before any inline '## '/'### ' heading that follows text.
-    return re.sub(r"(?<!\n)(#{2,3}\s)", r"\n\n\1", body)
+    # The lookbehind also requires a non-newline char before, so a heading at the
+    # very start of the body (position 0) is left untouched (no leading blanks).
+    return re.sub(r"(?<=[^\n])(#{2,3}\s)", r"\n\n\1", body)
 
 
 # Recommendation sub-groups that must render as ### under "## 接下来怎么做".
@@ -918,6 +934,9 @@ def _finalize_rag_llm_body(
     # colloquialisms, lifestyle detail. Runs before citation enforcement so any
     # rewritten section still gets its inline [n] re-covered below.
     body = sanitize_medical_copy(body, rule_result)
+    # Remove any dangling/incomplete citation brackets the LLM produced (e.g.
+    # "…复测结果。 [" or "[1,") before the enforcement step re-adds valid ones.
+    body = clean_citation_fragments(body)
     body = _ensure_china_context_section(body, rule_result, payload, uses_rag=True)
     body = _ensure_plain_language_section(body, report, rule_result, payload, uses_rag=True)
 
@@ -925,6 +944,8 @@ def _finalize_rag_llm_body(
         # Drop any hallucinated/out-of-range markers, then guarantee coverage.
         body = registry.strip_invalid_markers(body)
         body = registry.enforce_section_citations(body)
+        # A final fragment sweep in case marker-stripping left a stray bracket.
+        body = clean_citation_fragments(body)
         consistent = registry.body_is_consistent(body)
     else:
         consistent = True

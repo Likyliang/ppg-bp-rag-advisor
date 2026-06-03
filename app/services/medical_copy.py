@@ -76,12 +76,35 @@ _COLLOQUIAL_RULES: List[Tuple[re.Pattern, str]] = [
      "不要将本次结果作为诊断结论"),
     # generic leftover "先别急着…" opener at sentence start.
     (re.compile(r"(请)?先别(着急|急着)"), "请注意，"),
+    # "(先)?别把它/这当成/当作(诊断)?结果" -> neutral.
+    (re.compile(r"(请)?(先)?别把(它|这|这个数字|本次结果)?(当成|当作|当做|当)(诊断)?结果"),
+     "不要将本次结果作为诊断结论"),
+    (re.compile(r"(请)?(先)?不要把(它|这|这个数字|本次结果)?(当成|当作|当做|当)(诊断)?结果"),
+     "不要将本次结果作为诊断结论"),
     (re.compile(r"先别(着急|担心)"), "请注意"),
     (re.compile(r"这个数字本身只是估算[^。\n]*。?"),
      "该数值来自 PPG 估算，需结合规范测量复核。"),
     (re.compile(r"这个数字只是(一个)?估算[^。\n]*。?"),
      "该数值来自 PPG 估算，需结合规范测量复核。"),
     (re.compile(r"别紧张|不要紧张|放轻松"), "请理性看待"),
+    (re.compile(r"先别盯着数字看"), "不要仅依据本次估算值判断"),
+    (re.compile(r"别盯着数字看?"), "不要仅依据本次估算值判断"),
+    (re.compile(r"先别慌(张)?"), "请先进行规范复核"),
+    (re.compile(r"别慌(张)?"), "请先进行规范复核"),
+    (re.compile(r"先别管(它|数字|高低)?"), "暂不据此判断"),
+]
+
+
+# ---------------------------------------------------------------------------
+# 6. Concept errors — symptoms are NOT a "special population".
+# ---------------------------------------------------------------------------
+_CONCEPT_RULES: List[Tuple[re.Pattern, str]] = [
+    # "特殊人群（你勾选了…症状…）更不应依赖单次 PPG 结果"
+    (re.compile(r"特殊人群\s*[（(][^）)]*症状[^）)]*[）)]"), "出现急症相关症状时"),
+    (re.compile(r"特殊人群\s*[（(][^）)]*(胸痛|气短|不适)[^）)]*[）)]"), "出现急症相关症状时"),
+    # bare "(你)?(勾选|填写)了…症状…属于/算特殊人群"
+    (re.compile(r"(你)?(勾选|填写)了[^，。；\n]*症状[^，。；\n]*(属于|算|是)特殊人群"),
+     "出现急症相关症状"),
 ]
 
 
@@ -108,12 +131,24 @@ _LIFESTYLE_RULES: List[Tuple[re.Pattern, str]] = [
 _EMERGENCY_OPS_PATTERN = re.compile(
     r"开车|驾车|自驾|骑车|坐车|打车|交通工具|"
     r"陪同|有人陪|找人陪|让家人|让家属|喊人|叫人|"
+    r"请家人|家人帮忙|家属帮忙|帮忙(用|测|复核)|"
     r"平躺|躺下|平卧|坐下休息|保持(某种)?姿势|半坐位|"
-    r"喝水|吃点|进食|含服|舌下|嚼服"
+    r"喝水|吃点|进食|含服|舌下|嚼服|"
+    # Recheck-while-waiting variants: in an emergency the report must NOT suggest
+    # doing a home/PPG recheck first.
+    r"条件允许.*复核|等待医疗帮助.*复核|等待.*复测.*复核|先复核|复核一次|"
+    r"用规范.*血压计复核|帮忙.*血压计|"
+    # Call-handling / phone micro-instructions: not licensed by the emergency
+    # boundary (which is only: call 120 / go to ER, do not wait for re-measure).
+    r"保持电话畅通|电话畅通|保持通讯|手机畅通|开门|解锁门|备好.*病历|带好.*病历|"
+    r"告诉接线员|告知接线员|向接线员|对接线员|和接线员|跟接线员|"
+    r"说明.*症状|描述.*症状|报出.*估算值|告知.*估算值|说出.*血压值|准备.*病史"
 )
 _EMERGENCY_SAFE_LINE = "不要等待小程序再次测量或家庭复测结果。"
-# Don't rewrite a line that is purely the licensed 120/ER instruction.
-_EMERGENCY_KEEP_PATTERN = re.compile(r"120|急诊|急救|紧急医疗")
+# Only protect a line that carries the actionable destination (call 120 / go to
+# ER). The bare words "急救"/"紧急医疗" also appear in descriptive prose like
+# "不影响急救", so they must NOT shield a line that adds a recheck/ops action.
+_EMERGENCY_KEEP_PATTERN = re.compile(r"120|急诊")
 
 
 def _apply_rules(text: str, rules: List[Tuple[re.Pattern, str]]) -> str:
@@ -141,7 +176,8 @@ def _sanitize_emergency_ops(body: str) -> str:
                 continue
             out.append(safe_line)
             continue
-        # Mixed line: forbidden action + 120 mention -> drop only the action clause.
+        # Mixed line: forbidden action + 120/ER mention -> drop only the action
+        # clauses, keep the licensed destination clause.
         if _EMERGENCY_OPS_PATTERN.search(line):
             clauses = re.split(r"([，。；])", line)
             kept = []
@@ -150,11 +186,56 @@ def _sanitize_emergency_ops(body: str) -> str:
                     continue
                 kept.append(part)
             rebuilt = "".join(kept)
-            rebuilt = re.sub(r"[，；]{2,}", "，", rebuilt).replace("，。", "。")
-            out.append(rebuilt if rebuilt.strip() else line)
+            # Strip dangling connectors left when a trailing clause was removed
+            # (e.g. "拨打 120 时，" -> "拨打 120 时" -> needs completing).
+            rebuilt = re.sub(r"[，、；]{2,}", "，", rebuilt)
+            rebuilt = re.sub(r"[，、；]\s*$", "。", rebuilt)
+            rebuilt = rebuilt.replace("，。", "。")
+            # If the kept text is just a dangling lead-in (e.g. "拨打 120 时",
+            # "拨打 120 的时候") rather than a complete instruction, normalise it
+            # to the full licensed instruction.
+            prefix_match = re.match(r"^(\s*(?:[-*]\s+|\d+[.、)]\s*)?)", rebuilt)
+            prefix = prefix_match.group(1) if prefix_match else ""
+            core = rebuilt[len(prefix):].strip()
+            if re.fullmatch(r"(请)?(立即)?拨打\s*120(\s*或前往(最近)?(医院)?急诊)?\s*(时|的时候|时候)?[。.，,]?", core):
+                if "前往" in core or "急诊" in core:
+                    rebuilt = f"{prefix}{core.rstrip('。.，,时的候')}。"
+                else:
+                    rebuilt = f"{prefix}请立即拨打 120 或前往急诊。"
+            # Safety net: if an ops phrase survived (e.g. it sat in the same clause
+            # as 120 with no delimiter to split on), fall back to the licensed
+            # instruction so no unauthorised action leaks.
+            if _EMERGENCY_OPS_PATTERN.search(rebuilt):
+                rebuilt = f"{prefix}请立即拨打 120 或前往急诊；{_EMERGENCY_SAFE_LINE}"
+            out.append(rebuilt if rebuilt.strip() else f"{prefix}{_EMERGENCY_SAFE_LINE}")
             continue
         out.append(line)
     return "\n".join(out)
+
+
+def clean_citation_fragments(body: str) -> str:
+    """Remove dangling / incomplete citation brackets without harming valid ones.
+
+    Valid markers like ``[1]`` / ``[1,2]`` are preserved. We strip:
+    * incomplete openers: ``[1,`` , ``[1, ]`` , ``[`` followed by no closing ``]``
+    * trailing fragments at line/sentence end: ``。 [`` , ``， [``
+    * lone ``[`` or ``]`` with no numeric content
+    """
+    # Incomplete bracket with digits but no proper close: "[1," / "[1, ]" / "[1 ,"
+    body = re.sub(r"\[\s*\d+(?:\s*,\s*\d+)*\s*,\s*\]", "", body)   # [1, ] / [1,2, ]
+    body = re.sub(r"\[\s*\d+(?:\s*,\s*\d+)*\s*,(?!\s*\d)", "", body)  # [1,  (no following digit)
+    # Trailing opener at end of line: "。 [" / "， [" / bare " [" at EOL.
+    body = re.sub(r"[ \t]*\[\s*$", "", body, flags=re.M)
+    body = re.sub(r"([。；，、])\s*\[\s*(?=$|\n)", r"\1", body, flags=re.M)
+    # Lone empty brackets.
+    body = re.sub(r"\[\s*\]", "", body)
+    # A bare '[' that is NOT the start of a valid [digits...] marker.
+    body = re.sub(r"\[(?!\s*\d)", "", body)
+    # A bare ']' that is NOT the end of a valid [...digits] marker.
+    body = re.sub(r"(?<![\d\s])\]", "", body)
+    # Tidy spaces left before punctuation.
+    body = re.sub(r"\s+([。；，、])", r"\1", body)
+    return body
 
 
 def _tidy(body: str) -> str:
@@ -168,6 +249,7 @@ def sanitize_medical_copy(body: str, rule_result: Optional[RuleResult] = None) -
     """Final editorial pass. Safe to run on any LLM-written report body."""
     body = _apply_rules(body, _WRONG_WORD_RULES)
     body = _apply_rules(body, _REASSURANCE_RULES)
+    body = _apply_rules(body, _CONCEPT_RULES)
     body = _apply_rules(body, _COLLOQUIAL_RULES)
     body = _apply_rules(body, _LIFESTYLE_RULES)
     if rule_result is not None and getattr(rule_result, "emergency", False):
