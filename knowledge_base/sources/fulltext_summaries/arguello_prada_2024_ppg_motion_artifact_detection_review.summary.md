@@ -2,12 +2,12 @@
 
 - candidate_id: `arguello_prada_2024_ppg_motion_artifact_detection_review_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.mdpi.com/1424-8220/24/22/7193
 - doi: 10.3390/s24227193
 - pmid: n/a
 - access_recorded: 2026-05-21
-- local_pdf: `arguello_prada_2024_ppg_motion_artifact_detection_review.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

@@ -2,12 +2,12 @@
 
 - candidate_id: `fine_2021_ppg_sources_of_inaccuracy_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.mdpi.com/2079-6374/11/4/126
 - doi: 10.3390/bios11040126
 - pmid: n/a
 - access_recorded: 2026-05-21
-- local_pdf: `fine_2021_ppg_sources_of_inaccuracy.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

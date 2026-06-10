@@ -41,12 +41,12 @@ AHA Life's Essential 8 血压管理资料支持饮食、运动、戒烟、睡眠
 
 - candidate_id: `aha_life_essential_8_bp_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.heart.org/-/media/Healthy-Living-Files/LE8-Fact-Sheets/LE8_How_To_Manage_Blood_Pressure.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: `aha_life_essential_8_manage_blood_pressure.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -59,8 +59,6 @@ AHA Life's Essential 8 血压管理资料支持饮食、运动、戒烟、睡眠
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `d29046371c7a34bc`
-
-已检测到本地 PDF：aha_life_essential_8_manage_blood_pressure.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

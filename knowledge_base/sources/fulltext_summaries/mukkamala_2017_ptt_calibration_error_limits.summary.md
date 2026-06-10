@@ -2,12 +2,12 @@
 
 - candidate_id: `mukkamala_2017_ptt_calibration_error_limits_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC6014705/
 - doi: 10.1109/TBME.2017.2756018
 - pmid: 28952930
 - access_recorded: 2026-05-21
-- local_pdf: `mukkamala_2017_ptt_calibration_error_limits.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

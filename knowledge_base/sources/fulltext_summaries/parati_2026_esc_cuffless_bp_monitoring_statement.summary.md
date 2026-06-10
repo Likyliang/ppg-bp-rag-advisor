@@ -2,12 +2,12 @@
 
 - candidate_id: `parati_2026_esc_cuffless_bp_monitoring_statement_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606
 - doi: 10.1093/eurjpc/zwag058
 - pmid: n/a
 - access_recorded: 2026-05-21
-- local_pdf: `parati_2026_esc_cuffless_bp_monitoring_statement.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

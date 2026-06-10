@@ -44,12 +44,12 @@ ISH 全球实践指南可作为资源受限和全球场景下的测量与生活�
 
 - candidate_id: `ish_2020_public_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: downloadable
 - source_url: https://ish-world.com/global-hypertension-practice-guidelines/
 - doi: 10.1161/HYPERTENSIONAHA.120.15026
 - pmid: n/a
 - access_recorded: 2026-05-10
-- local_pdf: `ish_2020_global_guideline.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -62,8 +62,6 @@ ISH 全球实践指南可作为资源受限和全球场景下的测量与生活�
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `3817154533a24c3f`
-
-已检测到本地 PDF：ish_2020_global_guideline.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

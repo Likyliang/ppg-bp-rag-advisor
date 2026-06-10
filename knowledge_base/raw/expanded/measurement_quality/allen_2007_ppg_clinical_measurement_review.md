@@ -38,10 +38,6 @@ Allen 2007 是 PPG 生理测量的基础综述，可用于解释 PPG 是光学�
 
 - 用于 PPG signal_quality 的背景说明；不用于患者级诊断或治疗建议。
 
-## 全文候选与下载材料摘要
-
-已检测到本地 PDF：allen_2007_ppg_clinical_measurement_review.pdf。请先把人工摘要写入 tracked fulltext_summaries 或同名 .summary.md 后再进入知识库，避免复制受版权保护全文。
-
 ## 安全边界
 
 - 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。

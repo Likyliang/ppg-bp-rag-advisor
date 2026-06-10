@@ -2,12 +2,12 @@
 
 - candidate_id: `shi_2022_skin_pigmentation_pulse_oximetry_systematic_review_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC9377806/
 - doi: 10.1186/s12916-022-02452-8
 - pmid: n/a
 - access_recorded: 2026-05-21
-- local_pdf: `shi_2022_skin_pigmentation_pulse_oximetry_systematic_review.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

@@ -45,12 +45,12 @@ FDA 无袖带无创血压设备草案指南可补充监管视角，说明无袖�
 
 - candidate_id: `fda_cuffless_nibp_draft_guidance_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: `fda_cuffless_nibp_draft_guidance.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -64,8 +64,6 @@ FDA 无袖带无创血压设备草案指南可补充监管视角，说明无袖�
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `4b10d01d5f7f8698`
-
-已检测到本地 PDF：fda_cuffless_nibp_draft_guidance.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

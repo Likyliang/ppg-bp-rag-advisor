@@ -2,12 +2,12 @@
 
 - candidate_id: `ode_2020_continuous_ambulatory_bp_ptt_data_acquisition_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.mdpi.com/1424-8220/20/24/7106
 - doi: 10.3390/s20247106
 - pmid: n/a
 - access_recorded: 2026-05-21
-- local_pdf: `ode_2020_continuous_ambulatory_bp_ptt_data_acquisition.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

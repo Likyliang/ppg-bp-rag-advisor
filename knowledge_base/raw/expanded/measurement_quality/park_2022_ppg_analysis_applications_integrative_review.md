@@ -43,12 +43,12 @@ safety_level: standard
 
 - candidate_id: `park_2022_ppg_analysis_applications_integrative_review_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2021.808451/full
 - doi: 10.3389/fphys.2021.808451
 - pmid: 35300400
 - access_recorded: 2026-05-21
-- local_pdf: `park_2022_ppg_analysis_applications_integrative_review.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -61,8 +61,6 @@ safety_level: standard
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `8463a086cc1bf68e`
-
-已检测到本地 PDF：park_2022_ppg_analysis_applications_integrative_review.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

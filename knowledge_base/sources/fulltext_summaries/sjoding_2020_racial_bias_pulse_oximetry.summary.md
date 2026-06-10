@@ -2,12 +2,12 @@
 
 - candidate_id: `sjoding_2020_racial_bias_pulse_oximetry_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC7808260/
 - doi: 10.1056/NEJMc2029240
 - pmid: 33326721
 - access_recorded: 2026-05-21
-- local_pdf: `sjoding_2020_racial_bias_pulse_oximetry.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

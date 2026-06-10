@@ -1,12 +1,12 @@
 {
-  "timestamp": 1780207463,
+  "timestamp": 1781076109,
   "backend": "openai_embeddings",
   "scope": "processed_chunks",
   "purpose": "External OpenAI embedding index for governed KB chunks. API key is read from local .env and is not persisted.",
   "model_requested": "text-embedding-3-small",
   "model_returned": "text-embedding-3-small",
   "embedding_dimensions": 1536,
-  "chunk_count": 629,
+  "chunk_count": 336,
   "source_count": 136,
   "offset": 0,
   "limit": null,
@@ -153,10 +153,10 @@
   "input_scope": "processed_chunks",
   "configured_input_scope": "processed_chunks",
   "usage": {
-    "prompt_tokens": 84944,
-    "total_tokens": 84944
+    "prompt_tokens": 83199,
+    "total_tokens": 83199
   },
-  "chunks_path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/processed/chunks.jsonl",
-  "vector_path": "/Users/lianghao/Work/high blood pressure RAG/knowledge_base/vector_store/openai_embeddings_processed_chunks.npz",
-  "duration_sec": 11.573
+  "chunks_path": "/Users/lianghao/Work/high blood pressure RAG_advisor_embedding_demo/knowledge_base/processed/chunks.jsonl",
+  "vector_path": "/Users/lianghao/Work/high blood pressure RAG_advisor_embedding_demo/knowledge_base/vector_store/openai_embeddings_processed_chunks.npz",
+  "duration_sec": 8.824
 }

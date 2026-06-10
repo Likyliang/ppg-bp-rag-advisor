@@ -2,12 +2,12 @@
 
 - candidate_id: `kdigo_2024_ckd_guideline_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-16
-- local_pdf: `kdigo_2024_ckd_guideline.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

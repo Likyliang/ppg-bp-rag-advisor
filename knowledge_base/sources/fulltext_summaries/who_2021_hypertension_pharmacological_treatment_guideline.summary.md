@@ -2,12 +2,12 @@
 
 - candidate_id: `who_2021_hypertension_pharmacological_treatment_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://iris.who.int/bitstreams/f062769d-f075-4a00-87af-0a2106e0bd04/download
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: `who_2021_hypertension_pharmacological_treatment_guideline.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

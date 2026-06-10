@@ -2,12 +2,12 @@
 
 - candidate_id: `aha_cuffless_bp_statement_fulltext`
 - access_mode: `institution_or_browser`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://professional.heart.org/en/science-news/cuffless-devices-for-the-measurement-of-blood-pressure
 - doi: 10.1161/HYP.0000000000000254
 - pmid: 41376592
 - access_recorded: 2026-05-10
-- local_pdf: `aha_cuffless_bp_scientific_statement.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

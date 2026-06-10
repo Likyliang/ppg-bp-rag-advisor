@@ -2,12 +2,12 @@
 
 - candidate_id: `cdc_managing_my_blood_pressure_questions_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.cdc.gov/heart-disease/docs/Managing_My_Blood_Pressure.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: `cdc_managing_my_blood_pressure_questions.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

@@ -2,12 +2,12 @@
 
 - candidate_id: `chinese_2011_bp_measurement_guideline_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.nccd.org.cn/UploadFile/201504/20150416170041172172.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: `chinese_2011_bp_measurement_guideline.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

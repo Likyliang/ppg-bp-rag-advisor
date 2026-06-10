@@ -2,12 +2,12 @@
 
 - candidate_id: `electronics_2023_ppg_wearable_devices_review_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.mdpi.com/2079-9292/12/13/2923
 - doi: 10.3390/electronics12132923
 - pmid: n/a
 - access_recorded: 2026-05-21
-- local_pdf: `electronics_2023_ppg_wearable_devices_review.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

@@ -2,12 +2,12 @@
 
 - candidate_id: `healthy_china_2019_2030_action_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: downloadable
 - source_url: https://www.nhc.gov.cn/cms-search/downFiles/470339610aea4a7887d0810b4c00c9bd.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-27
-- local_pdf: `healthy_china_2019_2030_action.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

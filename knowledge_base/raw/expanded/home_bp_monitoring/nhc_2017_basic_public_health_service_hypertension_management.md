@@ -44,12 +44,12 @@ safety_level: high
 
 - candidate_id: `nhc_2017_basic_public_health_service_hypertension_management_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: downloadable
 - source_url: https://www.nhc.gov.cn/ewebeditor/uploadfile/2017/04/20170417104506514.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-27
-- local_pdf: `nhc_2017_basic_public_health_service_hypertension_management.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -62,8 +62,6 @@ safety_level: high
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `59b83fe566f96169`
-
-已检测到本地 PDF：nhc_2017_basic_public_health_service_hypertension_management.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

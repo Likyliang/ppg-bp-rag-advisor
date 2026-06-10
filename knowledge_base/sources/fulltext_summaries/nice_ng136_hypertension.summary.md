@@ -2,12 +2,12 @@
 
 - candidate_id: `nice_ng136_public_html_fulltext`
 - access_mode: `public_html`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-10
-- local_pdf: `nice_ng136_hypertension.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

@@ -43,12 +43,12 @@ NHLBI 自测血压资料支持家庭自测、规范设备、连续记录和与�
 
 - candidate_id: `nhlbi_self_measured_blood_pressure_fact_sheet_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: downloadable
 - source_url: https://www.nhlbi.nih.gov/resources/self-measured-blood-pressure-fact-sheet
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-22
-- local_pdf: `nhlbi_self_measured_blood_pressure_fact_sheet.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -61,8 +61,6 @@ NHLBI 自测血压资料支持家庭自测、规范设备、连续记录和与�
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `ad301ead2d10c23c`
-
-已检测到本地 PDF：nhlbi_self_measured_blood_pressure_fact_sheet.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

@@ -41,12 +41,12 @@ AHA Answers by Heart 高血压生活方式资料可支持体重管理、限钠�
 
 - candidate_id: `aha_reduce_high_blood_pressure_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.heart.org/-/media/files/health-topics/answers-by-heart/how-can-i-reduce-high-blood-pressure.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: `aha_reduce_high_blood_pressure_answers_by_heart.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -59,8 +59,6 @@ AHA Answers by Heart 高血压生活方式资料可支持体重管理、限钠�
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `864e21e99f73147b`
-
-已检测到本地 PDF：aha_reduce_high_blood_pressure_answers_by_heart.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

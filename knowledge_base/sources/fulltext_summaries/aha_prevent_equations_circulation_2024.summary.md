@@ -2,12 +2,12 @@
 
 - candidate_id: `aha_prevent_equations_circulation_2024_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.123.067626
 - doi: 10.1161/CIRCULATIONAHA.123.067626
 - pmid: n/a
 - access_recorded: 2026-05-28
-- local_pdf: `aha_prevent_equations_circulation_2024.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

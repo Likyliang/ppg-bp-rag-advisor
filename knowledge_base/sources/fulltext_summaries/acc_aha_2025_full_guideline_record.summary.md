@@ -2,12 +2,12 @@
 
 - candidate_id: `acc_aha_2025_guideline_fulltext`
 - access_mode: `browser_required`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://professional.heart.org/en/guidelines-statements/2025-ahaaccaanpaapaabcaccpacpmagsamaaspcnmapcnasgim-guideline-for-thehyp0000000000000249
 - doi: 10.1161/CIR.0000000000001356
 - pmid: n/a
 - access_recorded: 2026-05-10
-- local_pdf: `acc_aha_2025_full_guideline_record.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

@@ -2,12 +2,12 @@
 
 - candidate_id: `nhc_2025_primary_care_hypertension_standard_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.nhc.gov.cn/fzs/c100048/202509/2f3f7cce449145f8b361e70b3ed4ae9a/files/WS%20T%20872%E2%80%942025-20250930105429913.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: `nhc_2025_primary_care_hypertension_standard_ws_t_872.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

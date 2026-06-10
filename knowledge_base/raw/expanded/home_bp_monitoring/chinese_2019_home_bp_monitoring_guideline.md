@@ -44,12 +44,12 @@ safety_level: standard
 
 - candidate_id: `chinese_2019_home_bp_monitoring_guideline_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://zhgxyzz.xml-journal.net/cn/article/doi/10.16439/j.cnki.1673-7245.2019.08.005
 - doi: 10.3969/j.issn.1000-3614.2019.07.003
 - pmid: n/a
 - access_recorded: 2026-05-28
-- local_pdf: `chinese_2019_home_bp_monitoring_guideline.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -62,8 +62,6 @@ safety_level: standard
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `2d6194730ae61a35`
-
-已检测到本地 PDF：chinese_2019_home_bp_monitoring_guideline.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

@@ -44,12 +44,12 @@ safety_level: high
 
 - candidate_id: `chinese_2023_elderly_hypertension_management_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://medtion-image.medtion.com/uploads/1/file/public/202312/20231222151125_hjo32b9lsf.pdf
 - doi: 10.16439/j.issn.1673-7245.2023.06.003
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: `chinese_2023_elderly_hypertension_management_guideline.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -62,8 +62,6 @@ safety_level: high
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `a9571d71130a96fc`
-
-已检测到本地 PDF：chinese_2023_elderly_hypertension_management_guideline.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

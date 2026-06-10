@@ -2,12 +2,12 @@
 
 - candidate_id: `aha_steps_to_improve_high_bp_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.heart.org/-/media/Files/Health-Topics/High-Blood-Pressure/Steps-To-Improve-High-BP.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: `aha_steps_to_improve_high_bp.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

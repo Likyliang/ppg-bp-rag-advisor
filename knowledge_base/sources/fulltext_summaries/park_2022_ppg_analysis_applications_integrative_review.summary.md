@@ -2,12 +2,12 @@
 
 - candidate_id: `park_2022_ppg_analysis_applications_integrative_review_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2021.808451/full
 - doi: 10.3389/fphys.2021.808451
 - pmid: 35300400
 - access_recorded: 2026-05-21
-- local_pdf: `park_2022_ppg_analysis_applications_integrative_review.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

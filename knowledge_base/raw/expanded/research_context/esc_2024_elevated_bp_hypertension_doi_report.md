@@ -42,12 +42,12 @@ safety_level: standard
 
 - candidate_id: `esc_2024_elevated_bp_hypertension_doi_report_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Elevated-Blood-Pressure-and-Hypertension
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-28
-- local_pdf: `esc_2024_elevated_bp_hypertension_doi_report.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -60,8 +60,6 @@ safety_level: standard
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `86bfd9a33bb84386`
-
-已检测到本地 PDF：esc_2024_elevated_bp_hypertension_doi_report.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

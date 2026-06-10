@@ -44,12 +44,12 @@ AHA/AMA 家庭自测血压政策声明支持把家庭血压监测作为诊室外
 
 - candidate_id: `aha_ama_2020_smbp_policy_statement_pdf`
 - access_mode: `browser_required`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://pubmed.ncbi.nlm.nih.gov/32567342/
 - doi: 10.1161/CIR.0000000000000803
 - pmid: 32567342
 - access_recorded: 2026-05-22
-- local_pdf: `aha_ama_2020_smbp_policy_statement.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -62,8 +62,6 @@ AHA/AMA 家庭自测血压政策声明支持把家庭血压监测作为诊室外
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `d87d75e3cce8831f`
-
-已检测到本地 PDF：aha_ama_2020_smbp_policy_statement.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

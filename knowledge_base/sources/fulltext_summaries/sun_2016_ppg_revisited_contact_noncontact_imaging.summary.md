@@ -2,12 +2,12 @@
 
 - candidate_id: `sun_2016_ppg_revisited_contact_noncontact_imaging_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4822420/
 - doi: 10.1109/TBME.2015.2476337
 - pmid: 26390439
 - access_recorded: 2026-05-21
-- local_pdf: `sun_2016_ppg_revisited_contact_noncontact_imaging.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

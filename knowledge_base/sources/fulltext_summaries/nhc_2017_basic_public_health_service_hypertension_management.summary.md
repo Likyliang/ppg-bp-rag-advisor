@@ -2,12 +2,12 @@
 
 - candidate_id: `nhc_2017_basic_public_health_service_hypertension_management_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: downloadable
 - source_url: https://www.nhc.gov.cn/ewebeditor/uploadfile/2017/04/20170417104506514.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-27
-- local_pdf: `nhc_2017_basic_public_health_service_hypertension_management.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

@@ -44,12 +44,12 @@ USPSTF 成人高血压筛查建议强调在诊断前应通过诊室外血压测�
 
 - candidate_id: `uspstf_hypertension_screening_fulltext`
 - access_mode: `public_html`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-16
-- local_pdf: `uspstf_hypertension_screening_adults.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -63,8 +63,6 @@ USPSTF 成人高血压筛查建议强调在诊断前应通过诊室外血压测�
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `cc7e90bd5efc5522`
-
-已检测到本地 PDF：uspstf_hypertension_screening_adults.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

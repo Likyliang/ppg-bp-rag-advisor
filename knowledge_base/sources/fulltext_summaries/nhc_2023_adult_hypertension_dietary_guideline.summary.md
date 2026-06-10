@@ -2,12 +2,12 @@
 
 - candidate_id: `nhc_2023_adult_hypertension_dietary_guideline_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: downloadable
 - source_url: https://www.nhc.gov.cn/sps/c100088/202301/f01895a06c5349ef999f25da833c166d.shtml
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-27
-- local_pdf: `nhc_2023_adult_hypertension_dietary_guideline.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

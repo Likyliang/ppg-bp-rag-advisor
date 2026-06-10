@@ -43,12 +43,12 @@ AHA 孕期血压分类资料可强化 pregnancy=true 场景下的保守提醒和
 
 - candidate_id: `aha_pregnancy_bp_categories_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.heart.org/-/media/GRFW-Files/Know-Your-Risk/Maternal-Health/Pregnancy_Blood_Pressure_Categories.pdf?sc_lang=en
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: `aha_pregnancy_blood_pressure_categories.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -61,8 +61,6 @@ AHA 孕期血压分类资料可强化 pregnancy=true 场景下的保守提醒和
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `1f2edc42fc0d2062`
-
-已检测到本地 PDF：aha_pregnancy_blood_pressure_categories.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

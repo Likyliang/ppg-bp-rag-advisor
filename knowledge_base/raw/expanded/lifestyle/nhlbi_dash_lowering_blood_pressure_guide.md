@@ -41,12 +41,12 @@ NHLBI DASH 指南可支持饮食结构、减盐和健康饮食模式的用户教
 
 - candidate_id: `nhlbi_dash_lowering_blood_pressure_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.nhlbi.nih.gov/files/docs/public/heart/new_dash.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: `nhlbi_dash_lowering_blood_pressure_guide.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -59,8 +59,6 @@ NHLBI DASH 指南可支持饮食结构、减盐和健康饮食模式的用户教
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `8088e5f0ff553673`
-
-已检测到本地 PDF：nhlbi_dash_lowering_blood_pressure_guide.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

@@ -2,12 +2,12 @@
 
 - candidate_id: `shirbani_2020_ambient_light_skin_tone_vpg_fulltext`
 - access_mode: `institution_or_browser`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://ieeexplore.ieee.org/document/9176731
 - doi: 10.1109/EMBC44109.2020.9176731
 - pmid: 33018549
 - access_recorded: 2026-05-22
-- local_pdf: `shirbani_2020_ambient_light_skin_tone_vpg.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

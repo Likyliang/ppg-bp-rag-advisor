@@ -2,12 +2,12 @@
 
 - candidate_id: `bradley_2022_cuffless_bp_devices_review_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC9088838/
 - doi: 10.1093/ajh/hpac017
 - pmid: 35136906
 - access_recorded: 2026-05-21
-- local_pdf: `bradley_2022_cuffless_bp_devices_review.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

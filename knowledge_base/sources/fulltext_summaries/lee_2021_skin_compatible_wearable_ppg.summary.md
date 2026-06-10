@@ -2,12 +2,12 @@
 
 - candidate_id: `lee_2021_skin_compatible_wearable_ppg_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.mdpi.com/2076-3417/11/5/2313
 - doi: 10.3390/app11052313
 - pmid: n/a
 - access_recorded: 2026-05-21
-- local_pdf: `lee_2021_skin_compatible_wearable_ppg.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

@@ -43,12 +43,12 @@ safety_level: standard
 
 - candidate_id: `sjoding_2020_racial_bias_pulse_oximetry_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC7808260/
 - doi: 10.1056/NEJMc2029240
 - pmid: 33326721
 - access_recorded: 2026-05-21
-- local_pdf: `sjoding_2020_racial_bias_pulse_oximetry.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -61,8 +61,6 @@ safety_level: standard
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `081e5c9911dd718d`
-
-已检测到本地 PDF：sjoding_2020_racial_bias_pulse_oximetry.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

@@ -2,12 +2,12 @@
 
 - candidate_id: `charlton_2022_ppg_best_practices_fulltext`
 - access_mode: `public_html`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC9136485/
 - doi: 10.1088/1361-6579/ac6cc4
 - pmid: 35508148
 - access_recorded: 2026-05-16
-- local_pdf: `charlton_2022_ppg_best_practices.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

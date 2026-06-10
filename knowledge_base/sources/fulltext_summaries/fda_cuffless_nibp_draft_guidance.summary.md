@@ -2,12 +2,12 @@
 
 - candidate_id: `fda_cuffless_nibp_draft_guidance_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cuffless-non-invasive-blood-pressure-measuring-devices-clinical-performance-testing-and-evaluation
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: `fda_cuffless_nibp_draft_guidance.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

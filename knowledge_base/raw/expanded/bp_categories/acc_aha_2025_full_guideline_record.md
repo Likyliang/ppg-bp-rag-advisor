@@ -46,12 +46,12 @@ AHA/ACC 2025 成人高血压指南正式全文用于新版指南追溯、规范�
 
 - candidate_id: `acc_aha_2025_guideline_fulltext`
 - access_mode: `browser_required`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://professional.heart.org/en/guidelines-statements/2025-ahaaccaanpaapaabcaccpacpmagsamaaspcnmapcnasgim-guideline-for-thehyp0000000000000249
 - doi: 10.1161/CIR.0000000000001356
 - pmid: n/a
 - access_recorded: 2026-05-10
-- local_pdf: `acc_aha_2025_full_guideline_record.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -65,8 +65,6 @@ AHA/ACC 2025 成人高血压指南正式全文用于新版指南追溯、规范�
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `de1d7379950a15f9`
-
-已检测到本地 PDF：acc_aha_2025_full_guideline_record.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

@@ -43,12 +43,12 @@ safety_level: standard
 
 - candidate_id: `frontiers_2019_ppg_measurement_site_waveform_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2019.00198/full
 - doi: 10.3389/fphys.2019.00198
 - pmid: 30890959
 - access_recorded: 2026-05-21
-- local_pdf: `frontiers_2019_ppg_measurement_site_waveform.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -61,8 +61,6 @@ safety_level: standard
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `27779c430ab35a1e`
-
-已检测到本地 PDF：frontiers_2019_ppg_measurement_site_waveform.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 

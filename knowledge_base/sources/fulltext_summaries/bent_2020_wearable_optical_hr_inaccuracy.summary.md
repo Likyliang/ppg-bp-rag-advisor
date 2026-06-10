@@ -2,12 +2,12 @@
 
 - candidate_id: `bent_2020_wearable_optical_hr_inaccuracy_fulltext`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://www.nature.com/articles/s41746-020-0226-6
 - doi: 10.1038/s41746-020-0226-6
 - pmid: 32047863
 - access_recorded: 2026-05-22
-- local_pdf: `bent_2020_wearable_optical_hr_inaccuracy.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 

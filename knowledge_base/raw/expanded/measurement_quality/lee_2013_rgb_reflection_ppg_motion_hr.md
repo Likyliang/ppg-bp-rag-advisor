@@ -43,12 +43,12 @@ safety_level: standard
 
 - candidate_id: `lee_2013_rgb_reflection_ppg_motion_hr_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: local_pdf_available
+- fulltext_status: summarized
 - source_url: https://u-toyama.elsevierpure.com/en/publications/comparison-between-red-green-and-blue-light-reflection-photopleth/
 - doi: 10.1109/EMBC.2013.6609852
 - pmid: 24110039
 - access_recorded: 2026-05-21
-- local_pdf: `lee_2013_rgb_reflection_ppg_motion_hr.pdf`
+- local_pdf: not saved
 
 #### 摘要入库要点
 
@@ -61,8 +61,6 @@ safety_level: standard
 - 只把上述摘要用于 PPG 估算解释、复测建议、设备局限、生活方式教育或安全提醒。
 - 不复制全文、不引用未审校段落、不生成诊断、治疗、开药、停药或替代规范血压测量的结论。
 - candidate_hash: `ed71709c9464fbf8`
-
-已检测到本地 PDF：lee_2013_rgb_reflection_ppg_motion_hr.pdf。知识库只使用上述摘要和 citation，不复制全文。
 
 ## 安全边界
 
