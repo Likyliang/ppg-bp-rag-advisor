@@ -152,6 +152,23 @@ def _query_cache_enabled() -> bool:
     return os.getenv("RETRIEVAL_DISABLE_QUERY_CACHE", "").strip().lower() not in {"1", "true", "on", "yes"}
 
 
+def _openai_query_timeout(settings: Dict) -> float:
+    """OpenAI query-embedding timeout, with env override for batch/eval runs.
+
+    ``OPENAI_QUERY_TIMEOUT_SEC`` lets the experiment harness lift the default
+    8s so embedding calls under load don't time out and trip the shared backoff
+    (which would silently degrade the OpenAI backend to keyword-only)."""
+    import os
+
+    override = os.getenv("OPENAI_QUERY_TIMEOUT_SEC", "").strip()
+    if override:
+        try:
+            return float(override)
+        except ValueError:
+            pass
+    return float(settings.get("openai_query_timeout_sec", 8))
+
+
 def _openai_query_vector(query_text: str, dims: int):
     """Embed the query via the configured OpenAI endpoint; None disables.
 
@@ -178,7 +195,7 @@ def _openai_query_vector(query_text: str, dims: int):
     if time.monotonic() < _OPENAI_BACKOFF_UNTIL:
         return None
     settings = load_yaml_config("config/settings.yaml").get("retrieval", {})
-    timeout = float(settings.get("openai_query_timeout_sec", 8))
+    timeout = _openai_query_timeout(settings)
     try:
         from app.services.openai_embedding_index import embed_texts
 
@@ -231,7 +248,7 @@ def _prefetch_openai_query_vectors(texts: Sequence[str]) -> None:
     if not dims_set:
         return
     unique_texts = list(dict.fromkeys(text for text in texts if text and text.strip()))
-    timeout = float(settings.get("openai_query_timeout_sec", 8))
+    timeout = _openai_query_timeout(settings)
     for dims in dims_set:
         missing = [
             text for text in unique_texts

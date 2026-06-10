@@ -14,10 +14,17 @@ def _flatten_text(value: Any) -> str:
     if isinstance(value, str):
         return value
     if isinstance(value, dict):
+        # Exclude quoted source material from the safety scan: retrieved_evidence
+        # and references hold governed guideline/snippet text that legitimately
+        # contains words like "停药"/"诊断" — they are CITED authority, not the
+        # system's own claims. Scanning them produced false "violations" (a
+        # report whose body is clean but whose reference snippet quotes a
+        # guideline). This mirrors the HealthReport-object path, which only
+        # scans markdown_report/disclaimer/recommendations/risk/safety_alert.
         return "\n".join(
             _flatten_text(item)
             for key, item in value.items()
-            if key not in {"retrieved_evidence", "safety_review"}
+            if key not in {"retrieved_evidence", "references", "safety_review"}
         )
     if isinstance(value, Iterable) and not isinstance(value, (bytes, bytearray)):
         return "\n".join(_flatten_text(item) for item in value)

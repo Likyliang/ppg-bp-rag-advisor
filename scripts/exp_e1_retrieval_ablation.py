@@ -23,6 +23,7 @@ import argparse
 import json
 import math
 import os
+import re
 from contextlib import contextmanager
 from typing import Dict, List, Optional, Tuple
 
@@ -42,12 +43,13 @@ RESULT_PATH = "knowledge_base/processed/e1_retrieval_ablation.json"
 # Each variant is a dict of env overrides applied around retrieve_knowledge.
 # kw = keyword_weight (vector_weight auto = 1 - kw unless set).
 VARIANTS: Dict[str, Dict[str, str]] = {
-    # single-channel baselines
-    "keyword_only": {"RETRIEVAL_EMBEDDING_BACKEND": "off"},
-    "vector_only_openai": {"RETRIEVAL_EMBEDDING_BACKEND": "openai", "RETRIEVAL_KEYWORD_WEIGHT": "0.0"},
+    # single-channel baselines (fulltext OFF must be EXPLICIT — otherwise
+    # settings.include_fulltext=auto turns it ON and the on/off contrast is moot)
+    "keyword_only": {"RETRIEVAL_EMBEDDING_BACKEND": "off", "RETRIEVAL_INCLUDE_FULLTEXT": "off"},
+    "vector_only_openai": {"RETRIEVAL_EMBEDDING_BACKEND": "openai", "RETRIEVAL_KEYWORD_WEIGHT": "0.0", "RETRIEVAL_INCLUDE_FULLTEXT": "off"},
     # hybrid, no fulltext
-    "hybrid_hashing": {"RETRIEVAL_EMBEDDING_BACKEND": "hashing", "RETRIEVAL_KEYWORD_WEIGHT": "0.6"},
-    "hybrid_openai": {"RETRIEVAL_EMBEDDING_BACKEND": "openai", "RETRIEVAL_KEYWORD_WEIGHT": "0.6"},
+    "hybrid_hashing": {"RETRIEVAL_EMBEDDING_BACKEND": "hashing", "RETRIEVAL_KEYWORD_WEIGHT": "0.6", "RETRIEVAL_INCLUDE_FULLTEXT": "off"},
+    "hybrid_openai": {"RETRIEVAL_EMBEDDING_BACKEND": "openai", "RETRIEVAL_KEYWORD_WEIGHT": "0.6", "RETRIEVAL_INCLUDE_FULLTEXT": "off"},
     # hybrid + fulltext
     "hybrid_hashing_ft": {
         "RETRIEVAL_EMBEDDING_BACKEND": "hashing",
@@ -63,6 +65,7 @@ VARIANTS: Dict[str, Dict[str, str]] = {
     "hybrid_openai_nodedup": {
         "RETRIEVAL_EMBEDDING_BACKEND": "openai",
         "RETRIEVAL_KEYWORD_WEIGHT": "0.6",
+        "RETRIEVAL_INCLUDE_FULLTEXT": "off",
         "RETRIEVAL_PER_SOURCE_CAP": "0",
     },
     "hybrid_openai_ft_nodedup": {
@@ -93,15 +96,18 @@ def _variant_env(overrides: Dict[str, str]):
         "RETRIEVAL_VECTOR_WEIGHT",
         "RETRIEVAL_INCLUDE_FULLTEXT",
         "RETRIEVAL_PER_SOURCE_CAP",
-        "RETRIEVAL_DISABLE_QUERY_CACHE",
     }
     saved = {k: os.environ.get(k) for k in keys}
     try:
         # Clear all variant knobs first so a previous variant never leaks in.
         for k in keys:
             os.environ.pop(k, None)
-        # Fairness: disable the query-embedding cache so variants don't share vectors.
-        os.environ["RETRIEVAL_DISABLE_QUERY_CACHE"] = "1"
+        # NOTE: the query cache is intentionally LEFT ENABLED. A query's OpenAI
+        # embedding is identical regardless of variant, so sharing the cached
+        # vector across variants is correct for quality metrics (nDCG/recall) and
+        # avoids re-hitting the API mid-run (which under load timed out → tripped
+        # the 5-min backoff → silently degraded the OpenAI backend to keyword).
+        # The cache is pre-warmed once before the variant loop.
         for k, v in overrides.items():
             os.environ[k] = v
         yield
@@ -111,6 +117,51 @@ def _variant_env(overrides: Dict[str, str]):
                 os.environ.pop(k, None)
             else:
                 os.environ[k] = old
+
+
+def _prewarm_openai_cache(concurrency: int = 6) -> Dict:
+    """Embed all golden queries into the retriever's OpenAI query cache once.
+
+    Run BEFORE the variant loop so every openai-backend retrieval is a cache hit
+    (zero mid-run API calls → no timeout → no backoff → the OpenAI backend
+    reliably contributes real vectors instead of silently falling back to
+    keyword). Returns coverage diagnostics so a failed prewarm is visible.
+    """
+    from concurrent.futures import ThreadPoolExecutor
+
+    from app.services import retriever as R
+
+    R._OPENAI_QUERY_CACHE.clear()
+    R._OPENAI_BACKOFF_UNTIL = 0.0
+    index = R._load_vector_index(*R._file_signature(R.VECTOR_STORE_PATHS["processed"][0]))
+    if index is None:
+        return {"prewarmed": 0, "dims": None, "note": "no OpenAI processed index; openai variants unavailable"}
+    dims = int(index[1].shape[1])
+    queries = [c["query"] for c in GOLDEN_QUERIES]
+    os.environ.pop("RETRIEVAL_DISABLE_QUERY_CACHE", None)  # ensure cache writes
+
+    def _warm(q):
+        return R._openai_query_vector(q, dims) is not None
+
+    with ThreadPoolExecutor(max_workers=concurrency) as executor:
+        hits = list(executor.map(_warm, queries))
+    return {"prewarmed": sum(hits), "queries": len(queries), "dims": dims, "cache_size": len(R._OPENAI_QUERY_CACHE)}
+
+
+_SUMMARY_CHUNK_SUFFIX = re.compile(r"_\d{3}$")
+
+
+def _parent_source(source_id: str) -> str:
+    """Collapse a chunk id to its parent source for source-diversity counting.
+
+    fulltext::SRC::p001::c01 -> SRC ; summary  SRC_001 -> SRC ; else unchanged.
+    Without this, summary chunks of one source (…_001, …_002) were counted as
+    distinct sources, inflating the diversity metric the dedup contrast uses.
+    """
+    if "::" in source_id:
+        parts = source_id.split("::")
+        return parts[1] if len(parts) > 1 else source_id
+    return _SUMMARY_CHUNK_SUFFIX.sub("", source_id)
 
 
 def _retrieve_for_variant(query: str, overrides: Dict[str, str], top_k: int = 5):
@@ -312,24 +363,58 @@ def _mrr(ranked_ids: List[str], qid: int, qrels: Dict) -> float:
     return 0.0
 
 
-def _eval_variant(overrides: Dict[str, str], qrels: Dict, top_k: int = 5) -> Dict:
-    per_query = {"ndcg": [], "recall": [], "mrr": [], "selfeval_precision": [], "indep_precision": []}
-    diversity = []
-    for qid, case in enumerate(GOLDEN_QUERIES):
-        evidence = _retrieve_for_variant(case["query"], overrides, top_k=top_k)
+def _eval_variant(overrides: Dict[str, str], qrels: Dict, top_k: int = 5, concurrency: int = 1) -> Dict:
+    """Score one variant over all golden queries.
+
+    The variant env (incl. cache-disable for fairness) is set ONCE around the
+    whole loop; query workers only READ it, so parallelism is safe. Concurrency
+    accelerates the OpenAI-embedding-bound retrieval (OpenAI handles high
+    concurrency fine); the GPT-5.5 judge is not touched in this phase.
+    """
+    from concurrent.futures import ThreadPoolExecutor
+
+    include_ft = overrides.get("RETRIEVAL_INCLUDE_FULLTEXT")
+    kwargs = {"top_k": top_k, "min_quality_score": 18}
+    if include_ft is not None:
+        kwargs["include_fulltext"] = include_ft.lower() in {"on", "true", "1"}
+
+    def _score_query(item):
+        qid, case = item
+        evidence = retrieve_knowledge([case["query"]], **kwargs).evidence
         ranked_ids = [ev.source_id for ev in evidence]
-        per_query["ndcg"].append(_ndcg_at_k(ranked_ids, qid, qrels, top_k))
-        per_query["recall"].append(_recall_at_k(ranked_ids, qid, qrels, top_k))
-        per_query["mrr"].append(_mrr(ranked_ids, qid, qrels))
-        # self-eval (metadata allowed_uses) precision vs independent qrels precision
         if evidence:
             selfeval = sum(1 for ev in evidence if _evidence_matches(ev, case["expected_uses"])) / len(evidence)
             indep = sum(1 for cid in ranked_ids[:top_k] if qrels.get((qid, cid), 0) >= 1) / len(ranked_ids[:top_k])
         else:
             selfeval = indep = 0.0
-        per_query["selfeval_precision"].append(selfeval)
-        per_query["indep_precision"].append(indep)
-        diversity.append(len({ev.source_id.split("::")[1] if "::" in ev.source_id else ev.source_id for ev in evidence}))
+        uniq = len({_parent_source(ev.source_id) for ev in evidence})
+        return {
+            "qid": qid,
+            "ndcg": _ndcg_at_k(ranked_ids, qid, qrels, top_k),
+            "recall": _recall_at_k(ranked_ids, qid, qrels, top_k),
+            "mrr": _mrr(ranked_ids, qid, qrels),
+            "selfeval": selfeval,
+            "indep": indep,
+            "uniq": uniq,
+        }
+
+    items = list(enumerate(GOLDEN_QUERIES))
+    with _variant_env(overrides):  # env set once; workers only read it
+        if concurrency <= 1:
+            results = [_score_query(it) for it in items]
+        else:
+            with ThreadPoolExecutor(max_workers=concurrency) as executor:
+                results = list(executor.map(_score_query, items))
+
+    results.sort(key=lambda r: r["qid"])  # stable order for per-query arrays
+    per_query = {
+        "ndcg": [r["ndcg"] for r in results],
+        "recall": [r["recall"] for r in results],
+        "mrr": [r["mrr"] for r in results],
+        "selfeval_precision": [r["selfeval"] for r in results],
+        "indep_precision": [r["indep"] for r in results],
+    }
+    diversity = [r["uniq"] for r in results]
     n = len(GOLDEN_QUERIES)
     return {
         "ndcg_at_5": round(sum(per_query["ndcg"]) / n, 4),
@@ -342,12 +427,26 @@ def _eval_variant(overrides: Dict[str, str], qrels: Dict, top_k: int = 5) -> Dic
     }
 
 
-def evaluate_ablation(top_k: int = 5) -> Dict:
+def evaluate_ablation(top_k: int = 5, concurrency: int = 1) -> Dict:
     qrels = _load_qrels(prefer_human=True)
     human_used = any(True for _ in qrels)  # qrels non-empty
+    # Pre-warm the OpenAI query cache once so every openai-backend retrieval is a
+    # cache hit (no mid-run API call → no timeout → no backoff → no silent
+    # degradation to keyword). Critical: without this the openai variants
+    # collapsed onto keyword_only.
+    prewarm = _prewarm_openai_cache(concurrency=max(4, concurrency))
     variant_results = {}
     for name, overrides in VARIANTS.items():
-        variant_results[name] = _eval_variant(overrides, qrels, top_k=top_k)
+        variant_results[name] = _eval_variant(overrides, qrels, top_k=top_k, concurrency=concurrency)
+
+    # Sanity guard: if any openai variant's nDCG exactly equals keyword_only's,
+    # the OpenAI vectors silently did not contribute — flag it loudly rather
+    # than ship a meaningless openai-vs-keyword comparison.
+    kw_ndcg = variant_results["keyword_only"]["ndcg_at_5"]
+    collapsed = [
+        name for name in ("vector_only_openai", "hybrid_openai", "hybrid_openai_ft")
+        if abs(variant_results[name]["ndcg_at_5"] - kw_ndcg) < 1e-9
+    ]
 
     # Pre-registered contrasts on nDCG@5 with paired bootstrap + Holm.
     contrast_rows = []
@@ -376,7 +475,7 @@ def evaluate_ablation(top_k: int = 5) -> Dict:
         sweep[backend] = []
         for kw in WEIGHT_SWEEP:
             ov = {"RETRIEVAL_EMBEDDING_BACKEND": backend, "RETRIEVAL_KEYWORD_WEIGHT": str(kw)}
-            res = _eval_variant(ov, qrels, top_k=top_k)
+            res = _eval_variant(ov, qrels, top_k=top_k, concurrency=concurrency)
             sweep[backend].append({"keyword_weight": kw, "ndcg_at_5": res["ndcg_at_5"], "recall_at_5": res["recall_at_5"]})
 
     # Self-eval inflation: how much the old metadata precision overstates the
@@ -388,7 +487,13 @@ def evaluate_ablation(top_k: int = 5) -> Dict:
     result = {
         "top_k": top_k,
         "qrels_pairs": len(qrels),
-        "judge_note": "qrels use human_grade where present, else LLM judge grade",
+        "judge_note": "qrels use human_grade where present, else LLM judge grade (PRELIMINARY pending human review of e1_review_sheet)",
+        "openai_prewarm": prewarm,
+        "openai_backend_sanity": {
+            "collapsed_to_keyword": collapsed,
+            "ok": not collapsed,
+            "note": "If non-empty, OpenAI vectors silently did not contribute (backoff/timeout); results invalid for openai contrasts.",
+        },
         "variants": clean,
         "contrasts": contrast_rows,
         "weight_sweep": sweep,
@@ -438,6 +543,9 @@ def main() -> None:
     p_pool.add_argument("--checkpoint-every", type=int, default=20, help="Flush pool to disk every N judged pairs.")
     p_eval = sub.add_parser("evaluate", help="Score 8 variants + weight sweep against qrels.")
     p_eval.add_argument("--top-k", type=int, default=5)
+    p_eval.add_argument("--concurrency", type=int, default=1,
+                        help="Parallel query workers (OpenAI embeddings tolerate high concurrency; "
+                        "the GPT-5.5 judge is NOT used in this phase).")
     args = parser.parse_args()
 
     if args.cmd == "pool":
@@ -451,7 +559,7 @@ def main() -> None:
         )
         print(json.dumps(summary, ensure_ascii=False, indent=2))
     else:
-        result = evaluate_ablation(top_k=args.top_k)
+        result = evaluate_ablation(top_k=args.top_k, concurrency=args.concurrency)
         print(json.dumps({k: v for k, v in result.items() if k != "variants"}, ensure_ascii=False, indent=2))
         print("--- variant nDCG@5 / Recall@5 / unique-sources ---")
         for name, m in result["variants"].items():
