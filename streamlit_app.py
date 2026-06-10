@@ -7,6 +7,8 @@ from pathlib import Path
 import streamlit as st
 
 from app.agents.workflow import generate_report, preview_rules
+from app.schemas.conversation import AdvisorAnswer, AdvisorUserMessage
+from app.services.advisor import advisor_turn, create_session, get_session_store, match_free_text_answer
 from app.services.kb_audit import audit_knowledge_base
 from app.services.source_catalog import screen_sources
 
@@ -794,9 +796,10 @@ control_report = st.session_state.get("demo_control_report")
 display_report_markdown = clean_user_markdown(report.markdown_report)
 display_control_markdown = clean_control_markdown(control_report.markdown_report) if control_report else None
 
-signal_tab, report_tab, compare_tab, evidence_tab, audit_tab, json_tab = st.tabs([
+signal_tab, report_tab, advisor_tab, compare_tab, evidence_tab, audit_tab, json_tab = st.tabs([
     "PPG 信号参数",
     "用户报告",
+    "随访对话",
     "RAG 对照实验",
     "证据依据",
     "过程审计",
@@ -876,6 +879,95 @@ with report_tab:
         file_name=f"{report.report_id}.json",
         mime="application/json",
     )
+
+def _advisor_send(message=None, answers=None, skips=None):
+    """One advisor turn; refreshes the open questions kept in session state."""
+    response = advisor_turn(
+        st.session_state.advisor_session_id,
+        AdvisorUserMessage(
+            message=message,
+            answers=[AdvisorAnswer(**item) for item in (answers or [])],
+            skip_question_ids=list(skips or []),
+        ),
+    )
+    st.session_state.advisor_questions = response.questions
+    st.session_state.advisor_profile = response.profile.model_dump()
+
+
+with advisor_tab:
+    st.subheader("测量后的随访对话")
+    st.markdown(
+        "报告只是开始：这里会**循序渐进**地了解测量情境、复核条件、生活习惯与既往情况"
+        "（每个问题都解释为什么问、都可以跳过），并把你补充的每条信息转成**有文献依据**的进一步建议。"
+        "你也可以随时直接提问。"
+    )
+
+    payload_signature = json.dumps(st.session_state.demo_payload, ensure_ascii=False, sort_keys=True, default=str)
+    if st.session_state.get("advisor_payload_signature") != payload_signature:
+        # New measurement -> stale conversation; ask the user to restart it.
+        st.session_state.pop("advisor_session_id", None)
+        st.session_state.pop("advisor_questions", None)
+        st.session_state.advisor_payload_signature = payload_signature
+
+    if "advisor_session_id" not in st.session_state:
+        if st.button("基于当前报告开始随访对话", type="primary"):
+            session, opening = create_session(st.session_state.demo_payload, report=report)
+            st.session_state.advisor_session_id = session.session_id
+            st.session_state.advisor_questions = opening.questions
+            st.session_state.advisor_profile = opening.profile.model_dump()
+            st.rerun()
+        st.info("点击上方按钮开启对话；对话与当前输入的测量结果绑定。")
+    else:
+        session = get_session_store().get(st.session_state.advisor_session_id)
+        if session is None:
+            st.session_state.pop("advisor_session_id", None)
+            st.warning("会话已失效，请重新开始。")
+            st.stop()
+
+        for turn in session.history:
+            with st.chat_message("assistant" if turn.role == "advisor" else "user"):
+                st.markdown(turn.content)
+
+        questions = st.session_state.get("advisor_questions") or []
+        if questions:
+            st.markdown("---")
+            for question in questions:
+                cols = st.columns(max(len(question.options) + 1, 2))
+                for index, option in enumerate(question.options):
+                    if cols[index].button(option.label, key=f"opt_{question.id}_{option.id}"):
+                        _advisor_send(answers=[{"question_id": question.id, "option_id": option.id}])
+                        st.rerun()
+                if question.skippable and cols[len(question.options)].button(
+                    "跳过", key=f"skip_{question.id}"
+                ):
+                    _advisor_send(skips=[question.id])
+                    st.rerun()
+
+        user_text = st.chat_input("输入你的问题或回答……")
+        if user_text:
+            # Free text that clearly picks an open option becomes a structured answer.
+            matched = []
+            for question in questions:
+                option_id = match_free_text_answer(question, user_text)
+                if option_id:
+                    matched.append({"question_id": question.id, "option_id": option_id})
+                    break
+            if user_text.strip() in {"跳过", "跳过吧", "不方便说"} and questions:
+                _advisor_send(skips=[question.id for question in questions])
+            elif matched:
+                _advisor_send(answers=matched)
+            else:
+                _advisor_send(message=user_text)
+            st.rerun()
+
+        with st.expander("已了解的情况（用户画像）"):
+            profile = {
+                key: value
+                for key, value in (st.session_state.get("advisor_profile") or {}).items()
+                if value not in (None, [], "")
+            }
+            st.json(profile or {"说明": "目前还没有补充信息"})
+
 
 with compare_tab:
     st.subheader("同一份输入：RAG 版 vs 非 RAG 对照组")

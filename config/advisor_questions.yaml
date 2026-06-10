@@ -1,0 +1,256 @@
+# 随访对话的渐进式提问题库。
+#
+# 不冒犯设计原则：
+# 1. 每个问题必须带 why（为什么问），与问题一起展示；
+# 2. 一律可跳过（skippable），敏感话题提供「不方便说」选项，跳过后不再追问；
+# 3. preface 用于正常化铺垫（"很多人……这很常见"），避免评判口吻；
+# 4. stage 从低敏感到高敏感循序渐进：测量情境 -> 复核条件 -> 生活方式 -> 病史用药 -> 目标确认；
+# 5. 问题只做信息记录，不构成诊断或用药建议。
+#
+# profile 字段必须对应 app/schemas/conversation.py 的 ConversationProfile。
+# ask_if 支持: quality_usable (bool) / bp_category_in (list) / emergency (bool)。
+# priority_boost_if 支持同样的条件键，命中时优先级提升。
+
+questions:
+  # ---------------------------------------------------------- stage 0 测量情境
+  - id: q_rest_state
+    stage: 0
+    topic: measurement_context
+    sensitivity: low
+    text: "方便回忆一下，这次测量前的半小时里，您更接近哪种状态？"
+    why: "刚活动过、喝过咖啡浓茶或情绪紧张时，血压估算值常会短时偏高；了解当时状态能帮您判断这次数值的参考价值。"
+    options:
+      - id: rested
+        label: "安静坐着休息了一会儿"
+        profile: {rest_before_measurement: true}
+      - id: active
+        label: "刚走动、运动或爬楼回来"
+        profile: {rest_before_measurement: false}
+      - id: caffeine_smoke
+        label: "喝过咖啡/浓茶，或抽过烟"
+        profile: {caffeine_or_smoking_before: true}
+      - id: unsure
+        label: "记不太清了"
+        profile: {}
+    priority_boost_if: {quality_usable: false}
+
+  - id: q_posture
+    stage: 0
+    topic: measurement_context
+    sensitivity: low
+    text: "测量的时候，您的姿势更接近哪种？"
+    why: "手机 PPG 估算对姿势和手指稳定度比较敏感，坐稳、手放平时信号更可靠。"
+    options:
+      - id: seated_stable
+        label: "坐着，手机和手都比较稳"
+        profile: {posture_ok: true}
+      - id: moving
+        label: "站着/走动中，或手不太稳"
+        profile: {posture_ok: false}
+      - id: lying
+        label: "躺着或半躺着"
+        profile: {posture_ok: false}
+      - id: unsure
+        label: "没注意"
+        profile: {}
+    priority_boost_if: {quality_usable: false}
+
+  # ---------------------------------------------------------- stage 1 复核条件
+  - id: q_home_device
+    stage: 1
+    topic: recheck_device
+    sensitivity: low
+    text: "家里或者方便取用的地方，有上臂式电子血压计吗？"
+    why: "手机估算只适合看趋势；要确认血压水平，需要用经过验证的上臂式血压计复核。了解您手边的条件，建议会更可执行。"
+    options:
+      - id: has_device
+        label: "有，可以用"
+        profile: {has_home_cuff_device: true}
+      - id: no_device
+        label: "没有"
+        profile: {has_home_cuff_device: false}
+      - id: unsure_device
+        label: "有一个，但不确定准不准"
+        profile: {has_home_cuff_device: true}
+    priority_boost_if: {bp_category_in: [stage_1_reference_range, stage_2_reference_range, severe_range]}
+
+  - id: q_prior_readings
+    stage: 1
+    topic: recheck_device
+    sensitivity: low
+    text: "之前在医院、社区或药店量过血压吗？大概是什么水平？"
+    why: "把这次估算值和以往的规范测量放在一起看，比单次数字更能说明趋势。"
+    options:
+      - id: prior_high
+        label: "量过，当时也偏高"
+        profile: {prior_reading_level: high}
+      - id: prior_normal
+        label: "量过，基本正常"
+        profile: {prior_reading_level: normal}
+      - id: prior_none
+        label: "很久没量过/没量过"
+        profile: {prior_reading_level: none}
+      - id: prior_unsure
+        label: "记不清"
+        profile: {prior_reading_level: unsure}
+    priority_boost_if: {bp_category_in: [stage_1_reference_range, stage_2_reference_range, severe_range, elevated_reference_range]}
+
+  # ---------------------------------------------------------- stage 2 生活方式
+  - id: q_salt
+    stage: 2
+    topic: lifestyle
+    sensitivity: medium
+    preface: "接下来想多了解一点日常习惯，方便给出更贴合的建议；不想回答的都可以跳过。很多人口味偏咸，这很常见。"
+    text: "平时饮食口味更接近哪种？"
+    why: "钠盐摄入和血压关系比较确定，了解口味偏好可以帮您挑选最值得先调整的一件事。"
+    options:
+      - id: salt_light
+        label: "偏清淡"
+        profile: {salt_preference: light}
+      - id: salt_medium
+        label: "适中"
+        profile: {salt_preference: medium}
+      - id: salt_heavy
+        label: "偏咸/外卖重口味较多"
+        profile: {salt_preference: heavy}
+      - id: salt_skip
+        label: "不好说"
+        profile: {salt_preference: unsure}
+    priority_boost_if: {bp_category_in: [elevated_reference_range, stage_1_reference_range, stage_2_reference_range]}
+
+  - id: q_exercise
+    stage: 2
+    topic: lifestyle
+    sensitivity: medium
+    text: "平时的活动量大概是？"
+    why: "规律的身体活动对血压管理有帮助；了解现状是为了给出能落地的小目标，而不是要求立刻改变。"
+    options:
+      - id: ex_regular
+        label: "比较规律地运动"
+        profile: {exercise_frequency: regular}
+      - id: ex_occasional
+        label: "偶尔动一动"
+        profile: {exercise_frequency: occasional}
+      - id: ex_rare
+        label: "基本久坐，很少运动"
+        profile: {exercise_frequency: rare}
+
+  - id: q_sleep
+    stage: 2
+    topic: lifestyle
+    sensitivity: medium
+    text: "最近一段时间睡眠怎么样？"
+    why: "睡眠和压力会影响血压波动，也会影响单次测量的参考价值。"
+    options:
+      - id: sleep_good
+        label: "还不错"
+        profile: {sleep_quality: good}
+      - id: sleep_fair
+        label: "一般"
+        profile: {sleep_quality: fair}
+      - id: sleep_poor
+        label: "比较差/经常熬夜"
+        profile: {sleep_quality: poor}
+
+  - id: q_smoke_alcohol
+    stage: 2
+    topic: lifestyle
+    sensitivity: medium
+    preface: "下面这个问题只用于完善生活方式建议，选「不方便说」也完全没问题。"
+    text: "吸烟或饮酒的情况，方便说说吗？"
+    why: "烟酒都与血压相关；如果有，建议里会包含相应的循序渐进调整方向。"
+    options:
+      - id: sa_none
+        label: "都没有"
+        profile: {smoking: none, alcohol: none}
+      - id: sa_occasional
+        label: "偶尔有"
+        profile: {smoking: occasional, alcohol: occasional}
+      - id: sa_regular
+        label: "比较经常"
+        profile: {smoking: regular, alcohol: regular}
+      - id: sa_decline
+        label: "不方便说"
+        profile: {smoking: declined, alcohol: declined}
+
+  # ---------------------------------------------------------- stage 3 病史与用药
+  - id: q_bp_history
+    stage: 3
+    topic: history
+    sensitivity: high
+    preface: "如果方便的话，想了解一点既往情况；这只用于让提醒更合适，不会用来下诊断，也可以选「不方便说」。"
+    text: "以前有医生或体检提示过您血压偏高吗？"
+    why: "有没有既往提示，会影响复核和随访的合理节奏：有提示的人更建议规律家庭记录并与医生保持沟通。"
+    options:
+      - id: hist_yes
+        label: "有提示过"
+        profile: {known_bp_history: "yes"}
+      - id: hist_no
+        label: "没有"
+        profile: {known_bp_history: "no"}
+      - id: hist_unsure
+        label: "不确定"
+        profile: {known_bp_history: unsure}
+      - id: hist_decline
+        label: "不方便说"
+        profile: {known_bp_history: declined}
+
+  - id: q_medication
+    stage: 3
+    topic: history
+    sensitivity: high
+    preface: "这个问题只做记录用：本应用不提供任何用药建议，用药调整请始终咨询医生。"
+    text: "目前是否在使用降压药？"
+    why: "在用降压药的人，家庭记录对医生调整方案特别有价值；我们只会提醒您带记录就诊，不会给用药意见。"
+    options:
+      - id: med_yes
+        label: "在用"
+        profile: {on_bp_medication: "yes"}
+      - id: med_no
+        label: "没有"
+        profile: {on_bp_medication: "no"}
+      - id: med_decline
+        label: "不方便说"
+        profile: {on_bp_medication: declined}
+    priority_boost_if: {bp_category_in: [stage_2_reference_range, severe_range]}
+
+  - id: q_family_history
+    stage: 3
+    topic: history
+    sensitivity: high
+    text: "直系亲属（父母、兄弟姐妹）中有人血压偏高吗？"
+    why: "家族中有血压偏高的人，更建议尽早建立规律的家庭监测习惯；这不代表您一定会血压高。"
+    options:
+      - id: fam_yes
+        label: "有"
+        profile: {family_history: "yes"}
+      - id: fam_no
+        label: "没有"
+        profile: {family_history: "no"}
+      - id: fam_unknown
+        label: "不清楚"
+        profile: {family_history: unknown}
+      - id: fam_decline
+        label: "不方便说"
+        profile: {family_history: declined}
+
+  # ---------------------------------------------------------- stage 4 目标确认
+  - id: q_goal
+    stage: 4
+    topic: goal
+    sensitivity: low
+    text: "接下来您最想先弄清楚哪件事？"
+    why: "确认您的关注点，后面的解答会优先围绕它展开。"
+    options:
+      - id: goal_trust
+        label: "这次结果可不可信"
+        profile: {goal: trust}
+      - id: goal_recheck
+        label: "怎么复测最靠谱"
+        profile: {goal: recheck}
+      - id: goal_lifestyle
+        label: "生活上能先做什么"
+        profile: {goal: lifestyle}
+      - id: goal_doctor
+        label: "要不要去看医生"
+        profile: {goal: doctor}

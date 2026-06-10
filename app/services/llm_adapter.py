@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 import os
 import re
+import threading
+import time
 from typing import Any, Iterable, List
 
 import requests
@@ -14,6 +16,56 @@ from app.schemas.rule_result import RuleResult
 
 class LlmGenerationError(RuntimeError):
     pass
+
+
+# Global generation rate limiter (shared across threads): a minimum interval
+# between request starts to the chat LLM. Protects a small/personal endpoint
+# during batch experiment runs (E2/E5). Controlled by LLM_MIN_INTERVAL_SEC
+# (default 0 = off in production; experiment harnesses set e.g. 2.0).
+_GEN_RATE_LOCK = threading.Lock()
+_GEN_LAST_REQUEST_AT = [0.0]
+
+
+def _gen_throttle() -> None:
+    try:
+        min_interval = float(os.getenv("LLM_MIN_INTERVAL_SEC", "0"))
+    except ValueError:
+        min_interval = 0.0
+    if min_interval <= 0:
+        return
+    with _GEN_RATE_LOCK:
+        now = time.monotonic()
+        wait = _GEN_LAST_REQUEST_AT[0] + min_interval - now
+        if wait > 0:
+            time.sleep(wait)
+        _GEN_LAST_REQUEST_AT[0] = time.monotonic()
+
+
+def _chat_provider_config(provider: str) -> tuple[str, str, str]:
+    """Resolve (api_key, base_url, model) for an OpenAI-compatible chat provider.
+
+    ``deepseek`` keeps its dedicated env names; ``openai_compatible`` points at
+    any third-party chat-completions endpoint via LLM_BASE_URL / LLM_MODEL /
+    LLM_API_KEY — kept separate from OPENAI_EMBEDDING_* (embedding-only key)
+    and EVAL_LLM_* (offline evaluation only).
+    """
+    if provider == "deepseek":
+        api_key = os.getenv("DEEPSEEK_API_KEY") or os.getenv("LLM_API_KEY")
+        if not api_key:
+            raise LlmGenerationError("DEEPSEEK_API_KEY is not set")
+        base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com").rstrip("/")
+        model = os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash")
+        return api_key, base_url, model
+    if provider == "openai_compatible":
+        api_key = os.getenv("LLM_API_KEY")
+        if not api_key:
+            raise LlmGenerationError("LLM_API_KEY is not set for the openai_compatible provider")
+        base_url = os.getenv("LLM_BASE_URL", "").rstrip("/")
+        if not base_url:
+            raise LlmGenerationError("LLM_BASE_URL is not set for the openai_compatible provider")
+        model = os.getenv("LLM_MODEL", "gpt-5.5")
+        return api_key, base_url, model
+    raise LlmGenerationError(f"unsupported chat provider: {provider}")
 
 
 def _compact_evidence(evidence: Iterable[Evidence]) -> List[dict[str, Any]]:
@@ -54,13 +106,9 @@ def generate_deepseek_report_body(
     evidence: Iterable[Evidence],
     rag_enabled: bool = True,
     timeout_sec: float | None = None,
+    provider: str = "deepseek",
 ) -> str:
-    api_key = os.getenv("DEEPSEEK_API_KEY") or os.getenv("LLM_API_KEY")
-    if not api_key:
-        raise LlmGenerationError("DEEPSEEK_API_KEY is not set")
-
-    base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com").rstrip("/")
-    model = os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash")
+    api_key, base_url, model = _chat_provider_config(provider)
     timeout = timeout_sec or float(os.getenv("LLM_TIMEOUT_SEC", "30"))
 
     numbered_evidence = _number_evidence(evidence) if rag_enabled else []
@@ -98,6 +146,9 @@ def generate_deepseek_report_body(
             "需要时可合并标注为 [1,3]。"
             f"当前可用的合法编号只有：{valid_numbers}；只能引用这些真实存在的编号，"
             "绝对不能编造不存在的编号，也不能写超出范围的编号。"
+            "引用要落在具体句子上：每个由资料支持的事实陈述或建议句，都在该句句末标注对应编号；"
+            "不要把引用集中堆在段落末尾或小节标题上，一句话最多标注 2 个最相关的编号。"
+            "只引用与该句内容真正相关的资料；同一编号可以在不同句子里重复使用。"
             "尽量让每个有实质内容的小节都至少出现一次引用。"
             "不要自己写“参考文献”“参考来源”小节，也不要在正文里粘贴链接或 DOI；"
             "编号到具体文献的映射由系统统一拼接。"
@@ -192,6 +243,7 @@ def _deepseek_chat(
         "max_tokens": max_tokens,
     }
     try:
+        _gen_throttle()
         response = requests.post(
             f"{base_url}/chat/completions",
             headers=_deepseek_headers(api_key),
@@ -275,21 +327,41 @@ def _deepseek_retry_prompts(
 
 
 def _number_evidence(evidence: Iterable[Evidence]) -> List[dict[str, Any]]:
-    numbered = []
-    for index, item in enumerate(evidence, start=1):
-        numbered.append(
-            {
-                "citation_number": index,
+    """Number evidence for the prompt with source-level dedup.
+
+    Uses the citation registry so the numbers the model sees are exactly the
+    numbers the post-processor validates against: chunks of the same source
+    share one number, and their snippets are merged into one entry.
+    """
+    from app.services.citations import build_registry
+
+    items = list(evidence)
+    build_registry(items)  # stamps source-dedup citation_number on each item
+    merged: dict[int, dict[str, Any]] = {}
+    for item in items:
+        number = item.citation_number
+        if number is None:
+            continue
+        entry = merged.get(number)
+        if entry is None:
+            merged[number] = {
+                "citation_number": number,
                 "title": item.title,
                 "organization": item.organization,
                 "region": item.region,
                 "year": item.year,
                 "evidence_class": item.evidence_class,
-                "allowed_uses": item.allowed_uses,
+                "allowed_uses": list(item.allowed_uses or []),
                 "snippet": item.snippet,
             }
-        )
-    return numbered
+            continue
+        for use in item.allowed_uses or []:
+            if use not in entry["allowed_uses"]:
+                entry["allowed_uses"].append(use)
+        if item.snippet and item.snippet not in (entry.get("snippet") or ""):
+            existing = entry.get("snippet") or ""
+            entry["snippet"] = f"{existing} ‖ {item.snippet}".strip(" ‖")
+    return [merged[number] for number in sorted(merged)]
 
 
 def _anthropic_chat(
@@ -314,6 +386,7 @@ def _anthropic_chat(
         "messages": [{"role": "user", "content": user}],
     }
     try:
+        _gen_throttle()
         response = requests.post(
             f"{base_url}/v1/messages", headers=headers, json=payload, timeout=timeout
         )
@@ -363,6 +436,8 @@ def generate_anthropic_report_body(
         + _SAFETY_CONSTRAINTS
         + "你会收到一份按编号排列的循证资料（evidence）。"
         "请在正文相关结论或建议句末用方括号编号标注引用，例如\u201c家庭血压监测有助于判断趋势[2]\u201d；"
+        "引用要落在具体句子上：每个由资料支持的事实陈述或建议句都在句末标注，"
+        "不要把引用集中堆在段落末尾或标题上，一句话最多标注 2 个最相关的编号。"
         "可以合并标注如[1,3]；只能引用 evidence 中真实存在的编号，不得编造编号或来源。"
         "不要自己写\u201c参考文献\u201d\u201c参考来源\u201d或免责声明小节，这些由系统统一附加。"
         "保留与模板相同的 Markdown 小标题结构（## 先看结论、## 现在最该做什么、## 为什么这样提醒你、"
@@ -422,13 +497,9 @@ def generate_deepseek_input_only_report(
     *,
     payload: MeasurementPayload,
     timeout_sec: float | None = None,
+    provider: str = "deepseek",
 ) -> str:
-    api_key = os.getenv("DEEPSEEK_API_KEY") or os.getenv("LLM_API_KEY")
-    if not api_key:
-        raise LlmGenerationError("DEEPSEEK_API_KEY is not set")
-
-    base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com").rstrip("/")
-    model = os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash")
+    api_key, base_url, model = _chat_provider_config(provider)
     timeout = timeout_sec or float(os.getenv("LLM_TIMEOUT_SEC", "30"))
 
     system_prompt = (
@@ -463,6 +534,7 @@ def generate_deepseek_input_only_report(
     }
 
     try:
+        _gen_throttle()
         response = requests.post(
             f"{base_url}/chat/completions",
             headers=_deepseek_headers(api_key),
@@ -486,3 +558,126 @@ def generate_deepseek_input_only_report(
     if not cleaned:
         raise LlmGenerationError("DeepSeek API returned empty content")
     return cleaned
+
+
+# ---------------------------------------------------------------------------
+# Third-party OpenAI-compatible chat provider (LLM_BASE_URL / LLM_MODEL /
+# LLM_API_KEY). Shares the DeepSeek plumbing — same protocol, same prompts,
+# same safety post-processing downstream.
+# ---------------------------------------------------------------------------
+
+
+def generate_openai_compatible_report_body(
+    *,
+    template_body: str,
+    rule_result: RuleResult,
+    evidence: Iterable[Evidence],
+    rag_enabled: bool = True,
+    timeout_sec: float | None = None,
+) -> str:
+    return generate_deepseek_report_body(
+        template_body=template_body,
+        rule_result=rule_result,
+        evidence=evidence,
+        rag_enabled=rag_enabled,
+        timeout_sec=timeout_sec,
+        provider="openai_compatible",
+    )
+
+
+def generate_openai_compatible_input_only_report(
+    *,
+    payload: MeasurementPayload,
+    timeout_sec: float | None = None,
+) -> str:
+    return generate_deepseek_input_only_report(
+        payload=payload,
+        timeout_sec=timeout_sec,
+        provider="openai_compatible",
+    )
+
+
+# ---------------------------------------------------------------------------
+# Advisor conversation replies
+# ---------------------------------------------------------------------------
+
+_ADVISOR_SYSTEM = (
+    "你是血压测量小程序里的随访健康助手，面向中国大陆普通用户，语气温和、自然、不评判。"
+    "你的任务：先回应用户这一轮说的话，再结合给定的循证资料给出贴合的解释或建议。"
+    "硬性安全底线：不诊断、不开药、不停药、不调药、不承诺 PPG 估算准确性，"
+    "不声称可替代规范袖带血压测量或医生判断；用药相关一律只说“用药问题请咨询医生”。"
+    "不要使用“确诊”；不要写“不需要 120/急诊”这类安抚。"
+    "不要新增具体测量频次、固定时点、睡眠小时数、盐克数、运动次数等细节；"
+    "用“按说明书规范测量”“连续记录一段时间”“保持规律作息”这类表述。"
+    "引用要求：你会收到带 citation_number 的资料列表；由资料支持的事实或建议句，"
+    "必须在句末标注对应编号，如“连续记录更能说明趋势[2]”；只能用真实存在的编号，"
+    "一句话最多 2 个编号；不要自己写参考文献小节，也不要粘贴链接。"
+    "回复控制在 250 字以内，分 1-2 个短段或最多 4 条要点；"
+    "不要重复用户已经知道的报告全文，只讲这一轮新增的内容。"
+    "如果 next_questions 非空，结尾不要自己编新问题，也不要替用户回答；"
+    "问题文本会由系统在你的回复后统一展示，你只需在最后用一句自然的话过渡，"
+    "例如“下面还有一个小问题，方便的话告诉我”。"
+)
+
+
+def generate_llm_advisor_reply(
+    *,
+    provider: str,
+    rule_result: RuleResult,
+    profile: Any,
+    history: List[Any],
+    user_message: str,
+    answer_summary: List[str],
+    advice_hints: List[str],
+    questions: List[Any],
+    evidence: Iterable[Evidence],
+    timeout_sec: float | None = None,
+) -> str:
+    """One advisor chat turn via DeepSeek or Anthropic, with numbered evidence.
+
+    The deterministic advice hints are passed in so the model rewrites governed
+    content instead of inventing its own; citation numbers match the registry
+    used by the caller's post-processing.
+    """
+    numbered = _number_evidence(evidence)
+    user_payload = {
+        "rule_summary": {
+            "estimated_bp_category": rule_result.estimated_bp_category,
+            "quality_usable": rule_result.quality.is_usable,
+            "emergency": rule_result.emergency,
+            "special_population": rule_result.special_population,
+        },
+        "profile": profile.model_dump() if hasattr(profile, "model_dump") else profile,
+        "recent_turns": [
+            {"role": turn.role, "content": turn.content[:400]} for turn in history
+        ],
+        "user_message": user_message,
+        "newly_learned": answer_summary,
+        "governed_advice_hints": advice_hints,
+        "next_questions": [
+            {"text": question.text, "why": question.why} for question in questions
+        ],
+        "evidence": numbered,
+    }
+    timeout = timeout_sec or float(os.getenv("LLM_TIMEOUT_SEC", "30"))
+    if provider in {"deepseek", "openai_compatible"}:
+        api_key, base_url, model = _chat_provider_config(provider)
+        return _deepseek_chat(
+            api_key=api_key,
+            base_url=base_url,
+            model=model,
+            system_prompt=_ADVISOR_SYSTEM,
+            user_content=json.dumps(user_payload, ensure_ascii=False),
+            timeout=timeout,
+            temperature=0.4,
+            max_tokens=900,
+        )
+    if provider in {"anthropic", "claude"}:
+        return _anthropic_chat(
+            system=_ADVISOR_SYSTEM,
+            user=json.dumps(user_payload, ensure_ascii=False),
+            max_tokens=int(os.getenv("ANTHROPIC_MAX_TOKENS", "1200")),
+            temperature=float(os.getenv("ANTHROPIC_TEMPERATURE", "0.4")),
+            timeout=timeout,
+        )
+    raise LlmGenerationError(f"unsupported advisor provider: {provider}")

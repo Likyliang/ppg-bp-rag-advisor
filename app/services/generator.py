@@ -28,7 +28,14 @@ from app.services.llm_adapter import (
     generate_anthropic_report_body,
     generate_deepseek_input_only_report,
     generate_deepseek_report_body,
+    generate_openai_compatible_input_only_report,
+    generate_openai_compatible_report_body,
 )
+
+
+# Provider aliases accepted from LLM_PROVIDER for the third-party
+# OpenAI-compatible chat channel (base url / model / key via LLM_*).
+OPENAI_COMPATIBLE_PROVIDERS = {"openai_compatible", "openai-compatible", "third_party", "thirdparty"}
 
 
 DISCLAIMER = (
@@ -407,16 +414,42 @@ def _markdown(report: HealthReport, rule_result: RuleResult, payload: Measuremen
         plain_lines[0] = plain_lines[0] + cite_ppg
     lines.extend(f"- {item}" for item in plain_lines)
 
-    if registry.has_evidence:
+    body = "\n".join(lines)
+    final = registry.finalize(body) if registry.has_evidence else None
+    if final is not None:
+        body = final.body
+        report.references = final.entries
+    tail = _reference_tail_lines(report, final, uses_rag=uses_rag)
+    return body + "\n" + "\n".join(tail)
+
+
+def _reference_tail_lines(report: HealthReport, final, uses_rag: bool = True, registry=None) -> List[str]:
+    """Compose 参考文献 / 参考依据说明 / 免责声明 from finalized citations.
+
+    The bibliography lists exactly the sources cited in the body, numbered by
+    first appearance — the numeric-citation convention — instead of dumping the
+    whole retrieval pool. When ``final`` is None but ``registry`` is given
+    (citation-enforcement OFF / S3), the full ordered reference list is emitted
+    with the registry's original source-dedup numbering.
+    """
+    lines: List[str] = []
+    cited_count = final.cited_count if final is not None else 0
+    reference_lines = []
+    if final is not None and final.references:
+        reference_lines = final.references
+    elif registry is not None and registry.has_evidence:
+        reference_lines = registry.references_markdown()
+        cited_count = len(reference_lines)
+    if reference_lines:
         lines.extend(
             [
                 "",
                 "## 参考文献",
-                "正文中的 [n] 标注对应下列经治理的权威来源；每条建议只引用其被授权用途范围内的资料。",
+                "正文中的 [n] 标注按首次出现顺序编号，对应下列经治理的权威来源；每条建议只引用其被授权用途范围内的资料。",
                 "",
             ]
         )
-        for index, reference_line in enumerate(registry.references_markdown()):
+        for index, reference_line in enumerate(reference_lines):
             if index:
                 lines.append("")
             lines.append(reference_line)
@@ -427,14 +460,18 @@ def _markdown(report: HealthReport, rule_result: RuleResult, payload: Measuremen
         [
             "",
             "## 参考依据说明",
-            f"本报告基于 {evidence_count} 条本地治理知识库资料，并在正文中以 [n] 形式标注引用。" if uses_rag else "本对照报告未使用本地文档库资料，因此正文不含文献引用。",
+            (
+                f"本报告基于 {evidence_count} 条本地治理知识库资料，正文实际引用其中 {cited_count} 篇来源，并在正文中以 [n] 形式标注引用。"
+                if uses_rag
+                else "本对照报告未使用本地文档库资料，因此正文不含文献引用。"
+            ),
             f"主要建议是否能对应到资料来源：{grounding_text}。",
             f"涉及安全提醒时是否优先使用高可信来源：{'是' if report.citation_quality.high_trust_sensitive_uses else '否'}。",
         ]
     )
 
     lines.extend(["", "## 免责声明", report.disclaimer])
-    return "\n".join(lines)
+    return lines
 
 
 def _split_report_tail(markdown_report: str) -> tuple[str, str]:
@@ -912,21 +949,39 @@ def _normalize_markdown_headings(body: str) -> str:
     return normalized
 
 
+def _citation_enforcement_enabled(enforce_citations: Optional[bool]) -> bool:
+    """Whether to force inline citations (strip out-of-range + inject + renumber).
+
+    Default ON. The E2 ablation harness sets ``REPORT_ENFORCE_CITATIONS=0`` (or
+    passes ``enforce_citations=False``) to build the S3 variant: the LLM's raw
+    citation behaviour is preserved so the judge can measure the true unsupported
+    claim rate WITHOUT the deterministic citation engine repairing it.
+    """
+    if enforce_citations is not None:
+        return enforce_citations
+    return os.getenv("REPORT_ENFORCE_CITATIONS", "1").strip().lower() not in {"0", "false", "off", "no"}
+
+
 def _finalize_rag_llm_body(
     llm_body: str,
     report: HealthReport,
     rule_result: RuleResult,
     payload: MeasurementPayload,
     evidence: List[Evidence],
+    enforce_citations: Optional[bool] = None,
 ) -> tuple[str, bool]:
-    """Sanitize + citation-enforce an LLM RAG body.
+    """Sanitize + (optionally) citation-enforce an LLM RAG body.
 
-    Returns ``(body, consistent)`` where ``consistent`` means: if evidence
-    exists, the body now carries at least one valid inline ``[n]`` and no marker
-    exceeds the evidence count. The body is deterministically repaired
-    (strip out-of-range markers, inject missing section citations) so the tail
-    "正文中的 [n] 标注对应…" is never contradicted by a citation-free body.
+    Returns ``(markdown, consistent)`` where ``markdown`` is the complete
+    report (body + rebuilt 参考文献/参考依据说明/免责声明 tail) and
+    ``consistent`` means: if evidence exists, the body carries at least one
+    valid inline ``[n]`` and no marker exceeds the evidence count. With
+    enforcement ON (default) the body is deterministically repaired (strip
+    out-of-range markers, inject missing section citations, renumber by first
+    appearance, prune uncited references). With enforcement OFF (S3 ablation)
+    those repairs are skipped and the LLM's raw citations pass through.
     """
+    enforce = _citation_enforcement_enabled(enforce_citations)
     registry = build_registry(evidence)
     # Sanitize first (it collapses the no-emergency clause and may swallow
     # newlines), THEN split any heading the LLM glued onto a sentence — otherwise
@@ -944,16 +999,31 @@ def _finalize_rag_llm_body(
     body = _ensure_china_context_section(body, rule_result, payload, uses_rag=True)
     body = _ensure_plain_language_section(body, report, rule_result, payload, uses_rag=True)
 
-    if registry.has_evidence:
+    final = None
+    if registry.has_evidence and enforce:
         # Drop any hallucinated/out-of-range markers, then guarantee coverage.
         body = registry.strip_invalid_markers(body)
         body = registry.enforce_section_citations(body)
         # A final fragment sweep in case marker-stripping left a stray bracket.
         body = clean_citation_fragments(body)
-        consistent = registry.body_is_consistent(body)
-    else:
+        final = registry.finalize(body)
+        body = final.body
+        report.references = final.entries
+        consistent = final.cited_count >= 1
+    elif registry.has_evidence:
+        # S3 (enforcement OFF): keep the LLM's raw inline markers untouched —
+        # no stripping, no injection, no renumbering. Attach the full ordered
+        # reference list so the report still renders; the judge sees raw [n].
+        report.references = registry.references_markdown_entries()
+        final = None
+        # Not gated on citation consistency: letting the raw body through is the
+        # whole point of this ablation arm.
         consistent = True
-    return body, consistent
+    else:
+        report.references = []
+        consistent = True
+    tail = _reference_tail_lines(report, final, uses_rag=True, registry=registry if not enforce else None)
+    return body + "\n" + "\n".join(tail), consistent
 
 
 def generate_report_draft(
@@ -1005,6 +1075,17 @@ def generate_report_draft(
             report.markdown_report = _with_replaced_body(report.markdown_report, llm_body)
             report.generation_mode = f"llm_only_input_anthropic:{os.getenv('ANTHROPIC_MODEL', 'claude-sonnet-4-5')}"
             return report
+        if provider in OPENAI_COMPATIBLE_PROVIDERS:
+            try:
+                llm_body = generate_openai_compatible_input_only_report(payload=payload)
+            except LlmGenerationError as exc:
+                report.generation_mode = "llm_only_fallback_template"
+                report.warnings.append(f"第三方对照组生成失败，已回退到 no_rag_template：{exc}")
+                return report
+            llm_body = _sanitize_llm_body(llm_body)
+            report.markdown_report = _with_replaced_body(report.markdown_report, llm_body)
+            report.generation_mode = f"llm_only_input_openai_compatible:{os.getenv('LLM_MODEL', 'gpt-5.5')}"
+            return report
         report.generation_mode = "llm_only_template"
         return report
     if requested_mode == "llm_rag" and provider == "deepseek":
@@ -1019,12 +1100,12 @@ def generate_report_draft(
             report.generation_mode = "llm_rag_fallback_template"
             report.warnings.append(f"DeepSeek 生成失败，已回退到 template_only：{exc}")
             return report
-        body, consistent = _finalize_rag_llm_body(llm_body, report, rule_result, payload, evidence)
+        full_markdown, consistent = _finalize_rag_llm_body(llm_body, report, rule_result, payload, evidence)
         if not consistent:
             report.warnings.append("DeepSeek RAG 正文缺少可用内联引用且自动补全失败，已回退到 template_only。")
             report.generation_mode = "llm_rag_fallback_template"
             return report
-        report.markdown_report = _with_replaced_body(report.markdown_report, body)
+        report.markdown_report = full_markdown
         report.generation_mode = f"llm_rag_deepseek:{os.getenv('DEEPSEEK_MODEL', 'deepseek-v4-flash')}"
         return report
     if requested_mode == "llm_rag" and provider in {"anthropic", "claude"}:
@@ -1039,13 +1120,33 @@ def generate_report_draft(
             report.generation_mode = "llm_rag_fallback_template"
             report.warnings.append(f"Claude 生成失败，已回退到 template_only：{exc}")
             return report
-        body, consistent = _finalize_rag_llm_body(llm_body, report, rule_result, payload, evidence)
+        full_markdown, consistent = _finalize_rag_llm_body(llm_body, report, rule_result, payload, evidence)
         if not consistent:
             report.warnings.append("Claude RAG 正文缺少可用内联引用且自动补全失败，已回退到 template_only。")
             report.generation_mode = "llm_rag_fallback_template"
             return report
-        report.markdown_report = _with_replaced_body(report.markdown_report, body)
+        report.markdown_report = full_markdown
         report.generation_mode = f"llm_rag_anthropic:{os.getenv('ANTHROPIC_MODEL', 'claude-sonnet-4-5')}"
+        return report
+    if requested_mode == "llm_rag" and provider in OPENAI_COMPATIBLE_PROVIDERS:
+        template_body, _ = _split_report_tail(report.markdown_report)
+        try:
+            llm_body = generate_openai_compatible_report_body(
+                template_body=template_body,
+                rule_result=rule_result,
+                evidence=evidence,
+            )
+        except LlmGenerationError as exc:
+            report.generation_mode = "llm_rag_fallback_template"
+            report.warnings.append(f"第三方 LLM 生成失败，已回退到 template_only：{exc}")
+            return report
+        full_markdown, consistent = _finalize_rag_llm_body(llm_body, report, rule_result, payload, evidence)
+        if not consistent:
+            report.warnings.append("第三方 LLM RAG 正文缺少可用内联引用且自动补全失败，已回退到 template_only。")
+            report.generation_mode = "llm_rag_fallback_template"
+            return report
+        report.markdown_report = full_markdown
+        report.generation_mode = f"llm_rag_openai_compatible:{os.getenv('LLM_MODEL', 'gpt-5.5')}"
         return report
     if requested_mode == "llm_rag" and provider != "mock":
         report.generation_mode = "llm_rag_fallback_template"

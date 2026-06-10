@@ -72,6 +72,22 @@ class Evidence(BaseModel):
     citation_number: Optional[int] = None
 
 
+class ReferenceEntry(BaseModel):
+    """One finalized bibliography entry: number == order of first citation."""
+
+    number: int
+    source_id: str
+    title: str
+    organization: Optional[str] = None
+    year: Optional[str] = None
+    evidence_class: Optional[str] = None
+    locator: Optional[str] = None
+    url: Optional[str] = None
+    pages: Optional[str] = None
+    snippet: Optional[str] = None
+    formatted: str
+
+
 class RecommendationEvidence(BaseModel):
     group: str
     index: int
@@ -123,6 +139,7 @@ class HealthReport(BaseModel):
     recommendations: Recommendations
     safety_alert: SafetyAlert
     retrieved_evidence: List[Evidence] = Field(default_factory=list)
+    references: List[ReferenceEntry] = Field(default_factory=list)
     recommendation_evidence: List[RecommendationEvidence] = Field(default_factory=list)
     citation_quality: CitationQuality = Field(default_factory=CitationQuality)
     ui_summary: Optional[UiSummary] = None

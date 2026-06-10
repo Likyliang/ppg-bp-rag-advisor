@@ -45,6 +45,9 @@ def _run_command(name: str, command: List[str]) -> Dict:
     env = os.environ.copy()
     env["REPORT_MODE"] = "template_only"
     env["LLM_PROVIDER"] = "mock"
+    # Calibrated gate runs stay offline-deterministic regardless of any
+    # embedding API key configured in .env.
+    env["RETRIEVAL_EMBEDDING_BACKEND"] = "hashing"
     result = subprocess.run(
         command,
         cwd=resolve_project_path("."),
@@ -73,6 +76,9 @@ def _count_pytest_tests() -> int:
     env = os.environ.copy()
     env["REPORT_MODE"] = "template_only"
     env["LLM_PROVIDER"] = "mock"
+    # Calibrated gate runs stay offline-deterministic regardless of any
+    # embedding API key configured in .env.
+    env["RETRIEVAL_EMBEDDING_BACKEND"] = "hashing"
     result = subprocess.run(
         [sys.executable, "-m", "pytest", "--collect-only", "-q"],
         cwd=resolve_project_path("."),

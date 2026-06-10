@@ -1,16 +1,18 @@
-# PPG 血压估算结果 RAG-Agent
+# PPG 血压估算随访应用（RAG-Agent）
 
-面向上游 PPG 小程序结构化输出的医学知识增强解释系统。项目不训练或验证 PPG 血压估计算法，只对估算结果做保守、可追溯、带安全边界的健康趋势解释。
+面向上游 PPG 小程序结构化输出的医学知识增强解释与随访系统。项目不训练或验证 PPG 血压估计算法，只对估算结果做保守、可追溯、带安全边界的健康趋势解释，并在报告之后通过对话主动了解用户现状、给出有文献依据的进一步建议。
 
 ## 功能
 
 - 接收小程序估算 SBP/DBP、心率、PPG 信号质量、置信度、采集时长、算法版本、用户基础信息和症状。
 - 字段别名归一化，支持 `SBP`、`DBP`、`HR`、`quality` 等输入。
 - 规则引擎先行判断信号质量、估算血压参考范围、急症规则和特殊人群。
-- RAG 检索经过筛选的知识库证据，空知识库时自动回退模板报告。
+- 混合检索（中文 bigram 关键词 + 离线哈希向量融合，来源级去重），经过筛选治理的知识库证据，空知识库时自动回退模板报告。
+- **随访对话（Advisor）**：报告生成后循序渐进地提问（每题解释为什么问、都可跳过，敏感话题靠后），把用户补充的事实转成带内联引用的个性化建议，并解答自由提问；急症会话抑制提问并置顶 120/急诊提示。详见 `docs/advisor_application.md`。
+- **学术化引用**：正文句级 `[n]` 标注、按首次出现顺序编号、未引用来源自动从参考文献剔除、同一来源去重、全文段落附页码定位，报告与对话均输出结构化 `references`。
 - Source catalog 记录来源、证据等级、筛选分、允许用途、版权/访问说明和审计状态。
-- Safety Agent 拦截确诊、调药、停药、设备过度承诺和急症漏报。
-- 提供 FastAPI、Streamlit Demo、知识库筛选/ingest/审计、检索评估和论文评估脚本。
+- Safety Agent 拦截确诊、调药、停药、设备过度承诺和急症漏报；随访回复共用同一套禁区模式并支持回退。
+- 提供 FastAPI、Streamlit Demo（含随访对话标签页）、知识库筛选/ingest/审计、检索评估和论文评估脚本。
 
 ## 快速开始
 
@@ -49,7 +51,15 @@ python scripts/ingest_fulltext_pdfs.py --query "PPG 接触压力 环境光 复�
 
 默认报告检索会读取 `knowledge_base/processed/chunks.jsonl` 并使用关键词 fallback，因此无需下载 embedding 模型也能运行。PDF 全文向量索引写入 `knowledge_base/vector_store/`，该目录被 Git 忽略，仅作本地 demo 和检索调试。
 
-外部 API 向量实验建议把 embedding 和评估模型分开配置：
+检索向量后端默认 `auto`：配置 `OPENAI_EMBEDDING_API_KEY` 并构建好索引后，报告与随访检索自动改用 OpenAI embedding（查询向量带缓存与故障退避，索引过期自动跳过）；无 Key 时退回离线哈希向量，再退回纯关键词。启用步骤：
+
+```bash
+# .env 写入 OPENAI_EMBEDDING_API_KEY 后：
+python scripts/ingest_openai_embeddings.py --scope processed_chunks   # 摘要库（约 30 万 token）
+python scripts/ingest_openai_embeddings.py --scope fulltext_chunks    # 可选：全文库
+```
+
+embedding 和评估模型分开配置：
 
 ```bash
 # 官方 OpenAI embedding，只用于向量化已治理 chunks。
@@ -77,6 +87,9 @@ EVAL_LLM_SEND_FULLTEXT=false
 - `GET /api/v1/health`
 - `POST /api/v1/reports/preview-rules`
 - `POST /api/v1/reports/generate`
+- `POST /api/v1/advisor/sessions` — 生成报告并开启随访会话（返回报告 + 开场白 + 首批问题）
+- `POST /api/v1/advisor/sessions/{id}/messages` — 一轮对话（自由文本 / 结构化回答 / 跳过）
+- `GET /api/v1/advisor/sessions/{id}` — 会话状态、画像与历史
 - `POST /api/v1/kb/ingest`
 - `GET /api/v1/kb/sources`
 - `GET /api/v1/kb/audit`

@@ -16,6 +16,23 @@ retrieval:
   chunks_path: knowledge_base/processed/chunks.jsonl
   persist_directory: knowledge_base/vector_store
   enable_keyword_fallback: true
+  # Hybrid fusion weights: keyword cosine vs embedding cosine.
+  keyword_weight: 0.6
+  vector_weight: 0.4
+  # Vector backend: auto = prefer the OpenAI embedding index when
+  # OPENAI_EMBEDDING_API_KEY is configured and the index matches current
+  # chunks, else fall back to the offline hashing index; or pin with
+  # openai / hashing / off.
+  embedding_backend: auto
+  openai_query_timeout_sec: 8
+  # Merge locally ingested PDF passages into report evidence.
+  # off = never; auto = when the local fulltext store exists; on = always.
+  include_fulltext: auto
+  fulltext_top_k: 2
+  # Source-level diversification cap: at most N chunks per source in the
+  # evidence list. 0 disables dedup (E1 ablation; env RETRIEVAL_PER_SOURCE_CAP
+  # overrides). Default 2 spans more independent sources in the references.
+  per_source_cap: 2
 
 safety:
   require_ppg_limitation: true

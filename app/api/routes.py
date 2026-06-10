@@ -6,8 +6,10 @@ from fastapi import APIRouter, Body, HTTPException
 from pydantic import BaseModel, ValidationError
 
 from app.agents.workflow import generate_report, preview_rules
+from app.schemas.conversation import AdvisorTurnResponse, AdvisorUserMessage
 from app.schemas.report import HealthReport
 from app.schemas.rule_result import RuleResult
+from app.services.advisor import advisor_turn, create_session, get_session_store
 from app.services.kb_audit import audit_knowledge_base
 from app.services.report_builder import report_to_json
 from app.services.retriever import retrieve_knowledge
@@ -106,6 +108,55 @@ def generate_report_endpoint(payload: Dict[str, Any] = Body(openapi_examples={
         raise HTTPException(status_code=422, detail=exc.errors()) from exc
     except TypeError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.post("/advisor/sessions")
+def create_advisor_session_endpoint(payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
+    """Generate the measurement report AND open the follow-up conversation.
+
+    Returns the full report plus the advisor's opening message and first
+    gentle intake questions, so the client renders report -> conversation in
+    one round trip.
+    """
+    try:
+        report = generate_report(payload)
+        session, opening = create_session(payload, report=report)
+    except ValidationError as exc:
+        raise HTTPException(status_code=422, detail=exc.errors()) from exc
+    except TypeError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    return {
+        "session_id": session.session_id,
+        "report": report_to_json(report),
+        "opening": opening.model_dump(),
+    }
+
+
+@router.post("/advisor/sessions/{session_id}/messages", response_model=AdvisorTurnResponse)
+def advisor_message_endpoint(session_id: str, message: AdvisorUserMessage) -> AdvisorTurnResponse:
+    try:
+        return advisor_turn(session_id, message)
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@router.get("/advisor/sessions/{session_id}")
+def advisor_session_endpoint(session_id: str) -> Dict[str, Any]:
+    session = get_session_store().get(session_id)
+    if session is None:
+        raise HTTPException(status_code=404, detail=f"advisor session not found: {session_id}")
+    return {
+        "session_id": session.session_id,
+        "created_at": session.created_at,
+        "stage": session.stage,
+        "closed": session.closed,
+        "profile": session.profile.model_dump(),
+        "asked_question_ids": session.asked_question_ids,
+        "answered_question_ids": session.answered_question_ids,
+        "declined_question_ids": session.declined_question_ids,
+        "history": [turn.model_dump() for turn in session.history],
+        "report_id": session.report_id,
+    }
 
 
 @router.post("/kb/ingest")

@@ -10,6 +10,7 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 import numpy as np
 
+from app.services.chunking import chunk_text, tokenize_for_match
 from app.services.config_loader import resolve_project_path
 from app.services.fulltext_candidates import validate_fulltext_catalog
 from app.services.source_catalog import included_sources
@@ -18,8 +19,9 @@ from app.services.source_catalog import included_sources
 DOWNLOADS_ROOT = "knowledge_base/sources/downloads"
 VECTOR_ROOT = "knowledge_base/vector_store"
 MANIFEST_PATH = "knowledge_base/processed/fulltext_vector_manifest.json"
-TOKEN_RE = re.compile(r"[A-Za-z0-9_]+|[\u4e00-\u9fff]")
-SENTENCE_SPLIT_RE = re.compile(r"(?<=[。！？.!?])\s+|\n{2,}|(?<=;)\s+")
+# Pages whose extracted text is shorter than this are header/footer debris
+# and would only produce degenerate chunks with no retrievable content.
+MIN_PAGE_TEXT_CHARS = 40
 
 
 @dataclass
@@ -62,60 +64,35 @@ def _load_pdf_pages(path: Path) -> Tuple[List[str], str]:
     return pages, "pypdf"
 
 
-def _split_long_segment(segment: str, max_chars: int) -> List[str]:
-    if len(segment) <= max_chars:
-        return [segment]
-    return [segment[start : start + max_chars] for start in range(0, len(segment), max_chars)]
-
-
 def split_text_for_fulltext_chunks(
     text: str,
     target_chars: int = 850,
     overlap_chars: int = 140,
     min_chars: int = 120,
 ) -> List[str]:
-    """Split PDF-extracted text into small chunks while preserving local context."""
-    if not text.strip():
+    """Split PDF-extracted text into sentence-safe chunks with local overlap.
+
+    Delegates to the shared structure-aware chunker so summary notes and PDF
+    full text use identical sentence-boundary and overlap semantics. Pages with
+    almost no extracted text (running headers, page numbers) are dropped
+    instead of becoming degenerate few-character chunks.
+    """
+    if len((text or "").strip()) < MIN_PAGE_TEXT_CHARS:
         return []
-    segments: List[str] = []
-    for segment in SENTENCE_SPLIT_RE.split(text):
-        segment = segment.strip()
-        if not segment:
-            continue
-        segments.extend(_split_long_segment(segment, target_chars))
-
-    chunks: List[str] = []
-    current = ""
-    for segment in segments:
-        if not current:
-            current = segment
-            continue
-        if len(current) + len(segment) + 1 <= target_chars:
-            current = f"{current} {segment}".strip()
-            continue
-        if len(current) >= min_chars:
-            chunks.append(current)
-            prefix = current[-overlap_chars:].strip() if overlap_chars > 0 else ""
-            current = f"{prefix} {segment}".strip() if prefix else segment
-        else:
-            current = f"{current} {segment}".strip()
-    if current and len(current) >= min_chars:
-        chunks.append(current)
-    elif current and chunks:
-        chunks[-1] = f"{chunks[-1]} {current}".strip()
-    elif current:
-        chunks.append(current)
+    chunks = chunk_text(
+        text,
+        target_chars=target_chars,
+        min_chars=min_chars,
+        overlap_chars=overlap_chars,
+        hard_max_chars=max(target_chars, 900),
+    )
     return [re.sub(r"\s+", " ", chunk).strip() for chunk in chunks if chunk.strip()]
-
-
-def _tokenize(text: str) -> List[str]:
-    return [token.lower() for token in TOKEN_RE.findall(text or "")]
 
 
 def hashing_embedding(text: str, dims: int = 384) -> np.ndarray:
     """Create a deterministic normalized hashing vector without external model downloads."""
     vector = np.zeros(dims, dtype=np.float32)
-    for token in _tokenize(text):
+    for token in tokenize_for_match(text):
         digest = hashlib.blake2b(token.encode("utf-8"), digest_size=8).digest()
         value = int.from_bytes(digest, "little")
         index = value % dims
@@ -260,6 +237,37 @@ def write_hashing_vector_index(chunks: List[FulltextChunk], dims: int = 384, pat
     metadata = np.array([json.dumps(chunk.metadata, ensure_ascii=False, sort_keys=True) for chunk in chunks], dtype=object)
     np.savez_compressed(out_path, ids=ids, embeddings=embeddings, metadata=metadata)
     return out_path
+
+
+def rebuild_hashing_vectors_from_jsonl(
+    chunks_path: Optional[str] = None,
+    vector_path: Optional[str] = None,
+    dims: int = 384,
+) -> Dict[str, Any]:
+    """Recompute hashing vectors for an existing chunks JSONL.
+
+    Used when the chunk text is already on disk but the tokenizer changed (the
+    query-time embedding must share the index-time token space) and the source
+    PDFs are not present locally to re-chunk from scratch.
+    """
+    chunk_file = resolve_project_path(chunks_path or f"{VECTOR_ROOT}/fulltext_chunks.jsonl")
+    if not chunk_file.exists():
+        return {"status": "skipped", "reason": "chunks_jsonl_missing", "chunks_path": str(chunk_file)}
+    chunks: List[FulltextChunk] = []
+    with chunk_file.open("r", encoding="utf-8") as handle:
+        for line in handle:
+            if not line.strip():
+                continue
+            item = json.loads(line)
+            metadata = {key: value for key, value in item.items() if key not in {"chunk_id", "content"}}
+            chunks.append(FulltextChunk(chunk_id=item["chunk_id"], text=item.get("content", ""), metadata=metadata))
+    out_path = write_hashing_vector_index(chunks, dims=dims, path=vector_path)
+    return {
+        "status": "ok",
+        "chunk_count": len(chunks),
+        "vector_path": str(out_path),
+        "embedding_dims": dims,
+    }
 
 
 def query_hashing_vector_index(query: str, top_k: int = 5, vector_path: Optional[str] = None, chunks_path: Optional[str] = None) -> List[Dict[str, Any]]:

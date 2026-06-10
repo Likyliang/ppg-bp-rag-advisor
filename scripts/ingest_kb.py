@@ -9,6 +9,7 @@ from typing import Any, Dict, Iterable, List, Tuple
 
 import yaml
 
+from app.services.chunking import chunk_markdown_note
 from app.services.config_loader import resolve_project_path
 
 
@@ -48,29 +49,6 @@ def _jsonable_metadata(metadata: Dict[str, Any]) -> Dict[str, Any]:
     return {key: _jsonable_value(value) for key, value in metadata.items()}
 
 
-def _split_markdown(content: str, max_chars: int = 900) -> List[str]:
-    sections = re.split(r"\n(?=##\s+)", content.strip())
-    chunks: List[str] = []
-    for section in sections:
-        section = section.strip()
-        if not section:
-            continue
-        if len(section) <= max_chars:
-            chunks.append(section)
-            continue
-        paragraphs = [para.strip() for para in re.split(r"\n\s*\n", section) if para.strip()]
-        current = ""
-        for paragraph in paragraphs:
-            if len(current) + len(paragraph) + 2 > max_chars and current:
-                chunks.append(current.strip())
-                current = paragraph
-            else:
-                current = f"{current}\n\n{paragraph}".strip()
-        if current:
-            chunks.append(current.strip())
-    return chunks
-
-
 def build_chunks(raw_dir: str = None) -> List[Dict[str, Any]]:
     raw_path = resolve_project_path(raw_dir or "knowledge_base/raw")
     expanded_path = raw_path / "expanded"
@@ -82,7 +60,7 @@ def build_chunks(raw_dir: str = None) -> List[Dict[str, Any]]:
         if prefer_governed_notes and metadata.get("derived_from") != "knowledge_base/sources/source_catalog.yaml":
             continue
         source_id = metadata.get("source_id") or _slug(path.stem)
-        for index, chunk_text in enumerate(_split_markdown(content), start=1):
+        for index, note_chunk in enumerate(chunk_markdown_note(content), start=1):
             source_hash = metadata.get("source_hash")
             if not source_hash:
                 hash_input = f"{metadata.get('title', '')}|{metadata.get('url', '')}|{metadata.get('doi', '')}|{metadata.get('pmid', '')}"
@@ -97,7 +75,9 @@ def build_chunks(raw_dir: str = None) -> List[Dict[str, Any]]:
                 "source_quality_score": metadata.get("source_quality_score", ""),
                 "allowed_uses": metadata.get("allowed_uses", []),
                 "derived_from": metadata.get("derived_from", str(path.relative_to(resolve_project_path(".")))),
-                "content": re.sub(r"\s+", " ", chunk_text).strip(),
+                "section_title": note_chunk.section_title,
+                "section_role": note_chunk.section_role,
+                "content": re.sub(r"\s+", " ", note_chunk.text).strip(),
             }
             chunks.append(chunk)
     return chunks
@@ -136,15 +116,44 @@ def _try_vector_index(chunks: List[Dict[str, Any]]) -> str:
     return f"vector index updated: {len(chunks)} chunks"
 
 
+def _try_hashing_vectors(chunks: List[Dict[str, Any]]) -> str:
+    """Build the offline hashing-vector index for processed chunks.
+
+    Requires only numpy (no model download, no API key); skipped gracefully
+    when numpy is unavailable so the keyword-only path keeps working.
+    """
+    try:
+        from app.services.chunking import build_embedding_text
+        from app.services.fulltext_vector_index import FulltextChunk, write_hashing_vector_index
+    except Exception as exc:
+        return f"hashing vectors skipped: numpy unavailable ({exc.__class__.__name__})"
+
+    vector_chunks = [
+        FulltextChunk(
+            chunk_id=chunk["chunk_id"],
+            text=build_embedding_text(chunk, chunk.get("content", "")),
+            metadata={"source_id": chunk.get("source_id", "")},
+        )
+        for chunk in chunks
+    ]
+    out_path = write_hashing_vector_index(
+        vector_chunks, path="knowledge_base/vector_store/processed_hashing_vectors.npz"
+    )
+    return f"hashing vectors updated: {len(vector_chunks)} chunks -> {out_path}"
+
+
 def ingest_knowledge_base(raw_dir: str = None, output_path: str = None, build_vector: bool = False) -> Dict[str, Any]:
     chunks = build_chunks(raw_dir=raw_dir)
     out_path = _write_jsonl(chunks, output_path=output_path)
+    hashing_status = _try_hashing_vectors(chunks)
     vector_status = "vector index skipped: set build_vector=true to enable optional Chroma indexing"
     if build_vector:
         vector_status = _try_vector_index(chunks)
     return {
         "chunk_count": len(chunks),
+        "content_chunk_count": sum(1 for chunk in chunks if chunk.get("section_role") != "governance"),
         "chunks_path": str(out_path),
+        "hashing_vector_status": hashing_status,
         "vector_status": vector_status,
     }
 

@@ -430,3 +430,20 @@
   - Page 4 keeps the testing design: golden query coverage, structured mini-program fixtures, and automated test coverage.
   - Page 5 keeps calibrated query-only retrieval metrics, unsafe leakage, API experiment results, and the max-concurrency cap.
 - Updated `outputs/weekly_reports/canva_weekly_presentation_2026-05-21.md` with the final edit/view links and final page structure.
+
+## Iteration: Advisor Application Upgrade (2026-06-10)
+
+- Goal: move from one-shot structured-input reports to a post-measurement advisor application — evidence-cited Q&A plus gentle, staged proactive intake — while overhauling chunking, vectorization, and citation quality.
+- Chunking: new structure-aware `app/services/chunking.py` (sentence-safe zh/en splitting, sentence-level overlap, per-source merge of substantive sections, `section_role: governance` tagging excluded from report retrieval). Store went from 629 chunks (486 under 100 chars, mostly per-source boilerplate) to 336 chunks (206 content, median ~500 chars, zero sub-100 fragments).
+- Retrieval: shared zh-bigram tokenizer; keyword cosine fused with offline hashing vectors built at ingest; per-source caps; optional fulltext-passage merge (`retrieval.include_fulltext: auto`) with vector prefilter, skipped for sensitive requests which stay high-trust-only.
+- Citations: source-level dedup, renumber-by-first-appearance with uncited-reference pruning, page locators for fulltext passages, structured `references` payload, sentence-level citation prompting.
+- Advisor: `config/advisor_questions.yaml` staged question bank (why-shown, skippable, sensitivity-ordered, emergency-suppressed), `ConversationProfile` fact accumulation with conservative free-text extraction, field-targeted retrieval for follow-up advice, LLM/template dual path under the shared safety review; new `/api/v1/advisor/*` endpoints and a Streamlit「随访对话」tab.
+- Strict quality gate: all 16 criteria pass — 308 tests, 136 included sources, 336 chunks, calibrated match rate 1.0, precision@5 0.983, topic hit rate 1.0, unsafe leakage 0, grounding 1.0, report P95 0.784s.
+
+## Iteration: OpenAI Embedding Retrieval Backend (2026-06-10)
+
+- Goal: per user decision, use OpenAI embeddings as the primary retrieval vectors.
+- `retrieval.embedding_backend: auto` now prefers the OpenAI embedding npz for both the summary and fulltext stores, with per-query embedding cache, 5-minute API-failure backoff, dimension validation, id-coverage and mtime freshness checks (a re-ingested chunks file invalidates an older index even when chunk ids collide).
+- Offline behaviour unchanged: hashing vectors -> keyword-only degradation chain preserved; quality gate runs key-free.
+- New tests: tests/test_retriever_vector_backend.py (backend dispatch, fallback, staleness, cache, end-to-end plumbing with a mocked OpenAI index).
+- Activation: set OPENAI_EMBEDDING_API_KEY in .env, run scripts/ingest_openai_embeddings.py --scope processed_chunks (and optionally fulltext_chunks).

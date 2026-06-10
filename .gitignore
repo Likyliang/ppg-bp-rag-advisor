@@ -8,3 +8,17 @@ __pycache__/
 knowledge_base/vector_store/
 knowledge_base/sources/downloads/*
 !knowledge_base/sources/downloads/.gitkeep
+outputs/advisor_sessions/
+outputs/e5_redteam/
+knowledge_base/processed/e2_reports.jsonl
+
+# E1-E5 experiment scratch / preliminary outputs (judge-only, pending human
+# review). Commit final reviewed results separately, not these WIP artifacts.
+knowledge_base/processed/e1_qrels_pool.jsonl
+knowledge_base/processed/e1_review_sheet.jsonl
+knowledge_base/processed/e1_review_sheet.md
+knowledge_base/processed/e1_retrieval_ablation.json
+knowledge_base/processed/e3_citation_faithfulness.json
+knowledge_base/processed/e3_sentence_judgements.jsonl
+knowledge_base/processed/e5_adversarial_seeds.jsonl
+knowledge_base/processed/e5_redteam_result.json

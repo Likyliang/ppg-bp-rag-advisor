@@ -72,9 +72,10 @@ def test_enforce_section_citations_injects_when_missing():
     )
     out = reg.enforce_section_citations(body)
     # 先看结论 cites both its mapped uses: bp_category_reference(1)+cuffless(3) => [1,3]
-    assert "这次估算值偏高。 [1,3]" in out
+    # The marker sits before the sentence-ending punctuation (academic style).
+    assert "这次估算值偏高 [1,3]。" in out
     # 生活方式 -> lifestyle => [2]
-    assert "减少钠盐摄入。 [2]" in out
+    assert "减少钠盐摄入 [2]。" in out
 
 
 def test_enforce_section_citations_leaves_existing_cite():
@@ -91,3 +92,47 @@ def test_body_is_consistent():
     assert reg.body_is_consistent("结论[1]，建议[2,3]") is True
     assert reg.body_is_consistent("没有引用") is False
     assert reg.body_is_consistent("越界[9]") is False
+
+
+def test_same_source_chunks_share_one_citation_number():
+    ev = [
+        _ev(source_id="guide_001", title="同一指南", organization="机构",
+            allowed_uses=["lifestyle"]),
+        _ev(source_id="guide_002", title="同一指南", organization="机构",
+            allowed_uses=["remeasurement"]),
+        _ev(source_id="other_001", title="另一来源", organization="机构B",
+            allowed_uses=["device_advice"]),
+    ]
+    reg = build_registry(ev)
+    assert ev[0].citation_number == ev[1].citation_number == 1
+    assert ev[2].citation_number == 2
+    refs = reg.references_markdown()
+    assert len(refs) == 2  # one entry per source, never duplicated
+
+
+def test_finalize_renumbers_by_first_appearance_and_prunes_uncited():
+    ev = [
+        _ev(source_id="a", title="来源A", allowed_uses=["lifestyle"]),
+        _ev(source_id="b", title="来源B", allowed_uses=["remeasurement"]),
+        _ev(source_id="c", title="来源C", allowed_uses=["device_advice"]),
+    ]
+    reg = build_registry(ev)
+    body = "先讲设备[3]，再讲生活方式[1]。来源B没有被引用。"
+    final = reg.finalize(body)
+    # [3] appears first -> becomes [1]; [1] -> [2]; B pruned
+    assert "先讲设备[1]" in final.body
+    assert "生活方式[2]" in final.body
+    assert final.cited_count == 2
+    assert [entry.title for entry in final.entries] == ["来源C", "来源A"]
+    assert ev[1].citation_number is None  # uncited source loses its number
+
+
+def test_finalize_handles_fulltext_page_locators():
+    ev = [
+        _ev(source_id="fulltext::guide::p007::c02", title="全文来源",
+            doi="10.1/x", allowed_uses=["lifestyle"]),
+    ]
+    reg = build_registry(ev)
+    final = reg.finalize("生活方式建议[1]。")
+    assert final.cited_count == 1
+    assert "p.7" in final.entries[0].formatted

@@ -50,12 +50,11 @@ def _jsonable_metadata(item: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _embedding_text(chunk: EmbeddingChunk) -> str:
-    title = str(chunk.metadata.get("title") or "").strip()
-    topic = str(chunk.metadata.get("topic") or "").strip()
-    uses = chunk.metadata.get("allowed_uses") or []
-    uses_text = " ".join(str(item) for item in uses) if isinstance(uses, list) else str(uses)
-    prefix = " ".join(part for part in [title, topic, uses_text] if part)
-    return f"{prefix}\n{chunk.content}".strip() if prefix else chunk.content.strip()
+    # Shared composition (title/section/topic/uses prefix) keeps the remote
+    # embedding space aligned with the offline hashing index and keyword scorer.
+    from app.services.chunking import build_embedding_text
+
+    return build_embedding_text(chunk.metadata, chunk.content).strip()
 
 
 def load_embedding_chunks(
