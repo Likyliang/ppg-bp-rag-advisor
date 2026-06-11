@@ -40,5 +40,12 @@ safety:
   block_diagnosis: true
   block_medication_changes: true
 
+# Screening suggestions ("建议进一步排查"): suggest a professional work-up from
+# PPG/SCG features, never a diagnosis. Rules + thresholds live in
+# config/screening_rules.yaml; per-request opt-in via enable_screening_suggestions.
+# Definitive-diagnosis and care-avoidance language stays blocked regardless.
+screening:
+  rules_path: config/screening_rules.yaml
+
 evaluation:
   max_concurrency: 5

@@ -18,6 +18,7 @@ from app.schemas.report import (
     UiSummary,
 )
 from app.schemas.rule_result import RuleResult
+from app.schemas.screening import ScreeningResult
 from app.services.citations import build_registry, extract_citation_numbers
 from app.services.evidence_quality import bind_recommendation_evidence, evaluate_citation_quality
 from app.services.medical_copy import clean_citation_fragments, sanitize_medical_copy
@@ -143,6 +144,59 @@ def _safety_alert(rule_result: RuleResult) -> SafetyAlert:
         emergency=False,
         message=NO_EMERGENCY_SYMPTOM_TEXT,
     )
+
+
+def _confidence_label(confidence: str) -> str:
+    return {"low": "较低", "moderate": "中等"}.get(confidence, confidence)
+
+
+def _screening_section(report: HealthReport) -> str:
+    """Build the verbatim "建议进一步排查" markdown section (empty when none produced).
+
+    Citation-free and rule-based: the text comes straight from the validated
+    screening engine and is injected *after* any LLM stage so it is never
+    rewritten. Each suggestion is hedged and pairs an observation with a
+    referral; the section is framed as screening prompts needing a doctor's
+    confirmation, never as diagnoses.
+    """
+    screening = report.screening
+    if screening is None or not screening.produced:
+        return ""
+    config = load_yaml_config("config/screening_rules.yaml")
+    title = config.get("section_title", "建议进一步排查（需医生确认）")
+    preamble = config.get("section_preamble", "")
+    lines: List[str] = [f"## {title}"]
+    if preamble:
+        lines.append(preamble)
+    for suggestion in screening.suggestions:
+        lines.append(f"### {suggestion.label}（提示强度：{_confidence_label(suggestion.confidence)}）")
+        lines.append(f"- {suggestion.rationale}")
+        lines.append(f"- {suggestion.screening_action}")
+    lines.append("- 以上均为排查提示，不是诊断结论；是否需要检查请遵医嘱。")
+    return "\n".join(lines).strip()
+
+
+def inject_screening_markdown(report: HealthReport) -> None:
+    """Insert the screening section before the reference/disclaimer tail.
+
+    Idempotent (skips if already present) so it can be called on any final
+    report regardless of generation mode. Runs after the LLM stage so the
+    validated suggestions are shown verbatim.
+    """
+    section = _screening_section(report)
+    if not section:
+        return
+    md = report.markdown_report or ""
+    title_line = section.splitlines()[0]
+    if title_line in md:
+        return
+    tail_markers = ["\n## 参考文献", "\n## 参考依据说明", "\n## 引用质量", "\n## 免责声明"]
+    positions = [md.find(marker) for marker in tail_markers if md.find(marker) >= 0]
+    if positions:
+        at = min(positions)
+        report.markdown_report = md[:at].rstrip() + "\n\n" + section + "\n" + md[at:]
+    else:
+        report.markdown_report = md.rstrip() + "\n\n" + section
 
 
 def _active_symptom_labels(payload: MeasurementPayload) -> List[str]:
@@ -850,6 +904,7 @@ def generate_template_report(
     warnings: List[str] = None,
     citation_quality: CitationQuality = None,
     uses_rag: bool = True,
+    screening: Optional[ScreeningResult] = None,
 ) -> HealthReport:
     measurement = payload.measurement
     recommendations = _recommendations(rule_result)
@@ -899,6 +954,7 @@ def generate_template_report(
         warnings=list(dict.fromkeys(list(warnings or []) + citation_quality.issues + rule_result.warnings)),
     )
     report.ui_summary = _ui_summary(report, rule_result)
+    report.screening = screening
     report.markdown_report = _markdown(report, rule_result, payload, uses_rag=uses_rag)
     return report
 
@@ -1033,10 +1089,40 @@ def generate_report_draft(
     mode: str = None,
     warnings: List[str] = None,
     citation_quality: CitationQuality = None,
+    screening: Optional[ScreeningResult] = None,
+) -> HealthReport:
+    """Generate a report draft, then inject the validated screening section.
+
+    Screening is injected *after* the (optional) LLM stage so its hedged,
+    referral-bearing text is shown verbatim and never rewritten by the LLM.
+    """
+    report = _generate_report_draft_impl(
+        payload=payload,
+        rule_result=rule_result,
+        evidence=evidence,
+        mode=mode,
+        warnings=warnings,
+        citation_quality=citation_quality,
+        screening=screening,
+    )
+    inject_screening_markdown(report)
+    return report
+
+
+def _generate_report_draft_impl(
+    payload: MeasurementPayload,
+    rule_result: RuleResult,
+    evidence: List[Evidence],
+    mode: str = None,
+    warnings: List[str] = None,
+    citation_quality: CitationQuality = None,
+    screening: Optional[ScreeningResult] = None,
 ) -> HealthReport:
     requested_mode = mode or os.getenv("REPORT_MODE", "template_only")
     provider = os.getenv("LLM_PROVIDER", "mock").lower()
-    report = generate_template_report(payload, rule_result, evidence, warnings=warnings, citation_quality=citation_quality)
+    report = generate_template_report(
+        payload, rule_result, evidence, warnings=warnings, citation_quality=citation_quality, screening=screening
+    )
     if requested_mode == "llm_only":
         no_rag_quality = CitationQuality(
             passed=False,
@@ -1052,6 +1138,7 @@ def generate_report_draft(
             warnings=list(warnings or []) + ["非 RAG 对照组：未使用文档库检索证据。"],
             citation_quality=no_rag_quality,
             uses_rag=False,
+            screening=screening,
         )
         if provider == "deepseek":
             try:

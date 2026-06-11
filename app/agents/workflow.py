@@ -9,10 +9,15 @@ from app.schemas.report import CitationQuality, HealthReport
 from app.schemas.rule_result import RuleResult
 from app.services.citations import extract_citation_numbers
 from app.services.evidence_quality import evaluate_citation_quality
-from app.services.generator import generate_report_draft, generate_template_report
+from app.services.generator import (
+    generate_report_draft,
+    generate_template_report,
+    inject_screening_markdown,
+)
 from app.services.retriever import retrieve_knowledge
 from app.services.rule_engine import run_rule_engine
-from app.services.safety import apply_safety_edits, review_safety
+from app.services.safety import apply_safety_edits, review_safety, review_screening_suggestions
+from app.services.screening import aggregate_retrieval, run_screening
 from app.services.validator import parse_payload
 
 
@@ -67,9 +72,18 @@ def generate_report(raw_payload: Mapping, report_mode: Optional[str] = None) -> 
         raise
 
     rule_result = run_rule_engine(payload)
+
+    # Screening suggestions ("建议进一步排查"): opt-in, hedged, referral-bearing,
+    # validated by the safety layer. Their retrieval intents are folded into the
+    # evidence query so any cited screening line is backed by governed sources.
+    screening = review_screening_suggestions(run_screening(payload, rule_result))
+    screening_intents, screening_uses = aggregate_retrieval(screening)
+    retrieval_intents = list(dict.fromkeys(rule_result.retrieval_intents + screening_intents))
+    retrieval_allowed_uses = list(dict.fromkeys(rule_result.retrieval_allowed_uses + screening_uses))
+
     retrieval_result = retrieve_knowledge(
-        rule_result.retrieval_intents,
-        allowed_uses=rule_result.retrieval_allowed_uses,
+        retrieval_intents,
+        allowed_uses=retrieval_allowed_uses,
         min_quality_score=18,
     )
     citation_quality = evaluate_citation_quality(rule_result, retrieval_result.evidence)
@@ -80,6 +94,7 @@ def generate_report(raw_payload: Mapping, report_mode: Optional[str] = None) -> 
         mode=report_mode,
         warnings=retrieval_result.warnings + citation_quality.issues,
         citation_quality=citation_quality,
+        screening=screening,
     )
     safety_review = review_safety(draft, rule_result)
     if not safety_review.passed and draft.generation_mode.startswith(("llm_rag", "llm_only")):
@@ -91,7 +106,9 @@ def generate_report(raw_payload: Mapping, report_mode: Optional[str] = None) -> 
                 warnings=["非 RAG 对照组 LLM 输出未通过安全审查，已回退到无证据保守模板。"],
                 citation_quality=_no_rag_citation_quality(),
                 uses_rag=False,
+                screening=screening,
             )
+            inject_screening_markdown(fallback)
             fallback.generation_mode = "llm_only_safety_fallback_template"
         else:
             fallback = generate_report_draft(
@@ -103,6 +120,7 @@ def generate_report(raw_payload: Mapping, report_mode: Optional[str] = None) -> 
                 + citation_quality.issues
                 + ["LLM 输出未通过安全审查，已回退到 template_only。"],
                 citation_quality=citation_quality,
+                screening=screening,
             )
             fallback.generation_mode = "llm_rag_safety_fallback_template"
         safety_review = review_safety(fallback, rule_result)
@@ -124,6 +142,7 @@ def generate_report(raw_payload: Mapping, report_mode: Optional[str] = None) -> 
                 + citation_quality.issues
                 + [f"LLM 输出引用一致性校验未通过，已回退到 template_only：{issue}"],
                 citation_quality=citation_quality,
+                screening=screening,
             )
             fallback.generation_mode = "llm_rag_citation_fallback_template"
             safety_review = review_safety(fallback, rule_result)

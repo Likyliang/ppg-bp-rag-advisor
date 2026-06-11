@@ -5,6 +5,7 @@ from typing import Any, Iterable, List
 
 from app.schemas.report import HealthReport, SafetyReview
 from app.schemas.rule_result import RuleResult
+from app.schemas.screening import ScreeningResult, ScreeningSuggestion
 from app.services.config_loader import load_yaml_config
 
 
@@ -65,6 +66,15 @@ def review_safety(report: Any, rule_result: RuleResult = None) -> SafetyReview:
         required_edits.append("删除确诊、无需复测或无需就医等确定性表述。")
         severity = "high"
 
+    # Stays blocked even when the screening-suggestion feature is on: a screening
+    # suggestion must hedge ("可能") and refer to a doctor — never assert the user
+    # definitely has a condition or tell them to skip care.
+    overreach_hits = _match_patterns(text, terms.get("screening_overreach_patterns", []))
+    if overreach_hits:
+        issues.append(f"排查建议越界为确定性诊断或劝阻就医：{', '.join(overreach_hits)}")
+        required_edits.append("排查建议只能提示“可能相关、建议就医排查”，不得断言确诊或劝阻就医。")
+        severity = "high"
+
     medication_hits = _match_patterns(text, terms.get("medication_change_patterns", []))
     if medication_hits:
         issues.append(f"存在用药调整风险表述：{', '.join(medication_hits)}")
@@ -116,6 +126,54 @@ def review_safety(report: Any, rule_result: RuleResult = None) -> SafetyReview:
         required_edits=required_edits,
         severity=severity,
     )
+
+
+def _suggestion_issues(suggestion: ScreeningSuggestion, terms: dict) -> List[str]:
+    """Reasons a single screening suggestion is unsafe to show (empty == OK)."""
+    text = f"{suggestion.rationale}\n{suggestion.screening_action}"
+    issues: List[str] = []
+
+    if suggestion.confidence not in {"low", "moderate"}:
+        issues.append(f"置信度越界（{suggestion.confidence}），排查建议最高只能到 moderate。")
+
+    hedge_cues = terms.get("screening_required_hedge_cues", [])
+    if hedge_cues and not any(cue in text for cue in hedge_cues):
+        issues.append("缺少不确定性措辞（如“可能/提示”），排查建议不得写成确定结论。")
+
+    referral_cues = terms.get("screening_required_referral_cues", [])
+    if referral_cues and not any(cue in text for cue in referral_cues):
+        issues.append("缺少就医/检查指引，排查建议必须落到“建议就医排查”。")
+
+    blocked = (
+        _match_patterns(text, terms.get("screening_overreach_patterns", []))
+        + _match_patterns(text, terms.get("diagnostic_patterns", []))
+        + _match_patterns(text, terms.get("medication_change_patterns", []))
+    )
+    if blocked:
+        issues.append(f"包含被禁止的确定性/用药/劝阻就医表述：{', '.join(blocked)}")
+    return issues
+
+
+def review_screening_suggestions(result: ScreeningResult) -> ScreeningResult:
+    """Drop any malformed suggestion; keep only well-formed, hedged, referral-bearing ones.
+
+    This is the guardrail for the *new* capability: rather than removing the
+    diagnosis blocks, it positively enforces that every screening suggestion
+    hedges, points to professional care, and never asserts a diagnosis.
+    """
+    terms = load_yaml_config("config/safety_terms.yaml")
+    kept: List[ScreeningSuggestion] = []
+    notes = list(result.notes)
+    for suggestion in result.suggestions:
+        issues = _suggestion_issues(suggestion, terms)
+        if issues:
+            notes.append(f"已拦截不合规排查建议（{suggestion.condition_id}）：{'；'.join(issues)}")
+            continue
+        kept.append(suggestion)
+    result.suggestions = kept
+    result.produced = bool(kept)
+    result.notes = notes
+    return result
 
 
 def apply_safety_edits(report: HealthReport, safety_review: SafetyReview) -> HealthReport:

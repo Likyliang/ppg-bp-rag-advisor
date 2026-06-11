@@ -35,7 +35,37 @@ SYMPTOM_FIELDS = {
     "dizziness",
 }
 
-ROOT_FIELDS = {"locale", "guideline_region", "user_question"}
+RHYTHM_FIELDS = {
+    "available",
+    "pulse_rhythm",
+    "ibi_cv",
+    "ectopic_beat_ratio",
+    "pulse_pause_detected",
+    "hrv_sdnn_ms",
+    "hrv_rmssd_ms",
+    "valid_beat_count",
+}
+
+CARDIAC_VIBRATION_FIELDS = {
+    "available",
+    "signal_quality_score",
+    "signal_quality_label",
+    "motion_artifact_score",
+    "sensor_site",
+    "beat_count",
+    "pep_ms",
+    "lvet_ms",
+    "ao_ac_interval_ms",
+    "s1_s2_amplitude_ratio",
+    "ptt_ms",
+}
+
+ROOT_FIELDS = {
+    "locale",
+    "guideline_region",
+    "user_question",
+    "enable_screening_suggestions",
+}
 
 
 def _clean_empty(value: Any) -> Any:
@@ -66,6 +96,28 @@ def _canonicalize_measurement(source: Mapping[str, Any]) -> Dict[str, Any]:
 
 def _copy_known_fields(source: Mapping[str, Any], fields: set) -> Dict[str, Any]:
     return {key: _clean_empty(value) for key, value in source.items() if key in fields}
+
+
+def _collect_nested(
+    raw_payload: Mapping[str, Any],
+    nested_keys: tuple,
+    known_fields: set,
+    flat_allowlist: set,
+) -> Dict[str, Any]:
+    """Merge a nested feature object with unambiguous flat top-level keys.
+
+    Nested values win; flat keys only fill gaps and are restricted to
+    ``flat_allowlist`` so they cannot be confused with PPG measurement fields.
+    """
+    collected: Dict[str, Any] = {}
+    for nested_key in nested_keys:
+        source = raw_payload.get(nested_key)
+        if isinstance(source, Mapping):
+            collected.update(_copy_known_fields(source, known_fields))
+    for key, value in raw_payload.items():
+        if key in flat_allowlist and key not in collected:
+            collected[key] = _clean_empty(value)
+    return collected
 
 
 def normalize_payload(raw_payload: Mapping[str, Any]) -> Dict[str, Any]:
@@ -114,6 +166,35 @@ def normalize_payload(raw_payload: Mapping[str, Any]) -> Dict[str, Any]:
     )
     if symptoms:
         normalized["symptoms"] = symptoms
+
+    # Rhythm features: nested ``rhythm`` object plus unambiguous flat keys.
+    rhythm = _collect_nested(
+        raw_payload,
+        nested_keys=("rhythm",),
+        known_fields=RHYTHM_FIELDS,
+        flat_allowlist=RHYTHM_FIELDS - {"available"},
+    )
+    if rhythm:
+        normalized["rhythm"] = rhythm
+
+    # Cardiac-vibration / SCG features: nested ``cardiac_vibration``/``scg``
+    # object plus flat keys that do not collide with PPG measurement fields.
+    cardiac_vibration = _collect_nested(
+        raw_payload,
+        nested_keys=("cardiac_vibration", "scg"),
+        known_fields=CARDIAC_VIBRATION_FIELDS,
+        flat_allowlist={
+            "pep_ms",
+            "lvet_ms",
+            "ao_ac_interval_ms",
+            "s1_s2_amplitude_ratio",
+            "ptt_ms",
+            "sensor_site",
+            "beat_count",
+        },
+    )
+    if cardiac_vibration:
+        normalized["cardiac_vibration"] = cardiac_vibration
 
     for field in ROOT_FIELDS:
         if field in raw_payload:

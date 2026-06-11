@@ -136,12 +136,95 @@ class PPGMeasurement(BaseModel):
         return aliases.get(value, value)
 
 
+class RhythmFeatures(BaseModel):
+    """Beat-to-beat rhythm / variability features derived from the PPG pulse train.
+
+    These describe *rhythm regularity*, not blood pressure. They are the inputs
+    that let the screening layer suggest (never diagnose) an arrhythmia work-up.
+    Everything is optional and defaults to unknown so older payloads stay valid.
+    """
+
+    model_config = ConfigDict(extra="ignore")
+
+    available: bool = False
+    pulse_rhythm: Literal["regular", "irregular", "unknown"] = "unknown"
+    # Coefficient of variation of inter-beat intervals (SD/mean). Higher = less regular.
+    ibi_cv: Optional[float] = Field(default=None, ge=0, le=5)
+    # Fraction of beats flagged as ectopic / premature (suspected PAC/PVC).
+    ectopic_beat_ratio: Optional[float] = Field(default=None, ge=0, le=1)
+    pulse_pause_detected: Optional[bool] = None
+    # Heart-rate-variability time-domain metrics (ms), if the upstream computes them.
+    hrv_sdnn_ms: Optional[float] = Field(default=None, ge=0, le=2000)
+    hrv_rmssd_ms: Optional[float] = Field(default=None, ge=0, le=2000)
+    valid_beat_count: Optional[int] = Field(default=None, ge=0, le=100000)
+
+    @field_validator("pulse_rhythm", mode="before")
+    @classmethod
+    def normalize_pulse_rhythm(cls, value):
+        if value is None or value == "":
+            return "unknown"
+        value = str(value).strip().lower()
+        aliases = {
+            "规则": "regular",
+            "规整": "regular",
+            "齐": "regular",
+            "整齐": "regular",
+            "normal": "regular",
+            "不规则": "irregular",
+            "不齐": "irregular",
+            "紊乱": "irregular",
+            "irregularly_irregular": "irregular",
+        }
+        return aliases.get(value, value)
+
+
+class CardiacVibrationFeatures(BaseModel):
+    """Seismocardiography / 心振 (chest-wall cardiac-vibration) features.
+
+    SCG captures the mechanical activity of the heart from chest accelerometer
+    signals. These features describe cardiac timing/quality, **not** a diagnosis.
+    The screening layer uses them only to suggest a professional work-up, with
+    research-grade timing intervals capped at low confidence. Optional by design.
+    """
+
+    model_config = ConfigDict(extra="ignore")
+
+    available: bool = False
+    signal_quality_score: Optional[float] = Field(default=None, ge=0, le=1)
+    signal_quality_label: Literal["good", "fair", "poor", "unknown"] = "unknown"
+    motion_artifact_score: Optional[float] = Field(default=None, ge=0, le=1)
+    sensor_site: Literal["sternum", "chest", "wrist", "other", "unknown"] = "unknown"
+    beat_count: Optional[int] = Field(default=None, ge=0, le=100000)
+    # Cardiac timing intervals (ms). Research-grade; never used for diagnosis.
+    pep_ms: Optional[float] = Field(default=None, ge=0, le=600)  # pre-ejection period
+    lvet_ms: Optional[float] = Field(default=None, ge=0, le=900)  # LV ejection time
+    ao_ac_interval_ms: Optional[float] = Field(default=None, ge=0, le=1200)
+    # Ratio of first to second heart-sound vibration amplitude.
+    s1_s2_amplitude_ratio: Optional[float] = Field(default=None, ge=0, le=20)
+    # Pulse-transit / pulse-arrival time derived from SCG↔PPG fusion (ms).
+    ptt_ms: Optional[float] = Field(default=None, ge=0, le=1000)
+
+    @field_validator("signal_quality_label", mode="before")
+    @classmethod
+    def normalize_scg_quality_label(cls, value):
+        if value is None or value == "":
+            return "unknown"
+        value = str(value).strip().lower()
+        aliases = {"高": "good", "好": "good", "中": "fair", "一般": "fair", "低": "poor", "差": "poor"}
+        return aliases.get(value, value)
+
+
 class MeasurementPayload(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
     measurement: PPGMeasurement
+    rhythm: RhythmFeatures = Field(default_factory=RhythmFeatures)
+    cardiac_vibration: CardiacVibrationFeatures = Field(default_factory=CardiacVibrationFeatures)
     user_profile: UserProfile = Field(default_factory=UserProfile)
     symptoms: Symptoms = Field(default_factory=Symptoms)
     locale: Literal["zh-CN", "en-US", "bilingual"] = "zh-CN"
     guideline_region: Literal["CN", "AHA", "auto"] = "CN"
     user_question: Optional[str] = None
+    # Opt-in per request: emit "建议进一步排查" screening suggestions (never a
+    # diagnosis). Defaults to False so existing reports are byte-for-byte unchanged.
+    enable_screening_suggestions: bool = False

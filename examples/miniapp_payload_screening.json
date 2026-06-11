@@ -1,0 +1,51 @@
+{
+  "module": "CHS-BloodPressure",
+  "SBP": 142,
+  "DBP": 91,
+  "HR": 116,
+  "quality_score": 0.86,
+  "quality": "good",
+  "conf": 0.8,
+  "duration": 30,
+  "sensor_source": "camera_finger",
+  "model_version": "miniapp-bp-v1.0-demo",
+  "age": 54,
+  "sex": "male",
+  "diabetes": false,
+  "kidney_disease": false,
+  "cvd_history": false,
+  "pregnancy": false,
+  "antihypertensive_medication": false,
+  "enable_screening_suggestions": true,
+  "rhythm": {
+    "available": true,
+    "pulse_rhythm": "irregular",
+    "ibi_cv": 0.22,
+    "ectopic_beat_ratio": 0.08,
+    "pulse_pause_detected": false,
+    "hrv_sdnn_ms": 95,
+    "valid_beat_count": 40
+  },
+  "cardiac_vibration": {
+    "available": true,
+    "signal_quality_label": "good",
+    "signal_quality_score": 0.82,
+    "sensor_site": "sternum",
+    "beat_count": 38,
+    "pep_ms": 150,
+    "lvet_ms": 280,
+    "ptt_ms": 170,
+    "s1_s2_amplitude_ratio": 1.4
+  },
+  "symptoms": {
+    "chest_pain": false,
+    "shortness_of_breath": false,
+    "numbness_or_weakness": false,
+    "vision_change": false,
+    "speech_difficulty": false,
+    "severe_headache": false
+  },
+  "locale": "zh-CN",
+  "guideline_region": "CN",
+  "user_question": "这次脉搏好像不太规律，需要注意什么？"
+}

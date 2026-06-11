@@ -1,0 +1,134 @@
+# Screening-suggestion ("建议进一步排查") configuration.
+#
+# These rules turn PPG/SCG signal features into *suggestions to get
+# professionally screened*, NOT diagnoses. Every suggestion is hedged
+# ("可能 / 倾向于"), names a concrete screening pathway ("到…做…检查"), and is
+# capped at low/moderate confidence. The safety layer (config/safety_terms.yaml
+# screening_suggestion.*) validates that each emitted suggestion stays within
+# these bounds. Definitive-diagnosis and care-avoidance language stays blocked.
+
+# Master switch. Even when on, suggestions are only produced when the request
+# sets enable_screening_suggestions=True. Default-off keeps reports unchanged.
+enabled: true
+
+# Confidence never exceeds "moderate" — a consumer PPG/SCG signal cannot support
+# a high-confidence cardiac claim. Order is informational (low < moderate).
+confidence_levels:
+  - low
+  - moderate
+
+# Shown once at the top of the screening section.
+section_title: "建议进一步排查（需医生确认）"
+section_preamble: >-
+  以下是根据本次信号特征给出的“值得到医院进一步排查”的提示，不是诊断结论，也不代表你一定有相关问题。
+  是否需要检查、检查什么，请以专业医生的判断为准。
+
+# A screening suggestion is only valid if its text contains BOTH a hedge cue and
+# a referral cue (enforced in safety.py). Keep referral text aligned with these.
+required_hedge_cues:
+  - 可能
+  - 倾向
+  - 提示
+  - 建议进一步
+required_referral_cues:
+  - 就医
+  - 门诊
+  - 心内科
+  - 医院
+  - 心电图
+  - 检查
+  - 复核
+
+# Minimum number of analysable beats before any rhythm-based suggestion fires.
+min_valid_beats: 20
+
+conditions:
+  - id: arrhythmia_screening
+    label: 心律不齐（含房颤等可能）
+    confidence: moderate
+    # Fires when the pulse train looks irregular by any of these signals.
+    triggers:
+      pulse_rhythm_irregular: true
+      ibi_cv_gte: 0.15
+      ectopic_beat_ratio_gte: 0.05
+      pulse_pause_detected: true
+    requires:
+      rhythm_available: true
+      ppg_signal_usable: true   # suppress when PPG quality is too poor to trust
+    rationale_template: 本次脉搏节律出现不规则迹象（{evidence}），这类信号可能与心律不齐（包括房颤等）有关，但单次测量不能确定。
+    screening_action: 建议到心内科或全科门诊做一次心电图（ECG）；如医生认为必要，可进一步做动态心电图（Holter）排查心律失常。
+    retrieval_intents:
+      - 心律不齐 房颤 PPG 脉搏 不规则 心电图 筛查
+      - irregular pulse atrial fibrillation PPG screening ECG
+    allowed_uses:
+      - arrhythmia_screening
+      - research_background
+
+  - id: tachycardia_eval
+    label: 静息心率偏快
+    confidence: low
+    triggers:
+      heart_rate_gte: 110
+    requires:
+      ppg_signal_usable: true
+    rationale_template: 本次估算静息心率偏快（约 {heart_rate} 次/分），可能与紧张、咖啡因、发热或心血管因素等多种原因有关。
+    screening_action: 如果安静状态下多次复核心率仍持续偏快，或伴随心慌、胸闷等不适，建议到门诊就医评估。
+    retrieval_intents:
+      - 静息 心率 偏快 心动过速 评估 就医
+      - resting tachycardia evaluation
+    allowed_uses:
+      - research_background
+
+  - id: bradycardia_eval
+    label: 静息心率偏慢
+    confidence: low
+    triggers:
+      heart_rate_lte: 45
+    requires:
+      ppg_signal_usable: true
+    rationale_template: 本次估算静息心率偏慢（约 {heart_rate} 次/分）；运动人群可能正常，但也可能与其他因素有关。
+    screening_action: 如果安静状态下多次复核心率仍持续偏慢，或伴随头晕、乏力、黑矇等不适，建议到门诊就医评估。
+    retrieval_intents:
+      - 静息 心率 偏慢 心动过缓 评估 就医
+      - resting bradycardia evaluation
+    allowed_uses:
+      - research_background
+
+  - id: hypertension_workup
+    label: 血压持续偏高的规范评估
+    confidence: moderate
+    triggers:
+      bp_category_in:
+        - stage_1_reference_range
+        - stage_2_reference_range
+        - severe_range
+    requires:
+      ppg_signal_usable: true
+    rationale_template: 本次估算血压处于偏高参考范围，单次估算不能确定，但提示值得规范复核与评估。
+    screening_action: 建议先用经过验证的上臂式血压计规范复核并连续记录；如多次仍偏高，带记录到社区/门诊就医评估是否存在高血压。
+    retrieval_intents:
+      - 高血压 规范测量 上臂式 血压计 复核 就医评估
+      - hypertension confirmation standardized measurement clinic evaluation
+    allowed_uses:
+      - bp_category_reference
+      - home_bp_monitoring
+      - remeasurement
+
+  - id: cardiac_timing_research
+    label: 心脏机械时相（研究性指标）
+    confidence: low
+    # SCG/心振 timing intervals are research-grade. Only mention when SCG signal
+    # is good, and always cap at low confidence with a strongly hedged note.
+    triggers:
+      pep_ms_gte: 140
+      ptt_ms_lte: 180
+    requires:
+      scg_available: true
+      scg_signal_good: true
+    rationale_template: 本次心振（SCG）时相指标（{evidence}）可能偏离常见范围；这类指标目前主要用于研究，对个体的意义还不能确定。
+    screening_action: 这只是研究性观察，不能作为任何结论；如你本身关注心血管健康，可在常规体检或门诊时和医生讨论。
+    retrieval_intents:
+      - 心振 SCG 心脏机械时相 PEP PTT 研究 局限
+      - seismocardiography cardiac timing intervals research limitations
+    allowed_uses:
+      - research_background
