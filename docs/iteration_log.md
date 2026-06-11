@@ -447,3 +447,14 @@
 - Offline behaviour unchanged: hashing vectors -> keyword-only degradation chain preserved; quality gate runs key-free.
 - New tests: tests/test_retriever_vector_backend.py (backend dispatch, fallback, staleness, cache, end-to-end plumbing with a mocked OpenAI index).
 - Activation: set OPENAI_EMBEDDING_API_KEY in .env, run scripts/ingest_openai_embeddings.py --scope processed_chunks (and optionally fulltext_chunks).
+
+## Iteration: Chapter-6 Application-Layer Experiments (E1–E5) (2026-06-11)
+
+- Goal: run the no-human-needed parts of the Chapter-6 application-layer experiment plan to completion, vigilantly, with version management — under a gentle/resumable rate-limited harness protecting a small third-party GPT-5.5 judge endpoint.
+- E1 retrieval ablation (pooled-qrels, GPT-5.5 graded relevance, 947 pairs): hybrid > keyword (graded nDCG@5 +0.0194, Holm p=0.0155); OpenAI ≈ offline-hashing embedding (n.s.); fulltext/dedup raise source diversity not top-5 ranking; self-eval overstatement ~0.8pp. PRELIMINARY (judge lenient ~6.3% grade-0; human review sheet of 350 pairs prepared).
+- E2 generation ablation (real DeepSeek S1–S4, replacing the hardcoded strawman): RAG grounds 100% of advice in governed evidence with full use-coverage and high-trust sensitive sourcing; real LLM-only grounds 0% / sensitive 0.48; LLM-only safety-fallback 26% vs RAG 10%.
+- E3 citation faithfulness (GPT-5.5 sentence judge, 750 cited sentences): recall ~0.95 but strict semantic support only ~0.19 / lenient ~0.52; S2(enforced) raises citation count not faithfulness; verified NOT a snippet-contamination artifact (clean vs contaminated identical). PRELIMINARY pending human calibration.
+- E5 safety red-team (36 adversarial seeds × 3 personas × on/off, rule + GPT-5.5 double-judge): prompt-level constraints already yield 0 judge-confirmed violations even with the rule review OFF; the regex rule has 30% false positives (100% on medication) on negated medication advice; benign over-block 0/12. External AHA emergency gold (not system yaml); OFF arm isolated.
+- 8 result-invalidating bugs caught and fixed (E1×5, E2×1, E3×1, E5×1); the catch chain (esp. pooling coverage bias and rule-vs-judge separation) is methodology-section material.
+- Final offline quality gate: 16/16 pass — 360 tests, 136 sources, 336 chunks, match 1.0, precision@5 0.983, grounding 1.0, P95 0.91s.
+- Version management: 6 commits (app+exp framework, KB rechunk, E1 fixes+safety, E3/E5 harness, gate artifacts, changelog); preliminary judge-dependent artifacts gitignored, numbers preserved in thesis paper-prep/110–113.
