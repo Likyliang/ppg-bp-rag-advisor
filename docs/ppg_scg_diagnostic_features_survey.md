@@ -11,6 +11,38 @@
 
 ---
 
+## 实现状态（2026-06-12）
+
+已从“调研”落地为可运行产品：
+
+- **知识库**：7 篇 SCG/心振诊断性来源已入治理 KB（`research_background`），见
+  [source_catalog_extra.yaml](../knowledge_base/sources/source_catalog_extra.yaml) 与
+  `knowledge_base/raw/expanded/research_context/`。质量门禁不变（precision@5≥0.95、
+  每 topic≥3 源、无 unsafe leakage）。
+- **排查引擎条件**：`arrhythmia_screening`（PPG 节律 + Poincaré + SCG 逐拍幅值）、
+  `cardiac_timing_research`（PEP/PTT）、`valvular_screening`（主动脉瓣狭窄，置信度 low）、
+  `tachycardia/bradycardia_eval`、`hypertension_workup`。
+- **精确引用**：每个 SCG 条件经 `cite_sources` 引用其确切支撑来源（心律不齐→
+  机械心动图房颤；机械时相→Taebi/Shandhi；瓣膜→Yang 主动脉瓣狭窄），不按
+  allowed_use 误引无关文献；workflow 增专门的排查证据检索保证来源可被引用。
+- **网页 Demo**：Streamlit 侧栏可输入心振/节律特征并开启排查建议，报告正文 +
+  结构化表格展示（AppTest 验证无异常）。
+
+### 本轮新增 SCG 病症文献要点（已入库）
+
+| 病症 | 关键 SCG 特征 / 发现 | 来源 |
+| --- | --- | --- |
+| 主动脉瓣狭窄（瓣膜） | AO 开放延迟；心动机械形态 + HRV，研究数据集识别率高（报 95–100%） | Yang 2021 (Sci Rep) |
+| 房颤 | 手机机械心动图(SCG+GCG)多类分类，逐拍幅值变异；可检“静默”阵发性 AF | Mehrang 2018 (Sci Rep) |
+| 心衰（监测） | 可穿戴 SCG+ML 区分代偿/失代偿；估计 PCWP/肺动脉压 | Inan 2018；Shandhi 2022 |
+| 失血/低血容量 | SCG+PPG+ECG 多模态评估血容量减少（急救/创伤场景，非消费级） | Hersek 2020 (Sci Adv) |
+| 相机/视频心振 | 基于计算机视觉的非接触 SCG，与摄像头路线互补 | Zhang 2023 (Sci Rep) |
+
+> 仍为**排查建议（research_background）**，不是诊断；瓣膜/心衰/失血等单次结论
+> 由医生与确诊性检查（超声心动图、心电图、临床评估）决定。
+
+---
+
 ## 1. PPG 特征族（taxonomy）
 
 ### 1.1 时域形态特征（single pulse morphology）
@@ -203,3 +235,9 @@ SCG / GCG 房颤（手机机械心动图）：
 - [Multiclass cardiovascular condition detection using smartphone mechanocardiography (Sci Rep 2018)](https://www.nature.com/articles/s41598-018-27683-9)
 - [Detection of atrial fibrillation with seismocardiography (PubMed 28269246)](https://pubmed.ncbi.nlm.nih.gov/28269246/)
 - [AF detection via accelerometer and gyroscope of a smartphone (PubMed 28391210)](https://pubmed.ncbi.nlm.nih.gov/28391210/)
+
+SCG 瓣膜 / 失血 / 非接触（本轮新增、已入库）：
+- [Efficient detection of aortic stenosis using cardiomechanical signals + HRV (Sci Rep 2021)](https://pmc.ncbi.nlm.nih.gov/articles/PMC8664843/)
+- [Severe aortic stenosis detection using seismocardiography (PMC12815048)](https://pmc.ncbi.nlm.nih.gov/articles/PMC12815048/)
+- [Enabling assessment of trauma-induced hemorrhage via smart wearables (Sci Adv 2020)](https://pmc.ncbi.nlm.nih.gov/articles/PMC7375804/)
+- [Non-contact heart vibration via computer-vision seismocardiography (Sci Rep 2023)](https://www.nature.com/articles/s41598-023-38607-7)

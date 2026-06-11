@@ -31,6 +31,18 @@
 （3）置信度被硬上限到 `moderate`。任何不达标的建议在 `review_screening_suggestions`
 中被丢弃，不会进入用户报告。急症情境下排查建议整段抑制，120/急诊提示置顶不变。
 
+## 进展（2026-06-12）
+
+- Tier-1 已落地：`RhythmFeatures` 增 Poincaré 描述符并入 `arrhythmia_screening`；
+  `PPGMorphologyFeatures` / `PPGDerivedFeatures` 骨架就绪（待 Tier-2 消费）。
+- Tier-2（SCG）已落地：新增 `valvular_screening`（主动脉瓣狭窄，置信度 low）；
+  `CardiacVibrationFeatures` 增 `beat_amplitude_cv` 并入 `arrhythmia_screening`。
+- 知识库：7 篇 SCG 诊断性来源入库（research_background），见
+  [ppg_scg_diagnostic_features_survey.md](ppg_scg_diagnostic_features_survey.md)。
+- 引用：`cite_sources` 让每条排查建议引用其确切支撑来源；workflow 增专门排查证据检索。
+- Demo：Streamlit 可输入心振/节律特征并展示排查建议（结构化表格）。
+- 待办：阈值用标注 ECG/超声校准；OSA/血管老化（Tier-2 PPG）待夜间/导数数据。
+
 ## 数据契约（新增结构化输入）
 
 向后兼容：所有字段可选，`extra="ignore"`，旧 payload 不受影响。
