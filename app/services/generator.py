@@ -150,45 +150,73 @@ def _confidence_label(confidence: str) -> str:
     return {"low": "较低", "moderate": "中等"}.get(confidence, confidence)
 
 
-def _screening_section(report: HealthReport) -> str:
-    """Build the verbatim "建议进一步排查" markdown section (empty when none produced).
+def _screening_title() -> str:
+    config = load_yaml_config("config/screening_rules.yaml")
+    return config.get("section_title", "建议进一步排查（需医生确认）")
 
-    Citation-free and rule-based: the text comes straight from the validated
-    screening engine and is injected *after* any LLM stage so it is never
-    rewritten. Each suggestion is hedged and pairs an observation with a
-    referral; the section is framed as screening prompts needing a doctor's
-    confirmation, never as diagnoses.
+
+def _screening_block_lines(report: HealthReport, registry=None) -> List[str]:
+    """Build the "建议进一步排查" section lines (empty when none produced).
+
+    Rule-based and hedged: text comes straight from the validated screening
+    engine. When a citation ``registry`` is supplied, the rationale line carries
+    an inline ``[n]`` for the suggestion's allowed_uses (so the feature→condition
+    association is backed by governed research-background evidence). The action
+    line stays uncited — the referral is the system's own safe guidance, not a
+    claim attributed to a source.
     """
     screening = report.screening
     if screening is None or not screening.produced:
-        return ""
+        return []
     config = load_yaml_config("config/screening_rules.yaml")
     title = config.get("section_title", "建议进一步排查（需医生确认）")
     preamble = config.get("section_preamble", "")
-    lines: List[str] = [f"## {title}"]
+    lines: List[str] = ["", f"## {title}"]
     if preamble:
         lines.append(preamble)
     for suggestion in screening.suggestions:
+        cite = (
+            registry.cite_sources(*suggestion.evidence_source_ids)
+            if registry is not None and suggestion.evidence_source_ids
+            else ""
+        )
         lines.append(f"### {suggestion.label}（提示强度：{_confidence_label(suggestion.confidence)}）")
-        lines.append(f"- {suggestion.rationale}")
+        lines.append(f"- {suggestion.rationale}{cite}")
         lines.append(f"- {suggestion.screening_action}")
     lines.append("- 以上均为排查提示，不是诊断结论；是否需要检查请遵医嘱。")
-    return "\n".join(lines).strip()
+    return lines
+
+
+def _strip_screening_section(body: str) -> str:
+    """Remove the screening section from a body (used before sending to an LLM).
+
+    Keeps the validated screening text out of the LLM prompt so it can never be
+    rewritten; it is re-rendered deterministically into the LLM's output.
+    """
+    title_marker = f"## {_screening_title()}"
+    start = body.find(title_marker)
+    if start < 0:
+        return body
+    # End at the next top-level heading after the screening section.
+    nxt = body.find("\n## ", start + len(title_marker))
+    if nxt < 0:
+        return body[:start].rstrip() + "\n"
+    return (body[:start].rstrip() + "\n\n" + body[nxt + 1 :]).strip() + "\n"
 
 
 def inject_screening_markdown(report: HealthReport) -> None:
-    """Insert the screening section before the reference/disclaimer tail.
+    """Insert a citation-free screening section before the reference/disclaimer tail.
 
-    Idempotent (skips if already present) so it can be called on any final
-    report regardless of generation mode. Runs after the LLM stage so the
-    validated suggestions are shown verbatim.
+    Idempotent safety net for generation modes that don't render the section
+    in-body with citations (e.g. the non-RAG llm_only control arm). Skips when a
+    screening section is already present.
     """
-    section = _screening_section(report)
-    if not section:
+    lines = _screening_block_lines(report, registry=None)
+    if not lines:
         return
+    section = "\n".join(lines).strip()
     md = report.markdown_report or ""
-    title_line = section.splitlines()[0]
-    if title_line in md:
+    if f"## {_screening_title()}" in md:
         return
     tail_markers = ["\n## 参考文献", "\n## 参考依据说明", "\n## 引用质量", "\n## 免责声明"]
     positions = [md.find(marker) for marker in tail_markers if md.find(marker) >= 0]
@@ -460,6 +488,7 @@ def _markdown(report: HealthReport, rule_result: RuleResult, payload: Measuremen
     _append_recommendation_group(
         lines, "就医沟通", report.recommendations.medical_consultation, medical_cite,
     )
+    lines.extend(_screening_block_lines(report, registry))
     lines.extend(["", "## 在国内可以怎么做"])
     lines.extend(f"- {item}" for item in _china_context_lines(payload, rule_result, uses_rag=uses_rag))
     lines.extend(["", "## 几个容易误解的点"])
@@ -1055,6 +1084,13 @@ def _finalize_rag_llm_body(
     body = _ensure_china_context_section(body, rule_result, payload, uses_rag=True)
     body = _ensure_plain_language_section(body, report, rule_result, payload, uses_rag=True)
 
+    # Render the validated screening section into the LLM's *output* body (it was
+    # stripped from the LLM input), then let citation enforcement number it with
+    # the rest. The LLM never sees or rewrites these suggestions.
+    screening_lines = _screening_block_lines(report, registry)
+    if screening_lines:
+        body = body.rstrip() + "\n" + "\n".join(screening_lines)
+
     final = None
     if registry.has_evidence and enforce:
         # Drop any hallucinated/out-of-range markers, then guarantee coverage.
@@ -1177,6 +1213,7 @@ def _generate_report_draft_impl(
         return report
     if requested_mode == "llm_rag" and provider == "deepseek":
         template_body, _ = _split_report_tail(report.markdown_report)
+        template_body = _strip_screening_section(template_body)
         try:
             llm_body = generate_deepseek_report_body(
                 template_body=template_body,
@@ -1197,6 +1234,7 @@ def _generate_report_draft_impl(
         return report
     if requested_mode == "llm_rag" and provider in {"anthropic", "claude"}:
         template_body, _ = _split_report_tail(report.markdown_report)
+        template_body = _strip_screening_section(template_body)
         try:
             llm_body = generate_anthropic_report_body(
                 template_body=template_body,
@@ -1217,6 +1255,7 @@ def _generate_report_draft_impl(
         return report
     if requested_mode == "llm_rag" and provider in OPENAI_COMPATIBLE_PROVIDERS:
         template_body, _ = _split_report_tail(report.markdown_report)
+        template_body = _strip_screening_section(template_body)
         try:
             llm_body = generate_openai_compatible_report_body(
                 template_body=template_body,

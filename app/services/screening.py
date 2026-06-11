@@ -111,6 +111,20 @@ def _evaluate_triggers(
             fired.append(f"PEP≈{scg.pep_ms:g}ms")
         elif key == "ptt_ms_lte" and scg.ptt_ms is not None and scg.ptt_ms <= value:
             fired.append(f"PTT≈{scg.ptt_ms:g}ms")
+        elif key == "lvet_ms_gte" and scg.lvet_ms is not None and scg.lvet_ms >= value:
+            fired.append(f"LVET≈{scg.lvet_ms:g}ms（射血时间延长）")
+        elif (
+            key == "s1_s2_amplitude_ratio_gte"
+            and scg.s1_s2_amplitude_ratio is not None
+            and scg.s1_s2_amplitude_ratio >= value
+        ):
+            fired.append(f"心音 S1/S2 振幅比≈{scg.s1_s2_amplitude_ratio:g}")
+        elif (
+            key == "scg_beat_amplitude_cv_gte"
+            and scg.beat_amplitude_cv is not None
+            and scg.beat_amplitude_cv >= value
+        ):
+            fired.append(f"心振逐拍幅值变异偏大（CV≈{scg.beat_amplitude_cv:g}）")
     return fired
 
 
@@ -179,6 +193,7 @@ def run_screening(payload: MeasurementPayload, rule_result: RuleResult) -> Scree
                 screening_action=str(condition.get("screening_action", "")),
                 retrieval_intents=list(condition.get("retrieval_intents", []) or []),
                 allowed_uses=list(condition.get("allowed_uses", []) or []),
+                evidence_source_ids=list(condition.get("evidence_source_ids", []) or []),
             )
         )
 

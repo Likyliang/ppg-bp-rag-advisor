@@ -22,6 +22,9 @@ class ScreeningSuggestion(BaseModel):
     screening_action: str
     retrieval_intents: List[str] = Field(default_factory=list)
     allowed_uses: List[str] = Field(default_factory=list)
+    # Specific governed source_ids that back this suggestion's feature→condition
+    # association; cited inline only when actually retrieved (never a wrong source).
+    evidence_source_ids: List[str] = Field(default_factory=list)
     # True when this suggestion is tied to an already-flagged emergency; in that
     # case the report keeps the emergency block on top and suppresses the rest.
     emergency_linked: bool = False

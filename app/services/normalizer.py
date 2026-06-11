@@ -88,6 +88,7 @@ CARDIAC_VIBRATION_FIELDS = {
     "ao_ac_interval_ms",
     "s1_s2_amplitude_ratio",
     "ptt_ms",
+    "beat_amplitude_cv",
 }
 
 ROOT_FIELDS = {
@@ -219,6 +220,7 @@ def normalize_payload(raw_payload: Mapping[str, Any]) -> Dict[str, Any]:
             "ao_ac_interval_ms",
             "s1_s2_amplitude_ratio",
             "ptt_ms",
+            "beat_amplitude_cv",
             "sensor_site",
             "beat_count",
         },

@@ -136,3 +136,33 @@ def test_finalize_handles_fulltext_page_locators():
     final = reg.finalize("生活方式建议[1]。")
     assert final.cited_count == 1
     assert "p.7" in final.entries[0].formatted
+
+
+def test_cite_sources_cites_specific_source_by_id():
+    # Chunk ids carry a _NNN suffix; cite_sources matches at the source-key level
+    # (the catalog source_id), exactly as the screening config references them.
+    ev = [
+        _ev(source_id="ppg_quality_paper_001", title="PPG质量", allowed_uses=["research_background"]),
+        _ev(source_id="scg_af_paper_001", title="SCG房颤", allowed_uses=["research_background"]),
+    ]
+    reg = build_registry(ev)
+    # cite() by use is ambiguous (both share research_background); cite_sources is exact.
+    assert reg.cite_sources("scg_af_paper") == " [2]"
+    assert reg.cite_sources("ppg_quality_paper") == " [1]"
+    assert reg.cite_sources("not_retrieved") == ""
+
+
+def test_finalize_keeps_page_locator_with_its_own_source():
+    # Citing in reverse order forces a renumber; the page locator must stay on the
+    # fulltext source, not leak onto the renumbered summary source. (Regression.)
+    ev = [
+        _ev(source_id="summary_001", title="摘要源", allowed_uses=["a"]),
+        _ev(source_id="fulltext::doc::p017::c06", title="全文源", allowed_uses=["b"]),
+    ]
+    reg = build_registry(ev)
+    final = reg.finalize("先引用 [2]。再引用 [1]。")
+    by_title = {e.title: e for e in final.entries}
+    assert by_title["摘要源"].pages is None
+    assert by_title["全文源"].pages == "p.17"
+    assert "p.17" not in by_title["摘要源"].formatted
+    assert "p.17" in by_title["全文源"].formatted

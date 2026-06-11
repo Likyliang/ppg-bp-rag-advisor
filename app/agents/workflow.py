@@ -86,11 +86,31 @@ def generate_report(raw_payload: Mapping, report_mode: Optional[str] = None) -> 
         allowed_uses=retrieval_allowed_uses,
         min_quality_score=18,
     )
-    citation_quality = evaluate_citation_quality(rule_result, retrieval_result.evidence)
+    evidence = list(retrieval_result.evidence)
+
+    # Dedicated screening-evidence pass: the report's top-k is dominated by BP
+    # sources, so the governed SCG/research-background sources that back a
+    # screening suggestion rarely survive. Retrieve them with the screening
+    # intents and merge (dedup by source) so a suggestion can cite the exact
+    # paper supporting its feature→condition association.
+    if screening.produced and screening_intents:
+        screening_evidence = retrieve_knowledge(
+            screening_intents,
+            allowed_uses=screening_uses or ["research_background"],
+            min_quality_score=18,
+            top_k=4,
+        ).evidence
+        seen_sources = {item.source_id for item in evidence}
+        for item in screening_evidence:
+            if item.source_id not in seen_sources:
+                evidence.append(item)
+                seen_sources.add(item.source_id)
+
+    citation_quality = evaluate_citation_quality(rule_result, evidence)
     draft = generate_report_draft(
         payload=payload,
         rule_result=rule_result,
-        evidence=retrieval_result.evidence,
+        evidence=evidence,
         mode=report_mode,
         warnings=retrieval_result.warnings + citation_quality.issues,
         citation_quality=citation_quality,
@@ -114,7 +134,7 @@ def generate_report(raw_payload: Mapping, report_mode: Optional[str] = None) -> 
             fallback = generate_report_draft(
                 payload=payload,
                 rule_result=rule_result,
-                evidence=retrieval_result.evidence,
+                evidence=evidence,
                 mode="template_only",
                 warnings=retrieval_result.warnings
                 + citation_quality.issues
@@ -136,7 +156,7 @@ def generate_report(raw_payload: Mapping, report_mode: Optional[str] = None) -> 
             fallback = generate_report_draft(
                 payload=payload,
                 rule_result=rule_result,
-                evidence=retrieval_result.evidence,
+                evidence=evidence,
                 mode="template_only",
                 warnings=retrieval_result.warnings
                 + citation_quality.issues

@@ -211,6 +211,8 @@ class CardiacVibrationFeatures(BaseModel):
     s1_s2_amplitude_ratio: Optional[float] = Field(default=None, ge=0, le=20)
     # Pulse-transit / pulse-arrival time derived from SCG↔PPG fusion (ms).
     ptt_ms: Optional[float] = Field(default=None, ge=0, le=1000)
+    # Beat-to-beat SCG amplitude variation (CV). Elevated in AF (mechanocardiography).
+    beat_amplitude_cv: Optional[float] = Field(default=None, ge=0, le=5)
 
     @field_validator("signal_quality_label", mode="before")
     @classmethod

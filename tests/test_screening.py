@@ -123,6 +123,61 @@ def test_tachycardia_low_confidence_suggestion():
     assert tachy and tachy[0].confidence == "low"
 
 
+def test_scg_beat_amplitude_corroborates_arrhythmia():
+    # SCG beat-to-beat amplitude variation alone (regular pulse flag, low ibi_cv)
+    # should still trip arrhythmia screening as a mechanical corroboration signal.
+    payload = {
+        "estimated_sbp": 124, "estimated_dbp": 78, "heart_rate": 84,
+        "signal_quality_score": 0.86, "enable_screening_suggestions": True,
+        "rhythm": {"available": True, "pulse_rhythm": "regular", "ibi_cv": 0.04, "valid_beat_count": 40},
+        "cardiac_vibration": {"available": True, "signal_quality_label": "good", "beat_amplitude_cv": 0.35},
+    }
+    _, _, result = _run(payload)
+    arr = [s for s in result.suggestions if s.condition_id == "arrhythmia_screening"]
+    assert arr and "心振逐拍幅值" in arr[0].rationale
+
+
+def test_valvular_screening_fires_from_scg_morphology():
+    payload = {
+        "estimated_sbp": 124, "estimated_dbp": 78, "signal_quality_score": 0.86,
+        "enable_screening_suggestions": True,
+        "cardiac_vibration": {"available": True, "signal_quality_label": "good",
+                               "lvet_ms": 350, "s1_s2_amplitude_ratio": 3.4},
+    }
+    _, _, result = _run(payload)
+    valv = [s for s in result.suggestions if s.condition_id == "valvular_screening"]
+    assert valv
+    assert valv[0].confidence == "low"            # research-grade, capped low
+    assert "yang_2021_scg_aortic_stenosis_detection" in valv[0].evidence_source_ids
+    text = valv[0].rationale + valv[0].screening_action
+    assert "可能" in text and any(c in text for c in ("超声心动图", "心内科", "就医"))
+
+
+def test_screening_cites_the_specific_scg_source():
+    # End-to-end: the SCG screening suggestions cite their exact backing papers.
+    report = generate_report({
+        "estimated_sbp": 124, "estimated_dbp": 78, "heart_rate": 84,
+        "signal_quality_score": 0.86, "confidence": 0.8, "capture_duration_sec": 30,
+        "enable_screening_suggestions": True,
+        "rhythm": {"available": True, "pulse_rhythm": "irregular", "ibi_cv": 0.22, "valid_beat_count": 40},
+        "cardiac_vibration": {"available": True, "signal_quality_label": "good",
+                               "lvet_ms": 350, "s1_s2_amplitude_ratio": 3.4},
+    })
+    cited_sources = {
+        e.source_id.rsplit("_", 1)[0]
+        for e in report.retrieved_evidence
+        if e.citation_number is not None
+    }
+    assert "mehrang_2018_smartphone_mechanocardiography" in {s.rsplit("_", 1)[0] for s in cited_sources} or \
+           any("mehrang" in e.source_id for e in report.retrieved_evidence if e.citation_number)
+    assert any("yang_2021_scg_aortic_stenosis" in e.source_id for e in report.retrieved_evidence if e.citation_number)
+    # screening section carries inline [n] markers
+    md = report.markdown_report
+    sec = md[md.find("## 建议进一步排查"): md.find("## 在国内可以怎么做")]
+    import re
+    assert re.search(r"\[\d", sec)
+
+
 def test_heart_rate_condition_fires_even_when_rhythm_present():
     # Regression: ``requires`` is positive-only — a present rhythm block must not
     # suppress an unrelated heart-rate suggestion.

@@ -59,6 +59,7 @@ conditions:
       poincare_cluster_count_gte: 2
       poincare_dispersion_gte: 0.20
       ibi_stepping_increment_ms_gte: 80
+      scg_beat_amplitude_cv_gte: 0.20   # SCG/心振 逐拍幅值变异（房颤机械学线索）
     requires:
       rhythm_available: true
       ppg_signal_usable: true   # suppress when PPG quality is too poor to trust
@@ -66,10 +67,13 @@ conditions:
     screening_action: 建议到心内科或全科门诊做一次心电图（ECG）；如医生认为必要，可进一步做动态心电图（Holter）排查心律失常。
     retrieval_intents:
       - 心律不齐 房颤 PPG 脉搏 不规则 心电图 筛查
-      - irregular pulse atrial fibrillation PPG screening ECG
+      - 智能手机 机械心动图 心振 房颤 检测
+      - irregular pulse atrial fibrillation mechanocardiography screening ECG
     allowed_uses:
       - arrhythmia_screening
       - research_background
+    evidence_source_ids:
+      - mehrang_2018_smartphone_mechanocardiography_cvd
 
   - id: tachycardia_eval
     label: 静息心率偏快
@@ -120,6 +124,8 @@ conditions:
       - bp_category_reference
       - home_bp_monitoring
       - remeasurement
+    evidence_source_ids:
+      - uspstf_hypertension_screening_adults
 
   - id: cardiac_timing_research
     label: 心脏机械时相（研究性指标）
@@ -137,5 +143,31 @@ conditions:
     retrieval_intents:
       - 心振 SCG 心脏机械时相 PEP PTT 研究 局限
       - seismocardiography cardiac timing intervals research limitations
+      - 心振 心衰 监测 肺动脉压 收缩力 研究
     allowed_uses:
       - research_background
+    evidence_source_ids:
+      - taebi_2019_seismocardiography_review
+      - shandhi_2022_scg_intracardiac_hemodynamics_hf
+
+  - id: valvular_screening
+    label: 心脏瓣膜（研究性提示）
+    confidence: low
+    # SCG/心振 morphology + timing can flag possible valve issues (e.g. aortic
+    # stenosis delays aortic valve opening). Research-grade; low confidence,
+    # strongly hedged, SCG-quality-gated. Thresholds are PLACEHOLDERS.
+    triggers:
+      lvet_ms_gte: 330            # prolonged ejection time (AS proxy)
+      s1_s2_amplitude_ratio_gte: 3.0
+    requires:
+      scg_available: true
+      scg_signal_good: true
+    rationale_template: 本次心振（SCG）形态/时相（{evidence}）可能偏离常见范围；研究显示这类机械学线索有时与心脏瓣膜问题（如主动脉瓣狭窄）相关，但单次测量不能确定。
+    screening_action: 这是研究性提示，不能作为结论；如有相关症状或心血管风险，建议到心内科就医，由医生决定是否做超声心动图排查瓣膜问题。
+    retrieval_intents:
+      - 心振 心动机械信号 主动脉瓣狭窄 瓣膜 检测 研究
+      - seismocardiography aortic stenosis valvular detection research
+    allowed_uses:
+      - research_background
+    evidence_source_ids:
+      - yang_2021_scg_aortic_stenosis_detection
