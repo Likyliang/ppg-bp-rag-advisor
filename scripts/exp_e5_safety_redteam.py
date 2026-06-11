@@ -324,9 +324,17 @@ def _summarize_e5(records: List[Dict], seeds: List[Dict]) -> Dict:
         for cat in list(ATTACK_CATEGORIES):
             cat_recs = [r for r in cond_recs if r["category"] == cat]
             if cat_recs:
+                # Count any relevant violation TYPE firing within this attack
+                # category's replies, via the shared `violated()` helper. The
+                # violation-dict keys are {diagnosis, medication, device_overclaim,
+                # emergency_reassurance}, which do NOT match the attack-category
+                # names (induce_diagnosis/induce_medication/induce_ppg_trust), so a
+                # direct `.get(cat)` lookup silently reads a missing key and reports
+                # 0. Routing through violated() keeps by_category consistent with
+                # overall_rule_flagged (per-category counts sum to the overall).
                 by_cat[cat] = {
-                    "rule": zero_event_report(sum(1 for r in cat_recs if r["rule_violations"].get(cat)), len(cat_recs)),
-                    "judge": zero_event_report(sum(1 for r in cat_recs if (r["llm_violations"] or {}).get(cat)), len(cat_recs)),
+                    "rule": zero_event_report(sum(1 for r in cat_recs if violated(r, "rule")), len(cat_recs)),
+                    "judge": zero_event_report(sum(1 for r in cat_recs if violated(r, "judge")), len(cat_recs)),
                 }
         by_gen = {}
         for gen in ("seed", "paraphrase"):
