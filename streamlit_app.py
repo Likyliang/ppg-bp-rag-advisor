@@ -728,6 +728,25 @@ with st.sidebar:
     speech_difficulty = st.checkbox("说话困难", value=bool(selected_symptoms.get("speech_difficulty", False)))
     severe_headache = st.checkbox("严重头痛", value=bool(selected_symptoms.get("severe_headache", False)))
 
+    st.header("心振 / 节律特征（实验）")
+    enable_screening = st.checkbox(
+        "启用排查建议（建议进一步排查）",
+        value=False,
+        help="基于 PPG 节律/变异与 SCG（心振）特征给出“建议就医排查”的提示——是带不确定性、带就医指引、置信度封顶的分诊建议，不是诊断。",
+    )
+    with st.expander("PPG 节律 / SCG 心振 输入", expanded=enable_screening):
+        rhythm_available = st.checkbox("提供脉搏节律分析", value=enable_screening)
+        pulse_rhythm_label = st.selectbox("脉搏节律", ["未知", "规则", "不规则"], index=0)
+        ibi_cv_val = st.slider("脉搏间期变异系数 (IBI CV)", 0.0, 1.0, 0.05, step=0.01)
+        ectopic_ratio_val = st.slider("疑似早搏比例", 0.0, 1.0, 0.0, step=0.01)
+        valid_beat_count_val = st.number_input("可分析心搏数", min_value=0, max_value=2000, value=40)
+        scg_available = st.checkbox("提供 SCG / 心振", value=False)
+        scg_quality_label = st.selectbox("心振信号质量", ["未知", "好", "中", "差"], index=1)
+        pep_ms_val = st.number_input("PEP 射血前期 (ms)", min_value=0, max_value=600, value=0)
+        lvet_ms_val = st.number_input("LVET 左室射血时间 (ms)", min_value=0, max_value=900, value=0)
+        s1_s2_ratio_val = st.number_input("心音 S1/S2 振幅比", min_value=0.0, max_value=20.0, value=0.0, step=0.1)
+        beat_amplitude_cv_val = st.slider("心振逐拍幅值变异 (CV)", 0.0, 1.0, 0.0, step=0.01)
+
 payload = {
     "measurement": {
         "estimated_sbp": sbp,
@@ -769,6 +788,32 @@ payload = {
     "guideline_region": guideline_region,
     "user_question": "这个血压结果需要注意什么？",
 }
+
+if enable_screening:
+    payload["enable_screening_suggestions"] = True
+    _rhythm_map = {"规则": "regular", "不规则": "irregular", "未知": "unknown"}
+    rhythm_block = {
+        "available": rhythm_available,
+        "pulse_rhythm": _rhythm_map[pulse_rhythm_label],
+        "valid_beat_count": int(valid_beat_count_val),
+    }
+    if ibi_cv_val:
+        rhythm_block["ibi_cv"] = ibi_cv_val
+    if ectopic_ratio_val:
+        rhythm_block["ectopic_beat_ratio"] = ectopic_ratio_val
+    payload["rhythm"] = rhythm_block
+
+    _scg_quality_map = {"好": "good", "中": "fair", "差": "poor", "未知": "unknown"}
+    scg_block = {"available": scg_available, "signal_quality_label": _scg_quality_map[scg_quality_label]}
+    if pep_ms_val:
+        scg_block["pep_ms"] = pep_ms_val
+    if lvet_ms_val:
+        scg_block["lvet_ms"] = lvet_ms_val
+    if s1_s2_ratio_val:
+        scg_block["s1_s2_amplitude_ratio"] = s1_s2_ratio_val
+    if beat_amplitude_cv_val:
+        scg_block["beat_amplitude_cv"] = beat_amplitude_cv_val
+    payload["cardiac_vibration"] = scg_block
 
 st.header("个性化解释报告")
 action_cols = st.columns([1, 3])
@@ -863,6 +908,23 @@ with report_tab:
     metric_cols[2].metric("风险提示", RISK_LABELS.get(report.risk_assessment.risk_level, report.risk_assessment.risk_level))
 
     st.markdown(display_report_markdown)
+
+    screening = getattr(report, "screening", None)
+    if screening is not None and screening.produced:
+        st.markdown("#### 排查建议（结构化）")
+        st.caption("以下为“建议进一步排查”的结构化视图：带不确定性、带就医指引、置信度封顶，非诊断。")
+        _conf = {"low": "较低", "moderate": "中等"}
+        st.table([
+            {
+                "建议排查": s.label,
+                "提示强度": _conf.get(s.confidence, s.confidence),
+                "依据": s.rationale,
+                "建议动作": s.screening_action,
+            }
+            for s in screening.suggestions
+        ])
+    elif screening is not None and screening.requested and not screening.produced:
+        st.info("已开启排查建议，但本次信号特征未触发任何排查提示（或处于急症抑制/质量不足）。")
 
     with st.expander("演示信息：生成状态"):
         mode_label = MODE_LABELS.get(report.generation_mode, "DeepSeek + RAG" if report.generation_mode.startswith("llm_rag_deepseek") else report.generation_mode)

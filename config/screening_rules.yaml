@@ -20,7 +20,7 @@ confidence_levels:
 # Shown once at the top of the screening section.
 section_title: "建议进一步排查（需医生确认）"
 section_preamble: >-
-  以下是根据本次信号特征给出的“值得到医院进一步排查”的提示，不是诊断结论，也不代表你一定有相关问题。
+  下面这些是结合本次信号特征整理的“值得进一步排查”的提示，不是诊断结论，也不代表你一定有相关问题；
   是否需要检查、检查什么，请以专业医生的判断为准。
 
 # A screening suggestion is only valid if its text contains BOTH a hedge cue and
