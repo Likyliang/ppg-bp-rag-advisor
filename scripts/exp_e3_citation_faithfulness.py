@@ -61,13 +61,23 @@ SUPPORT_SYSTEM = (
 )
 
 
+_PROSE_RE = re.compile(r"[一-鿿A-Za-z]")
+_CITE_MARKER_RE = re.compile(r"\[\d+(?:\s*,\s*\d+)*\]")
+
+
 def _is_assertion(sentence: str) -> bool:
     sentence = sentence.strip()
     if len(sentence) < 6:
         return False
     if sentence.lstrip().startswith("#"):  # markdown headings are not assertions
         return False
-    # bullet/numbered list markers are kept (they carry advice), strip the marker
+    # Reject units that carry no actual prose once citation markers / list
+    # bullets / digits / punctuation are removed — e.g. a stray "[1,2,3]" split
+    # off a heading. Such a unit makes no claim; judging it always yields
+    # not_supported and would falsely depress citation precision.
+    stripped = _CITE_MARKER_RE.sub("", sentence)
+    if not _PROSE_RE.search(stripped):
+        return False
     return not any(marker in sentence for marker in _NON_ASSERTION_MARKERS)
 
 
@@ -168,7 +178,24 @@ def _load_done() -> Dict[str, Dict]:
     return done
 
 
-def run_e3(limit_reports: Optional[int] = None, resume: bool = True) -> Dict:
+def run_e3(
+    limit_reports: Optional[int] = None,
+    resume: bool = True,
+    cited_only: bool = True,
+    recall_sample: int = 0,
+    concurrency: int = 3,
+) -> Dict:
+    """Judge sentence-level citation support.
+
+    cited_only=True (default): judge ONLY sentences that carry an inline [n]
+    (the citation-PRECISION metric + the S2-vs-S3 enforcement contrast). This
+    is ~800 calls instead of ~7000, sparing the small judge endpoint. To also
+    estimate citation RECALL, set recall_sample>0 to additionally judge a random
+    sample of uncited assertion sentences for `needs_citation`.
+    """
+    import random
+    from concurrent.futures import ThreadPoolExecutor
+
     reports_path = resolve_project_path(REPORTS_PATH)
     if not reports_path.exists():
         raise FileNotFoundError(f"{reports_path} not found — run E2 (evaluate_reports --real) first.")
@@ -177,41 +204,57 @@ def run_e3(limit_reports: Optional[int] = None, resume: bool = True) -> Dict:
         reports = reports[:limit_reports]
 
     done = _load_done() if resume else {}
+
+    # Build the task list (cited sentences always; a recall sample of uncited).
+    tasks: List[Dict] = []
+    uncited_pool: List[Dict] = []
+    for report in reports:
+        case_id = report.get("case_id", "case")
+        system = report.get("system", "?")
+        snippets = _reference_snippets(report.get("references", []))
+        for si, unit in enumerate(_extract_sentence_units(report.get("markdown", ""))):
+            key = f"{system}::{case_id}::{si}"
+            if key in done:
+                continue
+            cited_snippets = [snippets[n] for n in unit["cited"] if n in snippets]
+            task = {"key": key, "system": system, "case_id": case_id,
+                    "sentence": unit["sentence"], "cited": unit["cited"], "snippets": cited_snippets}
+            if unit["cited"] and cited_snippets:
+                tasks.append(task)
+            elif not cited_only:
+                tasks.append(task)
+            else:
+                uncited_pool.append(task)
+    if cited_only and recall_sample > 0 and uncited_pool:
+        rng = random.Random(13)
+        tasks.extend(rng.sample(uncited_pool, min(recall_sample, len(uncited_pool))))
+
     detail_path = resolve_project_path(DETAIL_PATH)
     detail_path.parent.mkdir(parents=True, exist_ok=True)
     detail_handle = detail_path.open("a", encoding="utf-8")
-
+    write_lock = __import__("threading").Lock()
     judgements: List[Dict] = list(done.values())
+
+    def _do(task: Dict) -> Dict:
+        try:
+            verdict = _judge_support(task["sentence"], task["snippets"])
+            if not task["cited"]:
+                verdict["support"] = "no_citation"
+        except _JudgeError as exc:
+            verdict = {"support": None, "needs_citation": None, "reason": str(exc)[:120], "judge_model": None}
+        row = {"key": task["key"], "system": task["system"], "case_id": task["case_id"],
+               "sentence": task["sentence"], "cited": task["cited"], **verdict}
+        with write_lock:
+            detail_handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+            detail_handle.flush()
+        return row
+
     try:
-        for report in reports:
-            case_id = report.get("case_id", "case")
-            system = report.get("system", "?")
-            snippets = _reference_snippets(report.get("references", []))
-            for si, unit in enumerate(_extract_sentence_units(report.get("markdown", ""))):
-                key = f"{system}::{case_id}::{si}"
-                if key in done:
-                    continue
-                cited_snippets = [snippets[n] for n in unit["cited"] if n in snippets]
-                if unit["cited"] and cited_snippets:
-                    try:
-                        verdict = _judge_support(unit["sentence"], cited_snippets)
-                    except _JudgeError as exc:
-                        verdict = {"support": None, "needs_citation": None, "reason": str(exc)[:120], "judge_model": None}
-                else:
-                    # sentence has no (resolvable) citation; judge only needs_citation
-                    try:
-                        verdict = _judge_support(unit["sentence"], [])
-                        verdict["support"] = "no_citation"
-                    except _JudgeError as exc:
-                        verdict = {"support": None, "needs_citation": None, "reason": str(exc)[:120], "judge_model": None}
-                row = {
-                    "key": key, "system": system, "case_id": case_id,
-                    "sentence": unit["sentence"], "cited": unit["cited"],
-                    **verdict,
-                }
-                judgements.append(row)
-                detail_handle.write(json.dumps(row, ensure_ascii=False) + "\n")
-                detail_handle.flush()
+        if concurrency <= 1:
+            judgements.extend(_do(t) for t in tasks)
+        else:
+            with ThreadPoolExecutor(max_workers=concurrency) as executor:
+                judgements.extend(executor.map(_do, tasks))
     finally:
         detail_handle.close()
 
@@ -264,8 +307,19 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="E3 sentence-level citation faithfulness (preliminary, judge-only).")
     parser.add_argument("--limit-reports", type=int, default=None)
     parser.add_argument("--no-resume", action="store_true")
+    parser.add_argument("--all-sentences", action="store_true",
+                        help="Judge every assertion sentence (~7k calls). Default: cited sentences only (~800).")
+    parser.add_argument("--recall-sample", type=int, default=0,
+                        help="Additionally judge N random uncited sentences for needs_citation (recall estimate).")
+    parser.add_argument("--concurrency", type=int, default=3, help="Judge worker threads (gentle on the endpoint).")
     args = parser.parse_args()
-    result = run_e3(limit_reports=args.limit_reports, resume=not args.no_resume)
+    result = run_e3(
+        limit_reports=args.limit_reports,
+        resume=not args.no_resume,
+        cited_only=not args.all_sentences,
+        recall_sample=args.recall_sample,
+        concurrency=args.concurrency,
+    )
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
