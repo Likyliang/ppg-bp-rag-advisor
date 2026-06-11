@@ -82,6 +82,23 @@ def test_regular_rhythm_does_not_trigger_arrhythmia():
     assert "arrhythmia_screening" not in {s.condition_id for s in result.suggestions}
 
 
+def test_poincare_features_trigger_arrhythmia():
+    # Poincaré descriptors alone (no explicit irregular flag) should trip the
+    # arrhythmia screening path.
+    payload = {
+        "estimated_sbp": 124, "estimated_dbp": 78, "heart_rate": 84,
+        "signal_quality_score": 0.86, "confidence": 0.8, "capture_duration_sec": 30,
+        "enable_screening_suggestions": True,
+        "rhythm": {"available": True, "ibi_cv": 0.05, "valid_beat_count": 60,
+                   "poincare_cluster_count": 4, "poincare_dispersion": 0.35,
+                   "ibi_stepping_increment_ms": 120},
+    }
+    _, _, result = _run(payload)
+    arr = [s for s in result.suggestions if s.condition_id == "arrhythmia_screening"]
+    assert arr
+    assert "Poincaré" in arr[0].rationale
+
+
 def test_insufficient_beats_suppresses_rhythm_suggestion():
     payload = {
         "estimated_sbp": 124, "estimated_dbp": 78, "signal_quality_score": 0.86,
@@ -211,3 +228,25 @@ def test_normalizer_maps_nested_and_flat_feature_fields():
     assert parsed.cardiac_vibration.available is True
     assert parsed.cardiac_vibration.signal_quality_label == "good"  # alias normalized
     assert parsed.cardiac_vibration.pep_ms == 150
+
+
+def test_normalizer_maps_poincare_and_scaffold_models():
+    parsed = parse_payload({
+        "estimated_sbp": 128, "estimated_dbp": 82,
+        "rhythm": {"available": True, "poincare_cluster_count": 3,
+                   "poincare_dispersion": 0.4, "ibi_stepping_increment_ms": 110},
+        "ppg_morphology": {"available": True, "crest_time_ms": 180,
+                           "stiffness_index": 7.2, "reflection_index": 55,
+                           "dicrotic_notch_present": False},
+        "ppg_derived": {"available": True, "sdppg_b_a_ratio": -0.6,
+                        "sdppg_aging_index": 0.3, "spo2": 96,
+                        "oxygen_desaturation_index": 12},
+    })
+    assert parsed.rhythm.poincare_cluster_count == 3
+    assert parsed.rhythm.ibi_stepping_increment_ms == 110
+    assert parsed.ppg_morphology.available is True
+    assert parsed.ppg_morphology.crest_time_ms == 180
+    assert parsed.ppg_morphology.dicrotic_notch_present is False
+    assert parsed.ppg_derived.available is True
+    assert parsed.ppg_derived.sdppg_b_a_ratio == -0.6
+    assert parsed.ppg_derived.oxygen_desaturation_index == 12

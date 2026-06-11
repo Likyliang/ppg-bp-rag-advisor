@@ -47,11 +47,18 @@ conditions:
     label: 心律不齐（含房颤等可能）
     confidence: moderate
     # Fires when the pulse train looks irregular by any of these signals.
+    # Poincaré features capture AF's "irregularly irregular" interval pattern
+    # (more clusters, larger beat-to-beat stepping, wider dispersion). Thresholds
+    # are literature-informed PLACEHOLDERS — calibrate against labelled ECG before
+    # production (see docs/scg_screening_plan.md roadmap).
     triggers:
       pulse_rhythm_irregular: true
       ibi_cv_gte: 0.15
       ectopic_beat_ratio_gte: 0.05
       pulse_pause_detected: true
+      poincare_cluster_count_gte: 2
+      poincare_dispersion_gte: 0.20
+      ibi_stepping_increment_ms_gte: 80
     requires:
       rhythm_available: true
       ppg_signal_usable: true   # suppress when PPG quality is too poor to trust

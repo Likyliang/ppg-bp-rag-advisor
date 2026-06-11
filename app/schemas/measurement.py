@@ -157,6 +157,14 @@ class RhythmFeatures(BaseModel):
     hrv_sdnn_ms: Optional[float] = Field(default=None, ge=0, le=2000)
     hrv_rmssd_ms: Optional[float] = Field(default=None, ge=0, le=2000)
     valid_beat_count: Optional[int] = Field(default=None, ge=0, le=100000)
+    # Poincaré-plot descriptors of the inter-beat-interval series. AF tends to be
+    # "irregularly irregular": more clusters, larger beat-to-beat stepping, and
+    # wider dispersion around the identity line (Sarkar/Lian-style features).
+    poincare_cluster_count: Optional[int] = Field(default=None, ge=0, le=1000)
+    poincare_dispersion: Optional[float] = Field(default=None, ge=0)
+    ibi_stepping_increment_ms: Optional[float] = Field(default=None, ge=0, le=5000)
+    poincare_sd1_ms: Optional[float] = Field(default=None, ge=0, le=5000)
+    poincare_sd2_ms: Optional[float] = Field(default=None, ge=0, le=5000)
 
     @field_validator("pulse_rhythm", mode="before")
     @classmethod
@@ -214,12 +222,61 @@ class CardiacVibrationFeatures(BaseModel):
         return aliases.get(value, value)
 
 
+class PPGMorphologyFeatures(BaseModel):
+    """Single-pulse PPG waveform morphology (scaffold for later screening tiers).
+
+    These describe pulse-wave shape and arterial-stiffness/reflection indices used
+    in the vascular-aging literature. Carried structurally now; not yet consumed
+    by a screening condition until thresholds are calibrated. Optional by design.
+    """
+
+    model_config = ConfigDict(extra="ignore")
+
+    available: bool = False
+    systolic_peak_amplitude: Optional[float] = Field(default=None, ge=0)
+    diastolic_peak_amplitude: Optional[float] = Field(default=None, ge=0)
+    dicrotic_notch_present: Optional[bool] = None
+    pulse_width_ms: Optional[float] = Field(default=None, ge=0, le=5000)
+    crest_time_ms: Optional[float] = Field(default=None, ge=0, le=2000)
+    pulse_area: Optional[float] = Field(default=None, ge=0)
+    # Arterial-stiffness / reflection indices (units per source convention).
+    stiffness_index: Optional[float] = Field(default=None, ge=0)
+    reflection_index: Optional[float] = Field(default=None, ge=0, le=100)
+    augmentation_index: Optional[float] = Field(default=None, ge=-100, le=100)
+
+
+class PPGDerivedFeatures(BaseModel):
+    """Derivative-based and PPG-derived physiology (scaffold for later tiers).
+
+    Includes SDPPG (second-derivative) aging-index family and oximetry/respiratory
+    derivatives. Carried structurally now; conditions that consume them (vascular
+    aging, sleep-apnea screening) are deferred until data + thresholds exist.
+    """
+
+    model_config = ConfigDict(extra="ignore")
+
+    available: bool = False
+    # SDPPG (acceleration plethysmogram) a–e wave ratios / aging index.
+    sdppg_b_a_ratio: Optional[float] = Field(default=None, ge=-10, le=10)
+    sdppg_d_a_ratio: Optional[float] = Field(default=None, ge=-10, le=10)
+    sdppg_aging_index: Optional[float] = Field(default=None, ge=-10, le=10)
+    # Oximetry / respiratory derivatives (need continuous / nightly data to be useful).
+    spo2: Optional[float] = Field(default=None, ge=0, le=100)
+    oxygen_desaturation_index: Optional[float] = Field(default=None, ge=0, le=200)
+    respiratory_rate_bpm: Optional[float] = Field(default=None, ge=0, le=80)
+    perfusion_index: Optional[float] = Field(default=None, ge=0, le=100)
+    # Pulse-wave-amplitude drop index: PWA reductions per hour (autonomic arousals).
+    pwa_drop_index: Optional[float] = Field(default=None, ge=0, le=200)
+
+
 class MeasurementPayload(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
     measurement: PPGMeasurement
     rhythm: RhythmFeatures = Field(default_factory=RhythmFeatures)
     cardiac_vibration: CardiacVibrationFeatures = Field(default_factory=CardiacVibrationFeatures)
+    ppg_morphology: PPGMorphologyFeatures = Field(default_factory=PPGMorphologyFeatures)
+    ppg_derived: PPGDerivedFeatures = Field(default_factory=PPGDerivedFeatures)
     user_profile: UserProfile = Field(default_factory=UserProfile)
     symptoms: Symptoms = Field(default_factory=Symptoms)
     locale: Literal["zh-CN", "en-US", "bilingual"] = "zh-CN"

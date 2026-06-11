@@ -44,6 +44,36 @@ RHYTHM_FIELDS = {
     "hrv_sdnn_ms",
     "hrv_rmssd_ms",
     "valid_beat_count",
+    "poincare_cluster_count",
+    "poincare_dispersion",
+    "ibi_stepping_increment_ms",
+    "poincare_sd1_ms",
+    "poincare_sd2_ms",
+}
+
+PPG_MORPHOLOGY_FIELDS = {
+    "available",
+    "systolic_peak_amplitude",
+    "diastolic_peak_amplitude",
+    "dicrotic_notch_present",
+    "pulse_width_ms",
+    "crest_time_ms",
+    "pulse_area",
+    "stiffness_index",
+    "reflection_index",
+    "augmentation_index",
+}
+
+PPG_DERIVED_FIELDS = {
+    "available",
+    "sdppg_b_a_ratio",
+    "sdppg_d_a_ratio",
+    "sdppg_aging_index",
+    "spo2",
+    "oxygen_desaturation_index",
+    "respiratory_rate_bpm",
+    "perfusion_index",
+    "pwa_drop_index",
 }
 
 CARDIAC_VIBRATION_FIELDS = {
@@ -195,6 +225,26 @@ def normalize_payload(raw_payload: Mapping[str, Any]) -> Dict[str, Any]:
     )
     if cardiac_vibration:
         normalized["cardiac_vibration"] = cardiac_vibration
+
+    # PPG morphology / derived feature scaffolds: nested-only to avoid colliding
+    # with PPG measurement fields.
+    ppg_morphology = _collect_nested(
+        raw_payload,
+        nested_keys=("ppg_morphology",),
+        known_fields=PPG_MORPHOLOGY_FIELDS,
+        flat_allowlist=set(),
+    )
+    if ppg_morphology:
+        normalized["ppg_morphology"] = ppg_morphology
+
+    ppg_derived = _collect_nested(
+        raw_payload,
+        nested_keys=("ppg_derived",),
+        known_fields=PPG_DERIVED_FIELDS,
+        flat_allowlist=set(),
+    )
+    if ppg_derived:
+        normalized["ppg_derived"] = ppg_derived
 
     for field in ROOT_FIELDS:
         if field in raw_payload:

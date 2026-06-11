@@ -83,6 +83,24 @@ def _evaluate_triggers(
             fired.append(f"出现疑似早搏的比例偏高（约{rhythm.ectopic_beat_ratio:.0%}）")
         elif key == "pulse_pause_detected" and value and rhythm.pulse_pause_detected:
             fired.append("检测到脉搏间歇/停顿")
+        elif (
+            key == "poincare_cluster_count_gte"
+            and rhythm.poincare_cluster_count is not None
+            and rhythm.poincare_cluster_count >= value
+        ):
+            fired.append(f"脉搏间期 Poincaré 图呈多簇/散布（{rhythm.poincare_cluster_count} 簇）")
+        elif (
+            key == "poincare_dispersion_gte"
+            and rhythm.poincare_dispersion is not None
+            and rhythm.poincare_dispersion >= value
+        ):
+            fired.append(f"Poincaré 离散度偏大（≈{rhythm.poincare_dispersion:g}）")
+        elif (
+            key == "ibi_stepping_increment_ms_gte"
+            and rhythm.ibi_stepping_increment_ms is not None
+            and rhythm.ibi_stepping_increment_ms >= value
+        ):
+            fired.append(f"脉搏间期逐拍跳变偏大（≈{rhythm.ibi_stepping_increment_ms:g}ms）")
         elif key == "heart_rate_gte" and measurement.heart_rate is not None and measurement.heart_rate >= value:
             fired.append(f"心率约{measurement.heart_rate:g}次/分")
         elif key == "heart_rate_lte" and measurement.heart_rate is not None and measurement.heart_rate <= value:
