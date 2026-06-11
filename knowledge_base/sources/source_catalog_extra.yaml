@@ -2223,3 +2223,160 @@ sources:
       summary: "本地特征字典规则：波形形态、PAT/PTT 和分布外评分只用于研究背景、质量解释和安全边界。"
       key_points: ["upstroke_time、pulse_width、dicrotic_notch、reflection_index、stiffness_index 等不应直接转成用户诊断。", "PAT/PTT 可解释无袖带估算背景和校准限制，但不能证明单次 PPG 血压估算准确。", "ood_score 偏高时应说明算法可能不适用于该输入，并建议规范复核。"]
       implementation_notes: ["用于 research_background、cuffless_ppg_limitations 和 disclaimer；不进入诊断、治疗、用药或准确性验证结论。"]
+  # --- SCG / 心振（seismocardiography）诊断性特征研究背景来源 ---
+  # 仅作 research_background：解释心振特征与可排查病症的研究背景，
+  # 不作为患者级诊断、治疗或准确性结论。
+  - source_id: taebi_2019_seismocardiography_review
+    title: Recent Advances in Seismocardiography
+    organization: Vibration (MDPI)
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC8189030/
+    doi: 10.3390/vibration2010005
+    pmid:
+    year: 2019
+    language: en
+    region: global
+    topic: research_context
+    evidence_class: review
+    source_type: peer_reviewed_review
+    include: true
+    allowed_uses: [research_background]
+    copyright_note: "Open-access review; summarize feature/application principles only."
+    access_note: public PMC article; tracked summary only
+    last_accessed: 2026-06-12
+    screening: {authority: 4, recency: 3, relevance: 5, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "SCG 综述：心振基准点(AO/AC/MC/MO 等)、收缩时相间期(PEP/LVET/IVCT)与心衰、缺血、瓣膜、房颤、呼吸等应用背景。"
+      key_points: ["心振特征是机械事件标志，不是诊断结论。", "SCG 的应用多为研究级或对已知患者的纵向监测。", "用于排查建议的研究背景，不替代心电图/超声等检查。"]
+      implementation_notes: ["仅用于 research_background；不进入诊断、治疗或准确性结论。"]
+  - source_id: inan_2018_wearable_scg_heart_failure_ml
+    title: Novel Wearable Seismocardiography and Machine Learning Algorithms Can Assess Clinical Status of Heart Failure Patients
+    organization: Circulation - Heart Failure
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5769154/
+    doi: 10.1161/CIRCHEARTFAILURE.117.004313
+    pmid: 29330154
+    year: 2018
+    language: en
+    region: US
+    topic: research_context
+    evidence_class: research_context
+    source_type: clinical_research_study
+    include: true
+    allowed_uses: [research_background]
+    copyright_note: "Open PMC article; summarize study background only."
+    access_note: public PMC article; tracked summary only
+    last_accessed: 2026-06-12
+    screening: {authority: 4, recency: 3, relevance: 5, accessibility: 4, safety_applicability: 4}
+    notes:
+      summary: "可穿戴 SCG + 机器学习可区分心衰代偿/失代偿状态（基于对运动的心脏响应），属对已知患者的监测研究。"
+      key_points: ["心衰应用是纵向监测，需要个体基线，不是一次性筛查。", "结果为研究级，不能作为个体诊断。", "支持“需基线/趋势、建议就医评估”的排查口径。"]
+      implementation_notes: ["仅用于 research_background；强调监测≠诊断。"]
+  - source_id: shandhi_2022_scg_intracardiac_hemodynamics_hf
+    title: Estimation of Changes in Intracardiac Hemodynamics Using Wearable Seismocardiography and Machine Learning in Patients With Heart Failure
+    organization: IEEE Transactions on Biomedical Engineering
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC9347221/
+    doi:
+    pmid: 35100106
+    year: 2022
+    language: en
+    region: US
+    topic: research_context
+    evidence_class: research_context
+    source_type: clinical_research_study
+    include: true
+    allowed_uses: [research_background]
+    copyright_note: "Open PMC article; summarize feasibility-study background only."
+    access_note: public PMC article; tracked summary only
+    last_accessed: 2026-06-12
+    screening: {authority: 4, recency: 4, relevance: 4, accessibility: 4, safety_applicability: 4}
+    notes:
+      summary: "SCG+PPG+ECG 贴片 + 机器学习可估计心衰患者肺动脉压/肺毛细血管楔压变化（可行性研究）。"
+      key_points: ["属于研究可行性，不能作为个体压力/诊断结论。", "说明心振多模态用于监测趋势。", "用于研究背景，不替代右心导管或超声。"]
+      implementation_notes: ["仅用于 research_background。"]
+  - source_id: yang_2021_scg_aortic_stenosis_detection
+    title: Efficient detection of aortic stenosis using morphological characteristics of cardiomechanical signals and heart rate variability parameters
+    organization: Scientific Reports
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC8664843/
+    doi: 10.1038/s41598-021-03441-2
+    pmid:
+    year: 2021
+    language: en
+    region: global
+    topic: research_context
+    evidence_class: research_context
+    source_type: clinical_research_study
+    include: true
+    allowed_uses: [research_background]
+    copyright_note: "Open-access article; summarize feature/method background only."
+    access_note: public PMC article; tracked summary only
+    last_accessed: 2026-06-12
+    screening: {authority: 4, recency: 4, relevance: 5, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "心振/心动机械信号形态学特征 + HRV 可检测主动脉瓣狭窄(AS)；AS 时主动脉瓣开放(AO)延迟。"
+      key_points: ["AS 研究级检测准确率高，但信号弱、易受噪声影响。", "可作为低成本筛查方向，不是确诊。", "支持“瓣膜问题建议超声心动图排查”的研究背景。"]
+      implementation_notes: ["仅用于 research_background；瓣膜结论需超声确认。"]
+  - source_id: mehrang_2018_smartphone_mechanocardiography_cvd
+    title: Multiclass Classifier based Cardiovascular Condition Detection Using Smartphone Mechanocardiography
+    organization: Scientific Reports
+    url: https://www.nature.com/articles/s41598-018-27683-9
+    doi: 10.1038/s41598-018-27683-9
+    pmid:
+    year: 2018
+    language: en
+    region: global
+    topic: research_context
+    evidence_class: research_context
+    source_type: clinical_research_study
+    include: true
+    allowed_uses: [research_background]
+    copyright_note: "Open-access article; summarize method background only."
+    access_note: public Nature article; tracked summary only
+    last_accessed: 2026-06-12
+    screening: {authority: 4, recency: 3, relevance: 5, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "智能手机机械心动图(SCG+GCG)可对房颤、缺血等多类心血管状态分类（贴胸采集）。"
+      key_points: ["手机加速度计/陀螺仪可作 SCG/GCG 采集。", "可检测“静默”阵发性房颤，属研究→临床过渡。", "支持“节律异常建议心电图排查”的研究背景。"]
+      implementation_notes: ["仅用于 research_background；房颤需心电图/Holter 确认。"]
+  - source_id: hersek_2020_scg_hemorrhage_wearable
+    title: Enabling the assessment of trauma-induced hemorrhage via smart wearable systems
+    organization: Science Advances
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC7375804/
+    doi: 10.1126/sciadv.abb1708
+    pmid:
+    year: 2020
+    language: en
+    region: US
+    topic: research_context
+    evidence_class: research_context
+    source_type: clinical_research_study
+    include: true
+    allowed_uses: [research_background]
+    copyright_note: "Open-access article; summarize research background only."
+    access_note: public PMC article; tracked summary only
+    last_accessed: 2026-06-12
+    screening: {authority: 4, recency: 3, relevance: 4, accessibility: 4, safety_applicability: 4}
+    notes:
+      summary: "可穿戴 SCG（结合 PPG/ECG）评估创伤性失血/低血容量状态，主要面向急救与创伤场景。"
+      key_points: ["属研究/急救场景，不是消费级筛查。", "心振反映心脏机械功能随血容量变化。", "用于研究背景，说明心振多模态的潜力与边界。"]
+      implementation_notes: ["仅用于 research_background；不面向普通用户产出失血结论。"]
+  - source_id: zhang_2023_contactless_video_seismocardiography
+    title: Non-contact heart vibration measurement using computer vision-based seismocardiography
+    organization: Scientific Reports
+    url: https://www.nature.com/articles/s41598-023-38607-7
+    doi: 10.1038/s41598-023-38607-7
+    pmid:
+    year: 2023
+    language: en
+    region: global
+    topic: research_context
+    evidence_class: research_context
+    source_type: clinical_research_study
+    include: true
+    allowed_uses: [research_background]
+    copyright_note: "Open-access article; summarize method background only."
+    access_note: public Nature article; tracked summary only
+    last_accessed: 2026-06-12
+    screening: {authority: 3, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "基于计算机视觉的非接触式心振(SCG)测量，与本项目摄像头采集路线相关：心振可由视频/相机间接获取。"
+      key_points: ["非接触式心振采集是研究方向，质量受运动/距离影响。", "与摄像头 PPG 互补，可做多模态背景。", "用于研究背景，不作为诊断或准确性结论。"]
+      implementation_notes: ["仅用于 research_background。"]
