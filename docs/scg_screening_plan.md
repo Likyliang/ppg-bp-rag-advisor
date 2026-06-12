@@ -40,8 +40,10 @@
 - 知识库：7 篇 SCG 诊断性来源入库（research_background），见
   [ppg_scg_diagnostic_features_survey.md](ppg_scg_diagnostic_features_survey.md)。
 - 引用：`cite_sources` 让每条排查建议引用其确切支撑来源；workflow 增专门排查证据检索。
-- Demo：Streamlit 可输入心振/节律特征并展示排查建议（结构化表格）。
-- 待办：阈值用标注 ECG/超声校准；OSA/血管老化（Tier-2 PPG）待夜间/导数数据。
+- Tier-2 PPG 血管老化已落地：`vascular_aging_screening`（SDPPG 老化指数/b·a + SI/RI，
+  置信度 low，引用 VascAgeNet/MDPI/Kim）；Streamlit 增形态/导数输入 + 研发审计视图。
+- Demo：Streamlit 可输入心振/节律/形态特征并展示排查建议（结构化表格 + 管线审计）。
+- 待办：阈值用标注 ECG/超声/PWV 队列校准；OSA（Tier-2 PPG）待夜间 SpO₂/PWA 数据。
 
 ## 数据契约（新增结构化输入）
 
