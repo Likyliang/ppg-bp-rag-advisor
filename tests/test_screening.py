@@ -178,6 +178,31 @@ def test_screening_cites_the_specific_scg_source():
     assert re.search(r"\[\d", sec)
 
 
+def test_vascular_aging_fires_from_sdppg_and_morphology():
+    payload = {
+        "estimated_sbp": 124, "estimated_dbp": 78, "signal_quality_score": 0.86,
+        "enable_screening_suggestions": True,
+        "ppg_morphology": {"available": True, "stiffness_index": 13.5, "reflection_index": 78},
+        "ppg_derived": {"available": True, "sdppg_aging_index": 0.7},
+    }
+    _, _, result = _run(payload)
+    va = [s for s in result.suggestions if s.condition_id == "vascular_aging_screening"]
+    assert va and va[0].confidence == "low"
+    assert "charlton_2022_vascageNet_ppg_vascular_age_review" in va[0].evidence_source_ids
+
+
+def test_vascular_aging_gated_by_feature_availability():
+    # Values present but available=False must NOT fire (avoids stray-value triggers).
+    payload = {
+        "estimated_sbp": 124, "estimated_dbp": 78, "signal_quality_score": 0.86,
+        "enable_screening_suggestions": True,
+        "ppg_morphology": {"available": False, "stiffness_index": 99},
+        "ppg_derived": {"available": False, "sdppg_aging_index": 9},
+    }
+    _, _, result = _run(payload)
+    assert "vascular_aging_screening" not in {s.condition_id for s in result.suggestions}
+
+
 def test_heart_rate_condition_fires_even_when_rhythm_present():
     # Regression: ``requires`` is positive-only — a present rhythm block must not
     # suppress an unrelated heart-rate suggestion.

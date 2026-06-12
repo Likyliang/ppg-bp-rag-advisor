@@ -2380,3 +2380,70 @@ sources:
       summary: "基于计算机视觉的非接触式心振(SCG)测量，与本项目摄像头采集路线相关：心振可由视频/相机间接获取。"
       key_points: ["非接触式心振采集是研究方向，质量受运动/距离影响。", "与摄像头 PPG 互补，可做多模态背景。", "用于研究背景，不作为诊断或准确性结论。"]
       implementation_notes: ["仅用于 research_background。"]
+  # --- PPG 血管老化 / 动脉硬度（SDPPG）研究背景来源（Tier-2 vascular aging）---
+  - source_id: charlton_2022_vascageNet_ppg_vascular_age_review
+    title: Assessing hemodynamics from the photoplethysmogram to gain insights into vascular age - a review from VascAgeNet
+    organization: American Journal of Physiology - Heart and Circulatory Physiology
+    url: https://journals.physiology.org/doi/full/10.1152/ajpheart.00392.2021
+    doi: 10.1152/ajpheart.00392.2021
+    pmid:
+    year: 2022
+    language: en
+    region: global
+    topic: research_context
+    evidence_class: review
+    source_type: peer_reviewed_review
+    include: true
+    allowed_uses: [research_background]
+    copyright_note: "Open-access review; summarize vascular-age feature principles only."
+    access_note: public article; tracked summary only
+    last_accessed: 2026-06-12
+    screening: {authority: 4, recency: 4, relevance: 5, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "VascAgeNet 综述：从 PPG（含 SDPPG 二阶导、SI/RI/AIx、形态）评估血管年龄/动脉硬度的特征与局限。"
+      key_points: ["PPG 形态与导数特征与血管老化相关，但受年龄/血压/采集条件混杂。", "可作血管老化排查的研究背景。", "不替代 PWV/颈动脉超声等检查，不作诊断。"]
+      implementation_notes: ["仅用于 research_background；血管老化结论需临床评估。"]
+  - source_id: mdpi_2023_ppg_arterial_stiffness_assessment
+    title: Photoplethysmography for the Assessment of Arterial Stiffness
+    organization: Sensors (MDPI)
+    url: https://www.mdpi.com/1424-8220/23/24/9882
+    doi: 10.3390/s23249882
+    pmid:
+    year: 2023
+    language: en
+    region: global
+    topic: research_context
+    evidence_class: review
+    source_type: peer_reviewed_review
+    include: true
+    allowed_uses: [research_background]
+    copyright_note: "Open-access review; summarize stiffness-index principles only."
+    access_note: public MDPI article; tracked summary only
+    last_accessed: 2026-06-12
+    screening: {authority: 3, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "综述 PPG 评估动脉硬度的方法（SI/RI/AIx、SDPPG 指数），及其与年龄/血压的关系与不确定性。"
+      key_points: ["僵硬度指数(SI)、反射指数(RI)、增强指数(AIx)与动脉硬度相关。", "消费级 PPG 估算硬度不确定性大。", "用于血管老化研究背景，不作个体诊断。"]
+      implementation_notes: ["仅用于 research_background。"]
+  - source_id: kim_2017_ppg_apg_new_aging_index
+    title: New Aging Index Using Signal Features of Both Photoplethysmograms and Acceleration Plethysmograms
+    organization: Healthcare Informatics Research
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5334132/
+    doi: 10.4258/hir.2017.23.1.53
+    pmid:
+    year: 2017
+    language: en
+    region: global
+    topic: research_context
+    evidence_class: research_context
+    source_type: clinical_research_study
+    include: true
+    allowed_uses: [research_background]
+    copyright_note: "Open PMC article; summarize aging-index feature principles only."
+    access_note: public PMC article; tracked summary only
+    last_accessed: 2026-06-12
+    screening: {authority: 3, recency: 3, relevance: 5, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "用 PPG 与加速度容积脉搏波(APG/SDPPG)的 b/a 等信号特征构建老化指数，与年龄相关（Takazawa 一脉）。"
+      key_points: ["SDPPG 的 b/a、老化指数随年龄/动脉硬化变化。", "老化指数与年龄相关性强（r≈0.8 量级）。", "用于血管老化研究背景，不作个体诊断或准确性结论。"]
+      implementation_notes: ["仅用于 research_background。"]

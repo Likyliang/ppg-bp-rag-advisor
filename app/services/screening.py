@@ -68,6 +68,8 @@ def _evaluate_triggers(
     rhythm = payload.rhythm
     measurement = payload.measurement
     scg = payload.cardiac_vibration
+    morph = payload.ppg_morphology
+    deriv = payload.ppg_derived
     fired: List[str] = []
 
     for key, value in triggers.items():
@@ -125,6 +127,36 @@ def _evaluate_triggers(
             and scg.beat_amplitude_cv >= value
         ):
             fired.append(f"心振逐拍幅值变异偏大（CV≈{scg.beat_amplitude_cv:g}）")
+        # PPG derivative (SDPPG) / morphology vascular-aging features. Availability
+        # is baked into the trigger so a stray value with available=False can't fire.
+        elif (
+            key == "sdppg_aging_index_gte"
+            and deriv.available
+            and deriv.sdppg_aging_index is not None
+            and deriv.sdppg_aging_index >= value
+        ):
+            fired.append(f"SDPPG 老化指数≈{deriv.sdppg_aging_index:g}")
+        elif (
+            key == "sdppg_b_a_ratio_gte"
+            and deriv.available
+            and deriv.sdppg_b_a_ratio is not None
+            and deriv.sdppg_b_a_ratio >= value
+        ):
+            fired.append(f"SDPPG b/a≈{deriv.sdppg_b_a_ratio:g}")
+        elif (
+            key == "stiffness_index_gte"
+            and morph.available
+            and morph.stiffness_index is not None
+            and morph.stiffness_index >= value
+        ):
+            fired.append(f"僵硬度指数≈{morph.stiffness_index:g}")
+        elif (
+            key == "reflection_index_gte"
+            and morph.available
+            and morph.reflection_index is not None
+            and morph.reflection_index >= value
+        ):
+            fired.append(f"反射指数≈{morph.reflection_index:g}")
     return fired
 
 

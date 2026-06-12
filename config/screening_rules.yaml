@@ -171,3 +171,28 @@ conditions:
       - research_background
     evidence_source_ids:
       - yang_2021_scg_aortic_stenosis_detection
+
+  - id: vascular_aging_screening
+    label: 血管老化 / 动脉硬度（研究性提示）
+    confidence: low
+    # PPG second-derivative (SDPPG) + morphology stiffness indices. Research-grade,
+    # confounded by age/BP; low confidence, strongly hedged. Availability is gated
+    # in the engine. Thresholds are PLACEHOLDERS pending calibration (PWV cohort).
+    triggers:
+      sdppg_aging_index_gte: 0.5
+      sdppg_b_a_ratio_gte: -0.4
+      stiffness_index_gte: 12.0
+      reflection_index_gte: 75.0
+    requires:
+      ppg_signal_usable: true
+    rationale_template: 本次 PPG 形态/二阶导(SDPPG)指标（{evidence}）可能提示动脉偏硬或血管偏老化的趋势；这类指标受年龄、血压等因素混杂影响，单次测量不能确定。
+    screening_action: 这是研究性提示，不能作为结论；如关注血管健康或有心血管风险，建议在体检或门诊与医生讨论，必要时做脉搏波速度(PWV)或血管超声评估。
+    retrieval_intents:
+      - PPG 血管老化 动脉硬度 SDPPG 老化指数 僵硬度 反射指数 研究
+      - photoplethysmography vascular aging arterial stiffness SDPPG aging index review
+    allowed_uses:
+      - research_background
+    evidence_source_ids:
+      - charlton_2022_vascageNet_ppg_vascular_age_review
+      - mdpi_2023_ppg_arterial_stiffness_assessment
+      - kim_2017_ppg_apg_new_aging_index

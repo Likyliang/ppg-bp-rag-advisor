@@ -746,6 +746,12 @@ with st.sidebar:
         lvet_ms_val = st.number_input("LVET 左室射血时间 (ms)", min_value=0, max_value=900, value=0)
         s1_s2_ratio_val = st.number_input("心音 S1/S2 振幅比", min_value=0.0, max_value=20.0, value=0.0, step=0.1)
         beat_amplitude_cv_val = st.slider("心振逐拍幅值变异 (CV)", 0.0, 1.0, 0.0, step=0.01)
+        st.caption("PPG 形态/二阶导（血管老化，研究性）")
+        ppg_morph_available = st.checkbox("提供 PPG 形态/导数特征", value=False)
+        stiffness_index_val = st.number_input("僵硬度指数 SI", min_value=0.0, max_value=40.0, value=0.0, step=0.1)
+        reflection_index_val = st.number_input("反射指数 RI (%)", min_value=0.0, max_value=100.0, value=0.0, step=1.0)
+        sdppg_aging_index_val = st.number_input("SDPPG 老化指数", min_value=-5.0, max_value=5.0, value=0.0, step=0.1)
+        sdppg_b_a_val = st.number_input("SDPPG b/a", min_value=-5.0, max_value=5.0, value=0.0, step=0.1)
 
 payload = {
     "measurement": {
@@ -814,6 +820,20 @@ if enable_screening:
     if beat_amplitude_cv_val:
         scg_block["beat_amplitude_cv"] = beat_amplitude_cv_val
     payload["cardiac_vibration"] = scg_block
+
+    if ppg_morph_available:
+        morph_block = {"available": True}
+        if stiffness_index_val:
+            morph_block["stiffness_index"] = stiffness_index_val
+        if reflection_index_val:
+            morph_block["reflection_index"] = reflection_index_val
+        payload["ppg_morphology"] = morph_block
+        deriv_block = {"available": True}
+        if sdppg_aging_index_val:
+            deriv_block["sdppg_aging_index"] = sdppg_aging_index_val
+        if sdppg_b_a_val:
+            deriv_block["sdppg_b_a_ratio"] = sdppg_b_a_val
+        payload["ppg_derived"] = deriv_block
 
 st.header("个性化解释报告")
 action_cols = st.columns([1, 3])
@@ -1090,6 +1110,47 @@ with audit_tab:
 
     st.subheader("知识库覆盖")
     st.json(audit_knowledge_base())
+
+    st.subheader("排查建议管线（研发审计）")
+    screening = getattr(report, "screening", None)
+    if screening is None or not screening.requested:
+        st.caption("未开启排查建议。可在左侧「心振 / 节律特征（实验）」启用后查看特征→条件→证据的管线。")
+    else:
+        st.markdown("**1. 本次排查相关输入特征**")
+        feature_view = {
+            "rhythm": payload.get("rhythm", {}),
+            "cardiac_vibration": payload.get("cardiac_vibration", {}),
+            "ppg_morphology": payload.get("ppg_morphology", {}),
+            "ppg_derived": payload.get("ppg_derived", {}),
+        }
+        st.json({k: v for k, v in feature_view.items() if v})
+        st.markdown("**2. 触发的排查条件 → 依据来源（cite_sources）**")
+        if screening.produced:
+            cited_by_source = {
+                e.source_id.rsplit("_", 1)[0] if "::" not in e.source_id else e.source_id: e.citation_number
+                for e in report.retrieved_evidence
+                if e.citation_number is not None
+            }
+            st.table([
+                {
+                    "条件": s.condition_id,
+                    "提示强度": s.confidence,
+                    "依据来源 source_id": "、".join(s.evidence_source_ids) or "(规则性，无引用)",
+                    "命中引用编号": "、".join(
+                        str(cited_by_source[sid]) for sid in s.evidence_source_ids if sid in cited_by_source
+                    ) or "—",
+                }
+                for s in screening.suggestions
+            ])
+        else:
+            st.caption("本次未触发任何排查条件。")
+        st.markdown("**3. 被安全层拦截 / 抑制的项（防误读）**")
+        blocked_notes = [n for n in screening.notes if ("拦截" in n or "急症" in n or "不足" in n)]
+        if blocked_notes:
+            for note in blocked_notes:
+                st.write(f"- {note}")
+        else:
+            st.caption("无拦截/抑制记录。")
 
 with json_tab:
     st.code(json.dumps(report.model_dump(by_alias=True), ensure_ascii=False, indent=2), language="json")
