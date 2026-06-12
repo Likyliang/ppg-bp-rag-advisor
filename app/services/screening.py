@@ -57,6 +57,12 @@ def _requires_met(requires: Dict[str, Any], payload: MeasurementPayload, rule_re
         elif key == "scg_signal_good":
             if _scg_signal_good(payload) != bool(expected):
                 return False
+        elif key == "ppg_derived_available":
+            if bool(payload.ppg_derived.available) != bool(expected):
+                return False
+        elif key == "ppg_morphology_available":
+            if bool(payload.ppg_morphology.available) != bool(expected):
+                return False
         # Unknown requirement keys are ignored rather than silently failing.
     return True
 
@@ -157,6 +163,22 @@ def _evaluate_triggers(
             and morph.reflection_index >= value
         ):
             fired.append(f"反射指数≈{morph.reflection_index:g}")
+        # OSA: nightly/continuous-only metrics. Presence of ODI is itself the
+        # "needs overnight data" guard — a single spot reading never carries one.
+        elif (
+            key == "oxygen_desaturation_index_gte"
+            and deriv.available
+            and deriv.oxygen_desaturation_index is not None
+            and deriv.oxygen_desaturation_index >= value
+        ):
+            fired.append(f"夜间氧减指数 ODI≈{deriv.oxygen_desaturation_index:g}/小时")
+        elif (
+            key == "pwa_drop_index_gte"
+            and deriv.available
+            and deriv.pwa_drop_index is not None
+            and deriv.pwa_drop_index >= value
+        ):
+            fired.append(f"脉搏波幅下降指数≈{deriv.pwa_drop_index:g}/小时")
     return fired
 
 

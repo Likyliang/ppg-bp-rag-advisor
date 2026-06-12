@@ -752,6 +752,9 @@ with st.sidebar:
         reflection_index_val = st.number_input("反射指数 RI (%)", min_value=0.0, max_value=100.0, value=0.0, step=1.0)
         sdppg_aging_index_val = st.number_input("SDPPG 老化指数", min_value=-5.0, max_value=5.0, value=0.0, step=0.1)
         sdppg_b_a_val = st.number_input("SDPPG b/a", min_value=-5.0, max_value=5.0, value=0.0, step=0.1)
+        st.caption("夜间/连续指标（睡眠呼吸暂停，需整夜数据）")
+        odi_val = st.number_input("氧减指数 ODI (次/小时)", min_value=0.0, max_value=120.0, value=0.0, step=1.0)
+        pwa_drop_val = st.number_input("脉搏波幅下降指数 (次/小时)", min_value=0.0, max_value=120.0, value=0.0, step=1.0)
 
 payload = {
     "measurement": {
@@ -833,6 +836,10 @@ if enable_screening:
             deriv_block["sdppg_aging_index"] = sdppg_aging_index_val
         if sdppg_b_a_val:
             deriv_block["sdppg_b_a_ratio"] = sdppg_b_a_val
+        if odi_val:
+            deriv_block["oxygen_desaturation_index"] = odi_val
+        if pwa_drop_val:
+            deriv_block["pwa_drop_index"] = pwa_drop_val
         payload["ppg_derived"] = deriv_block
 
 st.header("个性化解释报告")

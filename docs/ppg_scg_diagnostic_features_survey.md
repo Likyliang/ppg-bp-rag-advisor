@@ -22,6 +22,7 @@
 - **排查引擎条件**：`arrhythmia_screening`（PPG 节律 + Poincaré + SCG 逐拍幅值）、
   `cardiac_timing_research`（PEP/PTT）、`valvular_screening`（主动脉瓣狭窄，置信度 low）、
   `vascular_aging_screening`（SDPPG 老化指数/b·a + SI/RI，置信度 low）、
+  `osa_screening`（夜间 ODI/PWA，置信度 moderate，内置“需整夜数据”护栏）、
   `tachycardia/bradycardia_eval`、`hypertension_workup`。
 - **精确引用**：每个 SCG 条件经 `cite_sources` 引用其确切支撑来源（心律不齐→
   机械心动图房颤；机械时相→Taebi/Shandhi；瓣膜→Yang 主动脉瓣狭窄），不按

@@ -2447,3 +2447,48 @@ sources:
       summary: "用 PPG 与加速度容积脉搏波(APG/SDPPG)的 b/a 等信号特征构建老化指数，与年龄相关（Takazawa 一脉）。"
       key_points: ["SDPPG 的 b/a、老化指数随年龄/动脉硬化变化。", "老化指数与年龄相关性强（r≈0.8 量级）。", "用于血管老化研究背景，不作个体诊断或准确性结论。"]
       implementation_notes: ["仅用于 research_background。"]
+  # --- PPG 睡眠呼吸暂停（OSA）研究背景来源（Tier-2 OSA）---
+  - source_id: lazaro_2014_ppg_oximeter_osa_diagnosis
+    title: Diagnosis of Obstructive Sleep Apnea Using Pulse Oximeter Derived Photoplethysmographic Signals
+    organization: Journal of Clinical Sleep Medicine
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3927434/
+    doi: 10.5664/jcsm.3530
+    pmid:
+    year: 2014
+    language: en
+    region: global
+    topic: research_context
+    evidence_class: research_context
+    source_type: clinical_research_study
+    include: true
+    allowed_uses: [research_background]
+    copyright_note: "Open PMC article; summarize OSA-from-PPG feature principles only."
+    access_note: public PMC article; tracked summary only
+    last_accessed: 2026-06-12
+    screening: {authority: 4, recency: 2, relevance: 5, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "用脉搏血氧仪 PPG 诊断阻塞性睡眠呼吸暂停（OSA），呼吸事件指数与 PSG 的 AHI 强相关（r≈0.935）。"
+      key_points: ["OSA 评估依赖夜间/连续记录（氧减、脉搏波幅与脉搏间期变化）。", "单次指尖测量不能评估睡眠呼吸暂停。", "用于支持“建议做睡眠监测排查 OSA”的研究背景。"]
+      implementation_notes: ["仅用于 research_background；OSA 结论需 PSG/家庭睡眠监测。"]
+  - source_id: papini_2026_home_osa_screening_pwa_ppi_odi
+    title: Towards automatic home screening of obstructive sleep apnea using combined features from pulse wave amplitude, pulse-to-pulse interval and oxygen desaturation
+    organization: Sleep and Breathing
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC12920278/
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: global
+    topic: research_context
+    evidence_class: research_context
+    source_type: clinical_research_study
+    include: true
+    allowed_uses: [research_background]
+    copyright_note: "Open PMC article; summarize home-screening feature principles only."
+    access_note: public PMC article; tracked summary only
+    last_accessed: 2026-06-12
+    screening: {authority: 3, recency: 5, relevance: 5, accessibility: 5, safety_applicability: 4}
+    notes:
+      summary: "用脉搏波幅(PWA)下降、脉搏间期(PPI)与氧减(ODI)组合特征做家庭 OSA 筛查。"
+      key_points: ["PWA 周期性下降反映觉醒相关交感激活；ODI 反映夜间氧减事件。", "这些是夜间/连续指标，非单次测量可得。", "用于支持夜间数据下的 OSA 排查研究背景。"]
+      implementation_notes: ["仅用于 research_background；需夜间/连续数据。"]

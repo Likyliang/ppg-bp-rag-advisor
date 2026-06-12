@@ -203,6 +203,32 @@ def test_vascular_aging_gated_by_feature_availability():
     assert "vascular_aging_screening" not in {s.condition_id for s in result.suggestions}
 
 
+def test_osa_screening_fires_with_overnight_metrics():
+    payload = {
+        "estimated_sbp": 124, "estimated_dbp": 78, "signal_quality_score": 0.86,
+        "enable_screening_suggestions": True,
+        "ppg_derived": {"available": True, "oxygen_desaturation_index": 12, "pwa_drop_index": 15},
+    }
+    _, _, result = _run(payload)
+    osa = [s for s in result.suggestions if s.condition_id == "osa_screening"]
+    assert osa and osa[0].confidence == "moderate"
+    assert "lazaro_2014_ppg_oximeter_osa_diagnosis" in osa[0].evidence_source_ids
+    text = osa[0].rationale + osa[0].screening_action
+    assert "可能" in text and any(c in text for c in ("睡眠监测", "睡眠门诊", "就医"))
+
+
+def test_osa_not_triggered_by_single_spot_reading():
+    # No ODI / PWA-drop (a single finger reading) must not trigger OSA screening,
+    # even with an SpO2 value present — the nightly-data guard.
+    payload = {
+        "estimated_sbp": 124, "estimated_dbp": 78, "signal_quality_score": 0.86,
+        "enable_screening_suggestions": True,
+        "ppg_derived": {"available": True, "spo2": 95},
+    }
+    _, _, result = _run(payload)
+    assert "osa_screening" not in {s.condition_id for s in result.suggestions}
+
+
 def test_heart_rate_condition_fires_even_when_rhythm_present():
     # Regression: ``requires`` is positive-only — a present rhythm block must not
     # suppress an unrelated heart-rate suggestion.

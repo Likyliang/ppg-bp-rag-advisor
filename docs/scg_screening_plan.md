@@ -42,8 +42,10 @@
 - 引用：`cite_sources` 让每条排查建议引用其确切支撑来源；workflow 增专门排查证据检索。
 - Tier-2 PPG 血管老化已落地：`vascular_aging_screening`（SDPPG 老化指数/b·a + SI/RI，
   置信度 low，引用 VascAgeNet/MDPI/Kim）；Streamlit 增形态/导数输入 + 研发审计视图。
-- Demo：Streamlit 可输入心振/节律/形态特征并展示排查建议（结构化表格 + 管线审计）。
-- 待办：阈值用标注 ECG/超声/PWV 队列校准；OSA（Tier-2 PPG）待夜间 SpO₂/PWA 数据。
+- Tier-2 PPG OSA 已落地：`osa_screening`（夜间 ODI/PWA 下降，置信度 moderate，
+  内置“需整夜数据”护栏——单次读数无 ODI 故不触发；引用 Lazaro 2014 / Papini 2026）。
+- Demo：Streamlit 可输入心振/节律/形态/夜间特征并展示排查建议（结构化表格 + 管线审计）。
+- 待办：用标注 ECG/超声/PWV/PSG 队列校准各阈值（目前为文献占位）；接入真实上游特征字段后回填。
 
 ## 数据契约（新增结构化输入）
 

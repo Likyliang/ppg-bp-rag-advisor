@@ -196,3 +196,25 @@ conditions:
       - charlton_2022_vascageNet_ppg_vascular_age_review
       - mdpi_2023_ppg_arterial_stiffness_assessment
       - kim_2017_ppg_apg_new_aging_index
+
+  - id: osa_screening
+    label: 睡眠呼吸暂停（OSA，需夜间数据）
+    confidence: moderate
+    # Nightly/continuous-only: ODI and PWA-drop are overnight metrics, so a single
+    # spot reading can never trigger this (the presence of ODI is the data guard).
+    # Thresholds are literature-informed PLACEHOLDERS pending PSG calibration.
+    triggers:
+      oxygen_desaturation_index_gte: 5.0   # ODI events/hr (mild-OSA-ish floor)
+      pwa_drop_index_gte: 10.0
+    requires:
+      ppg_derived_available: true
+    rationale_template: 本次夜间/连续 PPG 指标（{evidence}）可能提示与睡眠呼吸暂停相关的夜间氧减或交感觉醒事件，但单次或非整夜数据不能确定。
+    screening_action: 建议到呼吸科/睡眠门诊就医评估，由医生决定是否做多导睡眠监测(PSG)或规范家庭睡眠监测排查睡眠呼吸暂停。
+    retrieval_intents:
+      - 睡眠呼吸暂停 OSA 氧减指数 脉搏波幅 PPG 夜间 筛查
+      - obstructive sleep apnea oxygen desaturation pulse oximetry PPG screening
+    allowed_uses:
+      - research_background
+    evidence_source_ids:
+      - lazaro_2014_ppg_oximeter_osa_diagnosis
+      - papini_2026_home_osa_screening_pwa_ppi_odi
