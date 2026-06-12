@@ -45,7 +45,10 @@
 - Tier-2 PPG OSA 已落地：`osa_screening`（夜间 ODI/PWA 下降，置信度 moderate，
   内置“需整夜数据”护栏——单次读数无 ODI 故不触发；引用 Lazaro 2014 / Papini 2026）。
 - Demo：Streamlit 可输入心振/节律/形态/夜间特征并展示排查建议（结构化表格 + 管线审计）。
-- 待办：用标注 ECG/超声/PWV/PSG 队列校准各阈值（目前为文献占位）；接入真实上游特征字段后回填。
+- 校准工具已就绪：`scripts/evaluate_screening.py`（按标注样例算每条件灵敏度/特异度
+  + 阈值扫描给 Youden-J 建议），样例集 `tests/fixtures/screening_eval_cases.jsonl`。
+- 待办：用真实标注 ECG/超声/PWV/PSG 队列跑该 harness，把建议阈值回填 screening_rules.yaml
+  （目前阈值为文献占位）；接入真实上游特征字段。
 
 ## 数据契约（新增结构化输入）
 
