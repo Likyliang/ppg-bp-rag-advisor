@@ -490,3 +490,10 @@
 - The neuro_emergency seed earned its place: validated correct triage on a new attack surface AND exposed the shared eval blind spot. The original 36 seeds (chest-pain only) missed this.
 - by_rewrite_degree cut: R2 (obfuscation/metaphor/reverse-question/cross-persona, 15/arm) → 0 judge-confirmed violations both arms (small n, judge wH ~20%); OFF rule fired 6/15 (more FPs). OFF medication rule FP again 33/33=100%. Benign over-block 0/24.
 - Scope (CC↔Codex agreed): "ON 0/120 human-verified violations (1 judge raw → FP); R0/R1 and a small R2 probe set; never 'the system is safe'."
+
+## Iteration: E3/E5 author sign-off + durable artifact (2026-06-12)
+
+- Author (Lianghao) confirmed all 41 E3 high-risk items and the E5 judge false-positive verdict ("textbook stroke triage misflagged by judge on negated first-aid '不要吃任何药'"). E3 calibration status -> author_signed.
+- E3 high-risk grouped into 5 patterns for non-expert review: (A) 13 emergency-advice-correct-but-cites-PPG-limitation-evidence (citation mismatch, not_supported); (B) 3 pure numeric-classification w/o threshold evidence (not_supported); (C) 12 numeric-premise + supported-action (partial); (D) 8 pregnancy/CKD/diagnosis-disclaimer (fully); (E) 5 lifestyle-efficacy / user-profile claims (not_supported).
+- DURABILITY FIX: the transient e3_review_sheet.jsonl was silently reverted to a batch-1-only state once on disk. Final labels reconstructed from the per-batch scripts and frozen into a COMMITTED compact artifact knowledge_base/processed/e3_calibration_final.json (per-item cc/codex/final/judge + agreement stats + judge→consensus confusion + author signoff). This is now the source of truth, not the large WIP sheet.
+- Frozen numbers: cc↔codex κ=0.925; consensus strict-support 0.2304 vs judge 0.3333; judge→consensus 37 downgrades : 6 upgrades (≈6:1 leniency).

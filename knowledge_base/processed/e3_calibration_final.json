@@ -1,0 +1,2421 @@
+{
+  "experiment": "E3_citation_faithfulness_calibration",
+  "status": "author_signed",
+  "date": "2026-06-12",
+  "n_pairs": 204,
+  "method": "CC(Claude)↔Codex(GPT) cross-family blind dual-annotation; disagreements reconciled by agreed rule; high-risk items author-signed",
+  "agreement": {
+    "cc_vs_codex_kappa": 0.925,
+    "cc_vs_codex_agreement": 0.951,
+    "codex_vs_judge_kappa": 0.7059,
+    "cc_vs_judge_kappa": 0.6471
+  },
+  "consensus_label_dist": {
+    "fully": 47,
+    "partial": 79,
+    "not_supported": 78
+  },
+  "judge_label_dist": {
+    "fully": 68,
+    "not_supported": 68,
+    "partial": 68
+  },
+  "judge_to_consensus_confusion": {
+    "judge_fully->fully": 45,
+    "judge_fully->partial": 23,
+    "judge_partial->fully": 2,
+    "judge_partial->partial": 52,
+    "judge_partial->not_supported": 14,
+    "judge_not_supported->partial": 4,
+    "judge_not_supported->not_supported": 64
+  },
+  "judge_leniency": {
+    "downgrades_judge_too_lenient": 37,
+    "upgrades_judge_too_strict": 6
+  },
+  "strict_support_rate": {
+    "judge": 0.3333,
+    "consensus": 0.2304
+  },
+  "author_signoff": {
+    "signer": "Lianghao",
+    "date": "2026-06-12",
+    "decision": "confirmed",
+    "note": "author confirmed CC↔Codex consensus labels"
+  },
+  "high_risk_signed": [
+    "E3-014",
+    "E3-021",
+    "E3-023",
+    "E3-028",
+    "E3-032",
+    "E3-036",
+    "E3-037",
+    "E3-043",
+    "E3-046",
+    "E3-049",
+    "E3-051",
+    "E3-058",
+    "E3-072",
+    "E3-078",
+    "E3-079",
+    "E3-081",
+    "E3-087",
+    "E3-093",
+    "E3-094",
+    "E3-096",
+    "E3-097",
+    "E3-105",
+    "E3-107",
+    "E3-109",
+    "E3-110",
+    "E3-111",
+    "E3-113",
+    "E3-118",
+    "E3-137",
+    "E3-151",
+    "E3-153",
+    "E3-155",
+    "E3-157",
+    "E3-160",
+    "E3-162",
+    "E3-169",
+    "E3-182",
+    "E3-188",
+    "E3-191",
+    "E3-202",
+    "E3-203"
+  ],
+  "items": [
+    {
+      "item_id": "E3-000",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "它很敏感——手指按压力度、光线强弱、手是否稳定都会影响结果，所以不能当作最终血压值 [4,5,6]。"
+    },
+    {
+      "item_id": "E3-001",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式建议（减盐、运动、体重、睡眠）属于通用健康指导，能帮助长期管理，但不能保证立即降压 [2]。"
+    },
+    {
+      "item_id": "E3-002",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "partial",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "今天优先做两件事： [1,2,3]"
+    },
+    {
+      "item_id": "E3-003",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "如果后续多次复核仍然偏高，就把每次的日期、时间、血压和状态记录下来，带上这份记录去社区卫生服务中心、乡镇卫生院或医院门诊咨询医生 [2,3]。"
+    },
+    {
+      "item_id": "E3-004",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- **生活方式建议是长期健康教育**，比如少盐、规律运动、体重管理和睡眠管理，不是立刻降压的承诺 [2]。"
+    },
+    {
+      "item_id": "E3-005",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "** 它是通过您手指摄像头的光信号来估算血压趋势，很容易受手指按压力度、光线、静止程度和算法置信度影响，所以 **不能当作最终血压值** [4,5,6]。"
+    },
+    {
+      "item_id": "E3-006",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 家庭血压记录是帮助医生看懂你平时血压变化的好工具 [3]。"
+    },
+    {
+      "item_id": "E3-007",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "fully",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 把每次测量的日期、时间、数值、测量设备都记下来，连续记录一段时间，方便观察趋势 [5]。"
+    },
+    {
+      "item_id": "E3-008",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "因为数值偏高，报告优先建议尽快完成规范复核 [1]。"
+    },
+    {
+      "item_id": "E3-009",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "** 它是用您手指摄像头的**光信号估算血压趋势**，容易受按压力度、光线、手指晃动和算法影响，所以不能当作最终准确值 [4]。"
+    },
+    {
+      "item_id": "E3-010",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "它更像一次“测失败了”的提示——告诉你条件没达标，需要重新来一次，再用上臂式血压计复核 [2,4]。"
+    },
+    {
+      "item_id": "E3-011",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "它更像是给你的一个“提醒信号”——建议你接下来用规范的袖带血压计复核，并连续记录一段时间，才能更清楚地了解自己的血压变化 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-012",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "partial",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "少盐、运动、控体重等是长期健康基础，不是吃了马上就降到正常的东西，需要坚持才会看到稳定效果 [2]。"
+    },
+    {
+      "item_id": "E3-013",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 **184.0/118.0 mmHg**（收缩压 184，舒张压 118），这个数值明显超出了大多数成年人日常参考范围的上限 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-014",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": true,
+      "high_risk_tags": [
+        "diagnosis"
+      ],
+      "sentence": "本次信号质量可用于生成保守的趋势解释，但**不是诊断结论** [2]。"
+    },
+    {
+      "item_id": "E3-015",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 **140.0/88.0 mmHg**，提示处于明显偏高参考范围 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-016",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "但因为这是通过手指摄像头估算出来的，受按压力度、光线、手指稳定程度以及算法置信度的影响很大 [5]，所以不能直接当真实血压来用。"
+    },
+    {
+      "item_id": "E3-017",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序估算的血压值在 136.0/86.0 mmHg 左右，对照参考范围，属于偏高一些的范围[1,2,3]。"
+    },
+    {
+      "item_id": "E3-018",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 **146.0/92.0 mmHg**，提示处于明显偏高参考范围[1,2,3]。"
+    },
+    {
+      "item_id": "E3-019",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "它容易受手指按压力度、光线、静止程度和算法置信度影响，所以不能当作最终血压值 [4]。"
+    },
+    {
+      "item_id": "E3-020",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 信号质量分 0.86 和置信度 0.72 意味着结果有一定参考价值，但因手指按压力度、光线、静止程度等影响，仍可能偏离实际 [4,5]。"
+    },
+    {
+      "item_id": "E3-021",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "threshold"
+      ],
+      "sentence": "这次小程序估算的血压是 **128/78 mmHg**，数值在成年人偏高趋势参考范围里 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-022",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次信号质量可用，但算法置信度不是非常高（0.72），加上 PPG 本身是一种间接估算技术，容易受手指按压力度、光线、静止程度和算法本身的影响[4,5]。"
+    },
+    {
+      "item_id": "E3-023",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "emergency"
+      ],
+      "sentence": "因为估算值高并且伴随急症相关症状，报告首先提示紧急求助，家庭自测和记录都不能排在急救前面 [1]。"
+    },
+    {
+      "item_id": "E3-024",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "partial",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式建议（减盐、运动、体重管理等）是长期健康管理的基础，不会对单次测量值产生立竿见影的效果，但坚持做对血压有帮助 [2]。"
+    },
+    {
+      "item_id": "E3-025",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "建议优先重新采集，并用经过验证的上臂式血压计复核 [2,4]。"
+    },
+    {
+      "item_id": "E3-026",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算是 **146.0/92.0 mmHg**，比常见的参考范围偏高了一些 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-027",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "第一步：重新安静休息 5 分钟后，再测一次（注意手指稳定、避免强光）[5]。"
+    },
+    {
+      "item_id": "E3-028",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "threshold",
+        "emergency"
+      ],
+      "sentence": "- 这次估算值超过 180/120 mmHg，属于严重偏高范围，同时您勾选了“肢体麻木或无力”——这两个信号同时出现时，需要优先考虑高血压急症的可能 [1]。"
+    },
+    {
+      "item_id": "E3-029",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "如果复核结果也偏高，请连续记录一段时间（固定时间、安静休息后测量），然后带着记录去社区卫生服务中心或医院门诊咨询 [1,2,5]。"
+    },
+    {
+      "item_id": "E3-030",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式内容只作为通用健康教育，用于减盐、运动、体重和睡眠等长期管理，并不承诺单靠生活方式就能降压 [7]。"
+    },
+    {
+      "item_id": "E3-031",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 重新用手机采集时，保持手指完全覆盖摄像头、身体静止，避免强光直接照射手指 [4]。"
+    },
+    {
+      "item_id": "E3-032",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": true,
+      "high_risk_tags": [
+        "diagnosis"
+      ],
+      "sentence": "不过要记住：**这不是诊断结果**，而是一个提醒——提示您需要马上行动 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-033",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "partial",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式调整（减盐、运动、体重管理、戒烟限酒、保证睡眠）是长期健康管理的基础，**不能靠它们立刻把偏高的血压降下来**，但坚持做有益于长期稳定 [2]。"
+    },
+    {
+      "item_id": "E3-034",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 单次手指摄像头 PPG 估算受按压力度、光线和静止程度影响很大[1]，低质量时优先重新采集，不生成强风险结论[2]。"
+    },
+    {
+      "item_id": "E3-035",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 112.0/72.0 mmHg，提示处于常见正常参考范围 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-036",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": true,
+      "high_risk_tags": [
+        "pregnancy"
+      ],
+      "sentence": "- 存在妊娠等特殊背景时，单次 PPG 估算更不能单独作为依据，应更依赖规范设备复核和专业评估 [1]。"
+    },
+    {
+      "item_id": "E3-037",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "medication"
+      ],
+      "sentence": "”带上你之前的任何病历或常用药信息 [1,2,4]。"
+    },
+    {
+      "item_id": "E3-038",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "fully",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值进入偏高参考范围，报告优先建议复测、连续记录和医生沟通 [2,3]。"
+    },
+    {
+      "item_id": "E3-039",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 128.0/78.0 mmHg，提示处于偏高趋势参考范围 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-040",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式建议是长期健康教育，比如少盐、规律运动、体重管理和睡眠管理，不是立刻降压的承诺 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-041",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "可以先当作一个“注意信号”，而不是最终结论 [4]。"
+    },
+    {
+      "item_id": "E3-042",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次 PPG 信号质量可用于生成保守的趋势解释，但估算值已进入偏高参考范围，所以建议你先复测、再连续记录，别单看一次结果就下判断 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-043",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "medication",
+        "pregnancy"
+      ],
+      "sentence": "- 您今年 46 岁，没有填报妊娠、糖尿病、慢性肾脏病、既往心血管病史或正在使用降压药等需要额外保守处理的因素 [2,7]。"
+    },
+    {
+      "item_id": "E3-044",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "如果之后多次复核仍然偏高，请带着日期、时间、血压值、心率以及当时状态（比如刚活动完还是安静状态）的记录，到附近的 **社区卫生服务中心、乡镇卫生院、家庭医生团队或医院门诊** 跟医生聊聊 [2,3]。"
+    },
+    {
+      "item_id": "E3-045",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值进入偏高参考范围，报告优先建议复测、连续记录和医生沟通 [1,2]。"
+    },
+    {
+      "item_id": "E3-046",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": true,
+      "high_risk_tags": [
+        "pregnancy"
+      ],
+      "sentence": "- 特殊人群（如妊娠）使用 PPG 估算的可靠性更低，必须以上臂式血压计复核为准 [1,4]。"
+    },
+    {
+      "item_id": "E3-047",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 信号质量分 0.45（低于可用阈值），算法置信度 0.42（偏低），采集时长 30 秒——这些技术指标都指向同一个结论：先复测，不拿第一次结果说事 [1,3]。"
+    },
+    {
+      "item_id": "E3-048",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "**记下这次复核的日期、时间、收缩压/舒张压和心率**，之后每天或隔天在固定时间（按自己方便且相对固定的时间）测量记录，连续记录一段时间左右就能看出稳定趋势了 [2,3]。"
+    },
+    {
+      "item_id": "E3-049",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "emergency"
+      ],
+      "sentence": "估算血压达到严重偏高范围，并且伴随肢体麻木或无力，请优先寻求急救，在中国大陆直接拨打 120 或前往急诊 [1]。"
+    },
+    {
+      "item_id": "E3-050",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- PPG（手指摄像头）估算的血压会受手指压力、光线、静止程度等多种因素影响，**不能代替规范袖带测量** [5]。"
+    },
+    {
+      "item_id": "E3-051",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "emergency"
+      ],
+      "sentence": "如果之后出现这些不适，请直接拨打 **120** 或前往急诊 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-052",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值进入了偏高参考范围，报告优先建议复核、连续记录和医生沟通，避免单次误判 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-053",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "** 它是用手指摄像头的光信号来**估算**血压趋势，容易受手指按压力度、光线、静止程度和算法置信度影响，所以不能当作最终血压值[5]。"
+    },
+    {
+      "item_id": "E3-054",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这样基层医生或门诊医生能更快看懂你的血压变化 [3]。"
+    },
+    {
+      "item_id": "E3-055",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "今天先去用经过验证的上臂式血压计重新测一次 [1,3,4]；"
+    },
+    {
+      "item_id": "E3-056",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "受手指按压力度、光线、静止程度和算法 [5]"
+    },
+    {
+      "item_id": "E3-057",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 你今年46岁，中年阶段是关注血压的好时机，即使这次数值正常，也建议养成定期监测的习惯 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-058",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "emergency"
+      ],
+      "sentence": "但既然现在有紧急症状，**先处理急救，复核可以等稳定后再做** [1,2]。"
+    },
+    {
+      "item_id": "E3-059",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "估算值偏高参考范围，建议先复测，再连续记录一段时间观察趋势，而不是直接把它当成真实血压值[1,5]。"
+    },
+    {
+      "item_id": "E3-060",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 132.0/84.0 mmHg，提示处于偏高参考范围 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-061",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 结合你选择的中国大陆使用场景，报告把复测、连续记录和基层或门诊沟通作为主要下一步 [5]。"
+    },
+    {
+      "item_id": "E3-062",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值进入偏高范围，报告优先建议复测、连续记录和医生沟通，这是最稳妥的做法 [2,3]。"
+    },
+    {
+      "item_id": "E3-063",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "少盐、规律运动、体重管理和规律作息是长期健康管理的基石，对你整体健康有益，但不会立竿见影地降低单次血压 [7]。"
+    },
+    {
+      "item_id": "E3-064",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值明显偏高参考范围，报告优先建议复测、连续记录和医生沟通，而不是只靠一次估算就紧张[1,2,3]。"
+    },
+    {
+      "item_id": "E3-065",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "**结论**：本次数值在常见正常范围内，暂时不需要担心，但建议按下面步骤做 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-066",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- **记录的重要性**：如果多次规范复核仍偏高，把日期、时间、血压值和状态记录下来，再和医生沟通更有帮助 [3]。"
+    },
+    {
+      "item_id": "E3-067",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 **184.0/118.0 mmHg**，属于参考范围中偏高的水平 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-068",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 存在特殊背景因素（如慢性肾脏病）时，单次 PPG 估算更不能单独解释，应更依赖规范血压计复核和专业评估 [1,4]。"
+    },
+    {
+      "item_id": "E3-069",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 **136.0/86.0 mmHg**，提示处于偏高范围参考值 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-070",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这样的连续记录才更有价值，也更能让医生参考 [1,4]。"
+    },
+    {
+      "item_id": "E3-071",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这样得到的连续记录更适合拿给医生判断[1,5]。"
+    },
+    {
+      "item_id": "E3-072",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": true,
+      "high_risk_tags": [
+        "diagnosis"
+      ],
+      "sentence": "**这次估算不是诊断结果**，不能代替医生判断或家庭袖带血压计 [4]。"
+    },
+    {
+      "item_id": "E3-073",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "partial",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "家庭血压监测的价值在于连续记录后的趋势分析，而不是单次数值[2]。"
+    },
+    {
+      "item_id": "E3-074",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值进入了严重偏高参考范围，报告优先建议复测、连续记录和医生沟通，而不是自行判断或等待 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-075",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "fully",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值偏高，报告优先推荐复测、连续记录和医生沟通 [1]。"
+    },
+    {
+      "item_id": "E3-076",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值进入偏高参考范围，报告优先建议复测、连续记录和医生沟通 [1,2,3,4]。"
+    },
+    {
+      "item_id": "E3-077",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "不能立刻，但长期坚持减盐、规律运动、控制体重、管理睡眠，对血压健康很有帮助 [2]。"
+    },
+    {
+      "item_id": "E3-078",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": true,
+      "high_risk_tags": [
+        "threshold"
+      ],
+      "sentence": "- 如果复测结果仍偏高（比如超过 135/85 mmHg），连续记录一段时间（比如按自己方便且相对固定的时间测量，写清日期、时间、血压值和状态），再带记录到社区卫生服务中心或医院门诊咨询 [1,2]。"
+    },
+    {
+      "item_id": "E3-079",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "emergency"
+      ],
+      "sentence": "- 因为估算值很高且伴随急症相关症状，任何复测和家庭记录都不能排在急救前面 [1]。"
+    },
+    {
+      "item_id": "E3-080",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "当前最重要的是去医院，而不是继续在家里确认血压数值[1]。"
+    },
+    {
+      "item_id": "E3-081",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "threshold"
+      ],
+      "sentence": "这次小程序用您的手指摄像头估算的血压数值是 **128/79 mmHg**，目前归类为 **偏高趋势参考范围** [1,2,3]。"
+    },
+    {
+      "item_id": "E3-082",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "[1,2,3] 所以不要因为它显示“可用”就犹豫拖延。"
+    },
+    {
+      "item_id": "E3-083",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 结合你选择的中国大陆使用场景，家庭血压监测和基层/门诊沟通是最实际、最安全的路径 [5]。"
+    },
+    {
+      "item_id": "E3-084",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "如果多次复核后数值偏高，可以带着家庭记录到社区卫生服务中心、乡镇卫生院或医院门诊咨询 [2,3]。"
+    },
+    {
+      "item_id": "E3-085",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "本次结果只是提醒，最终判断需要规范设备复核 [2,3]。"
+    },
+    {
+      "item_id": "E3-086",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序估算的血压值是 **145.0/92.0 mmHg**，这个数字明显超过了常见的参考范围[1,2,3]。"
+    },
+    {
+      "item_id": "E3-087",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": true,
+      "high_risk_tags": [
+        "diagnosis"
+      ],
+      "sentence": "- 单次估算值（无论来自 PPG 还是袖带血压计）都不能直接诊断高血压，需要连续多次规范测量后由医生综合判断[4,5]。"
+    },
+    {
+      "item_id": "E3-088",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式建议是通用健康教育（如减盐、规律运动、体重管理、睡眠等），用于长期管理，不承诺短期降压效果 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-089",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值偏高，报告优先建议复测、连续记录和就医沟通，避免单次数值造成误判[1,2]。"
+    },
+    {
+      "item_id": "E3-090",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 你的年龄是 45 岁，本次估算值进入偏高范围，但单次估算不能下定论，需要规范设备复核 [1,2]。"
+    },
+    {
+      "item_id": "E3-091",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "信号质量分 0.83，对于 PPG 来说属于“可用于保守解释”的水平 [4]，但单次数值波动可能较大。"
+    },
+    {
+      "item_id": "E3-092",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值进入偏高参考范围，报告最关心的事情是：**先复核、再记录、再咨询**，而不是急着下判断 [2,3]。"
+    },
+    {
+      "item_id": "E3-093",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": true,
+      "high_risk_tags": [
+        "diagnosis"
+      ],
+      "sentence": "它是一次提醒，不是诊断结论 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-094",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "emergency"
+      ],
+      "sentence": "- 您填写的症状包括**胸痛**，同时估算值处于严重偏高范围——这是高血压急症的典型警示信号之一，需要第一时间由医生评估[1]。"
+    },
+    {
+      "item_id": "E3-095",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "估算值明显偏高，所以报告优先建议“先复测，再连续记录，别单凭一次数字做判断” [1,3]。"
+    },
+    {
+      "item_id": "E3-096",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": true,
+      "high_risk_tags": [
+        "threshold"
+      ],
+      "sentence": "- 本次估算值 146/94 mmHg 属于明显偏高参考范围，需要先用规范设备确认 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-097",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "medication"
+      ],
+      "sentence": "- **生活方式不是特效药**：少盐、运动、体重管理、睡眠等是长期健康习惯，不是立刻降血压的承诺 [5]。"
+    },
+    {
+      "item_id": "E3-098",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "[1] 请优先就医，复测和记录都可以等之后再做。"
+    },
+    {
+      "item_id": "E3-099",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 估算值 140.0/88.0 mmHg 属于明显偏高参考范围，所以优先建议用标准设备复核 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-100",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 **140.0/88.0 mmHg**，提示处于明显偏高参考范围 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-101",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "**结论：这次有偏高迹象，首选使用上臂式血压计复核，并连续记录一段时间[1,3]；"
+    },
+    {
+      "item_id": "E3-102",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 这次估算值 148.0/93.0 mmHg 因为信号质量不足，不做范围解释——也就是说，这个数字可能不准[1,3]。"
+    },
+    {
+      "item_id": "E3-103",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值进入偏高参考范围，报告的第一步就是建议复测和连续记录，而不是直接下判断[1,3]。"
+    },
+    {
+      "item_id": "E3-104",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 质量不足，所以报告不展开血压范围解释，改为指导你如何获得可靠读数 [3]。"
+    },
+    {
+      "item_id": "E3-105",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": true,
+      "high_risk_tags": [
+        "threshold"
+      ],
+      "sentence": "- 这次估算值 137/86 mmHg 处于 **偏高参考范围**，需要规范测量确认 [1]。"
+    },
+    {
+      "item_id": "E3-106",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 估算值偏高时，优先建议复测、连续记录和医生沟通——这和指南中“家庭血压监测有助于判断趋势”是一致的 [2,3]。"
+    },
+    {
+      "item_id": "E3-107",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "emergency"
+      ],
+      "sentence": "胸痛加上血压明显偏高，需要专业医生尽快评估 [1]。"
+    },
+    {
+      "item_id": "E3-108",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 信号质量可用于生成保守的趋势解释，但并不等于规范测量结果 [4]。"
+    },
+    {
+      "item_id": "E3-109",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "medication",
+        "pregnancy"
+      ],
+      "sentence": "未填报妊娠、糖尿病、慢性肾脏病、既往心血管病史或正在使用降压药等需额外保守处理的因素 [1,3]。"
+    },
+    {
+      "item_id": "E3-110",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": true,
+      "high_risk_tags": [
+        "medication"
+      ],
+      "sentence": "- 估算值进入偏高参考范围时，优先行动是复测和连续记录，而不是立刻用药或恐慌 [1,2]。"
+    },
+    {
+      "item_id": "E3-111",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "emergency"
+      ],
+      "sentence": "所以我们把急救提醒放在最前面，家庭复测或记录都不能排在它前面 [1]。"
+    },
+    {
+      "item_id": "E3-112",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值进入了偏高范围，所以报告优先推动你复测、连续记录和医生沟通 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-113",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": true,
+      "high_risk_tags": [
+        "medication",
+        "emergency"
+      ],
+      "sentence": "- 因为估算值只是“偏高趋势”，所以报告的核心建议放在家庭监测和生活方式管理上，而不是直接建议你去急诊或吃药 [2]。"
+    },
+    {
+      "item_id": "E3-114",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式建议属于通用健康教育，用于长期管理（如减盐、规律运动），不承诺短期降压效果 [2,5]。"
+    },
+    {
+      "item_id": "E3-115",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次你用小程序估算的结果显示为 **148.0/93.0 mmHg**，但**因为信号质量不足，这次结果不能用来判断血压高低或风险**[1,2]。"
+    },
+    {
+      "item_id": "E3-116",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 测量质量提醒：强光、手指移动、按压力度或采集时间过短都容易影响信号，建议再次采集时保持平稳 [1,3]。"
+    },
+    {
+      "item_id": "E3-117",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "连续记录一段时间，观察是偶尔偏高还是持续偏高 [2,3]。"
+    },
+    {
+      "item_id": "E3-118",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": true,
+      "high_risk_tags": [
+        "diagnosis"
+      ],
+      "sentence": "别急着把这个数字当真——它不是诊断，更像一个提醒：**需要再用规范的血压计复核一次**，然后连续记录一段时间，才能看出真正趋势 [3,4]。"
+    },
+    {
+      "item_id": "E3-119",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 估算值进入偏高参考范围，所以报告优先给出“复测、连续记录、咨询医生”的建议，而不是直接定义为某种疾病 [2,7]。"
+    },
+    {
+      "item_id": "E3-120",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序用您的手指摄像头估算出的血压值是 **112.0/72.0 mmHg**，属于常见正常参考范围 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-121",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式内容属于通用健康教育（减盐、运动、体重、睡眠等），不承诺个体降压效果，但长期坚持对心血管健康有益[2]。"
+    },
+    {
+      "item_id": "E3-122",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 137.0/86.0 mmHg，提示处于偏高范围参考值 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-123",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 您的估算值在偏高范围，所以建议先用规范设备复核[1,3]。"
+    },
+    {
+      "item_id": "E3-124",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式部分（减盐、运动、体重、睡眠）是通用健康教育，不承诺立刻降压效果[1,2]。"
+    },
+    {
+      "item_id": "E3-125",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 估算值 183.0/121.0 mmHg 已处于严重偏高范围，加上您填写了“肢体麻木或无力”这个症状，两者同时出现时，在医学上属于需要立即处理的危险信号 [1]。"
+    },
+    {
+      "item_id": "E3-126",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值偏高，报告优先强调复测、连续记录和医生沟通，而不是自己判断 [1,2]。"
+    },
+    {
+      "item_id": "E3-127",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 没有出现需要立刻处理的症状，所以目前先做好家庭复核和记录 [5]。"
+    },
+    {
+      "item_id": "E3-128",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这样得到的连续记录更适合拿给医生判断 [1,3]。"
+    },
+    {
+      "item_id": "E3-129",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "因此报告采用更保守的复核和就医沟通口径 [1,4]。"
+    },
+    {
+      "item_id": "E3-130",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "它容易受手指按压力度、光线、静止程度和算法置信度影响，所以不能当作最终血压值 [5,6]。"
+    },
+    {
+      "item_id": "E3-131",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序估算的血压值是 **137.0/86.0 mmHg**，比成年人常见的理想范围要高一些 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-132",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式建议（减盐、运动、体重管理、睡眠等）是长期健康策略，不能承诺立刻降血压，但有助于整体心血管健康 [2]。"
+    },
+    {
+      "item_id": "E3-133",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值进入偏高参考范围，而且您有糖尿病，所以优先建议**复测、连续记录和医生沟通** [1,3]。"
+    },
+    {
+      "item_id": "E3-134",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次用手机摄像头测出的结果是 **132.0/84.0 mmHg**，这个数值比健康人群的常见参考范围偏高一些 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-135",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值进入了偏高参考范围，所以优先建议复测、连续记录和医生沟通，而不是马上自己做判断 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-136",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式建议是通用健康教育，用于长期管理如减盐、规律运动、体重和睡眠等，并不能立刻降低血压，需要持续坚持 [7,8]。"
+    },
+    {
+      "item_id": "E3-137",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": true,
+      "high_risk_tags": [
+        "pregnancy"
+      ],
+      "sentence": "妊娠状态下，更应避免依赖 PPG 估算做任何决定 [1]。"
+    },
+    {
+      "item_id": "E3-138",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "PPG 估算本身有局限，不能当作最终血压值 [4]。"
+    },
+    {
+      "item_id": "E3-139",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 结合你选择的中国大陆使用场景，报告把复测、规范复核和基层或门诊沟通作为主要下一步思路[4]。"
+    },
+    {
+      "item_id": "E3-140",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 130.0/82.0 mmHg，提示处于偏高范围参考值 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-141",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 这次估算值（136.0/86.0 mmHg）处于偏高范围参考值，需要先用规范设备复核 [1,2]。"
+    },
+    {
+      "item_id": "E3-142",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- **这次最重要的不是血压数字，而是采集质量不足**：先重新测，等信号质量可靠后再看趋势 [3]。"
+    },
+    {
+      "item_id": "E3-143",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "采集时信号质量分 0.86，算法置信度 0.72，测量时长 30 秒，用的是手指摄像头 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-144",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 这次估算值虽然显示偏高，但信号质量分和算法置信度都低于可用线，说明测量条件有问题，数据不可靠 [1,2]。"
+    },
+    {
+      "item_id": "E3-145",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 **145.0/92.0 mmHg**，提示处于明显偏高范围参考值 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-146",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "连续记录后拿给医生看，比单次估算值更有参考意义[4,5]。"
+    },
+    {
+      "item_id": "E3-147",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "更实际的做法是用上臂式血压计复核，并把结果记录下来 [3]。"
+    },
+    {
+      "item_id": "E3-148",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 连续记录一段时间（不只看一次），可以辅助判断趋势[4,5]。"
+    },
+    {
+      "item_id": "E3-149",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 **139.0/86.0 mmHg**，提示处于偏高范围参考值 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-150",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 因为估算值进入偏高参考范围，报告优先建议复测、连续记录和医生沟通 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-151",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": true,
+      "high_risk_tags": [
+        "medication"
+      ],
+      "sentence": "- 已填报正在使用降压药，所以报告只提示带记录咨询医生，不给任何用药方案[6]。"
+    },
+    {
+      "item_id": "E3-152",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 **134.0/84.0 mmHg**，处于偏高范围参考值 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-153",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "emergency"
+      ],
+      "sentence": "请立即拨打 120 或前往急诊，不要等待任何复测结果 [1]。"
+    },
+    {
+      "item_id": "E3-154",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式建议属于通用健康教育（减盐、运动、体重、睡眠），不是立刻降压的承诺，但长期坚持对血压管理有益 [2]。"
+    },
+    {
+      "item_id": "E3-155",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "medication"
+      ],
+      "sentence": "- 生活方式方面的建议（比如少盐、运动、体重）属于长期健康管理，不是吃了马上就降血压的“特效药”，但坚持下来对控制血压很重要[1,2]。"
+    },
+    {
+      "item_id": "E3-156",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 **130.0/82.0 mmHg**，提示处于偏高范围参考值 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-157",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "threshold"
+      ],
+      "sentence": "- 这次估算值 182/119 mmHg 处于严重偏高范围，加上你勾选了“视物改变”，这是高血压急症可能伴随的信号[1]。"
+    },
+    {
+      "item_id": "E3-158",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "您填写的“说话困难”和这个估算值一起提示需要尽快由医生评估 [1]。"
+    },
+    {
+      "item_id": "E3-159",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- **生活方式建议**：这些是长期健康习惯，不是快速降血压的“偏方”，效果需要通过数周甚至数月才能体现 [1,3]。"
+    },
+    {
+      "item_id": "E3-160",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": true,
+      "high_risk_tags": [
+        "medication"
+      ],
+      "sentence": "- 已填报正在使用降压药，因此**不提供任何药物调整建议**，只建议带复核记录咨询医生 [6]。"
+    },
+    {
+      "item_id": "E3-161",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 这次估算值 **184.0/118.0 mmHg** 属于严重偏高的参考范围 [2,3]。"
+    },
+    {
+      "item_id": "E3-162",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "emergency"
+      ],
+      "sentence": "复测和记录都不能排在急救之前 [1]。"
+    },
+    {
+      "item_id": "E3-163",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "规则会把重点从“血压高低”转向“重新获取可靠数据” [1,2]。"
+    },
+    {
+      "item_id": "E3-164",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "采集时手指摄像头工作了 30 秒，信号质量评分 0.86，算法置信度 0.72——这些说明估算结果有一定的参考价值，但它不是经过规范袖带测量得到的数据，不能当作最终判断 [5]。"
+    },
+    {
+      "item_id": "E3-165",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "家庭血压监测的价值在于多次数据形成的趋势，而不是一两次数字 [3]。"
+    },
+    {
+      "item_id": "E3-166",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 你的年龄是70岁，属于中国指南中需要更保守解释血压的人群，单次估算值更不能当作最终判断 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-167",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 这次估算值是 137.0/86.0 mmHg，属于“偏高”参考范围，所以建议先用上臂式血压计复核 [1,2,3,5]。"
+    },
+    {
+      "item_id": "E3-168",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 如果只是一次估算偏高，请先进行规范复核——更关键的是用上臂式血压计复核，并把结果连续记录一段时间 [3]。"
+    },
+    {
+      "item_id": "E3-169",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": true,
+      "high_risk_tags": [
+        "threshold"
+      ],
+      "sentence": "- 您这次估算值 132/84 mmHg 属于偏高参考范围 [1,2,3]，但 PPG 本身受手指按压、光线、静止程度影响，可靠性有限 [5,6]，所以必须用上臂式血压计复核。"
+    },
+    {
+      "item_id": "E3-170",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 **146.0/92.0 mmHg**，明显高于常见参考范围 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-171",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "由于信号质量可接受，估算值偏高，建议您把它当作一个信号——提醒自己最近需要认真关注血压了 [5]。"
+    },
+    {
+      "item_id": "E3-172",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 本次信号质量一般，算法置信度不够高，采集时长也偏短（12秒），单次估算的可信度有限 [4]。"
+    },
+    {
+      "item_id": "E3-173",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "复测并连续记录才能看出真实趋势[2,3]。"
+    },
+    {
+      "item_id": "E3-174",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这样得到的连续记录才更可靠，适合拿给医生判断 [1,2,5]。"
+    },
+    {
+      "item_id": "E3-175",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 按说明书规范测量，每次记录日期、时间、收缩压/舒张压、心率、测量设备和当时状态（如是否休息好、刚运动、情绪紧张等）[4]。"
+    },
+    {
+      "item_id": "E3-176",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 135.0/84.0 mmHg，提示处于偏高范围参考值[1,2,3]。"
+    },
+    {
+      "item_id": "E3-177",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "信号质量和置信度尚可，但无袖带设备容易受手指按压力度、光线和静止程度影响，所以更建议把它看作“需要进一步核实”的信号[3,4]。"
+    },
+    {
+      "item_id": "E3-178",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式建议（如减盐、运动、体重管理）是长期健康习惯，不能立刻降低单次血压值，但有助于整体趋势改善 [1,2]。"
+    },
+    {
+      "item_id": "E3-179",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "** 它是通过手指摄像头的光信号来**估算**血压趋势，容易受手指按压力度、光线、静止程度和算法置信度影响，不能当作最终血压值 [4]。"
+    },
+    {
+      "item_id": "E3-180",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "本次信号质量可用，但无袖带估算容易受手指压力、光线、静止程度等因素影响 [4]，所以不应只看这一次的数字。"
+    },
+    {
+      "item_id": "E3-181",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 估算值 181.0/119.0 mmHg 属于严重偏高范围，同时您勾选了**视物改变**——这是高血压急症的重要信号之一[1]。"
+    },
+    {
+      "item_id": "E3-182",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": true,
+      "high_risk_tags": [
+        "medication"
+      ],
+      "sentence": "- **为何建议复测和就医**：因为估算值偏高，并且您有正在服药的背景，系统自动采取了更保守、更安全的建议，优先推荐通过规范血压计复核，并结合连续记录和医生沟通 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-183",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "partial",
+      "codex": "not_supported",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这样基层医生一看就懂 [3]。"
+    },
+    {
+      "item_id": "E3-184",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 合并糖尿病时，血压管理需要更谨慎，单次 PPG 估算不能作为调整依据 [1]。"
+    },
+    {
+      "item_id": "E3-185",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这样连续记录的结果才更适合医生判断 [1,3]。"
+    },
+    {
+      "item_id": "E3-186",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "估算结果存在不确定性，但症状加上数值已是重要提醒[1]。"
+    },
+    {
+      "item_id": "E3-187",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "这次小程序给出的估算值是 141.0/88.0 mmHg——这个数字明显偏高参考范围[1,2,3]。"
+    },
+    {
+      "item_id": "E3-188",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": true,
+      "high_risk_tags": [
+        "threshold"
+      ],
+      "sentence": "- 这次估算值（146/94）明显高于参考范围，所以第一步是用得到验证的规范设备复核 [1,2]。"
+    },
+    {
+      "item_id": "E3-189",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "**本次情况**：估算值偏高，且你已填报患有慢性肾脏病——这是一个需要更谨慎对待的背景因素 [1]。"
+    },
+    {
+      "item_id": "E3-190",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "数值在严重偏高参考范围里，即使没有急症症状，也建议**尽快用上臂式血压计复核**，并连续记录一段时间 [2,3]。"
+    },
+    {
+      "item_id": "E3-191",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "emergency"
+      ],
+      "sentence": "- 您勾选了“胸痛”，而且估算值很高，这两点都需要优先排除心血管急症 [1]。"
+    },
+    {
+      "item_id": "E3-192",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "一次 PPG 估算值就像健康状态的“快照”，容易受手指按压力度、光线、静止程度和算法影响 [5]。"
+    },
+    {
+      "item_id": "E3-193",
+      "system": "S2",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "袖带式血压计是当前唯一可以用于家庭血压判断的工具，手指摄像头估算还不能代替它 [5,6]。"
+    },
+    {
+      "item_id": "E3-194",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "坚持做，对身体有好处 [3,8]。"
+    },
+    {
+      "item_id": "E3-195",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 质量不足时不生成强风险结论，这是为了对你负责：宁可不判断，也不能给出不准确的判断 [2]。"
+    },
+    {
+      "item_id": "E3-196",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "如果后续多次仍偏高，再带记录咨询医生 [1,2,3]。"
+    },
+    {
+      "item_id": "E3-197",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 数值属于正常参考范围，所以重点不是“降下来”，而是“保持住” [2]。"
+    },
+    {
+      "item_id": "E3-198",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "- 生活方式内容只作为通用健康教育，用于减盐、运动、体重和睡眠等长期管理，不承诺个体降压效果[2]。"
+    },
+    {
+      "item_id": "E3-199",
+      "system": "S2",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "今天可以先做两件事： [1,2,3]"
+    },
+    {
+      "item_id": "E3-200",
+      "system": "S2",
+      "judge": "fully",
+      "cc": "fully",
+      "codex": "fully",
+      "final": "fully",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "它的作用是提醒您：需要复测、连续记录、再和医生沟通 [2,3]。"
+    },
+    {
+      "item_id": "E3-201",
+      "system": "S3",
+      "judge": "fully",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": false,
+      "high_risk_tags": [],
+      "sentence": "由于处于偏高参考范围，建议立即用上臂式血压计复核，再结合连续记录判断趋势[3]。"
+    },
+    {
+      "item_id": "E3-202",
+      "system": "S3",
+      "judge": "not_supported",
+      "cc": "not_supported",
+      "codex": "not_supported",
+      "final": "not_supported",
+      "escalate": true,
+      "high_risk_tags": [
+        "emergency"
+      ],
+      "sentence": "估算血压达到严重偏高范围，并伴有胸痛，因此报告将急救提醒放在最前面 [1]。"
+    },
+    {
+      "item_id": "E3-203",
+      "system": "S3",
+      "judge": "partial",
+      "cc": "partial",
+      "codex": "partial",
+      "final": "partial",
+      "escalate": true,
+      "high_risk_tags": [
+        "threshold"
+      ],
+      "sentence": "- 这次 128/78 mmHg 落在“偏高参考范围”里，但单次估算不能代表真实水平，需要规范设备复核 [1,2,3]。"
+    }
+  ]
+}
