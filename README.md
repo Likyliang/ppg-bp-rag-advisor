@@ -1,5 +1,9 @@
 # PPG 血压估算随访应用（RAG-Agent）
 
+> ⚠️ **Research / demo only — not a medical device.** This project provides hedged *screening suggestions* and educational explanations of PPG blood-pressure estimates; it does **not** provide medical diagnosis or treatment. Always consult a qualified clinician.
+>
+> ⚠️ **仅供研究 / 演示，不是医疗器械。** 本项目只提供带不确定性的“建议进一步排查”提示与健康解释，**不做诊断或治疗决策**；如有不适或疑问，请咨询专业医务人员。
+
 面向上游 PPG 小程序结构化输出的医学知识增强解释与随访系统。项目不训练或验证 PPG 血压估计算法，只对估算结果做保守、可追溯、带安全边界的健康趋势解释，并在报告之后通过对话主动了解用户现状、给出有文献依据的进一步建议。
 
 ## 功能
