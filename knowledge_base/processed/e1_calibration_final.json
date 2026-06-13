@@ -3673,5 +3673,127 @@
       "judge": 1,
       "final": 2
     }
-  ]
+  ],
+  "table_6_1_locked": {
+    "status": "LOCKED (openai backend active, sanity ok)",
+    "date": "2026-06-12",
+    "openai_backend_sanity": {
+      "collapsed_to_keyword": [],
+      "ok": true,
+      "note": "If non-empty, OpenAI vectors silently did not contribute (backoff/timeout); results invalid for openai contrasts."
+    },
+    "variants_ndcg5": {
+      "keyword_only": {
+        "ndcg_at_5": 0.8826,
+        "recall_at_5": 0.5871,
+        "mean_unique_sources_at_5": 4.66
+      },
+      "vector_only_openai": {
+        "ndcg_at_5": 0.9105,
+        "recall_at_5": 0.5929,
+        "mean_unique_sources_at_5": 4.53
+      },
+      "hybrid_hashing": {
+        "ndcg_at_5": 0.9052,
+        "recall_at_5": 0.5889,
+        "mean_unique_sources_at_5": 4.54
+      },
+      "hybrid_openai": {
+        "ndcg_at_5": 0.9102,
+        "recall_at_5": 0.5889,
+        "mean_unique_sources_at_5": 4.51
+      },
+      "hybrid_hashing_ft": {
+        "ndcg_at_5": 0.9052,
+        "recall_at_5": 0.5889,
+        "mean_unique_sources_at_5": 5.44
+      },
+      "hybrid_openai_ft": {
+        "ndcg_at_5": 0.9102,
+        "recall_at_5": 0.5889,
+        "mean_unique_sources_at_5": 5.33
+      },
+      "hybrid_openai_nodedup": {
+        "ndcg_at_5": 0.9102,
+        "recall_at_5": 0.5889,
+        "mean_unique_sources_at_5": 4.51
+      },
+      "hybrid_openai_ft_nodedup": {
+        "ndcg_at_5": 0.9102,
+        "recall_at_5": 0.5889,
+        "mean_unique_sources_at_5": 5.33
+      }
+    },
+    "contrasts_holm": [
+      {
+        "baseline": "keyword_only",
+        "variant": "hybrid_openai",
+        "ndcg_diff": 0.0276,
+        "ci95": [
+          0.0138,
+          0.042
+        ],
+        "p_holm": 0.0005,
+        "significant": true
+      },
+      {
+        "baseline": "vector_only_openai",
+        "variant": "hybrid_openai",
+        "ndcg_diff": -0.0002,
+        "ci95": [
+          -0.015,
+          0.0144
+        ],
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "baseline": "hybrid_hashing",
+        "variant": "hybrid_openai",
+        "ndcg_diff": 0.0051,
+        "ci95": [
+          -0.0106,
+          0.0207
+        ],
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "baseline": "hybrid_openai",
+        "variant": "hybrid_openai_ft",
+        "ndcg_diff": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "baseline": "hybrid_openai_nodedup",
+        "variant": "hybrid_openai",
+        "ndcg_diff": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "p_holm": 1.0,
+        "significant": false
+      }
+    ],
+    "self_eval": {
+      "variant": "hybrid_openai_ft",
+      "selfeval_precision_at_5": 0.9943,
+      "independent_precision_at_5": 0.986,
+      "overstatement": 0.0083,
+      "note": "Positive overstatement = the old allowed_uses self-evaluation reports higher precision than independent graded relevance."
+    },
+    "findings": [
+      "hybrid retrieval significantly > keyword-only (+0.0276 nDCG@5, Holm p=0.0005)",
+      "OpenAI embedding NOT significantly > offline hashing (+0.0051, Holm p=1.0): paid backend gives no top-5 ranking gain over free hashing vectors",
+      "fulltext expansion & source-dedup change source diversity (uniq-src 4.5->5.3) not top-5 ranking (dndcg=0)",
+      "top-5 precision: independent 0.986 vs self-eval 0.994 (overstate 0.008); top-5 genuinely relevant; 98% vs 77% self-eval leniency is pool-wide, masked by tautological allowed_uses=expected_uses metric"
+    ],
+    "caveat": "calibration coverage 323/350 (849<->947 pool provenance gap, 27 fulltext pairs); does not affect variant contrasts computed over current pool"
+  }
 }
