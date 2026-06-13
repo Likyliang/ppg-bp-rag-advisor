@@ -513,3 +513,14 @@
 - CALIBRATED RECOMPUTE CAVEAT 2 — self-eval inflation from evaluate (selfeval p@5 0.99 vs indep 0.984, overstatement 0.006) is DILUTED by judge-fallback on the 624 un-reviewed pool pairs and measured only on top-5 (which are mostly genuinely relevant). It is NOT the clean consensus number and must not be reported as the self-eval-bias headline.
 - ROBUST self-eval finding (report this): on the 213 independently-graded non-sensitive pairs, system self-eval (allowed_uses→relevant) marks 209/213=98% relevant vs cross-family consensus 164/213=77% grade≥1 and 77/213=36% grade-2. The pooled-pair over-claim is the honest measure of self-judging bias; the top-5 precision overstatement is separately small and should be stated as such.
 - 阶段-C table-lock TODOs: (1) reconcile 849↔947 pool provenance; (2) re-run evaluate with OpenAI embeddings active; (3) report self-eval bias on the pooled reviewed subset (98%→77%/36%), not the judge-diluted top-5 number; (4) recompute graded nDCG@5 with the full calibrated qrels (Holm-corrected 4 preregistered contrasts).
+
+## Iteration: E1 Table 6-1 LOCKED — OpenAI index rebuilt, backend active, valid contrasts (2026-06-12)
+
+- Root cause of the earlier openai→keyword collapse: STALE OpenAI corpus index (336 chunks vs current 360; npz mtime predated chunks.jsonl → retriever freshness/coverage guard rejected it → silent keyword fallback). The evaluate harness self-flagged this via openai_backend_sanity.ok=false (good guardrail).
+- Fix: re-ingested OpenAI embeddings (processed_chunks 360 in 7.5s/88k tok; fulltext_chunks in 311s). Both indexes now fresh. Re-ran evaluate → openai_backend_sanity.ok=true, collapsed_to_keyword=[].
+- VALID Table 6-1 (Holm-corrected, graded nDCG@5): keyword 0.8826 / hashing-hybrid 0.9052 / vector_only_openai 0.9105 / hybrid_openai 0.9102.
+  - hybrid vs keyword: Δ+0.0276 CI[0.014,0.042] Holm p=0.0005 SIGNIFICANT.
+  - OpenAI vs hashing: Δ+0.0051 CI[-0.011,0.021] Holm p=1.0 NOT significant — paid OpenAI embedding gives no top-5 ranking gain over free offline hashing.
+  - fulltext on/off & dedup on/off: Δndcg=0 (source diversity only: uniq-src 4.5→5.3).
+- Self-eval framing CORRECTED (was over-stated as 98%→77% headline): on the production top-5, independent graded precision 0.986 vs self-eval 0.994 (overstate 0.008) — top-5 are genuinely relevant. The 98%→77% leniency is across the broader candidate POOL, masked by the original tautological allowed_uses=expected_uses metric. Report both precisely; do not claim the system's retrieval is inflated.
+- Frozen into e1_calibration_final.json (table_6_1_locked block). Caveat retained: calibration coverage 323/350 due to the 849↔947 pool provenance gap (27 fulltext pairs); does not affect the variant contrasts (computed over current pool).
