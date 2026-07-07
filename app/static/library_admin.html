@@ -4,175 +4,213 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>文献管理后台 · Literature Admin</title>
+<link rel="stylesheet" href="static/vendor/bootstrap.min.css" />
 <style>
-  :root {
-    --bg: #f6f7f9; --panel: #fff; --ink: #1a1d21; --muted: #6b7280;
-    --line: #e5e7eb; --brand: #2563eb; --a: #16a34a; --b: #d97706; --c: #6b7280;
-    --danger: #dc2626;
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; font: 14px/1.5 -apple-system, "Segoe UI", "PingFang SC", sans-serif;
-         background: var(--bg); color: var(--ink); }
-  header { background: var(--panel); border-bottom: 1px solid var(--line); padding: 14px 20px;
-           display: flex; align-items: baseline; gap: 14px; position: sticky; top: 0; z-index: 5; }
-  header h1 { font-size: 17px; margin: 0; }
-  header .sub { color: var(--muted); font-size: 12px; }
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 18px 20px 60px; }
-  .cards { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
-  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
-          padding: 10px 14px; min-width: 96px; }
-  .card .n { font-size: 22px; font-weight: 700; }
-  .card .l { font-size: 12px; color: var(--muted); }
-  .layout { display: grid; grid-template-columns: 320px 1fr; gap: 16px; align-items: start; }
-  @media (max-width: 860px) { .layout { grid-template-columns: 1fr; } }
-  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
-  .panel h2 { font-size: 14px; margin: 0 0 12px; }
-  label { display: block; font-size: 12px; color: var(--muted); margin: 8px 0 3px; }
-  input, select, textarea { width: 100%; padding: 7px 9px; border: 1px solid var(--line);
-          border-radius: 7px; font: inherit; background: #fff; }
-  textarea { resize: vertical; min-height: 42px; }
-  .row { display: flex; gap: 8px; }
-  .row > * { flex: 1; }
-  button { cursor: pointer; border: 1px solid var(--line); background: #fff; border-radius: 7px;
-           padding: 7px 12px; font: inherit; }
-  button.primary { background: var(--brand); color: #fff; border-color: var(--brand); }
-  button.primary:hover { filter: brightness(1.05); }
-  button:disabled { opacity: .5; cursor: default; }
-  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-  .filters select, .filters input { width: auto; flex: 0 0 auto; min-width: 130px; }
-  table { width: 100%; border-collapse: collapse; }
-  th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
-  .tier { display: inline-block; width: 20px; height: 20px; line-height: 20px; text-align: center;
-          border-radius: 5px; color: #fff; font-weight: 700; font-size: 12px; }
-  .tier.A { background: var(--a); } .tier.B { background: var(--b); } .tier.C { background: var(--c); }
-  .pill { display: inline-block; padding: 1px 7px; border-radius: 999px; font-size: 11px;
-          background: #eef2ff; color: #3730a3; }
-  .off { opacity: .45; }
-  .muted { color: var(--muted); font-size: 12px; }
-  .acts button { padding: 3px 8px; font-size: 12px; }
-  .acts button.del { color: var(--danger); border-color: #fca5a5; }
-  #toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
-           background: #111827; color: #fff; padding: 9px 16px; border-radius: 8px; font-size: 13px;
-           opacity: 0; transition: opacity .2s; pointer-events: none; max-width: 80vw; }
-  #toast.show { opacity: 1; }
-  .id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
-  details.help { margin-top: 10px; }
-  details.help summary { cursor: pointer; color: var(--muted); font-size: 12px; }
-  .intake { background: #f0f6ff; border: 1px solid #cfe0ff; border-radius: 10px; padding: 12px; margin-bottom: 14px; }
-  .intake .hint { font-size: 12px; color: var(--muted); margin: 0 0 8px; }
-  .intake input[type=file] { padding: 5px; background: #fff; }
-  .intake .or { text-align: center; font-size: 11px; color: var(--muted); margin: 8px 0 6px; }
-  #intakeMsg { font-size: 12px; margin-top: 8px; min-height: 16px; }
-  .suggest { background: #fffbeb !important; border-color: #fcd34d !important; }
-  .ft { display: inline-block; padding: 1px 6px; border-radius: 5px; font-size: 11px; white-space: nowrap; }
-  .ft.idx { background: #dcfce7; color: #166534; }
-  .ft.pdf { background: #fef9c3; color: #854d0e; }
-  .ft.no { background: #f3f4f6; color: #9ca3af; }
-  .acts button.ft-btn { color: #1d4ed8; border-color: #bfdbfe; }
-  .banner { background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; border-radius: 8px;
-            padding: 8px 12px; font-size: 12px; margin-bottom: 12px; }
-  .jt { display: inline-block; padding: 1px 6px; border-radius: 5px; font-size: 11px; font-weight: 600; }
-  .jt.t1 { background: #dcfce7; color: #166534; }
-  .jt.t2 { background: #e0e7ff; color: #3730a3; }
-  .jt.t3 { background: #fee2e2; color: #b91c1c; }
-  .jt.none { background: #f3f4f6; color: #9ca3af; font-weight: 400; }
-  .jname { font-size: 12px; color: var(--muted); margin-top: 2px; white-space: normal;
-           overflow-wrap: anywhere; word-break: break-word; line-height: 1.35; }
-  td.jcol { min-width: 150px; max-width: 220px; }
+  body { background: #f5f6f8; }
+  .navbar { box-shadow: 0 1px 0 rgba(0,0,0,.06); }
+  .stat-card .num { font-size: 1.6rem; font-weight: 700; line-height: 1; }
+  .stat-card .lbl { font-size: .75rem; color: #6c757d; }
+  .id-mono { font-family: var(--bs-font-monospace); font-size: .78rem; color: #495057; }
+  .j-name { font-size: .78rem; color: #6c757d; overflow-wrap: anywhere; }
+  td.j-col { min-width: 140px; max-width: 210px; }
+  td.title-col { min-width: 240px; max-width: 360px; }
+  td.title-col .t-title { overflow-wrap: anywhere; }
+  .table td, .table th { vertical-align: middle; }
+  .row-off { opacity: .55; }
+  .intake-box { background: #eef4ff; border: 1px solid #d6e4ff; }
+  .suggest { background: #fff8e1 !important; border-color: #ffe08a !important; }
+  .toast-wrap { position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); z-index: 1090; }
+  .list-scroll { overflow-x: auto; }
+  .filters .form-select, .filters .form-control { width: auto; min-width: 120px; }
 </style>
 </head>
 <body>
-<header>
-  <h1>文献管理后台</h1>
-  <span class="sub">Literature Admin · RAG 知识库 · 分类 / 分级 / 增删</span>
-  <span style="flex:1"></span>
-  <label style="display:flex;align-items:center;gap:5px;margin:0;color:var(--muted);font-size:12px">
-    <input type="checkbox" id="ingVector" style="width:auto" /> 含向量索引
-  </label>
-  <button class="primary" id="ingestBtn" title="从知识库重建检索用的 chunks.jsonl">重建检索索引</button>
-</header>
-<div class="wrap">
-  <div class="cards" id="cards"></div>
-  <div class="layout">
-    <div class="panel">
-      <h2>添加文献</h2>
-      <div class="intake">
-        <p class="hint">粘贴 DOI / 链接 / 标题，或上传 PDF，自动带出字段（黄色为待确认的建议项）。</p>
-        <div class="row">
-          <input id="intakeQuery" placeholder="10.1161/... 或 链接 / 标题" />
-          <button class="primary" type="button" id="intakeBtn" style="flex:0 0 auto">识别</button>
-        </div>
-        <div class="or">— 或 —</div>
-        <input id="intakePdf" type="file" accept="application/pdf" />
-        <div id="intakeMsg"></div>
+
+<nav class="navbar bg-white border-bottom sticky-top py-2">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h5">文献管理后台
+      <small class="text-secondary fw-normal fs-6 d-none d-md-inline">Literature Admin · 分类 / 分级 / 全文 / 剔除</small>
+    </span>
+    <div class="d-flex align-items-center gap-2">
+      <div class="form-check mb-0 me-1">
+        <input class="form-check-input" type="checkbox" id="ingVector" />
+        <label class="form-check-label small text-secondary" for="ingVector">含向量索引</label>
       </div>
-      <form id="addForm">
-        <label>source_id *</label>
-        <input name="source_id" required placeholder="smith_2026_ppg_review" />
-        <label>标题 title *</label>
-        <input name="title" required />
-        <label>机构 organization *</label>
-        <input name="organization" required />
-        <label>URL / DOI</label>
-        <input name="url" placeholder="https://doi.org/..." />
-        <div class="row">
-          <div><label>年份 *</label><input name="year" type="number" required value="2026" /></div>
-          <div><label>地区 region *</label><input name="region" required placeholder="global" /></div>
+      <button class="btn btn-sm btn-primary" id="ingestBtn">重建检索索引</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid py-3">
+
+  <!-- 统计卡 -->
+  <div class="row g-2 mb-3" id="cards"></div>
+
+  <div class="row g-3">
+    <!-- 添加文献 -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h6 class="card-title mb-3">添加文献</h6>
+
+          <div class="intake-box rounded p-3 mb-3">
+            <p class="small text-secondary mb-2">粘贴 DOI / 链接 / 标题，或上传 PDF，自动带出字段（<span class="text-warning-emphasis">黄色</span>为待确认建议项）。</p>
+            <div class="input-group input-group-sm mb-2">
+              <input class="form-control" id="intakeQuery" placeholder="10.1161/… 或 链接 / 标题" />
+              <button class="btn btn-primary" type="button" id="intakeBtn">识别</button>
+            </div>
+            <div class="input-group input-group-sm">
+              <span class="input-group-text">或 PDF</span>
+              <input class="form-control" type="file" id="intakePdf" accept="application/pdf" />
+            </div>
+            <div id="intakeMsg" class="small mt-2"></div>
+          </div>
+
+          <form id="addForm">
+            <div class="mb-2">
+              <label class="form-label small mb-1">source_id *</label>
+              <input class="form-control form-control-sm" name="source_id" required placeholder="smith_2026_ppg_review" />
+            </div>
+            <div class="mb-2">
+              <label class="form-label small mb-1">标题 title *</label>
+              <input class="form-control form-control-sm" name="title" required />
+            </div>
+            <div class="mb-2">
+              <label class="form-label small mb-1">机构 organization *</label>
+              <input class="form-control form-control-sm" name="organization" required />
+            </div>
+            <div class="mb-2">
+              <label class="form-label small mb-1">URL / DOI</label>
+              <input class="form-control form-control-sm" name="url" placeholder="https://doi.org/…" />
+            </div>
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <label class="form-label small mb-1">年份 *</label>
+                <input class="form-control form-control-sm" name="year" type="number" required value="2026" />
+              </div>
+              <div class="col-6">
+                <label class="form-label small mb-1">地区 region *</label>
+                <input class="form-control form-control-sm" name="region" required placeholder="global" />
+              </div>
+            </div>
+            <div class="row g-2 mb-2">
+              <div class="col-8">
+                <label class="form-label small mb-1">期刊 journal</label>
+                <input class="form-control form-control-sm" name="journal" placeholder="IEEE J. Biomed. Health Inform." />
+              </div>
+              <div class="col-4">
+                <label class="form-label small mb-1">期刊级</label>
+                <select class="form-select form-select-sm" name="journal_tier">
+                  <option value="">—</option><option value="1">T1</option><option value="2">T2</option><option value="3">T3</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label class="form-label small mb-1">主题 topic *（分类）</label>
+              <select class="form-select form-select-sm" name="topic" required></select>
+            </div>
+            <div class="mb-2">
+              <label class="form-label small mb-1">证据类别 evidence_class *（分级）</label>
+              <select class="form-select form-select-sm" name="evidence_class" required></select>
+            </div>
+            <div class="mb-2">
+              <label class="form-label small mb-1">source_type</label>
+              <input class="form-control form-control-sm" name="source_type" placeholder="review" />
+            </div>
+            <div class="mb-2">
+              <label class="form-label small mb-1">allowed_uses（逗号分隔）*</label>
+              <input class="form-control form-control-sm" name="allowed_uses" required placeholder="cuffless_ppg_limitations,signal_quality" />
+            </div>
+            <div class="mb-2">
+              <label class="form-label small mb-1">五维打分 screening（authority,recency,relevance,accessibility,safety）*</label>
+              <input class="form-control form-control-sm" name="screening" required value="4,4,4,4,4" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label small mb-1">摘要 summary</label>
+              <textarea class="form-control form-control-sm" name="summary" rows="2" placeholder="一句话说明用途"></textarea>
+            </div>
+            <button class="btn btn-primary btn-sm w-100" type="submit">添加到知识库</button>
+            <details class="mt-2"><summary class="small text-secondary">可用词表</summary>
+              <div class="small text-secondary mt-1" id="vocab"></div>
+            </details>
+          </form>
         </div>
-        <label>主题 topic *（分类）</label>
-        <select name="topic" required></select>
-        <label>证据类别 evidence_class *（分级）</label>
-        <select name="evidence_class" required></select>
-        <label>source_type</label>
-        <input name="source_type" placeholder="review" />
-        <label>allowed_uses（逗号分隔）*</label>
-        <input name="allowed_uses" required placeholder="cuffless_ppg_limitations,signal_quality" />
-        <label>五维打分 screening（authority,recency,relevance,accessibility,safety）*</label>
-        <input name="screening" required placeholder="4,5,5,4,4" value="4,4,4,4,4" />
-        <label>摘要 summary</label>
-        <textarea name="summary" placeholder="一句话说明这条来源用于什么"></textarea>
-        <div style="margin-top:12px"><button class="primary" type="submit">添加到知识库</button></div>
-        <details class="help"><summary>可用词表</summary>
-          <div class="muted" id="vocab" style="margin-top:6px"></div>
-        </details>
-      </form>
+      </div>
     </div>
 
-    <div class="panel">
-      <h2>文献列表 <span class="muted" id="count"></span></h2>
-      <div class="banner" id="ftBanner"></div>
-      <div class="filters">
-        <select id="fTier"><option value="">全部 Tier</option><option>A</option><option>B</option><option>C</option></select>
-        <select id="fTopic"><option value="">全部主题</option></select>
-        <select id="fEvid"><option value="">全部证据类别</option></select>
-        <select id="fInc"><option value="">启用+禁用</option><option value="true">仅启用</option><option value="false">仅禁用</option></select>
-        <select id="fJtier" title="按期刊分级筛选（剔除弱刊）"><option value="">全部期刊级</option><option value="1">T1 顶刊</option><option value="2">T2 主流</option><option value="3">T3 较弱</option></select>
-        <input id="fQuery" placeholder="搜索 id/标题/机构/期刊" />
-        <button id="refresh">刷新</button>
-        <button id="trashToggle" title="查看/退出废纸篓">🗑 废纸篓</button>
-        <button id="emptyTrashBtn" class="del" style="display:none">清空废纸篓</button>
-      </div>
-      <div style="overflow-x:auto">
-      <table>
-        <thead><tr><th>Tier</th><th>ID / 标题</th><th>期刊</th><th>主题</th><th>证据类别</th><th>质量</th><th>全文</th><th>操作</th></tr></thead>
-        <tbody id="rows"></tbody>
-      </table>
+    <!-- 文献列表 -->
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h6 class="card-title mb-0">文献列表 <span class="text-secondary fw-normal" id="count"></span></h6>
+          </div>
+
+          <div class="alert alert-secondary py-2 px-3 small mb-3 d-none" id="ftBanner"></div>
+
+          <div class="filters d-flex flex-wrap gap-2 mb-3">
+            <select id="fTier" class="form-select form-select-sm"><option value="">全部 Tier</option><option>A</option><option>B</option><option>C</option></select>
+            <select id="fTopic" class="form-select form-select-sm"><option value="">全部主题</option></select>
+            <select id="fEvid" class="form-select form-select-sm"><option value="">全部证据类别</option></select>
+            <select id="fInc" class="form-select form-select-sm"><option value="">启用+禁用</option><option value="true">仅启用</option><option value="false">仅禁用</option></select>
+            <select id="fJtier" class="form-select form-select-sm" title="按期刊分级筛选（剔除弱刊）"><option value="">全部期刊级</option><option value="1">T1 顶刊</option><option value="2">T2 主流</option><option value="3">T3 较弱</option></select>
+            <input id="fQuery" class="form-control form-control-sm" placeholder="搜索 id/标题/机构/期刊" />
+            <button id="refresh" class="btn btn-sm btn-outline-secondary">刷新</button>
+            <button id="trashToggle" class="btn btn-sm btn-outline-secondary">废纸篓</button>
+            <button id="emptyTrashBtn" class="btn btn-sm btn-outline-danger d-none">清空废纸篓</button>
+          </div>
+
+          <div class="list-scroll">
+            <table class="table table-sm table-hover align-middle">
+              <thead class="table-light">
+                <tr><th>Tier</th><th>ID / 标题</th><th>期刊</th><th>主题</th><th>证据类别</th><th>质量</th><th>全文</th><th class="text-end">操作</th></tr>
+              </thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<input type="file" id="ftFile" accept="application/pdf" style="display:none" />
-<div id="toast"></div>
+
+<!-- 上传全文 Modal -->
+<div class="modal-backdrop-custom" id="uploadModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:1080;">
+  <div class="card shadow" style="max-width:460px;margin:8vh auto;">
+    <div class="card-body">
+      <h6 class="card-title" id="uploadTitle">上传全文 PDF</h6>
+      <p class="small text-secondary" id="uploadNote"></p>
+      <label class="form-label small mb-1">访问 / 授权模式 access_mode（管理员对版权负责）</label>
+      <select class="form-select form-select-sm mb-2" id="uploadMode"></select>
+      <label class="form-label small mb-1">选择 PDF 文件</label>
+      <input class="form-control form-control-sm mb-3" type="file" id="uploadFile" accept="application/pdf" />
+      <div class="d-flex justify-content-end gap-2">
+        <button class="btn btn-sm btn-outline-secondary" id="uploadCancel">取消</button>
+        <button class="btn btn-sm btn-primary" id="uploadConfirm">上传并建索引</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast-wrap">
+  <div class="toast align-items-center border-0" id="toast" role="alert">
+    <div class="d-flex">
+      <div class="toast-body" id="toastBody"></div>
+    </div>
+  </div>
+</div>
 
 <script>
 const API = "/api/v1/library";
 const $ = s => document.querySelector(s);
-let TAX = null;
+let TAX = null, FT = { map: {}, meta: {} }, VIEW_TRASH = false;
 
 function toast(msg, ok = true) {
-  const t = $("#toast"); t.textContent = msg; t.style.background = ok ? "#111827" : "#b91c1c";
-  t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 2600);
+  const t = $("#toast");
+  t.className = "toast align-items-center border-0 text-bg-" + (ok ? "dark" : "danger") + " show";
+  $("#toastBody").textContent = msg;
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), 2800);
 }
 async function api(path, opts) {
   const r = await fetch(API + path, opts);
@@ -180,11 +218,9 @@ async function api(path, opts) {
   if (!r.ok) throw new Error((body && body.detail) || r.statusText);
   return body;
 }
-function fillSelect(sel, items, keep) {
-  const cur = keep ? sel.value : null;
-  for (const it of items) { const o = document.createElement("option"); o.value = o.textContent = it; sel.appendChild(o); }
-  if (cur) sel.value = cur;
-}
+const esc = t => { const d = document.createElement("div"); d.textContent = t == null ? "" : t; return d.innerHTML; };
+const escAttr = t => esc(t).replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+function fillSelect(sel, items) { for (const it of items) { const o = document.createElement("option"); o.value = o.textContent = it; sel.appendChild(o); } }
 
 async function loadTaxonomy() {
   TAX = await api("/taxonomy");
@@ -196,148 +232,231 @@ async function loadTaxonomy() {
     "<b>topics:</b> " + TAX.topics.join(", ") +
     "<br><b>evidence_class:</b> " + TAX.evidence_classes.join(", ") +
     "<br><b>allowed_uses:</b> " + TAX.allowed_uses.join(", ") +
-    "<br><b>阈值 threshold:</b> " + TAX.screen_threshold + "（五维求和 ≥ 此值才入库）";
+    "<br><b>阈值:</b> " + TAX.screen_threshold;
 }
 
-let FT = { map: {}, meta: {} };
 async function loadFulltext() {
   const s = await api("/fulltext");
   FT.map = {}; s.sources.forEach(r => { FT.map[r.source_id] = r; });
   FT.meta = s;
   $("#ftBanner").textContent = "全文治理：" + s.governance_note;
-  return s;
+  $("#ftBanner").classList.remove("d-none");
+  // populate upload modal access modes once
+  const sel = $("#uploadMode");
+  if (!sel.options.length) fillSelect(sel, s.access_modes || []);
 }
+
+function card(n, l, cls) { return `<div class="col-6 col-sm-4 col-md-3 col-xl">
+  <div class="card stat-card shadow-sm h-100"><div class="card-body py-2 px-3">
+    <div class="num ${cls || ""}">${n}</div><div class="lbl">${l}</div></div></div></div>`; }
 
 async function loadStats() {
-  const s = await api("/stats");
-  const ft = FT.meta || {};
-  const cards = [
-    ["总计", s.total], ["已启用", s.included], ["已禁用", s.excluded],
-    ["Tier A", s.by_tier.A.count], ["Tier B", s.by_tier.B.count], ["Tier C", s.by_tier.C.count],
-    ["全文已索引", ft.indexed ?? "–"], ["有PDF", ft.with_pdf ?? "–"],
-  ];
-  $("#cards").innerHTML = cards.map(([l, n]) =>
-    `<div class="card"><div class="n">${n}</div><div class="l">${l}</div></div>`).join("");
+  const s = await api("/stats"), ft = FT.meta || {};
+  $("#cards").innerHTML = [
+    card(s.total, "总计"), card(s.included, "已启用", "text-success"), card(s.excluded, "已禁用", "text-secondary"),
+    card(s.by_tier.A.count, "Tier A"), card(s.by_tier.B.count, "Tier B"), card(s.by_tier.C.count, "Tier C"),
+    card(ft.indexed ?? "–", "全文已索引", "text-primary"), card(ft.with_pdf ?? "–", "有PDF"),
+  ].join("");
 }
 
-let VIEW_TRASH = false;
+let _listSeq = 0;  // monotonic token: only the latest request paints the table
+function loadFail(seq, e) { if (seq !== _listSeq) return; $("#rows").innerHTML = emptyRow("加载失败：" + esc(e.message)); toast(e.message, false); }
+
 async function loadList() {
   if (VIEW_TRASH) return loadTrashList();
+  const seq = ++_listSeq;
   const p = new URLSearchParams();
-  const tier = $("#fTier").value, topic = $("#fTopic").value, evid = $("#fEvid").value,
-        inc = $("#fInc").value, jt = $("#fJtier").value, q = $("#fQuery").value.trim();
-  if (tier) p.set("tier", tier); if (topic) p.set("topic", topic);
-  if (evid) p.set("evidence_class", evid); if (inc) p.set("include", inc);
-  if (jt) p.set("journal_tier", jt);
-  if (q) p.set("query", q);
-  const data = await api("/sources?" + p.toString());
-  $("#count").textContent = `（${data.count}）`;
-  $("#rows").innerHTML = data.sources.map(rowHtml).join("") || `<tr><td colspan="8" class="muted">无结果</td></tr>`;
+  const g = id => $(id).value;
+  if (g("#fTier")) p.set("tier", g("#fTier")); if (g("#fTopic")) p.set("topic", g("#fTopic"));
+  if (g("#fEvid")) p.set("evidence_class", g("#fEvid")); if (g("#fInc")) p.set("include", g("#fInc"));
+  if (g("#fJtier")) p.set("journal_tier", g("#fJtier"));
+  const q = $("#fQuery").value.trim(); if (q) p.set("query", q);
+  try {
+    const data = await api("/sources?" + p.toString());
+    if (seq !== _listSeq) return;
+    $("#count").textContent = `（${data.count}）`;
+    $("#rows").innerHTML = data.sources.map(rowHtml).join("") || emptyRow("无结果");
+  } catch (e) { loadFail(seq, e); }
 }
-
 async function loadTrashList() {
-  const data = await api("/trash");
-  $("#count").textContent = `废纸篓（${data.count}）`;
-  $("#rows").innerHTML = data.sources.map(trashRowHtml).join("") ||
-    `<tr><td colspan="8" class="muted">废纸篓是空的</td></tr>`;
+  const seq = ++_listSeq;
+  try {
+    const data = await api("/trash");
+    if (seq !== _listSeq) return;
+    $("#count").textContent = `废纸篓（${data.count}）`;
+    $("#rows").innerHTML = data.sources.map(trashRowHtml).join("") || emptyRow("废纸篓是空的");
+  } catch (e) { loadFail(seq, e); }
 }
+const emptyRow = t => `<tr><td colspan="8" class="text-secondary small py-3">${t}</td></tr>`;
 
+const TIER_BG = { A: "success", B: "warning", C: "secondary" };
+function tierBadge(t) { return `<span class="badge rounded-pill text-bg-${TIER_BG[t] || "secondary"}">${t}</span>`; }
 function jtBadge(s) {
   const t = s.journal_tier;
-  if (!t) return `<span class="jt none">—</span>`;
-  const label = { 1: "T1", 2: "T2", 3: "T3" }[t] || ("T" + t);
-  return `<span class="jt t${t}" title="${escapeHtml(s.journal || "")}">${label}</span>`;
+  if (!t) return `<span class="badge text-bg-light border text-secondary">—</span>`;
+  const bg = { 1: "success", 2: "primary", 3: "danger" }[t] || "secondary";
+  return `<span class="badge text-bg-${bg}" title="${esc(s.journal || "")}">T${t}</span>`;
 }
-
-function journalCell(s) {
-  return `<td class="jcol">${jtBadge(s)}<div class="jname">${escapeHtml(s.journal || s.organization || "")}</div></td>`;
-}
-
-function trashRowHtml(s) {
-  return `<tr>
-    <td><span class="tier ${s.tier}">${s.tier}</span></td>
-    <td><div class="id">${s.source_id}</div><div>${escapeHtml(s.title || "")}</div>
-        <div class="muted">删除于 ${s._trashed_at || ""}${s._trash_reason ? " · " + escapeHtml(s._trash_reason) : ""}</div></td>
-    ${journalCell(s)}
-    <td><span class="pill">${s.topic || ""}</span></td>
-    <td class="muted">${s.evidence_class || ""}</td>
-    <td>${s.source_quality_score}</td>
-    <td class="muted">—</td>
-    <td class="acts">
-      <button class="ft-btn" onclick="restore('${s.source_id}')">恢复</button>
-      <button class="del" onclick="purgeOne('${s.source_id}')">彻底删除</button>
-    </td></tr>`;
-}
-
+function journalCell(s) { return `<td class="j-col">${jtBadge(s)}<div class="j-name">${esc(s.journal || s.organization || "")}</div></td>`; }
 function ftBadge(id) {
   const r = FT.map[id];
-  if (r && r.indexed) return `<span class="ft idx" title="${r.access_mode || ""} · ${r.chunk_count} chunks">✓ 已索引</span>`;
-  if (r && r.has_pdf) return `<span class="ft pdf" title="${r.access_mode || ""}">PDF 待建</span>`;
-  return `<span class="ft no">—</span>`;
+  if (r && r.indexed) return `<span class="badge text-bg-success" title="${escAttr(r.access_mode || "")} · ${r.chunk_count} chunks">✓ 已索引</span>`;
+  if (r && r.has_pdf) return `<span class="badge text-bg-warning">PDF 待建</span>`;
+  return `<span class="badge text-bg-light border text-secondary">—</span>`;
 }
+const btn = (act, id, cls, label) => `<button class="btn btn-sm ${cls}" data-act="${act}" data-id="${escAttr(id)}">${label}</button>`;
 
 function rowHtml(s) {
-  const off = s.include ? "" : "off";
-  const r = FT.map[s.source_id];
-  const hasFt = r && (r.has_pdf || r.indexed);
-  return `<tr class="${off}">
-    <td><span class="tier ${s.tier}">${s.tier}</span></td>
-    <td><div class="id">${s.source_id}</div><div>${escapeHtml(s.title || "")}</div>
-        <div class="muted">${escapeHtml(s.organization || "")} · ${s.year || ""} · ${s.region || ""}</div></td>
+  const r = FT.map[s.source_id], hasFt = r && (r.has_pdf || r.indexed);
+  return `<tr class="${s.include ? "" : "row-off"}">
+    <td>${tierBadge(s.tier)}</td>
+    <td class="title-col"><div class="id-mono">${esc(s.source_id)}</div><div class="t-title">${esc(s.title || "")}</div>
+        <div class="small text-secondary">${esc(s.organization || "")} · ${esc(s.year || "")} · ${esc(s.region || "")}</div></td>
     ${journalCell(s)}
-    <td><span class="pill">${s.topic || ""}</span></td>
-    <td class="muted">${s.evidence_class || ""}</td>
-    <td>${s.source_quality_score}</td>
+    <td><span class="badge text-bg-light border text-dark fw-normal">${esc(s.topic || "")}</span></td>
+    <td class="small text-secondary">${esc(s.evidence_class || "")}</td>
+    <td>${esc(s.source_quality_score)}</td>
     <td>${ftBadge(s.source_id)}</td>
-    <td class="acts">
-      ${s.include
-        ? `<button onclick="setInc('${s.source_id}',false)">禁用</button>`
-        : `<button onclick="setInc('${s.source_id}',true)">启用</button>`}
-      <button class="ft-btn" onclick="uploadFt('${s.source_id}')" title="上传/替换该文献的全文 PDF">${hasFt ? "重传全文" : "上传全文"}</button>
-      ${hasFt ? `<button class="del" onclick="removeFt('${s.source_id}')">移除全文</button>` : ""}
-      <button class="del" onclick="del('${s.source_id}')">删除</button>
+    <td class="text-end text-nowrap">
+      ${s.include ? btn("disable", s.source_id, "btn-outline-secondary", "禁用") : btn("enable", s.source_id, "btn-outline-success", "启用")}
+      ${btn("upload", s.source_id, "btn-outline-primary", hasFt ? "重传全文" : "上传全文")}
+      ${hasFt ? btn("removeft", s.source_id, "btn-outline-danger", "移除全文") : ""}
+      ${btn("del", s.source_id, "btn-outline-danger", "删除")}
     </td></tr>`;
 }
-function escapeHtml(t) { const d = document.createElement("div"); d.textContent = t; return d.innerHTML; }
+function trashRowHtml(s) {
+  return `<tr>
+    <td>${tierBadge(s.tier)}</td>
+    <td class="title-col"><div class="id-mono">${esc(s.source_id)}</div><div class="t-title">${esc(s.title || "")}</div>
+        <div class="small text-secondary">删除于 ${esc(s._trashed_at || "")}${s._trash_reason ? " · " + esc(s._trash_reason) : ""}</div></td>
+    ${journalCell(s)}
+    <td><span class="badge text-bg-light border text-dark fw-normal">${esc(s.topic || "")}</span></td>
+    <td class="small text-secondary">${esc(s.evidence_class || "")}</td>
+    <td>${esc(s.source_quality_score)}</td>
+    <td class="text-secondary">—</td>
+    <td class="text-end text-nowrap">
+      ${btn("restore", s.source_id, "btn-outline-success", "恢复")}
+      ${btn("purge", s.source_id, "btn-outline-danger", "彻底删除")}
+    </td></tr>`;
+}
+
+// Event delegation for all row action buttons (avoids inline onclick + injection).
+const ROW_ACTIONS = { disable: id => setInc(id, false), enable: id => setInc(id, true),
+  upload: uploadFt, removeft: removeFt, del: del, restore: restore, purge: purgeOne };
+$("#rows").addEventListener("click", e => {
+  const b = e.target.closest("button[data-act]");
+  if (b && ROW_ACTIONS[b.dataset.act]) ROW_ACTIONS[b.dataset.act](b.dataset.id);
+});
 
 async function setInc(id, val) {
-  try { await api(`/sources/${encodeURIComponent(id)}/include`, {
-    method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ include: val }) });
+  try { await api(`/sources/${encodeURIComponent(id)}/include`, { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ include: val }) });
     toast(val ? "已启用 " + id : "已禁用 " + id); await refreshAll();
   } catch (e) { toast(e.message, false); }
 }
 async function del(id) {
-  if (!confirm("把『" + id + "』移入废纸篓？（可在废纸篓里恢复；仅临时不检索请改用『禁用』）")) return;
-  try { await api(`/sources/${encodeURIComponent(id)}`, { method: "DELETE" });
-    toast("已移入废纸篓 " + id); await refreshAll();
-  } catch (e) { toast(e.message, false); }
+  if (!confirm("把『" + id + "』移入废纸篓？（可恢复；仅临时不检索请用『禁用』）")) return;
+  try { await api(`/sources/${encodeURIComponent(id)}`, { method: "DELETE" }); toast("已移入废纸篓 " + id); await refreshAll(); }
+  catch (e) { toast(e.message, false); }
 }
 async function restore(id) {
-  try { await api(`/sources/${encodeURIComponent(id)}/restore`, { method: "POST" });
-    toast("已恢复 " + id); await refreshAll();
-  } catch (e) { toast(e.message, false); }
+  try { await api(`/sources/${encodeURIComponent(id)}/restore`, { method: "POST" }); toast("已恢复 " + id); await refreshAll(); }
+  catch (e) { toast(e.message, false); }
 }
 async function purgeOne(id) {
-  if (!confirm("彻底删除『" + id + "』？此操作不可恢复。")) return;
-  try { await api(`/trash/${encodeURIComponent(id)}`, { method: "DELETE" });
-    toast("已彻底删除 " + id); await refreshAll();
-  } catch (e) { toast(e.message, false); }
+  if (!confirm("彻底删除『" + id + "』？不可恢复。")) return;
+  try { await api(`/trash/${encodeURIComponent(id)}`, { method: "DELETE" }); toast("已彻底删除 " + id); await refreshAll(); }
+  catch (e) { toast(e.message, false); }
 }
+
+// ---- 全文上传 Modal ----
+let _uploadId = null;
+function uploadFt(id) { _uploadId = id; $("#uploadTitle").textContent = "上传全文 PDF · " + id;
+  $("#uploadNote").textContent = (FT.meta.governance_note || "").slice(0, 80) + "…";
+  $("#uploadFile").value = ""; $("#uploadModal").style.display = "block"; }
+$("#uploadCancel").addEventListener("click", () => { $("#uploadModal").style.display = "none"; });
+$("#uploadModal").addEventListener("click", e => { if (e.target.id === "uploadModal") $("#uploadModal").style.display = "none"; });
+$("#uploadConfirm").addEventListener("click", async () => {
+  const file = $("#uploadFile").files[0], mode = $("#uploadMode").value;
+  if (!file) return toast("请选择 PDF 文件", false);
+  $("#uploadModal").style.display = "none";
+  toast("上传并建立全文索引中…（几秒）");
+  try {
+    const buf = await file.arrayBuffer();
+    const r = await api(`/sources/${encodeURIComponent(_uploadId)}/fulltext?access_mode=${encodeURIComponent(mode)}`, {
+      method: "POST", headers: { "content-type": "application/pdf" }, body: buf });
+    toast(`已附加全文：${_uploadId}（${r.indexed_chunk_count ?? 0} chunks）`); await refreshAll();
+  } catch (e) { toast(e.message, false); }
+});
+async function removeFt(id) {
+  if (!confirm("移除『" + id + "』的本地全文并重建索引？（目录记录保留）")) return;
+  toast("移除并重建中…");
+  try { await api(`/sources/${encodeURIComponent(id)}/fulltext`, { method: "DELETE" }); toast("已移除全文 " + id); await refreshAll(); }
+  catch (e) { toast(e.message, false); }
+}
+
+// ---- 重建检索索引 ----
+$("#ingestBtn").addEventListener("click", async () => {
+  const btn = $("#ingestBtn");
+  if (!confirm("从知识库重建检索索引（chunks.jsonl）？约几秒。")) return;
+  btn.disabled = true; const label = btn.textContent; btn.textContent = "重建中…";
+  try { const r = await api("/ingest?build_vector=" + $("#ingVector").checked, { method: "POST" });
+    toast(`索引已重建：${r.chunk_count} chunks（正文 ${r.content_chunk_count}）`);
+  } catch (e) { toast(e.message, false); }
+  finally { btn.disabled = false; btn.textContent = label; }
+});
+
+// ---- 废纸篓切换 ----
 $("#trashToggle").addEventListener("click", () => {
   VIEW_TRASH = !VIEW_TRASH;
-  $("#trashToggle").textContent = VIEW_TRASH ? "← 返回列表" : "🗑 废纸篓";
-  $("#emptyTrashBtn").style.display = VIEW_TRASH ? "" : "none";
+  $("#trashToggle").textContent = VIEW_TRASH ? "← 返回列表" : "废纸篓";
+  $("#trashToggle").classList.toggle("btn-outline-secondary", !VIEW_TRASH);
+  $("#trashToggle").classList.toggle("btn-secondary", VIEW_TRASH);
+  $("#emptyTrashBtn").classList.toggle("d-none", !VIEW_TRASH);
   loadList();
 });
 $("#emptyTrashBtn").addEventListener("click", async () => {
   const n = (await api("/trash")).count;
   if (!n) return toast("废纸篓已经是空的");
-  if (!confirm(`清空废纸篓（${n} 条）？此操作不可恢复。`)) return;
-  try { const r = await api("/trash/empty", { method: "POST" });
-    toast(`已清空废纸篓：${r.purged} 条`); await refreshAll();
-  } catch (e) { toast(e.message, false); }
+  if (!confirm(`清空废纸篓（${n} 条）？不可恢复。`)) return;
+  try { const r = await api("/trash/empty", { method: "POST" }); toast(`已清空废纸篓：${r.purged} 条`); await refreshAll(); }
+  catch (e) { toast(e.message, false); }
 });
 
+// ---- 自动识别（intake）----
+function setField(name, value) { const el = $(`#addForm [name=${name}]`); if (el && value != null && value !== "") el.value = value; }
+function fillForm(draft) {
+  const f = $("#addForm");
+  f.querySelectorAll(".suggest").forEach(el => el.classList.remove("suggest"));
+  setField("source_id", draft.source_id); setField("title", draft.title);
+  setField("organization", draft.organization && draft.organization !== "Unknown" ? draft.organization : "");
+  setField("url", (draft.url || draft.doi) ? (draft.url || ("https://doi.org/" + draft.doi)) : "");
+  setField("year", draft.year); setField("region", "global"); setField("source_type", draft.source_type);
+  setField("journal", draft.journal || draft.container || "");
+  if (draft.topic) setField("topic", draft.topic);
+  if (draft.evidence_class) setField("evidence_class", draft.evidence_class);
+  if (Array.isArray(draft.allowed_uses)) setField("allowed_uses", draft.allowed_uses.join(","));
+  if (draft.screening) { const s = draft.screening; setField("screening", [s.authority, s.recency, s.relevance, s.accessibility, s.safety_applicability].join(",")); }
+  if (draft.container) setField("summary", "来源期刊/会议：" + draft.container);
+  (draft._suggested_fields || []).concat(["region"]).forEach(n => { const el = $(`#addForm [name=${n}]`); if (el) el.classList.add("suggest"); });
+  const msg = $("#intakeMsg");
+  if (draft._resolved === false || draft._warning) { msg.className = "small mt-2 text-warning-emphasis"; msg.textContent = draft._warning || "未完全解析，请补全。"; }
+  else { msg.className = "small mt-2 text-success"; msg.textContent = "已带出字段，确认黄色建议项后点『添加到知识库』。"; }
+}
+async function runIntake(promise) {
+  const msg = $("#intakeMsg"); msg.className = "small mt-2 text-secondary"; msg.textContent = "识别中…";
+  try { fillForm(await promise); } catch (e) { msg.className = "small mt-2 text-danger"; msg.textContent = "识别失败：" + e.message; }
+}
+$("#intakeBtn").addEventListener("click", () => {
+  const q = $("#intakeQuery").value.trim(); if (!q) return toast("请粘贴 DOI / 链接 / 标题", false);
+  runIntake(api("/autofill", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ query: q }) }));
+});
+$("#intakeQuery").addEventListener("keydown", e => { if (e.key === "Enter") $("#intakeBtn").click(); });
+$("#intakePdf").addEventListener("change", async e => {
+  const file = e.target.files[0]; if (!file) return;
+  runIntake(file.arrayBuffer().then(buf => api("/autofill/pdf", { method: "POST", headers: { "content-type": "application/pdf" }, body: buf })));
+});
+
+// ---- 添加提交 ----
 $("#addForm").addEventListener("submit", async ev => {
   ev.preventDefault();
   const f = ev.target, g = n => f.elements[n].value.trim();
@@ -345,13 +464,14 @@ $("#addForm").addEventListener("submit", async ev => {
   if (scr.length !== 5 || scr.some(isNaN)) return toast("screening 需为 5 个整数", false);
   const body = {
     source_id: g("source_id"), title: g("title"), organization: g("organization"),
-    year: parseInt(g("year"), 10), region: g("region"), topic: g("topic"),
-    evidence_class: g("evidence_class"),
+    year: parseInt(g("year"), 10), region: g("region"), topic: g("topic"), evidence_class: g("evidence_class"),
     allowed_uses: g("allowed_uses").split(",").map(x => x.trim()).filter(Boolean),
     screening: { authority: scr[0], recency: scr[1], relevance: scr[2], accessibility: scr[3], safety_applicability: scr[4] },
   };
   if (g("url")) body.url = g("url");
   if (g("source_type")) body.source_type = g("source_type");
+  if (g("journal")) body.journal = g("journal");
+  if (g("journal_tier")) body.journal_tier = parseInt(g("journal_tier"), 10);
   if (g("summary")) body.notes = { summary: g("summary") };
   try {
     const r = await api("/sources", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
@@ -360,117 +480,12 @@ $("#addForm").addEventListener("submit", async ev => {
   } catch (e) { toast(e.message, false); }
 });
 
-function setField(name, value) {
-  const el = $(`#addForm [name=${name}]`);
-  if (el && value != null && value !== "") el.value = value;
-  return el;
-}
-function fillForm(draft) {
-  const f = $("#addForm");
-  // Clear prior suggestion highlights.
-  f.querySelectorAll(".suggest").forEach(el => el.classList.remove("suggest"));
-  setField("source_id", draft.source_id);
-  setField("title", draft.title);
-  setField("organization", draft.organization && draft.organization !== "Unknown" ? draft.organization : "");
-  setField("url", draft.url || draft.doi ? (draft.url || ("https://doi.org/" + draft.doi)) : "");
-  setField("year", draft.year);
-  setField("region", "global");
-  setField("source_type", draft.source_type);
-  if (draft.topic) setField("topic", draft.topic);
-  if (draft.evidence_class) setField("evidence_class", draft.evidence_class);
-  if (Array.isArray(draft.allowed_uses)) setField("allowed_uses", draft.allowed_uses.join(","));
-  if (draft.screening) {
-    const s = draft.screening;
-    setField("screening", [s.authority, s.recency, s.relevance, s.accessibility, s.safety_applicability].join(","));
-  }
-  if (draft.container) setField("summary", "来源期刊/会议：" + draft.container);
-  // Highlight the fields that are suggestions (need human confirmation).
-  (draft._suggested_fields || []).concat(["region"]).forEach(n => {
-    const el = $(`#addForm [name=${n}]`);
-    if (el) el.classList.add("suggest");
-  });
-  const msg = $("#intakeMsg");
-  if (draft._resolved === false || draft._warning) {
-    msg.style.color = "#b45309";
-    msg.textContent = draft._warning || "未完全解析，请补全字段。";
-  } else {
-    msg.style.color = "#15803d";
-    msg.textContent = "已带出字段，请确认黄色建议项后点击『添加到知识库』。";
-  }
-}
-
-async function runIntake(promise) {
-  const msg = $("#intakeMsg"); msg.style.color = "var(--muted)"; msg.textContent = "识别中…";
-  try { fillForm(await promise); }
-  catch (e) { msg.style.color = "#b91c1c"; msg.textContent = "识别失败：" + e.message; }
-}
-$("#intakeBtn").addEventListener("click", () => {
-  const q = $("#intakeQuery").value.trim();
-  if (!q) return toast("请粘贴 DOI / 链接 / 标题", false);
-  runIntake(api("/autofill", {
-    method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ query: q }) }));
-});
-$("#intakeQuery").addEventListener("keydown", e => { if (e.key === "Enter") $("#intakeBtn").click(); });
-$("#intakePdf").addEventListener("change", async e => {
-  const file = e.target.files[0]; if (!file) return;
-  const buf = await file.arrayBuffer();
-  runIntake(api("/autofill/pdf", { method: "POST", headers: { "content-type": "application/pdf" }, body: buf }));
-});
-
-$("#ingestBtn").addEventListener("click", async () => {
-  const btn = $("#ingestBtn");
-  if (!confirm("从知识库重建检索索引（chunks.jsonl）？大约需要几秒。")) return;
-  const vec = $("#ingVector").checked;
-  btn.disabled = true; const label = btn.textContent; btn.textContent = "重建中…";
-  try {
-    const r = await api("/ingest?build_vector=" + vec, { method: "POST" });
-    toast(`索引已重建：${r.chunk_count} chunks（正文 ${r.content_chunk_count}）· ${r.hashing_vector_status}`);
-  } catch (e) { toast(e.message, false); }
-  finally { btn.disabled = false; btn.textContent = label; }
-});
-
-// ---- Full-text upload / remove ----
-let _ftPending = null;
-function uploadFt(id) {
-  const mode = prompt(
-    "为『" + id + "』上传全文 PDF。\n请声明访问/授权模式 access_mode（管理员确认版权合规）：\n" +
-    (FT.meta.access_modes || []).join(" / "),
-    "public_pdf");
-  if (!mode) return;
-  _ftPending = { id, mode };
-  $("#ftFile").value = "";
-  $("#ftFile").click();
-}
-$("#ftFile") && $("#ftFile").addEventListener("change", async e => {
-  const file = e.target.files[0];
-  if (!file || !_ftPending) return;
-  const { id, mode } = _ftPending; _ftPending = null;
-  toast("上传并建立全文索引中…（重建可能需要几秒）");
-  try {
-    const buf = await file.arrayBuffer();
-    const r = await api(`/sources/${encodeURIComponent(id)}/fulltext?access_mode=${encodeURIComponent(mode)}`, {
-      method: "POST", headers: { "content-type": "application/pdf" }, body: buf });
-    toast(`已附加全文：${id}（${r.indexed_chunk_count ?? 0} chunks）`);
-    await refreshAll();
-  } catch (err) { toast(err.message, false); }
-});
-async function removeFt(id) {
-  if (!confirm("移除『" + id + "』的本地全文并重建索引？（目录记录仍保留，仅删本地 PDF 与全文块）")) return;
-  toast("移除并重建中…");
-  try { await api(`/sources/${encodeURIComponent(id)}/fulltext`, { method: "DELETE" });
-    toast("已移除全文 " + id); await refreshAll();
-  } catch (e) { toast(e.message, false); }
-}
-
 async function refreshAll() { await loadFulltext(); await loadStats(); await loadList(); }
-["#refresh","#fTier","#fTopic","#fEvid","#fInc","#fJtier"].forEach(s => $(s).addEventListener("change", loadList));
+["#refresh", "#fTier", "#fTopic", "#fEvid", "#fInc", "#fJtier"].forEach(s => $(s).addEventListener("change", loadList));
 $("#refresh").addEventListener("click", loadList);
 $("#fQuery").addEventListener("keydown", e => { if (e.key === "Enter") loadList(); });
 
-(async () => {
-  try { await loadTaxonomy(); await refreshAll(); }
-  catch (e) { toast("加载失败：" + e.message, false); }
-})();
+(async () => { try { await loadTaxonomy(); await refreshAll(); } catch (e) { toast("加载失败：" + e.message, false); } })();
 </script>
 </body>
 </html>
