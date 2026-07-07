@@ -8,6 +8,10 @@ __pycache__/
 knowledge_base/vector_store/
 knowledge_base/sources/downloads/*
 !knowledge_base/sources/downloads/.gitkeep
+# Topic-classified full-text PDF library (raw PDFs never committed; recycle bin
+# under library/.trash/). Governance metadata lives in fulltext_uploads.yaml.
+knowledge_base/library/**/*.pdf
+knowledge_base/library/.trash/
 outputs/advisor_sessions/
 outputs/e5_redteam/
 knowledge_base/processed/e2_reports.jsonl
@@ -24,3 +28,6 @@ knowledge_base/processed/e5_adversarial_seeds.jsonl
 knowledge_base/processed/e5_redteam_result.json
 knowledge_base/processed/evaluation_results_real.json
 knowledge_base/processed/evaluation_results_real.csv
+
+# Local demo PDFs (copyrighted; not committed)
+demo_literature/

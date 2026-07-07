@@ -190,7 +190,12 @@ def validate_fulltext_catalog(catalog: Optional[Dict[str, Any]] = None) -> Dict[
 
 def candidate_download_path(candidate: Dict[str, Any]) -> Path:
     source_id = str(candidate["source_id"])
-    return resolve_project_path(f"{DOWNLOADS_ROOT}/{source_id}.pdf")
+    # PDFs now live in the topic-classified library/ store; fall back to the
+    # legacy flat downloads/ slot when the source has not been migrated yet.
+    from app.services.fulltext_vector_index import governed_pdf_path
+
+    resolved = governed_pdf_path(source_id, candidate.get("topic"))
+    return resolved or resolve_project_path(f"{DOWNLOADS_ROOT}/{source_id}.pdf")
 
 
 def candidate_summary_path(candidate: Dict[str, Any]) -> Path:

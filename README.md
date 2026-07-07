@@ -16,6 +16,7 @@
 - **排查建议（可选，默认关闭）**：接入 PPG 节律/变异特征与 SCG（心振）时相特征后，可从信号给出“建议进一步排查”的提示——例如脉搏不规则提示做心电图排查心律失常。这是带不确定性、带就医指引、置信度封顶 `moderate` 的 **排查/分诊建议，不是诊断**；确诊、劝阻就医、调药、设备过度承诺等表述仍然阻断。请求侧用 `enable_screening_suggestions` 开启，规则与边界见 `docs/scg_screening_plan.md` 与 `config/screening_rules.yaml`。
 - **学术化引用**：正文句级 `[n]` 标注、按首次出现顺序编号、未引用来源自动从参考文献剔除、同一来源去重、全文段落附页码定位，报告与对话均输出结构化 `references`。
 - Source catalog 记录来源、证据等级、筛选分、允许用途、版权/访问说明和审计状态。
+- **文献管理系统**：按分类（topic/region/type）与分级（证据 Tier A/B/C + 五维质量分）组织文献，支持添加/移除/启停。三种入口——`LibraryManager` 服务、`scripts/manage_library.py` 命令行、`/api/v1/library/*` REST 接口（预留给统一后台管理系统，含单文件后台网页 `/api/v1/library/admin`）。**一键录入**：粘贴 DOI/链接/标题或上传 PDF，经 Crossref 自动带出标题/机构/年份/DOI 并生成 source_id、建议主题与分级（策展字段由管理员确认）。后台可手动触发「重建检索索引」。**全文治理**：管理员可为某来源上传全文 PDF（声明 access_mode），全文经既有管线切块入**本地、gitignore、不提交**的向量库并自动融合进检索；全文块继承来源的 allowed_uses/证据分级，安全门控不变，原始 PDF 与全文永不提交。写操作复用既有校验并自动重生成筛选产物。详见 `docs/library_management.md`。
 - Safety Agent 拦截确诊、调药、停药、设备过度承诺和急症漏报；并阻断排查建议越界为确定性诊断或劝阻就医（`screening_overreach_patterns`），同时对每条排查建议正向校验“对冲措辞 + 就医指引 + 置信度封顶”。随访回复共用同一套禁区模式并支持回退。
 - 提供 FastAPI、Streamlit Demo（含随访对话标签页）、知识库筛选/ingest/审计、检索评估和论文评估脚本。
 

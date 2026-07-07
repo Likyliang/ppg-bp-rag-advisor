@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "rag-api",
+      "runtimeExecutable": ".venv/bin/uvicorn",
+      "runtimeArgs": ["app.main:app", "--port", "8011"],
+      "port": 8011
+    }
+  ]
+}

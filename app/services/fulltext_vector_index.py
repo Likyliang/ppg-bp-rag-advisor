@@ -16,9 +16,44 @@ from app.services.fulltext_candidates import validate_fulltext_catalog
 from app.services.source_catalog import included_sources
 
 
-DOWNLOADS_ROOT = "knowledge_base/sources/downloads"
+# Canonical full-text store, organised by topic: library/<topic>/<source_id>.pdf.
+# The recycle bin lives at library/.trash/. The old flat downloads/ folder is
+# kept as a read fallback so un-migrated PDFs still resolve.
+LIBRARY_ROOT = "knowledge_base/library"
+TRASH_DIRNAME = ".trash"
+DOWNLOADS_ROOT = "knowledge_base/sources/downloads"  # legacy flat store (fallback)
 VECTOR_ROOT = "knowledge_base/vector_store"
 MANIFEST_PATH = "knowledge_base/processed/fulltext_vector_manifest.json"
+
+
+def library_pdf_target(source_id: str, topic: Optional[str]) -> Path:
+    """Where a *new* full-text PDF for a source should be written."""
+
+    folder = str(topic) if topic else "uncategorized"
+    return resolve_project_path(LIBRARY_ROOT) / folder / f"{source_id}.pdf"
+
+
+def governed_pdf_path(source_id: str, topic: Optional[str] = None) -> Optional[Path]:
+    """Resolve an existing governed PDF for a source, or None.
+
+    Search order: the canonical ``library/<topic>/`` slot, then anywhere under
+    ``library/`` (excluding the recycle bin), then the legacy flat
+    ``downloads/`` folder.
+    """
+
+    if topic:
+        exact = resolve_project_path(LIBRARY_ROOT) / str(topic) / f"{source_id}.pdf"
+        if exact.exists():
+            return exact
+    library_root = resolve_project_path(LIBRARY_ROOT)
+    if library_root.exists():
+        for path in library_root.rglob(f"{source_id}.pdf"):
+            if TRASH_DIRNAME not in path.parts:
+                return path
+    legacy = resolve_project_path(DOWNLOADS_ROOT) / f"{source_id}.pdf"
+    if legacy.exists():
+        return legacy
+    return None
 # Pages whose extracted text is shorter than this are header/footer debris
 # and would only produce degenerate chunks with no retrievable content.
 MIN_PAGE_TEXT_CHARS = 40
@@ -183,7 +218,6 @@ def build_fulltext_chunks(
     target_chars: int = 850,
     overlap_chars: int = 140,
 ) -> Tuple[List[FulltextChunk], List[Dict[str, Any]], List[Dict[str, str]]]:
-    downloads_root = resolve_project_path(DOWNLOADS_ROOT)
     source_filter = set(source_ids or [])
     candidates = _candidate_by_source()
     sources = _source_by_id()
@@ -194,8 +228,8 @@ def build_fulltext_chunks(
     for source_id, source in sorted(sources.items()):
         if source_filter and source_id not in source_filter:
             continue
-        pdf_path = downloads_root / f"{source_id}.pdf"
-        if not pdf_path.exists():
+        pdf_path = governed_pdf_path(source_id, source.get("topic"))
+        if pdf_path is None:
             skipped.append({"source_id": source_id, "reason": "local_pdf_missing"})
             continue
         try:
