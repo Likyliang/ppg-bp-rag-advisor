@@ -162,5 +162,95 @@
     "source_quality_score": 13,
     "source_hash": "f66f0bdda1dff03c",
     "review_status": "excluded"
+  },
+  {
+    "source_id": "litexp_bernjak_2009_pulse_transit_times_to_the_capillary_bed_evaluated",
+    "title": "Pulse transit times to the capillary bed evaluated by laser Doppler flowmetry",
+    "organization": "Physiological measurement",
+    "url": "https://doi.org/10.1088/0967-3334/30/3/002",
+    "doi": "10.1088/0967-3334/30/3/002",
+    "pmid": "19202235",
+    "year": 2009,
+    "language": "en",
+    "region": "global",
+    "journal": "Physiological measurement",
+    "journal_tier": 2,
+    "topic": "cuffless_ppg_limitations",
+    "evidence_class": "research_context",
+    "source_type": "research_article",
+    "include": false,
+    "allowed_uses": [
+      "research_background",
+      "signal_quality",
+      "cuffless_ppg_limitations",
+      "disclaimer"
+    ],
+    "copyright_note": "Imported full text; local vector use only, summary + citation committed.",
+    "access_note": "local PDF imported from literature_expansion batch",
+    "last_accessed": "2026-07-07",
+    "screening": {
+      "authority": 3,
+      "recency": 2,
+      "relevance": 4,
+      "accessibility": 4,
+      "safety_applicability": 3
+    },
+    "notes": {
+      "summary": {
+        "query": "ppg_high_quality_journals",
+        "quality_score": 126,
+        "journal_gate": "tier_2_top_specialty_or_ppg_engineering",
+        "dedupe": "not present in existing fulltext/source catalogs by DOI/PMID/PMCID",
+        "safety_boundary": "Use only for conservative explanation, measurement limitations, source traceability, or cardiovascular/hypertension background; do not use for diagnosis, medication advice, emergency reassurance, or PPG BP accuracy validation claims."
+      }
+    },
+    "source_quality_score": 16,
+    "source_hash": "dd7982e8ebdf9745",
+    "review_status": "excluded"
+  },
+  {
+    "source_id": "litexp_elgendi_2019_the_use_of_photoplethysmography_for_assessing_hypertension",
+    "title": "The use of photoplethysmography for assessing hypertension",
+    "organization": "NPJ digital medicine",
+    "url": "https://doi.org/10.1038/s41746-019-0136-7",
+    "doi": "10.1038/s41746-019-0136-7",
+    "pmid": "31388564",
+    "year": 2019,
+    "language": "en",
+    "region": "global",
+    "journal": "NPJ digital medicine",
+    "journal_tier": 2,
+    "topic": "cuffless_ppg_limitations",
+    "evidence_class": "review",
+    "source_type": "review",
+    "include": false,
+    "allowed_uses": [
+      "research_background",
+      "signal_quality",
+      "cuffless_ppg_limitations",
+      "disclaimer"
+    ],
+    "copyright_note": "Imported full text; local vector use only, summary + citation committed.",
+    "access_note": "local PDF imported from literature_expansion batch",
+    "last_accessed": "2026-07-07",
+    "screening": {
+      "authority": 3,
+      "recency": 3,
+      "relevance": 4,
+      "accessibility": 4,
+      "safety_applicability": 3
+    },
+    "notes": {
+      "summary": {
+        "query": "ppg_cuffless",
+        "quality_score": 128,
+        "journal_gate": "tier_2_top_specialty_or_ppg_engineering",
+        "dedupe": "not present in existing fulltext/source catalogs by DOI/PMID/PMCID",
+        "safety_boundary": "Use only for conservative explanation, measurement limitations, source traceability, or cardiovascular/hypertension background; do not use for diagnosis, medication advice, emergency reassurance, or PPG BP accuracy validation claims."
+      }
+    },
+    "source_quality_score": 17,
+    "source_hash": "968e1d568bf115ec",
+    "review_status": "excluded"
   }
 ]
