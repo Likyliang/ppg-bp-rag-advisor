@@ -463,6 +463,36 @@ class LibraryManager:
         files = self._rescreen()
         return MutationResult(source_id, "added", self.get_source(source_id), warnings, files)
 
+    def add_sources(self, sources: List[Dict[str, Any]], *, overwrite: bool = False) -> Dict[str, Any]:
+        """Add many sources in one pass, rescreening only once at the end.
+
+        Reuses :meth:`add_source` per item but defers screening (each add_source
+        would otherwise rescreen the whole catalog). Never aborts on a single bad
+        item — collects a per-item outcome (added / duplicate / error). Intra-batch
+        duplicates are caught because each append is re-read on the next item.
+        """
+
+        results: List[Dict[str, Any]] = []
+        any_added = False
+        prev_auto = self.auto_rescreen
+        self.auto_rescreen = False  # defer rescreen to the end
+        try:
+            for raw in sources:
+                sid = raw.get("source_id") if isinstance(raw, dict) else None
+                try:
+                    outcome = self.add_source(dict(raw), overwrite=overwrite)
+                    any_added = True
+                    results.append({"source_id": outcome.source_id, "action": outcome.action, "warnings": outcome.warnings})
+                except DuplicateSourceError as exc:
+                    results.append({"source_id": sid, "action": "duplicate", "detail": str(exc)})
+                except LibraryError as exc:
+                    results.append({"source_id": sid, "action": "error", "detail": str(exc)})
+        finally:
+            self.auto_rescreen = prev_auto
+        files = self._rescreen() if any_added else {}
+        added = sum(1 for r in results if r["action"] in ("added", "updated"))
+        return {"added": added, "total": len(results), "results": results, "screening_files": files}
+
     def update_source(
         self, source_id: str, patch: Dict[str, Any], *, replace: bool = False
     ) -> MutationResult:

@@ -393,6 +393,42 @@ def test_api_hard_delete_skips_trash(api_client):
     assert api_client.get("/api/v1/library/trash").json()["count"] == 0
 
 
+def test_add_sources_batch_outcomes(manager):
+    batch = [
+        _valid_source(source_id="batch_a", url="https://ex.org/a"),
+        _valid_source(source_id="batch_b", url="https://ex.org/b"),
+        _valid_source(source_id="batch_a", url="https://ex.org/a2"),  # dup source_id
+        _valid_source(source_id="batch_c", url="https://ex.org/c", evidence_class="bogus"),  # error
+    ]
+    out = manager.add_sources(batch)
+    assert [r["action"] for r in out["results"]] == ["added", "added", "duplicate", "error"]
+    assert out["added"] == 2
+    assert manager.exists("batch_a") and manager.exists("batch_b")
+    assert not manager.exists("batch_c")
+
+
+def test_api_sources_batch(api_client):
+    items = [
+        _valid_source(source_id="api_batch_1", url="https://ex.org/1"),
+        _valid_source(source_id="api_batch_2", url="https://ex.org/2"),
+    ]
+    r = api_client.post("/api/v1/library/sources/batch", json={"items": items})
+    assert r.status_code == 201
+    body = r.json()
+    assert body["added"] == 2 and {x["action"] for x in body["results"]} == {"added"}
+    assert api_client.get("/api/v1/library/sources/api_batch_1").status_code == 200
+
+
+def test_api_autofill_batch(api_client, monkeypatch):
+    monkeypatch.setattr(
+        library_api.literature_intake, "draft_from_query",
+        lambda q: {"source_id": "draft_" + q[-1], "_resolved": True, "title": q},
+    )
+    r = api_client.post("/api/v1/library/autofill/batch", json={"queries": ["10.1/x", "10.2/y"]})
+    assert r.status_code == 200 and r.json()["count"] == 2
+    assert api_client.post("/api/v1/library/autofill/batch", json={"queries": []}).status_code == 422
+
+
 def test_api_rejects_invalid_source(api_client):
     resp = api_client.post("/api/v1/library/sources", json=_valid_source(evidence_class="bogus"))
     assert resp.status_code == 422

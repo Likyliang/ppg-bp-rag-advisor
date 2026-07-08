@@ -126,6 +126,15 @@ class AutofillQuery(BaseModel):
     query: str = Field(..., description="DOI, article URL, or paper title")
 
 
+class AutofillBatchQuery(BaseModel):
+    queries: List[str] = Field(..., description="DOIs / URLs / titles, one per item")
+
+
+class SourcesBatchCreate(BaseModel):
+    items: List[SourceCreate]
+    overwrite: bool = False
+
+
 # --------------------------------------------------------------------------- #
 # Auto-fill (intake) endpoints
 # --------------------------------------------------------------------------- #
@@ -141,6 +150,27 @@ def autofill(payload: AutofillQuery) -> Dict[str, Any]:
         return literature_intake.draft_from_query(payload.query)
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
+
+
+def _batch_drafts(queries: List[str]) -> List[Dict[str, Any]]:
+    out: List[Dict[str, Any]] = []
+    for query in queries:
+        try:
+            out.append(literature_intake.draft_from_query(query))
+        except Exception as exc:  # keep going; flag the failed one
+            out.append({"_query": query, "_resolved": False, "_warning": str(exc)})
+    return out
+
+
+@router.post("/autofill/batch")
+async def autofill_batch(payload: AutofillBatchQuery) -> Dict[str, Any]:
+    """Build drafts from many DOIs/URLs/titles at once (each flagged resolved/not)."""
+
+    queries = [q.strip() for q in payload.queries if q and q.strip()]
+    if not queries:
+        raise HTTPException(status_code=422, detail="empty queries")
+    drafts = await run_in_threadpool(_batch_drafts, queries)
+    return {"count": len(drafts), "drafts": drafts}
 
 
 @router.post("/autofill/pdf")
@@ -228,6 +258,15 @@ def create_source(payload: SourceCreate, overwrite: bool = False) -> Dict[str, A
     except LibraryError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
     return result.as_dict()
+
+
+@router.post("/sources/batch", status_code=201)
+def create_sources_batch(payload: SourcesBatchCreate) -> Dict[str, Any]:
+    """Add many confirmed drafts in one pass (single rescreen), returning a
+    per-item outcome (added / duplicate / error). Never aborts on one bad item."""
+
+    items = [item.to_source() for item in payload.items]
+    return _manager().add_sources(items, overwrite=payload.overwrite)
 
 
 @router.patch("/sources/{source_id}")
