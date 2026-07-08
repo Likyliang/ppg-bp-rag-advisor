@@ -36,7 +36,8 @@
         <input class="form-check-input" type="checkbox" id="ingVector" />
         <label class="form-check-label small text-secondary" for="ingVector">含向量索引</label>
       </div>
-      <button class="btn btn-sm btn-primary" id="ingestBtn">重建检索索引</button>
+      <button class="btn btn-sm btn-outline-primary" id="ftRebuildBtn" title="从已上传的 PDF 重建全文向量索引">重建全文索引</button>
+      <button class="btn btn-sm btn-primary" id="ingestBtn" title="从 raw 笔记重建 chunks.jsonl 检索索引">重建检索索引</button>
     </div>
   </div>
 </nav>
@@ -183,10 +184,14 @@
       <label class="form-label small mb-1">访问 / 授权模式 access_mode（管理员对版权负责）</label>
       <select class="form-select form-select-sm mb-2" id="uploadMode"></select>
       <label class="form-label small mb-1">选择 PDF 文件</label>
-      <input class="form-control form-control-sm mb-3" type="file" id="uploadFile" accept="application/pdf" />
+      <input class="form-control form-control-sm mb-2" type="file" id="uploadFile" accept="application/pdf" />
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="uploadDefer" />
+        <label class="form-check-label small text-secondary" for="uploadDefer">稍后统一建索引（先只附加 PDF，之后点导航栏「重建全文索引」）</label>
+      </div>
       <div class="d-flex justify-content-end gap-2">
         <button class="btn btn-sm btn-outline-secondary" id="uploadCancel">取消</button>
-        <button class="btn btn-sm btn-primary" id="uploadConfirm">上传并建索引</button>
+        <button class="btn btn-sm btn-primary" id="uploadConfirm">上传</button>
       </div>
     </div>
   </div>
@@ -378,14 +383,27 @@ $("#uploadModal").addEventListener("click", e => { if (e.target.id === "uploadMo
 $("#uploadConfirm").addEventListener("click", async () => {
   const file = $("#uploadFile").files[0], mode = $("#uploadMode").value;
   if (!file) return toast("请选择 PDF 文件", false);
+  const defer = $("#uploadDefer").checked;
   $("#uploadModal").style.display = "none";
-  toast("上传并建立全文索引中…（几秒）");
+  toast(defer ? "附加 PDF 中…" : "上传并建立全文索引中…（几秒）");
   try {
     const buf = await file.arrayBuffer();
-    const r = await api(`/sources/${encodeURIComponent(_uploadId)}/fulltext?access_mode=${encodeURIComponent(mode)}`, {
+    const r = await api(`/sources/${encodeURIComponent(_uploadId)}/fulltext?access_mode=${encodeURIComponent(mode)}&rebuild=${!defer}`, {
       method: "POST", headers: { "content-type": "application/pdf" }, body: buf });
-    toast(`已附加全文：${_uploadId}（${r.indexed_chunk_count ?? 0} chunks）`); await refreshAll();
+    toast(defer ? `已附加 PDF：${_uploadId}（记得点「重建全文索引」）` : `已附加全文：${_uploadId}（${r.indexed_chunk_count ?? 0} chunks）`);
+    await refreshAll();
   } catch (e) { toast(e.message, false); }
+});
+
+// ---- 重建全文索引（手动触发）----
+$("#ftRebuildBtn").addEventListener("click", async () => {
+  const b = $("#ftRebuildBtn");
+  if (!confirm("从已上传的所有 PDF 重建全文向量索引？读取全部 PDF，约几分钟。")) return;
+  b.disabled = true; const label = b.textContent; b.textContent = "重建中…";
+  try { const r = await api("/fulltext/rebuild", { method: "POST" });
+    toast(`全文索引已重建：${r.source_count} 篇 / ${r.chunk_count} chunks`); await refreshAll();
+  } catch (e) { toast(e.message, false); }
+  finally { b.disabled = false; b.textContent = label; }
 });
 async function removeFt(id) {
   if (!confirm("移除『" + id + "』的本地全文并重建索引？（目录记录保留）")) return;
