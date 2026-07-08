@@ -158,6 +158,19 @@ def test_add_rejects_duplicate_identity(manager):
         manager.add_source(_valid_source(source_id="another_id"))
 
 
+def test_add_below_threshold_registers_excluded_not_error(manager):
+    # A source whose screening sums below the include threshold must register as
+    # excluded (include=false), not raise — this is what autofill-add relies on.
+    low = _valid_source(
+        source_id="low_score_paper",
+        screening={"authority": 2, "recency": 2, "relevance": 2, "accessibility": 2, "safety_applicability": 2},
+    )
+    result = manager.add_source(low)
+    assert result.action == "added"
+    assert result.source["include"] is False
+    assert result.source["source_quality_score"] == 10
+
+
 def test_add_rejects_invalid_evidence_class(manager):
     with pytest.raises(LibraryError):
         manager.add_source(_valid_source(evidence_class="not_a_class"))

@@ -222,12 +222,16 @@ def suggest_screening(year: Optional[int]) -> Dict[str, int]:
         recency = 3
     else:
         recency = 2
-    # Neutral mid-values for the reviewer to adjust; recency is objective.
+    # Reviewer-adjustable suggestion. recency is objective; relevance and
+    # accessibility default to 4 (the source was looked up on purpose and we have
+    # its metadata/PDF), so a recent, relevant paper clears the include threshold
+    # (18) out of the box instead of registering as excluded. authority /
+    # safety_applicability stay neutral (3) for the human to confirm.
     return {
         "authority": 3,
         "recency": recency,
-        "relevance": 3,
-        "accessibility": 3,
+        "relevance": 4,
+        "accessibility": 4,
         "safety_applicability": 3,
     }
 

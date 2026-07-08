@@ -727,11 +727,15 @@ def _normalise_input(source: Dict[str, Any], *, partial: bool = False) -> Dict[s
     if partial:
         return source
 
-    source.setdefault("include", True)
     source.setdefault("language", "en")
     source.setdefault("doi", None)
     source.setdefault("pmid", None)
     source.setdefault("last_accessed", date.today())
     source.setdefault("access_note", "public")
     source.setdefault("screening", {d: 0 for d in _SCREENING_DIMS})
+    # Default include to whether the source clears the screening threshold, so a
+    # below-threshold add registers as *excluded* (visible, not retrieved) rather
+    # than hard-failing validation. An explicit include=True is left untouched.
+    if "include" not in source:
+        source["include"] = screening_score(source) >= SCREEN_THRESHOLD
     return source

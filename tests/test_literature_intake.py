@@ -54,6 +54,15 @@ def test_suggest_screening_recency():
     assert li.suggest_screening(None)["recency"] == 2
 
 
+def test_suggest_screening_recent_clears_include_threshold():
+    # A recent (2020+) paper's suggested screening must sum to >= 18 so an
+    # autofill-add registers as included, not below-threshold.
+    from app.services.source_catalog import SCREEN_THRESHOLD
+
+    assert sum(li.suggest_screening(2022).values()) >= SCREEN_THRESHOLD
+    assert sum(li.suggest_screening(2025).values()) >= SCREEN_THRESHOLD
+
+
 def test_message_to_draft_fills_and_suggests():
     draft = li.message_to_draft(_CROSSREF_MESSAGE)
     assert draft["title"].startswith("Photoplethysmography")
