@@ -1,14 +1,73 @@
 import json
 
+import numpy as np
+
 from app.services.fulltext_vector_index import (
     FulltextChunk,
+    _chunk_source_id,
+    drop_source_from_index,
     hashing_embedding,
+    merge_hashing_vector_index,
+    merge_local_fulltext_chunks,
     query_hashing_vector_index,
     split_text_for_fulltext_chunks,
     summarize_query_results,
     write_hashing_vector_index,
     write_local_fulltext_chunks,
 )
+
+
+def _chunks(source_id, n):
+    return [
+        FulltextChunk(
+            chunk_id=f"fulltext::{source_id}::p001::c{i:02d}",
+            text=f"{source_id} cuffless ppg blood pressure passage {i}",
+            metadata={"source_id": source_id, "title": source_id},
+        )
+        for i in range(1, n + 1)
+    ]
+
+
+def _counts(jsonl, npz):
+    from collections import Counter
+
+    rows = [json.loads(line) for line in jsonl.read_text().splitlines() if line.strip()]
+    data = np.load(npz, allow_pickle=True)
+    jc = Counter(r["source_id"] for r in rows)
+    nc = Counter(_chunk_source_id(str(x)) for x in data["ids"])
+    return dict(jc), dict(nc), data["embeddings"].shape[0]
+
+
+def test_incremental_splice_preserves_other_sources(tmp_path):
+    jsonl, npz = tmp_path / "c.jsonl", tmp_path / "v.npz"
+    merge_local_fulltext_chunks(_chunks("A", 2) + _chunks("B", 3), ["A", "B"], path=str(jsonl))
+    merge_hashing_vector_index(_chunks("A", 2) + _chunks("B", 3), ["A", "B"], path=str(npz))
+    merge_local_fulltext_chunks(_chunks("C", 4), ["C"], path=str(jsonl))
+    merge_hashing_vector_index(_chunks("C", 4), ["C"], path=str(npz))
+    jc, nc, rows = _counts(jsonl, npz)
+    assert jc == nc == {"A": 2, "B": 3, "C": 4}
+    assert rows == 9
+
+
+def test_reattach_replaces_not_duplicates(tmp_path):
+    jsonl, npz = tmp_path / "c.jsonl", tmp_path / "v.npz"
+    merge_local_fulltext_chunks(_chunks("B", 3), ["B"], path=str(jsonl))
+    merge_hashing_vector_index(_chunks("B", 3), ["B"], path=str(npz))
+    merge_local_fulltext_chunks(_chunks("B", 1), ["B"], path=str(jsonl))
+    merge_hashing_vector_index(_chunks("B", 1), ["B"], path=str(npz))
+    jc, nc, rows = _counts(jsonl, npz)
+    assert jc == nc == {"B": 1}
+    assert rows == 1
+
+
+def test_drop_removes_only_target_source(tmp_path):
+    jsonl, npz, manifest = tmp_path / "c.jsonl", tmp_path / "v.npz", tmp_path / "m.json"
+    merge_local_fulltext_chunks(_chunks("A", 2) + _chunks("B", 3), ["A", "B"], path=str(jsonl))
+    merge_hashing_vector_index(_chunks("A", 2) + _chunks("B", 3), ["A", "B"], path=str(npz))
+    drop_source_from_index("A", chunks_path=str(jsonl), vector_path=str(npz), manifest_path=str(manifest))
+    jc, nc, rows = _counts(jsonl, npz)
+    assert jc == nc == {"B": 3}
+    assert rows == 3
 
 
 def test_split_text_for_fulltext_chunks_keeps_small_overlapping_chunks():

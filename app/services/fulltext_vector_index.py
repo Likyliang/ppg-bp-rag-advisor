@@ -372,6 +372,174 @@ def build_fulltext_vector_index(
     return manifest
 
 
+# --------------------------------------------------------------------------- #
+# Incremental index update (splice one/few sources without re-reading all PDFs)
+# --------------------------------------------------------------------------- #
+def _chunk_source_id(chunk_id: str) -> str:
+    """Source id encoded in a chunk id ``fulltext::{source_id}::p...::c...``."""
+
+    parts = str(chunk_id).split("::")
+    return parts[1] if len(parts) > 2 else ""
+
+
+def _read_jsonl_rows(path: Path) -> List[Dict[str, Any]]:
+    if not path.exists():
+        return []
+    rows: List[Dict[str, Any]] = []
+    with path.open("r", encoding="utf-8") as handle:
+        for line in handle:
+            if line.strip():
+                rows.append(json.loads(line))
+    return rows
+
+
+def merge_local_fulltext_chunks(
+    new_chunks: List[FulltextChunk], source_ids: Iterable[str], path: Optional[str] = None
+) -> Path:
+    """Splice sources into the chunks jsonl: drop existing rows for those sources,
+    append the new chunks, write back (preserving every other source)."""
+
+    out_path = resolve_project_path(path or f"{VECTOR_ROOT}/fulltext_chunks.jsonl")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    drop = set(source_ids)
+    kept = [row for row in _read_jsonl_rows(out_path) if row.get("source_id") not in drop]
+    with out_path.open("w", encoding="utf-8") as handle:
+        for row in kept:
+            handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+        for chunk in new_chunks:
+            handle.write(
+                json.dumps({"chunk_id": chunk.chunk_id, "content": chunk.text, **chunk.metadata}, ensure_ascii=False)
+                + "\n"
+            )
+    return out_path
+
+
+def merge_hashing_vector_index(
+    new_chunks: List[FulltextChunk], source_ids: Iterable[str], dims: int = 384, path: Optional[str] = None
+) -> Path:
+    """Splice sources into the hashing .npz: drop rows for those sources, embed
+    only the new chunks, concatenate, write back. Avoids re-embedding everything."""
+
+    out_path = resolve_project_path(path or f"{VECTOR_ROOT}/fulltext_hashing_vectors.npz")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    drop = set(source_ids)
+    kept_ids: List[str] = []
+    kept_meta: List[str] = []
+    kept_rows: List[np.ndarray] = []
+    if out_path.exists():
+        data = np.load(out_path, allow_pickle=True)
+        old_ids, old_emb = data["ids"], data["embeddings"]
+        old_meta = data["metadata"] if "metadata" in data.files else np.array([""] * len(old_ids), dtype=object)
+        for index, chunk_id in enumerate(old_ids):
+            if _chunk_source_id(str(chunk_id)) not in drop:
+                kept_ids.append(str(chunk_id))
+                kept_meta.append(str(old_meta[index]) if index < len(old_meta) else "")
+                kept_rows.append(old_emb[index])
+    if kept_rows:  # keep dims consistent with the existing index
+        dims = int(kept_rows[0].shape[0])
+    new_rows = [hashing_embedding(chunk.text, dims=dims) for chunk in new_chunks]
+    embeddings = np.vstack(kept_rows + new_rows) if (kept_rows or new_rows) else np.zeros((0, dims), dtype=np.float32)
+    ids = np.array(kept_ids + [chunk.chunk_id for chunk in new_chunks], dtype=object)
+    metadata = np.array(
+        kept_meta + [json.dumps(chunk.metadata, ensure_ascii=False, sort_keys=True) for chunk in new_chunks],
+        dtype=object,
+    )
+    np.savez_compressed(out_path, ids=ids, embeddings=embeddings, metadata=metadata)
+    return out_path
+
+
+def merge_manifest(
+    source_manifest_entries: List[Dict[str, Any]],
+    source_ids: Iterable[str],
+    skipped: List[Dict[str, str]],
+    dims: int = 384,
+    target_chars: int = 850,
+    overlap_chars: int = 140,
+    chunks_path: Optional[str] = None,
+    vector_path: Optional[str] = None,
+    manifest_path: Optional[str] = None,
+) -> Dict[str, Any]:
+    """Splice sources into the manifest: replace only the affected ``sources[]``
+    entries and recompute totals (never shrink to a filtered-only view)."""
+
+    out_path = resolve_project_path(manifest_path or MANIFEST_PATH)
+    existing: Dict[str, Any] = {}
+    if out_path.exists():
+        try:
+            existing = json.loads(out_path.read_text(encoding="utf-8"))
+        except Exception:
+            existing = {}
+    drop = set(source_ids)
+    sources = [s for s in existing.get("sources", []) if s.get("source_id") not in drop]
+    sources.extend(source_manifest_entries)
+    skipped_all = [s for s in existing.get("skipped", []) if s.get("source_id") not in drop]
+    skipped_all.extend(skipped)
+    manifest = {
+        "timestamp": int(time.time()),
+        "backend": "local_hashing_vectors",
+        "purpose": "Local full-text PDF chunking and vector indexing. Raw PDF text stays in ignored vector_store files and is not committed.",
+        "target_chars": target_chars,
+        "overlap_chars": overlap_chars,
+        "embedding_dims": dims,
+        "source_count": sum(1 for s in sources if s.get("chunk_count", 0) > 0),
+        "page_count": sum(int(s.get("page_count") or 0) for s in sources),
+        "chunk_count": sum(int(s.get("chunk_count") or 0) for s in sources),
+        "chunks_path": str(resolve_project_path(chunks_path or f"{VECTOR_ROOT}/fulltext_chunks.jsonl")),
+        "vector_path": str(resolve_project_path(vector_path or f"{VECTOR_ROOT}/fulltext_hashing_vectors.npz")),
+        "sources": sources,
+        "skipped": skipped_all,
+    }
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    return manifest
+
+
+def update_fulltext_vector_index(
+    source_ids: Iterable[str],
+    target_chars: int = 850,
+    overlap_chars: int = 140,
+    dims: int = 384,
+    chunks_path: Optional[str] = None,
+    vector_path: Optional[str] = None,
+    manifest_path: Optional[str] = None,
+) -> Dict[str, Any]:
+    """Incrementally splice specific sources into the local full-text index.
+
+    Only the given sources' PDFs are read/chunked/embedded; every other source's
+    chunks and vectors are preserved. Writes jsonl first, then npz (so the
+    freshness gate ``npz mtime >= jsonl mtime`` holds), then merges the manifest.
+    """
+
+    source_ids = list(source_ids)
+    chunks, sources_manifest, skipped = build_fulltext_chunks(
+        source_ids=source_ids, target_chars=target_chars, overlap_chars=overlap_chars
+    )
+    merge_local_fulltext_chunks(chunks, source_ids, path=chunks_path)
+    merge_hashing_vector_index(chunks, source_ids, dims=dims, path=vector_path)
+    return merge_manifest(
+        sources_manifest, source_ids, skipped, dims=dims,
+        target_chars=target_chars, overlap_chars=overlap_chars,
+        chunks_path=chunks_path, vector_path=vector_path, manifest_path=manifest_path,
+    )
+
+
+def drop_source_from_index(
+    source_id: str,
+    dims: int = 384,
+    chunks_path: Optional[str] = None,
+    vector_path: Optional[str] = None,
+    manifest_path: Optional[str] = None,
+) -> Dict[str, Any]:
+    """Remove one source's chunks/vectors/manifest entry from the local index."""
+
+    ids = [source_id]
+    merge_local_fulltext_chunks([], ids, path=chunks_path)
+    merge_hashing_vector_index([], ids, dims=dims, path=vector_path)
+    return merge_manifest(
+        [], ids, [], dims=dims, chunks_path=chunks_path, vector_path=vector_path, manifest_path=manifest_path
+    )
+
+
 def summarize_query_results(results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     summary: List[Dict[str, Any]] = []
     for item in results:

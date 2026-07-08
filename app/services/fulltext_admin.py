@@ -44,8 +44,10 @@ from app.services.fulltext_vector_index import (
     LIBRARY_ROOT,
     MANIFEST_PATH,
     build_fulltext_vector_index,
+    drop_source_from_index,
     governed_pdf_path,
     library_pdf_target,
+    update_fulltext_vector_index,
 )
 from app.services.source_catalog import ALLOWED_USES, included_sources
 
@@ -226,7 +228,7 @@ def attach_pdf(
 
     result: Dict[str, Any] = {"action": "attached", "source_id": source_id, "record": record}
     if rebuild:
-        manifest = build_fulltext_vector_index()
+        manifest = update_fulltext_vector_index([source_id])  # incremental: only this PDF
         record["status"] = "indexed"
         _save_uploads(registry)
         result["indexed_chunk_count"] = _indexed_chunk_counts().get(source_id, 0)
@@ -254,7 +256,7 @@ def remove_fulltext(source_id: str, rebuild: bool = True) -> Dict[str, Any]:
 
     result = {"action": "removed", "source_id": source_id, "removed_pdf": existed}
     if rebuild:
-        manifest = build_fulltext_vector_index()
+        manifest = drop_source_from_index(source_id)  # incremental: drop only this source
         result["total_chunks"] = manifest.get("chunk_count", 0)
     return result
 
@@ -283,7 +285,7 @@ def trash_fulltext(source_id: str, rebuild: bool = True) -> Dict[str, Any]:
 
     result = {"action": "trashed", "source_id": source_id}
     if rebuild:
-        build_fulltext_vector_index()
+        drop_source_from_index(source_id)  # incremental: drop only this source
     return result
 
 
@@ -306,7 +308,7 @@ def restore_fulltext(source_id: str, rebuild: bool = True) -> Dict[str, Any]:
 
     result = {"action": "restored", "source_id": source_id}
     if rebuild:
-        build_fulltext_vector_index()
+        update_fulltext_vector_index([source_id])  # incremental: only this source
     return result
 
 
@@ -329,9 +331,16 @@ def purge_fulltext(source_id: str) -> Dict[str, Any]:
 
 
 def build_fulltext(source_ids: Optional[List[str]] = None) -> Dict[str, Any]:
-    """(Re)build the local full-text vector index from downloaded PDFs."""
+    """Rebuild the local full-text vector index from downloaded PDFs.
 
-    manifest = build_fulltext_vector_index(source_ids=source_ids)
+    ``source_ids`` given -> incremental splice of just those sources (preserving
+    the rest); ``None`` -> full rebuild of every included source (the "重建全文
+    索引" escape hatch).
+    """
+
+    manifest = (
+        update_fulltext_vector_index(source_ids) if source_ids else build_fulltext_vector_index()
+    )
     # Sync upload records to 'indexed' where chunks were produced.
     counts = _indexed_chunk_counts()
     registry = _load_uploads()

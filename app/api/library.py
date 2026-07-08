@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, HTTPException, Query, Request
+from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 
@@ -150,7 +151,9 @@ async def autofill_pdf(request: Request) -> Dict[str, Any]:
     if not body:
         raise HTTPException(status_code=422, detail="empty upload")
     try:
-        return literature_intake.draft_from_pdf(body)
+        # PDF parse + Crossref lookup are blocking; run off the event loop so
+        # parallel batch identifies don't serialize / freeze the server.
+        return await run_in_threadpool(literature_intake.draft_from_pdf, body)
     except RuntimeError as exc:
         raise HTTPException(status_code=501, detail=str(exc))
     except Exception as exc:  # pragma: no cover - malformed PDF
@@ -341,7 +344,10 @@ async def attach_fulltext(
     body = await request.body()
     uses = [u.strip() for u in allowed_uses.split(",")] if allowed_uses else None
     try:
-        return fulltext_admin.attach_pdf(
+        # Run the blocking PDF extract + index splice off the event loop so the
+        # upload never freezes the rest of the UI.
+        return await run_in_threadpool(
+            fulltext_admin.attach_pdf,
             source_id,
             body,
             access_mode=access_mode,

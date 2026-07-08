@@ -52,7 +52,9 @@ def sandbox(tmp_path, monkeypatch):
 
     state = {"built": 0}
 
-    def fake_build(source_ids=None):
+    def fake_index(*args, **kwargs):
+        # One stub for full rebuild / incremental update / drop: the manifest
+        # always reflects whichever PDFs currently sit in the tmp library.
         state["built"] += 1
         sources = []
         if library.exists():
@@ -62,7 +64,9 @@ def sandbox(tmp_path, monkeypatch):
         manifest_path.write_text(json.dumps({"sources": sources, "chunk_count": 3 * len(sources)}), encoding="utf-8")
         return {"source_count": len(sources), "chunk_count": 3 * len(sources), "page_count": 1, "skipped": []}
 
-    monkeypatch.setattr(fa, "build_fulltext_vector_index", fake_build)
+    monkeypatch.setattr(fa, "build_fulltext_vector_index", fake_index)
+    monkeypatch.setattr(fa, "update_fulltext_vector_index", fake_index)
+    monkeypatch.setattr(fa, "drop_source_from_index", fake_index)
     return state
 
 
