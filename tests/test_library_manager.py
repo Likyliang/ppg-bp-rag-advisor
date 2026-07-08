@@ -405,6 +405,25 @@ def test_api_list_filter_and_bad_tier(api_client):
     assert api_client.get("/api/v1/library/sources", params={"tier": "Z"}).status_code == 422
 
 
+def test_api_sources_pagination(api_client):
+    full = api_client.get("/api/v1/library/sources").json()
+    total = full["total"]
+    assert total >= 2 and len(full["sources"]) == total  # no limit -> all
+
+    p0 = api_client.get("/api/v1/library/sources", params={"limit": 1, "offset": 0}).json()
+    assert p0["total"] == total and p0["limit"] == 1 and p0["count"] == 1 and len(p0["sources"]) == 1
+
+    p1 = api_client.get("/api/v1/library/sources", params={"limit": 1, "offset": 1}).json()
+    assert p1["offset"] == 1 and p1["sources"][0]["source_id"] != p0["sources"][0]["source_id"]
+
+    # offset past the end -> empty page, total unchanged
+    over = api_client.get("/api/v1/library/sources", params={"limit": 5, "offset": total + 10}).json()
+    assert over["total"] == total and over["count"] == 0
+
+    # bad limit -> 422
+    assert api_client.get("/api/v1/library/sources", params={"limit": 0}).status_code == 422
+
+
 def test_api_journal_tier_filter(api_client):
     api_client.post("/api/v1/library/sources", json=_valid_source(source_id="api_jt1", journal="Nature", journal_tier=1))
     r = api_client.get("/api/v1/library/sources", params={"journal_tier": 1})

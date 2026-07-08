@@ -187,12 +187,14 @@ def list_sources(
     query: Optional[str] = Query(None, description="substring match on id/title/organization/journal"),
     journal: Optional[str] = Query(None, description="substring match on journal name"),
     journal_tier: Optional[int] = Query(None, description="journal quality tier 1/2/3"),
+    limit: Optional[int] = Query(None, ge=1, le=500, description="page size; omit for all"),
+    offset: int = Query(0, ge=0, description="page offset"),
 ) -> Dict[str, Any]:
     if tier is not None and tier not in EVIDENCE_TIERS:
         raise HTTPException(status_code=422, detail=f"invalid tier: {tier}")
     if journal_tier is not None and journal_tier not in (1, 2, 3):
         raise HTTPException(status_code=422, detail=f"invalid journal_tier: {journal_tier}")
-    sources = _manager().list_sources(
+    all_sources = _manager().list_sources(
         topic=topic,
         tier=tier,
         evidence_class=evidence_class,
@@ -202,7 +204,8 @@ def list_sources(
         journal=journal,
         journal_tier=journal_tier,
     )
-    return {"count": len(sources), "sources": sources}
+    page = all_sources[offset : offset + limit] if limit is not None else all_sources[offset:]
+    return {"total": len(all_sources), "limit": limit, "offset": offset, "count": len(page), "sources": page}
 
 
 @router.get("/sources/{source_id}")
@@ -272,9 +275,13 @@ def delete_source(source_id: str, reason: Optional[str] = None, hard: bool = Fal
 # Recycle bin (回收站 / 废纸篓)
 # --------------------------------------------------------------------------- #
 @router.get("/trash")
-def list_trash() -> Dict[str, Any]:
+def list_trash(
+    limit: Optional[int] = Query(None, ge=1, le=500),
+    offset: int = Query(0, ge=0),
+) -> Dict[str, Any]:
     items = _manager().list_trash()
-    return {"count": len(items), "sources": items}
+    page = items[offset : offset + limit] if limit is not None else items[offset:]
+    return {"total": len(items), "limit": limit, "offset": offset, "count": len(page), "sources": page}
 
 
 @router.post("/sources/{source_id}/restore")
