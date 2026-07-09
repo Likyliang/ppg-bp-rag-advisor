@@ -483,6 +483,7 @@ def test_api_ingest_triggers_rebuild(api_client, monkeypatch):
 
 
 def test_api_admin_page_served(api_client):
-    resp = api_client.get("/api/v1/library/admin")
-    assert resp.status_code == 200
-    assert "文献管理后台" in resp.text
+    # Legacy literature-admin entry now redirects into the unified shell.
+    resp = api_client.get("/api/v1/library/admin", follow_redirects=False)
+    assert resp.status_code == 302
+    assert resp.headers["location"] == "/api/v1/admin"

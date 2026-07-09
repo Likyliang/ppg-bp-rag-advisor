@@ -12,12 +12,11 @@ Mounted at ``/api/v1/library`` (see :mod:`app.main`).
 
 from __future__ import annotations
 
-from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, HTTPException, Query, Request
 from fastapi.concurrency import run_in_threadpool
-from fastapi.responses import HTMLResponse
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, Field
 
 from app.services import fulltext_admin, literature_intake
@@ -33,20 +32,16 @@ from scripts.ingest_kb import ingest_knowledge_base
 
 router = APIRouter(tags=["library"])
 
-_ADMIN_HTML = Path(__file__).resolve().parent.parent / "static" / "library_admin.html"
-
 
 def _manager() -> LibraryManager:
     return LibraryManager()
 
 
-@router.get("/admin", response_class=HTMLResponse, include_in_schema=False)
-def admin_page() -> HTMLResponse:
-    """Serve the single-file back-office admin UI (same-origin to the API)."""
+@router.get("/admin", include_in_schema=False)
+def admin_page() -> RedirectResponse:
+    """Legacy entry: the literature admin is now a module in the unified shell."""
 
-    if not _ADMIN_HTML.exists():
-        raise HTTPException(status_code=404, detail="admin UI not found")
-    return HTMLResponse(_ADMIN_HTML.read_text(encoding="utf-8"))
+    return RedirectResponse(url="/api/v1/admin", status_code=302)
 
 
 # --------------------------------------------------------------------------- #
