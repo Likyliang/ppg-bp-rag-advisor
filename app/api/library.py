@@ -19,7 +19,7 @@ from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, Field
 
-from app.services import fulltext_admin, literature_intake
+from app.services import dedup, fulltext_admin, literature_intake
 
 from app.services.library_manager import (
     EVIDENCE_TIERS,
@@ -128,6 +128,20 @@ class AutofillBatchQuery(BaseModel):
 class SourcesBatchCreate(BaseModel):
     items: List[SourceCreate]
     overwrite: bool = False
+
+
+class DuplicateCheckItem(BaseModel):
+    """Minimal identity of a draft to check against the catalogue."""
+
+    title: Optional[str] = None
+    doi: Optional[str] = None
+    url: Optional[str] = None
+    pmid: Optional[str] = None
+    year: Optional[int] = None
+
+
+class DuplicateCheckRequest(BaseModel):
+    items: List[DuplicateCheckItem]
 
 
 # --------------------------------------------------------------------------- #
@@ -346,6 +360,55 @@ def empty_trash() -> Dict[str, Any]:
 @router.post("/rescreen")
 def rescreen() -> Dict[str, str]:
     return _manager().rescreen()
+
+
+# --------------------------------------------------------------------------- #
+# Near-duplicate detection (advisory; never auto-deletes)
+# --------------------------------------------------------------------------- #
+_DUP_MEMBER_FIELDS = (
+    "source_id", "title", "organization", "journal", "journal_tier",
+    "year", "region", "topic", "evidence_class", "tier", "include", "doi", "url",
+)
+
+
+def _dup_member(source: Dict[str, Any]) -> Dict[str, Any]:
+    return {k: source.get(k) for k in _DUP_MEMBER_FIELDS}
+
+
+@router.get("/duplicates")
+def scan_duplicates() -> Dict[str, Any]:
+    """Scan the active catalogue for near-duplicate clusters (manual review).
+
+    Match confidence: ``doi``/``pmid`` reasons are strong; ``title+year`` is a
+    weak signal (distinct sources can share a generic title) — the caller must
+    let a human confirm before trashing anything.
+    """
+
+    sources = _manager().list_sources()
+    clusters = dedup.find_duplicate_clusters(sources)
+    out = [
+        {
+            "reasons": c["reasons"],
+            "strong": any(r in ("doi", "pmid") for r in c["reasons"]),
+            "size": c["size"],
+            "members": [_dup_member(m) for m in c["members"]],
+        }
+        for c in clusters
+    ]
+    return {"cluster_count": len(out), "clusters": out}
+
+
+@router.post("/duplicates/check")
+def check_duplicates(payload: DuplicateCheckRequest) -> Dict[str, Any]:
+    """For each draft, list catalogued sources it looks like (import warning)."""
+
+    existing = _manager().list_sources()
+    existing_ids = dedup.build_identities(existing)  # normalise the catalogue once
+    results = []
+    for idx, item in enumerate(payload.items):
+        matches = dedup.find_duplicates(item.model_dump(), existing, existing_ids=existing_ids)
+        results.append({"index": idx, "matches": matches})
+    return {"results": results}
 
 
 # --------------------------------------------------------------------------- #

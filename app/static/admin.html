@@ -90,6 +90,7 @@ const LiteratureModule = {
           <select class="form-select form-select-sm" v-model="filters.journal_tier"><option value="">全部期刊级</option><option value="1">T1 顶刊</option><option value="2">T2 主流</option><option value="3">T3 较弱</option></select>
           <input class="form-control form-control-sm" v-model="filters.query" @keyup.enter="page=1;loadList()" placeholder="搜索 id/标题/机构/期刊" />
           <button class="btn btn-sm btn-outline-secondary" @click="page=1;loadList()">刷新</button>
+          <button class="btn btn-sm btn-outline-warning" @click="openDupScan">🔍 查重</button>
           <button class="btn btn-sm btn-outline-secondary" @click="toggleTrash">🗑 废纸篓</button>
         </div>
         <div class="d-flex gap-2 mb-3" v-else>
@@ -175,12 +176,14 @@ const LiteratureModule = {
           <div class="col-12"><button class="btn btn-sm btn-primary" @click="addManual">添加到知识库</button></div>
         </div>
         <div v-if="reviewRows.length" class="mt-3">
-          <div class="d-flex justify-content-between align-items-center mb-1"><span class="small fw-semibold">审核（{{ reviewRows.length }}）· 黄色为待确认建议</span><button class="btn btn-sm btn-success" :disabled="importing" @click="submitBatch">全部添加</button></div>
+          <div class="d-flex justify-content-between align-items-center mb-1"><span class="small fw-semibold">审核（{{ reviewRows.length }}）· 黄色为待确认建议<span v-if="dupChecking" class="text-secondary">· 查重中…</span></span><button class="btn btn-sm btn-success" :disabled="importing" @click="submitBatch">全部添加</button></div>
           <div class="list-scroll"><table class="table table-sm review-tbl align-middle">
-            <thead class="table-light"><tr><th>source_id</th><th>标题</th><th>主题</th><th>证据类别</th><th>评分(5)</th><th>期刊级</th><th></th></tr></thead>
-            <tbody><tr v-for="(r,i) in reviewRows" :key="i" :class="{'table-warning': r._resolved===false}">
+            <thead class="table-light"><tr><th>source_id</th><th>标题</th><th>疑似重复</th><th>主题</th><th>证据类别</th><th>评分(5)</th><th>期刊级</th><th></th></tr></thead>
+            <tbody><tr v-for="(r,i) in reviewRows" :key="i" :class="{'table-warning': r._resolved===false, 'table-danger': r._dup && r._dup.length}">
               <td><input class="form-control form-control-sm" style="min-width:150px" v-model="r.source_id"></td>
               <td style="max-width:220px"><input class="form-control form-control-sm" v-model="r.title"></td>
+              <td style="max-width:170px"><span v-if="r._dup && r._dup.length" class="badge text-bg-danger" :title="r._dup.map(m=>m.source_id+'（'+m.reason+'）').join('；')">⚠ 疑似 {{ r._dup.length }} 篇</span><span v-else class="text-secondary small">—</span>
+                <div v-if="r._dup && r._dup.length" class="small text-danger" style="overflow-wrap:anywhere">{{ r._dup.map(m=>m.source_id).join('、') }}</div></td>
               <td><select class="form-select form-select-sm" :class="{suggest:sug(r,'topic')}" v-model="r.topic"><option v-for="t in taxTopics" :key="t">{{ t }}</option></select></td>
               <td><select class="form-select form-select-sm" :class="{suggest:sug(r,'evidence_class')}" v-model="r.evidence_class"><option v-for="e in taxEvid" :key="e">{{ e }}</option></select></td>
               <td><input class="form-control form-control-sm" style="min-width:110px" :class="{suggest:sug(r,'screening')}" v-model="r.scrStr"></td>
@@ -205,6 +208,33 @@ const LiteratureModule = {
           <button class="btn btn-sm btn-primary" :disabled="uploading" @click="doUpload">{{ uploading?'附加中…':'附加 PDF' }}</button></div>
       </div></div>
     </div>
+
+    <div class="modal-back" v-if="showDup" @click.self="showDup=false" role="dialog" aria-modal="true" aria-label="全库查重">
+      <div class="card shadow" style="max-width:960px;margin:5vh auto;"><div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <h6 class="mb-0">全库查重 <span class="text-secondary fw-normal" v-if="!dupLoading">· {{ dupClusters.length }} 个疑似重复簇</span></h6>
+          <div class="d-flex gap-2"><button class="btn btn-sm btn-outline-secondary" :disabled="dupLoading" @click="loadDupScan">重新扫描</button><button class="btn-close" aria-label="关闭" @click="showDup=false"></button></div>
+        </div>
+        <p class="small text-secondary mb-2"><span class="badge text-bg-danger">确定</span> = DOI/PMID 相同（强）；<span class="badge text-bg-warning">疑似</span> = 仅标题+年份相同（弱，请人工核对机构/链接后再决定）。删除为移入废纸篓，可恢复。</p>
+        <div v-if="dupLoading" class="text-secondary py-3">扫描中…</div>
+        <div v-else-if="!dupClusters.length" class="alert alert-success py-2 px-3 small mb-0">未发现疑似重复。</div>
+        <div v-else>
+          <div v-for="(cl,ci) in dupClusters" :key="ci" class="border rounded p-2 mb-2" :class="cl.strong ? 'border-danger' : 'border-warning'">
+            <div class="small mb-1"><span class="badge" :class="cl.strong ? 'text-bg-danger' : 'text-bg-warning'">{{ cl.strong ? '确定' : '疑似' }}</span> <span class="text-secondary">依据: {{ cl.reasons.join(', ') }} · {{ cl.size }} 篇</span></div>
+            <div class="list-scroll"><table class="table table-sm review-tbl align-middle mb-0">
+              <thead class="table-light"><tr><th>source_id / 标题</th><th>机构 / 期刊</th><th>年</th><th>Tier</th><th>启用</th><th></th></tr></thead>
+              <tbody><tr v-for="m in cl.members" :key="m.source_id">
+                <td style="max-width:300px"><div class="id-mono">{{ m.source_id }}</div><div style="overflow-wrap:anywhere">{{ m.title }}</div><div class="small text-secondary" v-if="m.doi">doi: {{ m.doi }}</div></td>
+                <td style="max-width:180px"><div style="overflow-wrap:anywhere">{{ m.organization }}</div><div class="j-name">{{ m.journal }}</div></td>
+                <td>{{ m.year }}</td>
+                <td><span class="badge" :class="tierClass(m.tier)">{{ m.tier }}</span></td>
+                <td><span class="badge" :class="m.include ? 'text-bg-success' : 'text-bg-light border text-secondary'">{{ m.include ? '启用' : '禁用' }}</span></td>
+                <td><button class="btn btn-sm btn-outline-danger" @click="trashFromDup(m.source_id)">移入废纸篓</button></td>
+              </tr></tbody></table></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
   </div>`,
   data() {
     return {
@@ -215,6 +245,7 @@ const LiteratureModule = {
       showImport: false, importTab: "doi", doiText: "", importing: false, reviewRows: [], batchResult: null,
       manual: { source_id: "", title: "", organization: "", url: "", year: 2026, region: "global", topic: "", evidence_class: "research_context", allowed_uses: "", screening: "4,4,4,4,4" },
       showUpload: false, uploadId: "", uploadMode: "", uploadFile: null, uploading: false,
+      showDup: false, dupClusters: [], dupLoading: false, dupChecking: false,
     };
   },
   computed: {
@@ -263,15 +294,27 @@ const LiteratureModule = {
       } catch (e) { this.toast(e.message, false); } finally { this.uploading = false; }
     },
     async removeFt(id) { if (!confirm("移除『" + id + "』的本地全文？（目录记录保留）")) return; try { await http(`${LIB}/sources/${encodeURIComponent(id)}/fulltext?rebuild=false`, { method: "DELETE" }); this.toast("已移除全文"); await this.refresh(); } catch (e) { this.toast(e.message, false); } },
+    openDupScan() { this.showDup = true; this.loadDupScan(); },
+    async loadDupScan() { this.dupLoading = true; try { const d = await http(LIB + "/duplicates"); this.dupClusters = d.clusters; } catch (e) { this.toast(e.message, false); this.dupClusters = []; } finally { this.dupLoading = false; } },
+    async trashFromDup(id) { if (!confirm("把『" + id + "』移入废纸篓？（可在废纸篓恢复）")) return; try { await http(`${LIB}/sources/${encodeURIComponent(id)}?reason=duplicate`, { method: "DELETE" }); this.toast("已移入废纸篓"); await this.loadDupScan(); await this.refresh(); } catch (e) { this.toast(e.message, false); } },
+    async checkDup() {
+      const rows = this.reviewRows.slice();  // snapshot: map results back by reference, not shifting index
+      const items = rows.map(r => ({ title: r.title, doi: r.doi, url: r.url, year: r.year }));
+      if (!items.length) return;
+      this.dupChecking = true;
+      try { const d = await http(LIB + "/duplicates/check", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ items }) });
+        d.results.forEach(res => { if (rows[res.index]) rows[res.index]._dup = res.matches; });
+      } catch (e) { /* 预警失败不阻断导入 */ } finally { this.dupChecking = false; }
+    },
     openImport() { this.showImport = true; this.reviewRows = []; this.batchResult = null; this.doiText = ""; },
     closeImport() { if (this.reviewRows.length && !confirm("放弃未提交的审核行？")) return; this.showImport = false; },
     draftToRow(d) { const scr = d.screening || {}; const s = [scr.authority, scr.recency, scr.relevance, scr.accessibility, scr.safety_applicability];
-      return { source_id: d.source_id || "", title: d.title || "", organization: (d.organization && d.organization !== "Unknown") ? d.organization : "", url: d.url || (d.doi ? "https://doi.org/" + d.doi : ""), doi: d.doi || "", year: d.year || null, region: "global", topic: d.topic || "research_context", evidence_class: d.evidence_class || "research_context", allowed_uses: (d.allowed_uses || []).join(","), journal: d.journal || d.container || "", journal_tier: d.journal_tier || null, source_type: d.source_type || "", scrStr: s.every(x => x != null) ? s.join(",") : "4,4,4,4,4", _suggested_fields: d._suggested_fields || [], _resolved: d._resolved !== false }; },
+      return { source_id: d.source_id || "", title: d.title || "", organization: (d.organization && d.organization !== "Unknown") ? d.organization : "", url: d.url || (d.doi ? "https://doi.org/" + d.doi : ""), doi: d.doi || "", year: d.year || null, region: "global", topic: d.topic || "research_context", evidence_class: d.evidence_class || "research_context", allowed_uses: (d.allowed_uses || []).join(","), journal: d.journal || d.container || "", journal_tier: d.journal_tier || null, source_type: d.source_type || "", scrStr: s.every(x => x != null) ? s.join(",") : "4,4,4,4,4", _suggested_fields: d._suggested_fields || [], _resolved: d._resolved !== false, _dup: [] }; },
     async identifyDoi() { const queries = this.doiText.split("\n").map(x => x.trim()).filter(Boolean); if (!queries.length) return this.toast("请输入", false); this.importing = true;
-      try { const d = await http(LIB + "/autofill/batch", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ queries }) }); d.drafts.forEach(x => this.reviewRows.push(this.draftToRow(x))); this.toast(`识别 ${d.count} 条`); } catch (e) { this.toast(e.message, false); } finally { this.importing = false; } },
+      try { const d = await http(LIB + "/autofill/batch", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ queries }) }); d.drafts.forEach(x => this.reviewRows.push(this.draftToRow(x))); this.toast(`识别 ${d.count} 条`); this.checkDup(); } catch (e) { this.toast(e.message, false); } finally { this.importing = false; } },
     async identifyPdfs(ev) { const files = [...ev.target.files]; if (!files.length) return; this.importing = true;
       try { const drafts = await Promise.all(files.map(async f => { try { const buf = await f.arrayBuffer(); return await http(LIB + "/autofill/pdf", { method: "POST", headers: { "content-type": "application/pdf" }, body: buf }); } catch (e) { return { _resolved: false, title: f.name, _warning: e.message }; } }));
-        drafts.forEach(x => this.reviewRows.push(this.draftToRow(x))); this.toast(`识别 ${drafts.length} 个 PDF`); } catch (e) { this.toast(e.message, false); } finally { this.importing = false; ev.target.value = ""; } },
+        drafts.forEach(x => this.reviewRows.push(this.draftToRow(x))); this.toast(`识别 ${drafts.length} 个 PDF`); this.checkDup(); } catch (e) { this.toast(e.message, false); } finally { this.importing = false; ev.target.value = ""; } },
     rowToItem(r) { const scr = r.scrStr.split(",").map(x => parseInt(x, 10)); const item = { source_id: r.source_id, title: r.title, organization: r.organization || "Unknown", year: r.year || 2026, region: r.region || "global", topic: r.topic, evidence_class: r.evidence_class, allowed_uses: r.allowed_uses.split(",").map(x => x.trim()).filter(Boolean), screening: scrObj(scr) };
       if (r.url) item.url = r.url; if (r.doi) item.doi = r.doi; if (r.journal) item.journal = r.journal; if (r.journal_tier) item.journal_tier = r.journal_tier; if (r.source_type) item.source_type = r.source_type; return item; },
     async submitBatch() {
@@ -287,7 +330,7 @@ const LiteratureModule = {
   async mounted() {
     // Named handler + removal on unmount: modules mount/unmount on every sidebar
     // switch (no <keep-alive>), so an anonymous listener would leak per switch.
-    this._onKeydown = (e) => { if (e.key !== "Escape") return; if (this.showUpload) this.showUpload = false; else if (this.showImport) this.closeImport(); };
+    this._onKeydown = (e) => { if (e.key !== "Escape") return; if (this.showUpload) this.showUpload = false; else if (this.showDup) this.showDup = false; else if (this.showImport) this.closeImport(); };
     window.addEventListener("keydown", this._onKeydown);
     try { this.taxonomy = await http(LIB + "/taxonomy"); this.manual.topic = this.taxTopics[0]; await this.refresh(); } catch (e) { this.toast("加载失败：" + e.message, false); }
   },
