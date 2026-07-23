@@ -22,7 +22,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import time
 from typing import Dict, List, Optional
@@ -101,14 +100,9 @@ def _reference_snippets(references: List[Dict]) -> Dict[int, str]:
 
 def _judge_support(sentence: str, cited_snippets: List[str]) -> Dict[str, object]:
     cfg = load_eval_llm_config()
-    if cfg.api_key and cfg.base_url:
-        api_key, base_url, model = cfg.api_key, cfg.base_url.rstrip("/"), cfg.model
-    else:
-        api_key = os.getenv("DEEPSEEK_API_KEY") or os.getenv("LLM_API_KEY")
-        base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com").rstrip("/")
-        model = os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash")
-    if not api_key:
-        raise _JudgeError("no judge provider configured (EVAL_LLM_* or DEEPSEEK_API_KEY)")
+    if not (cfg.api_key and cfg.base_url):
+        raise _JudgeError("dedicated evaluation judge is not configured")
+    api_key, base_url, model = cfg.api_key, cfg.base_url.rstrip("/"), cfg.model
     user = json.dumps(
         {"sentence": sentence, "cited_evidence": cited_snippets},
         ensure_ascii=False,
@@ -130,10 +124,11 @@ def _judge_support(sentence: str, cited_snippets: List[str]) -> Dict[str, object
                 f"{base_url}/chat/completions",
                 headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
                 json=payload,
-                timeout=float(os.getenv("EVAL_LLM_TIMEOUT_SEC", "60")),
+                timeout=cfg.timeout_sec,
+                allow_redirects=False,
             )
             if resp.status_code >= 400:
-                raise _JudgeError(f"HTTP {resp.status_code}: {resp.text[:160]}")
+                raise _JudgeError(f"HTTP {resp.status_code}")
             content = resp.json()["choices"][0]["message"]["content"]
             match = re.search(r"\{.*\}", content, re.S)
             obj = json.loads(match.group(0)) if match else {}

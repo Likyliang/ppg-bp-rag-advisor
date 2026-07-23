@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional
 
-from fastapi import APIRouter, Body, HTTPException
+from fastapi import APIRouter, Body, Depends, HTTPException, Request
 from pydantic import BaseModel, ValidationError
 
 from app.agents.workflow import generate_report, preview_rules
@@ -12,9 +12,10 @@ from app.schemas.rule_result import RuleResult
 from app.services.advisor import advisor_turn, create_session, get_session_store
 from app.services.kb_audit import audit_knowledge_base
 from app.services.report_builder import report_to_json
-from app.services.retriever import retrieve_knowledge
+from app.services.retriever import last_retrieval_backend, retrieve_knowledge
 from app.services.source_catalog import screen_sources
 from scripts.ingest_kb import ingest_knowledge_base
+from app.admin.security import management_request_guard, require_api_client
 
 
 router = APIRouter()
@@ -57,7 +58,7 @@ def preview_rules_endpoint(payload: Dict[str, Any] = Body(openapi_examples={
         "summary": "严重偏高且胸痛",
         "value": {"estimated_sbp": 185, "estimated_dbp": 122, "signal_quality_score": 0.9, "symptoms": {"chest_pain": True}},
     },
-})) -> RuleResult:
+}), _client=Depends(require_api_client("reports:write"))) -> RuleResult:
     try:
         return preview_rules(payload)
     except ValidationError as exc:
@@ -67,7 +68,7 @@ def preview_rules_endpoint(payload: Dict[str, Any] = Body(openapi_examples={
 
 
 @router.post("/reports/generate")
-def generate_report_endpoint(payload: Dict[str, Any] = Body(openapi_examples={
+def generate_report_endpoint(request: Request, payload: Dict[str, Any] = Body(openapi_examples={
     "flat_payload": {
         "summary": "小程序扁平字段输入",
         "value": {
@@ -100,9 +101,12 @@ def generate_report_endpoint(payload: Dict[str, Any] = Body(openapi_examples={
             "symptoms": {"chest_pain": False, "shortness_of_breath": False},
         },
     },
-})) -> Dict[str, Any]:
+}), _client=Depends(require_api_client("reports:write"))) -> Dict[str, Any]:
     try:
         report: HealthReport = generate_report(payload)
+        request.state.generation_mode = report.generation_mode
+        request.state.retrieval_backend = last_retrieval_backend()
+        request.state.safety_fallback = "fallback" in report.generation_mode
         return report_to_json(report)
     except ValidationError as exc:
         raise HTTPException(status_code=422, detail=exc.errors()) from exc
@@ -111,7 +115,11 @@ def generate_report_endpoint(payload: Dict[str, Any] = Body(openapi_examples={
 
 
 @router.post("/advisor/sessions")
-def create_advisor_session_endpoint(payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
+def create_advisor_session_endpoint(
+    request: Request,
+    payload: Dict[str, Any] = Body(...),
+    _client=Depends(require_api_client("advisor:write")),
+) -> Dict[str, Any]:
     """Generate the measurement report AND open the follow-up conversation.
 
     Returns the full report plus the advisor's opening message and first
@@ -121,6 +129,8 @@ def create_advisor_session_endpoint(payload: Dict[str, Any] = Body(...)) -> Dict
     try:
         report = generate_report(payload)
         session, opening = create_session(payload, report=report)
+        request.state.generation_mode = report.generation_mode
+        request.state.retrieval_backend = last_retrieval_backend()
     except ValidationError as exc:
         raise HTTPException(status_code=422, detail=exc.errors()) from exc
     except TypeError as exc:
@@ -133,15 +143,26 @@ def create_advisor_session_endpoint(payload: Dict[str, Any] = Body(...)) -> Dict
 
 
 @router.post("/advisor/sessions/{session_id}/messages", response_model=AdvisorTurnResponse)
-def advisor_message_endpoint(session_id: str, message: AdvisorUserMessage) -> AdvisorTurnResponse:
+def advisor_message_endpoint(
+    session_id: str,
+    message: AdvisorUserMessage,
+    request: Request,
+    _client=Depends(require_api_client("advisor:write")),
+) -> AdvisorTurnResponse:
     try:
-        return advisor_turn(session_id, message)
+        result = advisor_turn(session_id, message)
+        request.state.generation_mode = result.generation_mode
+        request.state.retrieval_backend = last_retrieval_backend()
+        request.state.safety_fallback = not result.safety.passed or "fallback" in result.generation_mode
+        return result
     except KeyError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
 
 @router.get("/advisor/sessions/{session_id}")
-def advisor_session_endpoint(session_id: str) -> Dict[str, Any]:
+def advisor_session_endpoint(
+    session_id: str, _client=Depends(require_api_client("advisor:write"))
+) -> Dict[str, Any]:
     session = get_session_store().get(session_id)
     if session is None:
         raise HTTPException(status_code=404, detail=f"advisor session not found: {session_id}")
@@ -159,13 +180,27 @@ def advisor_session_endpoint(session_id: str) -> Dict[str, Any]:
     }
 
 
-@router.post("/kb/ingest")
-def ingest_kb_endpoint(request: IngestRequest) -> Dict[str, Any]:
-    return ingest_knowledge_base(raw_dir=request.raw_dir, output_path=request.output_path)
+@router.delete("/advisor/sessions/{session_id}")
+def delete_advisor_session_endpoint(
+    session_id: str, _client=Depends(require_api_client("advisor:write"))
+) -> Dict[str, Any]:
+    deleted = get_session_store().delete(session_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail=f"advisor session not found: {session_id}")
+    return {"session_id": session_id, "deleted": True}
+
+
+@router.post("/kb/ingest", deprecated=True)
+def ingest_kb_endpoint(
+    request: IngestRequest, _principal=Depends(management_request_guard)
+) -> Dict[str, Any]:
+    if request.raw_dir or request.output_path:
+        raise HTTPException(status_code=422, detail="不再接受自定义磁盘路径")
+    raise HTTPException(status_code=410, detail="请通过 /api/v1/admin/jobs 创建 ingest_chunks 任务")
 
 
 @router.get("/kb/sources")
-def kb_sources_endpoint() -> Dict[str, Any]:
+def kb_sources_endpoint(_principal=Depends(management_request_guard)) -> Dict[str, Any]:
     result = screen_sources()
     return {
         "total_sources": result["total_sources"],
@@ -180,12 +215,14 @@ def kb_sources_endpoint() -> Dict[str, Any]:
 
 
 @router.get("/kb/audit")
-def kb_audit_endpoint() -> Dict[str, Any]:
+def kb_audit_endpoint(_principal=Depends(management_request_guard)) -> Dict[str, Any]:
     return audit_knowledge_base()
 
 
 @router.post("/kb/search")
-def kb_search_endpoint(request: KbSearchRequest) -> Dict[str, Any]:
+def kb_search_endpoint(
+    request: KbSearchRequest, _client=Depends(require_api_client("kb:search"))
+) -> Dict[str, Any]:
     result = retrieve_knowledge(
         request.queries,
         top_k=request.top_k,

@@ -29,9 +29,14 @@ from __future__ import annotations
 from collections import Counter, OrderedDict
 from dataclasses import dataclass, field
 from datetime import date
+import hashlib
+import os
 from pathlib import Path
+import re
+import tempfile
 from typing import Any, Dict, List, Optional
 
+import portalocker
 import yaml
 
 from app.services.config_loader import resolve_project_path
@@ -117,6 +122,9 @@ _FIELD_ORDER = [
 _FLOW_FIELDS = {"allowed_uses", "screening"}
 
 _SCREENING_DIMS = ("authority", "recency", "relevance", "accessibility", "safety_applicability")
+_PROTECTED_METADATA_KEY = re.compile(
+    r"(?i)(?:^|[_-])(?:api[_-]?key|secret|token|password|cookie|authorization|credential|session[_-]?id|file[_-]?name|filename)(?:$|[_-])"
+)
 
 
 def evidence_tier(evidence_class: Optional[str]) -> str:
@@ -141,6 +149,10 @@ class SourceNotFoundError(LibraryError):
 
 class DuplicateSourceError(LibraryError):
     """Raised when adding a source whose id or identity already exists."""
+
+
+class LibraryConflictError(LibraryError):
+    """Raised when a catalog changed after it was read but before commit."""
 
 
 @dataclass
@@ -169,10 +181,11 @@ class MutationResult:
 def _load_catalog_file(path: str) -> Dict[str, Any]:
     catalog_path = resolve_project_path(path)
     if not catalog_path.exists():
-        return {"catalog_version": 1, "sources": []}
-    with catalog_path.open("r", encoding="utf-8") as handle:
-        data = yaml.safe_load(handle) or {}
+        return {"catalog_version": 1, "sources": [], "__file_revision": hashlib.sha256(b"").hexdigest()}
+    text = catalog_path.read_text(encoding="utf-8")
+    data = yaml.safe_load(text) or {}
     data.setdefault("sources", [])
+    data["__file_revision"] = hashlib.sha256(text.encode("utf-8")).hexdigest()
     return data
 
 
@@ -245,7 +258,7 @@ def _serialize_entry(source: Dict[str, Any]) -> str:
     return "\n".join(body).rstrip() + "\n"
 
 
-def _append_entry(path: str, source: Dict[str, Any]) -> None:
+def _append_entry(path: str, source: Dict[str, Any], expected_revision: Optional[str] = None) -> None:
     """Append one entry to a catalog file without rewriting existing entries.
 
     Keeps day-to-day ``add`` operations to a minimal git diff. Falls back to a
@@ -253,31 +266,62 @@ def _append_entry(path: str, source: Dict[str, Any]) -> None:
     """
 
     catalog_path = resolve_project_path(path)
-    if not catalog_path.exists():
-        _write_catalog_file(path, {"catalog_version": 1, "sources": [source]})
-        return
+    lock_path = _catalog_lock_path(path)
+    with portalocker.Lock(str(lock_path), timeout=10):
+        if expected_revision is not None and catalog_revision(path) != expected_revision:
+            raise LibraryConflictError("目录已被其他操作修改，请刷新后重试")
+        if not catalog_path.exists():
+            text = _dump_catalog({"catalog_version": 1, "sources": [source]})
+            _atomic_write_text(catalog_path, text)
+            return
 
-    text = catalog_path.read_text(encoding="utf-8")
-    if "\nsources:" not in text and not text.startswith("sources:"):
-        catalog = _load_catalog_file(path)
-        catalog.setdefault("sources", []).append(source)
-        _write_catalog_file(path, catalog)
-        return
+        text = catalog_path.read_text(encoding="utf-8")
+        if "\nsources:" not in text and not text.startswith("sources:"):
+            catalog = yaml.safe_load(text) or {}
+            catalog.setdefault("sources", []).append(source)
+            _atomic_write_text(catalog_path, _dump_catalog(catalog))
+            return
 
-    import re
+        import re
 
-    text = re.sub(r"(?m)^updated:.*$", f"updated: {date.today().isoformat()}", text, count=1)
-    if not text.endswith("\n"):
-        text += "\n"
-    text += _serialize_entry(source)
-    catalog_path.write_text(text, encoding="utf-8")
+        # ``sources: []`` has no block-sequence anchor to append under.  Adding
+        # an indented ``-`` after that scalar would create invalid YAML, so the
+        # first insertion is deliberately rewritten as a complete catalog.
+        if re.search(r"(?m)^sources:\s*\[\s*\]\s*$", text):
+            catalog = yaml.safe_load(text) or {}
+            catalog["sources"] = [source]
+            _atomic_write_text(catalog_path, _dump_catalog(catalog))
+            return
+
+        text = re.sub(r"(?m)^updated:.*$", f"updated: {date.today().isoformat()}", text, count=1)
+        if not text.endswith("\n"):
+            text += "\n"
+        text += _serialize_entry(source)
+        _atomic_write_text(catalog_path, text)
 
 
-def _write_catalog_file(path: str, catalog: Dict[str, Any]) -> None:
+def _catalog_lock_path(path: str) -> Path:
+    digest = hashlib.sha256(str(resolve_project_path(path)).encode("utf-8")).hexdigest()[:16]
+    lock_path = resolve_project_path(f"var/locks/catalog-{digest}.lock")
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    return lock_path
+
+
+def _atomic_write_text(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=str(path.parent), delete=False) as handle:
+        handle.write(text)
+        handle.flush()
+        os.fsync(handle.fileno())
+        temp_path = Path(handle.name)
+    os.replace(str(temp_path), str(path))
+
+
+def _dump_catalog(catalog: Dict[str, Any]) -> str:
     catalog = dict(catalog)
+    catalog.pop("__file_revision", None)
     catalog["updated"] = date.today().isoformat()
     catalog["sources"] = [_ordered_source(dict(s)) for s in catalog.get("sources", [])]
-    # Emit top-level keys in a stable order: metadata first, then sources.
     ordered_top: "OrderedDict[str, Any]" = OrderedDict()
     for key in ("catalog_version", "updated", "screen_threshold"):
         if key in catalog:
@@ -286,10 +330,7 @@ def _write_catalog_file(path: str, catalog: Dict[str, Any]) -> None:
     for key, value in catalog.items():
         if key not in ordered_top:
             ordered_top[key] = value
-
-    catalog_path = resolve_project_path(path)
-    catalog_path.parent.mkdir(parents=True, exist_ok=True)
-    text = yaml.dump(
+    return yaml.dump(
         ordered_top,
         Dumper=_CatalogDumper,
         allow_unicode=True,
@@ -297,7 +338,22 @@ def _write_catalog_file(path: str, catalog: Dict[str, Any]) -> None:
         default_flow_style=False,
         width=4096,
     )
-    catalog_path.write_text(text, encoding="utf-8")
+
+
+def _write_catalog_file(path: str, catalog: Dict[str, Any]) -> None:
+    catalog_path = resolve_project_path(path)
+    catalog = dict(catalog)
+    expected_revision = catalog.pop("__file_revision", None)
+    with portalocker.Lock(str(_catalog_lock_path(path)), timeout=10):
+        if expected_revision is not None and catalog_revision(path) != expected_revision:
+            raise LibraryConflictError("目录已被其他操作修改，请刷新后重试")
+        _atomic_write_text(catalog_path, _dump_catalog(catalog))
+
+
+def catalog_revision(path: str) -> str:
+    catalog_path = resolve_project_path(path)
+    text = catalog_path.read_text(encoding="utf-8") if catalog_path.exists() else ""
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
 # --------------------------------------------------------------------------- #
@@ -337,11 +393,17 @@ class LibraryManager:
     def _locate(self, source_id: str) -> Optional[tuple]:
         """Return ``(catalog_path, index, source)`` for ``source_id`` or None."""
 
+        located = self._locate_with_catalog(source_id)
+        return located[:3] if located else None
+
+    def _locate_with_catalog(self, source_id: str) -> Optional[tuple]:
+        """Locate a source and retain the exact revision-bearing snapshot."""
+
         for path in self.catalog_files:
             catalog = _load_catalog_file(path)
             for index, source in enumerate(catalog.get("sources", [])):
                 if str(source.get("source_id")) == source_id:
-                    return path, index, source
+                    return path, index, source, catalog
         return None
 
     # ---- read ------------------------------------------------------------- #
@@ -368,11 +430,13 @@ class LibraryManager:
         query_lc = query.lower() if query else None
         journal_lc = journal.lower() if journal else None
         for path, catalog in self._load_all().items():
+            revision = catalog_revision(path)
             for source in catalog.get("sources", []):
                 item = dict(source)
                 item["tier"] = evidence_tier(item.get("evidence_class"))
                 item["source_quality_score"] = screening_score(item)
                 item["_catalog"] = path
+                item["_revision"] = revision
                 if topic and item.get("topic") != topic:
                     continue
                 if tier and item["tier"] != tier:
@@ -401,11 +465,25 @@ class LibraryManager:
         located = self._locate(source_id)
         if not located:
             raise SourceNotFoundError(f"source not found: {source_id}")
-        _, _, source = located
+        path, _, source = located
         item = dict(source)
         item["tier"] = evidence_tier(item.get("evidence_class"))
         item["source_quality_score"] = screening_score(item)
+        item["_catalog"] = path
+        item["_revision"] = catalog_revision(path)
         return item
+
+    def source_revision(self, source_id: str) -> str:
+        located = self._locate(source_id)
+        if not located:
+            raise SourceNotFoundError(f"source not found: {source_id}")
+        return catalog_revision(located[0])
+
+    def writable_revision(self) -> str:
+        return catalog_revision(self.writable_catalog)
+
+    def trash_revision(self) -> str:
+        return catalog_revision(self.trash_catalog)
 
     def exists(self, source_id: str) -> bool:
         return self._locate(source_id) is not None
@@ -443,6 +521,7 @@ class LibraryManager:
         source_id = source.get("source_id")
         if not source_id:
             raise LibraryError("source_id is required")
+        base_revision = self.writable_revision()
 
         if self.exists(source_id) and not overwrite:
             raise DuplicateSourceError(f"source_id already exists: {source_id}")
@@ -459,7 +538,7 @@ class LibraryManager:
         if self.exists(source_id) and overwrite:
             return self.update_source(source_id, source, replace=True)
 
-        _append_entry(self.writable_catalog, source)
+        _append_entry(self.writable_catalog, source, expected_revision=base_revision)
         files = self._rescreen()
         return MutationResult(source_id, "added", self.get_source(source_id), warnings, files)
 
@@ -483,6 +562,8 @@ class LibraryManager:
                     outcome = self.add_source(dict(raw), overwrite=overwrite)
                     any_added = True
                     results.append({"source_id": outcome.source_id, "action": outcome.action, "warnings": outcome.warnings})
+                except LibraryConflictError:
+                    raise
                 except DuplicateSourceError as exc:
                     results.append({"source_id": sid, "action": "duplicate", "detail": str(exc)})
                 except LibraryError as exc:
@@ -498,10 +579,10 @@ class LibraryManager:
     ) -> MutationResult:
         """Update an existing source (merge patch, or full replace)."""
 
-        located = self._locate(source_id)
+        located = self._locate_with_catalog(source_id)
         if not located:
             raise SourceNotFoundError(f"source not found: {source_id}")
-        path, index, current = located
+        path, index, current, catalog = located
 
         if replace:
             updated = _normalise_input(dict(patch))
@@ -518,7 +599,6 @@ class LibraryManager:
                 f"update would duplicate existing source '{dup}' (same title/url/doi/pmid)"
             )
 
-        catalog = _load_catalog_file(path)
         catalog["sources"][index] = updated
         _write_catalog_file(path, catalog)
         files = self._rescreen()
@@ -541,11 +621,10 @@ class LibraryManager:
         if soft:
             return self.set_include(source_id, False)
 
-        located = self._locate(source_id)
+        located = self._locate_with_catalog(source_id)
         if not located:
             raise SourceNotFoundError(f"source not found: {source_id}")
-        path, index, removed = located
-        catalog = _load_catalog_file(path)
+        path, index, removed, catalog = located
         catalog["sources"].pop(index)
         _write_catalog_file(path, catalog)
         files = self._rescreen()
@@ -556,10 +635,14 @@ class LibraryManager:
         return _load_catalog_file(self.trash_catalog)
 
     def _locate_in_trash(self, source_id: str):
+        located = self._locate_in_trash_with_catalog(source_id)
+        return located[:2] if located else None
+
+    def _locate_in_trash_with_catalog(self, source_id: str):
         trash = self._load_trash()
         for index, source in enumerate(trash.get("sources", [])):
             if str(source.get("source_id")) == source_id:
-                return index, source
+                return index, source, trash
         return None
 
     def _fulltext(self):
@@ -579,14 +662,11 @@ class LibraryManager:
         Any attached full text is moved to the recycle bin too.
         """
 
-        located = self._locate(source_id)
+        located = self._locate_with_catalog(source_id)
         if not located:
             raise SourceNotFoundError(f"source not found: {source_id}")
-        path, index, source = located
-
-        catalog = _load_catalog_file(path)
+        path, index, source, catalog = located
         catalog["sources"].pop(index)
-        _write_catalog_file(path, catalog)
 
         entry = dict(source)
         entry["_trashed_at"] = date.today().isoformat()
@@ -595,7 +675,11 @@ class LibraryManager:
             entry["_trash_reason"] = reason
         trash = self._load_trash()
         trash.setdefault("sources", []).append(entry)
+        # Add the recoverable copy before removing the active source. A rare
+        # second-file conflict can create a duplicate for manual repair, never
+        # an unrecoverable loss.
         _write_catalog_file(self.trash_catalog, trash)
+        _write_catalog_file(path, catalog)
 
         warnings: List[str] = []
         ft = self._fulltext()
@@ -612,10 +696,13 @@ class LibraryManager:
         """Return trashed sources (recoverable), annotated with tier/quality."""
 
         results: List[Dict[str, Any]] = []
+        revision = self.trash_revision()
         for source in self._load_trash().get("sources", []):
             item = dict(source)
             item["tier"] = evidence_tier(item.get("evidence_class"))
             item["source_quality_score"] = screening_score(item)
+            item["_catalog"] = self.trash_catalog
+            item["_revision"] = revision
             results.append(item)
         results.sort(key=lambda s: s.get("_trashed_at", ""), reverse=True)
         return results
@@ -623,25 +710,26 @@ class LibraryManager:
     def restore_source(self, source_id: str) -> MutationResult:
         """Restore a trashed source back into its original catalog file."""
 
-        located = self._locate_in_trash(source_id)
+        located = self._locate_in_trash_with_catalog(source_id)
         if not located:
             raise SourceNotFoundError(f"source not in recycle bin: {source_id}")
         if self.exists(source_id):
             raise DuplicateSourceError(f"active source already exists: {source_id}")
-        index, entry = located
+        index, entry, trash = located
 
         origin = entry.get("_trashed_from")
         if origin not in self.catalog_files:
             origin = self.writable_catalog
         restored = {k: v for k, v in entry.items() if not k.startswith("_trash")}
 
-        trash = self._load_trash()
         trash["sources"].pop(index)
-        _write_catalog_file(self.trash_catalog, trash)
 
         catalog = _load_catalog_file(origin)
         catalog.setdefault("sources", []).append(restored)
+        # Restore first, then delete the recycle copy: conflicts prefer a
+        # recoverable duplicate over losing the only copy.
         _write_catalog_file(origin, catalog)
+        _write_catalog_file(self.trash_catalog, trash)
 
         warnings: List[str] = []
         ft = self._fulltext()
@@ -657,11 +745,10 @@ class LibraryManager:
     def purge_source(self, source_id: str) -> MutationResult:
         """Permanently delete a source from the recycle bin (irreversible)."""
 
-        located = self._locate_in_trash(source_id)
+        located = self._locate_in_trash_with_catalog(source_id)
         if not located:
             raise SourceNotFoundError(f"source not in recycle bin: {source_id}")
-        index, entry = located
-        trash = self._load_trash()
+        index, entry, trash = located
         trash["sources"].pop(index)
         _write_catalog_file(self.trash_catalog, trash)
 
@@ -746,6 +833,17 @@ def _normalise_input(source: Dict[str, Any], *, partial: bool = False) -> Dict[s
     provided keys are normalised.
     """
 
+    def reject_protected(value: Any, path: str = "source") -> None:
+        if isinstance(value, dict):
+            for key, item in value.items():
+                if _PROTECTED_METADATA_KEY.search(str(key)):
+                    raise LibraryError(f"禁止在文献元数据中保存凭证或原文件名字段: {path}.{key}")
+                reject_protected(item, f"{path}.{key}")
+        elif isinstance(value, list):
+            for index, item in enumerate(value):
+                reject_protected(item, f"{path}[{index}]")
+
+    reject_protected(source)
     source = dict(source)
 
     if "allowed_uses" in source and isinstance(source["allowed_uses"], str):

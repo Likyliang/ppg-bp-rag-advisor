@@ -1,0 +1,12 @@
+<script setup lang="ts">
+import { ref } from "vue";
+import { api, jsonBody } from "../api";
+const query=ref(""), topK=ref(5), allowed=ref(""), classes=ref(""), minQuality=ref<number|null>(null), evidence=ref<any[]>([]), warnings=ref<string[]>([]), backend=ref(""), error=ref("");
+const values=(text:string)=>text.split(',').map(x=>x.trim()).filter(Boolean);
+async function search(){ error.value=""; try{ const result=await api<any>("/api/v1/admin/retrieval/search",{method:"POST",body:jsonBody({queries:[query.value],top_k:topK.value,allowed_uses:values(allowed.value).length?values(allowed.value):null,evidence_classes:values(classes.value).length?values(classes.value):null,min_quality_score:minQuality.value})}); evidence.value=result.evidence; warnings.value=result.warnings; backend.value=result.backend; }catch(e){error.value=(e as Error).message;} }
+function citation(item:any){return [item.organization,item.year,item.title,item.doi?`DOI: ${item.doi}`:"",item.url].filter(Boolean).join(". ");}
+</script>
+<template><h1 class="page-title">检索调试台</h1><div class="alert">仅调试已治理证据；结果不得用于证明 PPG 血压估算准确性。</div><div v-if="error" class="error">{{error}}</div>
+  <section class="card"><div class="form-grid"><label class="span-2">查询<input class="input" v-model="query" @keyup.enter="search" placeholder="例如：手机 PPG 估算偏高后如何规范复核" /></label><label>top_k<input class="input" type="number" min="1" max="20" v-model.number="topK" /></label><label>最低来源质量分<input class="input" type="number" min="0" max="25" v-model.number="minQuality" /></label><label>allowed_uses（可选，逗号）<input class="input" v-model="allowed" /></label><label>evidence_classes（可选，逗号）<input class="input" v-model="classes" /></label></div><button class="btn primary" style="margin-top:10px" @click="search">检索</button><span class="muted" style="margin-left:10px">实际后端：{{backend||'—'}}</span></section>
+  <div v-if="warnings.length" class="alert">{{warnings.join('；')}}</div><section class="card" style="margin-top:14px"><table><thead><tr><th>排名 / 分数</th><th>来源</th><th>实际匹配意图</th><th>证据等级 / 用途</th><th>片段与引用预览</th></tr></thead><tbody><tr v-for="(item,i) in evidence" :key="i"><td>{{i+1}}<br><code>{{item.score}}</code></td><td>{{item.title}}<br><code>{{item.source_id}}</code></td><td>{{item.used_for}}</td><td>{{item.evidence_class}} / {{item.source_quality_score}}<br><span class="muted">{{(item.allowed_uses||[]).join('、')}}</span></td><td>{{item.snippet}}<details><summary>引用预览</summary><div class="muted">{{citation(item)}}</div></details></td></tr></tbody></table></section>
+</template>

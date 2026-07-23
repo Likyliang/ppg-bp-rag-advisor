@@ -514,7 +514,7 @@ def test_deepseek_rag_empty_content_retries_then_succeeds(monkeypatch):
         def json(self):
             return {"choices": [{"message": {"content": self._content}}]}
 
-    def fake_post(url, headers=None, json=None, timeout=None):
+    def fake_post(url, headers=None, json=None, timeout=None, **_kwargs):
         calls["n"] += 1
         if calls["n"] == 1:
             return FakeResp("   ")  # empty -> triggers retry
@@ -551,7 +551,7 @@ def test_deepseek_rag_double_empty_falls_back(monkeypatch):
         def json(self):
             return {"choices": [{"message": {"content": ""}}]}
 
-    def fake_post(url, headers=None, json=None, timeout=None):
+    def fake_post(url, headers=None, json=None, timeout=None, **_kwargs):
         calls["n"] += 1
         return FakeResp()
 

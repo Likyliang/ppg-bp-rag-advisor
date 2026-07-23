@@ -149,12 +149,63 @@ def ingest_knowledge_base(raw_dir: str = None, output_path: str = None, build_ve
     vector_status = "vector index skipped: set build_vector=true to enable optional Chroma indexing"
     if build_vector:
         vector_status = _try_vector_index(chunks)
+    from app.services.fingerprints import combine_fingerprints, catalog_fingerprint, fingerprint_paths, sha256_file
+
+    timestamp = int(__import__("time").time())
+    chunks_sha256 = sha256_file(str(out_path))
+    raw_fingerprint = fingerprint_paths([raw_dir or "knowledge_base/raw/expanded"])
+    catalog_hash = catalog_fingerprint()
+    chunks_build_fingerprint = combine_fingerprints(
+        {"governed_notes": raw_fingerprint, "catalog": catalog_hash}
+    )
+    manifest = {
+        "timestamp": timestamp,
+        "input_fingerprint": raw_fingerprint,
+        "catalog_fingerprint": catalog_hash,
+        "build_fingerprint": chunks_build_fingerprint,
+        "chunks_sha256": chunks_sha256,
+        "chunk_count": len(chunks),
+        "chunks_path": str(out_path),
+    }
+    manifest_path = resolve_project_path("knowledge_base/processed/chunks_manifest.json")
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    vector_input_fingerprint = combine_fingerprints(
+        {"chunks_sha256": chunks_sha256, "chunks_build_fingerprint": chunks_build_fingerprint}
+    )
+    hashing_manifest = {
+        "timestamp": timestamp,
+        "backend": "local_hashing_vectors",
+        "input_sha256": chunks_sha256,
+        "input_fingerprint": vector_input_fingerprint,
+        "vector_path": "knowledge_base/vector_store/processed_hashing_vectors.npz",
+        "status": "current" if hashing_status.startswith("hashing vectors updated") else "failed",
+        "detail": hashing_status,
+    }
+    resolve_project_path("knowledge_base/processed/hashing_vector_manifest.json").write_text(
+        json.dumps(hashing_manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    if build_vector:
+        chroma_manifest = {
+            "timestamp": timestamp,
+            "backend": "chroma_bge",
+            "model": "BAAI/bge-small-zh-v1.5",
+            "input_sha256": chunks_sha256,
+            "input_fingerprint": vector_input_fingerprint,
+            "vector_path": "knowledge_base/vector_store/chroma.sqlite3",
+            "status": "current" if vector_status.startswith("vector index updated") else "failed",
+            "detail": vector_status,
+        }
+        resolve_project_path("knowledge_base/processed/chroma_vector_manifest.json").write_text(
+            json.dumps(chroma_manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
     return {
         "chunk_count": len(chunks),
         "content_chunk_count": sum(1 for chunk in chunks if chunk.get("section_role") != "governance"),
         "chunks_path": str(out_path),
         "hashing_vector_status": hashing_status,
         "vector_status": vector_status,
+        "input_fingerprint": manifest["input_fingerprint"],
+        "chunks_sha256": manifest["chunks_sha256"],
     }
 
 

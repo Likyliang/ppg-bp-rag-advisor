@@ -12,11 +12,12 @@ Mounted at ``/api/v1/library`` (see :mod:`app.main`).
 
 from __future__ import annotations
 
+import asyncio
 from typing import Any, Dict, List, Optional
 
-from fastapi import APIRouter, HTTPException, Query, Request
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 from fastapi.concurrency import run_in_threadpool
-from fastapi.responses import RedirectResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from pydantic import BaseModel, Field
 
 from app.services import dedup, fulltext_admin, literature_intake
@@ -24,24 +25,54 @@ from app.services import dedup, fulltext_admin, literature_intake
 from app.services.library_manager import (
     EVIDENCE_TIERS,
     DuplicateSourceError,
+    LibraryConflictError,
     LibraryError,
     LibraryManager,
     SourceNotFoundError,
 )
+from app.admin.db import session_scope
+from app.admin.audit import redact_sensitive_text
+from app.admin.job_service import create_job, job_dict
+from app.admin.security import admin_auth_disabled, management_request_guard
 from scripts.ingest_kb import ingest_knowledge_base
 
-router = APIRouter(tags=["library"])
+router = APIRouter(tags=["library"], dependencies=[Depends(management_request_guard)])
 
 
 def _manager() -> LibraryManager:
     return LibraryManager()
 
 
+def _enqueue(request: Request, job_type: str, parameters: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    principal = getattr(request.state, "admin_principal", None)
+    requested_by = getattr(principal, "user_id", "system")
+    with session_scope() as db:
+        return job_dict(create_job(db, job_type, parameters or {}, requested_by))
+
+
+def _if_match(
+    request: Request,
+    manager: LibraryManager,
+    source_id: Optional[str] = None,
+    *,
+    trash: bool = False,
+) -> None:
+    expected = request.headers.get("if-match")
+    if not expected:
+        if not admin_auth_disabled():
+            raise HTTPException(status_code=428, detail="该写操作必须提供 If-Match revision")
+        return
+    expected = expected.strip().strip('"')
+    actual = manager.trash_revision() if trash else (manager.source_revision(source_id) if source_id else manager.writable_revision())
+    if expected != actual:
+        raise HTTPException(status_code=409, detail="目录已被其他操作修改，请刷新后重试")
+
+
 @router.get("/admin", include_in_schema=False)
 def admin_page() -> RedirectResponse:
     """Legacy entry: the literature admin is now a module in the unified shell."""
 
-    return RedirectResponse(url="/api/v1/admin", status_code=302)
+    return RedirectResponse(url="/admin/", status_code=302)
 
 
 # --------------------------------------------------------------------------- #
@@ -189,10 +220,17 @@ async def autofill_pdf(request: Request) -> Dict[str, Any]:
     body = await request.body()
     if not body:
         raise HTTPException(status_code=422, detail="empty upload")
+    if len(body) > fulltext_admin.MAX_PDF_BYTES:
+        raise HTTPException(status_code=413, detail="PDF 超过 50 MB 限制")
     try:
         # PDF parse + Crossref lookup are blocking; run off the event loop so
         # parallel batch identifies don't serialize / freeze the server.
-        return await run_in_threadpool(literature_intake.draft_from_pdf, body)
+        return await asyncio.wait_for(
+            run_in_threadpool(literature_intake.draft_from_pdf, body),
+            timeout=30.0,
+        )
+    except asyncio.TimeoutError as exc:
+        raise HTTPException(status_code=504, detail="PDF 识别超过 30 秒限制") from exc
     except RuntimeError as exc:
         raise HTTPException(status_code=501, detail=str(exc))
     except Exception as exc:  # pragma: no cover - malformed PDF
@@ -233,7 +271,8 @@ def list_sources(
         raise HTTPException(status_code=422, detail=f"invalid tier: {tier}")
     if journal_tier is not None and journal_tier not in (1, 2, 3):
         raise HTTPException(status_code=422, detail=f"invalid journal_tier: {journal_tier}")
-    all_sources = _manager().list_sources(
+    manager = _manager()
+    all_sources = manager.list_sources(
         topic=topic,
         tier=tier,
         evidence_class=evidence_class,
@@ -244,13 +283,15 @@ def list_sources(
         journal_tier=journal_tier,
     )
     page = all_sources[offset : offset + limit] if limit is not None else all_sources[offset:]
-    return {"total": len(all_sources), "limit": limit, "offset": offset, "count": len(page), "sources": page}
+    return {"total": len(all_sources), "limit": limit, "offset": offset, "count": len(page), "revision": manager.writable_revision(), "sources": page}
 
 
 @router.get("/sources/{source_id}")
-def get_source(source_id: str) -> Dict[str, Any]:
+def get_source(source_id: str, response: Response) -> Dict[str, Any]:
     try:
-        return _manager().get_source(source_id)
+        item = _manager().get_source(source_id)
+        response.headers["ETag"] = f'"{item["_revision"]}"'
+        return item
     except SourceNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
 
@@ -259,10 +300,17 @@ def get_source(source_id: str) -> Dict[str, Any]:
 # Write endpoints
 # --------------------------------------------------------------------------- #
 @router.post("/sources", status_code=201)
-def create_source(payload: SourceCreate, overwrite: bool = False) -> Dict[str, Any]:
+def create_source(payload: SourceCreate, request: Request, overwrite: bool = False) -> Dict[str, Any]:
+    if not admin_auth_disabled():
+        raise HTTPException(
+            status_code=409,
+            detail="认证部署禁止直接写目录；请创建文献草稿（/api/v1/admin/library/drafts）并由 reviewer 发布",
+        )
     try:
-        result = _manager().add_source(payload.to_source(), overwrite=overwrite)
-    except DuplicateSourceError as exc:
+        manager = _manager()
+        _if_match(request, manager)
+        result = manager.add_source(payload.to_source(), overwrite=overwrite)
+    except (DuplicateSourceError, LibraryConflictError) as exc:
         raise HTTPException(status_code=409, detail=str(exc))
     except LibraryError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
@@ -270,20 +318,34 @@ def create_source(payload: SourceCreate, overwrite: bool = False) -> Dict[str, A
 
 
 @router.post("/sources/batch", status_code=201)
-def create_sources_batch(payload: SourcesBatchCreate) -> Dict[str, Any]:
+def create_sources_batch(payload: SourcesBatchCreate, request: Request) -> Dict[str, Any]:
     """Add many confirmed drafts in one pass (single rescreen), returning a
     per-item outcome (added / duplicate / error). Never aborts on one bad item."""
 
+    if not admin_auth_disabled():
+        raise HTTPException(
+            status_code=409,
+            detail="认证部署的批量识别结果必须逐项进入文献草稿并由 reviewer 发布",
+        )
     items = [item.to_source() for item in payload.items]
-    return _manager().add_sources(items, overwrite=payload.overwrite)
+    manager = _manager()
+    _if_match(request, manager)
+    try:
+        return manager.add_sources(items, overwrite=payload.overwrite)
+    except LibraryConflictError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
 
 
 @router.patch("/sources/{source_id}")
-def update_source(source_id: str, payload: SourceUpdate) -> Dict[str, Any]:
+def update_source(source_id: str, payload: SourceUpdate, request: Request) -> Dict[str, Any]:
     try:
-        result = _manager().update_source(source_id, payload.to_patch())
+        manager = _manager()
+        _if_match(request, manager, source_id)
+        result = manager.update_source(source_id, payload.to_patch())
     except SourceNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
+    except LibraryConflictError as exc:
+        raise HTTPException(status_code=409, detail=str(exc))
     except DuplicateSourceError as exc:
         raise HTTPException(status_code=409, detail=str(exc))
     except LibraryError as exc:
@@ -292,18 +354,22 @@ def update_source(source_id: str, payload: SourceUpdate) -> Dict[str, Any]:
 
 
 @router.put("/sources/{source_id}/include")
-def set_include(source_id: str, payload: IncludeUpdate) -> Dict[str, Any]:
+def set_include(source_id: str, payload: IncludeUpdate, request: Request) -> Dict[str, Any]:
     try:
-        result = _manager().set_include(source_id, payload.include)
+        manager = _manager()
+        _if_match(request, manager, source_id)
+        result = manager.set_include(source_id, payload.include)
     except SourceNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
+    except LibraryConflictError as exc:
+        raise HTTPException(status_code=409, detail=str(exc))
     except LibraryError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
     return result.as_dict()
 
 
 @router.delete("/sources/{source_id}")
-def delete_source(source_id: str, reason: Optional[str] = None, hard: bool = False) -> Dict[str, Any]:
+def delete_source(source_id: str, request: Request, reason: Optional[str] = None, hard: bool = False) -> Dict[str, Any]:
     """Delete a source. Default = soft delete into the recycle bin (recoverable).
 
     ``hard=true`` permanently removes it from the catalog (no recovery).
@@ -311,9 +377,14 @@ def delete_source(source_id: str, reason: Optional[str] = None, hard: bool = Fal
 
     try:
         manager = _manager()
-        result = manager.remove_source(source_id) if hard else manager.trash_source(source_id, reason=reason)
+        _if_match(request, manager, source_id)
+        result = manager.remove_source(source_id) if hard else manager.trash_source(
+            source_id, reason=redact_sensitive_text(reason)
+        )
     except SourceNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
+    except LibraryConflictError as exc:
+        raise HTTPException(status_code=409, detail=str(exc))
     except LibraryError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
     return result.as_dict()
@@ -333,32 +404,44 @@ def list_trash(
 
 
 @router.post("/sources/{source_id}/restore")
-def restore_source(source_id: str) -> Dict[str, Any]:
+def restore_source(source_id: str, request: Request) -> Dict[str, Any]:
     try:
-        return _manager().restore_source(source_id).as_dict()
+        manager = _manager()
+        _if_match(request, manager, trash=True)
+        return manager.restore_source(source_id).as_dict()
     except SourceNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
+    except LibraryConflictError as exc:
+        raise HTTPException(status_code=409, detail=str(exc))
     except LibraryError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
 
 
 @router.delete("/trash/{source_id}")
-def purge_source(source_id: str) -> Dict[str, Any]:
+def purge_source(source_id: str, request: Request) -> Dict[str, Any]:
     """Permanently delete one item from the recycle bin (irreversible)."""
 
     try:
-        return _manager().purge_source(source_id).as_dict()
+        manager = _manager()
+        _if_match(request, manager, trash=True)
+        return manager.purge_source(source_id).as_dict()
     except SourceNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
+    except LibraryConflictError as exc:
+        raise HTTPException(status_code=409, detail=str(exc))
 
 
 @router.post("/trash/empty")
-def empty_trash() -> Dict[str, Any]:
-    return _manager().empty_trash()
+def empty_trash(request: Request) -> Dict[str, Any]:
+    manager = _manager()
+    _if_match(request, manager, trash=True)
+    return manager.empty_trash()
 
 
 @router.post("/rescreen")
-def rescreen() -> Dict[str, str]:
+def rescreen(request: Request) -> Any:
+    if not admin_auth_disabled():
+        return JSONResponse(status_code=202, content={"job": _enqueue(request, "rescreen")})
     return _manager().rescreen()
 
 
@@ -446,39 +529,66 @@ async def attach_fulltext(
     """
 
     body = await request.body()
+    if len(body) > fulltext_admin.MAX_PDF_BYTES:
+        raise HTTPException(status_code=413, detail="PDF 超过 50 MB 限制")
+    secure_mode = not admin_auth_disabled()
+    if secure_mode and attestation != fulltext_admin.LICENSE_ATTESTATION_CODE:
+        raise HTTPException(
+            status_code=422,
+            detail=f"必须使用固定授权确认码 {fulltext_admin.LICENSE_ATTESTATION_CODE}",
+        )
     uses = [u.strip() for u in allowed_uses.split(",")] if allowed_uses else None
     try:
-        # Run the blocking PDF extract + index splice off the event loop so the
-        # upload never freezes the rest of the UI.
-        return await run_in_threadpool(
-            fulltext_admin.attach_pdf,
-            source_id,
-            body,
-            access_mode=access_mode,
-            allowed_uses=uses,
-            institution_required=institution_required,
-            license_attestation=attestation,
-            rebuild=rebuild,
+        # In authenticated deployments the request only validates and stores
+        # the governed PDF. Parsing/indexing is always delegated to the worker.
+        result = await asyncio.wait_for(
+            run_in_threadpool(
+                fulltext_admin.attach_pdf,
+                source_id,
+                body,
+                access_mode=access_mode,
+                allowed_uses=uses,
+                institution_required=institution_required,
+                license_attestation=fulltext_admin.LICENSE_ATTESTATION_CODE if attestation else None,
+                rebuild=rebuild and not secure_mode,
+            ),
+            timeout=30.0 if secure_mode else 180.0,
         )
+        if secure_mode and rebuild:
+            job = _enqueue(request, "build_fulltext", {"source_ids": [source_id]})
+            return JSONResponse(status_code=202, content={**result, "job": job})
+        return result
+    except asyncio.TimeoutError as exc:
+        raise HTTPException(status_code=504, detail="PDF 治理处理超时") from exc
     except fulltext_admin.FulltextAdminError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
 
 
 @router.delete("/sources/{source_id}/fulltext")
-def detach_fulltext(source_id: str, rebuild: bool = True) -> Dict[str, Any]:
+def detach_fulltext(source_id: str, request: Request, rebuild: bool = True) -> Any:
+    secure_mode = not admin_auth_disabled()
     try:
-        return fulltext_admin.remove_fulltext(source_id, rebuild=rebuild)
+        result = fulltext_admin.remove_fulltext(source_id, rebuild=rebuild and not secure_mode)
+        if secure_mode and rebuild:
+            job = _enqueue(request, "build_fulltext", {"source_ids": [source_id]})
+            return JSONResponse(status_code=202, content={**result, "job": job})
+        return result
     except fulltext_admin.FulltextAdminError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
 
 
 @router.post("/fulltext/rebuild")
-def rebuild_fulltext(source_id: Optional[List[str]] = Query(None)) -> Dict[str, Any]:
+def rebuild_fulltext(request: Request, source_id: Optional[List[str]] = Query(None)) -> Any:
+    if not admin_auth_disabled():
+        return JSONResponse(
+            status_code=202,
+            content={"job": _enqueue(request, "build_fulltext", {"source_ids": source_id or []})},
+        )
     return fulltext_admin.build_fulltext(source_ids=source_id)
 
 
 @router.post("/ingest")
-def ingest(build_vector: bool = False) -> Dict[str, Any]:
+def ingest(request: Request, build_vector: bool = False) -> Any:
     """Rebuild the retrieval chunks (``chunks.jsonl``) from the knowledge base.
 
     Admin-triggered: run this after adding/removing sources so the new content
@@ -486,6 +596,9 @@ def ingest(build_vector: bool = False) -> Dict[str, Any]:
     vector index (heavier; needs optional deps).
     """
 
+    if not admin_auth_disabled():
+        job_type = "build_chroma" if build_vector else "ingest_chunks"
+        return JSONResponse(status_code=202, content={"job": _enqueue(request, job_type)})
     try:
         return ingest_knowledge_base(build_vector=build_vector)
     except Exception as exc:  # pragma: no cover - surfaced to the admin UI

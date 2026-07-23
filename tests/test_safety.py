@@ -2,6 +2,7 @@ import re
 
 from app.agents.workflow import generate_report
 from app.services.safety import review_safety
+from app.services import safety
 import pytest
 
 
@@ -33,6 +34,32 @@ def test_safety_agent_blocks_unsafe_medical_language():
 def test_safety_agent_blocks_common_unsafe_phrases(phrase):
     review = review_safety(phrase)
     assert review.passed is False
+
+
+@pytest.mark.parametrize("phrase", UNSAFE_PHRASES)
+def test_non_configurable_core_blocks_survive_yaml_erasure(phrase, monkeypatch):
+    monkeypatch.setattr(
+        safety,
+        "load_yaml_config",
+        lambda _path: {
+            "diagnostic_patterns": [],
+            "medication_change_patterns": [],
+            "device_overclaim_patterns": [],
+            "screening_overreach_patterns": [],
+            "emergency_false_reassurance_patterns": [],
+            "required_disclaimer_terms": [],
+        },
+    )
+
+    class EmergencyRule:
+        emergency = True
+
+    rule = EmergencyRule() if "急救" in phrase else None
+    review = safety.review_safety(phrase, rule)
+    assert review.passed is False
+    assert review.severity == "high"
+    if rule:
+        assert any("不当安抚" in issue for issue in review.issues)
 
 
 def test_emergency_safety_accepts_120_or_er_in_opening():

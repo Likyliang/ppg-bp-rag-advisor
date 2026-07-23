@@ -17,8 +17,11 @@ from __future__ import annotations
 
 import re
 from typing import Any, Dict, List, Optional
+from urllib.parse import quote
 
 import requests
+
+from app.services.config_loader import load_crossref_config
 
 CROSSREF_API = "https://api.crossref.org/works"
 _MAILTO = "ppg-bp-rag@example.org"  # Crossref polite-pool contact
@@ -110,10 +113,22 @@ def extract_doi(text: str) -> Optional[str]:
 # --------------------------------------------------------------------------- #
 # Crossref
 # --------------------------------------------------------------------------- #
-def _crossref_get(url: str, params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+def _crossref_runtime() -> tuple[str, float]:
+    config = load_crossref_config()
+    if not config.enabled:
+        return "", config.timeout_sec
+    return f"{config.base_url}/works", config.timeout_sec
+
+
+def _crossref_get(url: str, params: Dict[str, Any], timeout: float) -> Optional[Dict[str, Any]]:
     params = dict(params, mailto=_MAILTO)
     try:
-        resp = requests.get(url, params=params, timeout=_TIMEOUT)
+        resp = requests.get(
+            url,
+            params=params,
+            timeout=min(max(timeout, 1.0), 30.0),
+            allow_redirects=False,
+        )
         resp.raise_for_status()
         return resp.json().get("message")
     except Exception:
@@ -121,11 +136,17 @@ def _crossref_get(url: str, params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
 
 
 def crossref_by_doi(doi: str) -> Optional[Dict[str, Any]]:
-    return _crossref_get(f"{CROSSREF_API}/{doi}", {})
+    api, timeout = _crossref_runtime()
+    if not api:
+        return None
+    return _crossref_get(f"{api}/{quote(doi, safe='')}", {}, timeout)
 
 
 def crossref_search(title: str) -> Optional[Dict[str, Any]]:
-    message = _crossref_get(CROSSREF_API, {"query.bibliographic": title, "rows": 1})
+    api, timeout = _crossref_runtime()
+    if not api:
+        return None
+    message = _crossref_get(api, {"query.bibliographic": title, "rows": 1}, timeout)
     if not message:
         return None
     items = message.get("items") or []

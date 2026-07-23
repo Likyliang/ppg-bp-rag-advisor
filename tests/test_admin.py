@@ -16,14 +16,13 @@ def test_admin_shell_served():
     assert "text/html" in r.headers["content-type"]
     body = r.text
     assert 'id="app"' in body
-    assert "literature-module" in body
-    assert "ops-module" in body
+    assert "高血压 RAG 治理后台" in body
 
 
 def test_legacy_library_admin_redirects_to_shell():
     r = client.get("/api/v1/library/admin", follow_redirects=False)
     assert r.status_code == 302
-    assert r.headers["location"] == "/api/v1/admin"
+    assert r.headers["location"] == "/admin/"
 
 
 def test_overview_aggregates_all_blocks():

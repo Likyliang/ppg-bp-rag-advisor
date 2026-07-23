@@ -28,10 +28,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from datetime import date
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+import tempfile
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
+import portalocker
 import yaml
 
 from app.services.config_loader import resolve_project_path
@@ -52,6 +55,8 @@ from app.services.fulltext_vector_index import (
 from app.services.source_catalog import ALLOWED_USES, included_sources
 
 UPLOADS_REGISTRY = "knowledge_base/sources/fulltext_uploads.yaml"
+MAX_PDF_BYTES = 50 * 1024 * 1024
+LICENSE_ATTESTATION_CODE = "authorized_local_governance"
 
 # Clinical boundary shown to admins; full text may strengthen explanation only.
 GOVERNANCE_NOTE = (
@@ -77,21 +82,86 @@ def _load_uploads() -> Dict[str, Any]:
     return data
 
 
-def _save_uploads(registry: Dict[str, Any]) -> None:
+def _normalise_uploads(registry: Dict[str, Any]) -> Tuple[Path, str]:
     registry = dict(registry)
     registry["updated"] = date.today().isoformat()
     registry.setdefault("version", 1)
-    registry["uploads"] = sorted(registry.get("uploads", []), key=lambda u: u.get("source_id", ""))
+    catalog_titles = {str(item.get("source_id")): str(item.get("title") or "") for item in included_sources()}
+    sanitized_uploads = []
+    for raw in registry.get("uploads", []):
+        source_id = str(raw.get("source_id") or "")
+        if not source_id:
+            continue
+        sanitized_uploads.append(
+            {
+                "source_id": source_id,
+                # Always derive the bibliographic title from the governed
+                # catalog; never retain an uploaded/original filename.
+                "title": catalog_titles.get(source_id, ""),
+                "access_mode": raw.get("access_mode"),
+                "institution_required": bool(raw.get("institution_required")),
+                "allowed_uses": list(raw.get("allowed_uses") or []),
+                "pdf_sha256": raw.get("pdf_sha256"),
+                "pdf_bytes": int(raw.get("pdf_bytes") or 0),
+                "license_attested": bool(raw.get("license_attested") or raw.get("license_attestation")),
+                "license_attestation_version": int(raw.get("license_attestation_version") or 1),
+                "uploaded": raw.get("uploaded"),
+                "status": raw.get("status") or "attached",
+            }
+        )
+    registry["uploads"] = sorted(sanitized_uploads, key=lambda u: u.get("source_id", ""))
     path = resolve_project_path(UPLOADS_REGISTRY)
-    path.parent.mkdir(parents=True, exist_ok=True)
     text = yaml.safe_dump(
         registry, allow_unicode=True, sort_keys=False, default_flow_style=False, width=4096
     )
-    path.write_text(text, encoding="utf-8")
+    return path, text
+
+
+def _write_uploads_unlocked(registry: Dict[str, Any]) -> None:
+    path, text = _normalise_uploads(registry)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=str(path.parent), delete=False) as handle:
+        handle.write(text)
+        handle.flush()
+        os.fsync(handle.fileno())
+        temp_path = Path(handle.name)
+    os.replace(str(temp_path), str(path))
+
+
+def _uploads_lock_path() -> Path:
+    lock_path = resolve_project_path("var/locks/fulltext-uploads.lock")
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    return lock_path
+
+
+def _save_uploads(registry: Dict[str, Any]) -> None:
+    with portalocker.Lock(str(_uploads_lock_path()), timeout=10):
+        _write_uploads_unlocked(registry)
+
+
+def _mutate_uploads(mutator: Callable[[Dict[str, Any]], Tuple[bool, Any]]) -> Any:
+    """Read-modify-write the registry under one cross-process file lock."""
+
+    with portalocker.Lock(str(_uploads_lock_path()), timeout=10):
+        registry = _load_uploads()
+        changed, result = mutator(registry)
+        if changed:
+            _write_uploads_unlocked(registry)
+        return result
 
 
 def _uploads_by_source() -> Dict[str, Dict[str, Any]]:
     return {u["source_id"]: u for u in _load_uploads().get("uploads", []) if u.get("source_id")}
+
+
+def _remove_upload_record(source_id: str) -> bool:
+    def remove_record(registry: Dict[str, Any]) -> Tuple[bool, bool]:
+        before = len(registry.get("uploads", []))
+        registry["uploads"] = [u for u in registry.get("uploads", []) if u.get("source_id") != source_id]
+        removed = before != len(registry["uploads"])
+        return removed, removed
+
+    return bool(_mutate_uploads(remove_record))
 
 
 # --------------------------------------------------------------------------- #
@@ -160,6 +230,11 @@ def _validate_attach(source_id: str, access_mode: str, allowed_uses: List[str]) 
     invalid = sorted(set(allowed_uses) - ALLOWED_USES)
     if invalid:
         raise FulltextAdminError(f"非法 allowed_uses: {', '.join(invalid)}")
+    outside_source_scope = sorted(set(allowed_uses) - set(source.get("allowed_uses") or []))
+    if outside_source_scope:
+        raise FulltextAdminError(
+            f"全文 allowed_uses 不能扩大来源目录权限: {', '.join(outside_source_scope)}"
+        )
     return source
 
 
@@ -190,6 +265,8 @@ def attach_pdf(
 
     if not pdf_bytes:
         raise FulltextAdminError("空文件")
+    if len(pdf_bytes) > MAX_PDF_BYTES:
+        raise FulltextAdminError(f"PDF 超过 {MAX_PDF_BYTES // (1024 * 1024)} MB 限制")
     if pdf_bytes[:5] != b"%PDF-":
         raise FulltextAdminError("不是有效的 PDF（缺少 %PDF- 头）")
 
@@ -205,7 +282,12 @@ def attach_pdf(
     if stale is not None and stale.resolve() != pdf_path.resolve():
         stale.unlink()
     pdf_path.parent.mkdir(parents=True, exist_ok=True)
-    pdf_path.write_bytes(pdf_bytes)
+    with tempfile.NamedTemporaryFile("wb", dir=str(pdf_path.parent), delete=False) as handle:
+        handle.write(pdf_bytes)
+        handle.flush()
+        os.fsync(handle.fileno())
+        temp_pdf = Path(handle.name)
+    os.replace(str(temp_pdf), str(pdf_path))
 
     record = {
         "source_id": source_id,
@@ -215,22 +297,35 @@ def attach_pdf(
         "allowed_uses": uses,
         "pdf_sha256": _sha256(pdf_bytes),
         "pdf_bytes": len(pdf_bytes),
-        "license_attestation": license_attestation or "admin asserts license-clean local use",
+        # Store a fixed governance assertion, never the operator's free text.
+        # This prevents accidental persistence of publisher/session credentials.
+        "license_attested": bool(license_attestation),
+        "license_attestation_version": 1,
         "uploaded": date.today().isoformat(),
         "status": "attached",
     }
     _reject_credentials(record)
 
-    registry = _load_uploads()
-    registry["uploads"] = [u for u in registry.get("uploads", []) if u.get("source_id") != source_id]
-    registry["uploads"].append(record)
-    _save_uploads(registry)
+    def upsert(registry: Dict[str, Any]) -> Tuple[bool, None]:
+        registry["uploads"] = [u for u in registry.get("uploads", []) if u.get("source_id") != source_id]
+        registry["uploads"].append(dict(record))
+        return True, None
+
+    _mutate_uploads(upsert)
 
     result: Dict[str, Any] = {"action": "attached", "source_id": source_id, "record": record}
     if rebuild:
         manifest = update_fulltext_vector_index([source_id])  # incremental: only this PDF
         record["status"] = "indexed"
-        _save_uploads(registry)
+
+        def mark_indexed(registry: Dict[str, Any]) -> Tuple[bool, None]:
+            current = next((u for u in registry.get("uploads", []) if u.get("source_id") == source_id), None)
+            if current is None:
+                return False, None
+            current["status"] = "indexed"
+            return True, None
+
+        _mutate_uploads(mark_indexed)
         result["indexed_chunk_count"] = _indexed_chunk_counts().get(source_id, 0)
         result["total_chunks"] = manifest.get("chunk_count", 0)
     return result
@@ -244,12 +339,7 @@ def remove_fulltext(source_id: str, rebuild: bool = True) -> Dict[str, Any]:
     if existed:
         pdf_path.unlink()
 
-    registry = _load_uploads()
-    before = len(registry.get("uploads", []))
-    registry["uploads"] = [u for u in registry.get("uploads", []) if u.get("source_id") != source_id]
-    removed_record = before != len(registry["uploads"])
-    if removed_record:
-        _save_uploads(registry)
+    removed_record = _remove_upload_record(source_id)
 
     if not existed and not removed_record:
         raise FulltextAdminError(f"该来源没有本地全文可移除：{source_id}")
@@ -270,18 +360,21 @@ def trash_fulltext(source_id: str, rebuild: bool = True) -> Dict[str, Any]:
     """
 
     pdf_path = _existing_pdf(source_id)
-    registry = _load_uploads()
-    record = next((u for u in registry.get("uploads", []) if u.get("source_id") == source_id), None)
-    if pdf_path is None and record is None:
-        return {"action": "noop", "source_id": source_id}
-
     if pdf_path is not None:
         trash_path = _trash_pdf_path(source_id)
         trash_path.parent.mkdir(parents=True, exist_ok=True)
         pdf_path.replace(trash_path)
-    if record is not None:
+
+    def mark_trashed(registry: Dict[str, Any]) -> Tuple[bool, bool]:
+        record = next((u for u in registry.get("uploads", []) if u.get("source_id") == source_id), None)
+        if record is None:
+            return False, False
         record["status"] = "trashed"
-        _save_uploads(registry)
+        return True, True
+
+    had_record = bool(_mutate_uploads(mark_trashed))
+    if pdf_path is None and not had_record:
+        return {"action": "noop", "source_id": source_id}
 
     result = {"action": "trashed", "source_id": source_id}
     if rebuild:
@@ -300,11 +393,14 @@ def restore_fulltext(source_id: str, rebuild: bool = True) -> Dict[str, Any]:
     pdf_path.parent.mkdir(parents=True, exist_ok=True)
     trash_path.replace(pdf_path)
 
-    registry = _load_uploads()
-    record = next((u for u in registry.get("uploads", []) if u.get("source_id") == source_id), None)
-    if record is not None:
+    def mark_attached(registry: Dict[str, Any]) -> Tuple[bool, None]:
+        record = next((u for u in registry.get("uploads", []) if u.get("source_id") == source_id), None)
+        if record is None:
+            return False, None
         record["status"] = "attached"
-        _save_uploads(registry)
+        return True, None
+
+    _mutate_uploads(mark_attached)
 
     result = {"action": "restored", "source_id": source_id}
     if rebuild:
@@ -321,11 +417,8 @@ def purge_fulltext(source_id: str) -> Dict[str, Any]:
         if path is not None and path.exists():
             path.unlink()
             purged = True
-    registry = _load_uploads()
-    before = len(registry.get("uploads", []))
-    registry["uploads"] = [u for u in registry.get("uploads", []) if u.get("source_id") != source_id]
-    if before != len(registry["uploads"]):
-        _save_uploads(registry)
+    removed_record = _remove_upload_record(source_id)
+    if removed_record:
         purged = True
     return {"action": "purged", "source_id": source_id, "purged": purged}
 
@@ -343,15 +436,16 @@ def build_fulltext(source_ids: Optional[List[str]] = None) -> Dict[str, Any]:
     )
     # Sync upload records to 'indexed' where chunks were produced.
     counts = _indexed_chunk_counts()
-    registry = _load_uploads()
-    changed = False
-    for record in registry.get("uploads", []):
-        want = "indexed" if counts.get(record.get("source_id"), 0) > 0 else "attached"
-        if record.get("status") != want:
-            record["status"] = want
-            changed = True
-    if changed:
-        _save_uploads(registry)
+    def sync_status(registry: Dict[str, Any]) -> Tuple[bool, None]:
+        changed = False
+        for record in registry.get("uploads", []):
+            want = "indexed" if counts.get(record.get("source_id"), 0) > 0 else "attached"
+            if record.get("status") != want:
+                record["status"] = want
+                changed = True
+        return changed, None
+
+    _mutate_uploads(sync_status)
     return {
         "source_count": manifest.get("source_count", 0),
         "chunk_count": manifest.get("chunk_count", 0),

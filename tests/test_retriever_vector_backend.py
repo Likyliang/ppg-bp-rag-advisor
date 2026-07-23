@@ -111,8 +111,12 @@ def test_openai_index_older_than_chunks_is_treated_as_stale(tmp_path, fake_index
 
     openai_npz, hashing_npz = fake_indexes
     # Make the openai index *older* than the chunks file -> content changed.
-    past = time.time() - 86400
+    now = time.time()
+    past = now - 86400
     os.utime(openai_npz, (past, past))
+    os.utime(hashing_npz, (now, now))
+    # Do not depend on the checkout timestamp of the committed chunks fixture.
+    monkeypatch.setattr(retriever, "_store_chunks_mtime", lambda _store: now - 3600)
     monkeypatch.setattr(
         retriever, "_openai_query_vector", lambda text, dims: np.array([0.0, 1.0], dtype=np.float32)
     )

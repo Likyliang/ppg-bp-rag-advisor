@@ -3,12 +3,15 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import signal
+import threading
 import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 import numpy as np
+import yaml
 
 from app.services.chunking import chunk_text, tokenize_for_match
 from app.services.config_loader import resolve_project_path
@@ -24,6 +27,7 @@ TRASH_DIRNAME = ".trash"
 DOWNLOADS_ROOT = "knowledge_base/sources/downloads"  # legacy flat store (fallback)
 VECTOR_ROOT = "knowledge_base/vector_store"
 MANIFEST_PATH = "knowledge_base/processed/fulltext_vector_manifest.json"
+UPLOADS_REGISTRY_PATH = "knowledge_base/sources/fulltext_uploads.yaml"
 
 
 def library_pdf_target(source_id: str, topic: Optional[str]) -> Path:
@@ -57,6 +61,7 @@ def governed_pdf_path(source_id: str, topic: Optional[str] = None) -> Optional[P
 # Pages whose extracted text is shorter than this are header/footer debris
 # and would only produce degenerate chunks with no retrievable content.
 MIN_PAGE_TEXT_CHARS = 40
+MAX_PDF_PARSE_SECONDS = 90
 
 
 @dataclass
@@ -89,14 +94,30 @@ def _load_pdf_pages(path: Path) -> Tuple[List[str], str]:
     except Exception as exc:  # pragma: no cover - depends on optional local package.
         raise RuntimeError("pypdf is required for PDF full-text extraction; install the rag extra or pypdf.") from exc
 
-    reader = PdfReader(str(path))
-    pages: List[str] = []
-    for page in reader.pages:
-        try:
-            pages.append(_normalize_text(page.extract_text() or ""))
-        except Exception:
-            pages.append("")
-    return pages, "pypdf"
+    can_alarm = hasattr(signal, "SIGALRM") and threading.current_thread() is threading.main_thread()
+    previous_handler = None
+
+    def timeout_handler(_signum, _frame):
+        raise TimeoutError(f"PDF parsing exceeded {MAX_PDF_PARSE_SECONDS} seconds")
+
+    if can_alarm:
+        previous_handler = signal.signal(signal.SIGALRM, timeout_handler)
+        signal.alarm(MAX_PDF_PARSE_SECONDS)
+    try:
+        reader = PdfReader(str(path))
+        pages: List[str] = []
+        for page in reader.pages:
+            try:
+                pages.append(_normalize_text(page.extract_text() or ""))
+            except TimeoutError:
+                raise
+            except Exception:
+                pages.append("")
+        return pages, "pypdf"
+    finally:
+        if can_alarm:
+            signal.alarm(0)
+            signal.signal(signal.SIGALRM, previous_handler)
 
 
 def split_text_for_fulltext_chunks(
@@ -144,6 +165,21 @@ def _candidate_by_source() -> Dict[str, Dict[str, Any]]:
     return {candidate["source_id"]: candidate for candidate in report.get("candidates", [])}
 
 
+def _upload_by_source() -> Dict[str, Dict[str, Any]]:
+    path = resolve_project_path(UPLOADS_REGISTRY_PATH)
+    if not path.exists():
+        return {}
+    try:
+        data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    except (OSError, yaml.YAMLError):
+        return {}
+    return {
+        str(item.get("source_id")): item
+        for item in data.get("uploads", [])
+        if item.get("source_id") and item.get("status") != "trashed"
+    }
+
+
 def _source_by_id() -> Dict[str, Dict[str, Any]]:
     return {source["source_id"]: source for source in included_sources()}
 
@@ -160,9 +196,46 @@ def _jsonable(value: Any) -> Any:
     return str(value)
 
 
+def _governance_metadata(source: Dict[str, Any], governance: Dict[str, Any]) -> Dict[str, Any]:
+    governed_uses = set(governance.get("allowed_uses") or source.get("allowed_uses") or [])
+    source_uses = set(source.get("allowed_uses") or [])
+    return {
+        "title": source.get("title", ""),
+        "organization": source.get("organization", ""),
+        "region": source.get("region", ""),
+        "topic": source.get("topic", ""),
+        "year": source.get("year", ""),
+        "evidence_class": source.get("evidence_class", ""),
+        "review_status": source.get("review_status", "included"),
+        "source_quality_score": source.get("source_quality_score", ""),
+        "allowed_uses": sorted(source_uses & governed_uses),
+        "access_mode": governance.get("access_mode", ""),
+        "license_attested": bool(governance.get("license_attested") or governance.get("license_attestation")),
+    }
+
+
+def _governance_sha256(source: Dict[str, Any], governance: Dict[str, Any]) -> str:
+    return hashlib.sha256(
+        json.dumps(_governance_metadata(source, governance), ensure_ascii=False, sort_keys=True).encode("utf-8")
+    ).hexdigest()
+
+
+def _manifest_input_fingerprint(sources_manifest: Iterable[Dict[str, Any]]) -> str:
+    rows = sorted(
+        (
+            item.get("source_id"),
+            item.get("pdf_sha256"),
+            item.get("governance_sha256"),
+        )
+        for item in sources_manifest
+    )
+    return hashlib.sha256(json.dumps(rows, ensure_ascii=False).encode("utf-8")).hexdigest()
+
+
 def _build_chunks_for_pdf(
     source: Dict[str, Any],
     candidate: Optional[Dict[str, Any]],
+    governance: Dict[str, Any],
     pdf_path: Path,
     target_chars: int,
     overlap_chars: int,
@@ -171,6 +244,7 @@ def _build_chunks_for_pdf(
     pdf_sha256 = _sha256_file(pdf_path)
     chunks: List[FulltextChunk] = []
     source_id = source["source_id"]
+    governed = _governance_metadata(source, governance)
     for page_index, page_text in enumerate(pages, start=1):
         for local_index, chunk_text in enumerate(
             split_text_for_fulltext_chunks(page_text, target_chars=target_chars, overlap_chars=overlap_chars),
@@ -189,7 +263,8 @@ def _build_chunks_for_pdf(
                 "pmid": source.get("pmid", ""),
                 "year": source.get("year", ""),
                 "evidence_class": source.get("evidence_class", ""),
-                "allowed_uses": source.get("allowed_uses", []),
+                "allowed_uses": governed["allowed_uses"],
+                "access_mode": governed["access_mode"],
                 "review_status": source.get("review_status", "included"),
                 "source_quality_score": source.get("source_quality_score", ""),
                 "local_pdf": str(pdf_path.relative_to(resolve_project_path("."))),
@@ -209,6 +284,9 @@ def _build_chunks_for_pdf(
         "page_count": len(pages),
         "chunk_count": len(chunks),
         "extraction_method": extraction_method,
+        "governance_sha256": _governance_sha256(source, governance),
+        "access_mode": governed["access_mode"],
+        "allowed_uses": governed["allowed_uses"],
     }
     return chunks, source_manifest
 
@@ -220,6 +298,7 @@ def build_fulltext_chunks(
 ) -> Tuple[List[FulltextChunk], List[Dict[str, Any]], List[Dict[str, str]]]:
     source_filter = set(source_ids or [])
     candidates = _candidate_by_source()
+    uploads = _upload_by_source()
     sources = _source_by_id()
     chunks: List[FulltextChunk] = []
     sources_manifest: List[Dict[str, Any]] = []
@@ -232,10 +311,18 @@ def build_fulltext_chunks(
         if pdf_path is None:
             skipped.append({"source_id": source_id, "reason": "local_pdf_missing"})
             continue
+        governance = uploads.get(source_id) or candidates.get(source_id) or {}
+        if not governance.get("access_mode"):
+            skipped.append({"source_id": source_id, "reason": "fulltext_governance_missing"})
+            continue
+        if not _governance_metadata(source, governance)["allowed_uses"]:
+            skipped.append({"source_id": source_id, "reason": "fulltext_allowed_uses_empty"})
+            continue
         try:
             source_chunks, source_manifest = _build_chunks_for_pdf(
                 source=source,
                 candidate=candidates.get(source_id),
+                governance=governance,
                 pdf_path=pdf_path,
                 target_chars=target_chars,
                 overlap_chars=overlap_chars,
@@ -246,6 +333,27 @@ def build_fulltext_chunks(
         chunks.extend(source_chunks)
         sources_manifest.append(source_manifest)
     return chunks, sources_manifest, skipped
+
+
+def current_fulltext_input_fingerprint() -> str:
+    """Fingerprint live PDFs plus the governance metadata used for chunking."""
+
+    candidates = _candidate_by_source()
+    uploads = _upload_by_source()
+    rows: List[Dict[str, Any]] = []
+    for source_id, source in sorted(_source_by_id().items()):
+        pdf_path = governed_pdf_path(source_id, source.get("topic"))
+        if pdf_path is None:
+            continue
+        governance = uploads.get(source_id) or candidates.get(source_id) or {}
+        rows.append(
+            {
+                "source_id": source_id,
+                "pdf_sha256": _sha256_file(pdf_path),
+                "governance_sha256": _governance_sha256(source, governance),
+            }
+        )
+    return _manifest_input_fingerprint(rows)
 
 
 def write_local_fulltext_chunks(chunks: List[FulltextChunk], path: Optional[str] = None) -> Path:
@@ -366,6 +474,7 @@ def build_fulltext_vector_index(
         "sources": sources_manifest,
         "skipped": skipped,
     }
+    manifest["input_fingerprint"] = _manifest_input_fingerprint(sources_manifest)
     out_path = resolve_project_path(manifest_path or MANIFEST_PATH)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -489,6 +598,7 @@ def merge_manifest(
         "sources": sources,
         "skipped": skipped_all,
     }
+    manifest["input_fingerprint"] = _manifest_input_fingerprint(sources)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     return manifest

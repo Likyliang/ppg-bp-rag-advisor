@@ -5,6 +5,7 @@ import numpy as np
 from app.services.fulltext_vector_index import (
     FulltextChunk,
     _chunk_source_id,
+    _governance_metadata,
     drop_source_from_index,
     hashing_embedding,
     merge_hashing_vector_index,
@@ -86,6 +87,19 @@ def test_hashing_embedding_is_normalized_and_deterministic():
     assert first.shape == second.shape
     assert first.tolist() == second.tolist()
     assert round(float((first * first).sum()), 3) == 1.0
+
+
+def test_fulltext_governance_can_only_narrow_allowed_uses():
+    source = {
+        "title": "Source",
+        "allowed_uses": ["signal_quality", "research_background"],
+    }
+    governed = _governance_metadata(
+        source,
+        {"access_mode": "public_pdf", "allowed_uses": ["research_background", "lifestyle"]},
+    )
+    assert governed["allowed_uses"] == ["research_background"]
+    assert governed["access_mode"] == "public_pdf"
 
 
 def test_local_hashing_vector_query_returns_chunk_metadata(tmp_path):

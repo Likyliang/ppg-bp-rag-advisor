@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import os
 import re
 from typing import List
 from uuid import uuid4
@@ -22,7 +21,7 @@ from app.schemas.screening import ScreeningResult
 from app.services.citations import build_registry, extract_citation_numbers
 from app.services.evidence_quality import bind_recommendation_evidence, evaluate_citation_quality
 from app.services.medical_copy import clean_citation_fragments, sanitize_medical_copy
-from app.services.config_loader import load_yaml_config
+from app.services.config_loader import development_override, load_report_llm_config, load_yaml_config
 from app.services.llm_adapter import (
     LlmGenerationError,
     generate_anthropic_input_only_report,
@@ -1044,7 +1043,7 @@ def _citation_enforcement_enabled(enforce_citations: Optional[bool]) -> bool:
     """
     if enforce_citations is not None:
         return enforce_citations
-    return os.getenv("REPORT_ENFORCE_CITATIONS", "1").strip().lower() not in {"0", "false", "off", "no"}
+    return development_override("REPORT_ENFORCE_CITATIONS", "1").strip().lower() not in {"0", "false", "off", "no"}
 
 
 def _finalize_rag_llm_body(
@@ -1154,8 +1153,10 @@ def _generate_report_draft_impl(
     citation_quality: CitationQuality = None,
     screening: Optional[ScreeningResult] = None,
 ) -> HealthReport:
-    requested_mode = mode or os.getenv("REPORT_MODE", "template_only")
-    provider = os.getenv("LLM_PROVIDER", "mock").lower()
+    settings = load_yaml_config("config/settings.yaml")
+    requested_mode = mode or development_override("REPORT_MODE") or settings.get("generation", {}).get("report_mode", "template_only")
+    llm_config = load_report_llm_config()
+    provider = llm_config.provider.lower()
     report = generate_template_report(
         payload, rule_result, evidence, warnings=warnings, citation_quality=citation_quality, screening=screening
     )
@@ -1185,7 +1186,7 @@ def _generate_report_draft_impl(
                 return report
             llm_body = _sanitize_llm_body(llm_body)
             report.markdown_report = _with_replaced_body(report.markdown_report, llm_body)
-            report.generation_mode = f"llm_only_input_deepseek:{os.getenv('DEEPSEEK_MODEL', 'deepseek-v4-flash')}"
+            report.generation_mode = f"llm_only_input_deepseek:{llm_config.model or 'deepseek-v4-flash'}"
             return report
         if provider in {"anthropic", "claude"}:
             try:
@@ -1196,7 +1197,7 @@ def _generate_report_draft_impl(
                 return report
             llm_body = _sanitize_llm_body(llm_body)
             report.markdown_report = _with_replaced_body(report.markdown_report, llm_body)
-            report.generation_mode = f"llm_only_input_anthropic:{os.getenv('ANTHROPIC_MODEL', 'claude-sonnet-4-5')}"
+            report.generation_mode = f"llm_only_input_anthropic:{llm_config.model or 'claude-sonnet-4-5'}"
             return report
         if provider in OPENAI_COMPATIBLE_PROVIDERS:
             try:
@@ -1207,7 +1208,7 @@ def _generate_report_draft_impl(
                 return report
             llm_body = _sanitize_llm_body(llm_body)
             report.markdown_report = _with_replaced_body(report.markdown_report, llm_body)
-            report.generation_mode = f"llm_only_input_openai_compatible:{os.getenv('LLM_MODEL', 'gpt-5.5')}"
+            report.generation_mode = f"llm_only_input_openai_compatible:{llm_config.model or 'gpt-5.5'}"
             return report
         report.generation_mode = "llm_only_template"
         return report
@@ -1230,7 +1231,7 @@ def _generate_report_draft_impl(
             report.generation_mode = "llm_rag_fallback_template"
             return report
         report.markdown_report = full_markdown
-        report.generation_mode = f"llm_rag_deepseek:{os.getenv('DEEPSEEK_MODEL', 'deepseek-v4-flash')}"
+        report.generation_mode = f"llm_rag_deepseek:{llm_config.model or 'deepseek-v4-flash'}"
         return report
     if requested_mode == "llm_rag" and provider in {"anthropic", "claude"}:
         template_body, _ = _split_report_tail(report.markdown_report)
@@ -1251,7 +1252,7 @@ def _generate_report_draft_impl(
             report.generation_mode = "llm_rag_fallback_template"
             return report
         report.markdown_report = full_markdown
-        report.generation_mode = f"llm_rag_anthropic:{os.getenv('ANTHROPIC_MODEL', 'claude-sonnet-4-5')}"
+        report.generation_mode = f"llm_rag_anthropic:{llm_config.model or 'claude-sonnet-4-5'}"
         return report
     if requested_mode == "llm_rag" and provider in OPENAI_COMPATIBLE_PROVIDERS:
         template_body, _ = _split_report_tail(report.markdown_report)
@@ -1272,7 +1273,7 @@ def _generate_report_draft_impl(
             report.generation_mode = "llm_rag_fallback_template"
             return report
         report.markdown_report = full_markdown
-        report.generation_mode = f"llm_rag_openai_compatible:{os.getenv('LLM_MODEL', 'gpt-5.5')}"
+        report.generation_mode = f"llm_rag_openai_compatible:{llm_config.model or 'gpt-5.5'}"
         return report
     if requested_mode == "llm_rag" and provider != "mock":
         report.generation_mode = "llm_rag_fallback_template"

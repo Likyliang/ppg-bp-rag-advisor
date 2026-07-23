@@ -16,7 +16,7 @@
 - **排查建议（可选，默认关闭）**：接入 PPG 节律/变异特征与 SCG（心振）时相特征后，可从信号给出“建议进一步排查”的提示——例如脉搏不规则提示做心电图排查心律失常。这是带不确定性、带就医指引、置信度封顶 `moderate` 的 **排查/分诊建议，不是诊断**；确诊、劝阻就医、调药、设备过度承诺等表述仍然阻断。请求侧用 `enable_screening_suggestions` 开启，规则与边界见 `docs/scg_screening_plan.md` 与 `config/screening_rules.yaml`。
 - **学术化引用**：正文句级 `[n]` 标注、按首次出现顺序编号、未引用来源自动从参考文献剔除、同一来源去重、全文段落附页码定位，报告与对话均输出结构化 `references`。
 - Source catalog 记录来源、证据等级、筛选分、允许用途、版权/访问说明和审计状态。
-- **文献管理系统**：按分类（topic/region/type）与分级（证据 Tier A/B/C + 五维质量分）组织文献，支持添加/移除/启停。三种入口——`LibraryManager` 服务、`scripts/manage_library.py` 命令行、`/api/v1/library/*` REST 接口（预留给统一后台管理系统，含单文件后台网页 `/api/v1/library/admin`）。**一键录入**：粘贴 DOI/链接/标题或上传 PDF，经 Crossref 自动带出标题/机构/年份/DOI 并生成 source_id、建议主题与分级（策展字段由管理员确认）。后台可手动触发「重建检索索引」。**全文治理**：管理员可为某来源上传全文 PDF（声明 access_mode），全文经既有管线切块入**本地、gitignore、不提交**的向量库并自动融合进检索；全文块继承来源的 allowed_uses/证据分级，安全门控不变，原始 PDF 与全文永不提交。写操作复用既有校验并自动重生成筛选产物。详见 `docs/library_management.md`。
+- **内部治理后台 V1**：`/admin/` 提供 Vue 3/TypeScript 九模块工作台，覆盖 RBAC、文献草稿/复核/发布、全文授权、索引新鲜度、检索调试、配置差异/回滚、隔离外部 API、Worker 任务、匿名指标和操作审计。后台状态保存在本地 SQLite；六份治理 YAML 仍是可审计事实源。旧 `/api/v1/admin`、`/api/v1/library/admin` 自动跳转到新后台。详见 `docs/admin_v1.md` 与 `docs/library_management.md`。
 - Safety Agent 拦截确诊、调药、停药、设备过度承诺和急症漏报；并阻断排查建议越界为确定性诊断或劝阻就医（`screening_overreach_patterns`），同时对每条排查建议正向校验“对冲措辞 + 就医指引 + 置信度封顶”。随访回复共用同一套禁区模式并支持回退。
 - 提供 FastAPI、Streamlit Demo（含随访对话标签页）、知识库筛选/ingest/审计、检索评估和论文评估脚本。
 
@@ -39,6 +39,22 @@ pytest
 uvicorn app.main:app --reload
 streamlit run streamlit_app.py
 ```
+
+首次启用内部后台（没有默认账号或默认口令）：
+
+```bash
+cp .env.example .env
+python -m scripts.manage_admin generate-master-key   # 写入 .env 的 ADMIN_SECRET_MASTER_KEY
+alembic upgrade head
+python -m scripts.manage_admin create-user admin --role admin
+npm --prefix admin_ui install
+npm --prefix admin_ui run build
+uvicorn app.main:app --host 127.0.0.1 --port 8000
+# 另一个进程：
+python -m app.admin.worker
+```
+
+浏览器打开 `http://127.0.0.1:8000/admin/`。内部/生产部署应设 `APP_ENV=internal`、`ADMIN_COOKIE_SECURE=1`，并通过后台签发带作用域和到期时间的小程序 API Client Key。
 
 小程序结构化数据到报告 demo：
 
@@ -90,16 +106,17 @@ EVAL_LLM_SEND_FULLTEXT=false
 
 ## API
 
-- `GET /api/v1/health`
 - `POST /api/v1/reports/preview-rules`
 - `POST /api/v1/reports/generate`
 - `POST /api/v1/advisor/sessions` — 生成报告并开启随访会话（返回报告 + 开场白 + 首批问题）
 - `POST /api/v1/advisor/sessions/{id}/messages` — 一轮对话（自由文本 / 结构化回答 / 跳过）
 - `GET /api/v1/advisor/sessions/{id}` — 会话状态、画像与历史
-- `POST /api/v1/kb/ingest`
-- `GET /api/v1/kb/sources`
-- `GET /api/v1/kb/audit`
-- `POST /api/v1/kb/search`
+- `DELETE /api/v1/advisor/sessions/{id}` — 主动删除会话；默认 24 小时过期
+- `POST /api/v1/kb/search` — 内部/生产模式需 `kb:search` API Client scope
+- `GET /api/v1/health` — 唯一始终公开的运维入口
+- `/api/v1/admin/*` — 登录 Cookie + CSRF + RBAC 管理 API
+
+旧 `POST /api/v1/kb/ingest` 已禁用并返回 `410`；所有索引、评测和质量门操作改由受保护的后台创建白名单任务，再由独立 Worker 执行。
 
 ## 质量门禁
 

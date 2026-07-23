@@ -1,6 +1,6 @@
 # 文献管理系统（Literature Management）
 
-RAG 知识库的**统一文献管理层**：可以按分类、分级组织文献，随时**添加 / 移除 / 启停**来源，并为将来的**统一后台管理系统**预留了 REST 接口。
+RAG 知识库的**统一文献管理层**：可以按分类、分级组织文献，随时**添加 / 移除 / 启停**来源，并由 `/admin/` 的内部治理后台统一管理。
 
 所有写操作都复用既有的 `source_catalog` 校验与筛选逻辑，写完自动重生成
 `included_sources.json` / `excluded_sources.json` / `source_screening_report.json`，
@@ -60,7 +60,7 @@ RAG 知识库的**统一文献管理层**：可以按分类、分级组织文献
 
 不想逐个字段手填时，用**自动识别**：给一个 DOI / 链接 / 标题，或上传 PDF，系统自动带出字段。
 
-- **后台网页**（`/api/v1/library/admin` → 添加文献顶部的蓝色框）：粘贴 DOI/链接/标题点「识别」，
+- **后台网页**（`/admin/` →「文献工作台」）：粘贴 DOI/链接/标题进行批量识别，
   或点「选择文件」上传 PDF。表单自动填好后，**黄色高亮**的是自动**建议**项——
   管理员确认/微调后点「添加到知识库」。
 - **接口**：
@@ -174,7 +174,7 @@ python scripts/manage_library.py rescreen
 | `POST /sources/{id}/fulltext` | 附加全文 PDF（原始请求体）并建索引，`?access_mode=` 必填 |
 | `DELETE /sources/{id}/fulltext` | 移除本地全文（删 PDF + 全文块，保留目录记录） |
 | `POST /fulltext/rebuild` | 重建全文向量索引 |
-| `GET /admin` | 后台管理网页（单文件 UI，同源调用上述接口） |
+| `GET /admin` | 兼容入口，跳转到 Vue 3 统一后台 `/admin/` |
 
 错误语义：校验失败 `422`、id/同一性重复 `409`、未找到 `404`。
 
@@ -263,7 +263,7 @@ manage_library.py / API  →  source_catalog_extra.yaml
 
 添加或调整文献后，需要**重建检索索引**才能让新内容进入检索。两种触发方式：
 
-- **后台网页**：打开 `/api/v1/library/admin`，点右上角「重建检索索引」按钮（勾选「含向量索引」可一并重建 Chroma 向量库）。由管理员手动触发。
+- **后台网页**：打开 `/admin/` 的「知识库与索引」，分别创建摘要 chunks/哈希、Chroma/BGE、OpenAI Embedding 等白名单任务；独立 Worker 异步执行。
 - **命令行 / 接口**：
 
   ```bash

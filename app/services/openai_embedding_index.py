@@ -43,6 +43,22 @@ def _scope_paths(scope: str) -> tuple[Path, Path, Path]:
     return chunks_path, vector_path, manifest_path
 
 
+def _upstream_build_fingerprint(scope: str) -> str:
+    manifest_name = (
+        "knowledge_base/processed/chunks_manifest.json"
+        if scope == "processed_chunks"
+        else "knowledge_base/processed/fulltext_vector_manifest.json"
+    )
+    path = resolve_project_path(manifest_name)
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    except (OSError, ValueError):
+        manifest = {}
+    if scope == "processed_chunks":
+        return str(manifest.get("build_fingerprint") or "")
+    return str(manifest.get("input_fingerprint") or "")
+
+
 def _jsonable_metadata(item: Dict[str, Any]) -> Dict[str, Any]:
     excluded = {"content", "text"}
     metadata = {key: value for key, value in item.items() if key not in excluded}
@@ -110,10 +126,12 @@ def _post_embeddings(
         headers={"Authorization": f"Bearer {config.api_key}", "Content-Type": "application/json"},
         json=payload,
         timeout=timeout_sec,
+        allow_redirects=False,
     )
     if response.status_code >= 400:
-        detail = response.text[:800]
-        raise OpenAIEmbeddingError(f"OpenAI embeddings HTTP {response.status_code}: {detail}")
+        # Never include a provider-controlled response body in logs/errors: a
+        # misconfigured endpoint could echo Authorization or submitted text.
+        raise OpenAIEmbeddingError(f"OpenAI embeddings HTTP {response.status_code}")
     try:
         return response.json()
     except ValueError as exc:
@@ -185,7 +203,11 @@ def build_openai_embedding_index(
         "timestamp": int(time.time()),
         "backend": "openai_embeddings",
         "scope": scope,
-        "purpose": "External OpenAI embedding index for governed KB chunks. API key is read from local .env and is not persisted.",
+        "purpose": (
+            "External OpenAI embedding index for governed KB chunks. "
+            "The API key is loaded from the active encrypted integration profile "
+            "or the first-start environment fallback and is never persisted here."
+        ),
         "model_requested": config.model,
         "model_returned": returned_model,
         "embedding_dimensions": int(embeddings.shape[1]) if embeddings.ndim == 2 else 0,
@@ -203,6 +225,16 @@ def build_openai_embedding_index(
         "vector_path": str(vector_path),
         "duration_sec": round(time.time() - started, 3),
     }
+    from app.services.fingerprints import combine_fingerprints, sha256_file
+
+    manifest["input_sha256"] = sha256_file(str(_scope_paths(scope)[0]))
+    manifest["upstream_build_fingerprint"] = _upstream_build_fingerprint(scope)
+    manifest["input_fingerprint"] = combine_fingerprints(
+        {
+            "chunks_sha256": manifest["input_sha256"],
+            "upstream_build_fingerprint": manifest["upstream_build_fingerprint"],
+        }
+    )
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     return manifest

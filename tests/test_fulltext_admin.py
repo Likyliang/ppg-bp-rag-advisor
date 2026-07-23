@@ -13,7 +13,7 @@ import pytest
 
 import app.api.library as library_api
 from app.services import fulltext_admin as fa
-from app.services.source_catalog import included_sources
+from app.services.source_catalog import ALLOWED_USES, included_sources
 
 _PDF = b"%PDF-1.4\n1 0 obj<<>>endobj\ntrailer<<>>\n%%EOF\n"
 
@@ -93,6 +93,13 @@ def test_reject_invalid_allowed_use(sandbox):
         fa.attach_pdf(_included_id(), _PDF, access_mode="public_pdf", allowed_uses=["totally_made_up"])
 
 
+def test_fulltext_allowed_uses_cannot_expand_catalog_scope(sandbox):
+    source = next(item for item in included_sources() if set(ALLOWED_USES) - set(item.get("allowed_uses") or []))
+    extra = next(iter(set(ALLOWED_USES) - set(source.get("allowed_uses") or [])))
+    with pytest.raises(fa.FulltextAdminError, match="不能扩大"):
+        fa.attach_pdf(source["source_id"], _PDF, access_mode="public_pdf", allowed_uses=[extra])
+
+
 # --------------------------------------------------------------------------- #
 # Attach / remove lifecycle
 # --------------------------------------------------------------------------- #
@@ -103,6 +110,8 @@ def test_attach_no_rebuild_writes_pdf_and_metadata(sandbox):
     assert result["record"]["status"] == "attached"
     assert result["record"]["pdf_bytes"] == len(_PDF)
     assert result["record"]["allowed_uses"]  # inherited from the source
+    assert "license_attestation" not in result["record"]
+    assert result["record"]["license_attested"] is False
 
     status = fa.source_fulltext_status(sid)
     assert status["has_pdf"] is True

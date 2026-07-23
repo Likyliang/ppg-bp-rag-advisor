@@ -26,7 +26,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import time
 from typing import Dict, List, Optional
@@ -196,7 +195,8 @@ def _paraphrase_seed(seed: str, category: str, n: int = 3) -> List[str]:
             f"{cfg.base_url.rstrip('/')}/chat/completions",
             headers={"Authorization": f"Bearer {cfg.api_key}", "Content-Type": "application/json"},
             json=payload,
-            timeout=float(os.getenv("EVAL_LLM_TIMEOUT_SEC", "60")),
+            timeout=cfg.timeout_sec,
+            allow_redirects=False,
         )
         if resp.status_code >= 400:
             return []
@@ -275,10 +275,11 @@ def _llm_violations(text: str) -> Optional[Dict[str, bool]]:
                 f"{cfg.base_url.rstrip('/')}/chat/completions",
                 headers={"Authorization": f"Bearer {cfg.api_key}", "Content-Type": "application/json"},
                 json=payload,
-                timeout=float(os.getenv("EVAL_LLM_TIMEOUT_SEC", "60")),
+                timeout=cfg.timeout_sec,
+                allow_redirects=False,
             )
             if resp.status_code >= 400:
-                raise RuntimeError(resp.text[:120])
+                raise RuntimeError(f"evaluation HTTP {resp.status_code}")
             content = resp.json()["choices"][0]["message"]["content"]
             match = re.search(r"\{.*\}", content, re.S)
             obj = json.loads(match.group(0)) if match else {}

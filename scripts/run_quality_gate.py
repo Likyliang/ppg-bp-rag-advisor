@@ -40,14 +40,24 @@ STOP_CRITERIA = {
 }
 
 
-def _run_command(name: str, command: List[str]) -> Dict:
-    started = time.time()
+def _offline_gate_env() -> Dict[str, str]:
     env = os.environ.copy()
+    sensitive_markers = ("KEY", "TOKEN", "SECRET", "PASSWORD", "COOKIE", "AUTHORIZATION")
+    for name in list(env):
+        if any(marker in name.upper() for marker in sensitive_markers):
+            env.pop(name, None)
+    env["APP_ENV"] = "quality_gate"
     env["REPORT_MODE"] = "template_only"
     env["LLM_PROVIDER"] = "mock"
-    # Calibrated gate runs stay offline-deterministic regardless of any
-    # embedding API key configured in .env.
     env["RETRIEVAL_EMBEDDING_BACKEND"] = "hashing"
+    return env
+
+
+def _run_command(name: str, command: List[str]) -> Dict:
+    started = time.time()
+    # Calibrated gate runs are credential-free and offline deterministic,
+    # regardless of provider keys loaded by the service process.
+    env = _offline_gate_env()
     result = subprocess.run(
         command,
         cwd=resolve_project_path("."),
@@ -58,10 +68,10 @@ def _run_command(name: str, command: List[str]) -> Dict:
     )
     return {
         "name": name,
-        "command": " ".join(command),
+        "command": " ".join("<python>" if item == sys.executable else item for item in command),
         "returncode": result.returncode,
         "duration_sec": round(time.time() - started, 3),
-        "output_tail": result.stdout[-4000:],
+        "output_tail": result.stdout[-4000:].replace(str(resolve_project_path(".")), "<project>"),
     }
 
 
@@ -73,12 +83,7 @@ def _load_json(path: str) -> Dict:
 
 
 def _count_pytest_tests() -> int:
-    env = os.environ.copy()
-    env["REPORT_MODE"] = "template_only"
-    env["LLM_PROVIDER"] = "mock"
-    # Calibrated gate runs stay offline-deterministic regardless of any
-    # embedding API key configured in .env.
-    env["RETRIEVAL_EMBEDDING_BACKEND"] = "hashing"
+    env = _offline_gate_env()
     result = subprocess.run(
         [sys.executable, "-m", "pytest", "--collect-only", "-q"],
         cwd=resolve_project_path("."),
@@ -179,6 +184,13 @@ def summarize_quality(commands: List[Dict]) -> Dict:
 def run_quality_gate(fail_on_stop_criteria: bool = False) -> Dict:
     command_results = [_run_command(name, command) for name, command in COMMANDS]
     summary = summarize_quality(command_results)
+    from app.services.fingerprints import catalog_fingerprint, config_fingerprint, sha256_file
+
+    summary["input_fingerprints"] = {
+        "catalog": catalog_fingerprint(),
+        "config": config_fingerprint(),
+        "chunks": sha256_file("knowledge_base/processed/chunks.jsonl"),
+    }
     out_path = resolve_project_path("knowledge_base/processed/quality_gate_report.json")
     out_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     calibration_path = resolve_project_path("knowledge_base/processed/rag_trust_calibration_report.json")
@@ -193,6 +205,7 @@ def run_quality_gate(fail_on_stop_criteria: bool = False) -> Dict:
                 "metadata_filter_safety_summary": retrieval_result.get("modes", {}).get("metadata_filter_safety", {}).get("summary", {}),
                 "report_summary": report_result.get("summary", {}),
                 "quality_gate_criteria": summary["criteria"],
+                "input_fingerprints": summary["input_fingerprints"],
                 "known_risk": "calibrated_query_only is the primary retrieval metric; metadata_filter_safety is retained only as a safety-filter check.",
             },
             ensure_ascii=False,

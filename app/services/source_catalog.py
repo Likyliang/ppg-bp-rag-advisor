@@ -208,6 +208,9 @@ def screen_sources(catalog: Dict[str, Any] = None) -> Dict[str, Any]:
 
 def write_screening_outputs(output_dir: str = "knowledge_base/processed") -> Dict[str, str]:
     result = screen_sources()
+    from app.services.fingerprints import catalog_fingerprint
+
+    result["input_fingerprint"] = catalog_fingerprint()
     out_dir = resolve_project_path(output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     files = {
