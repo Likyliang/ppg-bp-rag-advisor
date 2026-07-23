@@ -16,6 +16,12 @@ outputs/advisor_sessions/
 outputs/e5_redteam/
 knowledge_base/processed/e2_reports.jsonl
 
+# Internal admin runtime state (accounts, encrypted provider secrets, jobs and
+# audit events). The reviewed SPA production bundle is committed separately.
+var/
+admin_ui/node_modules/
+admin_ui/dist/
+
 # E1-E5 experiment scratch / preliminary outputs (judge-only, pending human
 # review). Commit final reviewed results separately, not these WIP artifacts.
 knowledge_base/processed/e1_qrels_pool.jsonl
@@ -31,3 +37,6 @@ knowledge_base/processed/evaluation_results_real.csv
 
 # Local demo PDFs (copyrighted; not committed)
 demo_literature/
+
+# Derived xlsx inspection dumps (regenerable debug artifacts, ~MBs each)
+*.inspect.ndjson
