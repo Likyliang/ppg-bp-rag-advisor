@@ -2,12 +2,12 @@
 
 - candidate_id: `uspstf_hypertension_screening_fulltext`
 - access_mode: `public_html`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-16
-- local_pdf: not saved
+- local_pdf: `uspstf_hypertension_screening_adults.pdf`
 
 #### 摘要入库要点
 

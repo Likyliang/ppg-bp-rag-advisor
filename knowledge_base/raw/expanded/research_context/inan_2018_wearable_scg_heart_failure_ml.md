@@ -1,6 +1,7 @@
 ---
 source_id: inan_2018_wearable_scg_heart_failure_ml
-title: Novel Wearable Seismocardiography and Machine Learning Algorithms Can Assess Clinical Status of Heart Failure Patients
+title: Novel Wearable Seismocardiography and Machine Learning Algorithms Can Assess
+  Clinical Status of Heart Failure Patients
 source_type: clinical_research_study
 organization: Circulation - Heart Failure
 region: US
@@ -17,20 +18,27 @@ allowed_uses:
 - research_background
 review_status: included
 derived_from: knowledge_base/sources/source_catalog.yaml
+source_hash: 2f050fdb24360de3
 safety_level: standard
 ---
 
 ## 来源摘要
 
-该研究表明可穿戴心振（SCG）结合机器学习，可基于心脏对次极量运动的响应区分心力衰竭的代偿（门诊）与失代偿（住院）状态，是“心振 → 心衰状态监测”的研究背景。
+可穿戴 SCG + 机器学习可区分心衰代偿/失代偿状态（基于对运动的心脏响应），属对已知患者的监测研究。
 
 ## 可用于报告的要点
 
-- 心振用于心衰的价值主要在对已知患者做纵向状态监测（代偿/失代偿），而不是对陌生个体一次性筛查。
-- 监测依赖个体基线与连续记录；脱离基线的单次心振不足以判断心衰状态。
-- 结果为研究级，不能作为个体诊断；面向用户时只能提示“如有相关症状或风险，建议就医评估心功能”。
+- 心衰应用是纵向监测，需要个体基线，不是一次性筛查。
+- 结果为研究级，不能作为个体诊断。
+- 支持“需基线/趋势、建议就医评估”的排查口径。
 
 ## 实现使用说明
 
-- 仅用于 research_background：支持“心衰监测需基线/趋势、建议就医评估”的口径。
-- 强调监测≠诊断；不替代超声心动图或临床评估，不进入治疗/用药结论。
+- 仅用于 research_background；强调监测≠诊断。
+
+## 安全边界
+
+- 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。
+- 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。
+- 研究或综述来源只用于背景和局限说明，不用于患者级临床建议。
+

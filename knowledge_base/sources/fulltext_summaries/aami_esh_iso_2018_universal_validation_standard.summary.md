@@ -2,12 +2,12 @@
 
 - candidate_id: `aami_esh_iso_2018_universal_validation_standard_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5796427/
 - doi: 10.1097/HJH.0000000000001634
 - pmid: 29384983
 - access_recorded: 2026-05-21
-- local_pdf: not saved
+- local_pdf: `aami_esh_iso_2018_universal_validation_standard.pdf`
 
 #### 摘要入库要点
 

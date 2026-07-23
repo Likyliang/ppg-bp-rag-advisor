@@ -45,12 +45,12 @@ ESC 相关科学声明讨论无袖带血压监测设备的技术基础和临床�
 
 - candidate_id: `parati_2026_esc_cuffless_bp_monitoring_statement_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag058/8497606
 - doi: 10.1093/eurjpc/zwag058
 - pmid: n/a
 - access_recorded: 2026-05-21
-- local_pdf: not saved
+- local_pdf: `parati_2026_esc_cuffless_bp_monitoring_statement.pdf`
 
 #### 摘要入库要点
 

@@ -42,12 +42,12 @@ safety_level: standard
 
 - candidate_id: `esc_2024_pharmacotherapy_what_is_new_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://academic.oup.com/ehjcvp/article/11/1/7/7818405
 - doi: 10.1093/ehjcvp/pvae084
 - pmid: n/a
 - access_recorded: 2026-05-28
-- local_pdf: not saved
+- local_pdf: `esc_2024_pharmacotherapy_what_is_new.pdf`
 
 #### 摘要入库要点
 

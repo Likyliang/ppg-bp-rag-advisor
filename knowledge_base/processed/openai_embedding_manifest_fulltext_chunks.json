@@ -1,5 +1,5 @@
 {
-  "timestamp": 1781076459,
+  "timestamp": 1781320968,
   "backend": "openai_embeddings",
   "scope": "fulltext_chunks",
   "purpose": "External OpenAI embedding index for governed KB chunks. API key is read from local .env and is not persisted.",
@@ -89,5 +89,5 @@
   },
   "chunks_path": "/Users/lianghao/Work/high blood pressure RAG_advisor_embedding_demo/knowledge_base/vector_store/fulltext_chunks.jsonl",
   "vector_path": "/Users/lianghao/Work/high blood pressure RAG_advisor_embedding_demo/knowledge_base/vector_store/openai_embeddings_fulltext_chunks.npz",
-  "duration_sec": 214.415
+  "duration_sec": 311.467
 }

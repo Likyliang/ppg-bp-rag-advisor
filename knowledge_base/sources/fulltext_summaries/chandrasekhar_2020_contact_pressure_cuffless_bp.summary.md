@@ -2,12 +2,12 @@
 
 - candidate_id: `chandrasekhar_2020_contact_pressure_cuffless_bp_fulltext`
 - access_mode: `institution_or_browser`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://ieeexplore.ieee.org/document/9016235
 - doi: 10.1109/TBME.2020.2976989
 - pmid: 32142414
 - access_recorded: 2026-05-22
-- local_pdf: not saved
+- local_pdf: `chandrasekhar_2020_contact_pressure_cuffless_bp.pdf`
 
 #### 摘要入库要点
 

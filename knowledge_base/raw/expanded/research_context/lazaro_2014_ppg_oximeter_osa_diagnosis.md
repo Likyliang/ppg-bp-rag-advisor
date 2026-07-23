@@ -1,6 +1,7 @@
 ---
 source_id: lazaro_2014_ppg_oximeter_osa_diagnosis
-title: Diagnosis of Obstructive Sleep Apnea Using Pulse Oximeter Derived Photoplethysmographic Signals
+title: Diagnosis of Obstructive Sleep Apnea Using Pulse Oximeter Derived Photoplethysmographic
+  Signals
 source_type: clinical_research_study
 organization: Journal of Clinical Sleep Medicine
 region: global
@@ -17,21 +18,27 @@ allowed_uses:
 - research_background
 review_status: included
 derived_from: knowledge_base/sources/source_catalog.yaml
+source_hash: e17cc2d458c10e78
 safety_level: standard
 ---
 
 ## 来源摘要
 
-该研究用脉搏血氧仪导出的 PPG 信号评估阻塞性睡眠呼吸暂停（OSA），是“PPG/血氧夜间特征 → OSA 排查”的研究背景。
+用脉搏血氧仪 PPG 诊断阻塞性睡眠呼吸暂停（OSA），呼吸事件指数与 PSG 的 AHI 强相关（r≈0.935）。
 
 ## 可用于报告的要点
 
-- OSA 评估依赖夜间/连续记录：氧减指数(ODI)、脉搏波幅(PWA)下降与脉搏间期变化。
-- PPG 导出的呼吸事件指数与多导睡眠监测(PSG)的呼吸暂停低通气指数(AHI)强相关（约 r≈0.935）。
-- 单次指尖摄像头测量没有夜间氧减序列，不能评估睡眠呼吸暂停。
-- 仅作“建议做睡眠监测(PSG/家庭睡眠监测)排查 OSA”的研究背景，不作个体诊断。
+- OSA 评估依赖夜间/连续记录（氧减、脉搏波幅与脉搏间期变化）。
+- 单次指尖测量不能评估睡眠呼吸暂停。
+- 用于支持“建议做睡眠监测排查 OSA”的研究背景。
 
 ## 实现使用说明
 
-- 仅用于 research_background：支持夜间数据下的 OSA 排查建议研究背景。
-- 不输出 OSA 个体诊断；结论需睡眠监测确认。
+- 仅用于 research_background；OSA 结论需 PSG/家庭睡眠监测。
+
+## 安全边界
+
+- 该来源只用于 PPG 估算结果解释、复测建议、生活方式建议、就医提醒或安全边界。
+- 不得把该来源改写成本系统可以诊断、治疗、开药、停药或替代规范血压测量的依据。
+- 研究或综述来源只用于背景和局限说明，不用于患者级临床建议。
+

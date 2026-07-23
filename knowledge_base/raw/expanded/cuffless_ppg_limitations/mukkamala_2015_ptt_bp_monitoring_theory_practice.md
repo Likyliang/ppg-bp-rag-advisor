@@ -44,12 +44,12 @@ safety_level: standard
 
 - candidate_id: `mukkamala_2015_ptt_bp_monitoring_theory_practice_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4515215/
 - doi: 10.1109/TBME.2015.2441951
 - pmid: 26057530
 - access_recorded: 2026-05-21
-- local_pdf: not saved
+- local_pdf: `mukkamala_2015_ptt_bp_monitoring_theory_practice.pdf`
 
 #### 摘要入库要点
 

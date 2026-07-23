@@ -44,12 +44,12 @@ AHA/AMA 家庭自测血压政策声明支持把家庭血压监测作为诊室外
 
 - candidate_id: `aha_ama_2020_smbp_policy_statement_pdf`
 - access_mode: `browser_required`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://pubmed.ncbi.nlm.nih.gov/32567342/
 - doi: 10.1161/CIR.0000000000000803
 - pmid: 32567342
 - access_recorded: 2026-05-22
-- local_pdf: not saved
+- local_pdf: `aha_ama_2020_smbp_policy_statement.pdf`
 
 #### 摘要入库要点
 

@@ -42,12 +42,12 @@ AHA PREVENT 方程论文用于心血管风险评估方法背景，不属于当�
 
 - candidate_id: `aha_prevent_equations_circulation_2024_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.123.067626
 - doi: 10.1161/CIRCULATIONAHA.123.067626
 - pmid: n/a
 - access_recorded: 2026-05-28
-- local_pdf: not saved
+- local_pdf: `aha_prevent_equations_circulation_2024.pdf`
 
 #### 摘要入库要点
 

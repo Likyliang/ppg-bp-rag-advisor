@@ -2,12 +2,12 @@
 
 - candidate_id: `muntner_2019_aha_bp_measurement_scientific_statement_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC11409525/
 - doi: 10.1161/HYP.0000000000000087
 - pmid: 30827125
 - access_recorded: 2026-05-21
-- local_pdf: not saved
+- local_pdf: `muntner_2019_aha_bp_measurement_scientific_statement.pdf`
 
 #### 摘要入库要点
 

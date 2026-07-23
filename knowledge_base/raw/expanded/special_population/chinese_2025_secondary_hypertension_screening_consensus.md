@@ -43,12 +43,12 @@ safety_level: standard
 
 - candidate_id: `chinese_2025_secondary_hypertension_screening_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://bookcafe.yuntsg.com/ueditor/jsp/upload/file/20260117/1768636681085056202.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: not saved
+- local_pdf: `chinese_2025_secondary_hypertension_screening_consensus.pdf`
 
 #### 摘要入库要点
 

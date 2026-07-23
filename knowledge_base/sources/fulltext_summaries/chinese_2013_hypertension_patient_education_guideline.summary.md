@@ -2,12 +2,12 @@
 
 - candidate_id: `chinese_2013_hypertension_patient_education_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://www.nccd.org.cn/UploadFile/201504/20150418172843860860.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: not saved
+- local_pdf: `chinese_2013_hypertension_patient_education_guideline.pdf`
 
 #### 摘要入库要点
 

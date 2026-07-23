@@ -44,12 +44,12 @@ safety_level: high
 
 - candidate_id: `chinese_2023_elderly_hypertension_management_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://medtion-image.medtion.com/uploads/1/file/public/202312/20231222151125_hjo32b9lsf.pdf
 - doi: 10.16439/j.issn.1673-7245.2023.06.003
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: not saved
+- local_pdf: `chinese_2023_elderly_hypertension_management_guideline.pdf`
 
 #### 摘要入库要点
 

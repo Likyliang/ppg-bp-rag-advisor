@@ -2,12 +2,12 @@
 
 - candidate_id: `lee_2013_rgb_reflection_ppg_motion_hr_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://u-toyama.elsevierpure.com/en/publications/comparison-between-red-green-and-blue-light-reflection-photopleth/
 - doi: 10.1109/EMBC.2013.6609852
 - pmid: 24110039
 - access_recorded: 2026-05-21
-- local_pdf: not saved
+- local_pdf: `lee_2013_rgb_reflection_ppg_motion_hr.pdf`
 
 #### 摘要入库要点
 

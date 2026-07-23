@@ -42,12 +42,12 @@ safety_level: standard
 
 - candidate_id: `esc_2024_elevated_bp_hypertension_doi_report_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Elevated-Blood-Pressure-and-Hypertension
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-28
-- local_pdf: not saved
+- local_pdf: `esc_2024_elevated_bp_hypertension_doi_report.pdf`
 
 #### 摘要入库要点
 

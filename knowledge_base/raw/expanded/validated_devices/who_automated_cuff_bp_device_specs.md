@@ -45,12 +45,12 @@ WHO 袖带式自动无创血压计技术规范支持“复核应使用经过验�
 
 - candidate_id: `who_automated_cuff_bp_device_specs_publication`
 - access_mode: `public_landing`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://www.who.int/publications/i/item/9789240002654
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-16
-- local_pdf: not saved
+- local_pdf: `who_automated_cuff_bp_device_specs.pdf`
 
 #### 摘要入库要点
 

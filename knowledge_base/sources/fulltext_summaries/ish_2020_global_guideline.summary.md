@@ -2,12 +2,12 @@
 
 - candidate_id: `ish_2020_public_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: downloadable
+- fulltext_status: local_pdf_available
 - source_url: https://ish-world.com/global-hypertension-practice-guidelines/
 - doi: 10.1161/HYPERTENSIONAHA.120.15026
 - pmid: n/a
 - access_recorded: 2026-05-10
-- local_pdf: not saved
+- local_pdf: `ish_2020_global_guideline.pdf`
 
 #### 摘要入库要点
 

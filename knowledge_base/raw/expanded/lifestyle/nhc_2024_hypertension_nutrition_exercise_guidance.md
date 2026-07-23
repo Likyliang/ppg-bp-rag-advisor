@@ -43,12 +43,12 @@ safety_level: standard
 
 - candidate_id: `nhc_2024_hypertension_nutrition_exercise_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://app.www.gov.cn/govdata/gov/202407/02/516820/article.html
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-16
-- local_pdf: not saved
+- local_pdf: `nhc_2024_hypertension_nutrition_exercise_guidance.pdf`
 
 #### 摘要入库要点
 

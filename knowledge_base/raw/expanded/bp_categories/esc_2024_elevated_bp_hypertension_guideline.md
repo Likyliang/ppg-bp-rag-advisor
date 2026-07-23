@@ -45,12 +45,12 @@ safety_level: standard
 
 - candidate_id: `esc_2024_elevated_bp_hypertension_guideline_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://academic.oup.com/eurheartj/article/45/38/3912/7741010
 - doi: 10.1093/eurheartj/ehae178
 - pmid: n/a
 - access_recorded: 2026-05-28
-- local_pdf: not saved
+- local_pdf: `esc_2024_elevated_bp_hypertension_guideline.pdf`
 
 #### 摘要入库要点
 
