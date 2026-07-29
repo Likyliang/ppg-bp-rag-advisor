@@ -7,6 +7,7 @@ import PageHeader from "../components/PageHeader.vue";
 import ProgressBar from "../components/ProgressBar.vue";
 import StatusBadge from "../components/StatusBadge.vue";
 import { usePolling } from "../composables/usePolling";
+import { jobLabels } from "../uiLabels";
 
 const user = inject<Ref<any>>("adminUser")!;
 const rows = ref<any[]>([]);
@@ -17,22 +18,6 @@ const page = ref(0);
 const pageSize = ref(20);
 const acting = ref("");
 const reviewerJobTypes = new Set(["quality_gate", "retrieval_evaluation", "report_evaluation", "api_experiment", "kb_audit"]);
-const jobLabels: Record<string, string> = {
-  rescreen: "重新筛选来源",
-  ingest_chunks: "摘要 chunks / 哈希索引",
-  build_chroma: "Chroma / BGE",
-  build_fulltext: "本地全文索引",
-  build_openai_processed: "OpenAI 摘要 Embedding",
-  build_openai_fulltext: "OpenAI 全文 Embedding",
-  kb_audit: "知识库审计",
-  quality_gate: "严格质量门",
-  retrieval_evaluation: "检索评测",
-  report_evaluation: "报告评测",
-  api_experiment: "匿名 API 实验",
-  validate_config_draft: "配置草稿回归",
-  rollback_config_revision: "配置回滚验证",
-};
-
 const filtered = computed(() => rows.value.filter((row) => !typeFilter.value || row.job_type === typeFilter.value));
 const totalPages = computed(() => Math.max(1, Math.ceil(filtered.value.length / pageSize.value)));
 const visibleRows = computed(() => filtered.value.slice(page.value * pageSize.value, (page.value + 1) * pageSize.value));
@@ -92,10 +77,10 @@ const { loading, refreshing, error, lastUpdated, refresh } = usePolling(load, { 
 </script>
 
 <template>
-  <PageHeader title="任务中心" description="常驻 Worker 自动领取白名单任务；知识库、全文索引和质量门分别互斥。" :last-updated="lastUpdated" :refreshing="refreshing" refreshable @refresh="refresh(true)" />
+  <PageHeader title="处理记录" description="查看内容更新、质量检查和规则验证的进度；系统会自动执行，不需要一直停留在本页。" :last-updated="lastUpdated" :refreshing="refreshing" refreshable @refresh="refresh(true)" />
   <FeedbackBanner v-if="error" kind="error">{{ error }}</FeedbackBanner>
   <FeedbackBanner kind="info">
-    当前有 <strong>{{ activeCount }}</strong> 个排队或运行任务。日志、事件和错误码均经过脱敏；页面每 3 秒自动刷新。
+    当前有 <strong>{{ activeCount }}</strong> 项正在等待或处理中。本页会自动更新，失败项目可以从这里重新执行。
   </FeedbackBanner>
 
   <section class="card filter-bar">
@@ -104,7 +89,7 @@ const { loading, refreshing, error, lastUpdated, refresh } = usePolling(load, { 
         <option value="">全部状态</option><option value="queued">排队中</option><option value="running">运行中</option><option value="succeeded">已完成</option><option value="failed">失败</option><option value="cancelled">已取消</option><option value="interrupted">已中断</option>
       </select>
     </label>
-    <label>任务类型
+    <label>处理类型
       <select class="input" v-model="typeFilter">
         <option value="">全部类型</option><option v-for="type in jobTypes" :key="type" :value="type">{{ jobLabels[type] || type }}</option>
       </select>
@@ -112,27 +97,28 @@ const { loading, refreshing, error, lastUpdated, refresh } = usePolling(load, { 
     <label>每页
       <select class="input" v-model.number="pageSize"><option :value="10">10</option><option :value="20">20</option><option :value="50">50</option></select>
     </label>
-    <span class="muted filter-summary">{{ filtered.length }} 个任务</span>
+    <span class="muted filter-summary">{{ filtered.length }} 条记录</span>
   </section>
 
   <section class="card table-card">
-    <div v-if="loading" class="loading-panel">正在加载任务队列…</div>
+    <div v-if="loading" class="loading-panel">正在加载处理记录…</div>
     <div v-else-if="visibleRows.length" class="table-scroll">
       <table class="jobs-table">
-        <thead><tr><th>任务</th><th>状态与进度</th><th>时间</th><th>结果 / 事件</th><th>操作</th></tr></thead>
+        <thead><tr><th>处理事项</th><th>状态与进度</th><th>时间</th><th>详情</th><th>操作</th></tr></thead>
         <tbody>
           <tr v-for="row in visibleRows" :key="row.id">
-            <td><strong>{{ jobLabels[row.job_type] || row.job_type }}</strong><code class="block-code">{{ row.id }}</code><span class="muted">资源锁：{{ row.resource_lock }} · 第 {{ row.attempt }} 次</span></td>
-            <td><StatusBadge :status="row.status" /><ProgressBar :value="row.progress" :status="row.status" /><span v-if="row.error_code" class="field-error">错误码：{{ row.error_code }}</span></td>
+            <td><strong>{{ jobLabels[row.job_type] || row.job_type }}</strong><small>{{ row.attempt > 1 ? `第 ${row.attempt} 次执行` : "首次执行" }}</small><details class="inline-details"><summary>专业信息</summary><code class="block-code">{{ row.id }}</code><span class="muted">互斥资源：{{ row.resource_lock }}</span></details></td>
+            <td><StatusBadge :status="row.status" /><ProgressBar :value="row.progress" :status="row.status" /><span v-if="row.error_code" class="field-error">处理未完成，请查看详情或重试</span></td>
             <td><span>{{ formatDate(row.created_at) }}</span><small>开始：{{ formatDate(row.started_at) }}</small><small>结束：{{ formatDate(row.finished_at) }}</small></td>
             <td>
               <details @toggle="($event.target as HTMLDetailsElement).open && loadEvents(row.id)">
-                <summary>查看脱敏日志与事件</summary>
+                <summary>查看处理详情</summary>
+                <p v-if="row.error_code" class="field-error">错误编号：{{ row.error_code }}</p>
                 <pre v-if="row.log_tail" class="code compact-code">{{ row.log_tail }}</pre>
                 <div v-if="events[row.id]?.length" class="event-list">
                   <div v-for="event in events[row.id]" :key="event.sequence"><span>{{ event.created_at }}</span><StatusBadge :status="event.level === 'error' ? 'failed' : 'current'" :label="event.level" /><p>{{ event.message }}</p></div>
                 </div>
-                <p v-else class="muted">展开后加载事件；任务运行时会持续更新。</p>
+                <p v-else class="muted">展开后加载记录；处理中会持续更新。</p>
               </details>
             </td>
             <td><div class="row-actions">
@@ -143,7 +129,7 @@ const { loading, refreshing, error, lastUpdated, refresh } = usePolling(load, { 
         </tbody>
       </table>
     </div>
-    <EmptyState v-else-if="!loading" title="没有匹配的任务" detail="调整状态或类型筛选后重试。" />
+    <EmptyState v-else-if="!loading" title="没有匹配的处理记录" detail="调整状态或类型筛选后再看。" />
     <div v-if="filtered.length > pageSize" class="pagination">
       <button class="btn" :disabled="page === 0" @click="page--">上一页</button><span>第 {{ page + 1 }} / {{ totalPages }} 页</span><button class="btn" :disabled="page + 1 >= totalPages" @click="page++">下一页</button>
     </div>

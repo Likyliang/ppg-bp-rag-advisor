@@ -16,7 +16,7 @@ def test_admin_shell_served():
     assert "text/html" in r.headers["content-type"]
     body = r.text
     assert 'id="app"' in body
-    assert "高血压 RAG 治理后台" in body
+    assert "高血压健康解释后台" in body
 
 
 def test_legacy_library_admin_redirects_to_shell():

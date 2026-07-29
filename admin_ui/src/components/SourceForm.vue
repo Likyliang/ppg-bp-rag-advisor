@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import {
+  allowedUseLabels,
+  displayLabel,
+  evidenceClassLabels,
+  regionLabels,
+  sourceTypeLabels,
+  topicLabels,
+} from "../uiLabels";
 
 const props = withDefaults(defineProps<{
   modelValue: Record<string, any>;
@@ -47,6 +55,7 @@ const implementationNotes = noteText("implementation_notes");
 const allowedUses = computed<string[]>(() => props.taxonomy.allowed_uses || []);
 const topics = computed<string[]>(() => props.taxonomy.topics || []);
 const evidenceClasses = computed<string[]>(() => props.taxonomy.evidence_classes || []);
+const sourceTypes = Object.keys(sourceTypeLabels);
 
 function toggleUse(value: string, checked: boolean) {
   const current = new Set<string>(props.modelValue.allowed_uses || []);
@@ -61,8 +70,9 @@ function toggleUse(value: string, checked: boolean) {
     <fieldset>
       <legend>基本信息</legend>
       <div class="form-grid">
-        <label>来源 ID
-          <input class="input" v-model.trim="modelValue.source_id" :disabled="disabled || sourceIdDisabled" placeholder="稳定、唯一的英文 ID" />
+        <label>资料编号
+          <input class="input" v-model.trim="modelValue.source_id" :disabled="disabled || sourceIdDisabled" placeholder="例如：nhc_2024_home_bp" />
+          <small>用于系统内部识别，发布后不能修改。</small>
         </label>
         <label>年份
           <input class="input" type="number" min="1900" :max="new Date().getFullYear() + 1" v-model.number="modelValue.year" :disabled="disabled" />
@@ -78,21 +88,25 @@ function toggleUse(value: string, checked: boolean) {
             <option value="zh">中文</option><option value="en">英文</option>
           </select>
         </label>
-        <label>地区
-          <input class="input" v-model.trim="modelValue.region" :disabled="disabled" list="region-options" />
-          <datalist id="region-options"><option v-for="item in ['global','CN','US','UK','EU','CA','AHA']" :key="item">{{ item }}</option></datalist>
-        </label>
-        <label>来源类型
-          <input class="input" v-model.trim="modelValue.source_type" :disabled="disabled" placeholder="guideline / review / …" />
-        </label>
-        <label>主题
-          <select class="input" v-model="modelValue.topic" :disabled="disabled">
-            <option value="">请选择</option><option v-for="item in topics" :key="item" :value="item">{{ item }}</option>
+        <label>发布地区
+          <select class="input" v-model="modelValue.region" :disabled="disabled">
+            <option v-for="item in ['global','CN','US','UK','EU','CA','AHA']" :key="item" :value="item">{{ displayLabel(regionLabels, item) }}</option>
           </select>
         </label>
-        <label>证据类别
+        <label>资料形式
+          <select class="input" v-model="modelValue.source_type" :disabled="disabled">
+            <option v-if="modelValue.source_type && !sourceTypes.includes(modelValue.source_type)" :value="modelValue.source_type">{{ modelValue.source_type }}</option>
+            <option v-for="item in sourceTypes" :key="item" :value="item">{{ displayLabel(sourceTypeLabels, item) }}</option>
+          </select>
+        </label>
+        <label>内容主题
+          <select class="input" v-model="modelValue.topic" :disabled="disabled">
+            <option value="">请选择</option><option v-for="item in topics" :key="item" :value="item">{{ displayLabel(topicLabels, item) }}</option>
+          </select>
+        </label>
+        <label>可信资料类型
           <select class="input" v-model="modelValue.evidence_class" :disabled="disabled">
-            <option value="">请选择</option><option v-for="item in evidenceClasses" :key="item" :value="item">{{ item }}</option>
+            <option value="">请选择</option><option v-for="item in evidenceClasses" :key="item" :value="item">{{ displayLabel(evidenceClassLabels, item) }}</option>
           </select>
         </label>
       </div>
@@ -116,18 +130,19 @@ function toggleUse(value: string, checked: boolean) {
     </fieldset>
 
     <fieldset>
-      <legend>允许用途（发布前必须逐项确认）</legend>
+      <legend>这份资料可以用于什么（发布前必须确认）</legend>
       <div class="choice-grid">
         <label v-for="item in allowedUses" :key="item" class="choice">
           <input type="checkbox" :checked="(modelValue.allowed_uses || []).includes(item)" :disabled="disabled" @change="toggleUse(item, ($event.target as HTMLInputElement).checked)" />
-          <span>{{ item }}</span>
+          <span>{{ displayLabel(allowedUseLabels, item) }}</span>
         </label>
       </div>
-      <p v-if="!(modelValue.allowed_uses || []).length" class="field-error">至少选择一个允许用途。</p>
+      <p v-if="!(modelValue.allowed_uses || []).length" class="field-error">至少选择一种使用方式。</p>
     </fieldset>
 
     <fieldset>
-      <legend>五维治理评分</legend>
+      <legend>资料可信度评分</legend>
+      <p class="fieldset-help">每项 0–5 分，用于决定资料的可信等级和展示顺序。</p>
       <div class="score-grid">
         <label v-for="item in dimensions" :key="item[0]">{{ item[1] }}
           <input class="input" type="number" min="0" max="5" v-model.number="modelValue.screening[item[0]]" :disabled="disabled" />
@@ -136,7 +151,7 @@ function toggleUse(value: string, checked: boolean) {
     </fieldset>
 
     <fieldset>
-      <legend>授权与访问说明</legend>
+      <legend>版权与获取说明</legend>
       <div class="form-grid">
         <label>版权说明<textarea class="input prose-input" v-model="modelValue.copyright_note" :disabled="disabled"></textarea></label>
         <label>访问说明<textarea class="input prose-input" v-model="modelValue.access_note" :disabled="disabled"></textarea></label>

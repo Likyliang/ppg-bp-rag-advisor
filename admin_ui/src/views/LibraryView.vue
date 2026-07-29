@@ -7,6 +7,14 @@ import PageHeader from "../components/PageHeader.vue";
 import SourceForm from "../components/SourceForm.vue";
 import StatusBadge from "../components/StatusBadge.vue";
 import { usePolling } from "../composables/usePolling";
+import {
+  allowedUseLabels,
+  displayLabel,
+  displayList,
+  evidenceClassLabels,
+  regionLabels,
+  topicLabels,
+} from "../uiLabels";
 
 type WorkspaceView = "sources" | "drafts" | "import" | "trash";
 
@@ -96,6 +104,10 @@ function cleanSource(source: any) {
 function showMessage(value: string) {
   message.value = value;
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function formatDate(value?: string) {
+  return value ? new Date(value).toLocaleString("zh-CN", { hour12: false }) : "—";
 }
 
 async function load() {
@@ -236,10 +248,10 @@ function startDraft() {
 
 async function createDraft() {
   await runAction("draft-create", async () => {
-    const row = await api<any>("/api/v1/admin/library/drafts", { method: "POST", body: jsonBody({ source: cleanSource(creatingDraft.value) }) });
+    await api<any>("/api/v1/admin/library/drafts", { method: "POST", body: jsonBody({ source: cleanSource(creatingDraft.value) }) });
     creatingDraft.value = null;
     view.value = "drafts";
-    showMessage(`治理草稿 ${row.id} 已创建。`);
+    showMessage("资料草稿已保存，可以继续检查和完善。");
     await refresh(true);
   });
 }
@@ -266,10 +278,10 @@ async function validateDraft(id: string) {
 }
 
 async function publishDraft(id: string) {
-  if (!confirm("发布后将写入可审计事实目录并排队重新筛选，确定继续？")) return;
+  if (!confirm("发布后这份资料会进入正式资料库，并自动更新相关内容。确定继续？")) return;
   await runAction(`publish:${id}`, async () => {
-    const result = await api<any>(`/api/v1/admin/library/drafts/${id}/publish`, { method: "POST" });
-    showMessage(`草稿已发布；重新筛选任务 ${result.job?.id || "已创建"}。`);
+    await api<any>(`/api/v1/admin/library/drafts/${id}/publish`, { method: "POST" });
+    showMessage("资料已发布，相关内容更新已自动安排。");
     await refresh(true);
   });
 }
@@ -285,7 +297,7 @@ async function attachFulltext() {
     const result = await api<any>(`/api/v1/library/sources/${encodeURIComponent(uploadFor.value.source_id)}/fulltext?${params}`, {
       method: "POST", headers: { "content-type": "application/pdf" }, body: uploadFile.value,
     });
-    showMessage(result.job ? `PDF 已治理入库；全文索引任务 ${result.job.id} 已排队。` : "PDF 已治理入库。");
+    showMessage(result.job ? "全文已安全保存，检索内容更新已自动安排。" : "全文已安全保存。");
     uploadFor.value = null;
     uploadFile.value = null;
     uploadAttested.value = false;
@@ -297,7 +309,7 @@ async function detachFulltext(source: any) {
   if (!confirm(`删除 ${source.source_id} 的本地 PDF，并重建全文索引？`)) return;
   await runAction(`detach:${source.source_id}`, async () => {
     const result = await api<any>(`/api/v1/library/sources/${encodeURIComponent(source.source_id)}/fulltext`, { method: "DELETE" });
-    showMessage(result.job ? `全文已删除；重建任务 ${result.job.id} 已排队。` : "全文已删除。");
+    showMessage(result.job ? "全文已移除，检索内容更新已自动安排。" : "全文已移除。");
     await refresh(true);
   });
 }
@@ -306,52 +318,56 @@ const { loading, refreshing, error, lastUpdated, refresh } = usePolling(load, { 
 </script>
 
 <template>
-  <PageHeader title="文献工作台" description="识别结果先进入草稿，校验和审阅通过后才写入事实目录。" :last-updated="lastUpdated" :refreshing="refreshing" refreshable @refresh="refresh(true)" />
-  <FeedbackBanner kind="warning">允许用途、授权、访问说明和五维评分必须逐项可见、可改、可审计。</FeedbackBanner>
+  <PageHeader title="资料管理" description="集中管理资料、审核草稿和本地全文；只有审核通过的内容才会用于回答。" :last-updated="lastUpdated" :refreshing="refreshing" refreshable @refresh="refresh(true)" />
+  <FeedbackBanner kind="info">每份资料的使用范围、可信评分和版权状态都需要明确，技术上可读取不等于已经获得使用授权。</FeedbackBanner>
   <FeedbackBanner v-if="error" kind="error">{{ error }}</FeedbackBanner>
   <FeedbackBanner v-if="message" kind="success" dismissible @dismiss="message=''">{{ message }}</FeedbackBanner>
 
   <nav class="workspace-tabs">
-    <button :class="{ active: view === 'sources' }" @click="view='sources'">在库文献 <span>{{ total }}</span></button>
-    <button :class="{ active: view === 'drafts' }" @click="view='drafts'">治理草稿 <span>{{ activeDrafts }}</span></button>
-    <button :class="{ active: view === 'import' }" @click="view='import'">导入与查重</button>
+    <button :class="{ active: view === 'sources' }" @click="view='sources'">正式资料 <span>{{ total }}</span></button>
+    <button :class="{ active: view === 'drafts' }" @click="view='drafts'">待审核 <span>{{ activeDrafts }}</span></button>
+    <button :class="{ active: view === 'import' }" @click="view='import'">批量录入</button>
     <button :class="{ active: view === 'trash' }" @click="view='trash'">回收站 <span>{{ trash.length }}</span></button>
   </nav>
 
   <template v-if="view === 'sources'">
     <section class="card filter-bar">
-      <label class="filter-search">搜索<input class="input" v-model="query" @keyup.enter="page=0;refresh()" placeholder="ID、标题、机构或期刊" /></label>
-      <label>Tier<select class="input" v-model="tier"><option value="">全部</option><option>A</option><option>B</option><option>C</option></select></label>
-      <label>证据类别<select class="input" v-model="evidenceClass"><option value="">全部</option><option v-for="item in taxonomy.evidence_classes" :key="item">{{ item }}</option></select></label>
-      <label>启用状态<select class="input" v-model="includeFilter"><option value="">全部</option><option value="true">启用</option><option value="false">禁用</option></select></label>
-      <button class="btn primary filter-submit" @click="page=0;refresh()">查询</button>
+      <label class="filter-search">搜索资料<input class="input" v-model="query" @keyup.enter="page=0;refresh()" placeholder="输入标题、机构、期刊或资料编号" /></label>
+      <label>可信等级<select class="input" v-model="tier"><option value="">全部</option><option value="A">A · 高可信</option><option value="B">B · 可参考</option><option value="C">C · 研究背景</option></select></label>
+      <label>资料类型<select class="input" v-model="evidenceClass"><option value="">全部</option><option v-for="item in taxonomy.evidence_classes" :key="item" :value="item">{{ displayLabel(evidenceClassLabels, item) }}</option></select></label>
+      <label>使用状态<select class="input" v-model="includeFilter"><option value="">全部</option><option value="true">正在使用</option><option value="false">已停用</option></select></label>
+      <button class="btn primary filter-submit" @click="page=0;refresh()">筛选</button>
     </section>
     <section class="card table-card">
       <div v-if="loading" class="loading-panel">正在加载文献目录…</div>
       <div v-else-if="sources.length" class="table-scroll">
         <table>
-          <thead><tr><th>等级</th><th>ID / 标题</th><th>机构 / 年份</th><th>主题 / 用途</th><th>全文</th><th>状态</th><th>操作</th></tr></thead>
+          <thead><tr><th>可信度</th><th>资料</th><th>来源</th><th>主题与用途</th><th>全文情况</th><th>使用状态</th><th>操作</th></tr></thead>
           <tbody><tr v-for="source in sources" :key="source.source_id">
             <td><span class="tier-badge" :class="`tier-${String(source.tier).toLowerCase()}`">{{ source.tier }}</span><small>{{ source.source_quality_score }}/25</small></td>
-            <td><code>{{ source.source_id }}</code><strong class="table-title">{{ source.title }}</strong></td>
-            <td>{{ source.organization }}<small>{{ source.year }} · {{ source.region }}</small></td>
-            <td>{{ source.topic }}<small>{{ (source.allowed_uses || []).join("、") || "未设置用途" }}</small></td>
+            <td><strong class="table-title">{{ source.title }}</strong><small class="source-id-muted">资料编号：{{ source.source_id }}</small></td>
+            <td>{{ source.organization }}<small>{{ source.year }} · {{ displayLabel(regionLabels, source.region) }}</small></td>
+            <td><strong>{{ displayLabel(topicLabels, source.topic) }}</strong><small>{{ displayList(allowedUseLabels, source.allowed_uses, "尚未确认用途") }}</small></td>
             <td>
-              <StatusBadge v-if="fulltextById[source.source_id]?.indexed" status="current" :label="`已索引 ${fulltextById[source.source_id].chunk_count}`" />
-              <StatusBadge v-else-if="fulltextById[source.source_id]?.has_pdf && fulltextById[source.source_id]?.index_eligible" status="building" label="待索引" />
-              <StatusBadge v-else-if="fulltextById[source.source_id]?.has_pdf" status="disabled" :label="fulltextById[source.source_id]?.ineligible_reason === 'fulltext_allowed_uses_empty' ? '用途不匹配' : '治理不完整'" />
+              <StatusBadge v-if="fulltextById[source.source_id]?.indexed" status="current" label="可检索" />
+              <StatusBadge v-else-if="fulltextById[source.source_id]?.has_pdf && fulltextById[source.source_id]?.index_eligible" status="building" label="等待更新" />
+              <StatusBadge v-else-if="fulltextById[source.source_id]?.has_pdf" status="disabled" :label="fulltextById[source.source_id]?.ineligible_reason === 'fulltext_allowed_uses_empty' ? '使用范围不匹配' : '信息待完善'" />
               <StatusBadge v-else status="missing" label="无全文" />
-              <small v-if="fulltextById[source.source_id]?.has_pdf && !fulltextById[source.source_id]?.license_attested" class="field-error">授权待复核</small>
+              <small v-if="fulltextById[source.source_id]?.indexed">已整理 {{ fulltextById[source.source_id].chunk_count }} 个内容片段</small>
+              <small v-if="fulltextById[source.source_id]?.has_pdf && !fulltextById[source.source_id]?.license_attested" class="field-error">授权需要人工确认</small>
             </td>
             <td><StatusBadge :status="source.include ? 'active' : 'disabled'" /></td>
-            <td><div class="row-actions">
-              <button class="btn" @click="openEdit(source)">{{ canCurate ? "详情 / 编辑" : "查看详情" }}</button>
-              <template v-if="canCurate">
-                <button class="btn" :disabled="!!acting" @click="toggle(source)">{{ source.include ? "禁用" : "启用" }}</button>
-                <button class="btn" @click="uploadFor=source">上传全文</button>
-                <button v-if="fulltextById[source.source_id]?.has_pdf" class="btn danger" :disabled="!!acting" @click="detachFulltext(source)">移除全文</button>
-                <button class="btn danger" @click="requestReason('trash', source)">回收</button>
-              </template>
+            <td><div class="row-actions compact-actions">
+              <button class="btn primary-soft" @click="openEdit(source)">{{ canCurate ? "查看与编辑" : "查看" }}</button>
+              <details v-if="canCurate" class="row-menu">
+                <summary class="btn">更多</summary>
+                <div class="row-menu-panel">
+                  <button class="btn" :disabled="!!acting" @click="toggle(source)">{{ source.include ? "停止使用" : "恢复使用" }}</button>
+                  <button class="btn" @click="uploadFor=source">管理全文</button>
+                  <button v-if="fulltextById[source.source_id]?.has_pdf" class="btn danger" :disabled="!!acting" @click="detachFulltext(source)">移除全文</button>
+                  <button class="btn danger" @click="requestReason('trash', source)">移入回收站</button>
+                </div>
+              </details>
             </div></td>
           </tr></tbody>
         </table>
@@ -370,47 +386,47 @@ const { loading, refreshing, error, lastUpdated, refresh } = usePolling(load, { 
     <section class="card filter-bar">
       <label>状态<select class="input" v-model="draftStatus"><option value="">全部状态</option><option value="draft">草稿</option><option value="validated">已校验</option><option value="invalid">未通过</option><option value="published">已发布</option><option value="rejected">已驳回</option></select></label>
       <span class="muted filter-summary">{{ filteredDrafts.length }} 条</span>
-      <button v-if="canCurate" class="btn primary" @click="startDraft">新建治理草稿</button>
+      <button v-if="canCurate" class="btn primary" @click="startDraft">新建资料草稿</button>
     </section>
     <section class="card table-card">
       <div v-if="filteredDrafts.length" class="table-scroll"><table>
-        <thead><tr><th>来源</th><th>状态</th><th>校验 / 复核</th><th>更新时间</th><th>操作</th></tr></thead>
+        <thead><tr><th>资料</th><th>状态</th><th>检查结果</th><th>更新时间</th><th>操作</th></tr></thead>
         <tbody><tr v-for="row in filteredDrafts" :key="row.id">
-          <td><code>{{ row.source.source_id || "未命名" }}</code><strong class="table-title">{{ row.source.title || "无标题" }}</strong><small>{{ (row.source.allowed_uses || []).join("、") || "尚未确认用途" }}</small></td>
+          <td><strong class="table-title">{{ row.source.title || "尚未填写标题" }}</strong><small>{{ displayList(allowedUseLabels, row.source.allowed_uses, "尚未确认用途") }}</small><small class="source-id-muted">资料编号：{{ row.source.source_id || "未填写" }}</small></td>
           <td><StatusBadge :status="row.status" /></td>
-          <td><span v-if="row.validation?.errors?.length" class="field-error">{{ row.validation.errors.join("；") }}</span><span v-else>{{ row.validation?.passed ? "自动校验通过" : "尚未校验" }}</span><small>{{ row.review_note || "无复核备注" }}</small></td>
-          <td>{{ row.updated_at }}<small>创建：{{ row.created_at }}</small></td>
+          <td><span v-if="row.validation?.errors?.length" class="field-error">{{ row.validation.errors.join("；") }}</span><span v-else>{{ row.validation?.passed ? "内容检查通过" : "尚未检查" }}</span><small>{{ row.review_note || "暂无审核备注" }}</small></td>
+          <td>{{ formatDate(row.updated_at) }}<small>创建：{{ formatDate(row.created_at) }}</small></td>
           <td><div class="row-actions">
             <button class="btn" @click="openDraft(row)">{{ canCurate && !['published','rejected'].includes(row.status) ? "查看 / 编辑" : "查看" }}</button>
-            <button class="btn" v-if="!['published','rejected'].includes(row.status) && user.role !== 'viewer'" :disabled="!!acting" @click="validateDraft(row.id)">校验</button>
+            <button class="btn" v-if="!['published','rejected'].includes(row.status) && user.role !== 'viewer'" :disabled="!!acting" @click="validateDraft(row.id)">检查内容</button>
             <button class="btn primary" v-if="row.status === 'validated' && canReview" :disabled="!!acting" @click="publishDraft(row.id)">发布</button>
             <button class="btn danger" v-if="!['published','rejected'].includes(row.status) && canReview" @click="requestReason('reject', row)">驳回</button>
           </div></td>
         </tr></tbody>
       </table></div>
-      <EmptyState v-else title="没有匹配的治理草稿" detail="策展人员可新建或从批量识别结果保存草稿。" />
+      <EmptyState v-else title="没有匹配的资料草稿" detail="资料编辑可以新建，或从批量识别结果保存草稿。" />
     </section>
   </template>
 
   <template v-else-if="view === 'import'">
     <div class="grid two">
       <section class="card">
-        <div class="section-heading"><div><h2>批量识别</h2><p>每行一个 DOI、公开 URL 或标题；识别结果不会直接发布。</p></div></div>
+        <div class="section-heading"><div><h2>批量录入资料</h2><p>每行填写一个 DOI、公开网址或标题；系统会先整理成待确认草稿。</p></div></div>
         <textarea class="input prose-input import-input" v-model="identifyInput" placeholder="10.xxxx/xxxxx&#10;https://…&#10;论文标题"></textarea>
         <button class="btn primary" :disabled="!identifyInput.trim() || !!acting" @click="identifyBatch">{{ acting === "identify" ? "识别中…" : "开始识别" }}</button>
       </section>
       <section class="card">
-        <div class="section-heading"><div><h2>在库查重</h2><p>按 DOI、PMID、URL 和规范化标题生成强/弱匹配簇，最终由人工判断。</p></div></div>
-        <button class="btn" :disabled="!!acting" @click="scanDuplicates">{{ acting === "duplicates" ? "扫描中…" : "扫描重复项" }}</button>
+        <div class="section-heading"><div><h2>检查重复资料</h2><p>根据出版编号、网址和标题寻找可能重复的资料，最终仍由人工确认。</p></div></div>
+        <button class="btn" :disabled="!!acting" @click="scanDuplicates">{{ acting === "duplicates" ? "正在检查…" : "开始检查" }}</button>
         <div v-if="duplicates.length" class="duplicate-list">
           <article v-for="(cluster, index) in duplicates" :key="index"><StatusBadge :status="cluster.strong ? 'failed' : 'stale'" :label="cluster.strong ? '强匹配' : '弱匹配'" /><strong>{{ cluster.reasons.join("、") }}</strong><p>{{ cluster.members.map((item:any) => item.source_id).join(" / ") }}</p></article>
         </div>
       </section>
     </div>
     <section v-if="identified.length" class="card section-gap">
-      <div class="section-heading"><div><h2>逐项确认识别结果</h2><p>共 {{ identified.length }} 条；每条的允许用途和评分都必须展开检查。</p></div><button class="btn primary" :disabled="!!acting" @click="saveIdentifiedDrafts">{{ acting === "identified-save" ? "保存中…" : "全部保存为草稿" }}</button></div>
+      <div class="section-heading"><div><h2>确认识别结果</h2><p>共 {{ identified.length }} 条；请逐条检查用途、可信评分和访问说明。</p></div><button class="btn primary" :disabled="!!acting" @click="saveIdentifiedDrafts">{{ acting === "identified-save" ? "保存中…" : "全部保存为待审核" }}</button></div>
       <details v-for="(source, index) in identified" :key="index" class="identified-card" :open="index === 0">
-        <summary><span>结果 {{ index + 1 }}</span><strong>{{ source.title || source.source_id || "待补充标题" }}</strong><span>{{ (source.allowed_uses || []).length }} 个允许用途</span></summary>
+        <summary><span>第 {{ index + 1 }} 条</span><strong>{{ source.title || source.source_id || "待补充标题" }}</strong><span>已选 {{ (source.allowed_uses || []).length }} 种用途</span></summary>
         <SourceForm :model-value="source" :taxonomy="taxonomy" />
         <button class="btn danger" @click="identified.splice(index, 1)">移除此结果</button>
       </details>
@@ -420,38 +436,38 @@ const { loading, refreshing, error, lastUpdated, refresh } = usePolling(load, { 
   <template v-else>
     <section class="card table-card">
       <div v-if="trash.length" class="table-scroll"><table>
-        <thead><tr><th>ID / 标题</th><th>删除原因</th><th>删除时间</th><th>操作</th></tr></thead>
-        <tbody><tr v-for="row in trash" :key="row.source_id"><td><code>{{ row.source_id }}</code><strong class="table-title">{{ row.title }}</strong></td><td>{{ row._trash_reason || "—" }}</td><td>{{ row._trashed_at || "—" }}</td><td><div class="row-actions"><button class="btn" v-if="canCurate" :disabled="!!acting" @click="restore(row)">恢复</button><button class="btn danger" v-if="user.role === 'admin'" :disabled="!!acting" @click="purge(row)">永久删除</button></div></td></tr></tbody>
+        <thead><tr><th>资料</th><th>移除原因</th><th>移除时间</th><th>操作</th></tr></thead>
+        <tbody><tr v-for="row in trash" :key="row.source_id"><td><strong class="table-title">{{ row.title }}</strong><small class="source-id-muted">{{ row.source_id }}</small></td><td>{{ row._trash_reason || "—" }}</td><td>{{ row._trashed_at || "—" }}</td><td><div class="row-actions"><button class="btn" v-if="canCurate" :disabled="!!acting" @click="restore(row)">恢复</button><button class="btn danger" v-if="user.role === 'admin'" :disabled="!!acting" @click="purge(row)">永久删除</button></div></td></tr></tbody>
       </table></div>
       <EmptyState v-else title="回收站为空" detail="删除的目录来源会先进入这里。" />
     </section>
   </template>
 
   <div v-if="editing" class="modal-back" @click.self="editing=null"><div class="modal modal-wide">
-    <div class="modal-head"><div><small>{{ editing.source_id }}</small><h2>文献详情与编辑</h2></div><button class="icon-btn" @click="editing=null">×</button></div>
+    <div class="modal-head"><div><small>{{ editing.source_id }}</small><h2>资料详情</h2></div><button class="icon-btn" @click="editing=null">×</button></div>
     <SourceForm :model-value="editing" :taxonomy="taxonomy" :disabled="!canCurate" source-id-disabled />
     <div class="modal-actions"><button class="btn" @click="editing=null">关闭</button><button v-if="canCurate" class="btn primary" :disabled="!!acting" @click="saveEdit">{{ acting.startsWith("edit:") ? "保存中…" : "保存修改" }}</button></div>
   </div></div>
 
   <div v-if="creatingDraft" class="modal-back" @click.self="creatingDraft=null"><div class="modal modal-wide">
-    <div class="modal-head"><div><h2>新建治理草稿</h2><p>保存后先校验，再由审阅角色发布。</p></div><button class="icon-btn" @click="creatingDraft=null">×</button></div>
+    <div class="modal-head"><div><h2>新建资料草稿</h2><p>保存后先检查内容，再由内容审核人员发布。</p></div><button class="icon-btn" @click="creatingDraft=null">×</button></div>
     <SourceForm :model-value="creatingDraft" :taxonomy="taxonomy" />
     <div class="modal-actions"><button class="btn" @click="creatingDraft=null">取消</button><button class="btn primary" :disabled="!!acting" @click="createDraft">{{ acting === "draft-create" ? "保存中…" : "保存草稿" }}</button></div>
   </div></div>
 
   <div v-if="editingDraft" class="modal-back" @click.self="editingDraft=null"><div class="modal modal-wide">
-    <div class="modal-head"><div><small>草稿 {{ editingDraft.id }}</small><h2>治理草稿详情</h2></div><button class="icon-btn" @click="editingDraft=null">×</button></div>
+    <div class="modal-head"><div><small>待审核资料</small><h2>草稿详情</h2></div><button class="icon-btn" @click="editingDraft=null">×</button></div>
     <SourceForm :model-value="editingDraft.source" :taxonomy="taxonomy" :disabled="!canCurate || ['published','rejected'].includes(editingDraft.status)" />
     <div class="modal-actions"><button class="btn" @click="editingDraft=null">关闭</button><button v-if="canCurate && !['published','rejected'].includes(editingDraft.status)" class="btn primary" :disabled="!!acting" @click="saveDraft">保存草稿</button></div>
   </div></div>
 
   <div v-if="uploadFor" class="modal-back" @click.self="uploadFor=null"><div class="modal modal-small">
-    <div class="modal-head"><div><small>{{ uploadFor.source_id }}</small><h2>治理全文</h2></div><button class="icon-btn" @click="uploadFor=null">×</button></div>
-    <FeedbackBanner kind="warning">原 PDF 仅保存到 Git 忽略的本地治理目录；不保存原文件名、Cookie 或访问凭证。</FeedbackBanner>
-    <label>访问模式<select class="input" v-model="uploadMode"><option v-for="mode in fulltext.access_modes" :key="mode">{{ mode }}</option></select></label>
+    <div class="modal-head"><div><small>{{ uploadFor.title }}</small><h2>管理全文</h2></div><button class="icon-btn" @click="uploadFor=null">×</button></div>
+    <FeedbackBanner kind="warning">PDF 只保存在本机受控目录，不保存上传文件名、登录信息或访问凭证。</FeedbackBanner>
+    <label>获取方式<select class="input" v-model="uploadMode"><option v-for="mode in fulltext.access_modes" :key="mode" :value="mode">{{ mode === "public_pdf" ? "公开 PDF" : mode === "author_copy" ? "作者提供副本" : mode === "institutional_access" ? "机构授权访问" : mode }}</option></select></label>
     <label>PDF（最大 50 MB）<input class="input" type="file" accept="application/pdf,.pdf" @change="chooseFile" /></label>
     <label class="attestation"><input type="checkbox" v-model="uploadAttested" /><span>我确认该副本获准用于本地治理与检索，且不含机构会话或访问凭证。</span></label>
-    <div class="modal-actions"><button class="btn" @click="uploadFor=null">取消</button><button class="btn primary" :disabled="!uploadFile || !uploadAttested || !!acting" @click="attachFulltext">上传并排队索引</button></div>
+    <div class="modal-actions"><button class="btn" @click="uploadFor=null">取消</button><button class="btn primary" :disabled="!uploadFile || !uploadAttested || !!acting" @click="attachFulltext">保存全文并更新内容</button></div>
   </div></div>
 
   <div v-if="reasonAction" class="modal-back" @click.self="reasonAction=null"><div class="modal modal-small">

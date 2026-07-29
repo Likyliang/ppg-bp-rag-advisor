@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, provide, ref } from "vue";
+import { computed, onMounted, onUnmounted, provide, ref } from "vue";
 import { RouterLink, RouterView, useRoute } from "vue-router";
 import { api, jsonBody } from "./api";
+import { roleLabels } from "./uiLabels";
 
 type User = { id: string; username: string; role: string; auth_disabled?: boolean };
 
@@ -14,10 +15,17 @@ const username = ref("");
 const password = ref("");
 
 const modules = [
-  ["/", "概览", "览"], ["/library", "文献工作台", "文"], ["/knowledge", "知识库与索引", "库"],
-  ["/retrieval", "检索调试台", "检"], ["/config", "配置中心", "配"], ["/integrations", "外部 API 集成", "接"],
-  ["/quality", "质量评测", "质"], ["/jobs", "任务中心", "任"], ["/access", "访问与审计", "审"],
+  { path: "/", label: "工作概览", icon: "⌂", hint: "待办与整体状态" },
+  { path: "/library", label: "资料管理", icon: "文", hint: "资料、全文与审核" },
+  { path: "/knowledge", label: "内容更新", icon: "↻", hint: "让最新资料进入检索" },
+  { path: "/retrieval", label: "回答预览", icon: "⌕", hint: "看看系统会引用什么" },
+  { path: "/config", label: "规则设置", icon: "规", hint: "医学规则与表达边界" },
+  { path: "/integrations", label: "服务设置", icon: "联", hint: "模型与文献服务" },
+  { path: "/quality", label: "质量检查", icon: "✓", hint: "检索、报告与安全" },
+  { path: "/jobs", label: "处理记录", icon: "时", hint: "后台更新进度" },
+  { path: "/access", label: "成员与安全", icon: "人", hint: "账号、接入与日志" },
 ];
+const currentModule = computed(() => modules.find((item) => item.path === route.path) || modules[0]);
 
 provide("adminUser", user);
 
@@ -61,30 +69,43 @@ onUnmounted(() => window.removeEventListener("admin:unauthorized", expireSession
   <div v-if="loading" class="login-page"><div class="login-card">正在加载后台…</div></div>
   <div v-else-if="!user" class="login-page">
     <div class="login-card">
-      <div class="login-mark">RAG</div>
-      <h1>高血压 RAG 治理后台</h1>
-      <div class="muted">仅供内部知识治理与安全运维，不是医疗诊断系统。</div>
+      <div class="login-mark">循证</div>
+      <h1>高血压健康解释后台</h1>
+      <div class="muted">管理资料、规则和质量检查，仅供内部团队使用。</div>
       <form @submit.prevent="login">
-        <label>用户名<input class="input" v-model.trim="username" autocomplete="username" required autofocus /></label>
+        <label>账号<input class="input" v-model.trim="username" autocomplete="username" required autofocus /></label>
         <label>密码<input class="input" type="password" v-model="password" autocomplete="current-password" required /></label>
         <div v-if="loginError" class="error">{{ loginError }}</div>
-        <button class="btn primary" type="submit" :disabled="loginBusy">{{ loginBusy ? "正在登录…" : "登录" }}</button>
+        <button class="btn primary login-submit" type="submit" :disabled="loginBusy">{{ loginBusy ? "正在进入…" : "进入后台" }}</button>
       </form>
+      <p class="login-boundary">内容仅用于健康解释，不用于诊断、调药或验证 PPG 血压估算准确性。</p>
     </div>
   </div>
   <div v-else class="layout">
     <aside class="sidebar">
-      <div class="brand">RAG 治理后台<small>保守解释 · 证据可追溯</small></div>
+      <div class="brand">
+        <span class="brand-mark">循</span>
+        <span>循证内容中心<small>高血压健康解释</small></span>
+      </div>
       <nav class="nav">
-        <RouterLink v-for="item in modules" :key="item[0]" :to="item[0]" :class="{ 'router-link-active': route.path === item[0] }">
-          <span class="nav-icon">{{ item[2] }}</span><span>{{ item[1] }}</span>
+        <RouterLink v-for="item in modules" :key="item.path" :to="item.path" :class="{ 'router-link-active': route.path === item.path }">
+          <span class="nav-icon">{{ item.icon }}</span>
+          <span class="nav-copy"><strong>{{ item.label }}</strong><small>{{ item.hint }}</small></span>
         </RouterLink>
       </nav>
+      <div class="sidebar-boundary">
+        <strong>使用边界</strong>
+        <span>不用于诊断、调药或替代袖带血压测量。</span>
+      </div>
     </aside>
     <main class="main">
       <header class="topbar">
-        <div class="topbar-note"><span class="system-dot"></span>内部协作版 · 不验证 PPG 血压估算准确性</div>
-        <div class="user"><span class="user-chip">{{ user.username }} · {{ user.role }}</span><button class="btn ghost" @click="logout">退出</button></div>
+        <div class="topbar-note"><span class="system-dot"></span><span><strong>{{ currentModule.label }}</strong><small>{{ currentModule.hint }}</small></span></div>
+        <div class="user">
+          <span class="user-avatar">{{ user.username.slice(0, 1).toUpperCase() }}</span>
+          <span class="user-name"><strong>{{ user.username }}</strong><small>{{ roleLabels[user.role] || user.role }}</small></span>
+          <button class="btn ghost" @click="logout">退出</button>
+        </div>
       </header>
       <RouterView />
     </main>
