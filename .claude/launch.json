@@ -4,8 +4,9 @@
     {
       "name": "rag-api",
       "runtimeExecutable": ".venv/bin/uvicorn",
-      "runtimeArgs": ["app.main:app", "--port", "8011"],
-      "port": 8011
+      "runtimeArgs": ["app.main:app", "--host", "127.0.0.1", "--port", "8020"],
+      "port": 8020,
+      "env": { "ADMIN_AUTH_DISABLED": "0", "APP_ENV": "development" }
     }
   ]
 }
