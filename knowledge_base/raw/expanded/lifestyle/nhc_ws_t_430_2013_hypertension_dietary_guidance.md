@@ -43,12 +43,12 @@ WS/T 430-2013 是国家卫健委发布的高血压患者膳食指导标准，可
 
 - candidate_id: `nhc_ws_t_430_2013_hypertension_dietary_guidance_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: downloadable
+- fulltext_status: local_pdf_available
 - source_url: https://www.nhc.gov.cn/wjw/yingyang/201308/cce5017663e6457d98db7be683c36b4c.shtml
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-27
-- local_pdf: not saved
+- local_pdf: `nhc_ws_t_430_2013_hypertension_dietary_guidance.pdf`
 
 #### 摘要入库要点
 

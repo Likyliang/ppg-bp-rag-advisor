@@ -41,12 +41,12 @@ AHA Simple Steps 资料把高血压相关生活方式拆成体重、饮食、活
 
 - candidate_id: `aha_steps_to_improve_high_bp_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://www.heart.org/-/media/Files/Health-Topics/High-Blood-Pressure/Steps-To-Improve-High-BP.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: not saved
+- local_pdf: `aha_steps_to_improve_high_bp.pdf`
 
 #### 摘要入库要点
 

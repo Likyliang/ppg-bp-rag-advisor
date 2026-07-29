@@ -45,12 +45,12 @@ safety_level: standard
 
 - candidate_id: `chinese_hypertension_2024_fulltext`
 - access_mode: `institution_or_browser`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://www.sciopen.com/article/10.26599/1671-5411.2025.01.008
 - doi: 10.26599/1671-5411.2025.01.008
 - pmid: 40151633
 - access_recorded: 2026-05-10
-- local_pdf: not saved
+- local_pdf: `chinese_hypertension_guideline_2024_catalog.pdf`
 
 #### 摘要入库要点
 

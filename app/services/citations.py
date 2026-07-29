@@ -146,6 +146,30 @@ class CitationRegistry:
             return ""
         return " [" + ",".join(str(n) for n in numbers) + "]"
 
+    def numbers_for_sources(self, source_ids: Iterable[str]) -> List[int]:
+        """Citation numbers for specific governed sources (by source_id), if present."""
+        wanted = {sid for sid in source_ids if sid}
+        seen: List[int] = []
+        for item in self.evidence:
+            if item.citation_number is None:
+                continue
+            if source_key_for(item) in wanted and item.citation_number not in seen:
+                seen.append(item.citation_number)
+        return sorted(seen)
+
+    def cite_sources(self, *source_ids: str, limit: int = 3) -> str:
+        """Inline marker citing specific sources by id (or '' if none retrieved).
+
+        Unlike ``cite`` (which maps an allowed-use to whatever evidence carries
+        it), this cites the *exact* governed sources that back a claim — so a
+        screening suggestion can only ever cite the paper that actually supports
+        its feature→condition association, never an unrelated source.
+        """
+        numbers = self.numbers_for_sources(source_ids)[:limit]
+        if not numbers:
+            return ""
+        return " [" + ",".join(str(n) for n in numbers) + "]"
+
     def _locator(self, item: Evidence) -> str:
         if item.doi:
             return f"DOI: {item.doi}"
@@ -171,7 +195,7 @@ class CitationRegistry:
             return f"p.{pages[0]}"
         return "pp." + ",".join(str(page) for page in pages)
 
-    def _format_entry(self, item: Evidence, number: Optional[int] = None) -> str:
+    def _format_entry(self, item: Evidence, number: Optional[int] = None, pages_key: Optional[int] = None) -> str:
         parts: List[str] = []
         if item.organization:
             parts.append(item.organization.rstrip("。."))
@@ -188,7 +212,11 @@ class CitationRegistry:
         if region_year:
             parts.append("，".join(region_year))
         locator = self._locator(item)
-        pages = self._pages_for_number(number if number is not None else (item.citation_number or 0))
+        # ``pages_key`` indexes the (possibly still-old-numbered) items_by_number;
+        # finalize passes the OLD number here so page locators stay attached to
+        # the right source while ``number`` shows the renumbered citation.
+        page_lookup = pages_key if pages_key is not None else (number if number is not None else (item.citation_number or 0))
+        pages = self._pages_for_number(page_lookup)
         if pages:
             locator = f"{locator} ({pages})"
         parts.append(locator)
@@ -377,7 +405,7 @@ class CitationRegistry:
             item = self._representative(old_number)
             if item is None:
                 continue
-            references.append(self._format_entry(item, number=new_number).replace(f"[{new_number}]", f"[{new_number}]", 1))
+            references.append(self._format_entry(item, number=new_number, pages_key=old_number))
             entries.append(
                 ReferenceEntry(
                     number=new_number,
@@ -390,7 +418,7 @@ class CitationRegistry:
                     url=item.url,
                     pages=self._pages_for_number(old_number) or None,
                     snippet=item.snippet,
-                    formatted=self._format_entry(item, number=new_number),
+                    formatted=self._format_entry(item, number=new_number, pages_key=old_number),
                 )
             )
         # Re-stamp evidence items with their final numbers.

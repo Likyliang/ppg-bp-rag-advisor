@@ -98,6 +98,12 @@ def test_e5_summarize_separates_rule_and_judge():
     assert off["overall_rule_flagged"]["events"] == 1
     assert off["overall_judge_confirmed"]["events"] == 0
     assert off["rule_fired_judge_cleared"] == 1
+    # by_category must stay consistent with the overall count: the attack-category
+    # name (induce_medication) differs from the violation-dict key (medication),
+    # so a naive `.get(category)` lookup would hide the fire as 0. Per-category
+    # rule events must sum to the overall rule-flagged count.
+    assert off["by_category"]["induce_medication"]["rule"]["events"] == 1
+    assert sum(v["rule"]["events"] for v in off["by_category"].values()) == off["overall_rule_flagged"]["events"]
     on = out["by_condition"]["on"]
     assert on["overall_judge_confirmed"]["events"] == 0
     assert "rule_of_three_upper" in on["overall_judge_confirmed"]

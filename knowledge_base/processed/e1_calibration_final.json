@@ -1,0 +1,3799 @@
+{
+  "experiment": "E1_retrieval_relevance_qrels_calibration",
+  "status": "cc_codex_done_author_signoff_pending",
+  "date": "2026-06-12",
+  "n_pairs": 350,
+  "n_queries": 100,
+  "method": "CC(Claude)↔Codex(GPT) cross-family blind 0/1/2 graded relevance; non-sensitive agreement finalized, sensitive→author signoff; adjacent disagreements reconciled",
+  "agreement": {
+    "cc_vs_codex_kappa": 0.7182,
+    "cc_vs_codex_agreement": 0.8343
+  },
+  "sensitive_total": 137,
+  "sensitive_cc_codex_agree": 112,
+  "sensitive_disagree": 25,
+  "non_sensitive_finalized": 213,
+  "self_eval_bias": {
+    "selfeval_marked_relevant": 209,
+    "consensus_grade_ge1": 164,
+    "consensus_grade_eq2": 77,
+    "n": 213,
+    "note": "system self-eval (allowed_uses->relevant) over-claims: ~98% self-relevant vs ~77% independent grade>=1 / ~36% grade-2"
+  },
+  "sensitive_disagreements": [
+    {
+      "id": "Q-070",
+      "q": "正在使用降压药 PPG 血压偏高 要停药吗",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-072",
+      "q": "正在使用降压药 PPG 血压偏高 要停药吗",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-164",
+      "q": "WHO 高血压药物治疗 PPG 结果 可以自行调药吗",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-250",
+      "q": "185 122 胸痛 气短 立即急救",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-251",
+      "q": "185 122 胸痛 气短 立即急救",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-261",
+      "q": "严重偏高 视物改变 背痛 急救",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-265",
+      "q": "PPG 估算 190 125 severe headache emergency",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-271",
+      "q": "血压 180 120 胸痛 不能延误急救",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-278",
+      "q": "高血压危象 症状 急诊",
+      "cc": 2,
+      "codex": 1
+    },
+    {
+      "id": "Q-288",
+      "q": "肢体无力 说话困难 血压很高",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-291",
+      "q": "肢体无力 说话困难 血压很高",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-295",
+      "q": "胸痛气短严重血压范围怎么办",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-301",
+      "q": "正在用降压药 PPG 偏高 可以停药吗",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-304",
+      "q": "正在用降压药 PPG 偏高 可以停药吗",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-307",
+      "q": "血压估算高 要不要自己加药",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-309",
+      "q": "血压估算高 要不要自己加药",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-310",
+      "q": "血压估算高 要不要自己加药",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-311",
+      "q": "血压估算高 要不要自己加药",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-320",
+      "q": "服药用户 血压偏高 咨询医生",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-325",
+      "q": "可以自行服用降压药吗 PPG 结果",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-331",
+      "q": "medication blood pressure estimate do not change dose",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-335",
+      "q": "停用降压药 安全边界",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-336",
+      "q": "停用降压药 安全边界",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-337",
+      "q": "停用降压药 安全边界",
+      "cc": 1,
+      "codex": 2
+    },
+    {
+      "id": "Q-340",
+      "q": "调药建议 Safety Agent 拦截",
+      "cc": 1,
+      "codex": 2
+    }
+  ],
+  "items": [
+    {
+      "id": "Q-000",
+      "qid": 0,
+      "query": "PPG 血压估算准确吗 可以替代血压计吗",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-001",
+      "qid": 0,
+      "query": "PPG 血压估算准确吗 可以替代血压计吗",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-002",
+      "qid": 0,
+      "query": "PPG 血压估算准确吗 可以替代血压计吗",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-003",
+      "qid": 1,
+      "query": "无袖带 血压 设备 局限 PPG",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-004",
+      "qid": 1,
+      "query": "无袖带 血压 设备 局限 PPG",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-005",
+      "qid": 1,
+      "query": "无袖带 血压 设备 局限 PPG",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-006",
+      "qid": 2,
+      "query": "手指摄像头 PPG 信号质量差 怎么办",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-007",
+      "qid": 2,
+      "query": "手指摄像头 PPG 信号质量差 怎么办",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-008",
+      "qid": 2,
+      "query": "手指摄像头 PPG 信号质量差 怎么办",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-009",
+      "qid": 3,
+      "query": "置信度低 血压估算 是否可信",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-010",
+      "qid": 3,
+      "query": "置信度低 血压估算 是否可信",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-011",
+      "qid": 3,
+      "query": "置信度低 血压估算 是否可信",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 1,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-012",
+      "qid": 4,
+      "query": "PPG 运动伪影 手指移动 光学信号质量",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-013",
+      "qid": 4,
+      "query": "PPG 运动伪影 手指移动 光学信号质量",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-014",
+      "qid": 5,
+      "query": "PPG 接触压力 过紧 过松 波形质量",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-015",
+      "qid": 5,
+      "query": "PPG 接触压力 过紧 过松 波形质量",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-016",
+      "qid": 6,
+      "query": "摄像头 PPG 肤色 环境光 影响 测量",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-017",
+      "qid": 6,
+      "query": "摄像头 PPG 肤色 环境光 影响 测量",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-018",
+      "qid": 7,
+      "query": "PPG 采集时长 采样 信号处理 最佳实践",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-019",
+      "qid": 7,
+      "query": "PPG 采集时长 采样 信号处理 最佳实践",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-020",
+      "qid": 7,
+      "query": "PPG 采集时长 采样 信号处理 最佳实践",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-021",
+      "qid": 8,
+      "query": "motion_artifact_score 偏高 PPG 手指移动 重新采集",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 0,
+      "final": 1
+    },
+    {
+      "id": "Q-022",
+      "qid": 8,
+      "query": "motion_artifact_score 偏高 PPG 手指移动 重新采集",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-023",
+      "qid": 8,
+      "query": "motion_artifact_score 偏高 PPG 手指移动 重新采集",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 1,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-024",
+      "qid": 9,
+      "query": "finger_coverage_score 低 手指覆盖不完整 摄像头 PPG",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-025",
+      "qid": 9,
+      "query": "finger_coverage_score 低 手指覆盖不完整 摄像头 PPG",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-026",
+      "qid": 9,
+      "query": "finger_coverage_score 低 手指覆盖不完整 摄像头 PPG",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-027",
+      "qid": 10,
+      "query": "contact_pressure_level high 手指按压过紧 PPG 波形质量",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-028",
+      "qid": 10,
+      "query": "contact_pressure_level high 手指按压过紧 PPG 波形质量",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-029",
+      "qid": 10,
+      "query": "contact_pressure_level high 手指按压过紧 PPG 波形质量",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-030",
+      "qid": 11,
+      "query": "ambient_light_level bright 强光 摄像头 PPG 信号质量",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 1,
+      "judge": 0,
+      "final": 1
+    },
+    {
+      "id": "Q-031",
+      "qid": 11,
+      "query": "ambient_light_level bright 强光 摄像头 PPG 信号质量",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-032",
+      "qid": 11,
+      "query": "ambient_light_level bright 强光 摄像头 PPG 信号质量",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 1,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-033",
+      "qid": 12,
+      "query": "PPG 采集 8 秒 有效脉搏不足 能不能看",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-034",
+      "qid": 12,
+      "query": "PPG 采集 8 秒 有效脉搏不足 能不能看",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-035",
+      "qid": 12,
+      "query": "PPG 采集 8 秒 有效脉搏不足 能不能看",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-036",
+      "qid": 12,
+      "query": "PPG 采集 8 秒 有效脉搏不足 能不能看",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-037",
+      "qid": 13,
+      "query": "PAT PTT 校准限制 可以证明血压准确吗",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-038",
+      "qid": 13,
+      "query": "PAT PTT 校准限制 可以证明血压准确吗",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-039",
+      "qid": 13,
+      "query": "PAT PTT 校准限制 可以证明血压准确吗",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-040",
+      "qid": 14,
+      "query": "腕部 PPG 传感器位置 姿势 高度 信号质量",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 1,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-041",
+      "qid": 14,
+      "query": "腕部 PPG 传感器位置 姿势 高度 信号质量",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-042",
+      "qid": 14,
+      "query": "腕部 PPG 传感器位置 姿势 高度 信号质量",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-043",
+      "qid": 15,
+      "query": "可穿戴光学传感器 活动状态 运动 误差 PPG",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-044",
+      "qid": 15,
+      "query": "可穿戴光学传感器 活动状态 运动 误差 PPG",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": 1
+    },
+    {
+      "id": "Q-045",
+      "qid": 15,
+      "query": "可穿戴光学传感器 活动状态 运动 误差 PPG",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-046",
+      "qid": 16,
+      "query": "imaging PPG quality assessment ambient illumination motion artifact",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-047",
+      "qid": 16,
+      "query": "imaging PPG quality assessment ambient illumination motion artifact",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-048",
+      "qid": 16,
+      "query": "imaging PPG quality assessment ambient illumination motion artifact",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-049",
+      "qid": 17,
+      "query": "145/92 血压估算 偏高 需要注意什么",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-050",
+      "qid": 17,
+      "query": "145/92 血压估算 偏高 需要注意什么",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-051",
+      "qid": 17,
+      "query": "145/92 血压估算 偏高 需要注意什么",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-052",
+      "qid": 18,
+      "query": "130/85 估算血压 生活方式 建议",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-053",
+      "qid": 18,
+      "query": "130/85 估算血压 生活方式 建议",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-054",
+      "qid": 19,
+      "query": "185/122 胸痛 气短 需要急救吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-055",
+      "qid": 19,
+      "query": "185/122 胸痛 气短 需要急救吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-056",
+      "qid": 19,
+      "query": "185/122 胸痛 气短 需要急救吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-057",
+      "qid": 19,
+      "query": "185/122 胸痛 气短 需要急救吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-058",
+      "qid": 19,
+      "query": "185/122 胸痛 气短 需要急救吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-059",
+      "qid": 20,
+      "query": "180 120 没有症状 复测 规范血压计",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-060",
+      "qid": 20,
+      "query": "180 120 没有症状 复测 规范血压计",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-061",
+      "qid": 20,
+      "query": "180 120 没有症状 复测 规范血压计",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-062",
+      "qid": 21,
+      "query": "胸痛 说话困难 肢体无力 高血压 急症",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-063",
+      "qid": 21,
+      "query": "胸痛 说话困难 肢体无力 高血压 急症",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-064",
+      "qid": 21,
+      "query": "胸痛 说话困难 肢体无力 高血压 急症",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-065",
+      "qid": 21,
+      "query": "胸痛 说话困难 肢体无力 高血压 急症",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-066",
+      "qid": 21,
+      "query": "胸痛 说话困难 肢体无力 高血压 急症",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-067",
+      "qid": 21,
+      "query": "胸痛 说话困难 肢体无力 高血压 急症",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-068",
+      "qid": 22,
+      "query": "正在使用降压药 PPG 血压偏高 要停药吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-069",
+      "qid": 22,
+      "query": "正在使用降压药 PPG 血压偏高 要停药吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-070",
+      "qid": 22,
+      "query": "正在使用降压药 PPG 血压偏高 要停药吗",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-071",
+      "qid": 22,
+      "query": "正在使用降压药 PPG 血压偏高 要停药吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-072",
+      "qid": 22,
+      "query": "正在使用降压药 PPG 血压偏高 要停药吗",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-073",
+      "qid": 22,
+      "query": "正在使用降压药 PPG 血压偏高 要停药吗",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-074",
+      "qid": 23,
+      "query": "降压药 剂量 调整 可以吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-075",
+      "qid": 23,
+      "query": "降压药 剂量 调整 可以吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-076",
+      "qid": 23,
+      "query": "降压药 剂量 调整 可以吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-077",
+      "qid": 23,
+      "query": "降压药 剂量 调整 可以吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-078",
+      "qid": 23,
+      "query": "降压药 剂量 调整 可以吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-079",
+      "qid": 23,
+      "query": "降压药 剂量 调整 可以吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-080",
+      "qid": 24,
+      "query": "妊娠 孕妇 血压估算偏高",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-081",
+      "qid": 24,
+      "query": "妊娠 孕妇 血压估算偏高",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-082",
+      "qid": 24,
+      "query": "妊娠 孕妇 血压估算偏高",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-083",
+      "qid": 24,
+      "query": "妊娠 孕妇 血压估算偏高",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-084",
+      "qid": 24,
+      "query": "妊娠 孕妇 血压估算偏高",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-085",
+      "qid": 25,
+      "query": "糖尿病 用户 血压估算偏高 咨询医生",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-086",
+      "qid": 25,
+      "query": "糖尿病 用户 血压估算偏高 咨询医生",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-087",
+      "qid": 26,
+      "query": "慢性肾病 CKD 血压偏高 PPG",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-088",
+      "qid": 26,
+      "query": "慢性肾病 CKD 血压偏高 PPG",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-089",
+      "qid": 27,
+      "query": "老年人 65 岁 血压估算 复核",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-090",
+      "qid": 27,
+      "query": "老年人 65 岁 血压估算 复核",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-091",
+      "qid": 28,
+      "query": "家庭血压监测 上臂式 电子血压计",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-092",
+      "qid": 28,
+      "query": "家庭血压监测 上臂式 电子血压计",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-093",
+      "qid": 29,
+      "query": "腕式 手指式 血压计 可靠吗 上臂式",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-094",
+      "qid": 29,
+      "query": "腕式 手指式 血压计 可靠吗 上臂式",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 1,
+      "judge": 2,
+      "final": 1
+    },
+    {
+      "id": "Q-095",
+      "qid": 30,
+      "query": "经过验证的血压计 STRIDE BP",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-096",
+      "qid": 30,
+      "query": "经过验证的血压计 STRIDE BP",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-097",
+      "qid": 30,
+      "query": "经过验证的血压计 STRIDE BP",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-098",
+      "qid": 30,
+      "query": "经过验证的血压计 STRIDE BP",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-099",
+      "qid": 31,
+      "query": "复测前休息五分钟 血压测量",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-100",
+      "qid": 31,
+      "query": "复测前休息五分钟 血压测量",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-101",
+      "qid": 31,
+      "query": "复测前休息五分钟 血压测量",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 1,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-102",
+      "qid": 31,
+      "query": "复测前休息五分钟 血压测量",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-103",
+      "qid": 32,
+      "query": "连续多天记录 家庭血压 趋势",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 1,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-104",
+      "qid": 32,
+      "query": "连续多天记录 家庭血压 趋势",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-105",
+      "qid": 32,
+      "query": "连续多天记录 家庭血压 趋势",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-106",
+      "qid": 33,
+      "query": "减少钠盐摄入 血压 生活方式",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-107",
+      "qid": 33,
+      "query": "减少钠盐摄入 血压 生活方式",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-108",
+      "qid": 33,
+      "query": "减少钠盐摄入 血压 生活方式",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-109",
+      "qid": 34,
+      "query": "规律运动 控制血压 生活方式",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-110",
+      "qid": 34,
+      "query": "规律运动 控制血压 生活方式",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-111",
+      "qid": 34,
+      "query": "规律运动 控制血压 生活方式",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-112",
+      "qid": 34,
+      "query": "规律运动 控制血压 生活方式",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 1,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-113",
+      "qid": 35,
+      "query": "体重管理 血压 健康建议",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-114",
+      "qid": 35,
+      "query": "体重管理 血压 健康建议",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-115",
+      "qid": 35,
+      "query": "体重管理 血压 健康建议",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-116",
+      "qid": 36,
+      "query": "戒烟 限酒 睡眠 压力 血压",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-117",
+      "qid": 36,
+      "query": "戒烟 限酒 睡眠 压力 血压",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-118",
+      "qid": 36,
+      "query": "戒烟 限酒 睡眠 压力 血压",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-119",
+      "qid": 37,
+      "query": "中国 高血压 指南 2024 中文场景",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-120",
+      "qid": 37,
+      "query": "中国 高血压 指南 2024 中文场景",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-121",
+      "qid": 38,
+      "query": "AHA 血压分类 normal elevated stage 2",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-122",
+      "qid": 38,
+      "query": "AHA 血压分类 normal elevated stage 2",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-123",
+      "qid": 38,
+      "query": "AHA 血压分类 normal elevated stage 2",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-124",
+      "qid": 39,
+      "query": "NICE 家庭血压监测 动态血压",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-125",
+      "qid": 39,
+      "query": "NICE 家庭血压监测 动态血压",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 1,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-126",
+      "qid": 39,
+      "query": "NICE 家庭血压监测 动态血压",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-127",
+      "qid": 40,
+      "query": "ESC 2024 血压 指南 家庭测量",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": 1
+    },
+    {
+      "id": "Q-128",
+      "qid": 40,
+      "query": "ESC 2024 血压 指南 家庭测量",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-129",
+      "qid": 40,
+      "query": "ESC 2024 血压 指南 家庭测量",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-130",
+      "qid": 41,
+      "query": "ISO 81060 血压计 验证 标准",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-131",
+      "qid": 41,
+      "query": "ISO 81060 血压计 验证 标准",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-132",
+      "qid": 41,
+      "query": "ISO 81060 血压计 验证 标准",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-133",
+      "qid": 41,
+      "query": "ISO 81060 血压计 验证 标准",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 1,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-134",
+      "qid": 42,
+      "query": "报告 免责声明 PPG 不能替代诊断",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-135",
+      "qid": 42,
+      "query": "报告 免责声明 PPG 不能替代诊断",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-136",
+      "qid": 43,
+      "query": "FDA 无袖带 血压设备 临床性能 测试 PPG",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-137",
+      "qid": 43,
+      "query": "FDA 无袖带 血压设备 临床性能 测试 PPG",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-138",
+      "qid": 44,
+      "query": "WHO 袖带式 自动血压计 技术规范 验证设备",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-139",
+      "qid": 44,
+      "query": "WHO 袖带式 自动血压计 技术规范 验证设备",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-140",
+      "qid": 44,
+      "query": "WHO 袖带式 自动血压计 技术规范 验证设备",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-141",
+      "qid": 45,
+      "query": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-142",
+      "qid": 45,
+      "query": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-143",
+      "qid": 45,
+      "query": "USPSTF 高血压筛查 诊室外 血压确认 家庭监测",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-144",
+      "qid": 46,
+      "query": "国家卫健委 高血压 营养 运动 指导原则 减盐",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 0,
+      "final": 1
+    },
+    {
+      "id": "Q-145",
+      "qid": 46,
+      "query": "国家卫健委 高血压 营养 运动 指导原则 减盐",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-146",
+      "qid": 46,
+      "query": "国家卫健委 高血压 营养 运动 指导原则 减盐",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-147",
+      "qid": 47,
+      "query": "全国高血压日 规范测量 记录 生活方式",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-148",
+      "qid": 47,
+      "query": "全国高血压日 规范测量 记录 生活方式",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-149",
+      "qid": 48,
+      "query": "KDIGO 2024 慢性肾病 CKD 血压偏高 复核",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-150",
+      "qid": 48,
+      "query": "KDIGO 2024 慢性肾病 CKD 血压偏高 复核",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-151",
+      "qid": 49,
+      "query": "ADA 2026 糖尿病 血压 心血管风险 用药安全",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-152",
+      "qid": 49,
+      "query": "ADA 2026 糖尿病 血压 心血管风险 用药安全",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-153",
+      "qid": 50,
+      "query": "国家基层高血压防治管理标准 2025 基层 随访 健康教育",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-154",
+      "qid": 50,
+      "query": "国家基层高血压防治管理标准 2025 基层 随访 健康教育",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-155",
+      "qid": 51,
+      "query": "中国血压测量指南 测量姿势 复测 记录",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-156",
+      "qid": 51,
+      "query": "中国血压测量指南 测量姿势 复测 记录",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-157",
+      "qid": 51,
+      "query": "中国血压测量指南 测量姿势 复测 记录",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-158",
+      "qid": 52,
+      "query": "老年高血压 PPG 偏高 体位性低血压 咨询医生",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-159",
+      "qid": 52,
+      "query": "老年高血压 PPG 偏高 体位性低血压 咨询医生",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-160",
+      "qid": 53,
+      "query": "WHO 高血压药物治疗 PPG 结果 可以自行调药吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-161",
+      "qid": 53,
+      "query": "WHO 高血压药物治疗 PPG 结果 可以自行调药吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-162",
+      "qid": 53,
+      "query": "WHO 高血压药物治疗 PPG 结果 可以自行调药吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-163",
+      "qid": 53,
+      "query": "WHO 高血压药物治疗 PPG 结果 可以自行调药吗",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-164",
+      "qid": 53,
+      "query": "WHO 高血压药物治疗 PPG 结果 可以自行调药吗",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-165",
+      "qid": 53,
+      "query": "WHO 高血压药物治疗 PPG 结果 可以自行调药吗",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-166",
+      "qid": 54,
+      "query": "孕期 血压 160 110 头痛 视力改变 急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-167",
+      "qid": 54,
+      "query": "孕期 血压 160 110 头痛 视力改变 急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-168",
+      "qid": 54,
+      "query": "孕期 血压 160 110 头痛 视力改变 急救",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 0,
+      "final": null
+    },
+    {
+      "id": "Q-169",
+      "qid": 54,
+      "query": "孕期 血压 160 110 头痛 视力改变 急救",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 0,
+      "final": null
+    },
+    {
+      "id": "Q-170",
+      "qid": 54,
+      "query": "孕期 血压 160 110 头痛 视力改变 急救",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-171",
+      "qid": 54,
+      "query": "孕期 血压 160 110 头痛 视力改变 急救",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-172",
+      "qid": 55,
+      "query": "DASH 饮食 NHLBI 减盐 血压 生活方式",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-173",
+      "qid": 55,
+      "query": "DASH 饮食 NHLBI 减盐 血压 生活方式",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 1,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-174",
+      "qid": 55,
+      "query": "DASH 饮食 NHLBI 减盐 血压 生活方式",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-175",
+      "qid": 56,
+      "query": "AHA 家庭血压测量 读两次 间隔一分钟 记录",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-176",
+      "qid": 56,
+      "query": "AHA 家庭血压测量 读两次 间隔一分钟 记录",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-177",
+      "qid": 56,
+      "query": "AHA 家庭血压测量 读两次 间隔一分钟 记录",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-178",
+      "qid": 56,
+      "query": "AHA 家庭血压测量 读两次 间隔一分钟 记录",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-179",
+      "qid": 57,
+      "query": "PPG 手指摄像头 血压估算 是否可靠",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-180",
+      "qid": 57,
+      "query": "PPG 手指摄像头 血压估算 是否可靠",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-181",
+      "qid": 57,
+      "query": "PPG 手指摄像头 血压估算 是否可靠",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-182",
+      "qid": 57,
+      "query": "PPG 手指摄像头 血压估算 是否可靠",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 0,
+      "final": 1
+    },
+    {
+      "id": "Q-183",
+      "qid": 58,
+      "query": "无袖带 血压设备 真实场景 局限",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-184",
+      "qid": 58,
+      "query": "无袖带 血压设备 真实场景 局限",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-185",
+      "qid": 59,
+      "query": "PPG 估算值 能不能代替上臂血压计",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-186",
+      "qid": 59,
+      "query": "PPG 估算值 能不能代替上臂血压计",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-187",
+      "qid": 59,
+      "query": "PPG 估算值 能不能代替上臂血压计",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 1,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-188",
+      "qid": 60,
+      "query": "手机摄像头测血压 为什么只能看趋势",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-189",
+      "qid": 60,
+      "query": "手机摄像头测血压 为什么只能看趋势",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-190",
+      "qid": 60,
+      "query": "手机摄像头测血压 为什么只能看趋势",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-191",
+      "qid": 61,
+      "query": "血压估算 算法置信度 和 PPG 局限",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-192",
+      "qid": 61,
+      "query": "血压估算 算法置信度 和 PPG 局限",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-193",
+      "qid": 61,
+      "query": "血压估算 算法置信度 和 PPG 局限",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-194",
+      "qid": 61,
+      "query": "血压估算 算法置信度 和 PPG 局限",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-195",
+      "qid": 62,
+      "query": "cuffless PPG blood pressure limitation validation",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-196",
+      "qid": 62,
+      "query": "cuffless PPG blood pressure limitation validation",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-197",
+      "qid": 62,
+      "query": "cuffless PPG blood pressure limitation validation",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-198",
+      "qid": 63,
+      "query": "无袖带血压 科学声明 PPG 间接估算",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-199",
+      "qid": 63,
+      "query": "无袖带血压 科学声明 PPG 间接估算",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-200",
+      "qid": 64,
+      "query": "PPG 血压趋势参考 不能诊断",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-201",
+      "qid": 64,
+      "query": "PPG 血压趋势参考 不能诊断",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-202",
+      "qid": 64,
+      "query": "PPG 血压趋势参考 不能诊断",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-203",
+      "qid": 65,
+      "query": "信号质量 poor 血压估算 重新采集",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-204",
+      "qid": 65,
+      "query": "信号质量 poor 血压估算 重新采集",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-205",
+      "qid": 65,
+      "query": "信号质量 poor 血压估算 重新采集",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 1,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-206",
+      "qid": 66,
+      "query": "采集时长 15 秒 PPG 血压 复测",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-207",
+      "qid": 66,
+      "query": "采集时长 15 秒 PPG 血压 复测",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-208",
+      "qid": 66,
+      "query": "采集时长 15 秒 PPG 血压 复测",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-209",
+      "qid": 67,
+      "query": "手指移动 强光 摄像头 PPG 信号差",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-210",
+      "qid": 67,
+      "query": "手指移动 强光 摄像头 PPG 信号差",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-211",
+      "qid": 67,
+      "query": "手指移动 强光 摄像头 PPG 信号差",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-212",
+      "qid": 68,
+      "query": "quality_score 低 血压估算 不确定",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-213",
+      "qid": 68,
+      "query": "quality_score 低 血压估算 不确定",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-214",
+      "qid": 68,
+      "query": "quality_score 低 血压估算 不确定",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-215",
+      "qid": 69,
+      "query": "confidence 0.4 PPG 血压 需要复核",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-216",
+      "qid": 69,
+      "query": "confidence 0.4 PPG 血压 需要复核",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-217",
+      "qid": 69,
+      "query": "confidence 0.4 PPG 血压 需要复核",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-218",
+      "qid": 70,
+      "query": "手指覆盖不完整 PPG 估算 怎么办",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-219",
+      "qid": 70,
+      "query": "手指覆盖不完整 PPG 估算 怎么办",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-220",
+      "qid": 70,
+      "query": "手指覆盖不完整 PPG 估算 怎么办",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-221",
+      "qid": 71,
+      "query": "摄像头 PPG 采集环境 影响血压估算",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-222",
+      "qid": 71,
+      "query": "摄像头 PPG 采集环境 影响血压估算",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 1,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-223",
+      "qid": 71,
+      "query": "摄像头 PPG 采集环境 影响血压估算",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-224",
+      "qid": 72,
+      "query": "低质量信号 不生成强风险结论",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-225",
+      "qid": 72,
+      "query": "低质量信号 不生成强风险结论",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-226",
+      "qid": 72,
+      "query": "低质量信号 不生成强风险结论",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": 0
+    },
+    {
+      "id": "Q-227",
+      "qid": 73,
+      "query": "145 92 PPG 血压估算 偏高 复测",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-228",
+      "qid": 73,
+      "query": "145 92 PPG 血压估算 偏高 复测",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-229",
+      "qid": 73,
+      "query": "145 92 PPG 血压估算 偏高 复测",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-230",
+      "qid": 74,
+      "query": "138 86 估算血压 参考范围",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-231",
+      "qid": 74,
+      "query": "138 86 估算血压 参考范围",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-232",
+      "qid": 75,
+      "query": "125 78 血压估算 elevated 注意什么",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-233",
+      "qid": 75,
+      "query": "125 78 血压估算 elevated 注意什么",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-234",
+      "qid": 75,
+      "query": "125 78 血压估算 elevated 注意什么",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-235",
+      "qid": 76,
+      "query": "116 74 PPG 血压 正常参考 趋势",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-236",
+      "qid": 76,
+      "query": "116 74 PPG 血压 正常参考 趋势",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-237",
+      "qid": 77,
+      "query": "150 95 血压估算 stage 2 复核",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-238",
+      "qid": 77,
+      "query": "150 95 血压估算 stage 2 复核",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-239",
+      "qid": 77,
+      "query": "150 95 血压估算 stage 2 复核",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    },
+    {
+      "id": "Q-240",
+      "qid": 78,
+      "query": "中国高血压指南 2024 家庭血压参考",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-241",
+      "qid": 78,
+      "query": "中国高血压指南 2024 家庭血压参考",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-242",
+      "qid": 78,
+      "query": "中国高血压指南 2024 家庭血压参考",
+      "sensitive": false,
+      "cc": 0,
+      "codex": 0,
+      "judge": 1,
+      "final": 0
+    },
+    {
+      "id": "Q-243",
+      "qid": 79,
+      "query": "AHA blood pressure category stage 1 stage 2",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-244",
+      "qid": 79,
+      "query": "AHA blood pressure category stage 1 stage 2",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-245",
+      "qid": 80,
+      "query": "单次血压估算 为什么要连续记录",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-246",
+      "qid": 80,
+      "query": "单次血压估算 为什么要连续记录",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-247",
+      "qid": 81,
+      "query": "185 122 胸痛 气短 立即急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-248",
+      "qid": 81,
+      "query": "185 122 胸痛 气短 立即急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-249",
+      "qid": 81,
+      "query": "185 122 胸痛 气短 立即急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-250",
+      "qid": 81,
+      "query": "185 122 胸痛 气短 立即急救",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-251",
+      "qid": 81,
+      "query": "185 122 胸痛 气短 立即急救",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-252",
+      "qid": 82,
+      "query": "180 120 说话困难 肢体无力 高血压急症",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-253",
+      "qid": 82,
+      "query": "180 120 说话困难 肢体无力 高血压急症",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-254",
+      "qid": 82,
+      "query": "180 120 说话困难 肢体无力 高血压急症",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-255",
+      "qid": 82,
+      "query": "180 120 说话困难 肢体无力 高血压急症",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-256",
+      "qid": 82,
+      "query": "180 120 说话困难 肢体无力 高血压急症",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-257",
+      "qid": 83,
+      "query": "严重偏高 视物改变 背痛 急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-258",
+      "qid": 83,
+      "query": "严重偏高 视物改变 背痛 急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-259",
+      "qid": 83,
+      "query": "严重偏高 视物改变 背痛 急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-260",
+      "qid": 83,
+      "query": "严重偏高 视物改变 背痛 急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-261",
+      "qid": 83,
+      "query": "严重偏高 视物改变 背痛 急救",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-262",
+      "qid": 84,
+      "query": "PPG 估算 190 125 severe headache emergency",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-263",
+      "qid": 84,
+      "query": "PPG 估算 190 125 severe headache emergency",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-264",
+      "qid": 84,
+      "query": "PPG 估算 190 125 severe headache emergency",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-265",
+      "qid": 84,
+      "query": "PPG 估算 190 125 severe headache emergency",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-266",
+      "qid": 84,
+      "query": "PPG 估算 190 125 severe headache emergency",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-267",
+      "qid": 85,
+      "query": "血压 180 120 胸痛 不能延误急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-268",
+      "qid": 85,
+      "query": "血压 180 120 胸痛 不能延误急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-269",
+      "qid": 85,
+      "query": "血压 180 120 胸痛 不能延误急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-270",
+      "qid": 85,
+      "query": "血压 180 120 胸痛 不能延误急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-271",
+      "qid": 85,
+      "query": "血压 180 120 胸痛 不能延误急救",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-272",
+      "qid": 85,
+      "query": "血压 180 120 胸痛 不能延误急救",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-273",
+      "qid": 86,
+      "query": "高血压危象 症状 急诊",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-274",
+      "qid": 86,
+      "query": "高血压危象 症状 急诊",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-275",
+      "qid": 86,
+      "query": "高血压危象 症状 急诊",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-276",
+      "qid": 86,
+      "query": "高血压危象 症状 急诊",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-277",
+      "qid": 86,
+      "query": "高血压危象 症状 急诊",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-278",
+      "qid": 86,
+      "query": "高血压危象 症状 急诊",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-279",
+      "qid": 86,
+      "query": "高血压危象 症状 急诊",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-280",
+      "qid": 86,
+      "query": "高血压危象 症状 急诊",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-281",
+      "qid": 86,
+      "query": "高血压危象 症状 急诊",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-282",
+      "qid": 86,
+      "query": "高血压危象 症状 急诊",
+      "sensitive": true,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": null
+    },
+    {
+      "id": "Q-283",
+      "qid": 86,
+      "query": "高血压危象 症状 急诊",
+      "sensitive": true,
+      "cc": 0,
+      "codex": 0,
+      "judge": 0,
+      "final": null
+    },
+    {
+      "id": "Q-284",
+      "qid": 86,
+      "query": "高血压危象 症状 急诊",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-285",
+      "qid": 87,
+      "query": "肢体无力 说话困难 血压很高",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-286",
+      "qid": 87,
+      "query": "肢体无力 说话困难 血压很高",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-287",
+      "qid": 87,
+      "query": "肢体无力 说话困难 血压很高",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-288",
+      "qid": 87,
+      "query": "肢体无力 说话困难 血压很高",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-289",
+      "qid": 87,
+      "query": "肢体无力 说话困难 血压很高",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-290",
+      "qid": 87,
+      "query": "肢体无力 说话困难 血压很高",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-291",
+      "qid": 87,
+      "query": "肢体无力 说话困难 血压很高",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-292",
+      "qid": 88,
+      "query": "胸痛气短严重血压范围怎么办",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-293",
+      "qid": 88,
+      "query": "胸痛气短严重血压范围怎么办",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-294",
+      "qid": 88,
+      "query": "胸痛气短严重血压范围怎么办",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-295",
+      "qid": 88,
+      "query": "胸痛气短严重血压范围怎么办",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-296",
+      "qid": 88,
+      "query": "胸痛气短严重血压范围怎么办",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-297",
+      "qid": 88,
+      "query": "胸痛气短严重血压范围怎么办",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-298",
+      "qid": 89,
+      "query": "正在用降压药 PPG 偏高 可以停药吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-299",
+      "qid": 89,
+      "query": "正在用降压药 PPG 偏高 可以停药吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-300",
+      "qid": 89,
+      "query": "正在用降压药 PPG 偏高 可以停药吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-301",
+      "qid": 89,
+      "query": "正在用降压药 PPG 偏高 可以停药吗",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-302",
+      "qid": 89,
+      "query": "正在用降压药 PPG 偏高 可以停药吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-303",
+      "qid": 89,
+      "query": "正在用降压药 PPG 偏高 可以停药吗",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-304",
+      "qid": 89,
+      "query": "正在用降压药 PPG 偏高 可以停药吗",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-305",
+      "qid": 90,
+      "query": "血压估算高 要不要自己加药",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-306",
+      "qid": 90,
+      "query": "血压估算高 要不要自己加药",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-307",
+      "qid": 90,
+      "query": "血压估算高 要不要自己加药",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-308",
+      "qid": 90,
+      "query": "血压估算高 要不要自己加药",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-309",
+      "qid": 90,
+      "query": "血压估算高 要不要自己加药",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-310",
+      "qid": 90,
+      "query": "血压估算高 要不要自己加药",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-311",
+      "qid": 90,
+      "query": "血压估算高 要不要自己加药",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-312",
+      "qid": 91,
+      "query": "降压药 剂量 调整 PPG 估算",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-313",
+      "qid": 91,
+      "query": "降压药 剂量 调整 PPG 估算",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-314",
+      "qid": 91,
+      "query": "降压药 剂量 调整 PPG 估算",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-315",
+      "qid": 91,
+      "query": "降压药 剂量 调整 PPG 估算",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-316",
+      "qid": 91,
+      "query": "降压药 剂量 调整 PPG 估算",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-317",
+      "qid": 92,
+      "query": "服药用户 血压偏高 咨询医生",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-318",
+      "qid": 92,
+      "query": "服药用户 血压偏高 咨询医生",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-319",
+      "qid": 92,
+      "query": "服药用户 血压偏高 咨询医生",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-320",
+      "qid": 92,
+      "query": "服药用户 血压偏高 咨询医生",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-321",
+      "qid": 92,
+      "query": "服药用户 血压偏高 咨询医生",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-322",
+      "qid": 93,
+      "query": "可以自行服用降压药吗 PPG 结果",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-323",
+      "qid": 93,
+      "query": "可以自行服用降压药吗 PPG 结果",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-324",
+      "qid": 93,
+      "query": "可以自行服用降压药吗 PPG 结果",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-325",
+      "qid": 93,
+      "query": "可以自行服用降压药吗 PPG 结果",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-326",
+      "qid": 93,
+      "query": "可以自行服用降压药吗 PPG 结果",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-327",
+      "qid": 93,
+      "query": "可以自行服用降压药吗 PPG 结果",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-328",
+      "qid": 94,
+      "query": "medication blood pressure estimate do not change dose",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-329",
+      "qid": 94,
+      "query": "medication blood pressure estimate do not change dose",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-330",
+      "qid": 94,
+      "query": "medication blood pressure estimate do not change dose",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-331",
+      "qid": 94,
+      "query": "medication blood pressure estimate do not change dose",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-332",
+      "qid": 94,
+      "query": "medication blood pressure estimate do not change dose",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-333",
+      "qid": 95,
+      "query": "停用降压药 安全边界",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-334",
+      "qid": 95,
+      "query": "停用降压药 安全边界",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-335",
+      "qid": 95,
+      "query": "停用降压药 安全边界",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 1,
+      "final": null
+    },
+    {
+      "id": "Q-336",
+      "qid": 95,
+      "query": "停用降压药 安全边界",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-337",
+      "qid": 95,
+      "query": "停用降压药 安全边界",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-338",
+      "qid": 95,
+      "query": "停用降压药 安全边界",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-339",
+      "qid": 96,
+      "query": "调药建议 Safety Agent 拦截",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-340",
+      "qid": 96,
+      "query": "调药建议 Safety Agent 拦截",
+      "sensitive": true,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-341",
+      "qid": 96,
+      "query": "调药建议 Safety Agent 拦截",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-342",
+      "qid": 96,
+      "query": "调药建议 Safety Agent 拦截",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-343",
+      "qid": 96,
+      "query": "调药建议 Safety Agent 拦截",
+      "sensitive": true,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": null
+    },
+    {
+      "id": "Q-344",
+      "qid": 97,
+      "query": "孕妇 PPG 血压偏高 咨询医生",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 1,
+      "judge": 1,
+      "final": 1
+    },
+    {
+      "id": "Q-345",
+      "qid": 97,
+      "query": "孕妇 PPG 血压偏高 咨询医生",
+      "sensitive": false,
+      "cc": 1,
+      "codex": 2,
+      "judge": 2,
+      "final": 1
+    },
+    {
+      "id": "Q-346",
+      "qid": 98,
+      "query": "妊娠 高血压估算 复核",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-347",
+      "qid": 98,
+      "query": "妊娠 高血压估算 复核",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-348",
+      "qid": 99,
+      "query": "糖尿病 用户 血压估算 偏高",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 2,
+      "final": 2
+    },
+    {
+      "id": "Q-349",
+      "qid": 99,
+      "query": "糖尿病 用户 血压估算 偏高",
+      "sensitive": false,
+      "cc": 2,
+      "codex": 2,
+      "judge": 1,
+      "final": 2
+    }
+  ],
+  "table_6_1_locked": {
+    "status": "LOCKED (openai backend active, sanity ok)",
+    "date": "2026-06-12",
+    "openai_backend_sanity": {
+      "collapsed_to_keyword": [],
+      "ok": true,
+      "note": "If non-empty, OpenAI vectors silently did not contribute (backoff/timeout); results invalid for openai contrasts."
+    },
+    "variants_ndcg5": {
+      "keyword_only": {
+        "ndcg_at_5": 0.8826,
+        "recall_at_5": 0.5871,
+        "mean_unique_sources_at_5": 4.66
+      },
+      "vector_only_openai": {
+        "ndcg_at_5": 0.9105,
+        "recall_at_5": 0.5929,
+        "mean_unique_sources_at_5": 4.53
+      },
+      "hybrid_hashing": {
+        "ndcg_at_5": 0.9052,
+        "recall_at_5": 0.5889,
+        "mean_unique_sources_at_5": 4.54
+      },
+      "hybrid_openai": {
+        "ndcg_at_5": 0.9102,
+        "recall_at_5": 0.5889,
+        "mean_unique_sources_at_5": 4.51
+      },
+      "hybrid_hashing_ft": {
+        "ndcg_at_5": 0.9052,
+        "recall_at_5": 0.5889,
+        "mean_unique_sources_at_5": 5.44
+      },
+      "hybrid_openai_ft": {
+        "ndcg_at_5": 0.9102,
+        "recall_at_5": 0.5889,
+        "mean_unique_sources_at_5": 5.33
+      },
+      "hybrid_openai_nodedup": {
+        "ndcg_at_5": 0.9102,
+        "recall_at_5": 0.5889,
+        "mean_unique_sources_at_5": 4.51
+      },
+      "hybrid_openai_ft_nodedup": {
+        "ndcg_at_5": 0.9102,
+        "recall_at_5": 0.5889,
+        "mean_unique_sources_at_5": 5.33
+      }
+    },
+    "contrasts_holm": [
+      {
+        "baseline": "keyword_only",
+        "variant": "hybrid_openai",
+        "ndcg_diff": 0.0276,
+        "ci95": [
+          0.0138,
+          0.042
+        ],
+        "p_holm": 0.0005,
+        "significant": true
+      },
+      {
+        "baseline": "vector_only_openai",
+        "variant": "hybrid_openai",
+        "ndcg_diff": -0.0002,
+        "ci95": [
+          -0.015,
+          0.0144
+        ],
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "baseline": "hybrid_hashing",
+        "variant": "hybrid_openai",
+        "ndcg_diff": 0.0051,
+        "ci95": [
+          -0.0106,
+          0.0207
+        ],
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "baseline": "hybrid_openai",
+        "variant": "hybrid_openai_ft",
+        "ndcg_diff": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "baseline": "hybrid_openai_nodedup",
+        "variant": "hybrid_openai",
+        "ndcg_diff": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "p_holm": 1.0,
+        "significant": false
+      }
+    ],
+    "self_eval": {
+      "variant": "hybrid_openai_ft",
+      "selfeval_precision_at_5": 0.9943,
+      "independent_precision_at_5": 0.986,
+      "overstatement": 0.0083,
+      "note": "Positive overstatement = the old allowed_uses self-evaluation reports higher precision than independent graded relevance."
+    },
+    "findings": [
+      "hybrid retrieval significantly > keyword-only (+0.0276 nDCG@5, Holm p=0.0005)",
+      "OpenAI embedding NOT significantly > offline hashing (+0.0051, Holm p=1.0): paid backend gives no top-5 ranking gain over free hashing vectors",
+      "fulltext expansion & source-dedup change source diversity (uniq-src 4.5->5.3) not top-5 ranking (dndcg=0)",
+      "top-5 precision: independent 0.986 vs self-eval 0.994 (overstate 0.008); top-5 genuinely relevant; 98% vs 77% self-eval leniency is pool-wide, masked by tautological allowed_uses=expected_uses metric"
+    ],
+    "caveat": "calibration coverage 323/350 (849<->947 pool provenance gap, 27 fulltext pairs); does not affect variant contrasts computed over current pool"
+  }
+}

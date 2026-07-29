@@ -2,12 +2,12 @@
 
 - candidate_id: `charlton_2023_wearable_ppg_roadmap_fulltext`
 - access_mode: `public_html`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://iopscience.iop.org/article/10.1088/1361-6579/acead2
 - doi: 10.1088/1361-6579/acead2
 - pmid: 37494945
 - access_recorded: 2026-05-16
-- local_pdf: not saved
+- local_pdf: `charlton_2023_wearable_ppg_roadmap.pdf`
 
 #### 摘要入库要点
 

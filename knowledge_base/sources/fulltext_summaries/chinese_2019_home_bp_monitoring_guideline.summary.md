@@ -2,12 +2,12 @@
 
 - candidate_id: `chinese_2019_home_bp_monitoring_guideline_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://zhgxyzz.xml-journal.net/cn/article/doi/10.16439/j.cnki.1673-7245.2019.08.005
 - doi: 10.3969/j.issn.1000-3614.2019.07.003
 - pmid: n/a
 - access_recorded: 2026-05-28
-- local_pdf: not saved
+- local_pdf: `chinese_2019_home_bp_monitoring_guideline.pdf`
 
 #### 摘要入库要点
 

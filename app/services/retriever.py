@@ -21,6 +21,7 @@ Upgrades over the original keyword-only retriever:
 from __future__ import annotations
 
 import json
+import threading
 import math
 import re
 from dataclasses import dataclass, field
@@ -29,14 +30,16 @@ from typing import Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 from app.schemas.report import Evidence
 from app.services.chunking import build_embedding_text, tokenize_for_match
-from app.services.config_loader import resolve_project_path, load_yaml_config
-from app.services.source_catalog import HIGH_TRUST_EVIDENCE_CLASSES
+from app.services.config_loader import development_override, resolve_project_path, load_yaml_config
+from app.services.fingerprints import catalog_fingerprint
+from app.services.source_catalog import HIGH_TRUST_EVIDENCE_CLASSES, included_sources
 
 
 BP_VALUE_RE = re.compile(r"\b\d{2,3}\s*[/／]\s*\d{2,3}\b")
 SENSITIVE_USES = {"emergency_alert", "medication_safety", "special_population"}
 
 FULLTEXT_CHUNKS_PATH = "knowledge_base/vector_store/fulltext_chunks.jsonl"
+FULLTEXT_MANIFEST_PATH = "knowledge_base/processed/fulltext_vector_manifest.json"
 
 # Per store: (OpenAI embedding index, offline hashing index). The OpenAI index
 # is preferred when an API key is configured and the index covers the current
@@ -58,6 +61,43 @@ VECTOR_STORE_PATHS = {
 class RetrievalResult:
     evidence: List[Evidence] = field(default_factory=list)
     warnings: List[str] = field(default_factory=list)
+
+
+_BACKEND_STATE = threading.local()
+
+
+def last_retrieval_backend() -> str:
+    return str(getattr(_BACKEND_STATE, "value", "keyword"))
+
+
+@lru_cache(maxsize=4)
+def _catalog_governance_cached(_fingerprint: str) -> Dict[str, Dict]:
+    return {str(item.get("source_id")): item for item in included_sources() if item.get("source_id")}
+
+
+def _current_catalog_governance() -> Dict[str, Dict]:
+    return _catalog_governance_cached(catalog_fingerprint())
+
+
+def _apply_current_catalog_governance(chunks: Iterable[Dict]) -> List[Dict]:
+    live = _current_catalog_governance()
+    governed: List[Dict] = []
+    for original in chunks:
+        source = live.get(str(original.get("source_id") or ""))
+        if source is None:
+            continue
+        chunk = dict(original)
+        chunk["allowed_uses"] = sorted(
+            set(_as_list(original.get("allowed_uses"))) & set(_as_list(source.get("allowed_uses")))
+        )
+        chunk["evidence_class"] = source.get("evidence_class", chunk.get("evidence_class"))
+        chunk["source_quality_score"] = source.get(
+            "source_quality_score", chunk.get("source_quality_score")
+        )
+        chunk["review_status"] = "included"
+        if chunk["allowed_uses"]:
+            governed.append(chunk)
+    return governed
 
 
 def _tokenize(text: str) -> List[str]:
@@ -147,9 +187,7 @@ def _query_cache_enabled() -> bool:
     """The query-embedding cache is on by default; the E1 ablation harness sets
     ``RETRIEVAL_DISABLE_QUERY_CACHE=1`` so retrieval variants cannot share
     cached vectors and contaminate each other's timing/results."""
-    import os
-
-    return os.getenv("RETRIEVAL_DISABLE_QUERY_CACHE", "").strip().lower() not in {"1", "true", "on", "yes"}
+    return development_override("RETRIEVAL_DISABLE_QUERY_CACHE").strip().lower() not in {"1", "true", "on", "yes"}
 
 
 def _openai_query_timeout(settings: Dict) -> float:
@@ -158,9 +196,7 @@ def _openai_query_timeout(settings: Dict) -> float:
     ``OPENAI_QUERY_TIMEOUT_SEC`` lets the experiment harness lift the default
     8s so embedding calls under load don't time out and trip the shared backoff
     (which would silently degrade the OpenAI backend to keyword-only)."""
-    import os
-
-    override = os.getenv("OPENAI_QUERY_TIMEOUT_SEC", "").strip()
+    override = development_override("OPENAI_QUERY_TIMEOUT_SEC").strip()
     if override:
         try:
             return float(override)
@@ -317,9 +353,7 @@ def _resolve_embedding_backend() -> str:
     ``retrieval.embedding_backend`` in settings.yaml — so CI and the calibrated
     gate stay offline even when an embedding API key is configured locally.
     """
-    import os
-
-    override = os.getenv("RETRIEVAL_EMBEDDING_BACKEND", "").strip().lower()
+    override = development_override("RETRIEVAL_EMBEDDING_BACKEND").strip().lower()
     if override in {"auto", "openai", "hashing", "off"}:
         return override
     settings = load_yaml_config("config/settings.yaml").get("retrieval", {})
@@ -363,11 +397,15 @@ def _store_vector_scores(
     if backend in {"auto", "openai"} and _vector_index_is_fresh(openai_path, chunks_mtime):
         scores = _vector_scores(query_text, chunk_ids, openai_path, _openai_query_vector)
         if scores is not None:
+            _BACKEND_STATE.value = "openai_embedding"
             return scores
     if backend == "openai":
         return None
     if backend in {"auto", "hashing"} and _vector_index_is_fresh(hashing_path, chunks_mtime):
-        return _vector_scores(query_text, chunk_ids, hashing_path, _hashing_query_vector)
+        scores = _vector_scores(query_text, chunk_ids, hashing_path, _hashing_query_vector)
+        if scores is not None:
+            _BACKEND_STATE.value = "local_hashing"
+        return scores
     return None
 
 
@@ -676,6 +714,17 @@ def _load_fulltext_chunks_cached(path_string: str, mtime: float) -> tuple:
     return _load_chunks_cached(path_string, mtime)
 
 
+@lru_cache(maxsize=2)
+def _fulltext_manifest_current(path_string: str, mtime: float) -> bool:
+    del mtime  # the mtime participates in the cache key
+    path = resolve_project_path(path_string)
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    except (OSError, ValueError):
+        return False
+    return manifest.get("status") == "current"
+
+
 def _fulltext_pool(
     intents: List[str],
     required_uses: Set[str],
@@ -687,7 +736,11 @@ def _fulltext_pool(
     min_score: float = 0.12,
 ) -> List[tuple]:
     """Best locally-ingested fulltext passages under the same governance rules."""
-    chunks = list(_load_fulltext_chunks_cached(*_file_signature(FULLTEXT_CHUNKS_PATH)))
+    if not _fulltext_manifest_current(*_file_signature(FULLTEXT_MANIFEST_PATH)):
+        return []
+    chunks = _apply_current_catalog_governance(
+        _load_fulltext_chunks_cached(*_file_signature(FULLTEXT_CHUNKS_PATH))
+    )
     if not chunks:
         return []
     candidates = [
@@ -741,18 +794,16 @@ def _resolve_fusion_weights(settings: Dict) -> Tuple[float, float]:
     the ablation harness scan keyword_weight ∈ {0..1} per variant; 0 = pure
     vector, 1 = pure keyword. Without the env vars, settings.yaml drives.
     """
-    import os
-
     keyword_weight = float(settings.get("keyword_weight", 0.6))
     vector_weight = float(settings.get("vector_weight", 0.4))
-    kw_override = os.getenv("RETRIEVAL_KEYWORD_WEIGHT", "").strip()
+    kw_override = development_override("RETRIEVAL_KEYWORD_WEIGHT").strip()
     if kw_override:
         try:
             keyword_weight = float(kw_override)
         except ValueError:
             pass
         else:
-            vw_override = os.getenv("RETRIEVAL_VECTOR_WEIGHT", "").strip()
+            vw_override = development_override("RETRIEVAL_VECTOR_WEIGHT").strip()
             vector_weight = float(vw_override) if _is_float(vw_override) else max(0.0, 1.0 - keyword_weight)
     return keyword_weight, vector_weight
 
@@ -772,9 +823,7 @@ def _resolve_per_source_cap(per_source_cap: Optional[int], settings: Dict) -> in
     precedence over the call argument and settings; ``0`` disables dedup so one
     source can fill the whole evidence list.
     """
-    import os
-
-    override = os.getenv("RETRIEVAL_PER_SOURCE_CAP", "").strip()
+    override = development_override("RETRIEVAL_PER_SOURCE_CAP").strip()
     if override.lstrip("-").isdigit():
         return int(override)
     if per_source_cap is not None:
@@ -793,12 +842,15 @@ def retrieve_knowledge(
     include_governance: bool = False,
     per_source_cap: Optional[int] = None,
 ) -> RetrievalResult:
+    _BACKEND_STATE.value = "keyword"
     settings = load_yaml_config("config/settings.yaml").get("retrieval", {})
     limit = top_k or int(settings.get("top_k", 5))
     keyword_weight, vector_weight = _resolve_fusion_weights(settings)
     fulltext_top_k = int(settings.get("fulltext_top_k", 2))
     source_cap = _resolve_per_source_cap(per_source_cap, settings)
     chunks = _load_chunks(chunks_path)
+    if chunks_path is None:
+        chunks = _apply_current_catalog_governance(chunks)
     if not chunks:
         return RetrievalResult(
             warnings=["知识库为空或尚未 ingest，已启用模板报告和规则兜底。"]

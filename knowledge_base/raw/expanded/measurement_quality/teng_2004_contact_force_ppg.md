@@ -42,12 +42,12 @@ safety_level: standard
 
 - candidate_id: `teng_2004_contact_force_ppg_fulltext`
 - access_mode: `institution_or_browser`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://pubmed.ncbi.nlm.nih.gov/15535195/
 - doi: 10.1088/0967-3334/25/5/020
 - pmid: 15535195
 - access_recorded: 2026-05-22
-- local_pdf: not saved
+- local_pdf: `teng_2004_contact_force_ppg.pdf`
 
 #### 摘要入库要点
 

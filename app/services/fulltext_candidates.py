@@ -48,6 +48,22 @@ ALLOWED_SUMMARY_STATUSES = {
 }
 
 PROTECTED_KEY_PATTERN = re.compile(r"(password|credential|secret|token|cookie|username|account)", re.I)
+LICENSE_ATTESTATION_CODE = "authorized_local_governance"
+
+
+def is_license_attested(record: Dict[str, Any]) -> bool:
+    """Return true only for an explicit, recognised licence assertion.
+
+    Historical registries stored a free-text migration note in
+    ``license_attestation``.  Some of those notes explicitly say that an
+    administrator still needs to verify the licence, so treating any non-empty
+    string as truthy would falsely mark the PDF as authorised.
+    """
+
+    explicit = record.get("license_attested")
+    if isinstance(explicit, bool):
+        return explicit
+    return record.get("license_attestation") == LICENSE_ATTESTATION_CODE
 
 
 @dataclass
@@ -189,8 +205,26 @@ def validate_fulltext_catalog(catalog: Optional[Dict[str, Any]] = None) -> Dict[
 
 
 def candidate_download_path(candidate: Dict[str, Any]) -> Path:
+    """Return the staging path used by the public downloader.
+
+    Downloaded bytes must never overwrite a PDF that has already entered the
+    governed, topic-classified library.  Promotion into that library is a
+    separate administrative action with integrity metadata and an explicit
+    licence assertion.
+    """
+
     source_id = str(candidate["source_id"])
-    return resolve_project_path(f"{DOWNLOADS_ROOT}/{source_id}.pdf")
+    return resolve_project_path(DOWNLOADS_ROOT) / f"{source_id}.pdf"
+
+
+def candidate_available_pdf_path(candidate: Dict[str, Any]) -> Path:
+    """Resolve a governed PDF for read-only use, then the download staging file."""
+
+    source_id = str(candidate["source_id"])
+    from app.services.fulltext_vector_index import governed_pdf_path
+
+    resolved = governed_pdf_path(source_id, candidate.get("topic"))
+    return resolved or candidate_download_path(candidate)
 
 
 def candidate_summary_path(candidate: Dict[str, Any]) -> Path:
@@ -384,7 +418,7 @@ def create_summary_notes(source_id: Optional[str] = None) -> Dict[str, Any]:
             skipped.append({"candidate_id": candidate["candidate_id"], "reason": f"summary_status={candidate.get('summary_status')}"})
             continue
 
-        pdf_path = candidate_download_path(candidate)
+        pdf_path = candidate_available_pdf_path(candidate)
         has_pdf = pdf_path.exists()
         lines = [
             f"### {candidate.get('title')}",

@@ -2,12 +2,12 @@
 
 - candidate_id: `charlton_2025_wrist_ppg_signal_quality_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000585
 - doi: 10.1371/journal.pdig.0000585
 - pmid: 40577339
 - access_recorded: 2026-05-16
-- local_pdf: not saved
+- local_pdf: `charlton_2025_wrist_ppg_signal_quality.pdf`
 
 #### 摘要入库要点
 

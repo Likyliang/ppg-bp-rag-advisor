@@ -1,0 +1,2319 @@
+version: 1
+uploads:
+- source_id: aami_esh_iso_2018_universal_validation_standard
+  title: A universal standard for the validation of blood pressure measuring devices
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: fde57346c5fa1ed6f8a77c5345df39731e117a602189e0d268f2eebb52f5853a
+  pdf_bytes: 172766
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: acc_aha_2025_full_guideline_record
+  title: 2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: edf9b37d98ce794ba430169b5e45976e430de7e08a6a60acf0c666dc60f527a0
+  pdf_bytes: 9975850
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: ada_2026_standards_cvd_bp
+  title: Cardiovascular Disease and Risk Management - Standards of Care in Diabetes 2026
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: d6d6cdad9f86d8ed3bf10ced05455863ba30ec9a4bb175bbb32c772cabdd7824
+  pdf_bytes: 1505201
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: aha_ama_2020_smbp_policy_statement
+  title: 'Self-Measured Blood Pressure Monitoring at Home: A Joint Policy Statement From the American Heart Association and American Medical Association'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 98090f71f63a87a86cf3558b81707c102528760df6f5b975f1c8ccfa23e4b361
+  pdf_bytes: 716503
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: aha_cuffless_bp_scientific_statement
+  title: Cuffless Devices for the Measurement of Blood Pressure
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 112e2e6597855ac85bec115747d800f0e8eed1682645534bf6415beab96cb44e
+  pdf_bytes: 724631
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: aha_home_bp_measurement_instructions
+  title: Home Blood Pressure Measurement Instructions
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 076eb70138239fe945577b92da607b67e27b441da05b27f78ad751c9087bc3bf
+  pdf_bytes: 166882
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: aha_life_essential_8_manage_blood_pressure
+  title: Life's Essential 8 - How to Manage Blood Pressure
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: e15ccef40ccf0a2824152352360cdfbb195300dffe69ced012b1844cdbd4b6bd
+  pdf_bytes: 225553
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: aha_pregnancy_blood_pressure_categories
+  title: Blood Pressure Categories for Individuals who are Pregnant
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 533937ed638e3c4cc17cb22da0487e8f5492f01ca721c5fd757bd968d5c533a0
+  pdf_bytes: 64717
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: aha_prevent_equations_circulation_2024
+  title: Development and Validation of the American Heart Association Predicting Risk of Cardiovascular Disease EVENTs PREVENT Equations
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 5f4582c8de6d613384cffea8c59de7db85c5db9d377ab9156b268f21168d08c5
+  pdf_bytes: 1531789
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: aha_reduce_high_blood_pressure_answers_by_heart
+  title: How Can I Lower High Blood Pressure?
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: bacb007189a3fcf8572d1c3f032fcef243e75a9221f7b0a130e4b876a59a2c59
+  pdf_bytes: 322134
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: aha_steps_to_improve_high_bp
+  title: Simple Steps to Improve Your High Blood Pressure
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 48dc4f5a94300757f7d43601326ad4c97fa7f21757e9b7c1bb6f94854c2e3d17
+  pdf_bytes: 107434
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: allen_2007_ppg_clinical_measurement_review
+  title: Photoplethysmography and its application in clinical physiological measurement
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 89255deb05c70054f56a4bf728115c8fb56b0c30a3fb5f0294d5b5d96c8ed1b4
+  pdf_bytes: 1926464
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: arguello_prada_2024_ppg_motion_artifact_detection_review
+  title: Machine Learning Applied to Reference Signal-Less Detection of Motion Artifacts in Photoplethysmographic Signals - A Review
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: b62adc0b3708bd4ba191c926e6f956c45db471408d1073e5d86ec9b9bae64e28
+  pdf_bytes: 1054043
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: bent_2020_wearable_optical_hr_inaccuracy
+  title: Investigating sources of inaccuracy in wearable optical heart rate sensors
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 449b451ffbf1ad8a34bd0c0c5502b4419767eed216853ed61cfc4ba918df1d72
+  pdf_bytes: 1218987
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: bradley_2022_cuffless_bp_devices_review
+  title: Cuffless Blood Pressure Devices
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 30a90ad11c610e8a49654b995cb4726f804ca3bf100d595e9ef153f02b96e133
+  pdf_bytes: 390304
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: cabanas_2022_skin_pigmentation_pulse_oximetry_bibliometric
+  title: Skin Pigmentation Influence on Pulse Oximetry Accuracy - A Systematic Review and Bibliometric Analysis
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: d0a2cc2c379ce4b1e7ef5885f50ae0f3e0ffc640047569d8d3664ad2322c1d4e
+  pdf_bytes: 6758899
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: cdc_managing_my_blood_pressure_questions
+  title: Managing My Blood Pressure - Questions to Ask My Doctor
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 7874ffec17e7e74f04b33542a17086fcf1c1352089598939223d7cb3299ece5e
+  pdf_bytes: 177250
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: chandrasekhar_2020_contact_pressure_cuffless_bp
+  title: PPG Sensor Contact Pressure Should Be Taken Into Account for Cuff-Less Blood Pressure Measurement
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 1a1db1b5bd96e8d46e415e2a16a3ed2c26df4f1bcfcbd97dcd926dfc06071673
+  pdf_bytes: 1532411
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: charlton_2022_ppg_best_practices
+  title: Establishing best practices in photoplethysmography signal acquisition and processing
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 1ada09f74bb2cad371213d03e7c11aabb4927670625c4c61b7561bb26ac93626
+  pdf_bytes: 462402
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: charlton_2022_wearable_ppg_cardiovascular_review
+  title: Wearable Photoplethysmography for Cardiovascular Monitoring
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: b9a062c3a9b628c0c0104f7fd12bb3ba4e473fbe9785ea469bab40c6f6581da5
+  pdf_bytes: 4066651
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: charlton_2023_wearable_ppg_roadmap
+  title: The 2023 wearable photoplethysmography roadmap
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 062cebb4b9fb7b1c4b95cbca715aee2e5f5ceed97f33c516169814e6813a50d9
+  pdf_bytes: 5430878
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: charlton_2025_wrist_ppg_signal_quality
+  title: Determinants of photoplethysmography signal quality at the wrist
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 51d925d59468f1ad8c0653776952a631d9e8f7a8589b5bc8a5273e642397996d
+  pdf_bytes: 3733218
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: chinese_2011_bp_measurement_guideline
+  title: 中国血压测量指南
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 27f5d78504993a77a297a95325fb857871af0561a4812c8b4c56acb23464ff60
+  pdf_bytes: 1037015
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: chinese_2013_hypertension_patient_education_guideline
+  title: 中国高血压患者教育指南
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: e6e879d33687f2fecdf8148f48620b51926a18a313574e58675a0a2d1232e836
+  pdf_bytes: 672462
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: chinese_2019_home_bp_monitoring_guideline
+  title: 2019中国家庭血压监测指南
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: bf07395310ebae8c432fb493ff0c48abdb817b8fef5ff04c5b315d6a934451b3
+  pdf_bytes: 1026828
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: chinese_2023_elderly_hypertension_management_guideline
+  title: 中国老年高血压管理指南2023
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: faf7a5d8c8b5ec10bb628b8afd16608134fd292392db253b07d16d980b7af316
+  pdf_bytes: 2567362
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: chinese_2025_secondary_hypertension_screening_consensus
+  title: 继发性高血压筛查和诊断中国专家共识
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: b5fa5af387a3e31082c9c45a714643f24c91b7d373368fe88ac584c8a7b73a69
+  pdf_bytes: 1332853
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: chinese_hypertension_guideline_2024_catalog
+  title: Chinese Guidelines for the Prevention and Treatment of Hypertension (2024 revision)
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 6887434ffbe38083c22e93597023079d0f79a8168fb8596775b61cd526cfd75d
+  pdf_bytes: 5428228
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: desquins_2022_ppg_quality_assessment_survey
+  title: A Survey of Photoplethysmography and Imaging Photoplethysmography Quality Assessment Methods
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: f63e4f39f3c5428e5540812be2b734dc3c3971f462092b28e175ebf432e9f1b6
+  pdf_bytes: 942710
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: electronics_2023_ppg_wearable_devices_review
+  title: Photoplethysmography in Wearable Devices - A Comprehensive Review of Technological Advances Current Challenges and Future Directions
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: d4bb857da671a2ceedf9b26de32731aa633a3da4aa974991068ea7a4e26d92c4
+  pdf_bytes: 2646745
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: esc_2024_elevated_bp_hypertension_doi_report
+  title: ESC Declaration of Interests Report for the 2024 elevated blood pressure and hypertension guideline
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 20decffab76c4c2b7278c3216d98b2740cec1ce6951db9639736db102ffb3cf7
+  pdf_bytes: 472759
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: esc_2024_elevated_bp_hypertension_guideline
+  title: 2024 ESC Guidelines for the management of elevated blood pressure and hypertension
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 37f1c96768e70e514965760e2ee9b454c07fe5eab0f212881d1dcbf2f48113b4
+  pdf_bytes: 4469031
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: esc_2024_pharmacotherapy_what_is_new
+  title: 2024 ESC Guidelines for elevated blood pressure and hypertension - what is new in pharmacotherapy
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 21a20ffd4acc3601e12c25251b7e78db66d9861c9c86f9a75c18ffeea0232aa4
+  pdf_bytes: 840311
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: esh_2021_home_bp_monitoring_position_paper
+  title: Home blood pressure monitoring - methodology clinical relevance and practical application
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 167a88c4f171071900f9017cb96341a90afa5ee7edeca0474de24d42bc27684c
+  pdf_bytes: 448005
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: esh_2023_hypertension_guideline
+  title: 2023 ESH Guidelines for the management of arterial hypertension
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 7b712008c76f8c9500ff8232371d3eb8d45d2d2b9a7445389ccf6a53b52529bf
+  pdf_bytes: 8694794
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: fda_cuffless_nibp_draft_guidance
+  title: Cuffless Non-invasive Blood Pressure Measuring Devices - Clinical Performance Testing and Evaluation
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: eeaf36da61a51a729e6232fc5455474c2fda26cbcc24638f6bab218cd7f92c92
+  pdf_bytes: 309253
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: fine_2021_ppg_sources_of_inaccuracy
+  title: Sources of Inaccuracy in Photoplethysmography for Continuous Cardiovascular Monitoring
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 84eead3a164efb3ba955ce535b54ce3400b5046ac668462c3d4efab59f858d3e
+  pdf_bytes: 2231827
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: frontiers_2019_ppg_measurement_site_waveform
+  title: Quantitative Comparison of Photoplethysmographic Waveform Characteristics - Effect of Measurement Site
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 9a670065d044b151000078e0eeaed7700bc3ed85c93be4e56f6fe88671dc3ab8
+  pdf_bytes: 1286628
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: healthy_china_2019_2030_action
+  title: 健康中国行动（2019-2030年）
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: a6ff39335b691368888fb5c172ce4f8a98639894475ad5ea4ad554a359e40cb8
+  pdf_bytes: 910932
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: ish_2020_global_guideline
+  title: 2020 International Society of Hypertension Global Hypertension Practice Guidelines
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: c4cc2460633c0e509cd934f99def9d291426ed27114f353acc81e8d800cc8a12
+  pdf_bytes: 4361605
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: kdigo_2024_ckd_guideline
+  title: KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0
+  pdf_bytes: 5966902
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: lee_2013_rgb_reflection_ppg_motion_hr
+  title: Comparison between red green and blue light reflection photoplethysmography for heart rate monitoring during motion
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 62657a4a38681822cfe45372bfffcc8e167f23199425735a4fb6a0e8918837d3
+  pdf_bytes: 443468
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: lee_2021_skin_compatible_wearable_ppg
+  title: Systematic Review on Human Skin-Compatible Wearable Photoplethysmography Sensors
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 2dcb353c9a99be8ddb510ea165f384c8d5c6e2682ccdb34aa0d3838daeb3393c
+  pdf_bytes: 10402953
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_abraham_2026_accuracy_of_visually_estimated_home_blood_pressure_result
+  title: 'Accuracy of Visually Estimated Home Blood Pressure: Result From the Estimating Yield of Eyeballed BP Study'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: cf0bb459c96cd33d48422602fddacd98dec62f88ecbd69405e495ac5cb0c55f9
+  pdf_bytes: 626331
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_acharya_2024_self_measured_blood_pressure_guided_pharmacotherapy_a_systematic
+  title: 'Self-Measured Blood Pressure-Guided Pharmacotherapy: A Systematic Review and Meta-Analysis of United States-Based Telemedicine Trials'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 8b58ab6b7abd7c379e7921c021c2558723662af31d90d3cb401cee5f1ab18a50
+  pdf_bytes: 799035
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_b_hm_2024_office_measurement_vs_ambulatory_blood_pressure_monitoring_associations
+  title: 'Office measurement vs. ambulatory blood pressure monitoring: associations with mortality in patients with or without diabetes'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 6de877f480e5a71520bca735df111be6b5c963508c03c730c378269d66e3b143
+  pdf_bytes: 866548
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_bernabe_ortiz_2020_effect_of_salt_substitution_on_community_wide_blood
+  title: Effect of salt substitution on community-wide blood pressure and hypertension incidence
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 5a8c0c3c7c496911a560470b80bc6d6128ed32507f48d88c99707f6f3b9432d9
+  pdf_bytes: 957682
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_bernjak_2009_pulse_transit_times_to_the_capillary_bed_evaluated
+  title: Pulse transit times to the capillary bed evaluated by laser Doppler flowmetry
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 9192d62f3cca58f12d8ada4158157d41b8863515766d6075c7b8cba440629bf1
+  pdf_bytes: 1323837
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: attached
+- source_id: litexp_bhm_2023_empagliflozin_irrespective_of_blood_pressure_improves_outcomes_in
+  title: 'Empagliflozin, irrespective of blood pressure, improves outcomes in heart failure with preserved ejection fraction: the EMPEROR-Preserved trial'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 960ff63a205e0c9448e7a8d35a0b602396c731bbfb4b020c951467958090550b
+  pdf_bytes: 1456533
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_bondarenko_2025_the_role_of_face_regions_in_remote_photoplethysmography
+  title: The role of face regions in remote photoplethysmography for contactless heart rate monitoring
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: f1af8bcdee160eef15cff46376da06a579d565fb02a36d8fb7b9a2d861e7a18f
+  pdf_bytes: 2118041
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_bryant_2022_home_blood_pressure_monitoring_for_hypertension_diagnosis_by
+  title: 'Home Blood Pressure Monitoring for Hypertension Diagnosis by Current Recommendations: A Long Way to Go'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: f1e36e1bb63177e3c49395bb6aa5eb030be33d3471e5af5fc71e5c3d1f701f0f
+  pdf_bytes: 274291
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_campbell_2024_detection_and_control_of_pregnancy_hypertension_using_self
+  title: 'Detection and Control of Pregnancy Hypertension Using Self-Monitoring of Blood Pressure With Automated Telemonitoring: Cost Analyses of the BUMP Randomized Trials'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: dc4166e20a76a289dd06d493ca14291ecc4427698e50305579cac4413310c53d
+  pdf_bytes: 287341
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_cecelja_2020_genetic_aetiology_of_blood_pressure_relates_to_aortic
+  title: 'Genetic aetiology of blood pressure relates to aortic stiffness with bi-directional causality: evidence from heritability, blood pressure polymorphisms, and Mendelian randomization'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: ac65d5cfd68610e7837160bfa256846f3ae020f95c07828e82b419353d353dd9
+  pdf_bytes: 597402
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_chaturvedi_2024_social_determinants_of_health_and_disparities_in_hypertension
+  title: Social Determinants of Health and Disparities in Hypertension and Cardiovascular Diseases
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: a46383d294b99b43d97630befd61428b6064b2b003871a2484ef88e26cf44717
+  pdf_bytes: 1504571
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_cheng_2022_risk_stratification_by_cross_classification_of_central_and
+  title: Risk Stratification by Cross-Classification of Central and Brachial Systolic Blood Pressure
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: adcc04fdd4c435824c34422da6950412728251b6a205399e9c1db4cbfe1477ba
+  pdf_bytes: 552915
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_cheng_2026_continuous_blood_pressure_monitoring_via_hemodynamic_parameter_and
+  title: Continuous blood pressure monitoring via hemodynamic parameter and pulse transit time derived from capacitive sensing pads
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: be2c09cc8f110990c9cb21306c8145c0f12c5e19ed5d56049601f3b9900c1576
+  pdf_bytes: 1624918
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_choi_2026_feasibility_and_performance_evaluation_of_ppg_on_a
+  title: Feasibility and performance evaluation of PPG on a Galaxy Watch in continuous central blood pressure monitoring
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: da4a6823384459d67b545af6f4f310097cb9641be7f16ea37a22e0f065d08ab5
+  pdf_bytes: 2067783
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_clark_2022_higher_arm_versus_lower_arm_systolic_blood_pressure
+  title: 'Higher Arm Versus Lower Arm Systolic Blood Pressure and Cardiovascular Outcomes: a Meta-Analysis of Individual Participant Data From the INTERPRESS-IPD Collaboration'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: c9b412a58b13de9368f5a73a09c01dd256cd01541fd026a0aaf6da00b9dd8ff2
+  pdf_bytes: 410779
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_cohen_2026_impact_of_a_smartwatch_hypertension_notification_feature_for
+  title: Impact of a Smartwatch Hypertension Notification Feature for Population Screening
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 85bd80b4ae1cd1d511df9b5fc512d1deb76a095b1401b74951ed11635cca7c37
+  pdf_bytes: 167606
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_countouris_2025_hypertension_in_pregnancy_and_postpartum_current_standards_and
+  title: 'Hypertension in Pregnancy and Postpartum: Current Standards and Opportunities to Improve Care'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 65452c674f95f8997cb4047b65b6c78e36c08d4f36da91319fddb9a9e9132d46
+  pdf_bytes: 1710436
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_dasgupta_2022_is_the_kdigo_systolic_blood_pressure_target_120
+  title: Is the KDIGO Systolic Blood Pressure Target <120 mm Hg for Chronic Kidney Disease Appropriate in Routine Clinical Practice?
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: b6e39fa98e5a8a19c0865b36f96293dd476ae001b9609ee8fa583bf10d18fa70
+  pdf_bytes: 433817
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_de_2024_tirzepatide_reduces_24_hour_ambulatory_blood_pressure_in
+  title: 'Tirzepatide Reduces 24-Hour Ambulatory Blood Pressure in Adults With Body Mass Index ≥27 kg/m<sup>2</sup>: SURMOUNT-1 Ambulatory Blood Pressure Monitoring Substudy'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 73389ad51038915a9bc0a02f597744333e289767bb44c546b031d4ff0427a26b
+  pdf_bytes: 548422
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_di_2023_alcohol_intake_and_blood_pressure_levels_a_dose
+  title: 'Alcohol Intake and Blood Pressure Levels: A Dose-Response Meta-Analysis of Nonexperimental Cohort Studies'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: e5e25c34f31ebd41cc70e109400ba789d89f0aa60acc8603615d451740b2df15
+  pdf_bytes: 479280
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_ding_2024_siamquality_a_convnet_based_foundation_model_for_photoplethysmography
+  title: 'SiamQuality: a ConvNet-based foundation model for photoplethysmography signals'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 527b18e213ca74d54311949d04288eacacbfbcfd4b489b33a55ff8a774dbbde5
+  pdf_bytes: 1079567
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_dos_2024_immunomodulatory_activity_of_cytokines_in_hypertension_a_vascular
+  title: 'Immunomodulatory Activity of Cytokines in Hypertension: A Vascular Perspective'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 973b4bb9d869b318d9311ba5ff072e7ddeef3249e0aa1f4244fc507042d6702e
+  pdf_bytes: 1997878
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_elgendi_2019_the_use_of_photoplethysmography_for_assessing_hypertension
+  title: The use of photoplethysmography for assessing hypertension
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 5b49723b09d11b29fbfc2cdf52bf85d96841286850bfdba95a14b2315f0dd133
+  pdf_bytes: 1572386
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: attached
+- source_id: litexp_flynn_2022_ambulatory_blood_pressure_monitoring_in_children_and_adolescents
+  title: 'Ambulatory Blood Pressure Monitoring in Children and Adolescents: 2022 Update: A Scientific Statement From the American Heart Association'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 197b974ac3d887d7c3fa5299bf3abd97cbe727f4d6b30743d16f5e248a499c3a
+  pdf_bytes: 429680
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_freedman_2025_high_blood_pressure_in_childhood_and_premature_cardiovascular
+  title: High Blood Pressure in Childhood and Premature Cardiovascular Disease Mortality
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: c692fcdc10d25cb8eb94c855141c6f9bcffc416c029695e590065de13158d153
+  pdf_bytes: 422969
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_gerdts_2022_sex_differences_in_arterial_hypertension
+  title: Sex differences in arterial hypertension
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: cddaecfef6584a23ffcc924f2c52786c4b48dfeb7dbf413ae92b66c9dd8859a4
+  pdf_bytes: 445266
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_goda_2024_pyppg_a_python_toolbox_for_comprehensive_photoplethysmography_signal
+  title: 'pyPPG: a Python toolbox for comprehensive photoplethysmography signal analysis'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: efe84fe352fbe95a7c553752127b33b960a81adfab5ee582e753236338a64868
+  pdf_bytes: 1387763
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_goda_2026_analysis_of_differential_photoplethysmography_signal_patterns_in_apnea
+  title: Analysis of differential photoplethysmography signal patterns in apnea and hypopnea
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 77e98fc933b914d6a68cd786ad24e794084a6e263589f84f4d4e3b57881f795e
+  pdf_bytes: 1200830
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_grassi_2021_sympathetic_neural_mechanisms_underlying_attended_and_unattended_bloo
+  title: Sympathetic Neural Mechanisms Underlying Attended and Unattended Blood Pressure Measurement
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 46293d4e39263827d06e6faeecf8d5c28d36a87fcf55547800e4b16494baabcc
+  pdf_bytes: 497135
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_groppelli_2025_mechanism_of_syncope_role_of_ambulatory_blood_pressure
+  title: 'Mechanism of syncope: role of ambulatory blood pressure monitoring and cardiovascular autonomic function assessment'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: d28930e62eb0c49eaf2a6d29d8379ddc71169691de316478092f3efe033604fb
+  pdf_bytes: 954262
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_guo_2026_intensive_blood_pressure_control_and_cardiovascular_outcomes_across
+  title: 'Intensive Blood Pressure Control and Cardiovascular Outcomes Across Cardiovascular-Kidney-Metabolic Syndrome Stages: A Post Hoc Analysis of the China Rural Hypertension Control Project'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 27960b713bb10afd34c6ccdbed2563f57a55d838f1611b35672fe31a95991f68
+  pdf_bytes: 1053374
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_gupta_2025_association_of_drinking_water_salinity_with_elevated_blood
+  title: 'Association of drinking water salinity with elevated blood pressure and risk of hypertension among coastal and other populations: a systematic review and meta-analysis of observational studies'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 8f1d4c8e789fffdd3e47e8b454fa8aefe97110770fe72f5f1894962d6f9be1ab
+  pdf_bytes: 1109454
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_hainsworth_2024_cerebral_small_vessel_disease_hypertension_and_vascular_contribut
+  title: Cerebral Small Vessel Disease, Hypertension, and Vascular Contributions to Cognitive Impairment and Dementia
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: e56e98d9dc585b3118e0e0b2d04e07c3191942b47e0e52a3dc0ed7f2cad116f1
+  pdf_bytes: 678749
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_harrison_2024_immune_mechanisms_in_hypertension
+  title: Immune Mechanisms in Hypertension
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 928440831909741d498bc0b18ff639366be40faa5cc45c1e80154d6bd4ec8c83
+  pdf_bytes: 2026830
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_huang_2021_ambulatory_blood_pressure_monitoring_to_diagnose_and_manage
+  title: Ambulatory Blood Pressure Monitoring to Diagnose and Manage Hypertension
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 61ca6b78b6fd26f75b793db959f4d2c153d3da42da9aa705884963e63b2dd27f
+  pdf_bytes: 589345
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_huang_2024_diagnostic_potential_of_combined_photoplethysmography_and_ankle_brachi
+  title: 'Diagnostic Potential of Combined Photoplethysmography and Ankle-Brachial Index in Peripheral Arterial Disease: A Duplex Ultrasonography-Based Comparative Study'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: add01703cdb63263b541281414089b1bfb0c936896039e4824e2aa766487f61f
+  pdf_bytes: 1685319
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_hustrini_2025_prevalence_incidence_and_risk_factors_of_chronic_kidney
+  title: 'Prevalence, incidence and risk factors of chronic kidney disease in people with diabetes and hypertension, and the prognosis and kidney function decline in Indonesia: a multicentre cross-sectional study in primary care centres'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: b8ed2df064390cda33182bcfa17e3876c3b6190c6ff4f99db407795181fd2679
+  pdf_bytes: 397735
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_islam_2022_wearable_cuffless_blood_pressure_monitoring_devices_a_systematic
+  title: 'Wearable cuffless blood pressure monitoring devices: a systematic review and meta-analysis'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: cd2829f2354b601e44169179dc8f8c3c2f05e63978ed0783a6336dea5ee156d5
+  pdf_bytes: 1074784
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_jiang_2024_efficacy_and_safety_of_catheter_based_radiofrequency_renal
+  title: 'Efficacy and Safety of Catheter-Based Radiofrequency Renal Denervation in Chinese Patients With Uncontrolled Hypertension: The Randomized, Sham-Controlled, Multi-Center Iberis-HTN Trial'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: eeb863686b3d7976c5b75bdd5a4727c839309680c64cb9925020f1800207b8f8
+  pdf_bytes: 1202410
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_johnson_2025_hypertension_diabetes_and_high_cholesterol_awareness_among_us
+  title: Hypertension, Diabetes, and High Cholesterol Awareness Among US Adults
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: a4afca9522209c3547a2cec878404435c7fcd697c856417ceab3b0ebf672b8c2
+  pdf_bytes: 811648
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_kario_2020_management_of_hypertension_in_the_digital_era_small
+  title: 'Management of Hypertension in the Digital Era: Small Wearable Monitoring Devices for Remote Blood Pressure Monitoring'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 78799b0a1caa3bde8565986cda1a62082549250e01d28271fa56936f96f33d20
+  pdf_bytes: 2410622
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_kario_2022_home_blood_pressure_can_predict_the_risk_for
+  title: Home Blood Pressure Can Predict the Risk for Stroke/Bleeding Events in Elderly Patients With Nonvalvular Atrial Fibrillation From the ANAFIE Registry
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 74984f9daf6f5bd2b186e0d7170824070fcbaefab11a40e61b49c9395388278c
+  pdf_bytes: 1231213
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_kario_2026_renal_denervation_in_asia_2025_asia_renal_denervation
+  title: 'Renal Denervation in Asia: 2025 Asia Renal Denervation Consortium (ARDeC) Consensus Statement Endorsed by the Hypertension Cardiovascular Outcome Prevention and Evidence in Asia (HOPE Asia) Network'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 862ad928953c763e3bc81d2f87b278cb65e0748c213b0d2f76c4b547649215eb
+  pdf_bytes: 2678033
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_kaur_2025_scaling_india_hypertension_control_initiative_strategies_to_15
+  title: 'Scaling India Hypertension Control Initiative strategies to 15 states-treatment outcomes and risk factors for uncontrolled blood pressure, India: a cohort study, 2018-2021'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: c5b5e1b813a2cc308fc56708abd9132d9cff6156060fdb9420d57d947b2e16b7
+  pdf_bytes: 738806
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_kennedy_2024_semaglutide_and_blood_pressure_an_individual_patient_data
+  title: 'Semaglutide and blood pressure: an individual patient data meta-analysis'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 86f01a868536b652b5da904de2194a7b8894cb5223f285764f87d14edca3ad86
+  pdf_bytes: 642210
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_kwon_2024_non_invasive_pulse_arrival_time_is_associated_with
+  title: Non-invasive pulse arrival time is associated with cardiac index in pediatric heart transplant patients with normal ejection fraction
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 4e53f5f61c1bb630df41c5bc81fe5972fd1eff9e19aa4f9728ff4ee58f59606c
+  pdf_bytes: 735328
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_laffin_2023_aldosterone_synthase_inhibition_with_lorundrostat_for_uncontrolled_hy
+  title: 'Aldosterone Synthase Inhibition With Lorundrostat for Uncontrolled Hypertension: The Target-HTN Randomized Clinical Trial'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 52020e34997d5af548d2261f482df3d5bd6fb67d263bbf01e4a8b1dd0e112e53
+  pdf_bytes: 390013
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_lapidaire_2026_brain_volumes_after_hypertensive_pregnancy_and_postpartum_blood
+  title: 'Brain Volumes After Hypertensive Pregnancy and Postpartum Blood Pressure Management: A POP-HT Randomized Clinical Trial Imaging Substudy'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: fc6bc0c3658b674fbe125f20505d9ab597413351052cd926e95104ee171a24e5
+  pdf_bytes: 826581
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_lee_2024_feasibility_and_effectiveness_of_a_ring_type_blood
+  title: Feasibility and Effectiveness of a Ring-Type Blood Pressure Measurement Device Compared With 24-Hour Ambulatory Blood Pressure Monitoring Device
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 1dc261c0409e9f6718cf7b59a51db0d3f176b3b03e2abfb723936168769bb35e
+  pdf_bytes: 1281502
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_liu_2024_cignn_a_causality_informed_and_graph_neural_network
+  title: 'CiGNN: A Causality-Informed and Graph Neural Network Based Framework for Cuffless Continuous Blood Pressure Estimation'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: f2f289ca7483b4999d68709e2c014f011e0b62f75ebe7d204d22eba562bf5936
+  pdf_bytes: 4334157
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_londo_o_2026_hearts_quality_a_policy_framework_to_strengthen_hypertension
+  title: 'HEARTS quality: a policy framework to strengthen hypertension and cardiovascular risk management in primary healthcare-insights from HEARTS in the Americas'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: d4a6f9cc9d4a603e4c2d1362ee007c6e3d632d20e5638671d43752e3e2895f88
+  pdf_bytes: 3793457
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_loo_2026_hypertension_management_in_s_o_paulo_insights_from
+  title: 'Hypertension management in São Paulo: insights from a computational simulation approach'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 70dd06ac3df3d7c6c96ef85e262dd61b53b99628f900f91e2f0a7b74c76e60e5
+  pdf_bytes: 5758198
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_mangalesh_2026_risk_guided_antihypertensive_treatment_eligibility_in_older_adults
+  title: Risk-Guided Antihypertensive Treatment Eligibility in Older Adults Under Updated Hypertension Guidelines
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 3ad2e2bd9adde71d3c9f72b8a6bff987cfda232150608cf3e7d73b53588b1055
+  pdf_bytes: 338463
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_margolis_2022_comparing_pharmacist_led_telehealth_care_and_clinic_based
+  title: 'Comparing Pharmacist-Led Telehealth Care and Clinic-Based Care for Uncontrolled High Blood Pressure: The Hyperlink 3 Pragmatic Cluster-Randomized Trial'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: a14591ae0098273b3b9c5f2508452ea797a6c9a1b313a42c1e6d93e6717efe80
+  pdf_bytes: 1246834
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_mary_2022_role_of_uromodulin_in_salt_sensitive_hypertension
+  title: Role of Uromodulin in Salt-Sensitive Hypertension
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 763a3894a1c4d1adb98019637831d72d3f59a00735f0152c51b9b8f4b3df4368
+  pdf_bytes: 1014721
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_mccarthy_2025_global_and_european_landscape_of_major_hypertension_guidelines
+  title: Global and European landscape of major hypertension guidelines
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: ca2cd2aafe641e846be996373e7746b01bbc344538a0a13736fee0b59a41a2d1
+  pdf_bytes: 43436
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_mcevoy_2021_isolated_diastolic_hypertension_in_the_idaco_study_an
+  title: 'Isolated Diastolic Hypertension in the IDACO Study: An Age-Stratified Analysis Using 24-Hour Ambulatory Blood Pressure Measurements'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 49b7856a8d163ce6e210904c0b342a5fca6f1c68da491d4e6d7ecf6edb49b37e
+  pdf_bytes: 661572
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_mcnally_2024_influence_of_blood_pressure_reduction_on_pulse_wave
+  title: 'Influence of Blood Pressure Reduction on Pulse Wave Velocity in Primary Hypertension: A Meta-Analysis and Comparison With an Acute Modulation of Transmural Pressure'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: d2f5caef9b63cd45118a24548d9a2741a08da26ffaa3318f3b52328d0c75f66b
+  pdf_bytes: 629412
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_mej_a_mej_a_2021_differential_effects_of_the_blood_pressure_state_on
+  title: Differential effects of the blood pressure state on pulse rate variability and heart rate variability in critically ill patients
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 2f1d196a78836cd811602ee312a6b1a34613a99e8f7c2ad1a322788b788718d2
+  pdf_bytes: 1434036
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_mitsnefes_2021_pediatric_ambulatory_blood_pressure_classification_the_case_for
+  title: 'Pediatric Ambulatory Blood Pressure Classification: The Case for a Change'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 6842f7453c8a93ad0a408ae0229e49f7b8409207da08d08eaba42f2e37384cac
+  pdf_bytes: 47400
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_mizuno_2023_diagnostic_accuracy_of_office_blood_pressure_measurement_and
+  title: 'Diagnostic Accuracy of Office Blood Pressure Measurement and Home Blood Pressure Monitoring for Hypertension Screening Among Adults: Results From the IDH Study'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 970437623bef0b329df9834f5d3775285bfcc8f95f465f718b7026a91cd4c4b7
+  pdf_bytes: 358854
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_mukkamala_2025_cuffless_blood_pressure_measurement_where_do_we_actually
+  title: 'Cuffless Blood Pressure Measurement: Where Do We Actually Stand?'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: adcd6c8f168bbdd5b000897e4fd0622dbe7a0985e74b886266a25b4a7fb855a6
+  pdf_bytes: 2250641
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_ncd_2024_general_and_abdominal_adiposity_and_hypertension_in_eight
+  title: 'General and abdominal adiposity and hypertension in eight world regions: a pooled analysis of 837 population-based studies with 7·5 million participants'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 3f07e57f19f810cbadbc4a8d152bd89af6026fc2feb040dc7362480b177293e8
+  pdf_bytes: 1768386
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_nowroozilarki_2023_variational_autoencoders_for_biomedical_signal_morphology_clus
+  title: Variational Autoencoders for Biomedical Signal Morphology Clustering and Noise Detection
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: c739cef039a5ee7e477932e42d91d1c78d8f32c85452fb686b9135c7e74164fe
+  pdf_bytes: 1977176
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_ohashi_2025_nighttime_systolic_blood_pressure_determined_by_pulse_transit
+  title: Nighttime Systolic Blood Pressure Determined by Pulse Transit Time Predicts Cardiac Events in Patients With Heart Failure
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 373b3d48a08cc5caf909bc4c1e6a5fff6d877cec76529f3749c85a8f90b5375e
+  pdf_bytes: 379141
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_pacholko_2024_hypertension_neurodegeneration_and_cognitive_decline
+  title: Hypertension, Neurodegeneration, and Cognitive Decline
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 8d4a36553cd53fb165629c96f3d92a5054fa32a5b734602b91206cbbb9689089
+  pdf_bytes: 1984682
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_palatini_2023_orthostatic_hypertension_a_newcomer_among_the_hypertension_phenotyp
+  title: 'Orthostatic Hypertension: A Newcomer Among the Hypertension Phenotypes'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: f8f6d48e698e7171758ce90396f9a1ba558c04ca3d4950c8c3a36f768ca8a6de
+  pdf_bytes: 554654
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_paper_2022_insights_into_diurnal_variations_of_advanced_hemodynamic_parameters
+  title: Insights into diurnal variations of advanced hemodynamic parameters in ambulatory individuals enabled by a photoplethysmography-based wearable monitor
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 8d81d18d4a633ee206d63f7fa1fbaee8f4e443043da443667c75fbe20a156920
+  pdf_bytes: 355686
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_pickersgill_2022_modeling_global_80_80_80_blood_pressure_targets
+  title: Modeling global 80-80-80 blood pressure targets and cardiovascular outcomes
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: e5b7dd2e7bc40e7dcb45f783b57825fcdeec468700e01353ee51a2a09273a227
+  pdf_bytes: 3996471
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_prabhakaran_2025_comparison_of_dual_therapies_for_hypertension_treatment_in
+  title: 'Comparison of dual therapies for hypertension treatment in India: a randomized clinical trial'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 7e3191818258d3bd175089e2bb42c2a0f960d194e978345a99cdcb804ee45803
+  pdf_bytes: 8915105
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_prendergast_2025_emergency_department_based_education_and_mhealth_empowerment_int
+  title: 'Emergency Department-Based Education and mHealth Empowerment Intervention for Hypertension: The TOUCHED Randomized Clinical Trial'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: f81c8a2181cdccb28d903ae9d4f763f767ee191b4a2961ece679933e9d0d118b
+  pdf_bytes: 372413
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_razo_2022_effects_of_elevated_systolic_blood_pressure_on_ischemic
+  title: 'Effects of elevated systolic blood pressure on ischemic heart disease: a Burden of Proof study'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: e7b0bc50e7a06b2bf0d8d2a2cbb517f7864aba362e9b00335f5b11ee0a1ccf4a
+  pdf_bytes: 15171951
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_rivasi_2022_association_between_hypotension_during_24_h_ambulatory_blood
+  title: 'Association between hypotension during 24 h ambulatory blood pressure monitoring and reflex syncope: the SynABPM 1 study'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 1f65f38376a6203c63abc80201968d71cc65edde192250ea26cc99f1932127de
+  pdf_bytes: 1629592
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_ruilope_2022_blood_pressure_and_cardiorenal_outcomes_with_finerenone_in
+  title: Blood Pressure and Cardiorenal Outcomes With Finerenone in Chronic Kidney Disease in Type 2 Diabetes
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: c648c9725426d9e7bba01e7a758393538d4e27612f36761ba7a7d2dd0c963dc6
+  pdf_bytes: 1059303
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_sakamoto_2025_low_arterial_stiffness_by_pulse_wave_analysis_and
+  title: Low Arterial Stiffness by Pulse Wave Analysis and Aortic Diseases
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 4f02b18e0da13e69dec97aa759967172ebf4dd379d3d855638c493ca787ce46c
+  pdf_bytes: 1146199
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_sau_2025_artificial_intelligence_enhanced_electrocardiography_for_prediction_of_i
+  title: Artificial Intelligence-Enhanced Electrocardiography for Prediction of Incident Hypertension
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 6a4318e6f85a7b57b0c1f8653c1b67f7c1b2fa8919de237966678ab19c0d6941
+  pdf_bytes: 1080570
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_saxena_2025_lorundrostat_in_participants_with_uncontrolled_hypertension_and_treat
+  title: 'Lorundrostat in Participants With Uncontrolled Hypertension and Treatment-Resistant Hypertension: The Launch-HTN Randomized Clinical Trial'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 29b487a608719643aae36b8e49681d6aeb636c3b4cfaaf9a4dffb76fa3e96d75
+  pdf_bytes: 442761
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_schuermans_2024_genetic_associations_of_circulating_cardiovascular_proteins_with_
+  title: Genetic Associations of Circulating Cardiovascular Proteins With Gestational Hypertension and Preeclampsia
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 4fdf07e1209872baddefe0221844583fb5bfdf724a988a8ebcf79566df4a44b8
+  pdf_bytes: 709440
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_sel_2023_continuous_cuffless_blood_pressure_monitoring_with_a_wearable
+  title: Continuous cuffless blood pressure monitoring with a wearable ring bioimpedance device
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 27f05ca1a994896d5c6d46ce3c5b359d69fb3fa5429f6161c109a9f8d889a952
+  pdf_bytes: 2763510
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_sel_2023_physics_informed_neural_networks_for_modeling_physiological_time
+  title: Physics-informed neural networks for modeling physiological time series for cuffless blood pressure estimation
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 93eb5a35c6c25689878de2edbae8cd8b70ec4ab86042bbf166ba6391c5ab1a70
+  pdf_bytes: 2965914
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_shin_2024_evaluation_of_applicability_and_accuracy_of_a_new
+  title: Evaluation of Applicability and Accuracy of a New Form of Cuffless Blood Pressure Measurement Device, CART-I Plus
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: a16b4eef1138b7604786a9e8dad631faf85fd80b6966f810796c868f92a3c97c
+  pdf_bytes: 408321
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_siedlinski_2023_genetic_analyses_identify_brain_structures_related_to_cognitive
+  title: Genetic analyses identify brain structures related to cognitive impairment associated with elevated blood pressure
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: d931a5c282b3f9c5262e28660a5dbb87536c156177a236d756a3cdb19bf30477
+  pdf_bytes: 1480515
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_smith_2023_target_bp_a_national_initiative_to_improve_blood
+  title: 'Target: BP™: A National Initiative to Improve Blood Pressure Control'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 43a3f9d8f83364c5e6e9285d5ec9740d6d5a5ca1f2700ec5e2f0874a1521a137
+  pdf_bytes: 1592430
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_smith_2025_effect_of_systolic_blood_pressure_measurement_error_on
+  title: Effect of Systolic Blood Pressure Measurement Error on the Cost-Effectiveness of Intensive Blood Pressure Targets
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 01f1a47274e1c0a823ca82f8fa3c2125814501cb6f44540161f1c7aad26a0990
+  pdf_bytes: 903922
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_tawengi_2025_blood_pressure_variability_and_mortality_in_patients_admitted
+  title: 'Blood pressure variability and mortality in patients admitted with acute stroke in a tertiary care stroke centre (2016-2019): a retrospective cohort study'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 3eaa690d477d5897bf324a37ca3353ce1470cbdf10224535bf72e744a26f9215
+  pdf_bytes: 488186
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_tian_2026_adaptive_physiology_informed_correction_for_reliable_remote_photoplethy
+  title: Adaptive physiology-informed correction for reliable remote photoplethysmography heart-rate monitoring
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: ae3c6b0e144489b99af7377442e2b5afd8cc510bc23c20473935ab235a2c4a2e
+  pdf_bytes: 2879630
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_tobushi_2024_sleep_apnea_autonomic_disturbances_and_blood_pressure_variability
+  title: Sleep Apnea, Autonomic Disturbances, and Blood Pressure Variability
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: ddee2118ad710f6558d432c9b084db0d8e3b333832ce3510cbc6ad15f2c2c5dc
+  pdf_bytes: 453387
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_van_2024_evaluation_of_a_novel_cuffless_photoplethysmography_based_wristband
+  title: Evaluation of a novel cuffless photoplethysmography-based wristband for measuring blood pressure according to the regulatory standards
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: cc2ce0ca9ec37790e6822b3356ea364258bec2545947a274beaf539b3fb95703
+  pdf_bytes: 540092
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_van_2025_assessment_of_photoplethysmography_based_blood_pressure_determinations_d
+  title: 'Assessment of photoplethysmography-based blood pressure determinations during long-term and short-term remote cardiac monitoring: the RECAMO study'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 907bdd8c70aa47f936af7dc6ce06d23ddabcb858ef3ac99ebd2291f38dd32760
+  pdf_bytes: 1064298
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_varzideh_2026_artificial_intelligence_in_cardiovascular_medicine_focus_on_hyperte
+  title: 'Artificial Intelligence in Cardiovascular Medicine: Focus on Hypertension'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 98b20e20a808996353aacf4386ec4e61b82b7062fbe7e77f99f880cced99b2a6
+  pdf_bytes: 464211
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_virwani_2023_sex_differences_in_association_between_gut_microbiome_and
+  title: Sex Differences in Association Between Gut Microbiome and Essential Hypertension Based on Ambulatory Blood Pressure Monitoring
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 6522bba64f4de116bafac6836133104fe698b0310a7e46dc60900f9f2fe37628
+  pdf_bytes: 1511304
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_whelton_2022_harmonization_of_the_american_college_of_cardiology_american
+  title: Harmonization of the American College of Cardiology/American Heart Association and European Society of Cardiology/European Society of Hypertension Blood Pressure/Hypertension Guidelines
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: e107e3e1d7099aa5c4e4af3d58da30f5c5ed8f673218a1ab81f2459aaebc7d20
+  pdf_bytes: 540217
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_whelton_2024_optimal_antihypertensive_systolic_blood_pressure_a_systematic_review
+  title: 'Optimal Antihypertensive Systolic Blood Pressure: A Systematic Review and Meta-Analysis'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 6eb4db83cb2735071c2eb1ee8f9d9e679dad85ab1f5038e5083595743fed9567
+  pdf_bytes: 1156206
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_yang_2024_sex_specific_genetic_architecture_of_blood_pressure
+  title: Sex-specific genetic architecture of blood pressure
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: eb0955f4041319c08962cbcfdc1c610d75f3b557ebf32ae2fde840042f790d23
+  pdf_bytes: 6335211
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_ye_2025_characteristics_of_ambulatory_blood_pressure_parameters_and_influencing
+  title: 'Characteristics of ambulatory blood pressure parameters and influencing factors of untreated hypertensive patients at high and low altitudes: a cross-sectional study in China'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: ca4a605cb6f4dc27e05fc5dbcf1c156d353493245ace85342ef0a223ff035fa5
+  pdf_bytes: 416882
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_zhang_2025_ambulatory_blood_pressure_monitoring_european_guideline_targets_and
+  title: 'Ambulatory blood pressure monitoring, European guideline targets, and cardiovascular outcomes: an individual patient data meta-analysis'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 466569dfc17f337661a354fd664581303e86f9a2edb7f949693a1b42f2944b1a
+  pdf_bytes: 2232027
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_zhang_2026_outcome_specific_optimal_systolic_blood_pressure_targets_in
+  title: 'Outcome specific optimal systolic blood pressure targets in high risk patients, balancing cardiovascular benefits, renal risks, and cancer prevention: meta-analysis of randomised controlled trials'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: a2d471c891d7659473c240cac54b650f0203bd8a7626fc103961624e42f442d2
+  pdf_bytes: 1248653
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_zhao_2023_emerging_sensing_and_modeling_technologies_for_wearable_and
+  title: Emerging sensing and modeling technologies for wearable and cuffless blood pressure monitoring
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - signal_quality
+  - cuffless_ppg_limitations
+  - disclaimer
+  pdf_sha256: 414f1463979b9563177b98dd24da8d025fda86ceede1b59fbd929a1c281c68c4
+  pdf_bytes: 2401674
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_zhao_2026_association_of_systolic_blood_pressure_time_in_target
+  title: 'Association of systolic blood pressure time in target range and all-cause mortality in patients with atherosclerotic cardiovascular disease: an analysis of a prospective cohort study'
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 7d1fc2ebfb35b3bc3047501b2eee6056075e024fb13719ca71a69ddb59e66b8e
+  pdf_bytes: 471658
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: litexp_zhuang_2023_a2ar_mediated_lymphangiogenesis_via_vegfr2_signaling_prevents_salt
+  title: A2AR-mediated lymphangiogenesis via VEGFR2 signaling prevents salt-sensitive hypertension
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  - home_bp_monitoring
+  - bp_category_reference
+  - disclaimer
+  pdf_sha256: 2d6679cd885148ab7cfd76ab3eae1c4240847d20c4c56e7ed0b57e0e061b2175
+  pdf_bytes: 2530830
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: mukkamala_2015_ptt_bp_monitoring_theory_practice
+  title: Toward Ubiquitous Blood Pressure Monitoring via Pulse Transit Time - Theory and Practice
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 8b76dcbcf81d4d39ef40d629ae1c0278a12a45cfe1580105717f239b8af50ed9
+  pdf_bytes: 2564931
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: mukkamala_2017_ptt_calibration_error_limits
+  title: Toward Ubiquitous Blood Pressure Monitoring via Pulse Transit Time - Predictions on Maximum Calibration Period and Acceptable Error Limits
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: ad83f7d1448330dc0100268de69050fc6b9fd3d47c5070f2aeb68cde13c14243
+  pdf_bytes: 636134
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: muntner_2019_aha_bp_measurement_scientific_statement
+  title: Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 5bc2ef5c0d79ae997b14a0bafbe19e5e7e502c99a420177017930db31ddce20d
+  pdf_bytes: 1125370
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: nccd_2020_primary_hypertension_management_guideline
+  title: 国家基层高血压防治管理指南（2020版）
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 2bfeb70595cace663851f78a30045d94c8d554a3848fa6befe96118600212263
+  pdf_bytes: 1452886
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: nhc_2017_basic_public_health_service_hypertension_management
+  title: 国家基本公共卫生服务规范（第三版）高血压患者健康管理服务规范
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 5e61460188040be01605e8294561f8d82f29c09720dca40ff8c1eab7703431d8
+  pdf_bytes: 2752374
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: nhc_2023_adult_hypertension_dietary_guideline
+  title: 成人高血压食养指南（2023年版）
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: e6c5227d95d289a810c953d895afc740ae922fc80ed4a8f1d5f4e39a9cd6c000
+  pdf_bytes: 1901025
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: nhc_2024_hypertension_nutrition_exercise_guidance
+  title: 高血压营养和运动指导原则（2024年版）
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: a3057e7ed7c2e4dfd16486bf171b208e5f9162920271465709cfc47b31dd1173
+  pdf_bytes: 5473222
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: nhc_2025_primary_care_hypertension_standard_ws_t_872
+  title: 基层医疗卫生机构高血压防治管理标准 WS/T 872-2025
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 4c099a4a656b72d6524c7acd05359da10b4dd861def402b80acd94a307d410d6
+  pdf_bytes: 364853
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: nhc_ws_t_430_2013_hypertension_dietary_guidance
+  title: 高血压患者膳食指导 WS/T 430-2013
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 525ffd3ff8d6ab60a566bea31850a72d658bd8926f720e8705ba42d2b2415ad4
+  pdf_bytes: 4677086
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: attached
+- source_id: nhlbi_dash_lowering_blood_pressure_guide
+  title: Your Guide to Lowering Your Blood Pressure with DASH
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: a950723fa1047238ecf843723668c1bcae1f4ff4ee0722e475470211fbcc415d
+  pdf_bytes: 811872
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: nhlbi_self_measured_blood_pressure_fact_sheet
+  title: Self-Measured Blood Pressure
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: e8a8cc93cb4209c3b12750b62fe484663f041f931333beb28614d099a9aba528
+  pdf_bytes: 169701
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: nice_ng136_hypertension
+  title: Hypertension in adults - diagnosis and management
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 07f00ff626bb0aa930912fdf66cb0d05d2be6fca69469dbbce66233b063f6348
+  pdf_bytes: 294632
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: ode_2020_continuous_ambulatory_bp_ptt_data_acquisition
+  title: Towards Continuous and Ambulatory Blood Pressure Monitoring - Methods for Efficient Data Acquisition for Pulse Transit Time Estimation
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 7f192e3a6883f3e39d53dde97be1e42db673eca280ad10558609cf81ea28d579
+  pdf_bytes: 2101179
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: parati_2026_esc_cuffless_bp_monitoring_statement
+  title: Cuffless Blood Pressure Monitoring Devices - Technical Foundations and Clinical Implications
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 53dfb62f2afdb2ec94e8587b826ba060b537f3f943577528f06c50f4d7109f6f
+  pdf_bytes: 645280
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: park_2022_ppg_analysis_applications_integrative_review
+  title: Photoplethysmogram Analysis and Applications - An Integrative Review
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: bfd491b1a2c85c2434696894eb5f53f336ead276c386c8737b92c3394842f7c7
+  pdf_bytes: 2969952
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: shi_2022_skin_pigmentation_pulse_oximetry_systematic_review
+  title: The accuracy of pulse oximetry in measuring oxygen saturation by levels of skin pigmentation - a systematic review and meta-analysis
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 73d73b5924487664cb7538d9d80c4a3b0cb1e91c6ba9f316cc46ecde72ed629e
+  pdf_bytes: 1466632
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: shirbani_2020_ambient_light_skin_tone_vpg
+  title: Effect of Ambient Lighting and Skin Tone on Estimation of Heart Rate and Pulse Transit Time from Video Plethysmography
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 9c2f5e2f688b8f73ad33123d0c6e18ec15b34e161c908753d7edec803ef7e014
+  pdf_bytes: 667270
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: sjoding_2020_racial_bias_pulse_oximetry
+  title: Racial Bias in Pulse Oximetry Measurement
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 2129e5490ca8bd5cb283f12239abd2c9e16968a0f996b6605a5d8d0bf905f398
+  pdf_bytes: 168074
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: sun_2016_ppg_revisited_contact_noncontact_imaging
+  title: Photoplethysmography Revisited - From Contact to Noncontact From Point to Imaging
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 5672a7f9a1aef5d8900f634ed333a657df2f098de050e534dc17889cdd852487
+  pdf_bytes: 1534041
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: tamura_2014_wearable_ppg_sensors_past_present
+  title: Wearable Photoplethysmographic Sensors - Past and Present
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: a4cbd709910f2c10ce644a6da9532666e327646b9c9824d3b404d2b8f68d4ea0
+  pdf_bytes: 432129
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: tamura_2019_current_progress_ppg_spo2
+  title: Current progress of photoplethysmography and SpO2 for health monitoring
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 7e76b4cb19a0eb65e7ef2f90b73ded263f64d4c36d590832a908187c90cf4c55
+  pdf_bytes: 1484607
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: teng_2004_contact_force_ppg
+  title: The effect of contacting force on photoplethysmographic signals
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: f0d8e784c3557b327dedb06bfbb2e23a53fb0dbae0b83ad74b75240a49a429dc
+  pdf_bytes: 322073
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: uspstf_hypertension_screening_adults
+  title: Hypertension in Adults - Screening
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: a7083f690b0dc863af82faa8b876bb8893e05a4fb2680b7943edd3d2b0e0b388
+  pdf_bytes: 507749
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: who_2021_hypertension_pharmacological_treatment_guideline
+  title: Guideline for the pharmacological treatment of hypertension in adults
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 57f6376d5c9bc4ea6c44873625547c8a5443d5a6ad8c8c422733681563db05fb
+  pdf_bytes: 843539
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+- source_id: who_automated_cuff_bp_device_specs
+  title: Technical specifications for automated non-invasive blood pressure measuring devices with cuff
+  access_mode: public_pdf
+  institution_required: false
+  allowed_uses:
+  - research_background
+  pdf_sha256: 33ab60db98b392f77a56243230b821176572dbdc07568547270d16eacd79f34b
+  pdf_bytes: 2527475
+  license_attested: false
+  license_attestation_version: 1
+  uploaded: '2026-07-07'
+  status: indexed
+updated: '2026-07-29'

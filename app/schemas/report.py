@@ -4,6 +4,8 @@ from typing import Dict, List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from app.schemas.screening import ScreeningResult
+
 
 class InputSummary(BaseModel):
     module: str = "CHS-BloodPressure"
@@ -143,6 +145,7 @@ class HealthReport(BaseModel):
     recommendation_evidence: List[RecommendationEvidence] = Field(default_factory=list)
     citation_quality: CitationQuality = Field(default_factory=CitationQuality)
     ui_summary: Optional[UiSummary] = None
+    screening: Optional[ScreeningResult] = None
     disclaimer: str
     markdown_report: str
     safety_review: Optional[SafetyReview] = None

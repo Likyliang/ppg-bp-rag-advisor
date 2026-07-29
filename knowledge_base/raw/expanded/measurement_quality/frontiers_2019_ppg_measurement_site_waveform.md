@@ -43,12 +43,12 @@ safety_level: standard
 
 - candidate_id: `frontiers_2019_ppg_measurement_site_waveform_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2019.00198/full
 - doi: 10.3389/fphys.2019.00198
 - pmid: 30890959
 - access_recorded: 2026-05-21
-- local_pdf: not saved
+- local_pdf: `frontiers_2019_ppg_measurement_site_waveform.pdf`
 
 #### 摘要入库要点
 

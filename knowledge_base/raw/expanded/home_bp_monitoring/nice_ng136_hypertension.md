@@ -43,12 +43,12 @@ NICE NG136 为家庭/动态血压确认和复测提供国际对照依据。
 
 - candidate_id: `nice_ng136_public_html_fulltext`
 - access_mode: `public_html`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://www.nice.org.uk/guidance/ng136/chapter/1-Recommendations
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-10
-- local_pdf: not saved
+- local_pdf: `nice_ng136_hypertension.pdf`
 
 #### 摘要入库要点
 

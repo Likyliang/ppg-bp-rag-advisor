@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 import json
-import os
 import re
 import threading
 import time
+from contextlib import contextmanager
 from typing import Any, Iterable, List
 
 import requests
@@ -12,6 +12,7 @@ import requests
 from app.schemas.measurement import MeasurementPayload
 from app.schemas.report import Evidence
 from app.schemas.rule_result import RuleResult
+from app.services.config_loader import load_report_llm_config
 
 
 class LlmGenerationError(RuntimeError):
@@ -24,13 +25,27 @@ class LlmGenerationError(RuntimeError):
 # (default 0 = off in production; experiment harnesses set e.g. 2.0).
 _GEN_RATE_LOCK = threading.Lock()
 _GEN_LAST_REQUEST_AT = [0.0]
+_GEN_CONCURRENCY = threading.Condition()
+_GEN_ACTIVE = [0]
+
+
+@contextmanager
+def _generation_slot():
+    limit = max(1, load_report_llm_config().max_concurrency)
+    with _GEN_CONCURRENCY:
+        while _GEN_ACTIVE[0] >= limit:
+            _GEN_CONCURRENCY.wait()
+        _GEN_ACTIVE[0] += 1
+    try:
+        yield
+    finally:
+        with _GEN_CONCURRENCY:
+            _GEN_ACTIVE[0] = max(0, _GEN_ACTIVE[0] - 1)
+            _GEN_CONCURRENCY.notify_all()
 
 
 def _gen_throttle() -> None:
-    try:
-        min_interval = float(os.getenv("LLM_MIN_INTERVAL_SEC", "0"))
-    except ValueError:
-        min_interval = 0.0
+    min_interval = load_report_llm_config().min_interval_sec
     if min_interval <= 0:
         return
     with _GEN_RATE_LOCK:
@@ -44,28 +59,16 @@ def _gen_throttle() -> None:
 def _chat_provider_config(provider: str) -> tuple[str, str, str]:
     """Resolve (api_key, base_url, model) for an OpenAI-compatible chat provider.
 
-    ``deepseek`` keeps its dedicated env names; ``openai_compatible`` points at
-    any third-party chat-completions endpoint via LLM_BASE_URL / LLM_MODEL /
-    LLM_API_KEY — kept separate from OPENAI_EMBEDDING_* (embedding-only key)
-    and EVAL_LLM_* (offline evaluation only).
+    All connection material comes through the unified report integration
+    resolver. Environment variables are consulted there only before an admin
+    profile exists and remain separate from embedding/evaluation channels.
     """
-    if provider == "deepseek":
-        api_key = os.getenv("DEEPSEEK_API_KEY") or os.getenv("LLM_API_KEY")
-        if not api_key:
-            raise LlmGenerationError("DEEPSEEK_API_KEY is not set")
-        base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com").rstrip("/")
-        model = os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash")
-        return api_key, base_url, model
-    if provider == "openai_compatible":
-        api_key = os.getenv("LLM_API_KEY")
-        if not api_key:
-            raise LlmGenerationError("LLM_API_KEY is not set for the openai_compatible provider")
-        base_url = os.getenv("LLM_BASE_URL", "").rstrip("/")
-        if not base_url:
-            raise LlmGenerationError("LLM_BASE_URL is not set for the openai_compatible provider")
-        model = os.getenv("LLM_MODEL", "gpt-5.5")
-        return api_key, base_url, model
-    raise LlmGenerationError(f"unsupported chat provider: {provider}")
+    runtime = load_report_llm_config()
+    normalized_runtime = "anthropic" if runtime.provider == "claude" else runtime.provider
+    normalized_requested = "anthropic" if provider == "claude" else provider
+    if runtime.enabled and normalized_runtime == normalized_requested:
+        return runtime.api_key, runtime.base_url, runtime.model
+    raise LlmGenerationError("报告 LLM 通道未启用、缺少有效密钥或 provider 不匹配")
 
 
 def _compact_evidence(evidence: Iterable[Evidence]) -> List[dict[str, Any]]:
@@ -109,7 +112,7 @@ def generate_deepseek_report_body(
     provider: str = "deepseek",
 ) -> str:
     api_key, base_url, model = _chat_provider_config(provider)
-    timeout = timeout_sec or float(os.getenv("LLM_TIMEOUT_SEC", "30"))
+    timeout = timeout_sec or load_report_llm_config().timeout_sec
 
     numbered_evidence = _number_evidence(evidence) if rag_enabled else []
     evidence_count = len(numbered_evidence)
@@ -243,19 +246,20 @@ def _deepseek_chat(
         "max_tokens": max_tokens,
     }
     try:
-        _gen_throttle()
-        response = requests.post(
-            f"{base_url}/chat/completions",
-            headers=_deepseek_headers(api_key),
-            json=payload,
-            timeout=timeout,
-        )
+        with _generation_slot():
+            _gen_throttle()
+            response = requests.post(
+                f"{base_url}/chat/completions",
+                headers=_deepseek_headers(api_key),
+                json=payload,
+                timeout=timeout,
+                allow_redirects=False,
+            )
     except requests.RequestException as exc:
         raise LlmGenerationError(f"DeepSeek request failed: {exc.__class__.__name__}") from exc
 
     if response.status_code >= 400:
-        detail = response.text[:500]
-        raise LlmGenerationError(f"DeepSeek API returned HTTP {response.status_code}: {detail}")
+        raise LlmGenerationError(f"DeepSeek API returned HTTP {response.status_code}")
 
     try:
         data = response.json()
@@ -367,15 +371,16 @@ def _number_evidence(evidence: Iterable[Evidence]) -> List[dict[str, Any]]:
 def _anthropic_chat(
     *, system: str, user: str, max_tokens: int, temperature: float, timeout: float
 ) -> str:
-    api_key = os.getenv("ANTHROPIC_API_KEY") or os.getenv("CLAUDE_API_KEY")
-    if not api_key:
-        raise LlmGenerationError("ANTHROPIC_API_KEY is not set")
-
-    base_url = os.getenv("ANTHROPIC_BASE_URL", "https://api.anthropic.com").rstrip("/")
-    model = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-5")
+    runtime = load_report_llm_config()
+    use_runtime = runtime.enabled and runtime.provider in {"anthropic", "claude"}
+    if not use_runtime:
+        raise LlmGenerationError("后台 Anthropic 报告通道未启用或缺少有效密钥")
+    api_key = runtime.api_key
+    base_url = runtime.base_url.rstrip("/")
+    model = runtime.model
     headers = {
         "x-api-key": api_key,
-        "anthropic-version": os.getenv("ANTHROPIC_VERSION", "2023-06-01"),
+        "anthropic-version": runtime.anthropic_version,
         "content-type": "application/json",
     }
     payload = {
@@ -386,16 +391,19 @@ def _anthropic_chat(
         "messages": [{"role": "user", "content": user}],
     }
     try:
-        _gen_throttle()
-        response = requests.post(
-            f"{base_url}/v1/messages", headers=headers, json=payload, timeout=timeout
-        )
+        with _generation_slot():
+            _gen_throttle()
+            response = requests.post(
+                f"{base_url}/v1/messages",
+                headers=headers,
+                json=payload,
+                timeout=timeout,
+                allow_redirects=False,
+            )
     except requests.RequestException as exc:
         raise LlmGenerationError(f"Anthropic request failed: {exc.__class__.__name__}") from exc
     if response.status_code >= 400:
-        raise LlmGenerationError(
-            f"Anthropic API returned HTTP {response.status_code}: {response.text[:500]}"
-        )
+        raise LlmGenerationError(f"Anthropic API returned HTTP {response.status_code}")
     try:
         data = response.json()
         blocks = data["content"]
@@ -428,7 +436,8 @@ def generate_anthropic_report_body(
     rag_enabled: bool = True,
     timeout_sec: float | None = None,
 ) -> str:
-    timeout = timeout_sec or float(os.getenv("LLM_TIMEOUT_SEC", "45"))
+    runtime = load_report_llm_config()
+    timeout = timeout_sec or runtime.timeout_sec
     numbered = _number_evidence(evidence) if rag_enabled else []
     system_prompt = (
         "你是一名严谨的中文健康科普写作者，面向中国大陆普通用户解释手机 PPG 血压估算结果。"
@@ -458,8 +467,8 @@ def generate_anthropic_report_body(
     return _anthropic_chat(
         system=system_prompt,
         user=json.dumps(user_payload, ensure_ascii=False),
-        max_tokens=int(os.getenv("ANTHROPIC_MAX_TOKENS", "2400")),
-        temperature=float(os.getenv("ANTHROPIC_TEMPERATURE", "0.4")),
+        max_tokens=runtime.max_tokens,
+        temperature=runtime.temperature,
         timeout=timeout,
     )
 
@@ -469,7 +478,8 @@ def generate_anthropic_input_only_report(
     payload: MeasurementPayload,
     timeout_sec: float | None = None,
 ) -> str:
-    timeout = timeout_sec or float(os.getenv("LLM_TIMEOUT_SEC", "45"))
+    runtime = load_report_llm_config()
+    timeout = timeout_sec or runtime.timeout_sec
     system_prompt = (
         "你是中文健康小程序里的健康说明助手。只根据用户提交的结构化输入写报告，"
         "不使用本地文档库、检索证据或参考来源，也不要声称参考了任何指南或资料，不要列参考文献。"
@@ -487,8 +497,8 @@ def generate_anthropic_input_only_report(
     return _anthropic_chat(
         system=system_prompt,
         user=json.dumps(user_payload, ensure_ascii=False),
-        max_tokens=int(os.getenv("ANTHROPIC_MAX_TOKENS", "2400")),
-        temperature=float(os.getenv("ANTHROPIC_TEMPERATURE", "0.6")),
+        max_tokens=runtime.max_tokens,
+        temperature=min(2.0, runtime.temperature + 0.2),
         timeout=timeout,
     )
 
@@ -500,7 +510,7 @@ def generate_deepseek_input_only_report(
     provider: str = "deepseek",
 ) -> str:
     api_key, base_url, model = _chat_provider_config(provider)
-    timeout = timeout_sec or float(os.getenv("LLM_TIMEOUT_SEC", "30"))
+    timeout = timeout_sec or load_report_llm_config().timeout_sec
 
     system_prompt = (
         "你是中文健康小程序里的健康说明助手。"
@@ -534,19 +544,20 @@ def generate_deepseek_input_only_report(
     }
 
     try:
-        _gen_throttle()
-        response = requests.post(
-            f"{base_url}/chat/completions",
-            headers=_deepseek_headers(api_key),
-            json=request_payload,
-            timeout=timeout,
-        )
+        with _generation_slot():
+            _gen_throttle()
+            response = requests.post(
+                f"{base_url}/chat/completions",
+                headers=_deepseek_headers(api_key),
+                json=request_payload,
+                timeout=timeout,
+                allow_redirects=False,
+            )
     except requests.RequestException as exc:
         raise LlmGenerationError(f"DeepSeek request failed: {exc.__class__.__name__}") from exc
 
     if response.status_code >= 400:
-        detail = response.text[:500]
-        raise LlmGenerationError(f"DeepSeek API returned HTTP {response.status_code}: {detail}")
+        raise LlmGenerationError(f"DeepSeek API returned HTTP {response.status_code}")
 
     try:
         data = response.json()
@@ -659,7 +670,8 @@ def generate_llm_advisor_reply(
         ],
         "evidence": numbered,
     }
-    timeout = timeout_sec or float(os.getenv("LLM_TIMEOUT_SEC", "30"))
+    runtime = load_report_llm_config()
+    timeout = timeout_sec or runtime.timeout_sec
     if provider in {"deepseek", "openai_compatible"}:
         api_key, base_url, model = _chat_provider_config(provider)
         return _deepseek_chat(
@@ -676,8 +688,8 @@ def generate_llm_advisor_reply(
         return _anthropic_chat(
             system=_ADVISOR_SYSTEM,
             user=json.dumps(user_payload, ensure_ascii=False),
-            max_tokens=int(os.getenv("ANTHROPIC_MAX_TOKENS", "1200")),
-            temperature=float(os.getenv("ANTHROPIC_TEMPERATURE", "0.4")),
+            max_tokens=min(runtime.max_tokens, 1200),
+            temperature=runtime.temperature,
             timeout=timeout,
         )
     raise LlmGenerationError(f"unsupported advisor provider: {provider}")

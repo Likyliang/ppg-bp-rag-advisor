@@ -20,8 +20,11 @@ emergency banner.
 from __future__ import annotations
 
 import json
+import os
 import re
 import threading
+import tempfile
+from datetime import datetime, timedelta, timezone
 from functools import lru_cache
 from typing import Dict, Iterable, List, Optional, Tuple
 from uuid import uuid4
@@ -40,7 +43,7 @@ from app.schemas.conversation import (
 from app.schemas.report import Evidence, HealthReport
 from app.schemas.rule_result import RuleResult
 from app.services.citations import build_registry
-from app.services.config_loader import load_yaml_config, resolve_project_path
+from app.services.config_loader import advisor_session_ttl_hours, load_report_llm_config, load_yaml_config, resolve_project_path
 from app.services.medical_copy import clean_citation_fragments, sanitize_medical_copy
 from app.services.retriever import retrieve_knowledge
 
@@ -313,17 +316,26 @@ def _intent_answer_lines(message: str, rule_result: RuleResult, registry) -> Lis
 
 def review_advisor_reply(text: str, rule_result: RuleResult) -> AdvisorSafety:
     terms = load_yaml_config("config/safety_terms.yaml")
+    from app.services.safety import (
+        CORE_DEVICE_OVERCLAIM_PATTERNS,
+        CORE_DIAGNOSTIC_PATTERNS,
+        CORE_EMERGENCY_REASSURANCE_PATTERNS,
+        CORE_MEDICATION_PATTERNS,
+    )
+
     issues: List[str] = []
-    for key, label in (
-        ("diagnostic_patterns", "诊断性表述"),
-        ("medication_change_patterns", "用药调整表述"),
-        ("device_overclaim_patterns", "设备能力过度承诺"),
+    for key, label, core in (
+        ("diagnostic_patterns", "诊断性表述", CORE_DIAGNOSTIC_PATTERNS),
+        ("medication_change_patterns", "用药调整表述", CORE_MEDICATION_PATTERNS),
+        ("device_overclaim_patterns", "设备能力过度承诺", CORE_DEVICE_OVERCLAIM_PATTERNS),
     ):
-        for pattern in terms.get(key, []):
+        for pattern in dict.fromkeys([*core, *(terms.get(key, []) or [])]):
             if re.search(pattern, text):
                 issues.append(f"{label}: {pattern}")
     if rule_result.emergency:
-        for pattern in terms.get("emergency_false_reassurance_patterns", []):
+        for pattern in dict.fromkeys(
+            [*CORE_EMERGENCY_REASSURANCE_PATTERNS, *(terms.get("emergency_false_reassurance_patterns", []) or [])]
+        ):
             if re.search(pattern, text):
                 issues.append(f"急症情境下的不当安抚: {pattern}")
     return AdvisorSafety(passed=not issues, issues=issues)
@@ -343,11 +355,13 @@ class AdvisorSessionStore:
         self._persist_dir = persist_dir
 
     def put(self, session: AdvisorSession) -> None:
+        self.cleanup_expired()
         with self._lock:
             self._sessions[session.session_id] = session
         self._persist(session)
 
     def get(self, session_id: str) -> Optional[AdvisorSession]:
+        self.cleanup_expired()
         with self._lock:
             session = self._sessions.get(session_id)
         if session is not None:
@@ -357,7 +371,7 @@ class AdvisorSessionStore:
     def _session_path(self, session_id: str):
         if not self._persist_dir:
             return None
-        if not re.fullmatch(r"[0-9a-f]{12}", session_id or ""):
+        if not re.fullmatch(r"[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}", session_id or ""):
             return None
         return resolve_project_path(self._persist_dir) / f"{session_id}.json"
 
@@ -366,8 +380,17 @@ class AdvisorSessionStore:
         if path is None:
             return
         try:
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(session.model_dump_json(), encoding="utf-8")
+            path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+            os.chmod(path.parent, 0o700)
+            with tempfile.NamedTemporaryFile(
+                "w", encoding="utf-8", dir=str(path.parent), delete=False
+            ) as handle:
+                handle.write(session.model_dump_json())
+                handle.flush()
+                os.fsync(handle.fileno())
+                temporary = handle.name
+            os.replace(temporary, path)
+            os.chmod(path, 0o600)
         except OSError:
             pass
 
@@ -382,6 +405,48 @@ class AdvisorSessionStore:
         with self._lock:
             self._sessions[session_id] = session
         return session
+
+    def _expired(self, session: AdvisorSession) -> bool:
+        try:
+            created = datetime.fromisoformat(session.created_at.replace("Z", "+00:00"))
+        except (TypeError, ValueError):
+            return True
+        if created.tzinfo is None:
+            created = created.replace(tzinfo=timezone.utc)
+        hours = advisor_session_ttl_hours()
+        return created + timedelta(hours=hours) <= datetime.now(timezone.utc)
+
+    def delete(self, session_id: str) -> bool:
+        path = self._session_path(session_id)
+        with self._lock:
+            existed = self._sessions.pop(session_id, None) is not None
+        if path is not None and path.exists():
+            try:
+                path.unlink()
+                existed = True
+            except OSError:
+                pass
+        return existed
+
+    def cleanup_expired(self) -> int:
+        expired = []
+        with self._lock:
+            expired.extend(session_id for session_id, session in self._sessions.items() if self._expired(session))
+        if self._persist_dir:
+            root = resolve_project_path(self._persist_dir)
+            if root.exists():
+                for path in root.glob("*.json"):
+                    if path.stem in expired:
+                        continue
+                    try:
+                        session = AdvisorSession.model_validate_json(path.read_text(encoding="utf-8"))
+                    except (OSError, ValueError):
+                        continue
+                    if self._expired(session):
+                        expired.append(path.stem)
+        for session_id in set(expired):
+            self.delete(session_id)
+        return len(set(expired))
 
 
 _STORE = AdvisorSessionStore()
@@ -551,7 +616,7 @@ def create_session(raw_payload: Dict, report: Optional[HealthReport] = None) -> 
 
     rule_result = run_rule_engine(payload)
     session = AdvisorSession(
-        session_id=uuid4().hex[:12],
+        session_id=str(uuid4()),
         payload=payload,
         rule_result=rule_result,
         report_id=report.report_id,
@@ -615,11 +680,10 @@ def _llm_reply(
     evidence: List[Evidence],
 ) -> Optional[Tuple[str, str]]:
     """Try the configured LLM provider; returns (body, mode) or None."""
-    import os
-
     from app.services.llm_adapter import LlmGenerationError, generate_llm_advisor_reply
 
-    provider = os.getenv("LLM_PROVIDER", "mock").lower()
+    runtime = load_report_llm_config()
+    provider = runtime.provider.lower()
     if provider in {"openai-compatible", "third_party", "thirdparty"}:
         provider = "openai_compatible"
     if provider not in {"deepseek", "anthropic", "claude", "openai_compatible"}:
@@ -639,11 +703,12 @@ def _llm_reply(
     except LlmGenerationError:
         return None
     if provider == "deepseek":
-        label, model = "deepseek", os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash")
+        label = "deepseek"
     elif provider == "openai_compatible":
-        label, model = "openai_compatible", os.getenv("LLM_MODEL", "gpt-5.5")
+        label = "openai_compatible"
     else:
-        label, model = "anthropic", os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-5")
+        label = "anthropic"
+    model = runtime.model
     return body, f"llm_advisor_{label}:{model}"
 
 

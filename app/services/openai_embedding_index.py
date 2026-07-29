@@ -3,9 +3,10 @@ from __future__ import annotations
 import json
 import re
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Set
+from typing import Any, Callable, Dict, Iterable, List, Optional, Set
 
 import numpy as np
 import requests
@@ -41,6 +42,64 @@ def _scope_paths(scope: str) -> tuple[Path, Path, Path]:
         raise ValueError("scope must be one of: processed_chunks, fulltext_chunks")
     manifest_path = resolve_project_path(MANIFEST_TEMPLATE.format(scope=scope))
     return chunks_path, vector_path, manifest_path
+
+
+def _upstream_build_fingerprint(scope: str) -> str:
+    manifest_name = (
+        "knowledge_base/processed/chunks_manifest.json"
+        if scope == "processed_chunks"
+        else "knowledge_base/processed/fulltext_vector_manifest.json"
+    )
+    path = resolve_project_path(manifest_name)
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    except (OSError, ValueError):
+        manifest = {}
+    if scope == "processed_chunks":
+        return str(manifest.get("build_fingerprint") or "")
+    return str(manifest.get("input_fingerprint") or "")
+
+
+def _validate_upstream_current(scope: str) -> None:
+    """Refuse to send stale or failed chunks to the external embedding API."""
+
+    manifest_name = (
+        "knowledge_base/processed/chunks_manifest.json"
+        if scope == "processed_chunks"
+        else "knowledge_base/processed/fulltext_vector_manifest.json"
+    )
+    manifest_path = resolve_project_path(manifest_name)
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else {}
+    except (OSError, ValueError):
+        manifest = {}
+
+    if scope == "processed_chunks":
+        from app.services.fingerprints import (
+            catalog_fingerprint,
+            combine_fingerprints,
+            fingerprint_paths,
+        )
+
+        expected = combine_fingerprints(
+            {
+                "governed_notes": fingerprint_paths(["knowledge_base/raw/expanded"]),
+                "catalog": catalog_fingerprint(),
+            }
+        )
+        actual = str(manifest.get("build_fingerprint") or "")
+    elif scope == "fulltext_chunks":
+        from app.services.fulltext_vector_index import current_fulltext_input_fingerprint
+
+        if manifest.get("status") != "current":
+            raise OpenAIEmbeddingError("full-text chunks artifact is missing, stale, or failed")
+        expected = current_fulltext_input_fingerprint()
+        actual = str(manifest.get("input_fingerprint") or "")
+    else:
+        raise ValueError("scope must be one of: processed_chunks, fulltext_chunks")
+
+    if not expected or actual != expected:
+        raise OpenAIEmbeddingError(f"{scope} upstream artifact is missing or stale")
 
 
 def _jsonable_metadata(item: Dict[str, Any]) -> Dict[str, Any]:
@@ -110,10 +169,12 @@ def _post_embeddings(
         headers={"Authorization": f"Bearer {config.api_key}", "Content-Type": "application/json"},
         json=payload,
         timeout=timeout_sec,
+        allow_redirects=False,
     )
     if response.status_code >= 400:
-        detail = response.text[:800]
-        raise OpenAIEmbeddingError(f"OpenAI embeddings HTTP {response.status_code}: {detail}")
+        # Never include a provider-controlled response body in logs/errors: a
+        # misconfigured endpoint could echo Authorization or submitted text.
+        raise OpenAIEmbeddingError(f"OpenAI embeddings HTTP {response.status_code}")
     try:
         return response.json()
     except ValueError as exc:
@@ -125,31 +186,78 @@ def embed_texts(
     config: OpenAIEmbeddingConfig,
     timeout_sec: float = 60.0,
     max_retries: int = 3,
+    progress_callback: Optional[Callable[[int, int], None]] = None,
 ) -> tuple[np.ndarray, Dict[str, int], str]:
     if not config.api_key:
         raise OpenAIEmbeddingError("OPENAI_EMBEDDING_API_KEY is not set")
+    if not texts:
+        dimensions = max(0, int(config.dimensions or 0))
+        return np.zeros((0, dimensions), dtype=np.float32), {"prompt_tokens": 0, "total_tokens": 0}, config.model
+
+    def embed_batch(batch_number: int, batch: List[str]) -> tuple[int, List[List[float]], Dict[str, int], str]:
+        session = requests.Session()
+        try:
+            for attempt in range(max_retries + 1):
+                try:
+                    data = _post_embeddings(batch, config, session=session, timeout_sec=timeout_sec)
+                    break
+                except (requests.RequestException, OpenAIEmbeddingError):
+                    if attempt >= max_retries:
+                        raise
+                    time.sleep(min(2**attempt, 8))
+        finally:
+            session.close()
+        batch_embeddings = [
+            item["embedding"]
+            for item in sorted(data.get("data", []), key=lambda item: item["index"])
+        ]
+        if len(batch_embeddings) != len(batch):
+            raise OpenAIEmbeddingError("OpenAI embeddings response count did not match input count")
+        usage_payload = data.get("usage") or {}
+        batch_usage = {
+            "prompt_tokens": int(usage_payload.get("prompt_tokens") or 0),
+            "total_tokens": int(usage_payload.get("total_tokens") or 0),
+        }
+        return batch_number, batch_embeddings, batch_usage, str(data.get("model") or config.model)
+
+    batches = [
+        texts[start : start + config.batch_size]
+        for start in range(0, len(texts), config.batch_size)
+    ]
+    if progress_callback:
+        progress_callback(0, len(batches))
+
+    completed = 0
+    results: Dict[int, tuple[List[List[float]], Dict[str, int], str]] = {}
+    max_workers = min(max(1, int(config.max_concurrency)), len(batches))
+    if max_workers == 1:
+        for batch_number, batch in enumerate(batches):
+            index, vectors, batch_usage, model = embed_batch(batch_number, batch)
+            results[index] = (vectors, batch_usage, model)
+            completed += 1
+            if progress_callback:
+                progress_callback(completed, len(batches))
+    else:
+        with ThreadPoolExecutor(max_workers=max_workers, thread_name_prefix="openai-embedding") as executor:
+            futures = {
+                executor.submit(embed_batch, batch_number, batch): batch_number
+                for batch_number, batch in enumerate(batches)
+            }
+            for future in as_completed(futures):
+                index, vectors, batch_usage, model = future.result()
+                results[index] = (vectors, batch_usage, model)
+                completed += 1
+                if progress_callback:
+                    progress_callback(completed, len(batches))
+
     embeddings: List[List[float]] = []
     usage = {"prompt_tokens": 0, "total_tokens": 0}
     returned_model = config.model
-    session = requests.Session()
-    for start in range(0, len(texts), config.batch_size):
-        batch = texts[start : start + config.batch_size]
-        for attempt in range(max_retries + 1):
-            try:
-                data = _post_embeddings(batch, config, session=session, timeout_sec=timeout_sec)
-                break
-            except (requests.RequestException, OpenAIEmbeddingError):
-                if attempt >= max_retries:
-                    raise
-                time.sleep(min(2**attempt, 8))
-        returned_model = str(data.get("model") or returned_model)
-        usage_payload = data.get("usage") or {}
-        usage["prompt_tokens"] += int(usage_payload.get("prompt_tokens") or 0)
-        usage["total_tokens"] += int(usage_payload.get("total_tokens") or 0)
-        batch_embeddings = [item["embedding"] for item in sorted(data.get("data", []), key=lambda item: item["index"])]
-        if len(batch_embeddings) != len(batch):
-            raise OpenAIEmbeddingError("OpenAI embeddings response count did not match input count")
-        embeddings.extend(batch_embeddings)
+    for batch_number in range(len(batches)):
+        vectors, batch_usage, returned_model = results[batch_number]
+        embeddings.extend(vectors)
+        usage["prompt_tokens"] += batch_usage["prompt_tokens"]
+        usage["total_tokens"] += batch_usage["total_tokens"]
     array = np.array(embeddings, dtype=np.float32)
     return _normalize_embeddings(array), usage, returned_model
 
@@ -158,10 +266,12 @@ def build_openai_embedding_index(
     scope: str = "processed_chunks",
     limit: Optional[int] = None,
     offset: int = 0,
-    timeout_sec: float = 60.0,
+    timeout_sec: Optional[float] = None,
     source_ids: Optional[Iterable[str]] = None,
+    progress_callback: Optional[Callable[[int, int], None]] = None,
 ) -> Dict[str, Any]:
     started = time.time()
+    _validate_upstream_current(scope)
     config = load_openai_embedding_config()
     requested_source_ids = sorted({str(item) for item in source_ids or [] if str(item).strip()})
     chunks = load_embedding_chunks(
@@ -171,7 +281,14 @@ def build_openai_embedding_index(
         source_ids=requested_source_ids or None,
     )
     texts = [_embedding_text(chunk) for chunk in chunks]
-    embeddings, usage, returned_model = embed_texts(texts, config=config, timeout_sec=timeout_sec)
+    effective_timeout = float(config.timeout_sec if timeout_sec is None else timeout_sec)
+    embed_kwargs: Dict[str, Any] = {
+        "config": config,
+        "timeout_sec": effective_timeout,
+    }
+    if progress_callback:
+        embed_kwargs["progress_callback"] = progress_callback
+    embeddings, usage, returned_model = embed_texts(texts, **embed_kwargs)
     _, vector_path, manifest_path = _scope_paths(scope)
     vector_path.parent.mkdir(parents=True, exist_ok=True)
     ids = np.array([chunk.chunk_id for chunk in chunks], dtype=object)
@@ -185,7 +302,11 @@ def build_openai_embedding_index(
         "timestamp": int(time.time()),
         "backend": "openai_embeddings",
         "scope": scope,
-        "purpose": "External OpenAI embedding index for governed KB chunks. API key is read from local .env and is not persisted.",
+        "purpose": (
+            "External OpenAI embedding index for governed KB chunks. "
+            "The API key is loaded from the active encrypted integration profile "
+            "or the first-start environment fallback and is never persisted here."
+        ),
         "model_requested": config.model,
         "model_returned": returned_model,
         "embedding_dimensions": int(embeddings.shape[1]) if embeddings.ndim == 2 else 0,
@@ -196,6 +317,8 @@ def build_openai_embedding_index(
         "source_ids_filter": requested_source_ids,
         "source_ids_indexed": indexed_source_ids,
         "batch_size": config.batch_size,
+        "timeout_sec": effective_timeout,
+        "max_concurrency": config.max_concurrency,
         "input_scope": scope,
         "configured_input_scope": config.input_scope,
         "usage": usage,
@@ -203,6 +326,16 @@ def build_openai_embedding_index(
         "vector_path": str(vector_path),
         "duration_sec": round(time.time() - started, 3),
     }
+    from app.services.fingerprints import combine_fingerprints, sha256_file
+
+    manifest["input_sha256"] = sha256_file(str(_scope_paths(scope)[0]))
+    manifest["upstream_build_fingerprint"] = _upstream_build_fingerprint(scope)
+    manifest["input_fingerprint"] = combine_fingerprints(
+        {
+            "chunks_sha256": manifest["input_sha256"],
+            "upstream_build_fingerprint": manifest["upstream_build_fingerprint"],
+        }
+    )
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     return manifest
@@ -225,7 +358,7 @@ def query_openai_embedding_index(
     query: str,
     scope: str = "processed_chunks",
     top_k: int = 5,
-    timeout_sec: float = 60.0,
+    timeout_sec: Optional[float] = None,
     allowed_uses: Optional[Iterable[str]] = None,
     min_quality_score: Optional[float] = 18,
     cn_boost: float = 0.0,
@@ -246,7 +379,11 @@ def query_openai_embedding_index(
     data = np.load(vector_path, allow_pickle=True)
     ids = data["ids"]
     embeddings = data["embeddings"].astype(np.float32)
-    query_vector, _, _ = embed_texts([query], config=config, timeout_sec=timeout_sec)
+    query_vector, _, _ = embed_texts(
+        [query],
+        config=config,
+        timeout_sec=float(config.timeout_sec if timeout_sec is None else timeout_sec),
+    )
     chunks_by_id = _load_chunk_content(chunks_path)
     required_uses: Set[str] = set(allowed_uses or [])
     candidate_indices = [

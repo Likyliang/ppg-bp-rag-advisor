@@ -2,12 +2,12 @@
 
 - candidate_id: `aha_home_bp_measurement_instructions_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://www.heart.org/-/media/files/health-topics/high-blood-pressure/how_to_measure_your_blood_pressure_letter_size.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: not saved
+- local_pdf: `aha_home_bp_measurement_instructions.pdf`
 
 #### 摘要入库要点
 

@@ -44,12 +44,12 @@ ADA 2026 糖尿病心血管风险管理章节可强化糖尿病用户的血压�
 
 - candidate_id: `ada_2026_standards_cvd_bp_fulltext`
 - access_mode: `public_html`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC12690187/
 - doi: 10.2337/dc26-S010
 - pmid: 41358899
 - access_recorded: 2026-05-22
-- local_pdf: not saved
+- local_pdf: `ada_2026_standards_cvd_bp.pdf`
 
 #### 摘要入库要点
 

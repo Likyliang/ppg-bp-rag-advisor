@@ -1,0 +1,47 @@
+catalog_version: 1
+updated: '2026-07-08'
+sources:
+  - source_id: cohen_2026_cuffless_devices_measurement
+    title: 'Cuffless Devices for the Measurement of Blood Pressure: A Scientific Statement From the American Heart Association'
+    organization: Hypertension
+    url: https://doi.org/10.1161/hyp.0000000000000254
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: global
+    journal: Hypertension
+    topic: cuffless_ppg_limitations
+    evidence_class: guideline
+    source_type: research_article
+    include: true
+    allowed_uses: [cuffless_ppg_limitations, signal_quality]
+    access_note: public
+    last_accessed: 2026-07-08
+    screening: {authority: 3, recency: 5, relevance: 4, accessibility: 4, safety_applicability: 3}
+    notes:
+      summary: 来源期刊/会议：Hypertension
+    _trashed_at: '2026-07-08'
+    _trashed_from: knowledge_base/sources/source_catalog_extra.yaml
+  - source_id: cohen_2026_cuffless_devices_measurement
+    title: 'Cuffless Devices for the Measurement of Blood Pressure: A Scientific Statement From the American Heart Association'
+    organization: Hypertension
+    url: https://doi.org/10.1161/hyp.0000000000000254
+    doi:
+    pmid:
+    year: 2026
+    language: en
+    region: global
+    journal: Hypertension
+    topic: cuffless_ppg_limitations
+    evidence_class: guideline
+    source_type: research_article
+    include: true
+    allowed_uses: [cuffless_ppg_limitations, signal_quality]
+    access_note: public
+    last_accessed: 2026-07-08
+    screening: {authority: 3, recency: 5, relevance: 4, accessibility: 4, safety_applicability: 3}
+    notes:
+      summary: 来源期刊/会议：Hypertension
+    _trashed_at: '2026-07-08'
+    _trashed_from: knowledge_base/sources/source_catalog_extra.yaml

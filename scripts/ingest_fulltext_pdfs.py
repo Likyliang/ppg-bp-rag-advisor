@@ -2,12 +2,20 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 
 from app.services.fulltext_vector_index import (
     build_fulltext_vector_index,
     query_hashing_vector_index,
     summarize_query_results,
 )
+
+
+def _emit_progress(completed: int, total: int) -> None:
+    if os.getenv("ADMIN_JOB_PROGRESS") != "1":
+        return
+    ratio = 1.0 if total <= 0 else min(1.0, max(0.0, completed / total))
+    print(f"__ADMIN_JOB_PROGRESS__={10 + int(ratio * 75)}", flush=True)
 
 
 def main() -> None:
@@ -30,11 +38,16 @@ def main() -> None:
         target_chars=args.target_chars,
         overlap_chars=args.overlap_chars,
         dims=args.dims,
+        progress_callback=_emit_progress,
     )
+    if os.getenv("ADMIN_JOB_PROGRESS") == "1":
+        print("__ADMIN_JOB_PROGRESS__=95", flush=True)
     output = {"manifest": {key: value for key, value in manifest.items() if key != "sources"}}
     if args.query:
         output["query_results"] = summarize_query_results(query_hashing_vector_index(args.query, top_k=args.top_k))
     print(json.dumps(output, ensure_ascii=False, indent=2))
+    if manifest.get("status") == "failed":
+        raise SystemExit(2)
 
 
 if __name__ == "__main__":

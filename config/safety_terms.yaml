@@ -11,6 +11,42 @@ diagnostic_patterns:
   - 无需.*复核
   - 不用急救
 
+# Always-unsafe even when the screening-suggestion feature is ON. Screening may
+# say "信号可能与心律不齐有关，建议就医排查"; it may NEVER assert the user
+# definitely has a condition. These definitive-attribution patterns stay blocked.
+screening_overreach_patterns:
+  - 你得了
+  - 你患上
+  - 你已经患
+  - 确定患有
+  - 确诊是
+  - 确诊为
+  - 肯定是.{0,6}(病|症|衰|梗|血压|心律|房颤|早搏)
+  - 一定是.{0,6}(病|症|衰|梗|血压|心律|房颤|早搏)
+  - 百分百
+  - 不用看医生
+  - 不必就医
+  - 无需排查
+
+# Screening-suggestion validation: a suggestion is only well-formed when its
+# text carries BOTH a hedge cue and a referral cue (checked in safety.py against
+# each ScreeningSuggestion). Keep aligned with config/screening_rules.yaml.
+screening_required_hedge_cues:
+  - 可能
+  - 倾向
+  - 提示
+  - 建议进一步
+  - 不能确定
+screening_required_referral_cues:
+  - 就医
+  - 门诊
+  - 心内科
+  - 医院
+  - 心电图
+  - 检查
+  - 复核
+  - 评估
+
 # Context-sensitive: "不需要120/急诊" is only unsafe when the rule engine has
 # actually flagged an emergency. In a non-emergency report this is correct
 # guidance, so blocking it everywhere forced the conservative template

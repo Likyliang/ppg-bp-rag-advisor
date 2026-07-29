@@ -44,12 +44,12 @@ ESH 2021 家庭血压监测立场文件可支持家庭测量方法、重复测�
 
 - candidate_id: `esh_2021_home_bp_monitoring_position_paper_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://sussex.figshare.com/articles/journal_contribution/Home_blood_pressure_monitoring_Methodology_clinical_relevance_and_practical_application_A_2021_position_paper_by_the_Working_Group_on_Blood_Pressure_Monitoring_and_Cardiovascular_Variability_of_the_European_Society_of_Hypertension/29269019
 - doi: 10.1097/HJH.0000000000002922
 - pmid: 34269334
 - access_recorded: 2026-05-21
-- local_pdf: not saved
+- local_pdf: `esh_2021_home_bp_monitoring_position_paper.pdf`
 
 #### 摘要入库要点
 

@@ -1,12 +1,12 @@
 {
-  "timestamp": 1781146886,
+  "timestamp": 1785333102,
   "purpose": "RAG trust calibration: separate query-only retrieval quality from metadata-filter safety and audit recommendation-level evidence grounding.",
   "retrieval_summary": {
     "query_count": 100,
     "match_rate": 1.0,
-    "mean_precision_at_5": 0.983,
+    "mean_precision_at_5": 0.971,
     "topic_hit_rate": 1.0,
-    "mean_topic_precision_at_5": 0.874,
+    "mean_topic_precision_at_5": 0.849,
     "expected_class_hit_rate": 1.0,
     "high_trust_sensitive_rate": 1.0,
     "unsafe_source_leakage_count": 0,
@@ -17,7 +17,7 @@
     "match_rate": 1.0,
     "mean_precision_at_5": 1.0,
     "topic_hit_rate": 1.0,
-    "mean_topic_precision_at_5": 0.865,
+    "mean_topic_precision_at_5": 0.849,
     "expected_class_hit_rate": 1.0,
     "high_trust_sensitive_rate": 1.0,
     "unsafe_source_leakage_count": 0,
@@ -78,6 +78,11 @@
     "audit": true,
     "commands": true,
     "performance": true
+  },
+  "input_fingerprints": {
+    "catalog": "14b2efc9b545e8bc0c700c6b6d6314a088a189af3c31670797f33e57fa62c24c",
+    "config": "2756620513de1465f559c467322c40459899cfe557a7ea09105b8f5c5a40b9e1",
+    "chunks": "5d2c45de64543eed2b0701333c3b0a573c7752a3db726e19e8437de43187658f"
   },
   "known_risk": "calibrated_query_only is the primary retrieval metric; metadata_filter_safety is retained only as a safety-filter check."
 }

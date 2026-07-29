@@ -2,12 +2,12 @@
 
 - candidate_id: `nhlbi_dash_lowering_blood_pressure_pdf`
 - access_mode: `public_pdf`
-- fulltext_status: summarized
+- fulltext_status: local_pdf_available
 - source_url: https://www.nhlbi.nih.gov/files/docs/public/heart/new_dash.pdf
 - doi: n/a
 - pmid: n/a
 - access_recorded: 2026-05-11
-- local_pdf: not saved
+- local_pdf: `nhlbi_dash_lowering_blood_pressure_guide.pdf`
 
 #### 摘要入库要点
 
