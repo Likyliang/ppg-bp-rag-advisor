@@ -16,7 +16,7 @@ import portalocker
 from app.admin.audit import redact_sensitive_text
 from app.admin.db import session_scope
 from app.admin.models import AdminJob, JobEvent, utcnow
-from app.services.config_loader import resolve_project_path
+from app.services.config_loader import admin_lock_path, resolve_project_path
 
 
 JOB_RESOURCES = {
@@ -35,6 +35,7 @@ JOB_RESOURCES = {
     "rollback_config_revision": "config_write",
 }
 _UUID_RE = r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}"
+_PROGRESS_MARKER_RE = re.compile(r"^__ADMIN_JOB_PROGRESS__=(\d{1,3})$")
 
 
 def _validate_job_request(job_type: str, parameters: Dict[str, Any]) -> None:
@@ -128,6 +129,19 @@ def _sanitize(text: str) -> str:
     return value
 
 
+def _progress_marker_value(line: str) -> Optional[int]:
+    """Parse a worker-owned progress line without accepting arbitrary output."""
+
+    match = _PROGRESS_MARKER_RE.fullmatch(str(line).strip())
+    if not match:
+        return None
+    value = int(match.group(1))
+    if not 0 <= value <= 100:
+        return None
+    # Five percent is reserved for a claimed job and 100 for a successful exit.
+    return min(95, max(5, value))
+
+
 def job_dict(row: AdminJob) -> Dict[str, Any]:
     return {
         "id": row.id,
@@ -191,6 +205,9 @@ def run_job(row_id: str) -> Dict[str, Any]:
             raise KeyError(row_id)
         command = _command_for(row.job_type, json.loads(row.params_json or "{}"), job_id=row.id)
         env = os.environ.copy()
+        # Only managed Worker subprocesses may emit machine-readable progress
+        # markers; direct CLI invocations keep their existing JSON-only output.
+        env["ADMIN_JOB_PROGRESS"] = "1"
         if row.job_type in {"quality_gate", "retrieval_evaluation", "report_evaluation", "api_experiment"}:
             env["REPORT_MODE"] = "template_only"
             env["LLM_PROVIDER"] = "mock"
@@ -210,7 +227,13 @@ def run_job(row_id: str) -> Dict[str, Any]:
         lines: List[str] = []
         assert process.stdout is not None
         for line in process.stdout:
-            safe = _sanitize(line.rstrip())
+            raw_line = line.rstrip()
+            marker = _progress_marker_value(raw_line)
+            if marker is not None:
+                row.progress = max(row.progress, marker)
+                db.commit()
+                continue
+            safe = _sanitize(raw_line)
             lines.append(safe)
             if len(lines) > 200:
                 lines = lines[-200:]
@@ -318,8 +341,7 @@ def recover_interrupted_jobs() -> int:
 
 
 def worker_loop(poll_interval: float = 1.0) -> None:
-    lock_path = resolve_project_path("var/locks/admin-worker.lock")
-    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    lock_path = admin_lock_path("admin-worker.lock")
     # A host must run exactly one worker. This process lock prevents two local
     # workers from racing between the DB resource check and job claim.
     with portalocker.Lock(str(lock_path), timeout=0):

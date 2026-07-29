@@ -1,5 +1,7 @@
 """Vector-backend dispatch: OpenAI embedding index first, hashing fallback."""
 
+import json
+
 import numpy as np
 import pytest
 
@@ -13,6 +15,16 @@ def _write_npz(path, ids, vectors):
         embeddings=np.array(vectors, dtype=np.float32),
         metadata=np.array(["{}"] * len(ids), dtype=object),
     )
+
+
+def test_failed_fulltext_manifest_disables_fulltext_pool(tmp_path):
+    manifest = tmp_path / "fulltext-manifest.json"
+    manifest.write_text(json.dumps({"status": "failed"}), encoding="utf-8")
+    assert retriever._fulltext_manifest_current(str(manifest), manifest.stat().st_mtime) is False
+
+    manifest.write_text(json.dumps({"status": "current"}), encoding="utf-8")
+    retriever._fulltext_manifest_current.cache_clear()
+    assert retriever._fulltext_manifest_current(str(manifest), manifest.stat().st_mtime) is True
 
 
 @pytest.fixture()

@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from app.services import fulltext_candidates as ft
 
 
@@ -37,6 +39,13 @@ def test_fulltext_catalog_rejects_credential_like_fields():
 def test_fulltext_public_download_never_downloads_institution_candidates(tmp_path, monkeypatch):
     monkeypatch.setattr(ft, "DOWNLOADS_ROOT", str(tmp_path / "downloads"))
     monkeypatch.setattr(ft, "PROCESSED_ROOT", str(tmp_path / "processed"))
+    governed_pdf = tmp_path / "governed-library-copy.pdf"
+    governed_pdf.write_bytes(b"%PDF-1.4\nreal governed content\n%%EOF")
+    original_governed_bytes = governed_pdf.read_bytes()
+    monkeypatch.setattr(
+        "app.services.fulltext_vector_index.governed_pdf_path",
+        lambda source_id, topic=None: governed_pdf,
+    )
     requested_urls = []
 
     def fake_download(url, timeout):
@@ -49,6 +58,12 @@ def test_fulltext_public_download_never_downloads_institution_candidates(tmp_pat
     assert result["download_count"] >= 1
     assert requested_urls
     assert not any("ahajournals.org" in url or "sciopen.com" in url for url in requested_urls)
+    assert governed_pdf.read_bytes() == original_governed_bytes
+    assert all(
+        Path(item["path"]).parent == tmp_path / "downloads"
+        for item in result["results"]
+        if item["status"] in {"downloaded", "existing"}
+    )
 
 
 def test_fulltext_summary_notes_are_tracked_summaries(tmp_path, monkeypatch):

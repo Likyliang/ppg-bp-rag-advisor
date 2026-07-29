@@ -1,16 +1,16 @@
 {
-  "timestamp": 1783433288,
+  "timestamp": 1785328737,
   "backend": "local_hashing_vectors",
   "purpose": "Local full-text PDF chunking and vector indexing. Raw PDF text stays in ignored vector_store files and is not committed.",
   "target_chars": 850,
   "overlap_chars": 140,
   "embedding_dims": 384,
-  "source_count": 174,
-  "page_count": 3963,
-  "chunk_count": 22365,
+  "source_count": 133,
+  "page_count": 2197,
+  "chunk_count": 12509,
   "chunks_path": "/Users/lianghao/Work/high blood pressure RAG_advisor_embedding_demo/knowledge_base/vector_store/fulltext_chunks.jsonl",
   "vector_path": "/Users/lianghao/Work/high blood pressure RAG_advisor_embedding_demo/knowledge_base/vector_store/fulltext_hashing_vectors.npz",
-  "duration_sec": 125.938,
+  "duration_sec": 367.428,
   "sources": [
     {
       "source_id": "aami_esh_iso_2018_universal_validation_standard",
@@ -19,34 +19,12 @@
       "pdf_sha256": "fde57346c5fa1ed6f8a77c5345df39731e117a602189e0d268f2eebb52f5853a",
       "page_count": 16,
       "chunk_count": 64,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "acc_aha_2025_full_guideline_record",
-      "title": "2025 AHA ACC Guideline for the Prevention Detection Evaluation and Management of High Blood Pressure in Adults",
-      "local_pdf": "knowledge_base/library/bp_categories/acc_aha_2025_full_guideline_record.pdf",
-      "pdf_sha256": "edf9b37d98ce794ba430169b5e45976e430de7e08a6a60acf0c666dc60f527a0",
-      "page_count": 105,
-      "chunk_count": 857,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "ada_2026_standards_cvd_bp",
-      "title": "Cardiovascular Disease and Risk Management - Standards of Care in Diabetes 2026",
-      "local_pdf": "knowledge_base/library/special_population/ada_2026_standards_cvd_bp.pdf",
-      "pdf_sha256": "d6d6cdad9f86d8ed3bf10ced05455863ba30ec9a4bb175bbb32c772cabdd7824",
-      "page_count": 30,
-      "chunk_count": 313,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "aha_ama_2020_smbp_policy_statement",
-      "title": "Self-Measured Blood Pressure Monitoring at Home: A Joint Policy Statement From the American Heart Association and American Medical Association",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/aha_ama_2020_smbp_policy_statement.pdf",
-      "pdf_sha256": "98090f71f63a87a86cf3558b81707c102528760df6f5b975f1c8ccfa23e4b361",
-      "page_count": 22,
-      "chunk_count": 180,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "1e4979d12ddcb6c76d5eb4cebc567f7384f1d1e033b82eaafff2839e0a5f11f1",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "aha_cuffless_bp_scientific_statement",
@@ -55,34 +33,12 @@
       "pdf_sha256": "112e2e6597855ac85bec115747d800f0e8eed1682645534bf6415beab96cb44e",
       "page_count": 11,
       "chunk_count": 88,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "aha_home_bp_measurement_instructions",
-      "title": "Home Blood Pressure Measurement Instructions",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/aha_home_bp_measurement_instructions.pdf",
-      "pdf_sha256": "076eb70138239fe945577b92da607b67e27b441da05b27f78ad751c9087bc3bf",
-      "page_count": 1,
-      "chunk_count": 4,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "aha_life_essential_8_manage_blood_pressure",
-      "title": "Life's Essential 8 - How to Manage Blood Pressure",
-      "local_pdf": "knowledge_base/library/lifestyle/aha_life_essential_8_manage_blood_pressure.pdf",
-      "pdf_sha256": "e15ccef40ccf0a2824152352360cdfbb195300dffe69ced012b1844cdbd4b6bd",
-      "page_count": 1,
-      "chunk_count": 5,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "aha_pregnancy_blood_pressure_categories",
-      "title": "Blood Pressure Categories for Individuals who are Pregnant",
-      "local_pdf": "knowledge_base/library/special_population/aha_pregnancy_blood_pressure_categories.pdf",
-      "pdf_sha256": "533937ed638e3c4cc17cb22da0487e8f5492f01ca721c5fd757bd968d5c533a0",
-      "page_count": 1,
-      "chunk_count": 1,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "348eb6c47e6ec6e4df252915b3032ea6ae192e55a19294da426ca6d92c31c2da",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "aha_prevent_equations_circulation_2024",
@@ -91,25 +47,12 @@
       "pdf_sha256": "5f4582c8de6d613384cffea8c59de7db85c5db9d377ab9156b268f21168d08c5",
       "page_count": 44,
       "chunk_count": 194,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "aha_reduce_high_blood_pressure_answers_by_heart",
-      "title": "How Can I Lower High Blood Pressure?",
-      "local_pdf": "knowledge_base/library/lifestyle/aha_reduce_high_blood_pressure_answers_by_heart.pdf",
-      "pdf_sha256": "bacb007189a3fcf8572d1c3f032fcef243e75a9221f7b0a130e4b876a59a2c59",
-      "page_count": 2,
-      "chunk_count": 8,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "aha_steps_to_improve_high_bp",
-      "title": "Simple Steps to Improve Your High Blood Pressure",
-      "local_pdf": "knowledge_base/library/lifestyle/aha_steps_to_improve_high_bp.pdf",
-      "pdf_sha256": "48dc4f5a94300757f7d43601326ad4c97fa7f21757e9b7c1bb6f94854c2e3d17",
-      "page_count": 1,
-      "chunk_count": 4,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "0f0111aa1585a4f4c558413eece2306a622c15e995deb90626c6f60528bfbefd",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "allen_2007_ppg_clinical_measurement_review",
@@ -118,7 +61,12 @@
       "pdf_sha256": "89255deb05c70054f56a4bf728115c8fb56b0c30a3fb5f0294d5b5d96c8ed1b4",
       "page_count": 40,
       "chunk_count": 206,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "72e6b889ec1aa1c4fad4f2b3d178d766c70cbc3bbe2827742abe54a68810159e",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "arguello_prada_2024_ppg_motion_artifact_detection_review",
@@ -127,7 +75,12 @@
       "pdf_sha256": "b62adc0b3708bd4ba191c926e6f956c45db471408d1073e5d86ec9b9bae64e28",
       "page_count": 17,
       "chunk_count": 110,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "b8ff4058cdd828f2dad343ad890aa6e846010371504ff0ee4bc604af0bf9e35a",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "bent_2020_wearable_optical_hr_inaccuracy",
@@ -136,7 +89,12 @@
       "pdf_sha256": "449b451ffbf1ad8a34bd0c0c5502b4419767eed216853ed61cfc4ba918df1d72",
       "page_count": 9,
       "chunk_count": 82,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "8806eecfaf49a785bc439f585710a75d4a1581b80900b07662aeb53b8962614b",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "bradley_2022_cuffless_bp_devices_review",
@@ -145,7 +103,12 @@
       "pdf_sha256": "30a90ad11c610e8a49654b995cb4726f804ca3bf100d595e9ef153f02b96e133",
       "page_count": 8,
       "chunk_count": 66,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "6a15eb1ba05e20d5c79681dc9524c39c9bc36857f45c700f2a47e39eb2f3fa77",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "cabanas_2022_skin_pigmentation_pulse_oximetry_bibliometric",
@@ -154,16 +117,12 @@
       "pdf_sha256": "d0a2cc2c379ce4b1e7ef5885f50ae0f3e0ffc640047569d8d3664ad2322c1d4e",
       "page_count": 20,
       "chunk_count": 117,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "cdc_managing_my_blood_pressure_questions",
-      "title": "Managing My Blood Pressure - Questions to Ask My Doctor",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/cdc_managing_my_blood_pressure_questions.pdf",
-      "pdf_sha256": "7874ffec17e7e74f04b33542a17086fcf1c1352089598939223d7cb3299ece5e",
-      "page_count": 1,
-      "chunk_count": 3,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "9fb7cfd15b8686195845ae8d4a9f89c84868d4ebd56b5a1a33b3a69417c3ae9a",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "chandrasekhar_2020_contact_pressure_cuffless_bp",
@@ -172,7 +131,12 @@
       "pdf_sha256": "1a1db1b5bd96e8d46e415e2a16a3ed2c26df4f1bcfcbd97dcd926dfc06071673",
       "page_count": 14,
       "chunk_count": 52,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "dee3746f131c977cd26760e3e2a753528938a0d06b89b37fdf5311fe8b153f8a",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "charlton_2022_ppg_best_practices",
@@ -181,16 +145,12 @@
       "pdf_sha256": "1ada09f74bb2cad371213d03e7c11aabb4927670625c4c61b7561bb26ac93626",
       "page_count": 6,
       "chunk_count": 42,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "charlton_2022_vascageNet_ppg_vascular_age_review",
-      "title": "Assessing hemodynamics from the photoplethysmogram to gain insights into vascular age - a review from VascAgeNet",
-      "local_pdf": "knowledge_base/library/uncategorized/charlton_2022_vascageNet_ppg_vascular_age_review.pdf",
-      "pdf_sha256": "d9e3fe7122d6e82efb082ef6b45d702069adbe22f5cb133a83311a35cca261fd",
-      "page_count": 30,
-      "chunk_count": 259,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "ea2d21f069a4b5732df6fcc118a224b76b69f8665d3e32a6bf9377d0fc42e6d5",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "charlton_2022_wearable_ppg_cardiovascular_review",
@@ -199,7 +159,12 @@
       "pdf_sha256": "b9a062c3a9b628c0c0104f7fd12bb3ba4e473fbe9785ea469bab40c6f6581da5",
       "page_count": 28,
       "chunk_count": 246,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "3320a423353a43940f0c702b7d0d24fcef5ecdc827bea5c81ddae9a940cb1fb7",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "charlton_2023_wearable_ppg_roadmap",
@@ -208,7 +173,12 @@
       "pdf_sha256": "062cebb4b9fb7b1c4b95cbca715aee2e5f5ceed97f33c516169814e6813a50d9",
       "page_count": 90,
       "chunk_count": 520,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "f4e9db80283007ded7da385189af14ccd6fc280fd013ea0be26308e5ceafcf60",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "charlton_2025_wrist_ppg_signal_quality",
@@ -217,61 +187,12 @@
       "pdf_sha256": "51d925d59468f1ad8c0653776952a631d9e8f7a8589b5bc8a5273e642397996d",
       "page_count": 24,
       "chunk_count": 122,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "chinese_2011_bp_measurement_guideline",
-      "title": "中国血压测量指南",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/chinese_2011_bp_measurement_guideline.pdf",
-      "pdf_sha256": "27f5d78504993a77a297a95325fb857871af0561a4812c8b4c56acb23464ff60",
-      "page_count": 15,
-      "chunk_count": 145,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "chinese_2013_hypertension_patient_education_guideline",
-      "title": "中国高血压患者教育指南",
-      "local_pdf": "knowledge_base/library/lifestyle/chinese_2013_hypertension_patient_education_guideline.pdf",
-      "pdf_sha256": "e6e879d33687f2fecdf8148f48620b51926a18a313574e58675a0a2d1232e836",
-      "page_count": 77,
-      "chunk_count": 82,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "chinese_2019_home_bp_monitoring_guideline",
-      "title": "2019中国家庭血压监测指南",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/chinese_2019_home_bp_monitoring_guideline.pdf",
-      "pdf_sha256": "bf07395310ebae8c432fb493ff0c48abdb817b8fef5ff04c5b315d6a934451b3",
-      "page_count": 5,
-      "chunk_count": 22,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "chinese_2023_elderly_hypertension_management_guideline",
-      "title": "中国老年高血压管理指南2023",
-      "local_pdf": "knowledge_base/library/special_population/chinese_2023_elderly_hypertension_management_guideline.pdf",
-      "pdf_sha256": "faf7a5d8c8b5ec10bb628b8afd16608134fd292392db253b07d16d980b7af316",
-      "page_count": 31,
-      "chunk_count": 139,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "chinese_2025_secondary_hypertension_screening_consensus",
-      "title": "继发性高血压筛查和诊断中国专家共识",
-      "local_pdf": "knowledge_base/library/special_population/chinese_2025_secondary_hypertension_screening_consensus.pdf",
-      "pdf_sha256": "b5fa5af387a3e31082c9c45a714643f24c91b7d373368fe88ac584c8a7b73a69",
-      "page_count": 15,
-      "chunk_count": 72,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "chinese_hypertension_guideline_2024_catalog",
-      "title": "Chinese Guidelines for the Prevention and Treatment of Hypertension (2024 revision)",
-      "local_pdf": "knowledge_base/library/bp_categories/chinese_hypertension_guideline_2024_catalog.pdf",
-      "pdf_sha256": "6887434ffbe38083c22e93597023079d0f79a8168fb8596775b61cd526cfd75d",
-      "page_count": 149,
-      "chunk_count": 1005,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "ad6a3226399dd723cf06cbe2b7f21f501c685059874f2a189660196c6c13e9bf",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "desquins_2022_ppg_quality_assessment_survey",
@@ -280,7 +201,12 @@
       "pdf_sha256": "f63e4f39f3c5428e5540812be2b734dc3c3971f462092b28e175ebf432e9f1b6",
       "page_count": 25,
       "chunk_count": 124,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "22827cd4559cd4abb75aad9ed2eea43b22ea5c136859d66e3cefd6e8983906d8",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "electronics_2023_ppg_wearable_devices_review",
@@ -289,7 +215,12 @@
       "pdf_sha256": "d4bb857da671a2ceedf9b26de32731aa633a3da4aa974991068ea7a4e26d92c4",
       "page_count": 24,
       "chunk_count": 163,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "79108ef40da3cd7702806312506ec598da59af8e76e07975b6d556e28c930206",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "esc_2024_elevated_bp_hypertension_doi_report",
@@ -298,16 +229,12 @@
       "pdf_sha256": "20decffab76c4c2b7278c3216d98b2740cec1ce6951db9639736db102ffb3cf7",
       "page_count": 67,
       "chunk_count": 220,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "esc_2024_elevated_bp_hypertension_guideline",
-      "title": "2024 ESC Guidelines for the management of elevated blood pressure and hypertension",
-      "local_pdf": "knowledge_base/library/bp_categories/esc_2024_elevated_bp_hypertension_guideline.pdf",
-      "pdf_sha256": "37f1c96768e70e514965760e2ee9b454c07fe5eab0f212881d1dcbf2f48113b4",
-      "page_count": 107,
-      "chunk_count": 1037,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "6cfdf44927e32bbd3a90ed4f4b130c021f97f3f475ca0c1870729b1f67427a43",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "esc_2024_pharmacotherapy_what_is_new",
@@ -316,25 +243,12 @@
       "pdf_sha256": "21a20ffd4acc3601e12c25251b7e78db66d9861c9c86f9a75c18ffeea0232aa4",
       "page_count": 3,
       "chunk_count": 23,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "esh_2021_home_bp_monitoring_position_paper",
-      "title": "Home blood pressure monitoring - methodology clinical relevance and practical application",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/esh_2021_home_bp_monitoring_position_paper.pdf",
-      "pdf_sha256": "167a88c4f171071900f9017cb96341a90afa5ee7edeca0474de24d42bc27684c",
-      "page_count": 26,
-      "chunk_count": 263,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "esh_2023_hypertension_guideline",
-      "title": "2023 ESH Guidelines for the management of arterial hypertension",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/esh_2023_hypertension_guideline.pdf",
-      "pdf_sha256": "7b712008c76f8c9500ff8232371d3eb8d45d2d2b9a7445389ccf6a53b52529bf",
-      "page_count": 199,
-      "chunk_count": 1763,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "f22d699429697aa1c9e47bc2a3beb26ba1b88d1bc3ed14a8a14f68b9c5a470fa",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "fda_cuffless_nibp_draft_guidance",
@@ -343,7 +257,12 @@
       "pdf_sha256": "eeaf36da61a51a729e6232fc5455474c2fda26cbcc24638f6bab218cd7f92c92",
       "page_count": 11,
       "chunk_count": 36,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "bb64c264d8ff62c8fcaae443f8e77ac4ff48c1990986550c6fcaf958fdc1f43f",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "fine_2021_ppg_sources_of_inaccuracy",
@@ -352,7 +271,12 @@
       "pdf_sha256": "84eead3a164efb3ba955ce535b54ce3400b5046ac668462c3d4efab59f858d3e",
       "page_count": 36,
       "chunk_count": 258,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "c7a05887dc0793e0e757635e41c26632bfc9931361bbd7fa85a0cdeeb814d1e9",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "frontiers_2019_ppg_measurement_site_waveform",
@@ -361,52 +285,12 @@
       "pdf_sha256": "9a670065d044b151000078e0eeaed7700bc3ed85c93be4e56f6fe88671dc3ab8",
       "page_count": 8,
       "chunk_count": 53,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "healthy_china_2019_2030_action",
-      "title": "健康中国行动（2019-2030年）",
-      "local_pdf": "knowledge_base/library/lifestyle/healthy_china_2019_2030_action.pdf",
-      "pdf_sha256": "a6ff39335b691368888fb5c172ce4f8a98639894475ad5ea4ad554a359e40cb8",
-      "page_count": 108,
-      "chunk_count": 121,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "hersek_2020_scg_hemorrhage_wearable",
-      "title": "Enabling the assessment of trauma-induced hemorrhage via smart wearable systems",
-      "local_pdf": "knowledge_base/library/research_context/hersek_2020_scg_hemorrhage_wearable.pdf",
-      "pdf_sha256": "b5a324d6b7c1dfb4bc1065b1f8cb3187be2c7e4976fb5b779b3e5127563c9d10",
-      "page_count": 11,
-      "chunk_count": 97,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "ish_2020_global_guideline",
-      "title": "2020 International Society of Hypertension Global Hypertension Practice Guidelines",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/ish_2020_global_guideline.pdf",
-      "pdf_sha256": "c4cc2460633c0e509cd934f99def9d291426ed27114f353acc81e8d800cc8a12",
-      "page_count": 24,
-      "chunk_count": 178,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "kdigo_2024_ckd_guideline",
-      "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
-      "local_pdf": "knowledge_base/library/special_population/kdigo_2024_ckd_guideline.pdf",
-      "pdf_sha256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0",
-      "page_count": 199,
-      "chunk_count": 1450,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "kim_2017_ppg_apg_new_aging_index",
-      "title": "New Aging Index Using Signal Features of Both Photoplethysmograms and Acceleration Plethysmograms",
-      "local_pdf": "knowledge_base/library/research_context/kim_2017_ppg_apg_new_aging_index.pdf",
-      "pdf_sha256": "cb7a4080e69397841d9cd890bb2a31529e071b53559f561273ba4cd118283336",
-      "page_count": 7,
-      "chunk_count": 39,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "93b3c08060c40aa02ff089e6042945eeb6b72277509447d9dc81c3b4998c5404",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "lee_2013_rgb_reflection_ppg_motion_hr",
@@ -415,7 +299,12 @@
       "pdf_sha256": "62657a4a38681822cfe45372bfffcc8e167f23199425735a4fb6a0e8918837d3",
       "page_count": 4,
       "chunk_count": 31,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "f0997a3ced46f49244adcffef85c58d0967f2722cd3e0d3cb1fc5b6133f876ae",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "lee_2021_skin_compatible_wearable_ppg",
@@ -424,7 +313,12 @@
       "pdf_sha256": "2dcb353c9a99be8ddb510ea165f384c8d5c6e2682ccdb34aa0d3838daeb3393c",
       "page_count": 21,
       "chunk_count": 162,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "13c241699617ccf74fa304a5fb502ac43dcf3480f67172a2ef562cedfeb7a5ca",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_abraham_2026_accuracy_of_visually_estimated_home_blood_pressure_result",
@@ -433,7 +327,15 @@
       "pdf_sha256": "cf0bb459c96cd33d48422602fddacd98dec62f88ecbd69405e495ac5cb0c55f9",
       "page_count": 5,
       "chunk_count": 14,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "9cdf708c0ffd48c48f2540ad5c4f5c9b839c23b93de11fd373c2551a1149e2c0",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_acharya_2024_self_measured_blood_pressure_guided_pharmacotherapy_a_systematic",
@@ -442,7 +344,15 @@
       "pdf_sha256": "8b58ab6b7abd7c379e7921c021c2558723662af31d90d3cb401cee5f1ab18a50",
       "page_count": 20,
       "chunk_count": 76,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "7a94a7182a85594c6f799d88209a9f1d7b68d2210591654a8717edeba06a2b20",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_b_hm_2024_office_measurement_vs_ambulatory_blood_pressure_monitoring_associations",
@@ -451,7 +361,15 @@
       "pdf_sha256": "6de877f480e5a71520bca735df111be6b5c963508c03c730c378269d66e3b143",
       "page_count": 11,
       "chunk_count": 74,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "da08ef644d9a62ee37a5e2b00b0b556e85f3cdd95d6b8d58e7f5241284afa444",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_bernabe_ortiz_2020_effect_of_salt_substitution_on_community_wide_blood",
@@ -460,7 +378,15 @@
       "pdf_sha256": "5a8c0c3c7c496911a560470b80bc6d6128ed32507f48d88c99707f6f3b9432d9",
       "page_count": 19,
       "chunk_count": 78,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "4a6d1457e10755fad3c7f5907845294860d07374383aa29fe4473d4ef1db6404",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_bhm_2023_empagliflozin_irrespective_of_blood_pressure_improves_outcomes_in",
@@ -469,7 +395,15 @@
       "pdf_sha256": "960ff63a205e0c9448e7a8d35a0b602396c731bbfb4b020c951467958090550b",
       "page_count": 12,
       "chunk_count": 69,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "d78635552e40585ccd73dc78e05d38b388d524f1b9d5cd8974389744c28775d1",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_bondarenko_2025_the_role_of_face_regions_in_remote_photoplethysmography",
@@ -478,7 +412,15 @@
       "pdf_sha256": "f1af8bcdee160eef15cff46376da06a579d565fb02a36d8fb7b9a2d861e7a18f",
       "page_count": 12,
       "chunk_count": 92,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "3323888cb80775abc9eb5e3f2d020acd13e807729985a5e515b0e7522d9b4127",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_bryant_2022_home_blood_pressure_monitoring_for_hypertension_diagnosis_by",
@@ -487,7 +429,15 @@
       "pdf_sha256": "f1e36e1bb63177e3c49395bb6aa5eb030be33d3471e5af5fc71e5c3d1f701f0f",
       "page_count": 5,
       "chunk_count": 18,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "f4d4229ac1665430a298e847b61b6e95a57b77f80b05c6859f82c953d7442c35",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_campbell_2024_detection_and_control_of_pregnancy_hypertension_using_self",
@@ -496,7 +446,15 @@
       "pdf_sha256": "dc4166e20a76a289dd06d493ca14291ecc4427698e50305579cac4413310c53d",
       "page_count": 10,
       "chunk_count": 77,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "4fc94a2a991352fdf48a1c5e96d2fb01fac9014e0f16cebb1585540817bae06e",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_cecelja_2020_genetic_aetiology_of_blood_pressure_relates_to_aortic",
@@ -505,7 +463,15 @@
       "pdf_sha256": "ac65d5cfd68610e7837160bfa256846f3ae020f95c07828e82b419353d353dd9",
       "page_count": 10,
       "chunk_count": 81,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "2ebbf1c67b5992b450c0803636861c09b9a6a6c9bf7d0ffdabdd3e37c9f54c81",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_chaturvedi_2024_social_determinants_of_health_and_disparities_in_hypertension",
@@ -514,7 +480,15 @@
       "pdf_sha256": "a46383d294b99b43d97630befd61428b6064b2b003871a2484ef88e26cf44717",
       "page_count": 13,
       "chunk_count": 108,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "0f0b9fc9278760a178ab2ba6b868757cb635d169913b2f8505d12373c12c7fd2",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_cheng_2022_risk_stratification_by_cross_classification_of_central_and",
@@ -523,7 +497,15 @@
       "pdf_sha256": "adcc04fdd4c435824c34422da6950412728251b6a205399e9c1db4cbfe1477ba",
       "page_count": 11,
       "chunk_count": 79,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "8adb3a047959ebbd3211efeb1fffe9e0261d35ccb8e5b5f04879e89ec5db369c",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_cheng_2026_continuous_blood_pressure_monitoring_via_hemodynamic_parameter_and",
@@ -532,7 +514,15 @@
       "pdf_sha256": "be2c09cc8f110990c9cb21306c8145c0f12c5e19ed5d56049601f3b9900c1576",
       "page_count": 10,
       "chunk_count": 55,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "fd69dfadb93b6d0c5dbf0f3633b571f7a66612dead570e5a07f5a0f8d7d70d04",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_choi_2026_feasibility_and_performance_evaluation_of_ppg_on_a",
@@ -541,7 +531,15 @@
       "pdf_sha256": "da4a6823384459d67b545af6f4f310097cb9641be7f16ea37a22e0f065d08ab5",
       "page_count": 9,
       "chunk_count": 66,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "7770434c11cf3d05595a86a891b9b9bc196de17700b86dbf65029a6de124a5ce",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_clark_2022_higher_arm_versus_lower_arm_systolic_blood_pressure",
@@ -550,7 +548,15 @@
       "pdf_sha256": "c9b412a58b13de9368f5a73a09c01dd256cd01541fd026a0aaf6da00b9dd8ff2",
       "page_count": 8,
       "chunk_count": 65,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "8ddfa7c04c77adb9cca4891fac1d998bc54438ac53434b065febc5b55c27cbb4",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_cohen_2026_impact_of_a_smartwatch_hypertension_notification_feature_for",
@@ -559,7 +565,15 @@
       "pdf_sha256": "85bd80b4ae1cd1d511df9b5fc512d1deb76a095b1401b74951ed11635cca7c37",
       "page_count": 6,
       "chunk_count": 23,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "46f4216b951dc5d2175656fe7cf0ed2e807d17c7b4f6656c45324add0b4da5c9",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_countouris_2025_hypertension_in_pregnancy_and_postpartum_current_standards_and",
@@ -568,7 +582,15 @@
       "pdf_sha256": "65452c674f95f8997cb4047b65b6c78e36c08d4f36da91319fddb9a9e9132d46",
       "page_count": 33,
       "chunk_count": 151,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "7ddf675a85835c35fafc687bcc4071ccc64f2c7879a7fe7f9b7b949c4a93e32c",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_dasgupta_2022_is_the_kdigo_systolic_blood_pressure_target_120",
@@ -577,7 +599,15 @@
       "pdf_sha256": "b6e39fa98e5a8a19c0865b36f96293dd476ae001b9609ee8fa583bf10d18fa70",
       "page_count": 8,
       "chunk_count": 62,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "e67beb7df72ca47ce51b6b705ae8f983cad5d32c2eac0f0a96c3fa92fe04b1a9",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_de_2024_tirzepatide_reduces_24_hour_ambulatory_blood_pressure_in",
@@ -586,7 +616,15 @@
       "pdf_sha256": "73389ad51038915a9bc0a02f597744333e289767bb44c546b031d4ff0427a26b",
       "page_count": 3,
       "chunk_count": 18,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "3e0d8b6e3fa49c4cf02794647d9b038fab71ef13fc64e22ec6aeb168a611f88d",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_di_2023_alcohol_intake_and_blood_pressure_levels_a_dose",
@@ -595,7 +633,15 @@
       "pdf_sha256": "e5e25c34f31ebd41cc70e109400ba789d89f0aa60acc8603615d451740b2df15",
       "page_count": 9,
       "chunk_count": 64,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "64ba04eb9b2f42f874052297f1c9f17f554e0855b139e037e3ceeb1bda5fa32a",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_ding_2024_siamquality_a_convnet_based_foundation_model_for_photoplethysmography",
@@ -604,7 +650,15 @@
       "pdf_sha256": "527b18e213ca74d54311949d04288eacacbfbcfd4b489b33a55ff8a774dbbde5",
       "page_count": 14,
       "chunk_count": 73,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "a2e29d2ddda7421a0503535612443baf5c459a3af1825a71192f3a9374f6a7d6",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_dos_2024_immunomodulatory_activity_of_cytokines_in_hypertension_a_vascular",
@@ -613,7 +667,15 @@
       "pdf_sha256": "973b4bb9d869b318d9311ba5ff072e7ddeef3249e0aa1f4244fc507042d6702e",
       "page_count": 23,
       "chunk_count": 107,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "a6b6ac22eabad11caea4176d0c8a77dc0a5de6ddb620a914445de696356435dc",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_flynn_2022_ambulatory_blood_pressure_monitoring_in_children_and_adolescents",
@@ -622,7 +684,15 @@
       "pdf_sha256": "197b974ac3d887d7c3fa5299bf3abd97cbe727f4d6b30743d16f5e248a499c3a",
       "page_count": 23,
       "chunk_count": 105,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "091949ee4def43f58fabe51d4d438be787abe88b43681a060d64821453e89bf6",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_freedman_2025_high_blood_pressure_in_childhood_and_premature_cardiovascular",
@@ -631,7 +701,15 @@
       "pdf_sha256": "c692fcdc10d25cb8eb94c855141c6f9bcffc416c029695e590065de13158d153",
       "page_count": 6,
       "chunk_count": 20,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "abf7e050ea80507334b3a89f1a6125ef066a9073d1d9c16ee7c3182835ebe0aa",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_gerdts_2022_sex_differences_in_arterial_hypertension",
@@ -640,7 +718,15 @@
       "pdf_sha256": "cddaecfef6584a23ffcc924f2c52786c4b48dfeb7dbf413ae92b66c9dd8859a4",
       "page_count": 12,
       "chunk_count": 115,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "62a96d64fb140880df16e9229818319b73e41ba1abc027dc853c5c7bdd2549e7",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_goda_2024_pyppg_a_python_toolbox_for_comprehensive_photoplethysmography_signal",
@@ -649,7 +735,15 @@
       "pdf_sha256": "efe84fe352fbe95a7c553752127b33b960a81adfab5ee582e753236338a64868",
       "page_count": 23,
       "chunk_count": 123,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "9658d5b205b8035c8064953b839403315c3ea2ed1b0234e2230e0a818bca6ee2",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_goda_2026_analysis_of_differential_photoplethysmography_signal_patterns_in_apnea",
@@ -658,7 +752,15 @@
       "pdf_sha256": "77e98fc933b914d6a68cd786ad24e794084a6e263589f84f4d4e3b57881f795e",
       "page_count": 13,
       "chunk_count": 75,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "b79b7dc6f5cba3417523e482e5522520fea3cd5f8286c0ab6e58758a34ce0cf4",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_grassi_2021_sympathetic_neural_mechanisms_underlying_attended_and_unattended_bloo",
@@ -667,7 +769,15 @@
       "pdf_sha256": "46293d4e39263827d06e6faeecf8d5c28d36a87fcf55547800e4b16494baabcc",
       "page_count": 8,
       "chunk_count": 55,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "2186a6114e145acc8e5e1b27b0385508236661bcc00a7839cacde8b2b1b3f1b3",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_groppelli_2025_mechanism_of_syncope_role_of_ambulatory_blood_pressure",
@@ -676,7 +786,15 @@
       "pdf_sha256": "d28930e62eb0c49eaf2a6d29d8379ddc71169691de316478092f3efe033604fb",
       "page_count": 9,
       "chunk_count": 69,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "a8c42549c7869552a829c173c1df08efd31509276440ff477bbbbd3008fb8b66",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_guo_2026_intensive_blood_pressure_control_and_cardiovascular_outcomes_across",
@@ -685,7 +803,15 @@
       "pdf_sha256": "27960b713bb10afd34c6ccdbed2563f57a55d838f1611b35672fe31a95991f68",
       "page_count": 14,
       "chunk_count": 91,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "54580fe8530f65f041ac2963cb2b51a931dbe3b9daa2739f0377406b777bef03",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_gupta_2025_association_of_drinking_water_salinity_with_elevated_blood",
@@ -694,7 +820,15 @@
       "pdf_sha256": "8f1d4c8e789fffdd3e47e8b454fa8aefe97110770fe72f5f1894962d6f9be1ab",
       "page_count": 11,
       "chunk_count": 83,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "e8358df178f5c2fbc269eac1e795ae8a4ce0cddf3094bd17eba2d797a12dad51",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_hainsworth_2024_cerebral_small_vessel_disease_hypertension_and_vascular_contribut",
@@ -703,7 +837,15 @@
       "pdf_sha256": "e56e98d9dc585b3118e0e0b2d04e07c3191942b47e0e52a3dc0ed7f2cad116f1",
       "page_count": 12,
       "chunk_count": 105,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "ad7455bfe7fd8c75d554b7c0225e185f02143bd5a4e1a3c93d93b8952afa289d",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_harrison_2024_immune_mechanisms_in_hypertension",
@@ -712,7 +854,15 @@
       "pdf_sha256": "928440831909741d498bc0b18ff639366be40faa5cc45c1e80154d6bd4ec8c83",
       "page_count": 32,
       "chunk_count": 156,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "687e90df24e27c181c3d294328cc549d2e5521df642236f0a768610f1b79c44e",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_huang_2021_ambulatory_blood_pressure_monitoring_to_diagnose_and_manage",
@@ -721,7 +871,15 @@
       "pdf_sha256": "61ca6b78b6fd26f75b793db959f4d2c153d3da42da9aa705884963e63b2dd27f",
       "page_count": 11,
       "chunk_count": 95,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "a91a0cb863c2a245994b083cb281bac2f3afc40bc61d89fb67ab43af0418562c",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_huang_2024_diagnostic_potential_of_combined_photoplethysmography_and_ankle_brachi",
@@ -730,7 +888,15 @@
       "pdf_sha256": "add01703cdb63263b541281414089b1bfb0c936896039e4824e2aa766487f61f",
       "page_count": 10,
       "chunk_count": 62,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "58a5f51197de48238d1feaa499f1318200d391a84771d85406e72aba70147bbf",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_hustrini_2025_prevalence_incidence_and_risk_factors_of_chronic_kidney",
@@ -739,7 +905,15 @@
       "pdf_sha256": "b8ed2df064390cda33182bcfa17e3876c3b6190c6ff4f99db407795181fd2679",
       "page_count": 11,
       "chunk_count": 68,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "59cd3e2ee828c9c5b3979662e77abd7d9587b5bf9aee10786e0190e55e711b6c",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_islam_2022_wearable_cuffless_blood_pressure_monitoring_devices_a_systematic",
@@ -748,7 +922,15 @@
       "pdf_sha256": "cd2829f2354b601e44169179dc8f8c3c2f05e63978ed0783a6336dea5ee156d5",
       "page_count": 15,
       "chunk_count": 111,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "34c9e25582c8449c386595023c9dc01222054d7ee8feb5dceeaf832249763a21",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_jiang_2024_efficacy_and_safety_of_catheter_based_radiofrequency_renal",
@@ -757,7 +939,15 @@
       "pdf_sha256": "eeb863686b3d7976c5b75bdd5a4727c839309680c64cb9925020f1800207b8f8",
       "page_count": 11,
       "chunk_count": 79,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "fe7ae1d9590fa4eb419a8634da365832628b619e1f5c54a50610f03a98be71dd",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_johnson_2025_hypertension_diabetes_and_high_cholesterol_awareness_among_us",
@@ -766,7 +956,15 @@
       "pdf_sha256": "a4afca9522209c3547a2cec878404435c7fcd697c856417ceab3b0ebf672b8c2",
       "page_count": 7,
       "chunk_count": 17,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "c1cc261baa14f7074881068816682000bf7dd5841184f9fd7e9661e26a0dd62a",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_kario_2020_management_of_hypertension_in_the_digital_era_small",
@@ -775,7 +973,15 @@
       "pdf_sha256": "78799b0a1caa3bde8565986cda1a62082549250e01d28271fa56936f96f33d20",
       "page_count": 11,
       "chunk_count": 88,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "eb7ec7753dddf8a1da93057ade2b0b59c62312f0d61daa29080ec077f1c9d49f",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_kario_2022_home_blood_pressure_can_predict_the_risk_for",
@@ -784,7 +990,15 @@
       "pdf_sha256": "74984f9daf6f5bd2b186e0d7170824070fcbaefab11a40e61b49c9395388278c",
       "page_count": 10,
       "chunk_count": 73,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "66b9b152091e026acffe32ab24f7bda43595832428623511b3d6d93ec4909ca5",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_kario_2026_renal_denervation_in_asia_2025_asia_renal_denervation",
@@ -793,7 +1007,15 @@
       "pdf_sha256": "862ad928953c763e3bc81d2f87b278cb65e0748c213b0d2f76c4b547649215eb",
       "page_count": 17,
       "chunk_count": 134,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "c6624a49b46686a33813c4ba01138e43d3b44b5fbcbfde3f7041e87adacf937b",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_kaur_2025_scaling_india_hypertension_control_initiative_strategies_to_15",
@@ -802,7 +1024,15 @@
       "pdf_sha256": "c5b5e1b813a2cc308fc56708abd9132d9cff6156060fdb9420d57d947b2e16b7",
       "page_count": 10,
       "chunk_count": 75,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "d958a72068f8efa2e6dd2560c1b9c311e9e89bcb66736921f48ac3505ff7854a",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_kennedy_2024_semaglutide_and_blood_pressure_an_individual_patient_data",
@@ -811,7 +1041,15 @@
       "pdf_sha256": "86f01a868536b652b5da904de2194a7b8894cb5223f285764f87d14edca3ad86",
       "page_count": 11,
       "chunk_count": 82,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "48f84ae88e09f72ce8f14f6fc8d8025c86f027f59d15a3d13737d0b9ff2b7754",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_kwon_2024_non_invasive_pulse_arrival_time_is_associated_with",
@@ -820,7 +1058,15 @@
       "pdf_sha256": "4e53f5f61c1bb630df41c5bc81fe5972fd1eff9e19aa4f9728ff4ee58f59606c",
       "page_count": 8,
       "chunk_count": 53,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "0ef6a9be881725f130a0d78abc4ed063c50a4d18972a5e964436c7eb5f8c458c",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_laffin_2023_aldosterone_synthase_inhibition_with_lorundrostat_for_uncontrolled_hy",
@@ -829,7 +1075,15 @@
       "pdf_sha256": "52020e34997d5af548d2261f482df3d5bd6fb67d263bbf01e4a8b1dd0e112e53",
       "page_count": 11,
       "chunk_count": 75,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "1a30aec4f5b441fdf83ead0c4b89503274585ee00acd12f0d68d600b1b567cbd",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_lapidaire_2026_brain_volumes_after_hypertensive_pregnancy_and_postpartum_blood",
@@ -838,7 +1092,15 @@
       "pdf_sha256": "fc6bc0c3658b674fbe125f20505d9ab597413351052cd926e95104ee171a24e5",
       "page_count": 8,
       "chunk_count": 66,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "f1b87a44ab8fc272bf5b18c5ce5716201819fa0f3d911431b1aebf493c6ef320",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_lee_2024_feasibility_and_effectiveness_of_a_ring_type_blood",
@@ -847,7 +1109,15 @@
       "pdf_sha256": "1dc261c0409e9f6718cf7b59a51db0d3f176b3b03e2abfb723936168769bb35e",
       "page_count": 12,
       "chunk_count": 58,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "e5ca03d51c4caf8b2f82c9eda5a0713fc674c539d384a8bdb8525d6d7bd024a5",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_liu_2024_cignn_a_causality_informed_and_graph_neural_network",
@@ -856,7 +1126,15 @@
       "pdf_sha256": "f2f289ca7483b4999d68709e2c014f011e0b62f75ebe7d204d22eba562bf5936",
       "page_count": 13,
       "chunk_count": 88,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "7498ef50a8ac0ecc196f7b621482986986ed47c5423155aafdefdf1ec0cd58a5",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_londo_o_2026_hearts_quality_a_policy_framework_to_strengthen_hypertension",
@@ -865,7 +1143,15 @@
       "pdf_sha256": "d4a6f9cc9d4a603e4c2d1362ee007c6e3d632d20e5638671d43752e3e2895f88",
       "page_count": 16,
       "chunk_count": 120,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "1c5ff7d1a2e6431888d8088143e5219c56aaad53fb28ffdef0b82aee5ff5e958",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_loo_2026_hypertension_management_in_s_o_paulo_insights_from",
@@ -874,7 +1160,15 @@
       "pdf_sha256": "70dd06ac3df3d7c6c96ef85e262dd61b53b99628f900f91e2f0a7b74c76e60e5",
       "page_count": 15,
       "chunk_count": 101,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "a3ffb8a8577d945da4be1edab9b0b3666e02c1df54cce6900e31112a663a1f03",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_mangalesh_2026_risk_guided_antihypertensive_treatment_eligibility_in_older_adults",
@@ -883,7 +1177,15 @@
       "pdf_sha256": "3ad2e2bd9adde71d3c9f72b8a6bff987cfda232150608cf3e7d73b53588b1055",
       "page_count": 8,
       "chunk_count": 29,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "b38c2ec2cb0efabeb42052a2d1b1b91cbc80c9e95b363314a37d3c0a522f6265",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_margolis_2022_comparing_pharmacist_led_telehealth_care_and_clinic_based",
@@ -892,7 +1194,15 @@
       "pdf_sha256": "a14591ae0098273b3b9c5f2508452ea797a6c9a1b313a42c1e6d93e6717efe80",
       "page_count": 26,
       "chunk_count": 107,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "abd49e8e1243338a7b01dcb6c2e937192ea3d5b4d9098a30160521666bb0805e",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_mary_2022_role_of_uromodulin_in_salt_sensitive_hypertension",
@@ -901,7 +1211,15 @@
       "pdf_sha256": "763a3894a1c4d1adb98019637831d72d3f59a00735f0152c51b9b8f4b3df4368",
       "page_count": 11,
       "chunk_count": 88,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "bc719e13cede2006fc196dcdaf19ce30f9c63290e26f3389883ba6c023c3921e",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_mccarthy_2025_global_and_european_landscape_of_major_hypertension_guidelines",
@@ -910,7 +1228,15 @@
       "pdf_sha256": "ca2cd2aafe641e846be996373e7746b01bbc344538a0a13736fee0b59a41a2d1",
       "page_count": 4,
       "chunk_count": 19,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "648463fadcf6d1c3a2540e0a5958c6f97b507b07d6e66cfa69b43c02b519e8ad",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_mcevoy_2021_isolated_diastolic_hypertension_in_the_idaco_study_an",
@@ -919,7 +1245,15 @@
       "pdf_sha256": "49b7856a8d163ce6e210904c0b342a5fca6f1c68da491d4e6d7ecf6edb49b37e",
       "page_count": 10,
       "chunk_count": 83,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "2646974cf0c5cb1ff6a708237d9b80b725540c8574f007d86ca72e33457ac0a5",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_mcnally_2024_influence_of_blood_pressure_reduction_on_pulse_wave",
@@ -928,7 +1262,15 @@
       "pdf_sha256": "d2f5caef9b63cd45118a24548d9a2741a08da26ffaa3318f3b52328d0c75f66b",
       "page_count": 9,
       "chunk_count": 54,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "b3009f8c41906a491e18762817db59a65b11227b6b4d8dcb1cbc61becd4b17ff",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_mej_a_mej_a_2021_differential_effects_of_the_blood_pressure_state_on",
@@ -937,7 +1279,15 @@
       "pdf_sha256": "2f1d196a78836cd811602ee312a6b1a34613a99e8f7c2ad1a322788b788718d2",
       "page_count": 11,
       "chunk_count": 84,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "20c726954ea7797bb99a208a2f2d3613706829bc94ce7644cb0c8c03136f4398",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_mitsnefes_2021_pediatric_ambulatory_blood_pressure_classification_the_case_for",
@@ -946,7 +1296,15 @@
       "pdf_sha256": "6842f7453c8a93ad0a408ae0229e49f7b8409207da08d08eaba42f2e37384cac",
       "page_count": 8,
       "chunk_count": 41,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "95f4781d67e878c26f0f4fd2f24564089ac6142b5f230a5246f016249eeac78a",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_mizuno_2023_diagnostic_accuracy_of_office_blood_pressure_measurement_and",
@@ -955,7 +1313,15 @@
       "pdf_sha256": "970437623bef0b329df9834f5d3775285bfcc8f95f465f718b7026a91cd4c4b7",
       "page_count": 11,
       "chunk_count": 77,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "a7be39aea06b8e98c7f95faa727002d197fe58bf05c2caa01094a05baaf0d565",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_mukkamala_2025_cuffless_blood_pressure_measurement_where_do_we_actually",
@@ -964,7 +1330,15 @@
       "pdf_sha256": "adcd6c8f168bbdd5b000897e4fd0622dbe7a0985e74b886266a25b4a7fb855a6",
       "page_count": 24,
       "chunk_count": 106,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "3daec65852e4b4ff470caa628527cae6afa8b699cea7454f75a8e3c793005294",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_ncd_2024_general_and_abdominal_adiposity_and_hypertension_in_eight",
@@ -973,7 +1347,15 @@
       "pdf_sha256": "3f07e57f19f810cbadbc4a8d152bd89af6026fc2feb040dc7362480b177293e8",
       "page_count": 49,
       "chunk_count": 126,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "22933f9ddcc7b74894af256abf05d4bbefdb3baf173de30d3f1baeddc7edc246",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_nowroozilarki_2023_variational_autoencoders_for_biomedical_signal_morphology_clus",
@@ -982,7 +1364,15 @@
       "pdf_sha256": "c739cef039a5ee7e477932e42d91d1c78d8f32c85452fb686b9135c7e74164fe",
       "page_count": 36,
       "chunk_count": 104,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "4b4a4b8114609ba442e87249d67d70f2b5b5d2acd017f287fb378a33922af8f2",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_ohashi_2025_nighttime_systolic_blood_pressure_determined_by_pulse_transit",
@@ -991,7 +1381,15 @@
       "pdf_sha256": "373b3d48a08cc5caf909bc4c1e6a5fff6d877cec76529f3749c85a8f90b5375e",
       "page_count": 8,
       "chunk_count": 61,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "aba7017886f305d4d9207429fd5d75efdacb29c52443240c80e4f4980b807116",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_pacholko_2024_hypertension_neurodegeneration_and_cognitive_decline",
@@ -1000,7 +1398,15 @@
       "pdf_sha256": "8d4a36553cd53fb165629c96f3d92a5054fa32a5b734602b91206cbbb9689089",
       "page_count": 31,
       "chunk_count": 143,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "09fc8ef0a26996b9f44b48f7bec42f337448389396a3966504dfebcc7a6fd34d",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_palatini_2023_orthostatic_hypertension_a_newcomer_among_the_hypertension_phenotyp",
@@ -1009,7 +1415,15 @@
       "pdf_sha256": "f8f6d48e698e7171758ce90396f9a1ba558c04ca3d4950c8c3a36f768ca8a6de",
       "page_count": 10,
       "chunk_count": 75,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "fc33297c9866d2d46ca96eb23958f33633ecf47fd52b38bcdbe36b0eac2c6a92",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_paper_2022_insights_into_diurnal_variations_of_advanced_hemodynamic_parameters",
@@ -1018,7 +1432,15 @@
       "pdf_sha256": "8d81d18d4a633ee206d63f7fa1fbaee8f4e443043da443667c75fbe20a156920",
       "page_count": 1,
       "chunk_count": 4,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "9ff8be903ecc454be0f5eab2c168a013dc38d2e322dc00f6031ab2bbd1cd56b6",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_pickersgill_2022_modeling_global_80_80_80_blood_pressure_targets",
@@ -1027,7 +1449,15 @@
       "pdf_sha256": "e5b7dd2e7bc40e7dcb45f783b57825fcdeec468700e01353ee51a2a09273a227",
       "page_count": 15,
       "chunk_count": 103,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "566cd4763eed88ed5459aee64de7e03ad8f7c4167f1e3a2d69852e3dd5541587",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_prabhakaran_2025_comparison_of_dual_therapies_for_hypertension_treatment_in",
@@ -1036,7 +1466,15 @@
       "pdf_sha256": "7e3191818258d3bd175089e2bb42c2a0f960d194e978345a99cdcb804ee45803",
       "page_count": 27,
       "chunk_count": 81,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "cf3aafe03db466ed09509c399fdaeb63416ec386ddda9471b55c82a2dc6ef929",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_prendergast_2025_emergency_department_based_education_and_mhealth_empowerment_int",
@@ -1045,7 +1483,15 @@
       "pdf_sha256": "f81c8a2181cdccb28d903ae9d4f763f767ee191b4a2961ece679933e9d0d118b",
       "page_count": 9,
       "chunk_count": 68,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "eac1a0439979700a099275568e4fd201605690936208d2a8d7c54d034b1ce4c6",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_razo_2022_effects_of_elevated_systolic_blood_pressure_on_ischemic",
@@ -1054,7 +1500,15 @@
       "pdf_sha256": "e7b0bc50e7a06b2bf0d8d2a2cbb517f7864aba362e9b00335f5b11ee0a1ccf4a",
       "page_count": 25,
       "chunk_count": 132,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "eb9b0ee363bfb1e0f8a981718774bda172ee0911d29f935c34767a450442b807",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_rivasi_2022_association_between_hypotension_during_24_h_ambulatory_blood",
@@ -1063,7 +1517,15 @@
       "pdf_sha256": "1f65f38376a6203c63abc80201968d71cc65edde192250ea26cc99f1932127de",
       "page_count": 12,
       "chunk_count": 66,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "2448278b6f69af2b0fe905c916e1b65b010c0996b287aa5564e34c42dfa8aa01",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_ruilope_2022_blood_pressure_and_cardiorenal_outcomes_with_finerenone_in",
@@ -1072,7 +1534,15 @@
       "pdf_sha256": "c648c9725426d9e7bba01e7a758393538d4e27612f36761ba7a7d2dd0c963dc6",
       "page_count": 11,
       "chunk_count": 73,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "e36accf1054fcf04776a8ae849ccdb0d1ca119443ab99edd26cc1b23fc7f340d",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_sakamoto_2025_low_arterial_stiffness_by_pulse_wave_analysis_and",
@@ -1081,7 +1551,15 @@
       "pdf_sha256": "4f02b18e0da13e69dec97aa759967172ebf4dd379d3d855638c493ca787ce46c",
       "page_count": 5,
       "chunk_count": 33,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "76a98c2c914652bc5d34f202a17e0a69e74b60e8746480c123c1f226a75f56d7",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_sau_2025_artificial_intelligence_enhanced_electrocardiography_for_prediction_of_i",
@@ -1090,7 +1568,15 @@
       "pdf_sha256": "6a4318e6f85a7b57b0c1f8653c1b67f7c1b2fa8919de237966678ab19c0d6941",
       "page_count": 18,
       "chunk_count": 65,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "8b94b57e87446d31afa44f97bdce6cad6bb471f712469c2703356ed95f378118",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_saxena_2025_lorundrostat_in_participants_with_uncontrolled_hypertension_and_treat",
@@ -1099,7 +1585,15 @@
       "pdf_sha256": "29b487a608719643aae36b8e49681d6aeb636c3b4cfaaf9a4dffb76fa3e96d75",
       "page_count": 10,
       "chunk_count": 76,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "c4a1475e93d765ff490e3a6006843f67f02f6a774c629662bcc7d2a94f085faf",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_schuermans_2024_genetic_associations_of_circulating_cardiovascular_proteins_with_",
@@ -1108,7 +1602,15 @@
       "pdf_sha256": "4fdf07e1209872baddefe0221844583fb5bfdf724a988a8ebcf79566df4a44b8",
       "page_count": 19,
       "chunk_count": 83,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "40128c409fe9322d91417ad9bd35794259d81cc437f3dade3b02aac0c8cf096f",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_sel_2023_continuous_cuffless_blood_pressure_monitoring_with_a_wearable",
@@ -1117,7 +1619,15 @@
       "pdf_sha256": "27f05ca1a994896d5c6d46ce3c5b359d69fb3fa5429f6161c109a9f8d889a952",
       "page_count": 11,
       "chunk_count": 95,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "8193085605b1afe932ac15362bde5df75c0b0693882d2ffd87cdaad8e836d083",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_sel_2023_physics_informed_neural_networks_for_modeling_physiological_time",
@@ -1126,7 +1636,15 @@
       "pdf_sha256": "93eb5a35c6c25689878de2edbae8cd8b70ec4ab86042bbf166ba6391c5ab1a70",
       "page_count": 15,
       "chunk_count": 133,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "4945b2185bec111f4e2311aec958e65b38456449edb0ef0b827c69491d04e08b",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_shin_2024_evaluation_of_applicability_and_accuracy_of_a_new",
@@ -1135,7 +1653,15 @@
       "pdf_sha256": "a16b4eef1138b7604786a9e8dad631faf85fd80b6966f810796c868f92a3c97c",
       "page_count": 3,
       "chunk_count": 17,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "ebea403653941e374f2d8f79cd0d47463840553b3d990c9dddde9ff527ecfa6f",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_siedlinski_2023_genetic_analyses_identify_brain_structures_related_to_cognitive",
@@ -1144,7 +1670,15 @@
       "pdf_sha256": "d931a5c282b3f9c5262e28660a5dbb87536c156177a236d756a3cdb19bf30477",
       "page_count": 12,
       "chunk_count": 101,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "81a7c3afd051766b3c16b8928c80ce315ce106609498660ce43fbb95f0929b47",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_smith_2023_target_bp_a_national_initiative_to_improve_blood",
@@ -1153,7 +1687,15 @@
       "pdf_sha256": "43a3f9d8f83364c5e6e9285d5ec9740d6d5a5ca1f2700ec5e2f0874a1521a137",
       "page_count": 10,
       "chunk_count": 67,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "73f51187a7f7b25b8a985ed70774d21834ec267a0b8bc38f4e8bdb98490890ce",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_smith_2025_effect_of_systolic_blood_pressure_measurement_error_on",
@@ -1162,7 +1704,15 @@
       "pdf_sha256": "01f1a47274e1c0a823ca82f8fa3c2125814501cb6f44540161f1c7aad26a0990",
       "page_count": 21,
       "chunk_count": 84,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "48ef237fdc63b35b9883193cb798f4aa810baa305205e244c899a08cc91a05c4",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_tawengi_2025_blood_pressure_variability_and_mortality_in_patients_admitted",
@@ -1171,7 +1721,15 @@
       "pdf_sha256": "3eaa690d477d5897bf324a37ca3353ce1470cbdf10224535bf72e744a26f9215",
       "page_count": 7,
       "chunk_count": 64,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "e6863df3048ee6a24e7d3612001be8248d95d74800f5630886ea5d8419dfb284",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_tian_2026_adaptive_physiology_informed_correction_for_reliable_remote_photoplethy",
@@ -1180,7 +1738,15 @@
       "pdf_sha256": "ae3c6b0e144489b99af7377442e2b5afd8cc510bc23c20473935ab235a2c4a2e",
       "page_count": 15,
       "chunk_count": 114,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "2bd08a4932a7d3664c94357858a6772c4ec9a26abee96189c479d8d9ec2ff7ac",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_tobushi_2024_sleep_apnea_autonomic_disturbances_and_blood_pressure_variability",
@@ -1189,7 +1755,15 @@
       "pdf_sha256": "ddee2118ad710f6558d432c9b084db0d8e3b333832ce3510cbc6ad15f2c2c5dc",
       "page_count": 8,
       "chunk_count": 70,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "5c96f52e8214b7dfdc638ae9520fb626127a74247d1dda6fdd5686ea143e0d1a",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_van_2024_evaluation_of_a_novel_cuffless_photoplethysmography_based_wristband",
@@ -1198,7 +1772,15 @@
       "pdf_sha256": "cc2ce0ca9ec37790e6822b3356ea364258bec2545947a274beaf539b3fb95703",
       "page_count": 9,
       "chunk_count": 63,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "5248f8ccae590c3ff1bb6cccc7d64b15964834acf1a23cc3f88819ffa20f2651",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_van_2025_assessment_of_photoplethysmography_based_blood_pressure_determinations_d",
@@ -1207,7 +1789,15 @@
       "pdf_sha256": "907bdd8c70aa47f936af7dc6ce06d23ddabcb858ef3ac99ebd2291f38dd32760",
       "page_count": 9,
       "chunk_count": 63,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "820079d976cdf7aa4f6aab3b3bb0f98b9472be39396fc6eb32c2db26c1841c7b",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_varzideh_2026_artificial_intelligence_in_cardiovascular_medicine_focus_on_hyperte",
@@ -1216,7 +1806,15 @@
       "pdf_sha256": "98b20e20a808996353aacf4386ec4e61b82b7062fbe7e77f99f880cced99b2a6",
       "page_count": 37,
       "chunk_count": 193,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "d866dd162b0acd38d2975f1c841d077f473af90a159311aa5d1210cb7f960b4d",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_virwani_2023_sex_differences_in_association_between_gut_microbiome_and",
@@ -1225,7 +1823,15 @@
       "pdf_sha256": "6522bba64f4de116bafac6836133104fe698b0310a7e46dc60900f9f2fe37628",
       "page_count": 12,
       "chunk_count": 95,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "0958e7f97ca670b7b708b55fcc136e9d438b8a9116bbcbe2ea0aabf0f818b659",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_whelton_2022_harmonization_of_the_american_college_of_cardiology_american",
@@ -1234,7 +1840,15 @@
       "pdf_sha256": "e107e3e1d7099aa5c4e4af3d58da30f5c5ed8f673218a1ab81f2459aaebc7d20",
       "page_count": 10,
       "chunk_count": 80,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "69f21c17f94263dc0216036e9331006aa2cd2695a2a85e264f369ffff28e5f83",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_whelton_2024_optimal_antihypertensive_systolic_blood_pressure_a_systematic_review",
@@ -1243,7 +1857,15 @@
       "pdf_sha256": "6eb4db83cb2735071c2eb1ee8f9d9e679dad85ab1f5038e5083595743fed9567",
       "page_count": 21,
       "chunk_count": 79,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "0accc5f58e191aee5a59b99aca575ed36835e9b15675a9f613905d30356b8291",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_yang_2024_sex_specific_genetic_architecture_of_blood_pressure",
@@ -1252,7 +1874,15 @@
       "pdf_sha256": "eb0955f4041319c08962cbcfdc1c610d75f3b557ebf32ae2fde840042f790d23",
       "page_count": 50,
       "chunk_count": 201,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "ce835c8bb15824486f8e109eb56b7dfd023b0fff5ad6b41f9365424d4e556c83",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_ye_2025_characteristics_of_ambulatory_blood_pressure_parameters_and_influencing",
@@ -1261,7 +1891,15 @@
       "pdf_sha256": "ca4a605cb6f4dc27e05fc5dbcf1c156d353493245ace85342ef0a223ff035fa5",
       "page_count": 9,
       "chunk_count": 63,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "e445fa899b2713a738c5508ad33f9ba69d5dba1417f5cfefccc42e7f689484fe",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_zhang_2025_ambulatory_blood_pressure_monitoring_european_guideline_targets_and",
@@ -1270,7 +1908,15 @@
       "pdf_sha256": "466569dfc17f337661a354fd664581303e86f9a2edb7f949693a1b42f2944b1a",
       "page_count": 14,
       "chunk_count": 114,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "4ef0745ed93dea90845a79f57dfba4e57510ad2c97ff4dff775e63c47fc76a9e",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_zhang_2026_outcome_specific_optimal_systolic_blood_pressure_targets_in",
@@ -1279,7 +1925,15 @@
       "pdf_sha256": "a2d471c891d7659473c240cac54b650f0203bd8a7626fc103961624e42f442d2",
       "page_count": 14,
       "chunk_count": 91,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "fa0812458d9edeea67d7c3d9f92088db5933d8e84b62314f61df4f5dee6fb15c",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_zhao_2023_emerging_sensing_and_modeling_technologies_for_wearable_and",
@@ -1288,7 +1942,15 @@
       "pdf_sha256": "414f1463979b9563177b98dd24da8d025fda86ceede1b59fbd929a1c281c68c4",
       "page_count": 15,
       "chunk_count": 134,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "e296933458bd617d62eb5b7cca9a0872f714fdc8ac5ef0675c054d6ef706119e",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "cuffless_ppg_limitations",
+        "disclaimer",
+        "research_background",
+        "signal_quality"
+      ]
     },
     {
       "source_id": "litexp_zhao_2026_association_of_systolic_blood_pressure_time_in_target",
@@ -1297,7 +1959,15 @@
       "pdf_sha256": "7d1fc2ebfb35b3bc3047501b2eee6056075e024fb13719ca71a69ddb59e66b8e",
       "page_count": 8,
       "chunk_count": 62,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "5bb6acb4c8c35166a3190c9fa48a0b77457a731c4bb9110b09a12def8587da56",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "litexp_zhuang_2023_a2ar_mediated_lymphangiogenesis_via_vegfr2_signaling_prevents_salt",
@@ -1306,25 +1976,15 @@
       "pdf_sha256": "2d6679cd885148ab7cfd76ab3eae1c4240847d20c4c56e7ed0b57e0e061b2175",
       "page_count": 13,
       "chunk_count": 77,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "mdpi_2023_ppg_arterial_stiffness_assessment",
-      "title": "Photoplethysmography for the Assessment of Arterial Stiffness",
-      "local_pdf": "knowledge_base/library/research_context/mdpi_2023_ppg_arterial_stiffness_assessment.pdf",
-      "pdf_sha256": "d47c2a9e95eeaa807aea9ed1c4530772b41415d83d20a9b6f94d904fc6da737b",
-      "page_count": 34,
-      "chunk_count": 182,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "mehrang_2018_smartphone_mechanocardiography_cvd",
-      "title": "Multiclass Classifier based Cardiovascular Condition Detection Using Smartphone Mechanocardiography",
-      "local_pdf": "knowledge_base/library/research_context/mehrang_2018_smartphone_mechanocardiography_cvd.pdf",
-      "pdf_sha256": "ca3f45b9f73af27edf19c3b31a7354794c3da6fa206f257bdbc94f0ee8f1f2c6",
-      "page_count": 14,
-      "chunk_count": 97,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "f6aa2742c34a767ca1c79b40b4ea53aad929426983339b973d4d6996bf24ebed",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "bp_category_reference",
+        "disclaimer",
+        "home_bp_monitoring",
+        "research_background"
+      ]
     },
     {
       "source_id": "mukkamala_2015_ptt_bp_monitoring_theory_practice",
@@ -1333,7 +1993,12 @@
       "pdf_sha256": "8b76dcbcf81d4d39ef40d629ae1c0278a12a45cfe1580105717f239b8af50ed9",
       "page_count": 48,
       "chunk_count": 210,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "7f2545908c3fd34ce38afa9a0f9899349806965e8a0851ae9f1cbfaca1adb308",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "mukkamala_2017_ptt_calibration_error_limits",
@@ -1342,97 +2007,12 @@
       "pdf_sha256": "ad83f7d1448330dc0100268de69050fc6b9fd3d47c5070f2aeb68cde13c14243",
       "page_count": 28,
       "chunk_count": 110,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "muntner_2019_aha_bp_measurement_scientific_statement",
-      "title": "Measurement of Blood Pressure in Humans - A Scientific Statement From the American Heart Association",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/muntner_2019_aha_bp_measurement_scientific_statement.pdf",
-      "pdf_sha256": "5bc2ef5c0d79ae997b14a0bafbe19e5e7e502c99a420177017930db31ddce20d",
-      "page_count": 70,
-      "chunk_count": 342,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "nccd_2020_primary_hypertension_management_guideline",
-      "title": "国家基层高血压防治管理指南（2020版）",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/nccd_2020_primary_hypertension_management_guideline.pdf",
-      "pdf_sha256": "2bfeb70595cace663851f78a30045d94c8d554a3848fa6befe96118600212263",
-      "page_count": 35,
-      "chunk_count": 48,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "nhc_2017_basic_public_health_service_hypertension_management",
-      "title": "国家基本公共卫生服务规范（第三版）高血压患者健康管理服务规范",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/nhc_2017_basic_public_health_service_hypertension_management.pdf",
-      "pdf_sha256": "5e61460188040be01605e8294561f8d82f29c09720dca40ff8c1eab7703431d8",
-      "page_count": 101,
-      "chunk_count": 137,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "nhc_2023_adult_hypertension_dietary_guideline",
-      "title": "成人高血压食养指南（2023年版）",
-      "local_pdf": "knowledge_base/library/lifestyle/nhc_2023_adult_hypertension_dietary_guideline.pdf",
-      "pdf_sha256": "e6c5227d95d289a810c953d895afc740ae922fc80ed4a8f1d5f4e39a9cd6c000",
-      "page_count": 56,
-      "chunk_count": 66,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance",
-      "title": "高血压营养和运动指导原则（2024年版）",
-      "local_pdf": "knowledge_base/library/lifestyle/nhc_2024_hypertension_nutrition_exercise_guidance.pdf",
-      "pdf_sha256": "a3057e7ed7c2e4dfd16486bf171b208e5f9162920271465709cfc47b31dd1173",
-      "page_count": 14,
-      "chunk_count": 1,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "nhc_2025_primary_care_hypertension_standard_ws_t_872",
-      "title": "基层医疗卫生机构高血压防治管理标准 WS/T 872-2025",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/nhc_2025_primary_care_hypertension_standard_ws_t_872.pdf",
-      "pdf_sha256": "4c099a4a656b72d6524c7acd05359da10b4dd861def402b80acd94a307d410d6",
-      "page_count": 8,
-      "chunk_count": 10,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "nhc_ws_t_430_2013_hypertension_dietary_guidance",
-      "title": "高血压患者膳食指导 WS/T 430-2013",
-      "local_pdf": "knowledge_base/library/lifestyle/nhc_ws_t_430_2013_hypertension_dietary_guidance.pdf",
-      "pdf_sha256": "525ffd3ff8d6ab60a566bea31850a72d658bd8926f720e8705ba42d2b2415ad4",
-      "page_count": 12,
-      "chunk_count": 0,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "nhlbi_dash_lowering_blood_pressure_guide",
-      "title": "Your Guide to Lowering Your Blood Pressure with DASH",
-      "local_pdf": "knowledge_base/library/lifestyle/nhlbi_dash_lowering_blood_pressure_guide.pdf",
-      "pdf_sha256": "a950723fa1047238ecf843723668c1bcae1f4ff4ee0722e475470211fbcc415d",
-      "page_count": 64,
-      "chunk_count": 110,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "nhlbi_self_measured_blood_pressure_fact_sheet",
-      "title": "Self-Measured Blood Pressure",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/nhlbi_self_measured_blood_pressure_fact_sheet.pdf",
-      "pdf_sha256": "e8a8cc93cb4209c3b12750b62fe484663f041f931333beb28614d099a9aba528",
-      "page_count": 2,
-      "chunk_count": 5,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "nice_ng136_hypertension",
-      "title": "Hypertension in adults - diagnosis and management",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/nice_ng136_hypertension.pdf",
-      "pdf_sha256": "07f00ff626bb0aa930912fdf66cb0d05d2be6fca69469dbbce66233b063f6348",
-      "page_count": 52,
-      "chunk_count": 154,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "dd352e6211962a54808a489fdaf78b4eb497f2097084f655ef66c7ec9b801798",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "ode_2020_continuous_ambulatory_bp_ptt_data_acquisition",
@@ -1441,16 +2021,12 @@
       "pdf_sha256": "7f192e3a6883f3e39d53dde97be1e42db673eca280ad10558609cf81ea28d579",
       "page_count": 25,
       "chunk_count": 117,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "papini_2026_home_osa_screening_pwa_ppi_odi",
-      "title": "Towards automatic home screening of obstructive sleep apnea using combined features from pulse wave amplitude, pulse-to-pulse interval and oxygen desaturation",
-      "local_pdf": "knowledge_base/library/research_context/papini_2026_home_osa_screening_pwa_ppi_odi.pdf",
-      "pdf_sha256": "da7e4cad88be83a0ad289f5348fc26c2f950c0b2c3c55572705d1226665bc2de",
-      "page_count": 10,
-      "chunk_count": 57,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "68ee25ab9a1aa62f0c780585db76f7617ba3e76b9bb2c41eb362f552b9c6e8c7",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "parati_2026_esc_cuffless_bp_monitoring_statement",
@@ -1459,7 +2035,12 @@
       "pdf_sha256": "53dfb62f2afdb2ec94e8587b826ba060b537f3f943577528f06c50f4d7109f6f",
       "page_count": 14,
       "chunk_count": 120,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "e2e7c2a93dd3deef633d3880c9a27ee16cb5980633a29d49105e07b2a4565faf",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "park_2022_ppg_analysis_applications_integrative_review",
@@ -1468,7 +2049,12 @@
       "pdf_sha256": "bfd491b1a2c85c2434696894eb5f53f336ead276c386c8737b92c3394842f7c7",
       "page_count": 23,
       "chunk_count": 210,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "c000f5d2f0e62b61a864ba0232f1c76bee7f2b81418c9a24551eb59ced8d6f56",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "shi_2022_skin_pigmentation_pulse_oximetry_systematic_review",
@@ -1477,7 +2063,12 @@
       "pdf_sha256": "73d73b5924487664cb7538d9d80c4a3b0cb1e91c6ba9f316cc46ecde72ed629e",
       "page_count": 14,
       "chunk_count": 89,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "3ebfca7d28fac4620a574e7f76d83b5b4b2fc8ef9f4a71461282d809499d869f",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "shirbani_2020_ambient_light_skin_tone_vpg",
@@ -1486,7 +2077,12 @@
       "pdf_sha256": "9c2f5e2f688b8f73ad33123d0c6e18ec15b34e161c908753d7edec803ef7e014",
       "page_count": 4,
       "chunk_count": 34,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "9141d97d93fcc5c2223edef0d8869f754a7a86d3656e18a68df920f23d1b9cbe",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "sjoding_2020_racial_bias_pulse_oximetry",
@@ -1495,7 +2091,12 @@
       "pdf_sha256": "2129e5490ca8bd5cb283f12239abd2c9e16968a0f996b6605a5d8d0bf905f398",
       "page_count": 5,
       "chunk_count": 13,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "3f5b06b80b175b61dc5e10790ece8b8e7f1220a494071410b48d23c87fa79e3e",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "sun_2016_ppg_revisited_contact_noncontact_imaging",
@@ -1504,16 +2105,12 @@
       "pdf_sha256": "5672a7f9a1aef5d8900f634ed333a657df2f098de050e534dc17889cdd852487",
       "page_count": 35,
       "chunk_count": 163,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "taebi_2019_seismocardiography_review",
-      "title": "Recent Advances in Seismocardiography",
-      "local_pdf": "knowledge_base/library/research_context/taebi_2019_seismocardiography_review.pdf",
-      "pdf_sha256": "176e7caea035fb3d75fdb204761eb19cfecee085186df0c8e36b445361b9ad28",
-      "page_count": 32,
-      "chunk_count": 129,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "6dcc98a0c4af7642f76da78ea7c9be4e2e9857cba407fed718d61b932480baee",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "tamura_2014_wearable_ppg_sensors_past_present",
@@ -1522,7 +2119,12 @@
       "pdf_sha256": "a4cbd709910f2c10ce644a6da9532666e327646b9c9824d3b404d2b8f68d4ea0",
       "page_count": 21,
       "chunk_count": 96,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "3a614d94bccae8063558a8899c8c27bda8b14ac6dd2a1f30df419209054b3bf8",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "tamura_2019_current_progress_ppg_spo2",
@@ -1531,7 +2133,12 @@
       "pdf_sha256": "7e76b4cb19a0eb65e7ef2f90b73ded263f64d4c36d590832a908187c90cf4c55",
       "page_count": 16,
       "chunk_count": 120,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "336d6d09b60485a7b09c62a02ca64d1c514c5eb2621800b95184f5fde7216e45",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "teng_2004_contact_force_ppg",
@@ -1540,25 +2147,12 @@
       "pdf_sha256": "f0d8e784c3557b327dedb06bfbb2e23a53fb0dbae0b83ad74b75240a49a429dc",
       "page_count": 14,
       "chunk_count": 53,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "uspstf_hypertension_screening_adults",
-      "title": "Hypertension in Adults - Screening",
-      "local_pdf": "knowledge_base/library/home_bp_monitoring/uspstf_hypertension_screening_adults.pdf",
-      "pdf_sha256": "a7083f690b0dc863af82faa8b876bb8893e05a4fb2680b7943edd3d2b0e0b388",
-      "page_count": 7,
-      "chunk_count": 59,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "who_2021_hypertension_pharmacological_treatment_guideline",
-      "title": "Guideline for the pharmacological treatment of hypertension in adults",
-      "local_pdf": "knowledge_base/library/medication_safety/who_2021_hypertension_pharmacological_treatment_guideline.pdf",
-      "pdf_sha256": "57f6376d5c9bc4ea6c44873625547c8a5443d5a6ad8c8c422733681563db05fb",
-      "page_count": 61,
-      "chunk_count": 240,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "9e4ff72e2515f7933c3431f5d8af6871fede11e83f41c8652c786eba5d9cd5e3",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     },
     {
       "source_id": "who_automated_cuff_bp_device_specs",
@@ -1567,31 +2161,26 @@
       "pdf_sha256": "33ab60db98b392f77a56243230b821176572dbdc07568547270d16eacd79f34b",
       "page_count": 72,
       "chunk_count": 262,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "yang_2021_scg_aortic_stenosis_detection",
-      "title": "Efficient detection of aortic stenosis using morphological characteristics of cardiomechanical signals and heart rate variability parameters",
-      "local_pdf": "knowledge_base/library/research_context/yang_2021_scg_aortic_stenosis_detection.pdf",
-      "pdf_sha256": "ad3aca0a4af22abec8b661a3902c7131df5fe297b465b503a495eecce6dd94fd",
-      "page_count": 14,
-      "chunk_count": 90,
-      "extraction_method": "pypdf"
-    },
-    {
-      "source_id": "zhang_2023_contactless_video_seismocardiography",
-      "title": "Non-contact heart vibration measurement using computer vision-based seismocardiography",
-      "local_pdf": "knowledge_base/library/research_context/zhang_2023_contactless_video_seismocardiography.pdf",
-      "pdf_sha256": "caf039e4b7f7817734614d417a670bd599b8e088a3c62eaea8a4473f51275fb4",
-      "page_count": 13,
-      "chunk_count": 82,
-      "extraction_method": "pypdf"
+      "extraction_method": "pypdf",
+      "governance_sha256": "91df8be40d7d82f34e89280ed8b38de0f76a91e05c7605797008e4eb1679387d",
+      "access_mode": "public_pdf",
+      "allowed_uses": [
+        "research_background"
+      ]
     }
   ],
   "skipped": [
     {
+      "source_id": "acc_aha_2025_full_guideline_record",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
       "source_id": "acog_preeclampsia_faq",
       "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "ada_2026_standards_cvd_bp",
+      "reason": "fulltext_allowed_uses_empty"
     },
     {
       "source_id": "ada_diabetes_bp",
@@ -1600,6 +2189,10 @@
     {
       "source_id": "aha_2025_bp_guideline_top_things",
       "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_ama_2020_smbp_policy_statement",
+      "reason": "fulltext_allowed_uses_empty"
     },
     {
       "source_id": "aha_bp_medicines_patient",
@@ -1614,6 +2207,10 @@
       "reason": "local_pdf_missing"
     },
     {
+      "source_id": "aha_home_bp_measurement_instructions",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
       "source_id": "aha_home_bp_monitoring_public",
       "reason": "local_pdf_missing"
     },
@@ -1626,12 +2223,28 @@
       "reason": "local_pdf_missing"
     },
     {
+      "source_id": "aha_life_essential_8_manage_blood_pressure",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
       "source_id": "aha_lifestyle_manage_bp",
       "reason": "local_pdf_missing"
     },
     {
+      "source_id": "aha_pregnancy_blood_pressure_categories",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "aha_reduce_high_blood_pressure_answers_by_heart",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
       "source_id": "aha_sodium_salt",
       "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "aha_steps_to_improve_high_bp",
+      "reason": "fulltext_allowed_uses_empty"
     },
     {
       "source_id": "aha_stress_management",
@@ -1674,6 +2287,10 @@
       "reason": "local_pdf_missing"
     },
     {
+      "source_id": "cdc_managing_my_blood_pressure_questions",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
       "source_id": "cdc_measure_blood_pressure_home",
       "reason": "local_pdf_missing"
     },
@@ -1702,8 +2319,48 @@
       "reason": "local_pdf_missing"
     },
     {
+      "source_id": "charlton_2022_vascageNet_ppg_vascular_age_review",
+      "reason": "fulltext_governance_missing"
+    },
+    {
+      "source_id": "chinese_2011_bp_measurement_guideline",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "chinese_2013_hypertension_patient_education_guideline",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "chinese_2019_home_bp_monitoring_guideline",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "chinese_2023_elderly_hypertension_management_guideline",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "chinese_2025_secondary_hypertension_screening_consensus",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "chinese_hypertension_guideline_2024_catalog",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
       "source_id": "esc_2024_bp_guideline_key_points",
       "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "esc_2024_elevated_bp_hypertension_guideline",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "esh_2021_home_bp_monitoring_position_paper",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "esh_2023_hypertension_guideline",
+      "reason": "fulltext_allowed_uses_empty"
     },
     {
       "source_id": "fda_pulse_oximeter_limitations",
@@ -1714,8 +2371,16 @@
       "reason": "local_pdf_missing"
     },
     {
+      "source_id": "healthy_china_2019_2030_action",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
       "source_id": "healthy_china_cvd_action_2023_2030",
       "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "hersek_2020_scg_hemorrhage_wearable",
+      "reason": "fulltext_governance_missing"
     },
     {
       "source_id": "hypertension_canada_device_recommendations",
@@ -1726,8 +2391,20 @@
       "reason": "local_pdf_missing"
     },
     {
+      "source_id": "ish_2020_global_guideline",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
       "source_id": "iso_81060_2_validation_standard",
       "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "kdigo_2024_ckd_guideline",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "kim_2017_ppg_apg_new_aging_index",
+      "reason": "fulltext_governance_missing"
     },
     {
       "source_id": "lazaro_2014_ppg_oximeter_osa_diagnosis",
@@ -1790,6 +2467,10 @@
       "reason": "local_pdf_missing"
     },
     {
+      "source_id": "mdpi_2023_ppg_arterial_stiffness_assessment",
+      "reason": "fulltext_governance_missing"
+    },
+    {
       "source_id": "medlineplus_high_blood_pressure",
       "reason": "local_pdf_missing"
     },
@@ -1806,6 +2487,26 @@
       "reason": "local_pdf_missing"
     },
     {
+      "source_id": "mehrang_2018_smartphone_mechanocardiography_cvd",
+      "reason": "fulltext_governance_missing"
+    },
+    {
+      "source_id": "muntner_2019_aha_bp_measurement_scientific_statement",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "nccd_2020_primary_hypertension_management_guideline",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "nhc_2017_basic_public_health_service_hypertension_management",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "nhc_2023_adult_hypertension_dietary_guideline",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
       "source_id": "nhc_2024_chinese_health_literacy_basic_skills",
       "reason": "local_pdf_missing"
     },
@@ -1814,12 +2515,32 @@
       "reason": "local_pdf_missing"
     },
     {
+      "source_id": "nhc_2024_hypertension_nutrition_exercise_guidance",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "nhc_2025_primary_care_hypertension_standard_ws_t_872",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "nhc_ws_t_430_2013_hypertension_dietary_guidance",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
+      "source_id": "nhlbi_dash_lowering_blood_pressure_guide",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
       "source_id": "nhlbi_high_blood_pressure",
       "reason": "local_pdf_missing"
     },
     {
       "source_id": "nhlbi_preeclampsia_pregnancy",
       "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "nhlbi_self_measured_blood_pressure_fact_sheet",
+      "reason": "fulltext_allowed_uses_empty"
     },
     {
       "source_id": "nhs_high_blood_pressure",
@@ -1834,12 +2555,20 @@
       "reason": "local_pdf_missing"
     },
     {
+      "source_id": "nice_ng136_hypertension",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
       "source_id": "nih_dash_eating_plan",
       "reason": "local_pdf_missing"
     },
     {
       "source_id": "nkf_high_bp_ckd",
       "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "papini_2026_home_osa_screening_pwa_ppi_odi",
+      "reason": "fulltext_governance_missing"
     },
     {
       "source_id": "pubmed_cuffless_bp_review_41460057",
@@ -1862,8 +2591,20 @@
       "reason": "local_pdf_missing"
     },
     {
+      "source_id": "taebi_2019_seismocardiography_review",
+      "reason": "fulltext_governance_missing"
+    },
+    {
+      "source_id": "uspstf_hypertension_screening_adults",
+      "reason": "fulltext_allowed_uses_empty"
+    },
+    {
       "source_id": "validatebp_validated_devices",
       "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "who_2021_hypertension_pharmacological_treatment_guideline",
+      "reason": "fulltext_allowed_uses_empty"
     },
     {
       "source_id": "who_global_hypertension_report_2023",
@@ -1872,6 +2613,16 @@
     {
       "source_id": "who_hypertension_fact_sheet",
       "reason": "local_pdf_missing"
+    },
+    {
+      "source_id": "yang_2021_scg_aortic_stenosis_detection",
+      "reason": "fulltext_governance_missing"
+    },
+    {
+      "source_id": "zhang_2023_contactless_video_seismocardiography",
+      "reason": "fulltext_governance_missing"
     }
-  ]
+  ],
+  "status": "current",
+  "input_fingerprint": "dd4d4a3fd5f8d61710955d1be32b8e8a90b77d193db1b7fa11f1950131af19dd"
 }

@@ -23,7 +23,14 @@ from app.admin.draft_service import (
     validate_literature_draft,
 )
 from app.admin.integration_service import runtime_integration
-from app.admin.job_service import _sanitize, cancel_job, create_job, recover_interrupted_jobs, retry_job
+from app.admin.job_service import (
+    _progress_marker_value,
+    _sanitize,
+    cancel_job,
+    create_job,
+    recover_interrupted_jobs,
+    retry_job,
+)
 from app.admin.models import AdminUser, ApiClient, ApiMetric, AuditEvent, ConfigRevision, IntegrationProfile
 from app.admin.metrics import record_metric
 from app.admin import security
@@ -243,6 +250,9 @@ def test_provider_secret_encrypted_never_returned_or_audited(secure_client):
     assert response.status_code == 200
     assert secret not in response.text and "secret_ciphertext" not in response.text
     assert response.json()["secret_configured"] is True
+    runtime_config = load_openai_embedding_config()
+    assert runtime_config.timeout_sec == 30
+    assert runtime_config.max_concurrency == 2
     with session_scope() as db:
         row = db.get(IntegrationProfile, "embedding")
         assert row and row.secret_ciphertext and secret not in row.secret_ciphertext
@@ -254,6 +264,40 @@ def test_provider_secret_encrypted_never_returned_or_audited(secure_client):
         "/api/v1/admin/integrations/embedding", json=plaintext_attempt, headers=headers
     )
     assert rejected.status_code == 422 and "must-not-be-stored" not in rejected.text
+    report_profile = {
+        "provider": "deepseek",
+        "base_url": "https://api.deepseek.com",
+        "model": "deepseek-v4-flash",
+        "timeout_sec": 30,
+        "max_concurrency": 1,
+        "enabled": False,
+        "settings": {"max_tokens": 2400, "temperature": 0.4, "min_interval_sec": 0},
+    }
+    accepted = secure_client.put(
+        "/api/v1/admin/integrations/report_llm", json=report_profile, headers=headers
+    )
+    assert accepted.status_code == 200
+    credential_setting = {
+        **report_profile,
+        "settings": {"access_token": "must-not-be-stored"},
+    }
+    rejected = secure_client.put(
+        "/api/v1/admin/integrations/report_llm", json=credential_setting, headers=headers
+    )
+    assert rejected.status_code == 422 and "must-not-be-stored" not in rejected.text
+
+
+def test_validation_errors_do_not_echo_credential_inputs(secure_client):
+    headers = _login(secure_client)
+    short_secret = "leakme7"
+    response = secure_client.put(
+        "/api/v1/admin/integrations/embedding/secret",
+        json={"secret": short_secret},
+        headers=headers,
+    )
+    assert response.status_code == 422
+    assert short_secret not in response.text
+    assert response.json()["detail"][0]["input"] == "[REDACTED]"
 
 
 def test_missing_or_rotated_master_key_fails_closed(secure_client, monkeypatch):
@@ -573,6 +617,31 @@ def test_job_allowlist_cancel_retry_recovery_and_redaction(secure_client, monkey
         assert running.status == "cancelling" and killed[0][0] == 43210
     assert recover_interrupted_jobs() == 1
     assert "super-secret" not in _sanitize("api_key=super-secret")
+
+
+def test_worker_progress_marker_is_strict_and_reserves_terminal_progress():
+    assert _progress_marker_value("__ADMIN_JOB_PROGRESS__=42") == 42
+    assert _progress_marker_value("__ADMIN_JOB_PROGRESS__=100") == 95
+    assert _progress_marker_value("__ADMIN_JOB_PROGRESS__=101") is None
+    assert _progress_marker_value("prefix __ADMIN_JOB_PROGRESS__=42") is None
+    assert _progress_marker_value("__ADMIN_JOB_PROGRESS__=42 extra") is None
+
+
+def test_progress_markers_are_silent_outside_managed_worker(monkeypatch, capsys):
+    from scripts.ingest_fulltext_pdfs import _emit_progress as emit_fulltext_progress
+    from scripts.ingest_openai_embeddings import _emit_progress as emit_openai_progress
+
+    monkeypatch.delenv("ADMIN_JOB_PROGRESS", raising=False)
+    emit_fulltext_progress(1, 2)
+    emit_openai_progress(1, 2)
+    assert capsys.readouterr().out == ""
+
+    monkeypatch.setenv("ADMIN_JOB_PROGRESS", "1")
+    emit_fulltext_progress(1, 2)
+    emit_openai_progress(1, 2)
+    output = capsys.readouterr().out
+    assert "__ADMIN_JOB_PROGRESS__=47" in output
+    assert "__ADMIN_JOB_PROGRESS__=50" in output
 
 
 def test_reviewer_cannot_retry_admin_only_job(secure_client):

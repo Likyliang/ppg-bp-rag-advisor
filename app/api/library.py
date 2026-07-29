@@ -519,12 +519,12 @@ async def attach_fulltext(
     access_mode: str = Query(..., description="declared license/access mode, e.g. public_pdf"),
     allowed_uses: Optional[str] = Query(None, description="comma-separated; defaults to the source's own uses"),
     institution_required: bool = False,
-    attestation: Optional[str] = Query(None, description="admin license attestation note"),
+    attestation: Optional[str] = Query(None, description="fixed local-governance authorization assertion"),
     rebuild: bool = True,
 ) -> Dict[str, Any]:
     """Attach a full-text PDF (raw request body) to a source and index it.
 
-    The raw PDF is stored only in the git-ignored downloads dir; the committed
+    The raw PDF is stored only in the git-ignored governance library; the committed
     registry keeps metadata only.
     """
 

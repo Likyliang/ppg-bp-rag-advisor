@@ -22,10 +22,18 @@ _SENSITIVE_KEYS = {
     "authorization",
     "cookie",
 }
+_SENSITIVE_KEY_PATTERN = re.compile(
+    r"(?i)(?:^|_)(?:api_?key|key|token|secret|password|authorization|cookie|credential)(?:$|_)"
+)
 _SENSITIVE_TEXT = re.compile(
     r"(?i)(?:\bBearer\s+\S+|\bsk-[A-Za-z0-9_-]{8,}|"
     r"\b(?:api[_ -]?key|token|secret|password|authorization|cookie)\s*[:=]\s*\S+)"
 )
+
+
+def is_sensitive_key(value: Any) -> bool:
+    normalized = str(value).strip().lower().replace("-", "_").replace(" ", "_")
+    return bool(_SENSITIVE_KEY_PATTERN.search(normalized))
 
 
 def redact_sensitive_text(value: Optional[str]) -> Optional[str]:
@@ -45,7 +53,11 @@ def stable_hash(value: Any) -> Optional[str]:
 def redact(value: Any) -> Any:
     if isinstance(value, dict):
         return {
-            str(key): ("[REDACTED]" if str(key).lower() in _SENSITIVE_KEYS else redact(item))
+            str(key): (
+                "[REDACTED]"
+                if str(key).lower() in _SENSITIVE_KEYS or is_sensitive_key(key)
+                else redact(item)
+            )
             for key, item in value.items()
         }
     if isinstance(value, list):

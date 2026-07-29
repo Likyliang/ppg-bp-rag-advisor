@@ -24,6 +24,8 @@ class OpenAIEmbeddingConfig:
     dimensions: int
     batch_size: int
     input_scope: str
+    timeout_sec: float = 60.0
+    max_concurrency: int = 1
 
 
 @dataclass(frozen=True)
@@ -69,6 +71,31 @@ def resolve_project_path(path: str) -> Path:
     if candidate.is_absolute():
         return candidate
     return PROJECT_ROOT / candidate
+
+
+def admin_lock_path(filename: str) -> Path:
+    """Return an owner-only runtime lock path.
+
+    Tests set ``ADMIN_LOCK_DIR`` to a disposable session directory so catalog
+    operations against temporary fixtures cannot leave hundreds of lock files
+    in the real ``var/locks`` directory.
+    """
+
+    root = Path(os.getenv("ADMIN_LOCK_DIR", "var/locks"))
+    if not root.is_absolute():
+        root = PROJECT_ROOT / root
+    root.mkdir(parents=True, exist_ok=True, mode=0o700)
+    try:
+        os.chmod(root, 0o700)
+    except OSError:
+        pass
+    path = root / filename
+    path.touch(mode=0o600, exist_ok=True)
+    try:
+        os.chmod(path, 0o600)
+    except OSError:
+        pass
+    return path
 
 
 @lru_cache(maxsize=32)
@@ -146,6 +173,8 @@ def load_openai_embedding_config() -> OpenAIEmbeddingConfig:
             dimensions=int(profile.get("settings", {}).get("dimensions", 1536)),
             batch_size=max(1, int(profile.get("settings", {}).get("batch_size", 64))),
             input_scope=str(profile.get("settings", {}).get("input_scope", "processed_chunks")),
+            timeout_sec=float(profile.get("timeout_sec") or 60.0),
+            max_concurrency=max(1, int(profile.get("max_concurrency") or 1)),
         )
     return OpenAIEmbeddingConfig(
         provider=os.getenv("EMBEDDING_PROVIDER", "openai"),
@@ -155,6 +184,8 @@ def load_openai_embedding_config() -> OpenAIEmbeddingConfig:
         dimensions=_env_int("OPENAI_EMBEDDING_DIMENSIONS", 1536),
         batch_size=max(1, _env_int("OPENAI_EMBEDDING_BATCH_SIZE", 64)),
         input_scope=os.getenv("OPENAI_EMBEDDING_INPUT_SCOPE", "processed_chunks"),
+        timeout_sec=_env_float("OPENAI_EMBEDDING_TIMEOUT_SEC", 60.0),
+        max_concurrency=max(1, _env_int("OPENAI_EMBEDDING_MAX_CONCURRENCY", 1)),
     )
 
 
@@ -281,6 +312,7 @@ def clear_config_caches() -> None:
         retriever._load_chunks_cached.cache_clear()
         retriever._load_vector_index.cache_clear()
         retriever._load_fulltext_chunks_cached.cache_clear()
+        retriever._fulltext_manifest_current.cache_clear()
     except Exception:
         # Cache clearing is best-effort during import/startup; active reads use
         # file signatures as an additional guard.

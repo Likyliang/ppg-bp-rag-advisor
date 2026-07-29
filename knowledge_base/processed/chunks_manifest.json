@@ -1,9 +1,9 @@
 {
-  "timestamp": 1783686077,
-  "input_fingerprint": "27d17a1c51d63f02ffee27393e072ffb753a77c738fbab9fa619d447fbde2d83",
+  "timestamp": 1785329269,
+  "input_fingerprint": "f8e5341170fca06284a9913368830d6d3bf6ffd054f59b736fbd4dca8372e128",
   "catalog_fingerprint": "14b2efc9b545e8bc0c700c6b6d6314a088a189af3c31670797f33e57fa62c24c",
-  "build_fingerprint": "aa224a5bf517fe8dd3e3e01c6eb44e827d9f5bf46aad81895346910aed54a7cc",
-  "chunks_sha256": "81f7a051e77d854779bff58b30536e3949c6b17bab357956ed474499508b2b5e",
+  "build_fingerprint": "d60ebf73bd96132687a86cdf896e6a72714e76a3bd7ced9ababe13b8e47c71ae",
+  "chunks_sha256": "5d2c45de64543eed2b0701333c3b0a573c7752a3db726e19e8437de43187658f",
   "chunk_count": 562,
   "chunks_path": "/Users/lianghao/Work/high blood pressure RAG_advisor_embedding_demo/knowledge_base/processed/chunks.jsonl"
 }

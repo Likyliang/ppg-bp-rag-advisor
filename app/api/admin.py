@@ -440,7 +440,17 @@ def overview(
         from app.services import fulltext_admin
 
         ft = fulltext_admin.fulltext_status()
-        out["fulltext"] = {k: ft.get(k) for k in ("total_sources", "with_pdf", "indexed", "total_chunks")}
+        out["fulltext"] = {
+            k: ft.get(k)
+            for k in (
+                "total_sources",
+                "with_pdf",
+                "license_attested",
+                "license_pending",
+                "indexed",
+                "total_chunks",
+            )
+        }
     except Exception:
         out["fulltext"] = {"error": "加载失败"}
     try:

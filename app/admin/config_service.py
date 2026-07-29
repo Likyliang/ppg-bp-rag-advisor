@@ -20,7 +20,7 @@ from sqlalchemy.orm import Session
 from app.admin.models import ConfigDraft, ConfigRevision, utcnow
 from app.admin.audit import redact_sensitive_text
 from app.schemas.conversation import ConversationProfile
-from app.services.config_loader import clear_config_caches, resolve_project_path
+from app.services.config_loader import admin_lock_path, clear_config_caches, resolve_project_path
 from app.services.source_catalog import ALLOWED_USES
 
 
@@ -504,8 +504,7 @@ def _record_revision(
 
 def _atomic_write(key: str, text: str, expected_revision: str) -> None:
     path = _path_for(key)
-    lock_path = resolve_project_path(f"var/locks/config-{key}.lock")
-    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    lock_path = admin_lock_path(f"config-{key}.lock")
     with portalocker.Lock(str(lock_path), timeout=10):
         current = _current_text(key)
         if _sha256(current) != expected_revision:

@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 
 import pytest
+import yaml
 
 import app.api.library as library_api
 from app.services import fulltext_admin as fa
@@ -120,6 +121,60 @@ def test_attach_no_rebuild_writes_pdf_and_metadata(sandbox):
     assert sandbox["built"] == 0  # rebuild skipped
 
 
+def test_registry_normalisation_does_not_treat_legacy_review_note_as_attestation(sandbox, monkeypatch):
+    sid = _included_id()
+    title = "Governed bibliographic title"
+    monkeypatch.setattr(
+        fa,
+        "load_source_catalog",
+        lambda: {"sources": [{"source_id": sid, "title": title}]},
+    )
+    path, text = fa._normalise_uploads(
+        {
+            "uploads": [
+                {
+                    "source_id": sid,
+                    "title": "private-upload-name.pdf",
+                    "access_mode": "public_pdf",
+                    "allowed_uses": ["research_background"],
+                    "license_attestation": "imported; admin to verify license",
+                }
+            ]
+        }
+    )
+    record = yaml.safe_load(text)["uploads"][0]
+    assert path.name == "uploads.yaml"
+    assert record["title"] == title
+    assert record["license_attested"] is False
+    assert "license_attestation" not in record
+    assert "private-upload-name.pdf" not in text
+
+
+def test_fixed_attestation_code_is_recognised():
+    assert fa.is_license_attested({"license_attestation": fa.LICENSE_ATTESTATION_CODE}) is True
+    assert fa.is_license_attested({"license_attested": False, "license_attestation": fa.LICENSE_ATTESTATION_CODE}) is False
+
+
+def test_attach_only_accepts_fixed_attestation_assertion(sandbox):
+    sid = _included_id()
+    arbitrary = fa.attach_pdf(
+        sid,
+        _PDF,
+        access_mode="public_pdf",
+        license_attestation="operator said yes",
+        rebuild=False,
+    )
+    assert arbitrary["record"]["license_attested"] is False
+    fixed = fa.attach_pdf(
+        sid,
+        _PDF,
+        access_mode="public_pdf",
+        license_attestation=fa.LICENSE_ATTESTATION_CODE,
+        rebuild=False,
+    )
+    assert fixed["record"]["license_attested"] is True
+
+
 def test_attach_with_rebuild_indexes(sandbox):
     sid = _included_id()
     result = fa.attach_pdf(sid, _PDF, access_mode="public_pdf", rebuild=True)
@@ -174,6 +229,26 @@ def test_status_totals_and_governance(sandbox):
     assert st["total_sources"] == len(included_sources())
     assert "governance_note" in st and "诊断" in st["governance_note"]
     assert "public_pdf" in st["access_modes"]
+
+
+def test_status_explains_pdf_excluded_by_allowed_use_intersection(sandbox, monkeypatch):
+    source = {"source_id": "source-a", "title": "A", "topic": "research_context", "allowed_uses": ["signal_quality"]}
+    monkeypatch.setattr(fa, "_included_by_id", lambda: {"source-a": source})
+    monkeypatch.setattr(
+        fa,
+        "_uploads_by_source",
+        lambda: {"source-a": {"access_mode": "public_pdf", "allowed_uses": ["research_background"]}},
+    )
+    monkeypatch.setattr(fa, "_candidate_by_source", lambda: {})
+    monkeypatch.setattr(fa, "_indexed_chunk_counts", lambda: {})
+    monkeypatch.setattr(fa, "_existing_pdf", lambda source_id, topic=None: Path("/tmp/source-a.pdf"))
+
+    row = fa.source_fulltext_status("source-a")
+    assert row["has_pdf"] is True
+    assert row["index_eligible"] is False
+    assert row["ineligible_reason"] == "fulltext_allowed_uses_empty"
+    assert row["allowed_uses"] == []
+    assert row["license_attested"] is False
 
 
 # --------------------------------------------------------------------------- #

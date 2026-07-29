@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from copy import deepcopy
 from datetime import timezone
 from typing import Any, Dict, List, Optional
@@ -71,6 +72,10 @@ CHANNEL_PROVIDERS = {
     "crossref": {"crossref"},
 }
 
+_SENSITIVE_SETTING_KEY = re.compile(
+    r"(?i)(?:^|_)(?:api_?key|secret|token|password|authorization|cookie|credential)(?:$|_)"
+)
+
 
 class SecretConfigurationError(RuntimeError):
     pass
@@ -125,10 +130,9 @@ def _validate_base_url(url: str, *, allow_empty: bool = False) -> str:
 
 def _validate_settings(channel: str, raw: Dict[str, Any]) -> Dict[str, Any]:
     settings = dict(raw or {})
-    sensitive = ("key", "token", "secret", "password", "authorization", "cookie")
     for key in settings:
         normalized = str(key).lower().replace("-", "_")
-        if any(marker in normalized for marker in sensitive):
+        if _SENSITIVE_SETTING_KEY.search(normalized):
             raise ValueError(f"settings.{key} 可能包含凭证；请使用独立密钥接口")
     allowed = {
         "report_llm": {"max_tokens", "temperature", "min_interval_sec", "anthropic_version"},

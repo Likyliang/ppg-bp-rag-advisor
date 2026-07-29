@@ -1,3 +1,4 @@
+import hashlib
 import json
 
 import numpy as np
@@ -6,6 +7,11 @@ from app.services.fulltext_vector_index import (
     FulltextChunk,
     _chunk_source_id,
     _governance_metadata,
+    _manifest_input_fingerprint,
+    _manifest_status,
+    _pdf_integrity_issue,
+    build_fulltext_chunks,
+    current_fulltext_input_fingerprint,
     drop_source_from_index,
     hashing_embedding,
     merge_hashing_vector_index,
@@ -100,6 +106,85 @@ def test_fulltext_governance_can_only_narrow_allowed_uses():
     )
     assert governed["allowed_uses"] == ["research_background"]
     assert governed["access_mode"] == "public_pdf"
+
+
+def test_current_fingerprint_excludes_pdf_without_eligible_governance(tmp_path, monkeypatch):
+    from app.services import fulltext_vector_index as index
+
+    paths = {}
+    for source_id in ("eligible", "no_use", "no_access"):
+        path = tmp_path / f"{source_id}.pdf"
+        path.write_bytes(f"%PDF-1.4 {source_id}".encode())
+        paths[source_id] = path
+    sources = {
+        "eligible": {"source_id": "eligible", "allowed_uses": ["research_background"]},
+        "no_use": {"source_id": "no_use", "allowed_uses": ["signal_quality"]},
+        "no_access": {"source_id": "no_access", "allowed_uses": ["research_background"]},
+    }
+    governance = {
+        "eligible": {"access_mode": "public_pdf", "allowed_uses": ["research_background"]},
+        "no_use": {"access_mode": "public_pdf", "allowed_uses": ["research_background"]},
+        "no_access": {"allowed_uses": ["research_background"]},
+    }
+    monkeypatch.setattr(index, "_source_by_id", lambda: sources)
+    monkeypatch.setattr(index, "_candidate_by_source", lambda: governance)
+    monkeypatch.setattr(index, "_upload_by_source", lambda: {})
+    monkeypatch.setattr(index, "governed_pdf_path", lambda source_id, topic=None: paths[source_id])
+
+    expected = _manifest_input_fingerprint(
+        [{
+            "source_id": "eligible",
+            "pdf_sha256": index._sha256_file(paths["eligible"]),
+            "governance_sha256": index._governance_sha256(sources["eligible"], governance["eligible"]),
+        }]
+    )
+    assert current_fulltext_input_fingerprint() == expected
+
+
+def test_fulltext_chunk_progress_counts_every_selected_source(monkeypatch):
+    from app.services import fulltext_vector_index as index
+
+    monkeypatch.setattr(
+        index,
+        "_source_by_id",
+        lambda: {
+            "a": {"source_id": "a"},
+            "b": {"source_id": "b"},
+        },
+    )
+    monkeypatch.setattr(index, "_candidate_by_source", lambda: {})
+    monkeypatch.setattr(index, "_upload_by_source", lambda: {})
+    monkeypatch.setattr(index, "governed_pdf_path", lambda source_id, topic=None: None)
+    progress = []
+
+    chunks, manifests, skipped = build_fulltext_chunks(
+        progress_callback=lambda completed, total: progress.append((completed, total))
+    )
+
+    assert chunks == [] and manifests == []
+    assert len(skipped) == 2
+    assert progress == [(0, 2), (1, 2), (2, 2)]
+
+
+def test_manifest_status_fails_closed_for_unreadable_or_changed_governed_pdf():
+    assert _manifest_status([], [{"source_id": "bad", "reason": "extract_failed:PdfReadError"}]) == "failed"
+    assert _manifest_status([], [{"source_id": "changed", "reason": "pdf_sha256_mismatch"}]) == "failed"
+    assert _manifest_status([], [{"source_id": "not-governed", "reason": "fulltext_governance_missing"}]) == "current"
+    assert _manifest_status([{"source_id": "empty", "chunk_count": 0}], []) == "failed"
+
+
+def test_pdf_integrity_rejects_replaced_governed_copy(tmp_path):
+    path = tmp_path / "source.pdf"
+    path.write_bytes(b"%PDF-1.4 changed")
+    assert _pdf_integrity_issue(path, {"pdf_bytes": 999}) == "pdf_bytes_mismatch"
+    assert _pdf_integrity_issue(
+        path,
+        {"pdf_bytes": path.stat().st_size, "pdf_sha256": "0" * 64},
+    ) == "pdf_sha256_mismatch"
+    assert _pdf_integrity_issue(
+        path,
+        {"pdf_bytes": path.stat().st_size, "pdf_sha256": hashlib.sha256(path.read_bytes()).hexdigest()},
+    ) is None
 
 
 def test_local_hashing_vector_query_returns_chunk_metadata(tmp_path):

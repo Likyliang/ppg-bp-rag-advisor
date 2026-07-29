@@ -159,6 +159,7 @@ def artifact_freshness(db: Optional[Session] = None) -> List[Dict[str, Any]]:
             actual=str(fulltext.get("input_fingerprint") or ""),
             last_built_at=fulltext.get("timestamp"),
             details={"source_count": fulltext.get("source_count"), "chunk_count": fulltext.get("chunk_count")},
+            artifact_status=fulltext.get("status"),
             job_status=_latest_job_status(db, ["fulltext_index"]),
         ),
         _item(

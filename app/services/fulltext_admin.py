@@ -37,10 +37,12 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 import portalocker
 import yaml
 
-from app.services.config_loader import resolve_project_path
+from app.services.config_loader import admin_lock_path, resolve_project_path
 from app.services.fulltext_candidates import (
     ALLOWED_ACCESS_MODES,
+    LICENSE_ATTESTATION_CODE,
     PROTECTED_KEY_PATTERN,
+    is_license_attested,
     load_fulltext_catalog,
 )
 from app.services.fulltext_vector_index import (
@@ -52,11 +54,10 @@ from app.services.fulltext_vector_index import (
     library_pdf_target,
     update_fulltext_vector_index,
 )
-from app.services.source_catalog import ALLOWED_USES, included_sources
+from app.services.source_catalog import ALLOWED_USES, included_sources, load_source_catalog
 
 UPLOADS_REGISTRY = "knowledge_base/sources/fulltext_uploads.yaml"
 MAX_PDF_BYTES = 50 * 1024 * 1024
-LICENSE_ATTESTATION_CODE = "authorized_local_governance"
 
 # Clinical boundary shown to admins; full text may strengthen explanation only.
 GOVERNANCE_NOTE = (
@@ -86,7 +87,11 @@ def _normalise_uploads(registry: Dict[str, Any]) -> Tuple[Path, str]:
     registry = dict(registry)
     registry["updated"] = date.today().isoformat()
     registry.setdefault("version", 1)
-    catalog_titles = {str(item.get("source_id")): str(item.get("title") or "") for item in included_sources()}
+    catalog_titles = {
+        str(item.get("source_id")): str(item.get("title") or "")
+        for item in load_source_catalog().get("sources", [])
+        if item.get("source_id")
+    }
     sanitized_uploads = []
     for raw in registry.get("uploads", []):
         source_id = str(raw.get("source_id") or "")
@@ -103,7 +108,7 @@ def _normalise_uploads(registry: Dict[str, Any]) -> Tuple[Path, str]:
                 "allowed_uses": list(raw.get("allowed_uses") or []),
                 "pdf_sha256": raw.get("pdf_sha256"),
                 "pdf_bytes": int(raw.get("pdf_bytes") or 0),
-                "license_attested": bool(raw.get("license_attested") or raw.get("license_attestation")),
+                "license_attested": is_license_attested(raw),
                 "license_attestation_version": int(raw.get("license_attestation_version") or 1),
                 "uploaded": raw.get("uploaded"),
                 "status": raw.get("status") or "attached",
@@ -129,9 +134,7 @@ def _write_uploads_unlocked(registry: Dict[str, Any]) -> None:
 
 
 def _uploads_lock_path() -> Path:
-    lock_path = resolve_project_path("var/locks/fulltext-uploads.lock")
-    lock_path.parent.mkdir(parents=True, exist_ok=True)
-    return lock_path
+    return admin_lock_path("fulltext-uploads.lock")
 
 
 def _save_uploads(registry: Dict[str, Any]) -> None:
@@ -171,13 +174,42 @@ def _included_by_id() -> Dict[str, Dict[str, Any]]:
     return {s["source_id"]: s for s in included_sources()}
 
 
-def _candidate_access_by_source() -> Dict[str, str]:
-    out: Dict[str, str] = {}
-    for cand in load_fulltext_catalog().get("candidates", []):
-        sid = cand.get("source_id")
-        if sid and cand.get("access_mode"):
-            out[sid] = cand["access_mode"]
-    return out
+def _candidate_by_source() -> Dict[str, Dict[str, Any]]:
+    return {
+        str(candidate["source_id"]): candidate
+        for candidate in load_fulltext_catalog().get("candidates", [])
+        if candidate.get("source_id")
+    }
+
+
+def _index_eligibility(
+    source: Dict[str, Any],
+    upload: Optional[Dict[str, Any]],
+    candidate: Optional[Dict[str, Any]],
+    *,
+    has_pdf: bool,
+) -> Dict[str, Any]:
+    governance = upload or candidate or {}
+    access_mode = governance.get("access_mode")
+    license_attested = is_license_attested(governance)
+    source_uses = set(source.get("allowed_uses") or [])
+    governed_uses = set(governance.get("allowed_uses") or source_uses)
+    effective_uses = sorted(source_uses & governed_uses)
+    if not has_pdf:
+        reason = "local_pdf_missing"
+    elif not access_mode:
+        reason = "fulltext_governance_missing"
+    elif not effective_uses:
+        reason = "fulltext_allowed_uses_empty"
+    else:
+        reason = ""
+    return {
+        "access_mode": access_mode,
+        "allowed_uses": effective_uses,
+        "license_attested": license_attested,
+        "index_eligible": not reason,
+        "ineligible_reason": reason or None,
+    }
 
 
 def _read_manifest() -> Dict[str, Any]:
@@ -299,7 +331,7 @@ def attach_pdf(
         "pdf_bytes": len(pdf_bytes),
         # Store a fixed governance assertion, never the operator's free text.
         # This prevents accidental persistence of publisher/session credentials.
-        "license_attested": bool(license_attestation),
+        "license_attested": license_attestation == LICENSE_ATTESTATION_CODE,
         "license_attestation_version": 1,
         "uploaded": date.today().isoformat(),
         "status": "attached",
@@ -463,18 +495,19 @@ def source_fulltext_status(source_id: str) -> Dict[str, Any]:
         raise FulltextAdminError(f"未收录来源：{source_id}")
     uploads = _uploads_by_source()
     counts = _indexed_chunk_counts()
-    cand_access = _candidate_access_by_source()
+    candidates = _candidate_by_source()
     source = included[source_id]
     upload = uploads.get(source_id)
+    has_pdf = _existing_pdf(source_id, source.get("topic")) is not None
+    eligibility = _index_eligibility(source, upload, candidates.get(source_id), has_pdf=has_pdf)
     return {
         "source_id": source_id,
         "title": source.get("title", ""),
-        "has_pdf": _existing_pdf(source_id, source.get("topic")) is not None,
+        "has_pdf": has_pdf,
         "indexed": counts.get(source_id, 0) > 0,
         "chunk_count": counts.get(source_id, 0),
-        "access_mode": (upload or {}).get("access_mode") or cand_access.get(source_id),
-        "managed_by": "upload" if upload else ("curated_candidate" if source_id in cand_access else "none"),
-        "allowed_uses": (upload or {}).get("allowed_uses") or source.get("allowed_uses", []),
+        "managed_by": "upload" if upload else ("curated_candidate" if source_id in candidates else "none"),
+        **eligibility,
     }
 
 
@@ -484,17 +517,19 @@ def fulltext_status() -> Dict[str, Any]:
     included = _included_by_id()
     uploads = _uploads_by_source()
     counts = _indexed_chunk_counts()
-    cand_access = _candidate_access_by_source()
+    candidates = _candidate_by_source()
 
     rows: List[Dict[str, Any]] = []
     for source_id, source in included.items():
         upload = uploads.get(source_id)
         has_pdf = _existing_pdf(source_id, source.get("topic")) is not None
         chunk_count = counts.get(source_id, 0)
-        if not (upload or has_pdf or chunk_count or source_id in cand_access):
+        candidate = candidates.get(source_id)
+        if not (upload or has_pdf or chunk_count or candidate):
             managed_by = "none"
         else:
-            managed_by = "upload" if upload else ("curated_candidate" if source_id in cand_access else "none")
+            managed_by = "upload" if upload else ("curated_candidate" if candidate else "none")
+        eligibility = _index_eligibility(source, upload, candidate, has_pdf=has_pdf)
         rows.append(
             {
                 "source_id": source_id,
@@ -502,14 +537,16 @@ def fulltext_status() -> Dict[str, Any]:
                 "has_pdf": has_pdf,
                 "indexed": chunk_count > 0,
                 "chunk_count": chunk_count,
-                "access_mode": (upload or {}).get("access_mode") or cand_access.get(source_id),
                 "managed_by": managed_by,
+                **eligibility,
             }
         )
     rows.sort(key=lambda r: (not r["indexed"], not r["has_pdf"], r["source_id"]))
     return {
         "total_sources": len(rows),
         "with_pdf": sum(1 for r in rows if r["has_pdf"]),
+        "license_attested": sum(1 for r in rows if r["has_pdf"] and r["license_attested"]),
+        "license_pending": sum(1 for r in rows if r["has_pdf"] and not r["license_attested"]),
         "indexed": sum(1 for r in rows if r["indexed"]),
         "total_chunks": sum(r["chunk_count"] for r in rows),
         "uploads": len(uploads),

@@ -39,7 +39,7 @@ from typing import Any, Dict, List, Optional
 import portalocker
 import yaml
 
-from app.services.config_loader import resolve_project_path
+from app.services.config_loader import admin_lock_path, resolve_project_path
 from app.services.source_catalog import (
     ALLOWED_EVIDENCE_CLASSES,
     ALLOWED_USES,
@@ -302,9 +302,7 @@ def _append_entry(path: str, source: Dict[str, Any], expected_revision: Optional
 
 def _catalog_lock_path(path: str) -> Path:
     digest = hashlib.sha256(str(resolve_project_path(path)).encode("utf-8")).hexdigest()[:16]
-    lock_path = resolve_project_path(f"var/locks/catalog-{digest}.lock")
-    lock_path.parent.mkdir(parents=True, exist_ok=True)
-    return lock_path
+    return admin_lock_path(f"catalog-{digest}.lock")
 
 
 def _atomic_write_text(path: Path, text: str) -> None:

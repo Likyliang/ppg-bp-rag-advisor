@@ -8,7 +8,10 @@ from uuid import uuid4
 from pathlib import Path
 
 from fastapi import FastAPI
+from fastapi.encoders import jsonable_encoder
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.api.admin import router as admin_router
@@ -17,7 +20,7 @@ from app.api.routes import router
 from app.admin import init_admin_db
 from app.admin.db import session_scope
 from app.admin.metrics import record_metric
-from app.admin.audit import write_audit
+from app.admin.audit import is_sensitive_key, redact, write_audit
 from app.admin.security import validate_security_startup
 
 
@@ -54,6 +57,25 @@ if _origins:
 app.include_router(router, prefix="/api/v1")
 app.include_router(library_router, prefix="/api/v1/library")
 app.include_router(admin_router, prefix="/api/v1")
+
+
+@app.exception_handler(RequestValidationError)
+async def redacted_validation_error(_request, exc: RequestValidationError) -> JSONResponse:
+    """Keep credential-shaped values out of FastAPI's 422 response payload."""
+
+    safe_errors = []
+    for raw_error in exc.errors():
+        error = dict(raw_error)
+        location = error.get("loc") or ()
+        if any(is_sensitive_key(part) for part in location):
+            if "input" in error:
+                error["input"] = "[REDACTED]"
+        elif "input" in error:
+            error["input"] = redact(error["input"])
+        if "ctx" in error:
+            error["ctx"] = redact(error["ctx"])
+        safe_errors.append(error)
+    return JSONResponse(status_code=422, content=jsonable_encoder({"detail": safe_errors}))
 
 
 @app.middleware("http")
@@ -139,11 +161,7 @@ async def request_context_and_anonymous_metrics(request, call_next):
             pass
     return response
 
-# Vendored static assets (Bootstrap CSS, etc.) for the library admin UI.
 _STATIC_DIR = Path(__file__).resolve().parent / "static"
-if _STATIC_DIR.exists():
-    app.mount("/api/v1/library/static", StaticFiles(directory=str(_STATIC_DIR)), name="library-static")
-
 _ADMIN_DIST = _STATIC_DIR / "admin_dist"
 if _ADMIN_DIST.exists():
     app.mount("/admin", StaticFiles(directory=str(_ADMIN_DIST), html=True), name="admin-spa")

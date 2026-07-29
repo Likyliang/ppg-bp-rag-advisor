@@ -1,5 +1,5 @@
 {
-  "timestamp": 1783686240,
+  "timestamp": 1785329409,
   "stop_criteria": {
     "min_tests": 60,
     "min_included_sources": 60,
@@ -14,13 +14,13 @@
   },
   "metrics": {
     "commands_ok": true,
-    "test_count": 521,
+    "test_count": 536,
     "included_sources": 246,
     "chunk_count": 562,
     "golden_query_count": 100,
     "report_fixture_count": 50,
     "retrieval_match_rate": 1.0,
-    "retrieval_precision_at_5": 0.984,
+    "retrieval_precision_at_5": 0.971,
     "retrieval_topic_hit_rate": 1.0,
     "retrieval_expected_class_hit_rate": 1.0,
     "retrieval_high_trust_sensitive_rate": 1.0,
@@ -77,7 +77,7 @@
     "rule_report_recommendation_grounding_rate": 1.0,
     "rule_report_sensitive_high_trust_rate": 1.0,
     "rule_report_emergency_consistency": 1.0,
-    "report_p95_sec": 2.5486
+    "report_p95_sec": 2.2411
   },
   "criteria": {
     "tests": true,
@@ -103,76 +103,76 @@
       "name": "prepare_fulltext_candidates",
       "command": "<python> scripts/prepare_fulltext_candidates.py",
       "returncode": 0,
-      "duration_sec": 0.828,
+      "duration_sec": 0.903,
       "output_tail": "{\n  \"catalog_version\": 1,\n  \"updated\": \"2026-05-28\",\n  \"candidate_count\": 76,\n  \"public_download_count\": 8,\n  \"institution_queue_count\": 8,\n  \"browser_queue_count\": 11,\n  \"action_queue_count\": 11,\n  \"summary_ready_count\": 71,\n  \"issues\": [],\n  \"files\": {\n    \"candidate_report\": \"<project>/knowledge_base/processed/fulltext_candidate_report.json\",\n    \"download_queue\": \"<project>/knowledge_base/processed/fulltext_download_queue.md\"\n  }\n}\n"
     },
     {
       "name": "create_fulltext_summaries",
       "command": "<python> scripts/create_fulltext_summaries.py",
       "returncode": 0,
-      "duration_sec": 0.491,
+      "duration_sec": 0.47,
       "output_tail": "<project>/knowledge_base/sources/fulltext_summaries/who_2021_hypertension_pharmacological_treatment_guideline.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/bent_2020_wearable_optical_hr_inaccuracy.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/cabanas_2022_skin_pigmentation_pulse_oximetry_bibliometric.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/chandrasekhar_2020_contact_pressure_cuffless_bp.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/charlton_2022_ppg_best_practices.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/charlton_2023_wearable_ppg_roadmap.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/charlton_2025_wrist_ppg_signal_quality.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/desquins_2022_ppg_quality_assessment_survey.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/electronics_2023_ppg_wearable_devices_review.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/lee_2013_rgb_reflection_ppg_motion_hr.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/lee_2021_skin_compatible_wearable_ppg.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/shirbani_2020_ambient_light_skin_tone_vpg.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/state_council_chronic_disease_plan_2017_2025.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/stride_bp_validated_devices.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/tamura_2019_current_progress_ppg_spo2.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/teng_2004_contact_force_ppg.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/aha_prevent_equations_circulation_2024.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/chinese_2025_secondary_hypertension_screening_consensus.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/esc_2024_elevated_bp_hypertension_doi_report.summary.md\",\n    \"<project>/knowledge_base/sources/fulltext_summaries/esc_2024_pharmacotherapy_what_is_new.summary.md\"\n  ],\n  \"skipped\": [\n    {\n      \"candidate_id\": \"esc_2024_essential_messages_pdf\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"esh_2023_guideline_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"allen_2007_ppg_clinical_measurement_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"charlton_2022_wearable_ppg_cardiovascular_fulltext\",\n      \"reason\": \"include_in_summary=false\"\n    },\n    {\n      \"candidate_id\": \"iso_81060_2_record_only\",\n      \"reason\": \"include_in_summary=false\"\n    }\n  ]\n}\n"
     },
     {
       "name": "screen_sources",
       "command": "<python> scripts/screen_sources.py",
       "returncode": 0,
-      "duration_sec": 0.675,
+      "duration_sec": 0.663,
       "output_tail": "{\n  \"total_sources\": 252,\n  \"included_count\": 246,\n  \"excluded_count\": 6,\n  \"threshold\": 18,\n  \"issues\": [],\n  \"duplicate_source_hashes\": [],\n  \"topic_counts\": {\n    \"bp_categories\": 9,\n    \"home_bp_monitoring\": 47,\n    \"emergency\": 6,\n    \"cuffless_ppg_limitations\": 34,\n    \"validated_devices\": 7,\n    \"lifestyle\": 22,\n    \"special_population\": 16,\n    \"measurement_quality\": 32,\n    \"medication_safety\": 5,\n    \"disclaimer\": 3,\n    \"research_context\": 65\n  },\n  \"evidence_class_counts\": {\n    \"guideline\": 20,\n    \"official_health_education\": 58,\n    \"scientific_statement\": 6,\n    \"review\": 53,\n    \"validation_standard\": 5,\n    \"patient_education\": 2,\n    \"safety_rule\": 14,\n    \"research_context\": 88\n  }\n}\n{\n  \"files\": {\n    \"screening_report\": \"<project>/knowledge_base/processed/source_screening_report.json\",\n    \"included_sources\": \"<project>/knowledge_base/processed/included_sources.json\",\n    \"excluded_sources\": \"<project>/knowledge_base/processed/excluded_sources.json\"\n  }\n}\n"
     },
     {
       "name": "extract_source_notes",
       "command": "<python> scripts/extract_source_notes.py --clean",
       "returncode": 0,
-      "duration_sec": 0.538,
+      "duration_sec": 0.509,
       "output_tail": "written_count: 246\nroot: <project>/knowledge_base/raw/expanded\n\n"
     },
     {
       "name": "ingest_kb",
       "command": "<python> scripts/ingest_kb.py",
       "returncode": 0,
-      "duration_sec": 0.36,
-      "output_tail": "{\n  \"chunk_count\": 562,\n  \"content_chunk_count\": 316,\n  \"chunks_path\": \"<project>/knowledge_base/processed/chunks.jsonl\",\n  \"hashing_vector_status\": \"hashing vectors updated: 562 chunks -> <project>/knowledge_base/vector_store/processed_hashing_vectors.npz\",\n  \"vector_status\": \"vector index skipped: set build_vector=true to enable optional Chroma indexing\",\n  \"input_fingerprint\": \"27d17a1c51d63f02ffee27393e072ffb753a77c738fbab9fa619d447fbde2d83\",\n  \"chunks_sha256\": \"81f7a051e77d854779bff58b30536e3949c6b17bab357956ed474499508b2b5e\"\n}\n"
+      "duration_sec": 0.356,
+      "output_tail": "{\n  \"chunk_count\": 562,\n  \"content_chunk_count\": 316,\n  \"chunks_path\": \"<project>/knowledge_base/processed/chunks.jsonl\",\n  \"hashing_vector_status\": \"hashing vectors updated: 562 chunks -> <project>/knowledge_base/vector_store/processed_hashing_vectors.npz\",\n  \"vector_status\": \"vector index skipped: set build_vector=true to enable optional Chroma indexing\",\n  \"input_fingerprint\": \"f8e5341170fca06284a9913368830d6d3bf6ffd054f59b736fbd4dca8372e128\",\n  \"chunks_sha256\": \"5d2c45de64543eed2b0701333c3b0a573c7752a3db726e19e8437de43187658f\"\n}\n"
     },
     {
       "name": "audit_kb",
       "command": "<python> scripts/audit_kb.py",
       "returncode": 0,
-      "duration_sec": 0.361,
+      "duration_sec": 0.354,
       "output_tail": "{\n  \"chunk_count\": 562,\n  \"source_count\": 246,\n  \"catalog_included_count\": 246,\n  \"topic_counts\": {\n    \"bp_categories\": 22,\n    \"cuffless_ppg_limitations\": 75,\n    \"disclaimer\": 6,\n    \"emergency\": 12,\n    \"home_bp_monitoring\": 111,\n    \"lifestyle\": 54,\n    \"measurement_quality\": 85,\n    \"medication_safety\": 11,\n    \"research_context\": 133,\n    \"special_population\": 37,\n    \"validated_devices\": 16\n  },\n  \"topic_source_counts\": {\n    \"bp_categories\": 9,\n    \"cuffless_ppg_limitations\": 34,\n    \"disclaimer\": 3,\n    \"emergency\": 6,\n    \"home_bp_monitoring\": 47,\n    \"lifestyle\": 22,\n    \"measurement_quality\": 32,\n    \"medication_safety\": 5,\n    \"research_context\": 65,\n    \"special_population\": 16,\n    \"validated_devices\": 7\n  },\n  \"evidence_class_counts\": {\n    \"guideline\": 57,\n    \"official_health_education\": 131,\n    \"scientific_statement\": 17,\n    \"review\": 121,\n    \"validation_standard\": 14,\n    \"research_context\": 189,\n    \"safety_rule\": 28,\n    \"patient_education\": 5\n  },\n  \"missing_topics\": [],\n  \"duplicate_source_hashes\": [],\n  \"orphan_source_ids\": [],\n  \"unsafe_source_leakage\": [],\n  \"quality\": {\n    \"has_all_expected_topics\": true,\n    \"has_no_unsafe_source_leakage\": true,\n    \"has_catalog_alignment\": true\n  }\n}\n"
     },
     {
       "name": "evaluate_retrieval",
       "command": "<python> scripts/evaluate_retrieval.py",
       "returncode": 0,
-      "duration_sec": 13.367,
-      "output_tail": "{\n  \"query_count\": 100,\n  \"match_rate\": 1.0,\n  \"mean_precision_at_5\": 0.984,\n  \"topic_hit_rate\": 1.0,\n  \"mean_topic_precision_at_5\": 0.864,\n  \"expected_class_hit_rate\": 1.0,\n  \"high_trust_sensitive_rate\": 1.0,\n  \"unsafe_source_leakage_count\": 0,\n  \"evaluation_mode\": \"calibrated_query_only\"\n}\n{\n  \"metadata_filter_safety\": {\n    \"query_count\": 100,\n    \"match_rate\": 1.0,\n    \"mean_precision_at_5\": 1.0,\n    \"topic_hit_rate\": 1.0,\n    \"mean_topic_precision_at_5\": 0.859,\n    \"expected_class_hit_rate\": 1.0,\n    \"high_trust_sensitive_rate\": 1.0,\n    \"unsafe_source_leakage_count\": 0,\n    \"evaluation_mode\": \"metadata_filter_safety\"\n  }\n}\nwrote <project>/knowledge_base/processed/retrieval_evaluation.json\nwrote <project>/knowledge_base/processed/retrieval_evaluation.csv\n"
+      "duration_sec": 7.76,
+      "output_tail": "{\n  \"query_count\": 100,\n  \"match_rate\": 1.0,\n  \"mean_precision_at_5\": 0.971,\n  \"topic_hit_rate\": 1.0,\n  \"mean_topic_precision_at_5\": 0.849,\n  \"expected_class_hit_rate\": 1.0,\n  \"high_trust_sensitive_rate\": 1.0,\n  \"unsafe_source_leakage_count\": 0,\n  \"evaluation_mode\": \"calibrated_query_only\"\n}\n{\n  \"metadata_filter_safety\": {\n    \"query_count\": 100,\n    \"match_rate\": 1.0,\n    \"mean_precision_at_5\": 1.0,\n    \"topic_hit_rate\": 1.0,\n    \"mean_topic_precision_at_5\": 0.849,\n    \"expected_class_hit_rate\": 1.0,\n    \"high_trust_sensitive_rate\": 1.0,\n    \"unsafe_source_leakage_count\": 0,\n    \"evaluation_mode\": \"metadata_filter_safety\"\n  }\n}\nwrote <project>/knowledge_base/processed/retrieval_evaluation.json\nwrote <project>/knowledge_base/processed/retrieval_evaluation.csv\n"
     },
     {
       "name": "evaluate_reports",
       "command": "<python> scripts/evaluate_reports.py",
       "returncode": 0,
-      "duration_sec": 6.425,
+      "duration_sec": 4.744,
       "output_tail": "<project>/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\n{\n  \"llm_only_mock\": {\n    \"has_summary\": 0.0,\n    \"has_evidence\": 0.0,\n    \"has_high_quality_evidence\": 0.0,\n    \"has_ppg_limitation\": 0.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.0,\n    \"required_use_coverage_rate\": 0.0,\n    \"recommendation_grounding_rate\": 0.0,\n    \"sensitive_high_trust_rate\": 0.48,\n    \"emergency_consistency\": 0.82\n  },\n  \"rag_only_mock\": {\n    \"has_summary\": 1.0,\n    \"has_evidence\": 1.0,\n    \"has_high_quality_evidence\": 1.0,\n    \"has_ppg_limitation\": 1.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.18,\n    \"required_use_coverage_rate\": 1.0,\n    \"recommendation_grounding_rate\": 1.0,\n    \"sensitive_high_trust_rate\": 1.0,\n    \"emergency_consistency\": 1.0\n  },\n  \"rule_rag_safety\": {\n    \"has_summary\": 1.0,\n    \"has_evidence\": 1.0,\n    \"has_high_quality_evidence\": 1.0,\n    \"has_ppg_limitation\": 1.0,\n    \"safety_pass\": 1.0,\n    \"emergency_detected\": 0.18,\n    \"required_use_coverage_rate\": 1.0,\n    \"recommendation_grounding_rate\": 1.0,\n    \"sensitive_high_trust_rate\": 1.0,\n    \"emergency_consistency\": 1.0\n  }\n}\nwrote <project>/knowledge_base/processed/evaluation_results.json\nwrote <project>/knowledge_base/processed/evaluation_results.csv\n"
     },
     {
       "name": "benchmark_report",
       "command": "<python> scripts/benchmark_report.py",
       "returncode": 0,
-      "duration_sec": 6.255,
-      "output_tail": "<project>/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\n{\n  \"case_count\": 50,\n  \"max_concurrency\": 5,\n  \"mean_sec\": 0.5889,\n  \"p95_sec\": 2.5486,\n  \"max_sec\": 3.1334,\n  \"target_p95_sec\": 3.0,\n  \"passed\": true\n}\n"
+      "duration_sec": 4.56,
+      "output_tail": "<project>/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\n{\n  \"case_count\": 50,\n  \"max_concurrency\": 5,\n  \"mean_sec\": 0.426,\n  \"p95_sec\": 2.2411,\n  \"max_sec\": 2.5899,\n  \"target_p95_sec\": 3.0,\n  \"passed\": true\n}\n"
     },
     {
       "name": "pytest",
       "command": "<python> -m pytest",
       "returncode": 0,
-      "duration_sec": 136.036,
-      "output_tail": "........................................................................ [ 13%]\n........................................................................ [ 27%]\n........................................................................ [ 41%]\n........................................................................ [ 55%]\n........................................................................ [ 69%]\n........................................................................ [ 82%]\n........................................................................ [ 96%]\n.................                                                        [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.9/site-packages/urllib3/__init__.py:35\n  <project>/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n521 passed, 1 warning in 135.53s (0:02:15)\n"
+      "duration_sec": 121.329,
+      "output_tail": "........................................................................ [ 13%]\n........................................................................ [ 26%]\n........................................................................ [ 40%]\n........................................................................ [ 53%]\n........................................................................ [ 67%]\n........................................................................ [ 80%]\n........................................................................ [ 94%]\n................................                                         [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.9/site-packages/urllib3/__init__.py:35\n  <project>/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n536 passed, 1 warning in 120.88s (0:02:00)\n"
     }
   ],
   "input_fingerprints": {
     "catalog": "14b2efc9b545e8bc0c700c6b6d6314a088a189af3c31670797f33e57fa62c24c",
     "config": "2756620513de1465f559c467322c40459899cfe557a7ea09105b8f5c5a40b9e1",
-    "chunks": "81f7a051e77d854779bff58b30536e3949c6b17bab357956ed474499508b2b5e"
+    "chunks": "5d2c45de64543eed2b0701333c3b0a573c7752a3db726e19e8437de43187658f"
   }
 }

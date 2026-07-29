@@ -8,14 +8,14 @@ import threading
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Any, Callable, Dict, Iterable, List, Optional, Tuple
 
 import numpy as np
 import yaml
 
 from app.services.chunking import chunk_text, tokenize_for_match
 from app.services.config_loader import resolve_project_path
-from app.services.fulltext_candidates import validate_fulltext_catalog
+from app.services.fulltext_candidates import is_license_attested, validate_fulltext_catalog
 from app.services.source_catalog import included_sources
 
 
@@ -210,7 +210,7 @@ def _governance_metadata(source: Dict[str, Any], governance: Dict[str, Any]) -> 
         "source_quality_score": source.get("source_quality_score", ""),
         "allowed_uses": sorted(source_uses & governed_uses),
         "access_mode": governance.get("access_mode", ""),
-        "license_attested": bool(governance.get("license_attested") or governance.get("license_attestation")),
+        "license_attested": is_license_attested(governance),
     }
 
 
@@ -230,6 +230,46 @@ def _manifest_input_fingerprint(sources_manifest: Iterable[Dict[str, Any]]) -> s
         for item in sources_manifest
     )
     return hashlib.sha256(json.dumps(rows, ensure_ascii=False).encode("utf-8")).hexdigest()
+
+
+def _manifest_status(
+    sources_manifest: Iterable[Dict[str, Any]], skipped: Iterable[Dict[str, str]]
+) -> str:
+    """Report a failed artifact when an otherwise eligible PDF was unreadable.
+
+    Missing PDFs and records without complete governance are intentionally not
+    full-text inputs. A locally governed PDF that cannot yield chunks is an
+    input failure and must not leave the dashboard green. Licence attestation
+    is reported separately because historical imports still require review.
+    """
+
+    failed_prefixes = (
+        "extract_failed:",
+        "extracted_text_empty",
+        "pdf_bytes_mismatch",
+        "pdf_sha256_mismatch",
+    )
+    if any(str(item.get("reason") or "").startswith(failed_prefixes) for item in skipped):
+        return "failed"
+    if any(int(item.get("chunk_count") or 0) <= 0 for item in sources_manifest):
+        return "failed"
+    return "current"
+
+
+def _pdf_integrity_issue(pdf_path: Path, governance: Dict[str, Any]) -> Optional[str]:
+    """Validate a governed local copy against its committed metadata."""
+
+    expected_bytes = governance.get("pdf_bytes") or governance.get("local_pdf_bytes")
+    if expected_bytes:
+        try:
+            if pdf_path.stat().st_size != int(expected_bytes):
+                return "pdf_bytes_mismatch"
+        except (OSError, TypeError, ValueError):
+            return "pdf_bytes_mismatch"
+    expected_sha = governance.get("pdf_sha256") or governance.get("local_pdf_sha256")
+    if expected_sha and _sha256_file(pdf_path) != str(expected_sha):
+        return "pdf_sha256_mismatch"
+    return None
 
 
 def _build_chunks_for_pdf(
@@ -295,6 +335,7 @@ def build_fulltext_chunks(
     source_ids: Optional[Iterable[str]] = None,
     target_chars: int = 850,
     overlap_chars: int = 140,
+    progress_callback: Optional[Callable[[int, int], None]] = None,
 ) -> Tuple[List[FulltextChunk], List[Dict[str, Any]], List[Dict[str, str]]]:
     source_filter = set(source_ids or [])
     candidates = _candidate_by_source()
@@ -304,39 +345,62 @@ def build_fulltext_chunks(
     sources_manifest: List[Dict[str, Any]] = []
     skipped: List[Dict[str, str]] = []
 
-    for source_id, source in sorted(sources.items()):
-        if source_filter and source_id not in source_filter:
-            continue
-        pdf_path = governed_pdf_path(source_id, source.get("topic"))
-        if pdf_path is None:
-            skipped.append({"source_id": source_id, "reason": "local_pdf_missing"})
-            continue
-        governance = uploads.get(source_id) or candidates.get(source_id) or {}
-        if not governance.get("access_mode"):
-            skipped.append({"source_id": source_id, "reason": "fulltext_governance_missing"})
-            continue
-        if not _governance_metadata(source, governance)["allowed_uses"]:
-            skipped.append({"source_id": source_id, "reason": "fulltext_allowed_uses_empty"})
-            continue
+    selected_sources = [
+        (source_id, source)
+        for source_id, source in sorted(sources.items())
+        if not source_filter or source_id in source_filter
+    ]
+    if progress_callback:
+        progress_callback(0, len(selected_sources))
+
+    for position, (source_id, source) in enumerate(selected_sources, start=1):
         try:
-            source_chunks, source_manifest = _build_chunks_for_pdf(
-                source=source,
-                candidate=candidates.get(source_id),
-                governance=governance,
-                pdf_path=pdf_path,
-                target_chars=target_chars,
-                overlap_chars=overlap_chars,
-            )
-        except Exception as exc:
-            skipped.append({"source_id": source_id, "reason": f"extract_failed:{exc.__class__.__name__}:{exc}"})
-            continue
-        chunks.extend(source_chunks)
-        sources_manifest.append(source_manifest)
+            pdf_path = governed_pdf_path(source_id, source.get("topic"))
+            if pdf_path is None:
+                skipped.append({"source_id": source_id, "reason": "local_pdf_missing"})
+                continue
+            governance = uploads.get(source_id) or candidates.get(source_id) or {}
+            if not governance.get("access_mode"):
+                skipped.append({"source_id": source_id, "reason": "fulltext_governance_missing"})
+                continue
+            if not _governance_metadata(source, governance)["allowed_uses"]:
+                skipped.append({"source_id": source_id, "reason": "fulltext_allowed_uses_empty"})
+                continue
+            integrity_issue = _pdf_integrity_issue(pdf_path, governance)
+            if integrity_issue:
+                skipped.append({"source_id": source_id, "reason": integrity_issue})
+                continue
+            try:
+                source_chunks, source_manifest = _build_chunks_for_pdf(
+                    source=source,
+                    candidate=candidates.get(source_id),
+                    governance=governance,
+                    pdf_path=pdf_path,
+                    target_chars=target_chars,
+                    overlap_chars=overlap_chars,
+                )
+            except Exception as exc:
+                skipped.append({"source_id": source_id, "reason": f"extract_failed:{exc.__class__.__name__}:{exc}"})
+                continue
+            if not source_chunks:
+                skipped.append({"source_id": source_id, "reason": "extracted_text_empty"})
+                continue
+            chunks.extend(source_chunks)
+            sources_manifest.append(source_manifest)
+        finally:
+            if progress_callback:
+                progress_callback(position, len(selected_sources))
     return chunks, sources_manifest, skipped
 
 
 def current_fulltext_input_fingerprint() -> str:
-    """Fingerprint live PDFs plus the governance metadata used for chunking."""
+    """Fingerprint live PDFs that are eligible for governed full-text indexing.
+
+    This mirrors ``build_fulltext_chunks`` eligibility. A PDF with no access
+    mode or no allowed-use intersection is governance inventory, not an index
+    input, and therefore cannot make every successful build permanently stale.
+    Readable failures remain inputs so a corrupt authorized PDF is surfaced.
+    """
 
     candidates = _candidate_by_source()
     uploads = _upload_by_source()
@@ -346,6 +410,10 @@ def current_fulltext_input_fingerprint() -> str:
         if pdf_path is None:
             continue
         governance = uploads.get(source_id) or candidates.get(source_id) or {}
+        if not governance.get("access_mode"):
+            continue
+        if not _governance_metadata(source, governance)["allowed_uses"]:
+            continue
         rows.append(
             {
                 "source_id": source_id,
@@ -447,12 +515,14 @@ def build_fulltext_vector_index(
     chunks_path: Optional[str] = None,
     vector_path: Optional[str] = None,
     manifest_path: Optional[str] = None,
+    progress_callback: Optional[Callable[[int, int], None]] = None,
 ) -> Dict[str, Any]:
     started = time.time()
     chunks, sources_manifest, skipped = build_fulltext_chunks(
         source_ids=source_ids,
         target_chars=target_chars,
         overlap_chars=overlap_chars,
+        progress_callback=progress_callback,
     )
     local_chunks_path = write_local_fulltext_chunks(chunks, path=chunks_path)
     local_vector_path = write_hashing_vector_index(chunks, dims=dims, path=vector_path)
@@ -473,6 +543,7 @@ def build_fulltext_vector_index(
         "duration_sec": round(time.time() - started, 3),
         "sources": sources_manifest,
         "skipped": skipped,
+        "status": _manifest_status(sources_manifest, skipped),
     }
     manifest["input_fingerprint"] = _manifest_input_fingerprint(sources_manifest)
     out_path = resolve_project_path(manifest_path or MANIFEST_PATH)
@@ -597,6 +668,7 @@ def merge_manifest(
         "vector_path": str(resolve_project_path(vector_path or f"{VECTOR_ROOT}/fulltext_hashing_vectors.npz")),
         "sources": sources,
         "skipped": skipped_all,
+        "status": _manifest_status(sources, skipped_all),
     }
     manifest["input_fingerprint"] = _manifest_input_fingerprint(sources)
     out_path.parent.mkdir(parents=True, exist_ok=True)

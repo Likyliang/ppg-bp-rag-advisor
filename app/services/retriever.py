@@ -39,6 +39,7 @@ BP_VALUE_RE = re.compile(r"\b\d{2,3}\s*[/／]\s*\d{2,3}\b")
 SENSITIVE_USES = {"emergency_alert", "medication_safety", "special_population"}
 
 FULLTEXT_CHUNKS_PATH = "knowledge_base/vector_store/fulltext_chunks.jsonl"
+FULLTEXT_MANIFEST_PATH = "knowledge_base/processed/fulltext_vector_manifest.json"
 
 # Per store: (OpenAI embedding index, offline hashing index). The OpenAI index
 # is preferred when an API key is configured and the index covers the current
@@ -713,6 +714,17 @@ def _load_fulltext_chunks_cached(path_string: str, mtime: float) -> tuple:
     return _load_chunks_cached(path_string, mtime)
 
 
+@lru_cache(maxsize=2)
+def _fulltext_manifest_current(path_string: str, mtime: float) -> bool:
+    del mtime  # the mtime participates in the cache key
+    path = resolve_project_path(path_string)
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    except (OSError, ValueError):
+        return False
+    return manifest.get("status") == "current"
+
+
 def _fulltext_pool(
     intents: List[str],
     required_uses: Set[str],
@@ -724,6 +736,8 @@ def _fulltext_pool(
     min_score: float = 0.12,
 ) -> List[tuple]:
     """Best locally-ingested fulltext passages under the same governance rules."""
+    if not _fulltext_manifest_current(*_file_signature(FULLTEXT_MANIFEST_PATH)):
+        return []
     chunks = _apply_current_catalog_governance(
         _load_fulltext_chunks_cached(*_file_signature(FULLTEXT_CHUNKS_PATH))
     )
