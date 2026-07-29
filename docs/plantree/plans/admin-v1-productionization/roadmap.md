@@ -6,7 +6,8 @@
 - Nineteen local commits were fast-forward pushed to the tracked GitHub branch.
 - Development launcher binds to localhost and no longer disables authentication.
 - Admin SQLite backup/migration, first administrator, master key, persistent Worker,
-  scoped API Client, and three safe integration profiles are in place.
+  scoped API Client, three enabled profiles, and one encrypted-but-disabled evaluation
+  profile are in place. No external key remains active through environment fallback.
 - Tests use disposable DB/lock state; legacy static admin pages are retired.
 - All nine Vue modules are productized and authenticated browser QA is complete.
 - Screening, summary chunks, hashing, Chroma/BGE, OpenAI summary, and local full-text
@@ -28,7 +29,8 @@
 
 ## Next
 
-- Move the evaluation endpoint to HTTPS before storing it in Admin integrations.
+- Move the evaluation endpoint to HTTPS, then update and enable its existing encrypted
+  Admin integration profile.
 - Review and attest historical local PDF authorization one document at a time.
 - Securely hand off and then delete the one-time bootstrap credential file.
 

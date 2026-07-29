@@ -19,7 +19,10 @@ Release validation and operational handoff.
 - Generated the master key, created the first Argon2 administrator, and wrote the
   one-time handoff material only to an ignored owner-only local file.
 - Installed a persistent macOS Worker and created one scoped expiring API Client.
-- Migrated report, embedding, and Crossref profiles into encrypted Admin configuration.
+- Migrated report, embedding, and evaluation keys into encrypted Admin configuration,
+  removed the evaluation key from the active environment, and configured Crossref.
+  Because the evaluation endpoint is HTTP-only, that profile remains safely disabled
+  with no runtime key until an HTTPS endpoint is supplied.
 - Isolated pytest DB/locks and verified 26 focused tests without formal-state changes.
 - Retired the legacy static administration pages and mount.
 - Productized all nine Vue modules with structured forms, polling, progress, filters,
@@ -46,8 +49,9 @@ Release validation and operational handoff.
 
 ## Blockers
 
-- Evaluation provider still uses environment fallback because its configured endpoint
-  is plain HTTP; Admin integration storage correctly refuses non-HTTPS endpoints.
+- The evaluation provider's current endpoint is plain HTTP and the same-host HTTPS
+  probe fails TLS. Its key is encrypted in Admin, but the profile remains disabled
+  and the runtime receives no evaluation key until a valid HTTPS endpoint is supplied.
 - The 175 historical local PDFs require document-by-document authorization review.
   The system reports this backlog and does not describe it as authorized.
 - Claude Code narrative review is temporarily blocked by an expired local OAuth
