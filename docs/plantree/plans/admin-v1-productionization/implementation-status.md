@@ -67,7 +67,7 @@ Post-review follow-up only; the governed operations console release is verified.
 - `.venv/bin/python scripts/run_quality_gate.py --strict-stop`: 536 tests collected,
   all commands and all 16 stop criteria passed
 - Retrieval match `1.0`, Precision@5 `0.971`, metadata-filter safety `1.0`,
-  unsafe source leakage `0`, report P95 `2.2411s`
+  unsafe source leakage `0`, report P95 `2.3927s`
 - `npm --prefix admin_ui run test`: 4 passed
 - `npm --prefix admin_ui run typecheck`: passed
 - `npm --prefix admin_ui run build`: passed
